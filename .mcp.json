@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "ghidra": {
+      "type": "sse",
+      "url": "http://localhost:8080/sse"
+    },
+    "context7": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@upstash/context7-mcp"]
+    },
+    "deepwiki": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "deepwiki-mcp"]
+    }
+  }
+}

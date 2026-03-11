@@ -1,0 +1,97 @@
+2025-07-18 11:33:46 INFO  (LoggingInitialization) Using log config file: jar:file:/B:/Ghidra/ghidra_11.3.1_PUBLIC_20250219/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml  
+2025-07-18 11:33:46 INFO  (LoggingInitialization) Using log file: B:\IA_WORKS\2025-01-17_CPR_Rolemaster_Reverse\outputs\analysis_16bit.log  
+2025-07-18 11:33:46 INFO  (Preferences) Loading user preferences: C:\Users\GENERATION ECRANS\AppData\Roaming\ghidra\ghidra_11.3.1_PUBLIC\preferences  
+2025-07-18 11:33:46 INFO  (ClassSearcher) Searching for classes...  
+2025-07-18 11:33:48 INFO  (ClassSearcher) Class search complete (1440 ms)  
+2025-07-18 11:33:48 INFO  (SSLContextInitializer) Initializing SSL Context  
+2025-07-18 11:33:48 INFO  (SecureRandomFactory) Initializing Random Number Generator...  
+2025-07-18 11:33:48 INFO  (SecureRandomFactory) Random Number Generator initialization complete: SHA1PRNG  
+2025-07-18 11:33:48 INFO  (ApplicationTrustManagerFactory) Trust manager disabled, cacerts have not been set  
+2025-07-18 11:33:50 INFO  (AnalyzeHeadless) Headless startup complete (5701 ms)  
+2025-07-18 11:33:50 INFO  (ClassSearcher) Class searcher loaded 57 extension points (18 false positives)  
+2025-07-18 11:33:51 INFO  (HeadlessAnalyzer) HEADLESS Script Paths:
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Debug\Debugger\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\DecompilerDependent\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\Decompiler\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Processors\PIC\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\PyGhidra\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Processors\JVM\ghidra_scripts
+    C:\Users\GENERATION ECRANS\AppData\Roaming\ghidra\ghidra_11.3.1_PUBLIC\Extensions\MachineLearning\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\BytePatterns\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\MicrosoftCodeAnalyzer\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\FunctionID\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Debug\Debugger-rmi-trace\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Processors\Atmel\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\SwiftDemangler\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\WildcardAssembler\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\FileFormats\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\Base\ghidra_scripts
+    C:\Users\GENERATION ECRANS\AppData\Roaming\ghidra\ghidra_11.3.1_PUBLIC\Extensions\SleighDevTools\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\PDB\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\Jython\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\BSim\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\VersionTracking\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Processors\8051\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\SystemEmulation\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Processors\DATA\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\GnuDemangler\ghidra_scripts  
+2025-07-18 11:33:51 INFO  (HeadlessAnalyzer) HEADLESS: execution starts  
+2025-07-18 11:33:51 INFO  (HeadlessAnalyzer) Creating project: B:\IA_WORKS\2025-01-17_CPR_Rolemaster_Reverse\ghidra_project\CPR093_Analysis  
+2025-07-18 11:33:51 INFO  (DefaultProject) Creating project: B:\IA_WORKS\2025-01-17_CPR_Rolemaster_Reverse\ghidra_project\CPR093_Analysis  
+2025-07-18 11:33:51 INFO  (HeadlessAnalyzer) REPORT: Processing input files:   
+2025-07-18 11:33:51 INFO  (HeadlessAnalyzer)      project: B:\IA_WORKS\2025-01-17_CPR_Rolemaster_Reverse\ghidra_project\CPR093_Analysis  
+2025-07-18 11:33:51 INFO  (HeadlessAnalyzer) IMPORTING: file:///B:/IA_WORKS/2025-01-17_CPR_Rolemaster_Reverse/cpr093.exe  
+2025-07-18 11:33:51 DEBUG (PortableExecutable) Expected InvalidNTHeaderException, ignoring  
+2025-07-18 11:33:51 WARN  (LcsHintLoadSpecChooser) Using unknown opinion: New Executable (NE), x86:LE:16:Real Mode:default  
+2025-07-18 11:33:52 INFO  (AutoImporter) Using Loader: New Executable (NE)  
+2025-07-18 11:33:52 INFO  (AutoImporter) Using Language/Compiler: x86:LE:16:Real Mode:default  
+2025-07-18 11:33:52 INFO  (AutoImporter) Using Library Search Path: [., C:\Windows\SysWOW64, B:\JDK\bin, C:\Windows\Sun\Java\bin, C:\Windows\system32, C:\Windows, C:\Users\GENERATION ECRANS\AppData\Roaming\npm, C:\Users\GENERATION ECRANS\AppData\Local\AnthropicClaude\app-0.12.20\node_modules\.bin, C:\Users\GENERATION ECRANS\AppData\Local\AnthropicClaude\node_modules\.bin, C:\Users\GENERATION ECRANS\AppData\Local\node_modules\.bin, C:\Users\GENERATION ECRANS\AppData\node_modules\.bin, C:\Users\GENERATION ECRANS\node_modules\.bin, C:\Users\node_modules\.bin, C:\node_modules\.bin, E:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\run-script\lib\node-gyp-bin, C:\Program Files\nodejs, C:\Program Files (x86)\Common Files\Oracle\Java\java8path, C:\Program Files (x86)\Common Files\Oracle\Java\javapath, C:\Python313\Scripts\, C:\Python313\, C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler, C:\Program Files (x86)\Intel\iCLS Client\, C:\Program Files\Intel\iCLS Client\, C:\Windows\System32\Wbem, C:\Windows\System32\WindowsPowerShell\v1.0\, C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL, C:\Program Files\Intel\Intel(R) Management Engine Components\DAL, C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT, C:\Program Files\Intel\Intel(R) Management Engine Components\IPT, C:\Program Files\Crucial\Crucial Storage Executive, C:\WINDOWS\system32, C:\WINDOWS, C:\WINDOWS\System32\Wbem, C:\WINDOWS\System32\WindowsPowerShell\v1.0\, E:\Program Files (x86)\AOMEI Backupper, C:\WINDOWS\System32\OpenSSH\, C:\Program Files\dotnet\, C:\temp\tools_r33.0.3-windows\, C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common, C:\Program Files\Calibre2\, C:\Program Files\NVIDIA Corporation\NVIDIA app\NvDLISR, e:\Program Files\Git\cmd, C:\ProgramData\chocolatey\bin, C:\Users\GENERATION ECRANS\AppData\Roaming\nvm, E:\Program Files\nodejs\, C:\Program Files\Docker\Docker\resources\bin, B:\Python\Scripts\, B:\Python\, E:\Python\Python310\Scripts\, E:\Python\Python310\, C:\Users\GENERATION ECRANS\AppData\Local\Microsoft\WindowsApps, C:\Program Files (x86)\Mikero\DePboTools\bin, C:\Users\GENERATION ECRANS\AppData\Local\Programs\Microsoft VS Code\bin, C:\Users\GENERATION ECRANS\AppData\Local\GitHubDesktop\bin]  
+2025-07-18 11:33:52 INFO  (AutoImporter) Additional info:
+Loading file:///B:/IA_WORKS/2025-01-17_CPR_Rolemaster_Reverse/cpr093.exe?MD5=73882d1b53094b32604aba6be4aa65c7...
+Resource at 0xca700 exceeds file length by 0x7f bytes...truncating
+------------------------------------------------
+
+Searching 44 paths for library VBRUN300...
+Library not found.
+------------------------------------------------
+
+Linking the External Programs of 'cpr093.exe' to imported libraries...
+  [VBRUN300] -> not found in project
+------------------------------------------------
+
+  
+2025-07-18 11:33:52 INFO  (HeadlessAnalyzer) IMPORTING: Loaded 0 additional files  
+2025-07-18 11:33:53 INFO  (HeadlessAnalyzer) ANALYZING all memory and code: file:///B:/IA_WORKS/2025-01-17_CPR_Rolemaster_Reverse/cpr093.exe  
+2025-07-18 11:33:54 INFO  (PackedDatabaseCache) Packed database cache: C:\Users\GENERATION ECRANS\AppData\Local\ghidra\packed-db-cache  
+2025-07-18 11:33:54 DEBUG (PackedDatabaseCache) Caching packed database: B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\Base\data\typeinfo\generic\generic_clib.gdt  
+2025-07-18 11:33:54 DEBUG (PackedDatabase) Unpacking database B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\Base\data\typeinfo\generic\generic_clib.gdt -> C:\Users\GENERATION ECRANS\AppData\Local\ghidra\packed-db-cache\pdbC2140DEC\db.1.gbf  
+2025-07-18 11:33:54 DEBUG (PackedDatabaseCache) Cache update completed: B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\Base\data\typeinfo\generic\generic_clib.gdt  
+2025-07-18 11:33:55 INFO  (ApplyDataArchiveAnalyzer) Applied data type archive: generic_clib  
+2025-07-18 11:33:59 INFO  (AutoAnalysisManager) -----------------------------------------------------
+    ASCII Strings                              0.676 secs
+    Apply Data Archives                        1.094 secs
+    Call Convention ID                         0.002 secs
+    Call-Fixup Installer                       0.002 secs
+    Create Function                            0.000 secs
+    Data Reference                             0.005 secs
+    Decompiler Switch Analysis                 0.001 secs
+    Demangler GNU                              0.607 secs
+    Disassemble Entry Points                   0.069 secs
+    Embedded Media                             0.072 secs
+    External Entry References                  0.000 secs
+    Function Start Search                      0.022 secs
+    Non-Returning Functions - Discovered       0.009 secs
+    Reference                                  0.001 secs
+    Segmented X86 Calling Conventions          0.000 secs
+    Shared Return Calls                        0.002 secs
+    Stack                                      2.940 secs
+    Subroutine References                      0.001 secs
+    X86 Function Callee Purge                  0.001 secs
+    x86 Constant Reference Analyzer            0.047 secs
+-----------------------------------------------------
+     Total Time   5 secs
+-----------------------------------------------------
+  
+2025-07-18 11:33:59 INFO  (HeadlessAnalyzer) REPORT: Analysis succeeded for file: file:///B:/IA_WORKS/2025-01-17_CPR_Rolemaster_Reverse/cpr093.exe  
+2025-07-18 11:33:59 INFO  (HeadlessAnalyzer) REPORT: Save succeeded for: /cpr093.exe (CPR093_Analysis:/cpr093.exe)  
+2025-07-18 11:33:59 INFO  (HeadlessAnalyzer) REPORT: Import succeeded  

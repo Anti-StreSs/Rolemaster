@@ -1,0 +1,39 @@
+# Claude Code local files
+.claude/settings.local.json
+CLAUDE.local.md
+
+# Ghidra project (large, regenerable)
+ghidra_project/
+ghidra_project.zip
+
+# Large binary assets (BMP/ZIP in data/)
+data/Fondvert.bmp
+data/Fondvert1.bmp
+data/Fondvert.zip
+data/BLANK.BMP
+data/~RCP.TMP
+data/Copy of CUSTOM.MND
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# OS files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Logs (keep structure, ignore content)
+*.log
+!outputs/*.log
+
+# Temp files
+*.lock
+*.tmp

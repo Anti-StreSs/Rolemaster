@@ -1,0 +1,78 @@
+2025-07-18 11:36:08 INFO  (LoggingInitialization) Using log config file: jar:file:/B:/Ghidra/ghidra_11.3.1_PUBLIC_20250219/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml  
+2025-07-18 11:36:08 INFO  (LoggingInitialization) Using log file: B:\IA_WORKS\2025-01-17_CPR_Rolemaster_Reverse\outputs\export2.log  
+2025-07-18 11:36:08 INFO  (Preferences) Loading user preferences: C:\Users\GENERATION ECRANS\AppData\Roaming\ghidra\ghidra_11.3.1_PUBLIC\preferences  
+2025-07-18 11:36:08 INFO  (ClassSearcher) Searching for classes...  
+2025-07-18 11:36:09 INFO  (ClassSearcher) Class search complete (1351 ms)  
+2025-07-18 11:36:09 INFO  (SSLContextInitializer) Initializing SSL Context  
+2025-07-18 11:36:09 INFO  (SecureRandomFactory) Initializing Random Number Generator...  
+2025-07-18 11:36:09 INFO  (SecureRandomFactory) Random Number Generator initialization complete: SHA1PRNG  
+2025-07-18 11:36:09 INFO  (ApplicationTrustManagerFactory) Trust manager disabled, cacerts have not been set  
+2025-07-18 11:36:10 INFO  (AnalyzeHeadless) Headless startup complete (3394 ms)  
+2025-07-18 11:36:10 INFO  (ClassSearcher) Class searcher loaded 57 extension points (18 false positives)  
+2025-07-18 11:36:10 INFO  (HeadlessAnalyzer) HEADLESS Script Paths:
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Debug\Debugger\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\DecompilerDependent\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\Decompiler\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Processors\PIC\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\PyGhidra\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Processors\JVM\ghidra_scripts
+    C:\Users\GENERATION ECRANS\AppData\Roaming\ghidra\ghidra_11.3.1_PUBLIC\Extensions\MachineLearning\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\BytePatterns\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\MicrosoftCodeAnalyzer\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\FunctionID\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Debug\Debugger-rmi-trace\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Processors\Atmel\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\SwiftDemangler\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\WildcardAssembler\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\FileFormats\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\Base\ghidra_scripts
+    B:\IA_WORKS\2025-01-17_CPR_Rolemaster_Reverse
+    C:\Users\GENERATION ECRANS\AppData\Roaming\ghidra\ghidra_11.3.1_PUBLIC\Extensions\SleighDevTools\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\PDB\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\Jython\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\BSim\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\VersionTracking\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Processors\8051\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\SystemEmulation\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Processors\DATA\ghidra_scripts
+    B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\GnuDemangler\ghidra_scripts  
+2025-07-18 11:36:10 INFO  (HeadlessAnalyzer) HEADLESS: execution starts  
+2025-07-18 11:36:10 INFO  (HeadlessAnalyzer) Opening existing project: B:\IA_WORKS\2025-01-17_CPR_Rolemaster_Reverse\ghidra_project\CPR093_Analysis  
+2025-07-18 11:36:10 INFO  (HeadlessProject) Opening project: B:\IA_WORKS\2025-01-17_CPR_Rolemaster_Reverse\ghidra_project\CPR093_Analysis  
+2025-07-18 11:36:13 INFO  (HeadlessAnalyzer) REPORT: Processing project file: /cpr093.exe  
+2025-07-18 11:36:14 INFO  (HeadlessAnalyzer) ANALYZING all memory and code: /cpr093.exe  
+2025-07-18 11:36:14 INFO  (PackedDatabaseCache) Packed database cache: C:\Users\GENERATION ECRANS\AppData\Local\ghidra\packed-db-cache  
+2025-07-18 11:36:14 DEBUG (PackedDatabaseCache) Using cached packed database: B:\Ghidra\ghidra_11.3.1_PUBLIC_20250219\Ghidra\Features\Base\data\typeinfo\generic\generic_clib.gdt  
+2025-07-18 11:36:15 INFO  (ApplyDataArchiveAnalyzer) Applied data type archive: generic_clib  
+2025-07-18 11:36:18 INFO  (AutoAnalysisManager) -----------------------------------------------------
+    ASCII Strings                              0.503 secs
+    Apply Data Archives                        0.930 secs
+    Call Convention ID                         0.000 secs
+    Call-Fixup Installer                       0.002 secs
+    Create Function                            0.000 secs
+    Data Reference                             0.001 secs
+    Decompiler Switch Analysis                 0.001 secs
+    Demangler GNU                              0.087 secs
+    Disassemble Entry Points                   0.021 secs
+    Embedded Media                             0.045 secs
+    External Entry References                  0.001 secs
+    Function Start Search                      0.021 secs
+    Non-Returning Functions - Discovered       0.008 secs
+    Reference                                  0.000 secs
+    Segmented X86 Calling Conventions          0.000 secs
+    Shared Return Calls                        0.003 secs
+    Stack                                      2.633 secs
+    Subroutine References                      0.002 secs
+    X86 Function Callee Purge                  0.005 secs
+    x86 Constant Reference Analyzer            0.047 secs
+-----------------------------------------------------
+     Total Time   4 secs
+-----------------------------------------------------
+  
+2025-07-18 11:36:18 INFO  (HeadlessAnalyzer) REPORT: Analysis succeeded for file: /cpr093.exe  
+2025-07-18 11:36:18 INFO  (HeadlessAnalyzer) SCRIPT: B:\IA_WORKS\2025-01-17_CPR_Rolemaster_Reverse\ExportFunctions.py  
+2025-07-18 11:36:23 WARN  (DecompileCallback) Decompiling 1000:0010, pcode error at 1000:0019: Could not follow disassembly flow into non-existing memory at 1000:0019  
+2025-07-18 11:36:23 WARN  (DecompileCallback) Decompiling d8c2:0000, pcode error at d000:8c20: Unable to disassemble EXTERNAL block location: d000:8c20  
+2025-07-18 11:36:23 INFO  (HeadlessAnalyzer) ANALYZING changes made by post scripts: /cpr093.exe  
+2025-07-18 11:36:23 INFO  (HeadlessAnalyzer) REPORT: Post-analysis succeeded for file: /cpr093.exe  
+2025-07-18 11:36:23 INFO  (HeadlessAnalyzer) REPORT: Save succeeded for processed file: /cpr093.exe  

@@ -1,0 +1,1386 @@
+Strings found in CPR093.exe
+--------------------------------------------------
+
+15c4:0838: Constitution
+15c4:0872: Auto-discipline
+15c4:0896: moire
+15c4:08ae: Raisonnement
+15c4:08ce: Force
+15c4:0905: sence
+15c4:091e: Empathie
+15c4:093a: Intuition
+15c4:0a32: Variable
+15c4:0a94: hybride
+15c4:0aae: hybride
+15c4:0ac8: semi hybride
+15c4:0ae8: pur ou hybride
+15c4:0b0a: Mentalisme
+15c4:0b28: Essence
+15c4:0b5e: Variable
+15c4:0b7a: Mentalisme/Essence
+15c4:0bea: Essence ou Mentalisme
+15c4:0c12: Essence et/ou Mentalisme
+15c4:0c7a: Targe
+15c4:0ca8: Rondache
+15c4:0cc4: Pavois
+15c4:0cde: Main Gauche
+15c4:0d10: Constitution
+15c4:0d30: Agility
+15c4:0d4a: Self-Discipline
+15c4:0d6c: Memory
+15c4:0d86: Reasoning
+15c4:0da2: Strength
+15c4:0dbe: Quickness
+15c4:0dda: Presence
+15c4:0df6: Empathy
+15c4:0e10: Intuition
+15c4:0f08: Variable
+15c4:0f6c: hybrid
+15c4:0f86: hybrid
+15c4:0fa0: semi hybrid
+15c4:0fbe: pure or hybrid
+15c4:0fe0: Mentalism
+15c4:0ffc: Essence
+15c4:1016: Channeling
+15c4:1034: Variable
+15c4:1050: Mentalism/Essence
+15c4:1074: Mentalism/Channeling
+15c4:109c: Essence/Channeling
+15c4:10c2: Essence or Mentalism
+15c4:10ea: Essence and/or Mentalism
+15c4:1116: Ess/Ment/Channeling
+15c4:113c: Without
+15c4:1156: Target
+15c4:1170: Normal
+15c4:11ba: Left Hand
+15c4:11e7:  une main
+15c4:1212:  une main
+15c4:1235:  deux mains
+15c4:1254: Armes d'Hast
+15c4:1274: Arcs et Arbalettes
+15c4:129a: Armes de jet
+15c4:12ce: One Handed Edged
+15c4:12f2: One Handed Concussion
+15c4:131a: Two Handed
+15c4:1338: Pole Arms
+15c4:136c: Thrown
+15c4:13e0: If you stop the development phase now,
+15c4:141a: you will lose some development points
+15c4:1477: veloppement maintenant,
+15c4:14be: veloppement
+15c4:14f2: veloppement
+15c4:1826: r de vouloir imprimer le personnage?
+15c4:1858: Impression
+15c4:18ca: carac.dat
+15c4:240c: blank.bmp
+15c4:242a: fondvert.bmp
+15c4:2cb6: blank.bmp
+15c4:2cd4: fondvert.bmp
+18aa:0316: Voulez-vous sauvegarder le personnage avant de le ferme?
+18aa:0372: Do you want to save the character before closing?
+18aa:053c: Feuille de Personnage
+18aa:057c:  Race:
+18aa:0596:  Taille:
+18aa:05ce: Points
+18aa:05e8: Bonus
+18aa:0600:  CARAC
+18aa:06ae: Total
+18aa:06c8: LISTES DE SORTS
+18aa:0704:  PdeC de Base:
+18aa:0728: Royaume:
+18aa:0746:  Cap de PdeC:
+18aa:0768: Pts de Pouvoir:
+18aa:078c:  Poids:
+18aa:07f6:  Apparence (AP):
+18aa:081c:  Comportement:
+18aa:085e:  Profession:
+18aa:089e:  Pts d'Exp:
+18aa:08be:  Type d'Armure:
+18aa:08e2: Allure Max:
+18aa:0902:  Bonus Def:
+18aa:0922: Base de Mvt:
+18aa:094a: tence:
+18aa:097e: Bonus
+18aa:0998: Carac
+18aa:09e2: Total
+18aa:0a2e: tence
+18aa:0a54: New skill
+18aa:0c1c: Voulez-vous sauvegarder le personnage avant de le ferme?
+18aa:0c78: Do you want to save the character before closing?
+18aa:1010: STATS
+18aa:1032: CARACTERISTIQUES
+18aa:1080: GENERAL
+18aa:10d0: SPELL LIST
+18aa:10f6: LISTES DE SORTS
+18aa:12d0: Name: 
+18aa:134e: Race: 
+18aa:137c: Race: 
+18aa:13ce: Profesion: 
+18aa:1400: Classe: 
+18aa:1488: Royaume: 
+18aa:1510: Points de Coup: 
+18aa:156c: Power pts: 
+18aa:159e: Pts de Pouvoir: 
+18aa:1792: SKILLS
+18aa:17b4: COMPETENCES
+18aa:1dd8: ation de Personnage  V
+18aa:1e08:   par Eric Lestrade
+18aa:38f4:  - CREATION DE PERSONNAGE - 
+18aa:396a: defaut.opt
+18aa:3a9e: Voulez-vous sauvegarder le personnage avant de quitter?
+18aa:3af8: Do you want to save the character before leaving?
+18aa:3f28: ristiques
+18aa:3f58: Redo stats progression
+18aa:3fa9: ristiques
+18aa:3fda: Undo stats progression
+18aa:4184:  - CREATION DE PERSONNAGE - 
+18aa:4a70: Windows
+18aa:4a8c: Stats
+18aa:4aa6: Skills
+18aa:4ac2: General
+18aa:4ade: Spell List
+18aa:4afe: Identity
+18aa:4b1c: Background
+18aa:4b3c: Window Tools
+18aa:4b5e: Reorganize the Windows
+18aa:4b90: Tile Horizontal
+18aa:4bba: Tile Vertical
+18aa:4be2: Reorganize the Icons
+18aa:4c12: Character
+18aa:4c30: Load Character
+18aa:4c54: New Character
+18aa:4c76: Close Character
+18aa:4c9a: Save Character
+18aa:4cbe: Save Character As...
+18aa:4d02: Print Options
+18aa:4d24: Print Character
+18aa:4d48: Print Preview
+18aa:4d6a: Add one Level
+18aa:4d8c: End of the Developpement Phase
+18aa:4dc0: Level
+18aa:4dda: Redraw stats progression
+18aa:4e08: Add a new skill
+18aa:4e2c: World
+18aa:4e46: Optional Rules
+18aa:4e6a: Parameters
+18aa:4e8a: About...
+18aa:4ea8: Statistics
+18aa:4ec8: Skills
+18aa:4ee4: General
+18aa:4f00: Spell List
+18aa:4f20: Identity
+18aa:4f3e: Background
+1da2:045a:  (spoken)
+1da2:04ca:  (writen)
+1da2:1b05: tences    
+1da2:1b2c: partir
+1da2:1b5e: Skills    
+1da2:1b7a:  points to spend
+1da2:1bb1: tences
+1da2:1be0: Skills
+1da2:2daa: No more
+1da2:2eda: No more
+1da2:2f90: erreur de saisie
+1da2:2fae: Erreur
+1da2:3472:    > Frappe
+1da2:348e:    > Strike
+1da2:3966: tence,
+1da2:39ba: veloppement
+1da2:3fb9: veloppement maintenant,
+1da2:4000: veloppement
+1da2:4024: veloppement
+1da2:466e: tre d'edition du monde
+1da2:46aa: An error occurs. the world file is not valid. Please change it in the world edit window
+1da2:471e: Warning! 
+1da2:4748: pathclas.dat
+1da2:47d6: couts.dat
+1da2:4fbc: Magus
+1da2:50c8: comp.dat
+1da2:50ea: compengl.dat
+1da2:569a: simil.dat
+1da2:5df2: No more
+1da2:5e30: No more
+1da2:686a: No more
+1da2:68a8: No more
+1da2:6c44: erreur de saisie
+1da2:6c62: Erreur
+1da2:6c8e: Skills
+1da2:6cc2:                                                          Skills
+1da2:6d12:          Cost
+1da2:6d48: Stats
+1da2:6d5e: Level
+1da2:6d9c: Academic
+1da2:6dc0: Animal
+1da2:6de2: Athletic
+1da2:6e06: Combat
+1da2:6e28: Deadly
+1da2:6e4a: Evaluation
+1da2:6e70: General
+1da2:6e92: Gymnastic
+1da2:6eb6: Linguistic
+1da2:6edc: Magical
+1da2:6efe: Medical
+1da2:6f22: Social
+1da2:6f46: Survival
+2499:02c4: classes.dat
+2499:02e8: claseng.dat
+2499:031c: pathclas.dat
+2499:05dc: Annuler
+2499:060c: Cancel
+2499:06ec: Guide
+2499:0922: Choisissez une classe de personnage
+2499:0b10: Create a new character
+2499:0b3c:                             Profession
+2499:0b78:                    Prime Statistic
+2499:0bb0:                    Spell User
+2499:0be2:                           Realms
+2499:0c18: FIGHT
+2499:0c38: TRAVEL/NATURE
+2499:0c60: MARTIAL ARTS
+2499:0c88: INHABITANTS
+2499:0cae: OBJECT/KNOWLEDGE
+2499:0cda: MENTALISM
+2499:0cfe: CHANNELING
+256e:0148: Tirer au sort
+256e:0200: Editer
+256e:078c: erreur de saisie
+256e:07aa: Erreur
+256e:090e: Create a new character
+256e:093a: Profession:
+256e:0956: Realm
+256e:096c: Results of drawing:
+256e:0990: Stats:
+256e:09a8: Draw again
+256e:0b8e: carac.dat
+267e:03ec: Create a new character
+267e:0418: Selected Realm:
+267e:04ba:                   Essence
+267e:055e:                 Channeling
+267e:0590:       Essence/Channeling
+267e:07c4: Compagnon
+267e:07dc: Crafter
+2700:0200: Create a new character
+2700:022c: Select two prime statistics:
+273f:0766: SCORE
+273f:0790: Stats
+273f:07f2: carac.dat 
+273f:0ea2: erreur de saisie
+273f:0ec0: Erreur
+282d:004e: adolescent
+282d:0078: apprenti
+282d:0272:  sorts)
+282d:02ce:  spells)
+282d:06f6: Do you want to be Evil?
+282d:072a: Bad Boy
+282d:0795: fique
+282d:099e: General
+282d:09ba:  Profession:
+282d:09d8:  Level:
+282d:09f0:  Devel points:
+282d:0a10:  Base hits:
+282d:0a2c:  Total hits:
+282d:0a4a:  Max Hits:
+282d:0a66:  Dice Type:
+282d:0a82:  Name:
+282d:0ab2:  Power Pts:
+282d:0ace:  DB (Fight):
+282d:0aec:  Armor Type:
+282d:0b0a:  Shield:
+282d:0b24:  DB (Bows):
+28e1:04c2: Erreur de saisie
+28e1:09a2: categeng.dat
+28e1:09ce: categ.dat
+28e1:0b8c: spoken
+28e1:0bb4: written
+28e1:0d06: subskills
+28e1:0d24: Subskill Selected:
+28e1:0d48: Cancel
+29b8:07c4: Distribute the Weapon Categories
+29b8:07f6: 1st Category:
+29b8:081a: 2nd Category:
+29b8:083e: 3rd Category:
+29b8:0862: 4th Category:
+29b8:0886: 5th Category:
+29b8:08aa: 6th Category:
+29b8:08ce: Cancel
+29b8:08ea: Weapon Categories
+2a49:000a: Personnage|*.psg
+2a49:07c8: not available
+2a49:1066: Erreur de chargement
+2a49:1086: ERREUR
+2a49:12cc: Erreur de Sauvegarde
+2a49:12ec: ERREUR
+2a49:148a: Erreur de chargement1
+2a49:14aa: ERREUR
+2a49:153a: Personnage|*.psg
+2a49:1d80: Personnage|*.psg
+2cc5:00f0: defaut.mnd
+2cc5:0120: defauten.mnd
+2cc5:01b6: fondvert.bmp
+2ce8:00f0: This program is a Freeware. If you use it, please tell me the problems you find.
+2ce8:0152: The updates can be found on:
+2ce8:0180: THANKS TO: Jeff Badger for helping me in translations, and every tester...
+2d06:006a: Cancel
+2d06:0086: Write the Name of the Character
+2d12:04c0: classes.dat
+2d12:04f4: pathclas.dat
+2d12:051a: claseng.dat
+2d12:0830: fique
+2d12:0a2e: Erreur de saisie
+2d12:0a52: This spell list has been once selected
+2d12:0a86: Hey, Remember!
+2d12:0c3c: sorts.dat
+2d12:0ff6: , Open, 
+2d12:104e: , Closed, 
+2d12:10be: , Libre, 
+2d12:167a: Arcane (
+2d12:16e0: , Open (
+2d12:170a: , Libre (
+2d12:1758: , Closed (
+2d12:196e: couts.dat
+2d12:1c24: MENTALISM
+2d12:1c44: CHANNELING
+2d12:1c82: Closed
+2d12:1ca0: Other Profession
+2d12:1cde: Reference
+2d12:1cf8: Choose Base Spell List
+2d12:1d3e: Cancel
+2d12:1d5a: New Spell List
+2eec:03c2: Listes de sorts (
+2eec:040a: Spell List (
+2eec:078d: liminez cette liste de sort,
+2eec:07f2: Attention!
+2eec:0acc: Do you want to be Evil?
+2eec:0b00: Bad Boy
+2eec:0b6b: fique
+2eec:0e6e: Spell List
+2eec:0e8e: Add a Spell List
+2eec:0ee4: Threshold
+2eec:0efe: Level
+2eec:0f18: Reference
+2fe2:05c6: Choosing Base Spell List
+2fe2:060a: Reference
+2fe2:0624: Cancel
+2fe2:0640: Spell List to Choose
+304b:0172: Monde(World)|*.mnd
+304b:05f6: erreur de saisie
+304b:0614: Erreur
+304b:0694: Language
+304b:06b2: French
+304b:06d4: English
+304b:06f6: Back Picture
+304b:0718: POV Picture
+304b:073e: Without Picture
+304b:0768: Identity
+304b:0786:  User:
+304b:07b8: Automatic Draw
+304b:07dc: Spell List Acquisition
+304b:080e: Body Development
+304b:083a:  Bonus Development Points
+304b:0868:  Default World
+30d4:03f0: Police:
+30d4:0408: Spell List
+30d4:0428: Skills
+30d4:0462: Developed List
+30d4:048c: Developed Skills
+30d4:04b8: Skills with positive bonus
+30d4:050e: All the Skills
+30d4:0538: Number of Skills:
+30d4:055e: On the first page:
+30d4:0582: On the followers:
+30d4:05a4: Print it after the skills
+30d4:05d2: Background
+30d4:05f2: Cancel
+30d4:060e: Print Options
+30d4:0630: development costs
+30d4:0656: Stats
+30d4:0670: only the red skills
+30d4:0698: Print a Blank Page
+3140:0117: ristiques du nouveau personnage:
+3140:0308: partition.
+3140:0360: partion et effectuer un nouveau tirage
+3140:03e9: ristiques: 
+3140:0418: Cliquez alors succesivement sur l'un des 10 boutons <choix>, tapez un nombre entre 1 et 101, puis tapez sur <enter> pour valider.
+3140:0525: ristiques plus tard.
+3140:058f: dure normale.
+3140:05fe: thodes.
+31a3:0740: carac.dat 
+31a3:0778: [armures]
+31a3:0df0: Armor Type
+31a3:0e0c: Minimum Penalty to Skills
+31a3:0e36: Maximum Penalty to Skills
+31a3:0e60: Penalty to Bows
+31a3:0e80: Penalty to Quickness
+31a3:0ea6: Skin and clothes
+31a3:0ed2: Soft Leather
+31a3:0efa: Rigid Leather
+31a3:0f22: Chain
+31a3:0f42: Plate 
+31a3:0f64: Cancel
+31a3:0f80: Armor and Shield
+31a3:0fa6: Shield
+31a3:0fbe: Fight Bonus
+31a3:0fda: Bonus against bows
+32a3:054e: erreur de saisie
+32a3:056c: Erreur
+32a3:05e8: Identity
+32a3:0606:  Creator:
+32a3:063a:  Comments:
+3309:05d8: erreur de saisie
+3309:05f6: Erreur
+3309:0680: Background
+3309:06a0:  Height:
+3309:06c0:  Weight:
+3309:0754:  Appearance:
+3309:0778:  Behaviour:
+3309:079a:  Background:
+3385:04ba: defaut.opt
+3385:0604: options.dat
+3385:0642: optionse.dat
+3385:089c: Optional Rules
+3385:08c0: Optional rules
+3385:08e0: Reference
+3385:08fa: Fighter companion
+3385:0920: Cancel
+3385:093c:  not selected
+3385:095a:  selected
+3385:0974:  Impossible to select
+3385:099a:  Impossible to unselect
+3423:0160: Monde(World)|*.mnd
+3423:024c: Monde (World)|*.mnd
+3423:08d2: World Edition
+3423:08f4: Choose World
+3423:0916: Save the World as...
+3423:0940: Cancel
+3423:095c: Save the changes
+3423:0982: Weapons
+3423:099e: Specialities
+3423:09c0: Races
+3423:09f4:  File:
+3423:0a16:  Name:
+3423:0a38:  Author:
+3423:0a80:  Comments:
+34cd:0628: categ.dat
+34cd:0656: categeng.dat
+34cd:0854: written
+34cd:0896: spoken
+34cd:08b6: written
+34cd:0b40: Remove
+34cd:0b5c: Cancel
+34cd:0b78: Specialities edition
+3587:0086: Feuille de Personnage
+3587:00c6:  Race:
+3587:00e0:  Taille:
+3587:0118: Points
+3587:0132: Bonus
+3587:014a:  CARAC
+3587:01f8: Total
+3587:0212: LISTES DE SORTS
+3587:024e:  PdeC de Base:
+3587:0272: Royaume:
+3587:0290:  Cap de PdeC:
+3587:02b2: Pts de Pouvoir:
+3587:02d6:  Poids:
+3587:0340:  Apparence (AP):
+3587:0366:  Comportement:
+3587:03a8:  Profession:
+3587:03e8:  Pts d'Exp:
+3587:0408:  Type d'Armure:
+3587:042c: Allure Max:
+3587:044c:  Bonus Def:
+3587:046c: Base de Mvt:
+3587:0494: tence:
+3587:04c8: Bonus
+3587:04e2: Carac
+3587:052c: Total
+3587:0546: LANGAGE
+3587:057c: Ecrit
+3587:059c: Character Sheet
+3587:05be:  Name:
+3587:05d8:  Race:
+3587:05f2:  Height:
+3587:0626: Score
+3587:063e: Bonus
+3587:0656:  STAT
+3587:0702: Total
+3587:071c: SPELL LIST
+3587:0754:  Base hits:
+3587:0790:  Total Hits:
+3587:07b2: Power Points:
+3587:07d4:  Weight:
+3587:0840:  Apparence (AP):
+3587:0866:  Behaviour:
+3587:0886:  Special:
+3587:08a4:  Profession:
+3587:08c6:  Level:
+3587:08fc:  Armor Type:
+3587:091e: Max Speed:
+3587:0958: Mouvement Base:
+3587:09b0: Bonus
+3587:09ca: Carac
+3587:0a14: Total
+3587:0a2e: LANGUAGE
+3587:0a4c: Spoken
+3587:0a68: Writ.
+3587:10dc:  _____________
+3587:46e5: ation de Personnage pour Rolemaster- V
+3587:4738: Eric Lestrade
+3587:4c7a:  _____________
+3587:8283: ation de Personnage pour Rolemaster- V
+3587:82d6: Eric Lestrade
+3dc0:02ee: New Race
+3dc0:031c: Nouvelle Race
+3dc0:098e: Races
+3dc0:125e: Erreur de saisie
+3dc0:127a: dommage
+3dc0:129c: Human
+3dc0:12bc: Elves
+3dc0:12dc: Other
+3dc0:12fc: Underground Races
+3dc0:1328: Fairy Races
+3dc0:134e: Giant Races
+3dc0:1374: Dice Type
+3dc0:138e: Max Hits
+3dc0:13a8: Cancel
+3dc0:13c4: Remove Race
+3dc0:13e4: New Race
+3f03:02b2: Power Points
+3f03:02d4:  Base PP:
+3f03:02ee:  PP per level:
+3f03:030e:  Factor:
+3f03:0328:  Total:
+3f79:0013: Rolemaster
+3f79:002a: THREED.VBX
+3f79:0040: CMDIALOG.VBX
+3f79:0058: FOND.FRM
+3f79:006e: MENUMDI.FRM
+3f79:0087: COMPETEN.FRM
+3f79:00a1: CHOIXCLA.FRM
+3f79:00bb: CHOIXCAR.FRM
+3f79:00ee:  CHOIXPRI.FRM
+3f79:0106: j@"CARACTER.FRM
+3f79:0122: $GENERAL.FRM
+3f79:013b: (SOUSCOMP.FRM
+3f79:0153: hp*CHOIXCAT.FRM
+3f79:016d: hp,SAUVEGAR.FRM
+3f79:0187: h8.PARAM.FRM
+3f79:01a0: /APROPOSD.FRM
+3f79:01ba: 0CHOIXNOM.FRM
+3f79:01d4: 1CHOIXSOR.FRM
+3f79:01ec: jX5SORTS.FRM
+3f79:021d: hP;PARAMET2.FRM
+3f79:0239: =PARAMPRI.FRM
+3f79:0253: ?AIDE.FRM
+3f79:0269: @CHOIXARM.FRM
+3f79:0283: DIDENDITE.FRM
+3f79:02b3: KOPTIONS.FRM
+3f79:02ca: h@MMONDE.FRM
+3f79:02e3: QMONDSPE.FRM
+3f79:02fa: jpSFEUILLE.FRM
+3f79:0472: 	SSOption
+3f79:0489: CommonDialog
+baa9:0192: proposmn
+bac9:003b: MS Sans Serif
+bac9:0760: MS Sans Serif
+bac9:07ae: 	Wingdings
+bac9:07f8: 	Wingdings
+bac9:0842: 	Wingdings
+bac9:088c: 	Wingdings
+bac9:08d6: 	Wingdings
+bac9:0920: 	Wingdings
+bac9:096a: 	Wingdings
+bac9:09b4: 	Wingdings
+bac9:09fe: 	Wingdings
+bac9:0a48: 	Wingdings
+bac9:0a92: 	Wingdings
+bac9:0ada: MS Sans Serif
+bac9:0b26: MS Sans Serif
+bac9:0b72: MS Sans Serif
+bac9:0bbe: MS Sans Serif
+bac9:0c0a: MS Sans Serif
+bac9:0c56: MS Sans Serif
+bac9:0ca2: MS Sans Serif
+bac9:0cee: MS Sans Serif
+bac9:0d3a: MS Sans Serif
+bac9:0d86: MS Sans Serif
+bac9:0dd0: MS Sans Serif
+bac9:0e1a: MS Sans Serif
+bac9:0e64: MS Sans Serif
+bac9:0eae: MS Sans Serif
+bac9:0ef8: MS Sans Serif
+bac9:0f42: MS Sans Serif
+bac9:0f8c: MS Sans Serif
+bac9:0fd6: MS Sans Serif
+bac9:1020: MS Sans Serif
+bac9:106a: MS Sans Serif
+bac9:10b4: MS Sans Serif
+bac9:1166: MS Sans Serif
+bac9:11b0: MS Sans Serif
+bac9:11fa: MS Sans Serif
+bac9:1244: MS Sans Serif
+bac9:128e: MS Sans Serif
+bac9:12d8: MS Sans Serif
+bac9:1322: MS Sans Serif
+bac9:136c: MS Sans Serif
+bac9:13b6: MS Sans Serif
+bac9:1400: MS Sans Serif
+bac9:144a: MS Sans Serif
+bac9:1494: MS Sans Serif
+bac9:14de: MS Sans Serif
+bac9:1528: MS Sans Serif
+bac9:1572: MS Sans Serif
+bac9:15bc: MS Sans Serif
+bac9:1606: MS Sans Serif
+bac9:1650: MS Sans Serif
+bac9:169c: MS Sans Serif
+bac9:16e8: MS Sans Serif
+bac9:1734: MS Sans Serif
+bac9:1780: MS Sans Serif
+bac9:17cc: MS Sans Serif
+bac9:1818: MS Sans Serif
+bac9:1864: MS Sans Serif
+bac9:18b0: MS Sans Serif
+bac9:18fc: MS Sans Serif
+bac9:1948: MS Sans Serif
+bac9:1994: MS Sans Serif
+bac9:19e0: MS Sans Serif
+bac9:1a2c: MS Sans Serif
+bac9:1a78: MS Sans Serif
+bac9:1ac4: MS Sans Serif
+bac9:1b10: MS Sans Serif
+bac9:1b5c: MS Sans Serif
+bac9:1ba8: MS Sans Serif
+bac9:1bf6: 	Wingdings
+bac9:1c40: 	Wingdings
+bac9:1c8a: 	Wingdings
+bac9:1cd4: 	Wingdings
+bac9:1d1e: 	Wingdings
+bac9:1d68: 	Wingdings
+bac9:1db2: 	Wingdings
+bac9:1dfc: 	Wingdings
+bac9:1e46: 	Wingdings
+bac9:1e90: 	Wingdings
+bac9:1eda: 	Wingdings
+bac9:1f24: 	Wingdings
+bac9:1f6e: 	Wingdings
+bac9:1fb8: 	Wingdings
+bac9:2002: 	Wingdings
+bac9:204c: 	Wingdings
+bac9:2096: 	Wingdings
+bac9:20e0: 	Wingdings
+bac9:24fc: MS Sans Serif
+bac9:2548: MS Sans Serif
+bac9:2596: 	Wingdings
+bac9:272f: MS Sans Serif
+bac9:27a1: MS Sans Serif
+bac9:27d5: MS Sans Serif
+bac9:2809: MS Sans Serif
+bac9:283d: MS Sans Serif
+bac9:2871: MS Sans Serif
+bac9:28a5: MS Sans Serif
+bac9:28d9: MS Sans Serif
+bac9:290d: MS Sans Serif
+bac9:2941: MS Sans Serif
+bac9:297a: MS Sans Serif
+bac9:29ac: MS Sans Serif
+bac9:29f8: MS Sans Serif
+bac9:2a44: MS Sans Serif
+bac9:2a90: MS Sans Serif
+bac9:2adc: MS Sans Serif
+bac9:2b28: MS Sans Serif
+bac9:2b74: MS Sans Serif
+bac9:2bc0: MS Sans Serif
+bac9:2c0c: MS Sans Serif
+bac9:2c58: MS Sans Serif
+bac9:2ca9: MS Sans Serif
+bac9:2cf3: MS Sans Serif
+bac9:2d27: MS Sans Serif
+bac9:2d5b: MS Sans Serif
+bac9:2d8f: MS Sans Serif
+bac9:2dc3: MS Sans Serif
+bac9:2df7: MS Sans Serif
+bac9:2e2b: MS Sans Serif
+bac9:2e5f: MS Sans Serif
+bac9:2e93: MS Sans Serif
+bac9:2ec7: MS Sans Serif
+bac9:2f00: MS Sans Serif
+bac9:2f38: MS Sans Serif
+bac9:2f72: MS Sans Serif
+bac9:2fac: MS Sans Serif
+bac9:2fe6: MS Sans Serif
+bac9:3020: MS Sans Serif
+bac9:305a: MS Sans Serif
+bac9:3094: MS Sans Serif
+bac9:30ce: MS Sans Serif
+bac9:3108: MS Sans Serif
+bac9:3142: MS Sans Serif
+bac9:3181: MS Sans Serif
+bac9:31b9: MS Sans Serif
+bac9:31f3: MS Sans Serif
+bac9:322d: MS Sans Serif
+bac9:3267: MS Sans Serif
+bac9:32a1: MS Sans Serif
+bac9:32db: MS Sans Serif
+bac9:3315: MS Sans Serif
+bac9:334f: MS Sans Serif
+bac9:3389: MS Sans Serif
+bac9:33c3: MS Sans Serif
+bac9:3402: MS Sans Serif
+bac9:3439: MS Sans Serif
+bac9:348a: MS Sans Serif
+bac9:34db: MS Sans Serif
+bac9:352c: MS Sans Serif
+bac9:357d: MS Sans Serif
+bac9:35ce: MS Sans Serif
+bac9:361f: MS Sans Serif
+bac9:3670: MS Sans Serif
+bac9:36c1: MS Sans Serif
+bac9:3712: MS Sans Serif
+bac9:3763: MS Sans Serif
+bac9:37b2: MS Sans Serif
+bac9:3801: MS Sans Serif
+bac9:3850: MS Sans Serif
+bac9:389f: MS Sans Serif
+bac9:38ee: MS Sans Serif
+bac9:393d: MS Sans Serif
+bac9:398c: MS Sans Serif
+bac9:39db: MS Sans Serif
+bac9:3a2a: MS Sans Serif
+bac9:3a79: MS Sans Serif
+bac9:3acd: MS Sans Serif
+bac9:3b1e: MS Sans Serif
+bac9:3b71: MS Sans Serif
+bac9:3bc4: MS Sans Serif
+bac9:3c17: MS Sans Serif
+bac9:3c6a: MS Sans Serif
+bac9:3cbd: MS Sans Serif
+bac9:3d10: MS Sans Serif
+bac9:3d63: MS Sans Serif
+bac9:3db6: MS Sans Serif
+bac9:3e09: MS Sans Serif
+bac9:3e61: MS Sans Serif
+bac9:3ed5: MS Sans Serif
+bac9:3f49: MS Sans Serif
+bac9:3fbd: MS Sans Serif
+bac9:4031: MS Sans Serif
+bac9:40a5: MS Sans Serif
+bac9:4119: MS Sans Serif
+bac9:418d: MS Sans Serif
+bac9:4201: MS Sans Serif
+bac9:4275: MS Sans Serif
+bac9:42e9: MS Sans Serif
+bac9:4362: MS Sans Serif
+bac9:440c: MS Sans Serif
+bac9:445b: MS Sans Serif
+bac9:44aa: MS Sans Serif
+bac9:44f9: MS Sans Serif
+bac9:4548: MS Sans Serif
+bac9:4597: MS Sans Serif
+bac9:45e6: MS Sans Serif
+bac9:4635: MS Sans Serif
+bac9:4684: MS Sans Serif
+bac9:46d3: MS Sans Serif
+bac9:4722: MS Sans Serif
+bac9:4771: MS Sans Serif
+bac9:47c0: MS Sans Serif
+bac9:480f: MS Sans Serif
+bac9:485e: MS Sans Serif
+bac9:48ad: MS Sans Serif
+bac9:48fc: MS Sans Serif
+bac9:494b: MS Sans Serif
+bac9:499a: MS Sans Serif
+bac9:49e9: MS Sans Serif
+bac9:4a7b: MS Sans Serif
+bac9:4ab2: MS Sans Serif
+bac9:4ae9: MS Sans Serif
+bac9:4b20: MS Sans Serif
+bac9:4b57: MS Sans Serif
+bac9:4b8e: MS Sans Serif
+bac9:4bc5: MS Sans Serif
+bac9:4bfc: MS Sans Serif
+bac9:4c33: MS Sans Serif
+bac9:4c6a: MS Sans Serif
+bac9:4ca1: MS Sans Serif
+bac9:4cd8: MS Sans Serif
+bac9:4d0f: MS Sans Serif
+bac9:4d46: MS Sans Serif
+bac9:4d7d: MS Sans Serif
+bac9:4db4: MS Sans Serif
+bac9:4deb: MS Sans Serif
+bac9:4e22: MS Sans Serif
+bac9:4e5f: MS Sans Serif
+bac9:4e9c: MS Sans Serif
+bac9:4ed9: MS Sans Serif
+bac9:4f16: MS Sans Serif
+bac9:4f53: MS Sans Serif
+bac9:4f90: MS Sans Serif
+bac9:4fcd: MS Sans Serif
+bac9:500a: MS Sans Serif
+bac9:5047: MS Sans Serif
+bac9:5084: MS Sans Serif
+bac9:50c1: MS Sans Serif
+bac9:50fe: MS Sans Serif
+bac9:513b: MS Sans Serif
+bac9:5178: MS Sans Serif
+bac9:51b5: MS Sans Serif
+bac9:51f2: MS Sans Serif
+bac9:522f: MS Sans Serif
+bac9:526c: MS Sans Serif
+bac9:52a9: MS Sans Serif
+bac9:52e0: MS Sans Serif
+bac9:5317: MS Sans Serif
+bac9:534e: MS Sans Serif
+bac9:5385: MS Sans Serif
+bac9:53bc: MS Sans Serif
+bac9:53f8: MS Sans Serif
+bac9:542f: MS Sans Serif
+bac9:5466: MS Sans Serif
+bac9:549d: MS Sans Serif
+bac9:54d4: MS Sans Serif
+bac9:550b: MS Sans Serif
+bac9:5542: MS Sans Serif
+bac9:5579: MS Sans Serif
+bac9:55b0: MS Sans Serif
+bac9:55e7: MS Sans Serif
+bac9:5623: MS Sans Serif
+bac9:565a: MS Sans Serif
+bac9:5691: MS Sans Serif
+bac9:56cb: MS Sans Serif
+bac9:571d: MS Sans Serif
+bac9:576f: MS Sans Serif
+bac9:57c1: MS Sans Serif
+bac9:5813: MS Sans Serif
+bac9:5865: MS Sans Serif
+bac9:58b7: MS Sans Serif
+bac9:5909: MS Sans Serif
+bac9:595b: MS Sans Serif
+bac9:59ad: MS Sans Serif
+bac9:59ff: MS Sans Serif
+bac9:5a51: MS Sans Serif
+bac9:5aa3: MS Sans Serif
+bac9:5af5: MS Sans Serif
+bac9:5b47: MS Sans Serif
+bac9:5b99: MS Sans Serif
+bac9:5beb: MS Sans Serif
+bac9:5c3d: MS Sans Serif
+bac9:5c92: MS Sans Serif
+bac9:5ccf: MS Sans Serif
+bac9:5d0c: MS Sans Serif
+bac9:5d49: MS Sans Serif
+bac9:5d86: MS Sans Serif
+bac9:5dc3: MS Sans Serif
+bac9:5e00: MS Sans Serif
+bac9:5e3d: MS Sans Serif
+bac9:5e7a: MS Sans Serif
+bac9:5eb7: MS Sans Serif
+bac9:5ef4: MS Sans Serif
+bac9:5f31: MS Sans Serif
+bac9:5f6e: MS Sans Serif
+bac9:5fab: MS Sans Serif
+bac9:5fe8: MS Sans Serif
+bac9:6025: MS Sans Serif
+bac9:6062: MS Sans Serif
+bac9:609f: MS Sans Serif
+bac9:60db: MS Sans Serif
+bac9:612f: MS Sans Serif
+bac9:6183: MS Sans Serif
+bac9:61d7: MS Sans Serif
+bac9:622b: MS Sans Serif
+bac9:627f: MS Sans Serif
+bac9:62d3: MS Sans Serif
+bac9:6327: MS Sans Serif
+bac9:637b: MS Sans Serif
+bac9:63cf: MS Sans Serif
+bac9:6423: MS Sans Serif
+bac9:6477: MS Sans Serif
+bac9:64cb: MS Sans Serif
+bac9:651f: MS Sans Serif
+bac9:6573: MS Sans Serif
+bac9:65c7: MS Sans Serif
+bac9:661b: MS Sans Serif
+bac9:666f: MS Sans Serif
+bac9:66c5: MS Sans Serif
+bac9:671b: MS Sans Serif
+bac9:6771: MS Sans Serif
+bac9:67c7: MS Sans Serif
+bac9:681d: MS Sans Serif
+bac9:6873: MS Sans Serif
+bac9:68c9: MS Sans Serif
+bac9:691f: MS Sans Serif
+bac9:6975: MS Sans Serif
+bac9:69cb: MS Sans Serif
+bac9:6a21: MS Sans Serif
+bac9:6a77: MS Sans Serif
+bac9:6acd: MS Sans Serif
+bac9:6b23: MS Sans Serif
+bac9:6b77: MS Sans Serif
+bac9:6bcd: MS Sans Serif
+bac9:6c23: MS Sans Serif
+bac9:6c79: MS Sans Serif
+bac9:6cf2: MS Sans Serif
+bac9:6d69: MS Sans Serif
+bac9:6de0: MS Sans Serif
+bac9:6e57: MS Sans Serif
+bac9:6ece: MS Sans Serif
+bac9:6f45: MS Sans Serif
+bac9:6fbc: MS Sans Serif
+bac9:7033: MS Sans Serif
+bac9:70aa: MS Sans Serif
+bac9:7121: MS Sans Serif
+bac9:719d: MS Sans Serif
+bac9:7214: MS Sans Serif
+bac9:728b: MS Sans Serif
+bac9:7302: MS Sans Serif
+bac9:7379: MS Sans Serif
+bac9:73f0: MS Sans Serif
+bac9:7467: MS Sans Serif
+bac9:74de: MS Sans Serif
+bac9:75ae: MS Sans Serif
+bac9:75fd: MS Sans Serif
+bac9:7634: MS Sans Serif
+bac9:7673: MS Sans Serif
+bac9:76c7: MS Sans Serif
+bac9:7740: MS Sans Serif
+c279:0823: MS Sans Serif
+c279:0863: MS Sans Serif
+c279:08af: MS Sans Serif
+c279:093d: MS Sans Serif
+c279:097d: MS Sans Serif
+c279:09c9: MS Sans Serif
+c279:0a57: MS Sans Serif
+c279:0a97: MS Sans Serif
+c279:0ae3: MS Sans Serif
+c279:0b71: MS Sans Serif
+c279:0bb1: MS Sans Serif
+c279:0c02: MS Sans Serif
+c279:0c90: MS Sans Serif
+c279:0cd0: MS Sans Serif
+c279:0d1c: MS Sans Serif
+c279:0daa: MS Sans Serif
+c279:0dea: MS Sans Serif
+c279:0e36: MS Sans Serif
+c279:0ec4: MS Sans Serif
+c279:0f04: MS Sans Serif
+c279:0f50: MS Sans Serif
+c279:0fe3: MS Sans Serif
+c279:1023: MS Sans Serif
+c279:106f: MS Sans Serif
+c279:10fd: MS Sans Serif
+c279:113d: MS Sans Serif
+c279:1189: MS Sans Serif
+c279:1312: MS Sans Serif
+c279:1356: MS Sans Serif
+c279:1394: MS Sans Serif
+c3c9:007c: guide
+c3d9:0400: MS Sans Serif
+c3d9:0500: 	Wingdings
+c3d9:0547: 	Wingdings
+c3d9:058e: 	Wingdings
+c3d9:05d5: 	Wingdings
+c3d9:061c: 	Wingdings
+c3d9:0663: 	Wingdings
+c3d9:06aa: 	Wingdings
+c3d9:06f1: 	Wingdings
+c3d9:0738: 	Wingdings
+c3d9:077f: 	Wingdings
+c3d9:084e: MS Sans Serif
+c3d9:0880: 	Wingdings
+c3d9:0e12: MS Sans Serif
+c3d9:0e67: MS Sans Serif
+c3d9:0ebc: MS Sans Serif
+c3d9:0f11: MS Sans Serif
+c3d9:0f63: MS Sans Serif
+c3d9:0fbc: MS Sans Serif
+c3d9:1010: MS Sans Serif
+c3d9:1071: MS Sans Serif
+c3d9:10c5: MS Sans Serif
+c3d9:111e: MS Sans Serif
+c569:0028: Command2
+c609:03fc: MS Sans Serif
+c609:044d: MS Sans Serif
+c609:049e: MS Sans Serif
+c609:04ef: MS Sans Serif
+c609:0540: MS Sans Serif
+c609:0591: MS Sans Serif
+c609:05e2: MS Sans Serif
+c609:0633: MS Sans Serif
+c609:0684: MS Sans Serif
+c609:06d5: MS Sans Serif
+c609:070e: MS Sans Serif
+c609:0747: MS Sans Serif
+c609:0780: MS Sans Serif
+c609:07b9: MS Sans Serif
+c609:07f2: MS Sans Serif
+c609:082b: MS Sans Serif
+c609:0864: MS Sans Serif
+c609:089d: MS Sans Serif
+c609:0a42: MS Sans Serif
+c609:0a7b: MS Sans Serif
+c609:0ab4: MS Sans Serif
+c609:0aed: MS Sans Serif
+c609:0b26: MS Sans Serif
+c609:0b5f: MS Sans Serif
+c609:0b98: MS Sans Serif
+c609:0bd1: MS Sans Serif
+c609:0c0a: MS Sans Serif
+c609:1071: MS Sans Serif
+c609:10c2: MS Sans Serif
+c609:10fb: MS Sans Serif
+c759:00a2: Label16
+c769:0340: general5t"
+c769:03a1: 	Wingdings
+c769:03e6: 	Wingdings
+c769:042b: 	Wingdings
+c769:046b: 	Wingdings
+c769:04ad: 	Wingdings
+c769:04ed: 	Wingdings
+c769:052d: 	Wingdings
+c819:0124: Command6
+c949:0033: $
+sauvegarde5R&
+c959:000c: CMDialog
+c9b9:0026: Command1
+c9c9:0668: MS Sans Serif
+ca99:0029: Label1
+caa9:058f: MS Sans Serif
+caa9:05cc: MS Sans Serif
+caa9:0621: MS Sans Serif
+caa9:065e: MS Sans Serif
+caa9:06b3: MS Sans Serif
+caa9:06f0: MS Sans Serif
+caa9:0745: MS Sans Serif
+caa9:0782: MS Sans Serif
+caa9:07d7: MS Sans Serif
+caa9:0814: MS Sans Serif
+caa9:0869: MS Sans Serif
+caa9:08a6: MS Sans Serif
+caa9:08fb: MS Sans Serif
+caa9:0938: MS Sans Serif
+caa9:098d: MS Sans Serif
+caa9:09ca: MS Sans Serif
+caa9:0a1f: MS Sans Serif
+caa9:0a5c: MS Sans Serif
+caa9:0b01: MS Sans Serif
+caa9:0b3e: MS Sans Serif
+cb89:0078: Command3
+cb99:0631: MS Sans Serif
+cb99:067b: MS Sans Serif
+cb99:06c5: MS Sans Serif
+cb99:070f: MS Sans Serif
+cb99:0759: MS Sans Serif
+cb99:07a3: MS Sans Serif
+cb99:07ed: MS Sans Serif
+cb99:0837: MS Sans Serif
+cb99:0881: MS Sans Serif
+cb99:08cb: MS Sans Serif
+cb99:0915: MS Sans Serif
+cb99:095f: MS Sans Serif
+cb99:09a9: MS Sans Serif
+cb99:09f3: MS Sans Serif
+cb99:0a3d: MS Sans Serif
+cb99:0a87: MS Sans Serif
+cb99:0ad1: MS Sans Serif
+cb99:0b1b: MS Sans Serif
+cb99:0b65: MS Sans Serif
+cb99:0baf: MS Sans Serif
+cb99:0d26: MS Sans Serif
+cb99:0d63: MS Sans Serif
+cb99:0de5: MS Sans Serif
+cb99:0e4d: MS Sans Serif
+cb99:0e8a: MS Sans Serif
+cb99:0f0c: MS Sans Serif
+cb99:0f74: MS Sans Serif
+cb99:0fb1: MS Sans Serif
+cb99:1033: MS Sans Serif
+cb99:109b: MS Sans Serif
+cb99:10d8: MS Sans Serif
+cb99:115a: MS Sans Serif
+cb99:11c2: MS Sans Serif
+cb99:11ff: MS Sans Serif
+cb99:1281: MS Sans Serif
+cb99:12e9: MS Sans Serif
+cb99:1326: MS Sans Serif
+cb99:13a8: MS Sans Serif
+cb99:1410: MS Sans Serif
+cb99:144d: MS Sans Serif
+cb99:14cf: MS Sans Serif
+cb99:1537: MS Sans Serif
+cb99:1574: MS Sans Serif
+cb99:15f6: MS Sans Serif
+cb99:165e: MS Sans Serif
+cb99:169b: MS Sans Serif
+cb99:171d: MS Sans Serif
+cb99:1873: MS Sans Serif
+cb99:18f0: MS Sans Serif
+cb99:192f: MS Sans Serif
+cd39:00a7: Command5
+cd49:04f3: MS Sans Serif
+cd49:0530: MS Sans Serif
+cd49:0585: MS Sans Serif
+cd49:05c2: MS Sans Serif
+cd49:0617: MS Sans Serif
+cd49:0654: MS Sans Serif
+cd49:06a9: MS Sans Serif
+cd49:06e6: MS Sans Serif
+cd49:073b: MS Sans Serif
+cd49:0778: MS Sans Serif
+cd49:07cd: MS Sans Serif
+cd49:080a: MS Sans Serif
+cd49:085f: MS Sans Serif
+cd49:089c: MS Sans Serif
+cd49:08f1: MS Sans Serif
+cd49:092e: MS Sans Serif
+cd49:0983: MS Sans Serif
+cd49:09c0: MS Sans Serif
+cd49:0a65: MS Sans Serif
+cd49:0aa2: MS Sans Serif
+ce09:0037: MS Sans Serif
+ce09:03da: MS Sans Serif
+ce09:0489: MS Sans Serif
+ce09:0553: MS Sans Serif
+ce09:05b0: MS Sans Serif
+ce09:061d: MS Sans Serif
+ce09:065d: MS Sans Serif
+ce09:071f: MS Sans Serif
+ce09:0771: MS Sans Serif
+ce09:080c: MS Sans Serif
+ce09:0860: 	Wingdings
+ce09:08a5: MS Sans Serif
+cea9:00a7: Label7	CMDialog1
+ceb9:03d0: MS Sans Serif
+ceb9:0412: MS Sans Serif
+ceb9:047f: MS Sans Serif
+ceb9:0593: MS Sans Serif
+ceb9:05db: MS Sans Serif
+ceb9:0670: MS Sans Serif
+ceb9:06af: MS Sans Serif
+ceb9:0704: MS Sans Serif
+ceb9:0754: MS Sans Serif
+ceb9:07b7: MS Sans Serif
+ceb9:07fe: MS Sans Serif
+ceb9:08e2: MS Sans Serif
+ceb9:0921: MS Sans Serif
+cf79:0006: Label1
+cf89:03c1: MS Sans Serif
+cf89:041e: MS Sans Serif
+cf89:067d: MS Sans Serif
+cf89:06d7: MS Sans Serif
+cf89:0773: MS Sans Serif
+cf89:07c6: MS Sans Serif
+cf89:0819: MS Sans Serif
+cf89:086c: MS Sans Serif
+cf89:08bf: MS Sans Serif
+cf89:0912: MS Sans Serif
+cf89:0965: MS Sans Serif
+cf89:09b8: MS Sans Serif
+cf89:0a0b: MS Sans Serif
+cf89:0a5e: MS Sans Serif
+cf89:0ab1: MS Sans Serif
+cf89:0b04: MS Sans Serif
+cf89:0d8c: MS Sans Serif
+cf89:0de6: MS Sans Serif
+cf89:0e40: MS Sans Serif
+cf89:0e9a: MS Sans Serif
+cf89:0fc7: MS Sans Serif
+cf89:1019: MS Sans Serif
+cf89:106b: MS Sans Serif
+cf89:10bd: MS Sans Serif
+cf89:110f: MS Sans Serif
+cf89:1161: MS Sans Serif
+cf89:11b8: MS Sans Serif
+cf89:120f: MS Sans Serif
+cf89:1266: MS Sans Serif
+cf89:12bd: MS Sans Serif
+cf89:1314: MS Sans Serif
+cf89:136b: MS Sans Serif
+cf89:13bd: MS Sans Serif
+cf89:140f: MS Sans Serif
+cf89:1466: MS Sans Serif
+cf89:14bd: MS Sans Serif
+d119:03de: 	Wingdings
+d119:0420: 	Wingdings
+d119:0462: 	Wingdings
+d119:04af: MS Sans Serif
+d199:03a9: MS Sans Serif
+d199:0406: MS Sans Serif
+d199:045b: 	Wingdings
+d199:04a2: 	Wingdings
+d199:04e9: 	Wingdings
+d199:0530: 	Wingdings
+d199:0577: 	Wingdings
+d199:05be: 	Wingdings
+d199:0605: 	Wingdings
+d199:064c: 	Wingdings
+d199:0693: 	Wingdings
+d199:0715: MS Sans Serif
+d199:0771: MS Sans Serif
+d199:07cb: MS Sans Serif
+d199:0823: MS Sans Serif
+d199:087c: MS Sans Serif
+d199:08e1: MS Sans Serif
+d199:0954: MS Sans Serif
+d199:09ac: MS Sans Serif
+d269:0520: MS Sans Serif
+d269:06ed: MS Sans Serif
+d269:072a: MS Sans Serif
+d269:075a: 	Wingdings
+d269:07af: MS Sans Serif
+d269:07ec: MS Sans Serif
+d269:081c: 	Wingdings
+d269:0871: MS Sans Serif
+d269:08ae: MS Sans Serif
+d269:08de: 	Wingdings
+d269:0933: MS Sans Serif
+d269:0970: MS Sans Serif
+d269:09a0: 	Wingdings
+d269:09f5: MS Sans Serif
+d269:0a32: MS Sans Serif
+d269:0a62: 	Wingdings
+d269:0b08: 	Wingdings
+d269:0b50: 	Wingdings
+d269:0b98: 	Wingdings
+d269:0be0: 	Wingdings
+d269:0c28: 	Wingdings
+d269:0c70: 	Wingdings
+d269:0cb8: 	Wingdings
+d269:0d00: 	Wingdings
+d269:0d48: 	Wingdings
+d269:0d90: 	Wingdings
+d269:0dd8: 	Wingdings
+d269:0e2d: MS Sans Serif
+d269:0e6a: MS Sans Serif
+d269:0ea7: MS Sans Serif
+d269:0ee4: MS Sans Serif
+d269:0f21: MS Sans Serif
+d269:0f5e: MS Sans Serif
+d269:0f9b: MS Sans Serif
+d269:0fd8: MS Sans Serif
+d269:1015: MS Sans Serif
+d269:1052: MS Sans Serif
+d269:108f: MS Sans Serif
+d269:10cc: MS Sans Serif
+d269:1109: MS Sans Serif
+d269:1146: MS Sans Serif
+d269:1183: MS Sans Serif
+d269:11c0: MS Sans Serif
+d269:11fd: MS Sans Serif
+d269:123a: MS Sans Serif
+d269:1277: MS Sans Serif
+d269:12b4: MS Sans Serif
+d269:12f1: MS Sans Serif
+d269:132e: MS Sans Serif
+d3b9:05c5: MS Sans Serif
+d3b9:064a: MS Sans Serif
+d3b9:06cf: MS Sans Serif
+d3b9:0753: MS Sans Serif
+d3b9:0807: MS Sans Serif
+d459:0459: MS Sans Serif
+d459:04e8: MS Sans Serif
+d459:0530: MS Sans Serif
+d4b9:0040: Label1
+d539:0739: MS Sans Serif
+d539:078d: MS Sans Serif
+d539:07e1: MS Sans Serif
+d539:0835: MS Sans Serif
+d539:0889: MS Sans Serif
+d539:08dd: MS Sans Serif
+d539:0931: MS Sans Serif
+d539:0985: MS Sans Serif
+d539:09d9: MS Sans Serif
+d539:0a2d: MS Sans Serif
+d539:0b4b: MS Sans Serif
+d539:0b9f: MS Sans Serif
+d539:0bf3: MS Sans Serif
+d539:0c47: MS Sans Serif
+d539:0c9b: MS Sans Serif
+d539:0cef: MS Sans Serif
+d539:0d43: MS Sans Serif
+d539:0d97: MS Sans Serif
+d539:0deb: MS Sans Serif
+d539:0e3f: MS Sans Serif
+d539:0f5d: MS Sans Serif
+d539:0fb1: MS Sans Serif
+d539:1005: MS Sans Serif
+d539:1059: MS Sans Serif
+d539:10ad: MS Sans Serif
+d539:1101: MS Sans Serif
+d539:1155: MS Sans Serif
+d539:11a9: MS Sans Serif
+d539:11fd: MS Sans Serif
+d539:1251: MS Sans Serif
+d539:136f: MS Sans Serif
+d539:13c3: MS Sans Serif
+d539:1417: MS Sans Serif
+d539:146b: MS Sans Serif
+d539:14bf: MS Sans Serif
+d539:1513: MS Sans Serif
+d539:1567: MS Sans Serif
+d539:15bb: MS Sans Serif
+d539:160f: MS Sans Serif
+d539:1663: MS Sans Serif
+d539:1781: MS Sans Serif
+d539:17d5: MS Sans Serif
+d539:1829: MS Sans Serif
+d539:187d: MS Sans Serif
+d539:18d1: MS Sans Serif
+d539:1925: MS Sans Serif
+d539:1979: MS Sans Serif
+d539:19cd: MS Sans Serif
+d539:1a21: MS Sans Serif
+d539:1a75: MS Sans Serif
+d539:1b93: MS Sans Serif
+d539:1be7: MS Sans Serif
+d539:1c3b: MS Sans Serif
+d539:1c8f: MS Sans Serif
+d539:1ce3: MS Sans Serif
+d539:1d37: MS Sans Serif
+d539:1d8b: MS Sans Serif
+d539:1ddf: MS Sans Serif
+d539:1e33: MS Sans Serif
+d539:1e87: MS Sans Serif
+d539:1fa5: MS Sans Serif
+d539:1ff9: MS Sans Serif
+d539:204d: MS Sans Serif
+d539:20a1: MS Sans Serif
+d539:20f5: MS Sans Serif
+d539:2149: MS Sans Serif
+d539:219d: MS Sans Serif
+d539:21f1: MS Sans Serif
+d539:2245: MS Sans Serif
+d539:2299: MS Sans Serif
+d539:23b7: MS Sans Serif
+d539:240b: MS Sans Serif
+d539:245f: MS Sans Serif
+d539:24b3: MS Sans Serif
+d539:2507: MS Sans Serif
+d539:255b: MS Sans Serif
+d539:25af: MS Sans Serif
+d539:2603: MS Sans Serif
+d539:2657: MS Sans Serif
+d539:26ab: MS Sans Serif
+d539:27c9: MS Sans Serif
+d539:281d: MS Sans Serif
+d539:2871: MS Sans Serif
+d539:28c5: MS Sans Serif
+d539:2919: MS Sans Serif
+d539:296d: MS Sans Serif
+d539:29c1: MS Sans Serif
+d539:2a15: MS Sans Serif
+d539:2a69: MS Sans Serif
+d539:2abd: MS Sans Serif
+d539:2bdb: MS Sans Serif
+d539:2c2f: MS Sans Serif
+d539:2c83: MS Sans Serif
+d539:2cd7: MS Sans Serif
+d539:2d2b: MS Sans Serif
+d539:2d7f: MS Sans Serif
+d539:2dd3: MS Sans Serif
+d539:2e27: MS Sans Serif
+d539:2e7b: MS Sans Serif
+d539:2ecf: MS Sans Serif
+d879:00dc: MS Sans Serif
+d879:0121: MS Sans Serif
+d879:0168: MS Sans Serif
+d879:01ad: MS Sans Serif
+
+Total strings: 1380
