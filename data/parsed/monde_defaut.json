@@ -1,0 +1,1618 @@
+{
+  "fr": {
+    "weapon_categories": [
+      {
+        "name": "Lames courtes",
+        "type_code": 1,
+        "weapons": [
+          "Dague",
+          "Poignard",
+          "Epée courte"
+        ]
+      },
+      {
+        "name": "Lames longues à double tranchant",
+        "type_code": 1,
+        "weapons": [
+          "Epée large",
+          "Epée courte",
+          "Epée longue",
+          "Epée bâtarde(1M)"
+        ]
+      },
+      {
+        "name": "Lames d'estoc",
+        "type_code": 1,
+        "weapons": [
+          "Rapière",
+          "Fleuret"
+        ]
+      },
+      {
+        "name": "Lames longues à un tranchant",
+        "type_code": 1,
+        "weapons": [
+          "Cimeterre",
+          "Sabre",
+          "Coutelas",
+          "Falchion"
+        ]
+      },
+      {
+        "name": "Haches courtes",
+        "type_code": 1,
+        "weapons": [
+          "Hache",
+          "Hachette",
+          "Epée courte"
+        ]
+      },
+      {
+        "name": "Pointes courtes",
+        "type_code": 2,
+        "weapons": [
+          "Marteau de guerre",
+          "Masse"
+        ]
+      },
+      {
+        "name": "Haches longues",
+        "type_code": 3,
+        "weapons": [
+          "Hache de bataille"
+        ]
+      },
+      {
+        "name": "Pointes longues",
+        "type_code": 3,
+        "weapons": [
+          "Pioche de guerre",
+          "Pic",
+          "Marteau à deux mains"
+        ]
+      },
+      {
+        "name": "Grandes lames",
+        "type_code": 3,
+        "weapons": [
+          "Epée bâtarde(2M)",
+          "Epée à deux mains",
+          "Claymore"
+        ]
+      },
+      {
+        "name": "Armes d'Hast",
+        "type_code": 4,
+        "weapons": [
+          "Arme d'Hast",
+          "Lance",
+          "Javelot",
+          "Harpon",
+          "Trident"
+        ]
+      },
+      {
+        "name": "Arcs",
+        "type_code": 5,
+        "weapons": [
+          "Arc court",
+          "Arc long",
+          "Arc composite"
+        ]
+      },
+      {
+        "name": "Arbalètes",
+        "type_code": 5,
+        "weapons": [
+          "Arbalète légère",
+          "Arbalète longue"
+        ]
+      },
+      {
+        "name": "Armes de corde",
+        "type_code": 6,
+        "weapons": [
+          "Filet",
+          "Lasso"
+        ]
+      },
+      {
+        "name": "Chaînes",
+        "type_code": 2,
+        "weapons": [
+          "Etoile du matin"
+        ]
+      },
+      {
+        "name": "Grandes chaînes",
+        "type_code": 3,
+        "weapons": [
+          "Fléau"
+        ]
+      },
+      {
+        "name": "Armes d'Hast montées",
+        "type_code": 4,
+        "weapons": [
+          "Lance de cavalerie (montée)",
+          "Lance (montée)",
+          "Javelot (monté)"
+        ]
+      },
+      {
+        "name": "Fil",
+        "type_code": 6,
+        "weapons": [
+          "Bola"
+        ]
+      },
+      {
+        "name": "Projectiles",
+        "type_code": 6,
+        "weapons": [
+          "Boomerang",
+          "Shuriken",
+          "Fléchette"
+        ]
+      },
+      {
+        "name": "Lames courtes",
+        "type_code": 6,
+        "weapons": [
+          "Dague (lancée)",
+          "Poignard (lancé)",
+          "Main gauche (lancée)"
+        ]
+      },
+      {
+        "name": "Haches courtes",
+        "type_code": 6,
+        "weapons": [
+          "Hache (lancée)",
+          "Tomahawak (lancé)"
+        ]
+      },
+      {
+        "name": "Armes d'hast",
+        "type_code": 6,
+        "weapons": [
+          "Lance (lancée)",
+          "Javelot (lancé)",
+          "Pilum (lancé)"
+        ]
+      },
+      {
+        "name": "Gourdins",
+        "type_code": 2,
+        "weapons": [
+          "Matraque",
+          "Gourdin"
+        ]
+      },
+      {
+        "name": "Bâtons",
+        "type_code": 3,
+        "weapons": [
+          "Bâton"
+        ]
+      },
+      {
+        "name": "Frondes",
+        "type_code": 5,
+        "weapons": [
+          "Fronde"
+        ]
+      },
+      {
+        "name": "Fouets",
+        "type_code": 2,
+        "weapons": [
+          "Fouet",
+          "Chat à neuf queues"
+        ]
+      },
+      {
+        "name": "Sarbacanes",
+        "type_code": 5,
+        "weapons": [
+          "Sarbacane"
+        ]
+      },
+      {
+        "name": "&",
+        "type_code": null,
+        "weapons": [
+          "Autocratie",
+          "Théocratie",
+          "Démocratie",
+          "Bureaucratie",
+          "Gérontocratie",
+          "Matriarcat",
+          "Patriarcat",
+          "Technocratie",
+          "Oligarchie"
+        ]
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "Humains",
+        "type_code": null,
+        "weapons": [
+          "Elfes",
+          "Nains",
+          "Géants",
+          "Trolls",
+          "Orques",
+          "Hobbit/Semi-Homme"
+        ]
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "Carrière",
+        "type_code": null,
+        "weapons": [
+          "Drague",
+          "Galerie",
+          "Ciel ouvert"
+        ]
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "Montagnes",
+        "type_code": null,
+        "weapons": [
+          "Broussailles",
+          "Plaine",
+          "Désert",
+          "Forêt",
+          "Jungle",
+          "Littoral",
+          "Failles",
+          "Souterrain",
+          "Terres incultes",
+          "Marécages",
+          "Cours d'eau"
+        ]
+      },
+      {
+        "name": "Infanterie",
+        "type_code": null,
+        "weapons": [
+          "Cavalerie",
+          "Flotte"
+        ]
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "Nord",
+        "type_code": null,
+        "weapons": [
+          "Sud"
+        ]
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "Aride",
+        "type_code": null,
+        "weapons": [
+          "Froid",
+          "Equat.",
+          "Temp. doux",
+          "Semi-aride",
+          "Temp. froid",
+          "Temp. chaud"
+        ]
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "Oiseau",
+        "type_code": null,
+        "weapons": [
+          "Amphibien",
+          "Insecte",
+          "Bovidé",
+          "Canidé",
+          "Cétacé",
+          "Coelentéré",
+          "Equidé",
+          "Félidé",
+          "Mollusque",
+          "Pachyderme",
+          "Poisson",
+          "Porcin",
+          "Primate",
+          "Rongeur",
+          "Saurien",
+          "Serpent",
+          "Ursidé"
+        ]
+      },
+      {
+        "name": "Charette",
+        "type_code": null,
+        "weapons": [
+          "Chariot",
+          "Traineau"
+        ]
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "Ailes en plume",
+        "type_code": null,
+        "weapons": [
+          "Parachute",
+          "Planeur"
+        ]
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "Karaté",
+        "type_code": null,
+        "weapons": [
+          "Judo",
+          "Kung fu",
+          "Lutte",
+          "Boxe",
+          "Sumo"
+        ]
+      },
+      {
+        "name": "1 Main",
+        "type_code": null,
+        "weapons": [
+          "2 Mains",
+          "Arme d'hast",
+          "2 Armes"
+        ]
+      },
+      {
+        "name": "Contondante",
+        "type_code": null,
+        "weapons": [
+          "Tranchante",
+          "2 Mains",
+          "Arme d'hast",
+          "2 Armes"
+        ]
+      },
+      {
+        "name": "Flanc droit",
+        "type_code": null,
+        "weapons": [
+          "Flanc gauche",
+          "Derrière"
+        ]
+      },
+      {
+        "name": "1 Main",
+        "type_code": null,
+        "weapons": [
+          "2 Mains",
+          "Arme d'hast",
+          "Mains nues",
+          "2 armes"
+        ]
+      },
+      {
+        "name": "Loup-garou",
+        "type_code": null,
+        "weapons": [
+          "Ours-garou",
+          "Sanglier-garou",
+          "Chacal-garou",
+          "Rat-garou",
+          "Tigre-garou"
+        ]
+      },
+      {
+        "name": "Tranchante",
+        "type_code": null,
+        "weapons": [
+          "Contondante",
+          "2 Mains",
+          "Arme d'hast",
+          "de jet",
+          "Arcs"
+        ]
+      },
+      {
+        "name": "Cuir souple",
+        "type_code": null,
+        "weapons": [
+          "Cuir rigide",
+          "Cotte de mailles",
+          "Plates"
+        ]
+      },
+      {
+        "name": "Boulangerie",
+        "type_code": null,
+        "weapons": [
+          "Brasserie",
+          "Distillation",
+          "Poison",
+          "Préservation",
+          "Viticulture"
+        ]
+      },
+      {
+        "name": "Coiffeur",
+        "type_code": null,
+        "weapons": [
+          "Broderie",
+          "Calligraphie",
+          "Céramiste",
+          "Couvreur",
+          "Critique",
+          "Emailleur",
+          "Embaumeur",
+          "Filets",
+          "Tubes",
+          "Chandelles",
+          "Fileur",
+          "Fourreur",
+          "Hôtellerie",
+          "Intendant",
+          "Masseur",
+          "Meunier",
+          "Papetier",
+          "Potier",
+          "Relieur",
+          "Verre",
+          "Tailleur",
+          "Tapissier",
+          "Taxidermie",
+          "Teinture",
+          "Tissage",
+          "Tonnelier",
+          "Vanneur",
+          "Voilier"
+        ]
+      },
+      {
+        "name": "Briqueterie",
+        "type_code": null,
+        "weapons": [
+          "Carrier",
+          "Maçonnerie",
+          "Sculpture",
+          "Gemmes"
+        ]
+      },
+      {
+        "name": "Bûcheron",
+        "type_code": null,
+        "weapons": [
+          "Charpentier",
+          "Bâteaux",
+          "Charron",
+          "Menuisier",
+          "Sculpture"
+        ]
+      },
+      {
+        "name": "Feux",
+        "type_code": null,
+        "weapons": [
+          "Argent",
+          "Armurerie",
+          "Armurier",
+          "Bronze",
+          "Cuivre",
+          "Etain",
+          "Outils",
+          "Fer",
+          "Fonderie",
+          "Forgeron",
+          "Graveur",
+          "Or"
+        ]
+      },
+      {
+        "name": "Fleurs",
+        "type_code": null,
+        "weapons": [
+          "Fruits",
+          "Légumes",
+          "Champignon",
+          "Pelouse",
+          "Haies"
+        ]
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "Ciseleur",
+        "type_code": null,
+        "weapons": [
+          "Cordonnerie",
+          "Sellerie",
+          "Tannerie"
+        ]
+      },
+      {
+        "name": "Commun",
+        "type_code": null,
+        "weapons": [
+          "Elfique",
+          "Nain",
+          "Hobbit",
+          "Orque"
+        ]
+      },
+      {
+        "name": "Boule de cristal",
+        "type_code": null,
+        "weapons": [
+          "Cartes",
+          "Osselets"
+        ]
+      },
+      {
+        "name": "Aionion",
+        "type_code": null,
+        "weapons": [
+          "Aisthasis",
+          "Anathema",
+          "Asebeia",
+          "Aster",
+          "Chaos",
+          "Conscience",
+          "Sang de la terre",
+          "Eirenay",
+          "Gnose",
+          "Graphay",
+          "Hudatos",
+          "Ihyama",
+          "Iruaric",
+          "Kubeia",
+          "Logos",
+          "Parapateo",
+          "",
+          "",
+          "Petra",
+          "",
+          "",
+          "Pneumatikos",
+          "",
+          "",
+          "Porneia",
+          "",
+          "",
+          "Purosis",
+          "",
+          "",
+          "Quadosh",
+          "",
+          "",
+          "Skotia",
+          "",
+          "",
+          "Soma",
+          "",
+          "",
+          "Spoudazo",
+          "",
+          "",
+          "Thanatos",
+          "",
+          "",
+          "Totem",
+          "",
+          "",
+          "Xzulou",
+          "",
+          "",
+          "Elya",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "",
+        "type_code": null,
+        "weapons": [
+          "",
+          "Alchimie",
+          "",
+          "",
+          "Altération",
+          "",
+          "",
+          "Appels/Possession",
+          "",
+          "",
+          "Auxiliaire",
+          "",
+          "",
+          "Cléricalisme",
+          "",
+          "",
+          "Nature",
+          "",
+          "",
+          "Elémentarisme",
+          "",
+          "",
+          "Influence",
+          "",
+          "",
+          "Information\""
+        ]
+      },
+      {
+        "name": "Alcool",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "Religieux",
+        "type_code": null,
+        "weapons": [
+          "Administratif",
+          "Guilde"
+        ]
+      },
+      {
+        "name": "Documents officiels",
+        "type_code": null,
+        "weapons": [
+          "Ecriture",
+          "Oeuvre d'art",
+          "Fausse monnaie",
+          "Faux billets"
+        ]
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "Gravité forte",
+        "type_code": null,
+        "weapons": [
+          "Plans du feu",
+          "Régions artiques",
+          "Aquatique",
+          "Vide"
+        ]
+      },
+      {
+        "name": "Bas fonds",
+        "type_code": null,
+        "weapons": [
+          "Quartiers nobles",
+          "Quartier Bourgeois",
+          "Marché",
+          "Quartiers modestes"
+        ]
+      },
+      {
+        "name": "Equidés",
+        "type_code": null,
+        "weapons": [
+          "Dromadaires",
+          "Pachydermes",
+          "Autruches"
+        ]
+      },
+      {
+        "name": "Corps",
+        "type_code": null,
+        "weapons": [
+          "Equilibre",
+          "Goût",
+          "Odorat",
+          "Ouie",
+          "Toucher",
+          "Vue"
+        ]
+      },
+      {
+        "name": "Frappe 1",
+        "type_code": null,
+        "weapons": [
+          "Frappe 2",
+          "Frappe 3",
+          "Frappe 4",
+          "Projec/Balay 1",
+          "Projec/Balay 2",
+          "Projec/Balay 3",
+          "Projec/Balay 4"
+        ]
+      },
+      {
+        "name": "Eclair Choquant",
+        "type_code": null,
+        "weapons": [
+          "Eclair d'Eau",
+          "Eclair de feu",
+          "Eclair de Froid",
+          "Eclair Foudroyant"
+        ]
+      },
+      {
+        "name": "exemple",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "parlé",
+        "type_code": null,
+        "weapons": [
+          "écrit"
+        ]
+      },
+      {
+        "name": "&&",
+        "type_code": null,
+        "weapons": [
+          "Sans Race",
+          "Homme Commun",
+          "Surhomme",
+          "Tribus de l'Ours",
+          "Tribus des Ténèbres",
+          "Nordique",
+          "Homme Artique",
+          "Homme Métis"
+        ]
+      },
+      {
+        "name": "Semi-Elfes",
+        "type_code": 5,
+        "weapons": [
+          "Semi-Elfes B",
+          "Semi-Elfes C",
+          "Semi-Elfes D",
+          "Semi-Elfes E",
+          "Semi-Elfes F",
+          "Elfe des Bois",
+          "Grand Elfe",
+          "Elfe Clair",
+          "Elfe Gris",
+          "Elfe des Ténèbres",
+          "Elfe Aquatique"
+        ]
+      },
+      {
+        "name": "Semi-Nain",
+        "type_code": 15,
+        "weapons": [
+          "Nain",
+          "Semi-Homme",
+          "Hobbit Grandgars",
+          "Hobbit Fort",
+          "Semi-Orque",
+          "Orque Inférieur",
+          "Orque Supérieur"
+        ]
+      },
+      {
+        "name": "Gremlin",
+        "type_code": 5,
+        "weapons": [
+          "Sylphe",
+          "Satyre"
+        ]
+      },
+      {
+        "name": "Semi-Ogres",
+        "type_code": 10,
+        "weapons": [
+          "Semi-Trolls",
+          "Trolls",
+          "Grands Hommes"
+        ]
+      }
+    ],
+    "remaining_lines_count": 1
+  },
+  "en": {
+    "weapon_categories": [
+      {
+        "name": "Short Blades",
+        "type_code": 1,
+        "weapons": [
+          "Dagger",
+          "Dirk",
+          "Short Sword",
+          "Main Gauche"
+        ]
+      },
+      {
+        "name": "Long Double-Edged Blades",
+        "type_code": 1,
+        "weapons": [
+          "Broadsword",
+          "Short Sword",
+          "Long Sword",
+          "Bastard Sword(1H)"
+        ]
+      },
+      {
+        "name": "Thrusting Blades",
+        "type_code": 1,
+        "weapons": [
+          "Rapier",
+          "Foil"
+        ]
+      },
+      {
+        "name": "Long Single-edged blades",
+        "type_code": 1,
+        "weapons": [
+          "Scimitar",
+          "Sabre",
+          "Cutlass",
+          "Falchion"
+        ]
+      },
+      {
+        "name": "Short Axes",
+        "type_code": 1,
+        "weapons": [
+          "Handaxe",
+          "Hatchet",
+          "Short Sword"
+        ]
+      },
+      {
+        "name": "Short Spikes",
+        "type_code": 2,
+        "weapons": [
+          "War Hammer",
+          "Mace"
+        ]
+      },
+      {
+        "name": "Long Axes",
+        "type_code": 3,
+        "weapons": [
+          "Battle Axe"
+        ]
+      },
+      {
+        "name": "Long Spikes",
+        "type_code": 3,
+        "weapons": [
+          "War Mattock",
+          "Mattock",
+          "2H Hammer"
+        ]
+      },
+      {
+        "name": "Great Blades",
+        "type_code": 3,
+        "weapons": [
+          "Bastard Sword (2H)",
+          "2H Sword",
+          "Claymore"
+        ]
+      },
+      {
+        "name": "Pole Arms",
+        "type_code": 4,
+        "weapons": [
+          "Pole Arms",
+          "Spear",
+          "Javelin",
+          "Harpoon",
+          "Trident"
+        ]
+      },
+      {
+        "name": "Bows",
+        "type_code": 5,
+        "weapons": [
+          "Short Bow",
+          "Long Bow",
+          "Composite Bow"
+        ]
+      },
+      {
+        "name": "Crossbow",
+        "type_code": 5,
+        "weapons": [
+          "Light Crossbow",
+          "Heavy Crossbow"
+        ]
+      },
+      {
+        "name": "Rope Weapons",
+        "type_code": 6,
+        "weapons": [
+          "Net",
+          "Lasso"
+        ]
+      },
+      {
+        "name": "Chains Plus",
+        "type_code": 2,
+        "weapons": [
+          "Morningstar"
+        ]
+      },
+      {
+        "name": "Great chains",
+        "type_code": 3,
+        "weapons": [
+          "Flail"
+        ]
+      },
+      {
+        "name": "Mounted Pole Arms",
+        "type_code": 4,
+        "weapons": [
+          "Lance (mounted)",
+          "Spear (mounted)",
+          "Javelin (mounted)"
+        ]
+      },
+      {
+        "name": "Lines Plus",
+        "type_code": 6,
+        "weapons": [
+          "Bola"
+        ]
+      },
+      {
+        "name": "Thrown Projectiles",
+        "type_code": 6,
+        "weapons": [
+          "Boomerang",
+          "Shuriken",
+          "Darts"
+        ]
+      },
+      {
+        "name": "Short Blades",
+        "type_code": 6,
+        "weapons": [
+          "Dagger (thrown)",
+          "Dirk (thrown)",
+          "Main Gauche (thrown)"
+        ]
+      },
+      {
+        "name": "Short Axes",
+        "type_code": 6,
+        "weapons": [
+          "Hatchet (thrown)",
+          "Tomahawk (thrown)"
+        ]
+      },
+      {
+        "name": "Pole Arms",
+        "type_code": 6,
+        "weapons": [
+          "Spear (trhown)",
+          "Javelin (trhown)",
+          "Pilum (trhown)"
+        ]
+      },
+      {
+        "name": "Clubs",
+        "type_code": 2,
+        "weapons": [
+          "Blackjack",
+          "Club (1H)"
+        ]
+      },
+      {
+        "name": "Staves",
+        "type_code": 3,
+        "weapons": [
+          "Staff",
+          "Club (2H)",
+          "Spear"
+        ]
+      },
+      {
+        "name": "Slings",
+        "type_code": 5,
+        "weapons": [
+          "Sling"
+        ]
+      },
+      {
+        "name": "Whips",
+        "type_code": 2,
+        "weapons": [
+          "Whip",
+          "Cat-o'-Nine-Tails"
+        ]
+      },
+      {
+        "name": "Blow Guns",
+        "type_code": 5,
+        "weapons": [
+          "Blow Gun"
+        ]
+      },
+      {
+        "name": "&",
+        "type_code": null,
+        "weapons": [
+          "example"
+        ]
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "Human",
+        "type_code": null,
+        "weapons": [
+          "Elves",
+          "Dwarves",
+          "Orcs",
+          "Haflings",
+          "Giants",
+          "Trolls"
+        ]
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "Mountains",
+        "type_code": null,
+        "weapons": [
+          "Scrublands",
+          "Plains",
+          "Desert",
+          "Forest",
+          "Jungle",
+          "Coasts",
+          "Barren",
+          "Underground",
+          "Wilderness",
+          "Swamp",
+          "Stream"
+        ]
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "North",
+        "type_code": null,
+        "weapons": [
+          "South"
+        ]
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "Arid",
+        "type_code": null,
+        "weapons": [
+          "Cold",
+          "Equatorial",
+          "Mild Temperate",
+          "Semi-arid",
+          "Cool Temperate",
+          "Warm Temperate"
+        ]
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "1 Handed",
+        "type_code": null,
+        "weapons": [
+          "2 Handed",
+          "Pole Arms",
+          "2 Weapons"
+        ]
+      },
+      {
+        "name": "Concussion",
+        "type_code": null,
+        "weapons": [
+          "Edged",
+          "2 Handed",
+          "Pole Arms",
+          "2 Weapons"
+        ]
+      },
+      {
+        "name": "Right Side",
+        "type_code": null,
+        "weapons": [
+          "Left Side",
+          "Back"
+        ]
+      },
+      {
+        "name": "1 Handed",
+        "type_code": null,
+        "weapons": [
+          "2 Handed",
+          "Pole Arms",
+          "Hands",
+          "2 Weapons"
+        ]
+      },
+      {
+        "name": "Werewolf",
+        "type_code": null,
+        "weapons": [
+          "Werebear",
+          "Wereboar",
+          "Werejackal",
+          "Wererat",
+          "Weretiger"
+        ]
+      },
+      {
+        "name": "Edged",
+        "type_code": null,
+        "weapons": [
+          "Concussion",
+          "2 Handed",
+          "Pole Arms",
+          "Thrown",
+          "Bows"
+        ]
+      },
+      {
+        "name": "Soft Leather",
+        "type_code": null,
+        "weapons": [
+          "Rigid Leather",
+          "Chain",
+          "Plate"
+        ]
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "Common",
+        "type_code": null,
+        "weapons": [
+          "Elven",
+          "Dwarf",
+          "Hobbit",
+          "Orc"
+        ]
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "Aionion",
+        "type_code": null,
+        "weapons": [
+          "Aisthasis",
+          "Anathema",
+          "Asebeia",
+          "Aster",
+          "Chaos",
+          "Conscience",
+          "Sang de la terre",
+          "Eirenay",
+          "Gnose",
+          "Graphay",
+          "Hudatos",
+          "Ihyama",
+          "Iruaric",
+          "Kubeia",
+          "Logos",
+          "Parapateo\"",
+          "Petra",
+          "Pneumatikos",
+          "Porneia",
+          "Purosis",
+          "Quadosh",
+          "Skotia",
+          "Soma",
+          "Spoudazo",
+          "Thanatos",
+          "Totem",
+          "Xzulou",
+          "Elya"
+        ]
+      },
+      {
+        "name": "Alchimie",
+        "type_code": null,
+        "weapons": [
+          "Altération",
+          "Appels/Possession",
+          "Auxiliaire",
+          "Cléricalisme",
+          "Nature",
+          "Elémentarisme",
+          "Influence",
+          "Information"
+        ]
+      },
+      {
+        "name": "Alcohol",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "Horses",
+        "type_code": null,
+        "weapons": [
+          "Camels",
+          "Pachyderm"
+        ]
+      },
+      {
+        "name": "Corps",
+        "type_code": null,
+        "weapons": [
+          "Equilibre",
+          "Goût",
+          "Odorat",
+          "Ouie",
+          "Toucher",
+          "Vue"
+        ]
+      },
+      {
+        "name": "Strike 1",
+        "type_code": null,
+        "weapons": [
+          "Strike 2",
+          "Strike 3",
+          "Strike 4",
+          "Sweeps/Throws 1",
+          "Sweeps/Throws 2",
+          "Sweeps/Throws 3",
+          "Sweeps/Throws 4"
+        ]
+      },
+      {
+        "name": "Shock Bolt",
+        "type_code": null,
+        "weapons": [
+          "Water Bolt",
+          "Fire Bolt",
+          "Cold Bolt",
+          "Lightning Bolt"
+        ]
+      },
+      {
+        "name": "example",
+        "type_code": null,
+        "weapons": []
+      },
+      {
+        "name": "spoken",
+        "type_code": null,
+        "weapons": [
+          "written"
+        ]
+      },
+      {
+        "name": "&&",
+        "type_code": null,
+        "weapons": [
+          "Without Race",
+          "Common Human",
+          "High Men",
+          "Bear Tribe",
+          "Dark Tribe",
+          "Norseman",
+          "Arctic Men",
+          "Mixed Men"
+        ]
+      },
+      {
+        "name": "Half-Elf",
+        "type_code": 5,
+        "weapons": [
+          "Half-Elf B",
+          "Half-Elf C",
+          "Half-Elf D",
+          "Half-Elf E",
+          "Half-Elf F",
+          "Wood Elf",
+          "High Elf",
+          "Fair Elf",
+          "Grey Elf",
+          "Dark Elf",
+          "Aquatic Elves"
+        ]
+      },
+      {
+        "name": "Half Dwarf",
+        "type_code": 15,
+        "weapons": [
+          "Dwarf",
+          "Half-Human",
+          "Tallfellow Halfling",
+          "Stout Halfling",
+          "Half-Orc",
+          "Lesser Orc",
+          "Greater Orc"
+        ]
+      },
+      {
+        "name": "Gremlin",
+        "type_code": 5,
+        "weapons": [
+          "Sylph",
+          "Satyr"
+        ]
+      },
+      {
+        "name": "Half-Ogres",
+        "type_code": 10,
+        "weapons": [
+          "Half-Trolls",
+          "Trolls",
+          "Great Men"
+        ]
+      }
+    ],
+    "remaining_lines_count": 1
+  },
+  "_metadata": {
+    "structure": "Weapon categories with type codes and individual weapon lists. '*' terminates each category. After weapons: race data, special abilities, etc.",
+    "type_codes": "1=One-Handed Edged, 2=One-Handed Concussion, 3=Two-Handed, 4=Pole Arms, 5=Missile, 6=Thrown",
+    "source": "DEFAUT.MND (FR) + DEFAUTEN.MND (EN)"
+  }
+}

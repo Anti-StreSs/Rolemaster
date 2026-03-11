@@ -1,0 +1,89 @@
+"R4-7.7, 51","Points de fatigue",4
+"option 1","Points de fatigue modifiés par le bonus de Constitution",2
+"option 2","Points de fatigue modifiés par le bonus de niveau en sport",2
+"option 4","Combinaison de 1 et 2",2
+"MP","Bonus de plusieurs caractéristiques",4
+"13.2.1, 80","Moyenne des caractéristiques",2
+"14.1.2, 84","Moyenne des bonus de caractéristiques",2
+"14.1.3, 84","Moyennes des bonus raciaux de caractéristiques",1
+"MP","Réduction de caractéristiques dûe à l'âge",6
+"MP","Jets supplémentaires d'évolution de caractéristique",6
+"R4-5.1, 27","Gain de caractéristique supplémentaire",6
+"Option","Ne s'applique qu'aux caractéristiques primordiales",2
+"MP","Alternative à la méthode de génération de caractéristiques",4
+"13.4.1, 82","Lancer 10 temporaires et 10 potentielles puis assigner",3
+"14.1.1, 84","Lancer 3 tirages de 10. assigner 2 tirages à temp/pot",2
+"R1-4.22, 50","Les elfes et l'auto-discipline",4
+"","L'approche de l'elfe furtif",2
+"","L'approche 'manque de concentration'",2
+"R1-4.4, 52","Bonus aux caratéristiques",4
+"","Une répartition linéaire",2
+"","Une répartition progressive",3
+"R1-4.8, 56","Caractéristiques très élevées",4
+"Option1","Extension des bonus et points de pouvoir",2
+"Option2","Extension des bonus et points de pouvoir",2
+"R3-5.3, 32 à 54","Capacités innées spéciales",6
+"R3-5.4, 34","Chance",6
+"Option 2","Chance pour éviter les coups mortels (/10)",2
+"Option 3","Chance pour éviter les coups mortels (/5)",2
+"R3-5.6, 35","Rhétorique",6
+"MP","Compétences dans le maniement d'armes similaires",4
+"13.1.1, 79","Diviser par deux le bonus total de degré",2
+"14.1.5, 87","Diviser le degré de maîtrise total",1
+"R2-4.1, 15","Compétences similaires",4
+"Option 1","Degré de base augmenté par compétences similaires",1
+"Option 2","Degre de base non augmenté par compétence similaires",2
+"Option 4","Degres similaires cumulables",2
+"R1-4.3, 47","Compétences secondaires",4
+"Option 3","20 à 30 % de Pts de Dev supplémentaire par niveau",8
+"Option Spéciale","bonus constant de Pts Dev",8
+"MP-13.1.4, 80","Utilisation d'une arme en main gauche",2
+"MP-13.4.2, 82","Compétence passe-temps",2
+"R2-4.5, 17","Sous-compétences",4
+"Option 1","Degré de base augmenté par compétences similaires",1
+"Option 2","Degre de base non augmenté par compétence similaires",2
+"Option 4","Degres similaires cumulables",2
+"R2-4.7, 17","Développement accéléré des compétences",2
+"R3-5.5, 35","Bonus de dgré en combat intensif par niveau",6
+"Option","Bonus +2 par degre au minimum",2
+"MP-13.2.2,80","Bonus de caractéristique pour les jets d'acquisition de sorts",6
+"R4-5.12, 34","Degres de langage plus limités",6
+"R2-7.0, 29","Compétence similaire de direction de sort",6
+"R2-7.0, 34","Bonus normaux pour maneuvre en étant étourdi",6
+"R4-5.9, 31 à 32","Une option pour le combat à deux armes",6
+"R2-2.6, 10","Bonus de niveau",3
+"R2-2.6, 10","Bonus de niveau variable",4
+"Option 1","Modification libre des bonus de niveau",2
+"Option 2","Utilisation d'option d'historique pour modifier les bonus",2
+"MP-7.2,68","Argent de départ: x + 1D100 pa",9
+"MP-13.1.4,80","Ambidextrie",2
+"R1-4.5, 53 à 55","Options d'historique",4
+"Option 0","1 jet par option d'historique utilisée",2
+"Option 1","3 jets pour deux options",2
+"Option 6","1 jet pour 2 options d'historique",2
+"Option 2","1 jet gratuit pour un résulatat de 1-10",6
+"Option 3","Lancer d'abord, décider la table ensuite",6
+"Option 5","2 options d'historique pour choisir un résultat",6
+"R4-6.1,36 à 39","Choix des options d'historiques",6
+"Option","doubler les coûts proposés",2
+"R4-6.3, 42","Degrés initiaux de maîtrise de langage",2
+"MP-14.2.5, 94","Royaume variable pour les semi-lanceur de sorts",2
+"MP-13.2.2, 80","Bonus de caractéristiques pour les jets d'acquisition de sorts",2
+"MS-10.5, 30","Listes Maléfiques",4
+"Option 1","Listes maléfiques, libres, réservées, et 'profession du royaume'",2
+"Option 2","Listes maléfiques et 'un autre utilisateur pur'",2
+"R4-4.4, 22","Listes de base supplémentaire pour semi-utilisateurs",2
+"MS-10.8, 31","Apprentissage de sorts",2
+"R3-4.5,30","Développement individuel de sorts",2
+"R4-4.9, 25","Aprentissage de plusieurs listes de sorts",6
+"Option 1","Bonus de caractéristiques",2
+"R1-2.1, 4 à 5","Magie d'Arcane",4
+"Option 1","Effets variables pour l'aprentissage des listes d'Arcane",3
+"Option 2","Effet fixe",2
+"R1-2.31 Option 1","Listes de sorts de base supplémentaire pour les Hybrides et les Semi",6
+"R1-2.31,7","Listes de sorts supplémentaires",4
+"Option 2","Listes choisies parmi des listes de base",2
+"Option 3","Option 2, mais le coût est doublé",2
+"R2-3.1, 12","Développement des points de pouvoirs",4
+"Option 0","PP=PP base+(degre PP * nb de PP de carac)",1
+"Option 1","PP=(PP base + PP appris)* (1+ (bonus carac/100))",2

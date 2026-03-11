@@ -1,0 +1,21 @@
+{
+  "language": "0",
+  "font_name": "Arial",
+  "font_bold": "1",
+  "background_type": "0",
+  "font_size_small": "55",
+  "font_size_large": "85",
+  "auto_draw": "0",
+  "spell_acquisition": "0",
+  "user_name": "Quentin Parisot",
+  "user_email": "Quentin.fr@numericable.fr",
+  "body_dev_option": "1",
+  "bonus_dev_option": "1",
+  "default_world_idx": "5",
+  "world_path": "F:\\JDR\\PROGS\\CPR\\DATA\\CUSTOM.MND",
+  "print_option1": "1",
+  "print_option2": "0",
+  "print_option3": "0",
+  "print_option4": "0",
+  "print_option5": "0"
+}

@@ -1,0 +1,369 @@
+{
+  "total_categories": 60,
+  "categories": [
+    {
+      "index": 0,
+      "name_fr": "Gouvernement",
+      "name_en": "Type of Government",
+      "is_list_type": false
+    },
+    {
+      "index": 1,
+      "name_fr": "Niveau technologique",
+      "name_en": "Tech Level",
+      "is_list_type": false
+    },
+    {
+      "index": 2,
+      "name_fr": "Dimension",
+      "name_en": "Dimension",
+      "is_list_type": false
+    },
+    {
+      "index": 3,
+      "name_fr": "Type racial",
+      "name_en": "Racial Type",
+      "is_list_type": false
+    },
+    {
+      "index": 4,
+      "name_fr": "Ecole de pensée",
+      "name_en": "School of Thought",
+      "is_list_type": false
+    },
+    {
+      "index": 5,
+      "name_fr": "Type d'exploitation minière",
+      "name_en": "Mining Type",
+      "is_list_type": false
+    },
+    {
+      "index": 6,
+      "name_fr": "Culture",
+      "name_en": "Culture",
+      "is_list_type": false
+    },
+    {
+      "index": 7,
+      "name_fr": "Type de machine",
+      "name_en": "Machine Type",
+      "is_list_type": false
+    },
+    {
+      "index": 8,
+      "name_fr": "Région",
+      "name_en": "Region",
+      "is_list_type": false
+    },
+    {
+      "index": 9,
+      "name_fr": "Organisation militaire",
+      "name_en": "Military Organization",
+      "is_list_type": false
+    },
+    {
+      "index": 10,
+      "name_fr": "Cours d'eau",
+      "name_en": "Water Course",
+      "is_list_type": false
+    },
+    {
+      "index": 11,
+      "name_fr": "Planète",
+      "name_en": "Planet",
+      "is_list_type": false
+    },
+    {
+      "index": 12,
+      "name_fr": "Hémisphere",
+      "name_en": "Hemisphere",
+      "is_list_type": true
+    },
+    {
+      "index": 13,
+      "name_fr": "Domaine de commerce",
+      "name_en": "Trade Domain",
+      "is_list_type": false
+    },
+    {
+      "index": 14,
+      "name_fr": "Type de démon/diable",
+      "name_en": "Type of demon/devil",
+      "is_list_type": false
+    },
+    {
+      "index": 15,
+      "name_fr": "Type de dragon",
+      "name_en": "Dragon Type",
+      "is_list_type": false
+    },
+    {
+      "index": 16,
+      "name_fr": "Climat",
+      "name_en": "Climate",
+      "is_list_type": false
+    },
+    {
+      "index": 17,
+      "name_fr": "Type d'être féerique",
+      "name_en": "Fairie Type",
+      "is_list_type": false
+    },
+    {
+      "index": 18,
+      "name_fr": "Type de fortification",
+      "name_en": "Style of Fortification",
+      "is_list_type": false
+    },
+    {
+      "index": 19,
+      "name_fr": "Type de tactique",
+      "name_en": "Tactical Type",
+      "is_list_type": false
+    },
+    {
+      "index": 20,
+      "name_fr": "Type d'animal",
+      "name_en": "Type of animal",
+      "is_list_type": false
+    },
+    {
+      "index": 21,
+      "name_fr": "Type de véhicule",
+      "name_en": "Type of vehicle",
+      "is_list_type": false
+    },
+    {
+      "index": 22,
+      "name_fr": "Type d'expression corporelle",
+      "name_en": "Dance Type",
+      "is_list_type": false
+    },
+    {
+      "index": 23,
+      "name_fr": "Type de sport",
+      "name_en": "Type of sport",
+      "is_list_type": false
+    },
+    {
+      "index": 24,
+      "name_fr": "Forme de vol",
+      "name_en": "Type of Flight",
+      "is_list_type": false
+    },
+    {
+      "index": 25,
+      "name_fr": "Type d'artillerie",
+      "name_en": "Artillery Type",
+      "is_list_type": false
+    },
+    {
+      "index": 26,
+      "name_fr": "Forme d'arts martiaux",
+      "name_en": "Martial Arts Form",
+      "is_list_type": false
+    },
+    {
+      "index": 27,
+      "name_fr": "Type d'arme (pour désarmer)",
+      "name_en": "Major Weapon Category (to disarm)",
+      "is_list_type": true
+    },
+    {
+      "index": 28,
+      "name_fr": "Type d'arme de l'adversaire (pour désarmer à mains nues)",
+      "name_en": "Opponent's Major Weapon category (to disarm with hands)",
+      "is_list_type": true
+    },
+    {
+      "index": 29,
+      "name_fr": "Zone de combat",
+      "name_en": "Zone of fight",
+      "is_list_type": false
+    },
+    {
+      "index": 30,
+      "name_fr": "Type d'arme pour le Yado",
+      "name_en": "Major Weapon Category for Yado",
+      "is_list_type": true
+    },
+    {
+      "index": 31,
+      "name_fr": "Lycanthropie",
+      "name_en": "Type of Lycanthropy",
+      "is_list_type": false
+    },
+    {
+      "index": 32,
+      "name_fr": "Catégorie d'arme",
+      "name_en": "Major Weapon Category",
+      "is_list_type": true
+    },
+    {
+      "index": 33,
+      "name_fr": "Catégorie d'armure",
+      "name_en": "Armor Type",
+      "is_list_type": true
+    },
+    {
+      "index": 34,
+      "name_fr": "Compétences d'alimentation",
+      "name_en": "Cookery Skill",
+      "is_list_type": false
+    },
+    {
+      "index": 35,
+      "name_fr": "Artisanat",
+      "name_en": "Craft",
+      "is_list_type": false
+    },
+    {
+      "index": 36,
+      "name_fr": "Artisanat de la pierre",
+      "name_en": "Stone Craft",
+      "is_list_type": false
+    },
+    {
+      "index": 37,
+      "name_fr": "Artisanat du bois",
+      "name_en": "Wood Craft",
+      "is_list_type": false
+    },
+    {
+      "index": 38,
+      "name_fr": "Artisanat de la forge",
+      "name_en": "Smithing Craft",
+      "is_list_type": false
+    },
+    {
+      "index": 39,
+      "name_fr": "Forme d'horticulture",
+      "name_en": "Form of Horticulture",
+      "is_list_type": false
+    },
+    {
+      "index": 40,
+      "name_fr": "Type de jeu tactique",
+      "name_en": "Tactical Game",
+      "is_list_type": false
+    },
+    {
+      "index": 41,
+      "name_fr": "Vecteur de publicité",
+      "name_en": "Advertising Medium",
+      "is_list_type": false
+    },
+    {
+      "index": 42,
+      "name_fr": "Travail du cuir",
+      "name_en": "Leather Craft",
+      "is_list_type": false
+    },
+    {
+      "index": 43,
+      "name_fr": "Langage",
+      "name_en": "Language",
+      "is_list_type": false
+    },
+    {
+      "index": 44,
+      "name_fr": "Divination",
+      "name_en": "Divination Method",
+      "is_list_type": false
+    },
+    {
+      "index": 45,
+      "name_fr": "Langage magique",
+      "name_en": "Magical Language",
+      "is_list_type": false
+    },
+    {
+      "index": 46,
+      "name_fr": "Domaine de rituel",
+      "name_en": "Ritual Area",
+      "is_list_type": true
+    },
+    {
+      "index": 47,
+      "name_fr": "Type de drogue",
+      "name_en": "Type of drug",
+      "is_list_type": false
+    },
+    {
+      "index": 48,
+      "name_fr": "Type de jeu",
+      "name_en": "Form of Gambling",
+      "is_list_type": false
+    },
+    {
+      "index": 49,
+      "name_fr": "Secteur d'autorité",
+      "name_en": "Type of Authority",
+      "is_list_type": false
+    },
+    {
+      "index": 50,
+      "name_fr": "Type de falsification",
+      "name_en": "Falsification Type",
+      "is_list_type": false
+    },
+    {
+      "index": 51,
+      "name_fr": "Ville",
+      "name_en": "City",
+      "is_list_type": false
+    },
+    {
+      "index": 52,
+      "name_fr": "Environnement hostile",
+      "name_en": "Type of Enviroment",
+      "is_list_type": false
+    },
+    {
+      "index": 53,
+      "name_fr": "Zone urbaine",
+      "name_en": "Urban Area",
+      "is_list_type": false
+    },
+    {
+      "index": 54,
+      "name_fr": "Type de monture",
+      "name_en": "Mount",
+      "is_list_type": false
+    },
+    {
+      "index": 55,
+      "name_fr": "Forme de perception",
+      "name_en": "Form of perception",
+      "is_list_type": true
+    },
+    {
+      "index": 56,
+      "name_fr": "Techniques d'arts martiaux",
+      "name_en": "Martial Arts Rank",
+      "is_list_type": true
+    },
+    {
+      "index": 57,
+      "name_fr": "Sort Dirigé",
+      "name_en": "Bolt Spell",
+      "is_list_type": false
+    },
+    {
+      "index": 58,
+      "name_fr": "Sort",
+      "name_en": "Spell",
+      "is_list_type": false
+    },
+    {
+      "index": 59,
+      "name_fr": "Forme de langage",
+      "name_en": "Form of language",
+      "is_list_type": true
+    }
+  ],
+  "_metadata": {
+    "is_list_type": "True = subspecialties are chosen from a predefined list (weapons, languages, etc.)",
+    "source": "CATEG.DAT (FR) + CATEGENG.DAT (EN)"
+  }
+}
