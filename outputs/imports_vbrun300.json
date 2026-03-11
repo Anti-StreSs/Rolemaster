@@ -1,0 +1,24 @@
+{
+  "dll": "VBRUN300.DLL",
+  "total_imports": 1,
+  "imports": [
+    {
+      "ordinal": 100,
+      "name": "ThunRTMain",
+      "address": "1310:0000",
+      "type": "Function",
+      "description": "VB3 runtime entry point - receives pointer to VB project structures, initializes forms, event loop, P-Code interpreter"
+    }
+  ],
+  "notes": [
+    "Only 1 static import - typical for VB3 P-Code executables",
+    "All other VBRUN300 functions (file I/O, string ops, math, UI) are resolved at runtime by the P-Code interpreter",
+    "The VB3 P-Code bytecode in code segments references VBRUN300 functions via opcode dispatch tables, not via import table",
+    "Key VBRUN300 ordinals used at runtime (inferred from strings/behavior):",
+    "  - File operations: Open, Close, Input, Write, Print (for .dat/.psg/.mnd files)",
+    "  - String operations: Mid$, Left$, Right$, Val, Str$, Format$",
+    "  - Math: Rnd, Int, Randomize",
+    "  - UI: MsgBox, InputBox, Load, Show, Unload, Print (Printer object)",
+    "  - Common Dialog: ShowOpen, ShowSave, ShowPrinter"
+  ]
+}

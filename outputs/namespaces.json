@@ -1,0 +1,6 @@
+{
+  "total_namespaces": 1,
+  "namespaces": [
+    {"name": "VBRUN300", "symbol_count": 1, "notes": "Single namespace for the VB3 runtime DLL"}
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "total_functions": 2,
+  "functions": [
+    {
+      "name": "entry",
+      "address": "1000:0010",
+      "params": 0,
+      "disassembly": "CALLF 0x1310:0000 ; ADD word ptr [BX+SI], AX ; ADC byte ptr [BX+SI], DL",
+      "instructions": 3,
+      "notes": "Far call to ThunRTMain, followed by dead code (never returns)"
+    },
+    {
+      "name": "Ordinal_100",
+      "address": "1310:0000",
+      "params": 0,
+      "notes": "ThunRTMain thunk - external, decompiler shows halt_baddata (expected - real code is in VBRUN300.DLL)"
+    }
+  ],
+  "call_graph": {
+    "entry": {"callers": [], "callees": ["Ordinal_100"]},
+    "Ordinal_100": {"callers": ["entry"], "callees": []}
+  }
+}

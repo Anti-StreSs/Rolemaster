@@ -1,0 +1,278 @@
+{
+  "total_strings": 551,
+  "unique_meaningful_strings": 380,
+  "font_ui_strings": 171,
+  "categories": {
+    "FILE_REF": {
+      "count": 22,
+      "items": [
+        {"address": "1018:18ca", "value": "carac.dat", "segment": "Code4", "context": "Character stats data"},
+        {"address": "1030:50c8", "value": "comp.dat", "segment": "Code7", "context": "Skills/competences data (FR)"},
+        {"address": "1030:50ea", "value": "compengl.dat", "segment": "Code7", "context": "Skills/competences data (EN)"},
+        {"address": "1030:569a", "value": "simil.dat", "segment": "Code7", "context": "Similar skills data"},
+        {"address": "1030:4748", "value": "pathclas.dat", "segment": "Code7", "context": "Class path data"},
+        {"address": "1030:47d6", "value": "couts.dat", "segment": "Code7", "context": "Development costs"},
+        {"address": "1038:02c4", "value": "classes.dat", "segment": "Code8", "context": "Class definitions (FR)"},
+        {"address": "1038:02e8", "value": "claseng.dat", "segment": "Code8", "context": "Class definitions (EN)"},
+        {"address": "1038:031c", "value": "pathclas.dat", "segment": "Code8", "context": "Class path data (dup)"},
+        {"address": "1040:0b8e", "value": "carac.dat", "segment": "Code9", "context": "Stats drawing"},
+        {"address": "1058:07f2", "value": "carac.dat ", "segment": "Code12", "context": "Stats score"},
+        {"address": "1068:09a2", "value": "categeng.dat", "segment": "Code14", "context": "Skill categories (EN)"},
+        {"address": "1068:09ce", "value": "categ.dat", "segment": "Code14", "context": "Skill categories (FR)"},
+        {"address": "1078:000a", "value": "Personnage|*.psg", "segment": "Code16", "context": "Save/Load dialog filter"},
+        {"address": "1080:00f0", "value": "defaut.mnd", "segment": "Code17", "context": "Default world file (FR)"},
+        {"address": "1080:0120", "value": "defauten.mnd", "segment": "Code17", "context": "Default world file (EN)"},
+        {"address": "1098:0c3c", "value": "sorts.dat", "segment": "Code20", "context": "Spell list data"},
+        {"address": "1098:196e", "value": "couts.dat", "segment": "Code20", "context": "Spell costs"},
+        {"address": "10b0:0172", "value": "Monde(World)|*.mnd", "segment": "Code23", "context": "World file dialog filter"},
+        {"address": "10c8:0740", "value": "carac.dat ", "segment": "Code26", "context": "Armor data section"},
+        {"address": "10e0:0604", "value": "options.dat", "segment": "Code29", "context": "Optional rules (FR)"},
+        {"address": "10e0:0642", "value": "optionse.dat", "segment": "Code29", "context": "Optional rules (EN)"}
+      ]
+    },
+    "GAME_DATA_STATS_FR": {
+      "count": 10,
+      "items": [
+        {"address": "1018:0838", "value": "Constitution"},
+        {"address": "1018:0858", "value": "Agilit\u00e9"},
+        {"address": "1018:0872", "value": "Auto-discipline"},
+        {"address": "1018:0896", "value": "M\u00e9moire"},
+        {"address": "1018:08ae", "value": "Raisonnement"},
+        {"address": "1018:08ce", "value": "Force"},
+        {"address": "1018:08d8", "value": "Rapidit\u00e9"},
+        {"address": "1018:08f8", "value": "Pr\u00e9sence"},
+        {"address": "1018:091e", "value": "Empathie"},
+        {"address": "1018:093a", "value": "Intuition"}
+      ]
+    },
+    "GAME_DATA_STATS_EN": {
+      "count": 10,
+      "items": [
+        {"address": "1018:0d10", "value": "Constitution"},
+        {"address": "1018:0d30", "value": "Agility"},
+        {"address": "1018:0d4a", "value": "Self-Discipline"},
+        {"address": "1018:0d6c", "value": "Memory"},
+        {"address": "1018:0d86", "value": "Reasoning"},
+        {"address": "1018:0da2", "value": "Strength"},
+        {"address": "1018:0dbe", "value": "Quickness"},
+        {"address": "1018:0dda", "value": "Presence"},
+        {"address": "1018:0df6", "value": "Empathy"},
+        {"address": "1018:0e10", "value": "Intuition"}
+      ]
+    },
+    "GAME_DATA_REALMS_FR": {
+      "count": 7,
+      "items": [
+        {"address": "1018:0b0a", "value": "Mentalisme"},
+        {"address": "1018:0b28", "value": "Essence"},
+        {"address": "1018:0b7a", "value": "Mentalisme/Essence"},
+        {"address": "1018:0bea", "value": "Essence ou Mentalisme"},
+        {"address": "1018:0c12", "value": "Essence et/ou Mentalisme"},
+        {"address": "1018:0a94", "value": "hybride"},
+        {"address": "1018:0ac8", "value": "semi hybride"}
+      ]
+    },
+    "GAME_DATA_REALMS_EN": {
+      "count": 10,
+      "items": [
+        {"address": "1018:0fe0", "value": "Mentalism"},
+        {"address": "1018:0ffc", "value": "Essence"},
+        {"address": "1018:1016", "value": "Channeling"},
+        {"address": "1018:1050", "value": "Mentalism/Essence"},
+        {"address": "1018:1074", "value": "Mentalism/Channeling"},
+        {"address": "1018:109c", "value": "Essence/Channeling"},
+        {"address": "1018:10c2", "value": "Essence or Mentalism"},
+        {"address": "1018:10ea", "value": "Essence and/or Mentalism"},
+        {"address": "1018:1116", "value": "Ess/Ment/Channeling"},
+        {"address": "1018:113c", "value": "Without"}
+      ]
+    },
+    "GAME_DATA_WEAPONS_FR": {
+      "count": 6,
+      "items": [
+        {"address": "1018:11e7", "value": " une main"},
+        {"address": "1018:1235", "value": " deux mains"},
+        {"address": "1018:1254", "value": "Armes d'Hast"},
+        {"address": "1018:1274", "value": "Arcs et Arbalettes"},
+        {"address": "1018:129a", "value": "Armes de jet"},
+        {"address": "1018:0cde", "value": "Main Gauche"}
+      ]
+    },
+    "GAME_DATA_WEAPONS_EN": {
+      "count": 6,
+      "items": [
+        {"address": "1018:12ce", "value": "One Handed Edged"},
+        {"address": "1018:12f2", "value": "One Handed Concussion"},
+        {"address": "1018:131a", "value": "Two Handed"},
+        {"address": "1018:1338", "value": "Pole Arms"},
+        {"address": "1018:1356", "value": "Missile (Bows)"},
+        {"address": "1018:136c", "value": "Thrown"}
+      ]
+    },
+    "GAME_DATA_SHIELDS_FR": {
+      "count": 3,
+      "items": [
+        {"address": "1018:0c7a", "value": "Targe"},
+        {"address": "1018:0ca8", "value": "Rondache"},
+        {"address": "1018:0cc4", "value": "Pavois"}
+      ]
+    },
+    "GAME_DATA_SHIELDS_EN": {
+      "count": 3,
+      "items": [
+        {"address": "1018:1156", "value": "Target"},
+        {"address": "1018:1170", "value": "Normal"},
+        {"address": "1018:11ba", "value": "Left Hand"}
+      ]
+    },
+    "GAME_DATA_ARMOR": {
+      "count": 5,
+      "items": [
+        {"address": "10c8:0ea6", "value": "Skin and clothes"},
+        {"address": "10c8:0ed2", "value": "Soft Leather"},
+        {"address": "10c8:0efa", "value": "Rigid Leather"},
+        {"address": "10c8:0f22", "value": "Chain"},
+        {"address": "10c8:0f42", "value": "Plate"}
+      ]
+    },
+    "GAME_DATA_SKILL_CATEGORIES": {
+      "count": 14,
+      "items": [
+        {"address": "1030:6d9c", "value": "Academic"},
+        {"address": "1030:6dc0", "value": "Animal"},
+        {"address": "1030:6de2", "value": "Athletic"},
+        {"address": "1030:6e06", "value": "Combat"},
+        {"address": "1030:6e28", "value": "Deadly"},
+        {"address": "1030:6e4a", "value": "Evaluation"},
+        {"address": "1030:6e70", "value": "General"},
+        {"address": "1030:6e92", "value": "Gymnastic"},
+        {"address": "1030:6eb6", "value": "Linguistic"},
+        {"address": "1030:6edc", "value": "Magical"},
+        {"address": "1030:6efe", "value": "Medical"},
+        {"address": "1030:6f22", "value": "Social"},
+        {"address": "1030:6f46", "value": "Survival"},
+        {"address": "1038:0c18", "value": "FIGHT"}
+      ]
+    },
+    "GAME_DATA_CLASS_CATEGORIES": {
+      "count": 6,
+      "items": [
+        {"address": "1038:0c18", "value": "FIGHT"},
+        {"address": "1038:0c38", "value": "TRAVEL/NATURE"},
+        {"address": "1038:0c60", "value": "MARTIAL ARTS"},
+        {"address": "1038:0c88", "value": "INHABITANTS"},
+        {"address": "1038:0cae", "value": "OBJECT/KNOWLEDGE"},
+        {"address": "1038:0cda", "value": "MENTALISM"}
+      ]
+    },
+    "GAME_DATA_RACES": {
+      "count": 6,
+      "items": [
+        {"address": "1100:129c", "value": "Human"},
+        {"address": "1100:12bc", "value": "Elves"},
+        {"address": "1100:12dc", "value": "Other"},
+        {"address": "1100:12fc", "value": "Underground Races"},
+        {"address": "1100:1328", "value": "Fairy Races"},
+        {"address": "1100:134e", "value": "Giant Races"}
+      ]
+    },
+    "UI_TEXT_MENUS": {
+      "count": 30,
+      "items": [
+        {"address": "1028:4c12", "value": "Character"},
+        {"address": "1028:4c30", "value": "Load Character"},
+        {"address": "1028:4c54", "value": "New Character"},
+        {"address": "1028:4c76", "value": "Close Character"},
+        {"address": "1028:4c9a", "value": "Save Character"},
+        {"address": "1028:4cbe", "value": "Save Character As..."},
+        {"address": "1028:4d02", "value": "Print Options"},
+        {"address": "1028:4d24", "value": "Print Character"},
+        {"address": "1028:4d48", "value": "Print Preview"},
+        {"address": "1028:4d6a", "value": "Add one Level"},
+        {"address": "1028:4d8c", "value": "End of the Developpement Phase"},
+        {"address": "1028:4dc0", "value": "Level"},
+        {"address": "1028:4dda", "value": "Redraw stats progression"},
+        {"address": "1028:4e08", "value": "Add a new skill"},
+        {"address": "1028:4e2c", "value": "World"},
+        {"address": "1028:4e46", "value": "Optional Rules"},
+        {"address": "1028:4e6a", "value": "Parameters"},
+        {"address": "1028:4e8a", "value": "About..."},
+        {"address": "1028:4ea8", "value": "Statistics"},
+        {"address": "1028:4ec8", "value": "Skills"},
+        {"address": "1028:4ee4", "value": "General"},
+        {"address": "1028:4f00", "value": "Spell List"},
+        {"address": "1028:4f20", "value": "Identity"},
+        {"address": "1028:4f3e", "value": "Background"},
+        {"address": "1028:4a70", "value": "Windows"},
+        {"address": "1028:4b3c", "value": "Window Tools"},
+        {"address": "1028:4b5e", "value": "Reorganize the Windows"},
+        {"address": "1028:4b90", "value": "Tile Horizontal"},
+        {"address": "1028:4bba", "value": "Tile Vertical"},
+        {"address": "1028:4be2", "value": "Reorganize the Icons"}
+      ]
+    },
+    "SYSTEM_MSG": {
+      "count": 15,
+      "items": [
+        {"address": "1028:0316", "value": "Voulez-vous sauvegarder le personnage avant de le ferme?"},
+        {"address": "1028:0372", "value": "Do you want to save the character before closing?"},
+        {"address": "1028:3a9e", "value": "Voulez-vous sauvegarder le personnage avant de quitter?"},
+        {"address": "1028:3af8", "value": "Do you want to save the character before leaving?"},
+        {"address": "1078:1066", "value": "Erreur de chargement"},
+        {"address": "1078:12cc", "value": "Erreur de Sauvegarde"},
+        {"address": "1030:2f90", "value": "erreur de saisie"},
+        {"address": "1060:06f6", "value": "Do you want to be Evil?"},
+        {"address": "1098:0a52", "value": "This spell list has been once selected"},
+        {"address": "1030:46aa", "value": "An error occurs. the world file is not valid..."},
+        {"address": "1088:00f0", "value": "This program is a Freeware..."},
+        {"address": "1088:0152", "value": "The updates can be found on:"},
+        {"address": "1088:0180", "value": "THANKS TO: Jeff Badger for helping me in translations..."},
+        {"address": "1028:1dd8", "value": "ation de Personnage  V"},
+        {"address": "1028:1e08", "value": "  par Eric Lestrade"}
+      ]
+    },
+    "VB3_FORMS": {
+      "count": 26,
+      "source": "1120:0000 (VB3 project structure)",
+      "items": [
+        {"index": "04", "filename": "FOND.FRM", "description": "Background/wallpaper form"},
+        {"index": "06", "filename": "MENUMDI.FRM", "description": "MDI parent menu form"},
+        {"index": "08", "filename": "COMPETEN.FRM", "description": "Skills/competences form"},
+        {"index": "0A", "filename": "CHOIXCLA.FRM", "description": "Class selection form"},
+        {"index": "0C", "filename": "CHOIXCAR.FRM", "description": "Stats/characteristics choice form"},
+        {"index": "0E", "filename": "CHOIXROY.FRM", "description": "Realm/kingdom selection form"},
+        {"index": "10", "filename": "CHOIXPRI.FRM", "description": "Prime stats selection form"},
+        {"index": "12", "filename": "CARACTER.FRM", "description": "Characteristics display form"},
+        {"index": "14", "filename": "GENERAL.FRM", "description": "General info form"},
+        {"index": "16", "filename": "SOUSCOMP.FRM", "description": "Sub-skills form"},
+        {"index": "18", "filename": "CHOIXCAT.FRM", "description": "Weapon categories form"},
+        {"index": "1A", "filename": "SAUVEGAR.FRM", "description": "Save/load form"},
+        {"index": "1C", "filename": "PARAM.FRM", "description": "Parameters form"},
+        {"index": "1E", "filename": "APROPOSD.FRM", "description": "About dialog"},
+        {"index": "20", "filename": "CHOIXNOM.FRM", "description": "Name input form"},
+        {"index": "22", "filename": "CHOIXSOR.FRM", "description": "Spell selection form"},
+        {"index": "24", "filename": "SORTS.FRM", "description": "Spell list display form"},
+        {"index": "26", "filename": "PARAMET2.FRM", "description": "Parameters page 2"},
+        {"index": "28", "filename": "PARAMPRI.FRM", "description": "Print parameters"},
+        {"index": "2A", "filename": "AIDE.FRM", "description": "Help form"},
+        {"index": "2C", "filename": "CHOIXARM.FRM", "description": "Armor selection form"},
+        {"index": "2E", "filename": "IDENDITE.FRM", "description": "Identity form"},
+        {"index": "30", "filename": "OPTIONS.FRM", "description": "Optional rules form"},
+        {"index": "32", "filename": "MONDE.FRM", "description": "World editor form"},
+        {"index": "34", "filename": "MONDSPE.FRM", "description": "World specialties form"},
+        {"index": "36", "filename": "FEUILLE.FRM", "description": "Character sheet / print form"}
+      ]
+    }
+  },
+  "data_file_summary": {
+    "character_data": ["carac.dat"],
+    "class_data": ["classes.dat", "claseng.dat", "pathclas.dat"],
+    "skill_data": ["comp.dat", "compengl.dat", "categ.dat", "categeng.dat", "simil.dat"],
+    "spell_data": ["sorts.dat"],
+    "cost_data": ["couts.dat"],
+    "world_data": ["defaut.mnd", "defauten.mnd", "*.mnd"],
+    "options_data": ["options.dat", "optionse.dat", "defaut.opt"],
+    "character_files": ["*.psg"],
+    "bitmap_files": ["blank.bmp", "fondvert.bmp"]
+  }
+}

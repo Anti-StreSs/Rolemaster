@@ -1,0 +1,16 @@
+{
+  "name": "cpr093.exe",
+  "format": "New Executable (NE)",
+  "language": "x86:LE:16:Protected Mode",
+  "image_base": "0000:0000",
+  "min_address": "1000:0000",
+  "max_address": "1310:0003",
+  "function_count": 3,
+  "project_name": "CPR093",
+  "project_title": "Rolemaster",
+  "author": "Eric Lestrade",
+  "description": "Character Creation for Rolemaster (Freeware)",
+  "vbx_controls": ["THREED.VBX", "CMDIALOG.VBX"],
+  "vb_runtime": "VBRUN300.DLL",
+  "single_import": "Ordinal_100 (ThunRTMain)"
+}

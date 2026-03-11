@@ -1,0 +1,23 @@
+{
+  "analysis_date": "2026-03-11",
+  "findings": {
+    "Ordinal_100_xrefs": {
+      "to": ["1000:0010 (entry)"],
+      "from": [],
+      "notes": "Only called from entry point via CALLF"
+    },
+    "string_xrefs": {
+      "carac.dat_1018:18ca": {"to": [], "from": []},
+      "comp.dat_1030:50c8": {"to": [], "from": []},
+      "classes.dat_1038:02c4": {"to": [], "from": []},
+      "sorts.dat_1098:0c3c": {"to": [], "from": []}
+    },
+    "explanation": "No cross-references found for any string addresses. This is expected behavior for VB3 P-Code binaries. The strings are NOT referenced via x86 address pointers. Instead, they are embedded within VB3 P-Code control structures (forms, controls, event handlers). The VB3 runtime (VBRUN300.DLL) interprets the P-Code bytecode which contains relative offsets to these strings within each segment. Ghidra's x86 analysis cannot track these P-Code-level references."
+  },
+  "relocations": {
+    "total": 385,
+    "primary_segment": "1010 (Code3 - VB project structures)",
+    "pattern": "Most relocations are segment-relative fixups in Code3 (1010:xxxx), spacing ~0x38 bytes apart, suggesting an array of VB control/form descriptors with embedded segment references",
+    "notes": "These relocations fixup segment addresses within VB3's internal data structures (form tables, control arrays, event dispatch tables)"
+  }
+}

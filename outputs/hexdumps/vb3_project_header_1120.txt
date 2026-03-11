@@ -1,0 +1,46 @@
+; Hex dump: VB3 Project Header at 1120:0000 (512 bytes)
+; This is the VB3 project structure passed to ThunRTMain
+;
+; Structure:
+;   03 20 = VB3 version magic
+;   81 80 = Project flags
+;   FF FF = padding
+;   "CPR093" = Project internal name
+;   "Rolemaster" = Project title
+;   Then: VBX references (43 = VBX marker), Form references (46 = Form marker)
+;
+;   VBX entry: 43 [name_len] 00 00 FF 01 FF 01 [size] [filename\0]
+;   Form entry: 46 [name_len] [index] 80 [seg_id] 00 FF 01 [size] [filename\0]
+;
+11200000  03 20 81 80 ff ff 43 50  52 30 39 33 00 00 00 0b  |. ....CPR093....|
+11200010  00 01 00 52 6f 6c 65 6d  61 73 74 65 72 00 00 43  |...Rolemaster..C|
+11200020  0b 00 00 ff 01 ff 01 6a  03 8f 54 48 52 45 45 44  |.......j..THREED|
+11200030  2e 56 42 58 00 43 0d 00  00 ff 01 ff 01 6a 03 8f  |.VBX.C.......j..|
+11200040  43 4d 44 49 41 4c 4f 47  2e 56 42 58 00 46 09 04  |CMDIALOG.VBX.F..|
+11200050  80 54 00 ff 01 6c 68 03  46 4f 4e 44 2e 46 52 4d  |.T...lh.FOND.FRM|
+11200060  00 00 00 46 0c 06 80 55  00 ff 01 69 f8 04 4d 45  |...F...U...i..ME|
+11200070  4e 55 4d 44 49 2e 46 52  4d 00 00 00 46 0d 08 80  |NUMDI.FRM...F...|
+11200080  56 00 ff 01 6a 60 10 43  4f 4d 50 45 54 45 4e 2e  |V...j`.COMPETEN.|
+11200090  46 52 4d 00 00 00 46 0d  0a 80 57 00 ff 01 6a 68  |FRM...F...W...jh|
+112000a0  17 43 48 4f 49 58 43 4c  41 2e 46 52 4d 00 00 00  |.CHOIXCLA.FRM...|
+112000b0  46 0d 0c 80 58 00 ff 01  6a 48 1a 43 48 4f 49 58  |F...X...jH.CHOIX|
+112000c0  43 41 52 2e 46 52 4d 00  00 00 46 0d 0e 80 59 00  |CAR.FRM...F...Y.|
+112000d0  ff 01 68 e8 1e 43 48 4f  49 58 52 4f 59 2e 46 52  |..h..CHOIXROY.FR|
+112000e0  4d 00 00 00 46 0d 10 80  5a 00 ff 01 68 b0 20 43  |M...F...Z...h. C|
+112000f0  48 4f 49 58 50 52 49 2e  46 52 4d 00 00 00 46 0d  |HOIXPRI.FRM...F.|
+11200100  12 80 5b 00 ff 01 6a 40  22 43 41 52 41 43 54 45  |..[...j@"CARACTE|
+11200110  52 2e 46 52 4d 00 00 00  46 0c 14 80 5c 00 ff 01  |R.FRM...F...\...|
+11200120  6a b0 24 47 45 4e 45 52  41 4c 2e 46 52 4d 00 00  |j.$GENERAL.FRM..|
+11200130  00 46 0d 16 80 5d 00 ff  01 68 00 28 53 4f 55 53  |.F...]...h.(SOUS|
+11200140  43 4f 4d 50 2e 46 52 4d  00 00 00 46 0d 18 80 5e  |COMP.FRM...F...^|
+11200150  00 ff 01 68 70 2a 43 48  4f 49 58 43 41 54 2e 46  |...hp*CHOIXCAT.F|
+11200160  52 4d 00 00 00 46 0d 1a  80 5f 00 ff 01 68 70 2c  |RM...F..._...hp,|
+11200170  53 41 55 56 45 47 41 52  2e 46 52 4d 00 00 00 46  |SAUVEGAR.FRM...F|
+11200180  0a 1c 80 60 00 ff 01 68  38 2e 50 41 52 41 4d 2e  |...`...h8.PARAM.|
+11200190  46 52 4d 00 00 00 46 0d  1e 80 61 00 ff 01 68 90  |FRM...F...a...h.|
+112001a0  2f 41 50 52 4f 50 4f 53  44 2e 46 52 4d 00 00 00  |/APROPOSD.FRM...|
+112001b0  46 0d 20 80 62 00 ff 01  68 b0 30 43 48 4f 49 58  |F. .b...h.0CHOIX|
+112001c0  4e 4f 4d 2e 46 52 4d 00  00 00 46 0d 22 80 63 00  |NOM.FRM...F.".c.|
+112001d0  ff 01 68 d0 31 43 48 4f  49 58 53 4f 52 2e 46 52  |..h.1CHOIXSOR.FR|
+112001e0  4d 00 00 00 46 0a 24 80  64 00 ff 01 6a 58 35 53  |M...F.$.d...jX5S|
+112001f0  4f 52 54 53 2e 46 52 4d  00 00 00 46 0d 26 80 65  |ORTS.FRM...F.&.e|

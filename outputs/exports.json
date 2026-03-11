@@ -1,0 +1,7 @@
+{
+  "total_exports": 2,
+  "exports": [
+    {"name": "entry", "address": "1000:0010", "type": "Function", "notes": "Program entry point - CALLF Ordinal_100"},
+    {"name": "Ordinal_100", "address": "1310:0000", "type": "Function", "notes": "ThunRTMain thunk in EXTERNAL segment"}
+  ]
+}
