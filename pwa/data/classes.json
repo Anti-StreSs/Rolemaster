@@ -1,0 +1,1288 @@
+{
+  "total_classes": 68,
+  "classes": [
+    {
+      "index": 0,
+      "name_fr": "Alchimiste",
+      "name_en": "Alchemist",
+      "raw_params": [
+        2,
+        5,
+        9,
+        3,
+        2,
+        2,
+        6,
+        8
+      ],
+      "caster_type": 2,
+      "spell_user_code": 5,
+      "realm_code": 9,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 1,
+      "name_fr": "Analyseur",
+      "name_en": "Delver",
+      "raw_params": [
+        2,
+        2,
+        9,
+        2,
+        2,
+        2,
+        6,
+        8
+      ],
+      "caster_type": 2,
+      "spell_user_code": 2,
+      "realm_code": 9,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 2,
+      "name_fr": "Animiste",
+      "name_en": "Animist",
+      "raw_params": [
+        2,
+        4,
+        10,
+        3,
+        3,
+        2,
+        2,
+        9
+      ],
+      "caster_type": 2,
+      "spell_user_code": 4,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 3,
+      "name_fr": "Archmage",
+      "name_en": "Archmage",
+      "raw_params": [
+        3,
+        8,
+        9,
+        10,
+        4,
+        10,
+        3,
+        7,
+        8,
+        9
+      ],
+      "caster_type": 3,
+      "spell_user_code": 8,
+      "realm_code": 9,
+      "caster_type_name": "Hybrid"
+    },
+    {
+      "index": 4,
+      "name_fr": "Achiste",
+      "name_en": "Arcist",
+      "raw_params": [
+        3,
+        8,
+        9,
+        10,
+        4,
+        10,
+        3,
+        7,
+        8,
+        9
+      ],
+      "caster_type": 3,
+      "spell_user_code": 8,
+      "realm_code": 9,
+      "caster_type_name": "Hybrid"
+    },
+    {
+      "index": 5,
+      "name_fr": "Artisan",
+      "name_en": "Craftsman",
+      "raw_params": [
+        1,
+        11,
+        1,
+        4,
+        2,
+        5,
+        6
+      ],
+      "caster_type": 1,
+      "spell_user_code": 11,
+      "realm_code": 1,
+      "caster_type_name": "Non-Spell User"
+    },
+    {
+      "index": 6,
+      "name_fr": "Assassin",
+      "name_en": "Assassin",
+      "raw_params": [
+        2,
+        2,
+        7,
+        1,
+        4,
+        2,
+        1,
+        3
+      ],
+      "caster_type": 2,
+      "spell_user_code": 2,
+      "realm_code": 7,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 7,
+      "name_fr": "Astrologue",
+      "name_en": "Astrologer",
+      "raw_params": [
+        2,
+        8,
+        10,
+        4,
+        6,
+        3,
+        6,
+        7,
+        9
+      ],
+      "caster_type": 2,
+      "spell_user_code": 8,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 8,
+      "name_fr": "Barbare",
+      "name_en": "Barbarian",
+      "raw_params": [
+        2,
+        1,
+        6,
+        1,
+        4,
+        2,
+        1,
+        2
+      ],
+      "caster_type": 2,
+      "spell_user_code": 1,
+      "realm_code": 6,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 9,
+      "name_fr": "Barde",
+      "name_en": "Bard",
+      "raw_params": [
+        2,
+        4,
+        8,
+        2,
+        1,
+        2,
+        6,
+        7
+      ],
+      "caster_type": 2,
+      "spell_user_code": 4,
+      "realm_code": 8,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 10,
+      "name_fr": "Bashkar",
+      "name_en": "Bashkar",
+      "raw_params": [
+        2,
+        1,
+        6,
+        1,
+        4,
+        1,
+        1
+      ],
+      "caster_type": 2,
+      "spell_user_code": 1,
+      "realm_code": 6,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 11,
+      "name_fr": "Bestiaire",
+      "name_en": "Beastmaster",
+      "raw_params": [
+        2,
+        6,
+        8,
+        2,
+        2,
+        2,
+        2,
+        7
+      ],
+      "caster_type": 2,
+      "spell_user_code": 6,
+      "realm_code": 8,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 12,
+      "name_fr": "Bohémien",
+      "name_en": "Gypsy",
+      "raw_params": [
+        2,
+        2,
+        10,
+        1,
+        4,
+        2,
+        3,
+        6
+      ],
+      "caster_type": 2,
+      "spell_user_code": 2,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 13,
+      "name_fr": "Cavalier",
+      "name_en": "Cavalier",
+      "raw_params": [
+        2,
+        1,
+        6,
+        1,
+        4,
+        1,
+        1
+      ],
+      "caster_type": 2,
+      "spell_user_code": 1,
+      "realm_code": 6,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 14,
+      "name_fr": "Chasseur de prime",
+      "name_en": "Bounty Hunter",
+      "raw_params": [
+        2,
+        1,
+        2,
+        1,
+        4,
+        2,
+        1,
+        2
+      ],
+      "caster_type": 2,
+      "spell_user_code": 1,
+      "realm_code": 2,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 15,
+      "name_fr": "Clerc",
+      "name_en": "Cleric",
+      "raw_params": [
+        2,
+        4,
+        10,
+        3,
+        3,
+        1,
+        9
+      ],
+      "caster_type": 2,
+      "spell_user_code": 4,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 16,
+      "name_fr": "Combattant",
+      "name_en": "Warrior",
+      "raw_params": [
+        2,
+        1,
+        6,
+        1,
+        4,
+        1,
+        1
+      ],
+      "caster_type": 2,
+      "spell_user_code": 1,
+      "realm_code": 6,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 17,
+      "name_fr": "Commerçant",
+      "name_en": "Trader",
+      "raw_params": [
+        2,
+        2,
+        8,
+        1,
+        4,
+        3,
+        3,
+        5,
+        6
+      ],
+      "caster_type": 2,
+      "spell_user_code": 2,
+      "realm_code": 8,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 18,
+      "name_fr": "Compagnon",
+      "name_en": "Crafter",
+      "raw_params": [
+        2,
+        2,
+        11,
+        2,
+        4,
+        2,
+        5,
+        6
+      ],
+      "caster_type": 2,
+      "spell_user_code": 2,
+      "realm_code": 11,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 19,
+      "name_fr": "Danseur",
+      "name_en": "Dancer",
+      "raw_params": [
+        2,
+        2,
+        7,
+        1,
+        4,
+        2,
+        4,
+        3
+      ],
+      "caster_type": 2,
+      "spell_user_code": 2,
+      "realm_code": 7,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 20,
+      "name_fr": "Derviche",
+      "name_en": "Dervish",
+      "raw_params": [
+        2,
+        2,
+        10,
+        2,
+        3,
+        2,
+        4,
+        9
+      ],
+      "caster_type": 2,
+      "spell_user_code": 2,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 21,
+      "name_fr": "Druide",
+      "name_en": "Druid",
+      "raw_params": [
+        2,
+        4,
+        10,
+        3,
+        2,
+        2,
+        2,
+        9
+      ],
+      "caster_type": 2,
+      "spell_user_code": 4,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 22,
+      "name_fr": "Duelliste",
+      "name_en": "Duelist",
+      "raw_params": [
+        2,
+        6,
+        7,
+        1,
+        4,
+        1,
+        1
+      ],
+      "caster_type": 2,
+      "spell_user_code": 6,
+      "realm_code": 7,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 23,
+      "name_fr": "Enchanteur",
+      "name_en": "Enchanter",
+      "raw_params": [
+        2,
+        8,
+        9,
+        4,
+        5,
+        2,
+        8,
+        7
+      ],
+      "caster_type": 2,
+      "spell_user_code": 8,
+      "realm_code": 9,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 24,
+      "name_fr": "Envoûteur",
+      "name_en": "Witch",
+      "raw_params": [
+        2,
+        9,
+        10,
+        4,
+        7,
+        2,
+        8,
+        9
+      ],
+      "caster_type": 2,
+      "spell_user_code": 9,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 25,
+      "name_fr": "Erudit",
+      "name_en": "Scholar",
+      "raw_params": [
+        2,
+        5,
+        10,
+        1,
+        4,
+        2,
+        5,
+        6
+      ],
+      "caster_type": 2,
+      "spell_user_code": 5,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 26,
+      "name_fr": "Escroc",
+      "name_en": "Montebanc",
+      "raw_params": [
+        2,
+        2,
+        8,
+        2,
+        1,
+        2,
+        3,
+        7
+      ],
+      "caster_type": 2,
+      "spell_user_code": 2,
+      "realm_code": 8,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 27,
+      "name_fr": "Evocateur",
+      "name_en": "Conjuror",
+      "raw_params": [
+        2,
+        5,
+        9,
+        3,
+        2,
+        1,
+        8
+      ],
+      "caster_type": 2,
+      "spell_user_code": 5,
+      "realm_code": 9,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 28,
+      "name_fr": "Fermier",
+      "name_en": "Farmer",
+      "raw_params": [
+        2,
+        6,
+        3,
+        1,
+        4,
+        2,
+        2,
+        5
+      ],
+      "caster_type": 2,
+      "spell_user_code": 6,
+      "realm_code": 3,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 29,
+      "name_fr": "Force Mage",
+      "name_en": "Force Mage",
+      "raw_params": [
+        2,
+        9,
+        5,
+        3,
+        2,
+        1,
+        8
+      ],
+      "caster_type": 2,
+      "spell_user_code": 9,
+      "realm_code": 5,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 30,
+      "name_fr": "Guérisseur",
+      "name_en": "Healer",
+      "raw_params": [
+        2,
+        4,
+        10,
+        3,
+        3,
+        1,
+        9
+      ],
+      "caster_type": 2,
+      "spell_user_code": 4,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 31,
+      "name_fr": "Guerrier",
+      "name_en": "Fighter",
+      "raw_params": [
+        2,
+        1,
+        6,
+        1,
+        4,
+        1,
+        1
+      ],
+      "caster_type": 2,
+      "spell_user_code": 1,
+      "realm_code": 6,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 32,
+      "name_fr": "Guerrier-mage",
+      "name_en": "Warrior Mage",
+      "raw_params": [
+        2,
+        6,
+        9,
+        2,
+        2,
+        2,
+        1,
+        8
+      ],
+      "caster_type": 2,
+      "spell_user_code": 6,
+      "realm_code": 9,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 33,
+      "name_fr": "Guerrier-moine",
+      "name_en": "Warrior Monk",
+      "raw_params": [
+        2,
+        3,
+        7,
+        1,
+        4,
+        1,
+        4
+      ],
+      "caster_type": 2,
+      "spell_user_code": 3,
+      "realm_code": 7,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 34,
+      "name_fr": "Houri",
+      "name_en": "Houri",
+      "raw_params": [
+        2,
+        8,
+        4,
+        2,
+        1,
+        2,
+        3,
+        7
+      ],
+      "caster_type": 2,
+      "spell_user_code": 8,
+      "realm_code": 4,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 35,
+      "name_fr": "Illusioniste",
+      "name_en": "Illusionist",
+      "raw_params": [
+        2,
+        5,
+        9,
+        3,
+        2,
+        1,
+        8
+      ],
+      "caster_type": 2,
+      "spell_user_code": 5,
+      "realm_code": 9,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 36,
+      "name_fr": "Larron",
+      "name_en": "Rogue",
+      "raw_params": [
+        2,
+        2,
+        6,
+        1,
+        4,
+        2,
+        1,
+        3
+      ],
+      "caster_type": 2,
+      "spell_user_code": 2,
+      "realm_code": 6,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 37,
+      "name_fr": "Leader",
+      "name_en": "Leader",
+      "raw_params": [
+        2,
+        8,
+        1,
+        1,
+        4,
+        1,
+        1
+      ],
+      "caster_type": 2,
+      "spell_user_code": 8,
+      "realm_code": 1,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 38,
+      "name_fr": "Lige",
+      "name_en": "Noble Warrior",
+      "raw_params": [
+        2,
+        6,
+        8,
+        2,
+        1,
+        2,
+        1,
+        7
+      ],
+      "caster_type": 2,
+      "spell_user_code": 6,
+      "realm_code": 8,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 39,
+      "name_fr": "Limier",
+      "name_en": "Sleuth",
+      "raw_params": [
+        2,
+        5,
+        10,
+        2,
+        3,
+        3,
+        3,
+        6,
+        9
+      ],
+      "caster_type": 2,
+      "spell_user_code": 5,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 40,
+      "name_fr": "Macabre",
+      "name_en": "Macabre",
+      "raw_params": [
+        2,
+        9,
+        10,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "caster_type": 2,
+      "spell_user_code": 9,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 41,
+      "name_fr": "Mage cristal",
+      "name_en": "Crystal Mage",
+      "raw_params": [
+        2,
+        8,
+        9,
+        4,
+        7,
+        2,
+        7,
+        8
+      ],
+      "caster_type": 2,
+      "spell_user_code": 8,
+      "realm_code": 9,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 42,
+      "name_fr": "Mage du chaos",
+      "name_en": "Warlock",
+      "raw_params": [
+        2,
+        8,
+        10,
+        4,
+        6,
+        2,
+        7,
+        8
+      ],
+      "caster_type": 2,
+      "spell_user_code": 8,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 43,
+      "name_fr": "Magicien",
+      "name_en": "Magician",
+      "raw_params": [
+        2,
+        5,
+        9,
+        3,
+        2,
+        1,
+        8
+      ],
+      "caster_type": 2,
+      "spell_user_code": 5,
+      "realm_code": 9,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 44,
+      "name_fr": "Magus",
+      "name_en": "Magus",
+      "raw_params": [
+        1,
+        11,
+        7,
+        9,
+        3,
+        6,
+        8,
+        9
+      ],
+      "caster_type": 1,
+      "spell_user_code": 11,
+      "realm_code": 7,
+      "caster_type_name": "Non-Spell User"
+    },
+    {
+      "index": 45,
+      "name_fr": "Marin",
+      "name_en": "Sailor",
+      "raw_params": [
+        2,
+        2,
+        6,
+        1,
+        4,
+        2,
+        1,
+        3
+      ],
+      "caster_type": 2,
+      "spell_user_code": 2,
+      "realm_code": 6,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 46,
+      "name_fr": "Mentaliste",
+      "name_en": "Mentalist",
+      "raw_params": [
+        2,
+        3,
+        8,
+        3,
+        1,
+        1,
+        7
+      ],
+      "caster_type": 2,
+      "spell_user_code": 3,
+      "realm_code": 8,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 47,
+      "name_fr": "Moine",
+      "name_en": "Monk",
+      "raw_params": [
+        2,
+        3,
+        9,
+        2,
+        2,
+        2,
+        4,
+        8
+      ],
+      "caster_type": 2,
+      "spell_user_code": 3,
+      "realm_code": 9,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 48,
+      "name_fr": "Monastique",
+      "name_en": "High Warrior Monk",
+      "raw_params": [
+        2,
+        2,
+        3,
+        1,
+        4,
+        1,
+        4
+      ],
+      "caster_type": 2,
+      "spell_user_code": 2,
+      "realm_code": 3,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 49,
+      "name_fr": "Monte-en-l'air",
+      "name_en": "Burglar",
+      "raw_params": [
+        2,
+        2,
+        10,
+        1,
+        4,
+        1,
+        3
+      ],
+      "caster_type": 2,
+      "spell_user_code": 2,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 50,
+      "name_fr": "Mystique",
+      "name_en": "Mystic",
+      "raw_params": [
+        2,
+        8,
+        9,
+        4,
+        5,
+        2,
+        7,
+        8
+      ],
+      "caster_type": 2,
+      "spell_user_code": 8,
+      "realm_code": 9,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 51,
+      "name_fr": "Necromancien",
+      "name_en": "Necromancer",
+      "raw_params": [
+        2,
+        9,
+        10,
+        4,
+        7,
+        2,
+        8,
+        9
+      ],
+      "caster_type": 2,
+      "spell_user_code": 9,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 52,
+      "name_fr": "Oniromancien illusioniste",
+      "name_en": "Dream Lord (Illusion.)",
+      "raw_params": [
+        2,
+        8,
+        9,
+        4,
+        5,
+        3,
+        6,
+        7,
+        8
+      ],
+      "caster_type": 2,
+      "spell_user_code": 8,
+      "realm_code": 9,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 53,
+      "name_fr": "Oniromancien shamane",
+      "name_en": "Dream Lord (Shaman)",
+      "raw_params": [
+        2,
+        8,
+        10,
+        4,
+        6,
+        3,
+        6,
+        7,
+        9
+      ],
+      "caster_type": 2,
+      "spell_user_code": 8,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 54,
+      "name_fr": "Paladin",
+      "name_en": "Paladin",
+      "raw_params": [
+        2,
+        6,
+        10,
+        2,
+        3,
+        2,
+        1,
+        9
+      ],
+      "caster_type": 2,
+      "spell_user_code": 6,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 55,
+      "name_fr": "Prophète",
+      "name_en": "Seer",
+      "raw_params": [
+        2,
+        3,
+        8,
+        3,
+        1,
+        2,
+        6,
+        7
+      ],
+      "caster_type": 2,
+      "spell_user_code": 3,
+      "realm_code": 8,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 56,
+      "name_fr": "Professionnel",
+      "name_en": "Professional",
+      "raw_params": [
+        1,
+        11,
+        2,
+        4,
+        2,
+        5,
+        6
+      ],
+      "caster_type": 1,
+      "spell_user_code": 11,
+      "realm_code": 2,
+      "caster_type_name": "Non-Spell User"
+    },
+    {
+      "index": 57,
+      "name_fr": "Ranger",
+      "name_en": "Ranger",
+      "raw_params": [
+        2,
+        1,
+        10,
+        2,
+        3,
+        2,
+        2,
+        9
+      ],
+      "caster_type": 2,
+      "spell_user_code": 1,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 58,
+      "name_fr": "Runiste",
+      "name_en": "Rune Master",
+      "raw_params": [
+        2,
+        5,
+        9,
+        3,
+        2,
+        2,
+        6,
+        8
+      ],
+      "caster_type": 2,
+      "spell_user_code": 5,
+      "realm_code": 9,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 59,
+      "name_fr": "Sage",
+      "name_en": "Sage",
+      "raw_params": [
+        2,
+        4,
+        8,
+        3,
+        1,
+        2,
+        5,
+        6
+      ],
+      "caster_type": 2,
+      "spell_user_code": 4,
+      "realm_code": 8,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 60,
+      "name_fr": "Sans-profession",
+      "name_en": "No Profession",
+      "raw_params": [
+        1,
+        11,
+        2,
+        4,
+        1,
+        5
+      ],
+      "caster_type": 1,
+      "spell_user_code": 11,
+      "realm_code": 2,
+      "caster_type_name": "Non-Spell User"
+    },
+    {
+      "index": 61,
+      "name_fr": "Seigneur du chaos",
+      "name_en": "Chaotic Lord",
+      "raw_params": [
+        2,
+        6,
+        10,
+        2,
+        3,
+        1,
+        3
+      ],
+      "caster_type": 2,
+      "spell_user_code": 6,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 62,
+      "name_fr": "Séléniste",
+      "name_en": "Moon Mage",
+      "raw_params": [
+        2,
+        3,
+        10,
+        2,
+        3,
+        2,
+        4,
+        9
+      ],
+      "caster_type": 2,
+      "spell_user_code": 3,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 63,
+      "name_fr": "Shamane",
+      "name_en": "Shaman",
+      "raw_params": [
+        2,
+        4,
+        10,
+        3,
+        3,
+        2,
+        2,
+        9
+      ],
+      "caster_type": 2,
+      "spell_user_code": 4,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 64,
+      "name_fr": "Sicaire",
+      "name_en": "Nightblade",
+      "raw_params": [
+        2,
+        2,
+        8,
+        2,
+        1,
+        2,
+        3,
+        7
+      ],
+      "caster_type": 2,
+      "spell_user_code": 2,
+      "realm_code": 8,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 65,
+      "name_fr": "Soigneur",
+      "name_en": "Lay Healer",
+      "raw_params": [
+        2,
+        3,
+        8,
+        3,
+        1,
+        1,
+        7
+      ],
+      "caster_type": 2,
+      "spell_user_code": 3,
+      "realm_code": 8,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 66,
+      "name_fr": "Sorcier",
+      "name_en": "Sorcerer",
+      "raw_params": [
+        2,
+        9,
+        10,
+        4,
+        7,
+        2,
+        8,
+        9
+      ],
+      "caster_type": 2,
+      "spell_user_code": 9,
+      "realm_code": 10,
+      "caster_type_name": "Spell User"
+    },
+    {
+      "index": 67,
+      "name_fr": "Voleur",
+      "name_en": "Thief",
+      "raw_params": [
+        2,
+        2,
+        7,
+        1,
+        4,
+        1,
+        3
+      ],
+      "caster_type": 2,
+      "spell_user_code": 2,
+      "realm_code": 7,
+      "caster_type_name": "Spell User"
+    }
+  ],
+  "_metadata": {
+    "caster_type": "1=Non-Spell User, 2=Spell User (pure/semi), 3=Hybrid",
+    "raw_params": "Format varies: [caster_type, spell_code, realm, prime_stats..., skill_groups...]",
+    "source": "CLASSES.DAT (FR) + CLASENG.DAT (EN)"
+  }
+}

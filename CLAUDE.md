@@ -1,105 +1,107 @@
-# CLAUDE.md — CPR093 Rolemaster Reverse Engineering Project
+# CLAUDE.md — Rolemaster Character Generator (CPR093 Reconstruction)
 
-> Reverse engineering + reconstruction de CPR093.exe (générateur de personnages Rolemaster, VB3 1997)
+> PWA reconstruction of CPR093.exe — Rolemaster character creator (VB3 1997 → modern web)
 
 ## Project Context
 
-- **Target binary**: `cpr093.exe` — NE 16-bit, Visual Basic 3.0 P-Code, by Eric Lestrade (1997)
-- **Goal**: Extract maximum intelligence from the binary via Ghidra MCP, then reconstruct a modern equivalent
-- **Ghidra**: v12.0.4 at `B:\Ghidra\ghidra_12.0.4_PUBLIC_20260303` with GhidrAssistMCP (native MCP, port 8080)
-- **Prior work**: 1380 strings extracted, Python+Web prototypes exist in `reconstruction/`
+- **Origin**: Reverse engineering of `cpr093.exe` (NE 16-bit, VB3 P-Code, by Eric Lestrade 1997)
+- **Current phase**: PWA construction from fully parsed game data
+- **Data**: 648KB of structured JSON in `data/parsed/` (68 classes, 206 skills, 112 spell lists, cost matrices)
+- **Repo**: https://github.com/Anti-StreSs/Rolemaster.git
+- **Ghidra**: v12.0.4 with GhidrAssistMCP on port 8080 (for continued binary analysis if needed)
 
 ## Key Paths
 
 ```
 PROJECT_ROOT = B:\IA_WORKS\2025-01-17_CPR_Rolemaster_Reverse
-MCP_ROOT     = B:\MCP
-GHIDRA_HOME  = B:\Ghidra\ghidra_12.0.4_PUBLIC_20260303
-GHIDRA_MCP   = http://localhost:8080  (native SSE/HTTP — no bridge needed)
+GHIDRA_MCP   = http://localhost:8080/sse
 ```
 
-## MCP Architecture
+## Project Phases
 
-GhidrAssistMCP is a NATIVE MCP server embedded in Ghidra — NO external Python bridge required.
-- Transport: SSE at `http://localhost:8080/sse` or Streamable HTTP
-- 34 built-in tools (list_functions, get_code, xrefs, struct, etc.)
-- 5 MCP resources (program/info, program/functions, program/strings, program/imports, program/exports)
-- 5 built-in analysis prompts
-- Multi-program support, focus tracking, async tasks, caching
+| Phase | Status | Output |
+|-------|--------|--------|
+| 1. Initial analysis (Jan 2025) | ✅ Done | 1380 strings, Python prototype |
+| 2. Ghidra MCP scan | ✅ Done | 99 segments, 26 forms mapped, VB3 header decoded |
+| 3. Data file parsing | ✅ Done | 10 JSON files (648KB) in data/parsed/ |
+| 4. PWA construction | 🔄 Active | pwa/ directory |
+| 5. PDF rules extraction | Planned | For post-MVP enrichment |
 
-## Architecture
+## PWA Architecture (Phase 4)
 
 ```
-.
-├── CLAUDE.md                  # This file
-├── .mcp.json                  # MCP servers for Claude Code
-├── .claude/
-│   ├── settings.json          # Permissions and env
-│   ├── rules/
-│   │   ├── coding-discipline.md
-│   │   ├── tool-usage.md
-│   │   ├── security-and-care.md
-│   │   └── reverse-engineering.md
-│   ├── commands/
-│   │   ├── ghidra-scan.md     # /ghidra-scan
-│   │   ├── extract-strings.md # /extract-strings
-│   │   ├── map-imports.md     # /map-imports
-│   │   ├── checkpoint.md      # /checkpoint
-│   │   ├── commit.md          # /commit
-│   │   └── plan.md            # /plan
-│   ├── skills/
-│   │   ├── ghidra-explore/SKILL.md
-│   │   ├── vb3-analysis/SKILL.md
-│   │   └── debug/SKILL.md
-│   └── agents/
-│       ├── ghidra-analyst.md
-│       └── researcher.md
-├── cpr093.exe
-├── outputs/
-├── reconstruction/
-└── ghidra_project/
+pwa/
+├── index.html              ← Single page entry
+├── manifest.json           ← PWA installable
+├── sw.js                   ← Offline support
+├── css/styles.css          ← Styling + @media print
+├── js/
+│   ├── app.js              ← Router, global state
+│   ├── engine/             ← Pure game logic (NO UI)
+│   │   ├── data-loader.js  ← Loads data/parsed/*.json
+│   │   ├── character.js    ← Character state
+│   │   ├── stats.js        ← Stat rolls + bonuses
+│   │   ├── classes.js      ← Professions
+│   │   ├── skills.js       ← Skills + development
+│   │   ├── spells.js       ← Spell lists
+│   │   └── export.js       ← JSON save/load, print
+│   ├── ui/                 ← Interface components
+│   │   ├── wizard.js       ← Step-by-step creation
+│   │   ├── sheet.js        ← Character sheet
+│   │   └── components.js   ← Reusable UI parts
+│   └── i18n/               ← FR/EN labels
+├── data/                   ← Parsed JSON game data
+└── assets/                 ← Icons, images
 ```
 
-## What Claude Code Should Handle (vs Claude Desktop)
+## Tech Stack
 
-### Claude Code — PRIMARY for:
-- **Ghidra MCP interaction**: All tools via native MCP (no bridge)
-- **Script writing**: Python extraction scripts, data parsers, reconstruction modules
-- **File management**: Creating, editing, organizing outputs and code
-- **Git operations**: Commits, checkpoints, version control
-- **Data processing**: Parsing strings, building data structures
-- **Testing**: Running Python tests, validating reconstruction accuracy
+- **HTML/CSS/JS vanilla** — no framework, no build step, direct GitHub Pages deploy
+- **Tailwind CSS via CDN** — utility-first styling
+- **ES6 modules** — native browser imports
+- **PWA** — manifest + Service Worker for offline + installable
+- **Data**: Static JSON loaded via fetch()
 
-### Claude Desktop — SUPPORT for:
-- **Strategic planning**: High-level architecture decisions, multi-session planning
-- **Document creation**: PPTX/DOCX reports
-- **Visual review**: Examining PDFs (exampleCHARACTERS.pdf, Etat Final.pdf)
-- **Web research**: Rolemaster rules, VB3 internals
+## Game Data Available (data/parsed/)
 
-## Technical Notes
+| File | Content | Records |
+|------|---------|---------|
+| carac_tables.json | Stat roll tables, bonus tables, body dev, armor, spells | 13KB |
+| classes.json | Professions (FR/EN, realm, params) | 68 classes |
+| competences.json | Skills by category with stat associations | 206 skills |
+| sorts.json | Spell lists by realm (FR/EN) | 112 lists |
+| couts.json | Development cost matrix per class | 65 × ~490 |
+| categories.json | Skill subcategories (FR/EN) | 60 cats |
+| simil.json | Skill similarity matrix | NxN |
+| options.json | Optional rules (FR/EN) | ~100 opts |
 
-- P-Code VB3 is interpreted by VBRUN300.DLL — ordinal imports are the key
-- Segment `15c4` = game data strings, `18aa` = UI messages
-- The .dat files (carac.dat, classes.dat, comp.dat, sorts.dat, couts.dat) were runtime-loaded
-- Only 2 functions found by decompiler — expected for P-Code
-- Real intelligence is in imports, strings, data items, memory layout
-- GhidrAssistMCP `get_code` tool supports decompiler, disassembly AND pcode output
+## Character Creation Flow (from CPR093 original)
+
+1. CHOIXNOM → Name input
+2. CHOIXCAR → Roll/assign 10 stats
+3. CHOIXCLA → Choose profession (68 classes)
+4. CHOIXROY → Choose realm of magic
+5. CHOIXPRI → Choose prime stats
+6. CHOIXCAT → Choose weapon categories
+7. CHOIXARM → Choose armor
+8. COMPETEN → Develop skills (spend dev points)
+9. CHOIXSOR → Choose spells
+10. FEUILLE → Final character sheet
 
 ## Conventions
 
-- All extraction outputs go to `outputs/`
-- Reconstruction code goes to `reconstruction/`
-- Checkpoints update `CHECKPOINT.md`
-- Code is Python 3.10+
-- Comments in French for domain terms, English for code logic
+- PWA code in `pwa/` — clean separation from analysis artifacts
+- Engine (`js/engine/`) has ZERO UI dependencies — pure functions + data
+- All game data loaded from JSON — never hardcoded
+- Bilingual FR/EN throughout (data already bilingual)
+- Git commits after each functional milestone
+- `CHECKPOINT.md` updated after major progress
 
 ## Quick Reference
 
 | Action | Command |
 |--------|---------|
-| Full Ghidra scan | `/ghidra-scan` |
-| Extract & categorize strings | `/extract-strings` |
-| Map VBRUN300 imports | `/map-imports` |
+| Plan a task | `/plan [task]` |
 | Save checkpoint | `/checkpoint` |
-| Plan next phase | `/plan [task]` |
 | Git commit | `/commit` |
+| Ghidra scan (if needed) | `/ghidra-scan` |
