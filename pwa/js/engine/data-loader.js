@@ -11,6 +11,7 @@ const FILES = [
   'categories',
   'simil',
   'options',
+  'monde',
 ];
 
 let gameData = null;

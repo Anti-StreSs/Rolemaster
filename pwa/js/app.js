@@ -2,9 +2,6 @@
 
 import { loadAllData, getData } from './engine/data-loader.js';
 import { startWizard, loadIntoWizard, getCharacter } from './ui/wizard.js';
-
-let wizardStarted = false;
-import { bindSheetEvents } from './ui/sheet.js';
 import { renderLoadView, bindLoadEvents } from './ui/settings.js';
 import { panel, showToast } from './ui/components.js';
 import frLabels from './i18n/fr.js';
@@ -25,23 +22,24 @@ const app = {
 
   loadCharacter(character) {
     this.currentView = 'create';
-    wizardStarted = true;
     loadIntoWizard(this, character);
     showToast(this.t.save.loaded);
   },
 };
 
-// Router
+let editorStarted = false;
+
 function render() {
   const main = document.getElementById('app-main');
 
   switch (app.currentView) {
     case 'home':
+      editorStarted = false;
       renderHome(main);
       break;
     case 'create':
-      startWizard(app, !wizardStarted);
-      wizardStarted = true;
+      startWizard(app, !editorStarted);
+      editorStarted = true;
       break;
     case 'load':
       main.innerHTML = renderLoadView(app);
@@ -84,7 +82,7 @@ function renderHome(main) {
   `;
 
   document.getElementById('btn-create').addEventListener('click', () => {
-    wizardStarted = false; // Force new character
+    editorStarted = false;
     app.navigate('create');
   });
   document.getElementById('btn-load').addEventListener('click', () => app.navigate('load'));
@@ -103,7 +101,6 @@ function updateNav() {
   });
 }
 
-// Language toggle
 function setupLangToggle() {
   const btn = document.getElementById('btn-lang');
   if (btn) {
@@ -116,7 +113,6 @@ function setupLangToggle() {
   }
 }
 
-// Mobile menu
 function setupMobileMenu() {
   const btn = document.getElementById('btn-menu');
   if (btn) {
@@ -127,22 +123,12 @@ function setupMobileMenu() {
   }
 }
 
-// Hash router
 function handleHash() {
   const hash = window.location.hash.replace('#', '') || 'home';
   app.currentView = hash;
   render();
 }
 
-// Post-render hooks for sheet view
-const observer = new MutationObserver(() => {
-  if (document.getElementById('btn-save-json')) {
-    const character = getCharacter();
-    if (character) bindSheetEvents(character);
-  }
-});
-
-// Init
 async function init() {
   const main = document.getElementById('app-main');
   main.innerHTML = `
@@ -155,16 +141,12 @@ async function init() {
   try {
     await loadAllData();
 
-    // Start observing for sheet buttons
-    observer.observe(main, { childList: true, subtree: true });
-
     setupLangToggle();
     setupMobileMenu();
     handleHash();
 
     window.addEventListener('hashchange', handleHash);
 
-    // Nav links
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -172,7 +154,6 @@ async function init() {
       });
     });
 
-    // Register service worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').catch(() => {});
     }

@@ -1,0 +1,1814 @@
+{
+  "source": "CUSTOM.MND",
+  "weapon_categories": [
+    {
+      "name": "Lames courtes",
+      "type": 1,
+      "weapons": [
+        "Dague",
+        "Poignard",
+        "Epée courte"
+      ]
+    },
+    {
+      "name": "Lames longues à double tranchant",
+      "type": 1,
+      "weapons": [
+        "Epée large",
+        "Epée courte",
+        "Epée longue",
+        "Epée bâtarde(1M)"
+      ]
+    },
+    {
+      "name": "Lames d'estoc",
+      "type": 1,
+      "weapons": [
+        "Rapière",
+        "Fleuret"
+      ]
+    },
+    {
+      "name": "Lames longues à un tranchant",
+      "type": 1,
+      "weapons": [
+        "Cimeterre",
+        "Sabre",
+        "Coutelas",
+        "Falchion"
+      ]
+    },
+    {
+      "name": "Haches courtes",
+      "type": 1,
+      "weapons": [
+        "Hache",
+        "Hachette",
+        "Epée courte"
+      ]
+    },
+    {
+      "name": "Pointes courtes",
+      "type": 2,
+      "weapons": [
+        "Marteau de guerre",
+        "Masse"
+      ]
+    },
+    {
+      "name": "Haches longues",
+      "type": 3,
+      "weapons": [
+        "Hache de bataille"
+      ]
+    },
+    {
+      "name": "Pointes longues",
+      "type": 3,
+      "weapons": [
+        "Pioche de guerre",
+        "Pic",
+        "Marteau à deux mains"
+      ]
+    },
+    {
+      "name": "Grandes lames",
+      "type": 3,
+      "weapons": [
+        "Epée bâtarde(2M)",
+        "Epée à deux mains",
+        "Claymore"
+      ]
+    },
+    {
+      "name": "Armes d'Hast",
+      "type": 4,
+      "weapons": [
+        "Arme d'Hast",
+        "Lance",
+        "Javelot",
+        "Harpon",
+        "Trident"
+      ]
+    },
+    {
+      "name": "Arcs",
+      "type": 5,
+      "weapons": [
+        "Arc court",
+        "Arc long",
+        "Arc composite"
+      ]
+    },
+    {
+      "name": "Arbalètes",
+      "type": 5,
+      "weapons": [
+        "Arbalète légère",
+        "Arbalète longue"
+      ]
+    },
+    {
+      "name": "Armes de corde",
+      "type": 6,
+      "weapons": [
+        "Filet",
+        "Lasso"
+      ]
+    },
+    {
+      "name": "Chaînes",
+      "type": 2,
+      "weapons": [
+        "Etoile du matin"
+      ]
+    },
+    {
+      "name": "Grandes chaînes",
+      "type": 3,
+      "weapons": [
+        "Fléau"
+      ]
+    },
+    {
+      "name": "Armes d'Hast montées",
+      "type": 4,
+      "weapons": [
+        "Lance de cavalerie (montée)",
+        "Lance (montée)",
+        "Javelot (monté)"
+      ]
+    },
+    {
+      "name": "Fil",
+      "type": 6,
+      "weapons": [
+        "Bola"
+      ]
+    },
+    {
+      "name": "Projectiles",
+      "type": 6,
+      "weapons": [
+        "Boomerang",
+        "Shuriken",
+        "Fléchette"
+      ]
+    },
+    {
+      "name": "Lames courtes",
+      "type": 6,
+      "weapons": [
+        "Dague (lancée)",
+        "Poignard (lancé)",
+        "Main gauche (lancée)"
+      ]
+    },
+    {
+      "name": "Haches courtes",
+      "type": 6,
+      "weapons": [
+        "Hache (lancée)",
+        "Tomahawak (lancé)"
+      ]
+    },
+    {
+      "name": "Armes d'hast",
+      "type": 6,
+      "weapons": [
+        "Lance (lancée)",
+        "Javelot (lancé)",
+        "Pilum (lancé)"
+      ]
+    },
+    {
+      "name": "Gourdins",
+      "type": 2,
+      "weapons": [
+        "Matraque",
+        "Gourdin"
+      ]
+    },
+    {
+      "name": "Bâtons",
+      "type": 3,
+      "weapons": [
+        "Bâton"
+      ]
+    },
+    {
+      "name": "Frondes",
+      "type": 5,
+      "weapons": [
+        "Fronde"
+      ]
+    },
+    {
+      "name": "Fouets",
+      "type": 2,
+      "weapons": [
+        "Fouet",
+        "Chat à neuf queues"
+      ]
+    },
+    {
+      "name": "Sarbacanes",
+      "type": 5,
+      "weapons": [
+        "Sarbacane"
+      ]
+    }
+  ],
+  "world_sections": [
+    [
+      "Autocratie",
+      "Théocratie",
+      "Démocratie",
+      "Bureaucratie",
+      "Gérontocratie",
+      "Matriarcat",
+      "Patriarcat",
+      "Technocratie",
+      "Oligarchie"
+    ],
+    [
+      "exemple"
+    ],
+    [
+      "exemple"
+    ],
+    [
+      "Humains",
+      "Elfes",
+      "Nains",
+      "Géants",
+      "Trolls",
+      "Orques",
+      "Hobbit/Semi-Homme",
+      "Demons"
+    ],
+    [
+      "exemple"
+    ],
+    [
+      "Carrière",
+      "Drague",
+      "Galerie",
+      "Ciel ouvert"
+    ],
+    [
+      "exemple"
+    ],
+    [
+      "exemple"
+    ],
+    [
+      "Montagnes",
+      "Broussailles",
+      "Plaine",
+      "Désert",
+      "Forêt",
+      "Jungle",
+      "Littoral",
+      "Failles",
+      "Souterrain",
+      "Terres incultes",
+      "Marécages",
+      "Cours d'eau"
+    ],
+    [
+      "Infanterie",
+      "Cavalerie",
+      "Flotte"
+    ],
+    [
+      "exemple"
+    ],
+    [
+      "exemple"
+    ],
+    [
+      "Nord",
+      "Sud"
+    ],
+    [
+      "Objets magiques"
+    ],
+    [
+      "Iere marge",
+      "2e marge",
+      "3e marge",
+      "4e marge",
+      "5e marge]",
+      "Hors marge"
+    ],
+    [
+      "Or",
+      "Rouge",
+      "Noir",
+      "blanc",
+      "Astral"
+    ],
+    [
+      "Aride",
+      "Froid",
+      "Equat.",
+      "Temp. doux",
+      "Semi-aride",
+      "Temp. froid",
+      "Temp. chaud"
+    ],
+    [
+      "exemple"
+    ],
+    [
+      "exemple"
+    ],
+    [
+      "Attaque",
+      "Defense"
+    ],
+    [
+      "Oiseau",
+      "Amphibien",
+      "Insecte",
+      "Bovidé",
+      "Canidé",
+      "Cétacé",
+      "Coelentéré",
+      "Equidé",
+      "Félidé",
+      "Mollusque",
+      "Pachyderme",
+      "Poisson",
+      "Porcin",
+      "Primate",
+      "Rongeur",
+      "Saurien",
+      "Serpent",
+      "Ursidé"
+    ],
+    [
+      "Charette",
+      "Chariot",
+      "Traineau"
+    ],
+    [
+      "exemple"
+    ],
+    [
+      "exemple"
+    ],
+    [
+      "Ailes en plume",
+      "Parachute",
+      "Planeur"
+    ],
+    [
+      "Catapulte",
+      "Trebuchet",
+      "Baliste"
+    ],
+    [
+      "Karaté",
+      "Judo",
+      "Kung fu",
+      "Lutte",
+      "Boxe",
+      "Sumo"
+    ],
+    [
+      "1 Main",
+      "2 Mains",
+      "Arme d'hast",
+      "2 Armes"
+    ],
+    [
+      "Contondante",
+      "Tranchante",
+      "2 Mains",
+      "Arme d'hast",
+      "2 Armes"
+    ],
+    [
+      "Flanc droit",
+      "Flanc gauche",
+      "Derrière"
+    ],
+    [
+      "1 Main",
+      "2 Mains",
+      "Arme d'hast",
+      "Mains nues",
+      "2 armes"
+    ],
+    [
+      "Loup-garou",
+      "Ours-garou",
+      "Sanglier-garou",
+      "Chacal-garou",
+      "Rat-garou",
+      "Tigre-garou",
+      "Caca-garou (merde-garou mineure)"
+    ],
+    [
+      "Tranchante",
+      "Contondante",
+      "2 Mains",
+      "Arme d'hast",
+      "de jet",
+      "Arcs"
+    ],
+    [
+      "Cuir souple",
+      "Cuir rigide",
+      "Cotte de mailles",
+      "Plates"
+    ],
+    [
+      "Boulangerie",
+      "Brasserie",
+      "Distillation",
+      "Poison",
+      "Préservation",
+      "Viticulture"
+    ],
+    [
+      "Coiffeur",
+      "Broderie",
+      "Calligraphie",
+      "Céramiste",
+      "Couvreur",
+      "Critique",
+      "Emailleur",
+      "Embaumeur",
+      "Filets",
+      "Tubes",
+      "Chandelles",
+      "Fileur",
+      "Fourreur",
+      "Hôtellerie",
+      "Intendant",
+      "Masseur",
+      "Meunier",
+      "Papetier",
+      "Potier",
+      "Relieur",
+      "Verre",
+      "Tailleur",
+      "Tapissier",
+      "Taxidermie",
+      "Teinture",
+      "Tissage",
+      "Tonnelier",
+      "Vanneur",
+      "Voilier"
+    ],
+    [
+      "Briqueterie",
+      "Carrier",
+      "Maçonnerie",
+      "Sculpture",
+      "Gemmes"
+    ],
+    [
+      "Bûcheron",
+      "Charpentier",
+      "Bâteaux",
+      "Charron",
+      "Menuisier",
+      "Sculpture"
+    ],
+    [
+      "Feux",
+      "Argent",
+      "Armurerie",
+      "Armurier",
+      "Bronze",
+      "Cuivre",
+      "Etain",
+      "Outils",
+      "Fer",
+      "Fonderie",
+      "Forgeron",
+      "Graveur",
+      "Or"
+    ],
+    [
+      "Fleurs",
+      "Fruits",
+      "Légumes",
+      "Champignon",
+      "Pelouse",
+      "Haies"
+    ],
+    [
+      "Attaque",
+      "Defense"
+    ],
+    [
+      "exemple"
+    ],
+    [
+      "Ciseleur",
+      "Cordonnerie",
+      "Sellerie",
+      "Tannerie"
+    ],
+    [
+      "Elfique",
+      "Nain",
+      "Hobbit",
+      "Orque",
+      "Elfique antique",
+      "Noir parler",
+      "Sudiste",
+      "Nordiste",
+      "Patois local",
+      "Parler Demonique",
+      "Jargon des voleurs"
+    ],
+    [
+      "Boule de cristal",
+      "Cartes",
+      "Osselets"
+    ],
+    [
+      "Aionion",
+      "Aisthasis",
+      "Anathema",
+      "Asebeia",
+      "Aster",
+      "Chaos",
+      "Conscience",
+      "Sang de la terre",
+      "Eirenay",
+      "Gnose",
+      "Graphay",
+      "Hudatos",
+      "Ihyama",
+      "Iruaric",
+      "Kubeia",
+      "Logos",
+      "Parapateo",
+      "",
+      "",
+      "Petra",
+      "",
+      "",
+      "Pneumatikos",
+      "",
+      "",
+      "Porneia",
+      "",
+      "",
+      "Purosis",
+      "",
+      "",
+      "Quadosh",
+      "",
+      "",
+      "Skotia",
+      "",
+      "",
+      "Soma",
+      "",
+      "",
+      "Spoudazo",
+      "",
+      "",
+      "Thanatos",
+      "",
+      "",
+      "Totem",
+      "",
+      "",
+      "Xzulou",
+      "",
+      "",
+      "Elya",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "Alchimie",
+      "",
+      "",
+      "Altération",
+      "",
+      "",
+      "Appels/Possession",
+      "",
+      "",
+      "Auxiliaire",
+      "",
+      "",
+      "Cléricalisme",
+      "",
+      "",
+      "Nature",
+      "",
+      "",
+      "Elémentarisme",
+      "",
+      "",
+      "Influence",
+      "",
+      "",
+      "Information",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "Alcool",
+      "",
+      "",
+      "Katkusa!",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "des",
+      "",
+      "",
+      "cartes",
+      "",
+      "",
+      "bras de fer",
+      "",
+      "",
+      "echecs",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "Religieux",
+      "",
+      "",
+      "Administratif",
+      "",
+      "",
+      "Guilde",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "Documents officiels",
+      "",
+      "",
+      "Ecriture",
+      "",
+      "",
+      "Oeuvre d'art",
+      "",
+      "",
+      "Fausse monnaie",
+      "",
+      "",
+      "Faux billets",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "Laelith",
+      "",
+      "",
+      "Fortal",
+      "",
+      "",
+      "Radjaban",
+      "",
+      "",
+      "Esther",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "Gravité forte",
+      "",
+      "",
+      "Plans du feu",
+      "",
+      "",
+      "Régions artiques",
+      "",
+      "",
+      "Aquatique",
+      "",
+      "",
+      "Vide",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "Bas fonds",
+      "",
+      "",
+      "Quartiers nobles",
+      "",
+      "",
+      "Quartier Bourgeois",
+      "",
+      "",
+      "Marché",
+      "",
+      "",
+      "Quartiers modestes",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "Equidés",
+      "",
+      "",
+      "Dromadaires",
+      "",
+      "",
+      "Pachydermes",
+      "",
+      "",
+      "Autruches",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "Corps",
+      "",
+      "",
+      "Equilibre",
+      "",
+      "",
+      "Goût",
+      "",
+      "",
+      "Odorat",
+      "",
+      "",
+      "Ouie",
+      "",
+      "",
+      "Toucher",
+      "",
+      "",
+      "Vue",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "Frappe 1",
+      "",
+      "",
+      "Frappe 2",
+      "",
+      "",
+      "Frappe 3",
+      "",
+      "",
+      "Frappe 4",
+      "",
+      "",
+      "Projec/Balay 1",
+      "",
+      "",
+      "Projec/Balay 2",
+      "",
+      "",
+      "Projec/Balay 3",
+      "",
+      "",
+      "Projec/Balay 4",
+      "",
+      ""
+    ],
+    [
+      "Eclair Choquant",
+      "Eclair d'Eau",
+      "Eclair de feu",
+      "Eclair de Froid",
+      "Eclair Foudroyant"
+    ],
+    [
+      "exemple"
+    ],
+    [
+      "parlé",
+      "écrit"
+    ]
+  ],
+  "race_groups": [
+    {
+      "name": "Humains",
+      "races": [
+        "Sans Race",
+        "Homme Commun",
+        "Surhomme",
+        "Tribus de l'Ours",
+        "Tribus des Ténèbres",
+        "Nordique",
+        "Homme Artique",
+        "Homme Métis",
+        "Homme des Bois",
+        "Dunedain",
+        "Homme urbain",
+        "Numénoréen"
+      ]
+    },
+    {
+      "name": "Elfes",
+      "races": [
+        "Semi-Elfes",
+        "Semi-Elfes B",
+        "Semi-Elfes C",
+        "Semi-Elfes D",
+        "Semi-Elfes E",
+        "Semi-Elfes F",
+        "Elfe des Bois",
+        "Grand Elfe",
+        "Elfe Clair",
+        "Elfe Gris",
+        "Elfe des Ténèbres",
+        "Elfe Aquatique",
+        "Elfe Noldor"
+      ]
+    },
+    {
+      "name": "Planaires/Spéciaux",
+      "races": [
+        "Homme Demon",
+        "Elfe Demon",
+        "Azurien (extraplanaire)",
+        "Draakh",
+        "Voyageur planaire",
+        "Hengeyokai renard"
+      ]
+    },
+    {
+      "name": "Nains/Hobbits/Orques",
+      "races": [
+        "Semi-Nain",
+        "Nain",
+        "Semi-Homme",
+        "Hobbit Pieds velus",
+        "Hobbit Fort",
+        "Semi-Orque",
+        "Orque Inférieur",
+        "Orque Supérieur",
+        "Orque Seigneur",
+        "Gobelin"
+      ]
+    },
+    {
+      "name": "Fées/Sylvains",
+      "races": [
+        "Gremlin",
+        "Sylphe",
+        "Satyre",
+        "Nymphe",
+        "Gnome",
+        "Fee"
+      ]
+    },
+    {
+      "name": "Géants/Ogres",
+      "races": [
+        "Semi-Ogres",
+        "Semi-Trolls",
+        "Trolls",
+        "Grands Hommes",
+        "Olog-Hai",
+        "Semi-Ogres II"
+      ]
+    }
+  ],
+  "races": [
+    {
+      "name": "Sans Race",
+      "stat_bonuses": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 150
+    },
+    {
+      "name": "Homme Commun",
+      "stat_bonuses": [
+        0,
+        0,
+        5,
+        0,
+        0,
+        5,
+        0,
+        0,
+        0,
+        0
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 120
+    },
+    {
+      "name": "Surhomme",
+      "stat_bonuses": [
+        10,
+        -5,
+        0,
+        0,
+        0,
+        10,
+        -5,
+        10,
+        5,
+        0
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 120
+    },
+    {
+      "name": "Tribus de l'Ours",
+      "stat_bonuses": [
+        15,
+        0,
+        0,
+        0,
+        0,
+        15,
+        -5,
+        5,
+        -10,
+        5
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 150
+    },
+    {
+      "name": "Tribus des Ténèbres",
+      "stat_bonuses": [
+        5,
+        5,
+        0,
+        0,
+        0,
+        5,
+        5,
+        -5,
+        5,
+        -5
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 120
+    },
+    {
+      "name": "Nordique",
+      "stat_bonuses": [
+        10,
+        0,
+        5,
+        0,
+        0,
+        10,
+        0,
+        5,
+        -5,
+        0
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 150
+    },
+    {
+      "name": "Homme Artique",
+      "stat_bonuses": [
+        10,
+        0,
+        5,
+        0,
+        0,
+        5,
+        0,
+        -5,
+        0,
+        5
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 120
+    },
+    {
+      "name": "Homme Métis",
+      "stat_bonuses": [
+        5,
+        0,
+        5,
+        0,
+        0,
+        5,
+        0,
+        5,
+        0,
+        0
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 135
+    },
+    {
+      "name": "Homme des Bois",
+      "stat_bonuses": [
+        10,
+        5,
+        0,
+        0,
+        -5,
+        10,
+        0,
+        -10,
+        -5,
+        0
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 135
+    },
+    {
+      "name": "Dunedain",
+      "stat_bonuses": [
+        10,
+        0,
+        0,
+        0,
+        0,
+        5,
+        0,
+        10,
+        5,
+        0
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 150
+    },
+    {
+      "name": "Homme urbain",
+      "stat_bonuses": [
+        0,
+        5,
+        0,
+        0,
+        0,
+        5,
+        0,
+        5,
+        0,
+        5
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 150
+    },
+    {
+      "name": "Numénoréen",
+      "stat_bonuses": [
+        10,
+        5,
+        0,
+        0,
+        0,
+        5,
+        0,
+        10,
+        5,
+        -5
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 150
+    },
+    {
+      "name": "Semi-Elfes",
+      "stat_bonuses": [
+        5,
+        5,
+        10,
+        0,
+        0,
+        5,
+        10,
+        10,
+        0,
+        0
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 150
+    },
+    {
+      "name": "Semi-Elfes B",
+      "stat_bonuses": [
+        0,
+        10,
+        5,
+        0,
+        0,
+        0,
+        10,
+        10,
+        0,
+        0
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 130
+    },
+    {
+      "name": "Semi-Elfes C",
+      "stat_bonuses": [
+        10,
+        5,
+        10,
+        0,
+        0,
+        10,
+        10,
+        5,
+        -5,
+        5
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 150
+    },
+    {
+      "name": "Semi-Elfes D",
+      "stat_bonuses": [
+        5,
+        5,
+        5,
+        0,
+        0,
+        5,
+        10,
+        10,
+        0,
+        0
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 150
+    },
+    {
+      "name": "Semi-Elfes E",
+      "stat_bonuses": [
+        0,
+        10,
+        5,
+        0,
+        0,
+        5,
+        10,
+        5,
+        0,
+        0
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 120
+    },
+    {
+      "name": "Semi-Elfes F",
+      "stat_bonuses": [
+        15,
+        5,
+        -10,
+        -5,
+        -5,
+        15,
+        5,
+        -5,
+        -5,
+        -5
+      ],
+      "body_dev_bonus": 15,
+      "experience_factor": 300
+    },
+    {
+      "name": "Elfe des Bois",
+      "stat_bonuses": [
+        0,
+        10,
+        -20,
+        5,
+        0,
+        0,
+        5,
+        0,
+        5,
+        0
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 100
+    },
+    {
+      "name": "Grand Elfe",
+      "stat_bonuses": [
+        0,
+        5,
+        -20,
+        5,
+        0,
+        0,
+        10,
+        10,
+        10,
+        0
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 110
+    },
+    {
+      "name": "Elfe Clair",
+      "stat_bonuses": [
+        0,
+        5,
+        -20,
+        5,
+        0,
+        0,
+        15,
+        15,
+        5,
+        0
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 120
+    },
+    {
+      "name": "Elfe Gris",
+      "stat_bonuses": [
+        5,
+        5,
+        -20,
+        5,
+        0,
+        5,
+        10,
+        5,
+        5,
+        0
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 120
+    },
+    {
+      "name": "Elfe des Ténèbres",
+      "stat_bonuses": [
+        -5,
+        10,
+        -20,
+        5,
+        5,
+        0,
+        10,
+        10,
+        10,
+        -5
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 110
+    },
+    {
+      "name": "Elfe Aquatique",
+      "stat_bonuses": [
+        5,
+        10,
+        -20,
+        5,
+        0,
+        5,
+        10,
+        5,
+        5,
+        0
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 110
+    },
+    {
+      "name": "Elfe Noldor",
+      "stat_bonuses": [
+        10,
+        10,
+        10,
+        5,
+        5,
+        10,
+        10,
+        15,
+        10,
+        0
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 150
+    },
+    {
+      "name": "Homme Demon",
+      "stat_bonuses": [
+        10,
+        5,
+        -10,
+        0,
+        0,
+        5,
+        5,
+        -10,
+        5,
+        0
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 150
+    },
+    {
+      "name": "Elfe Demon",
+      "stat_bonuses": [
+        5,
+        5,
+        -20,
+        0,
+        5,
+        5,
+        0,
+        0,
+        10,
+        0
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 150
+    },
+    {
+      "name": "Azurien (extraplanaire)",
+      "stat_bonuses": [
+        5,
+        5,
+        -5,
+        0,
+        0,
+        5,
+        10,
+        10,
+        -5,
+        5
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 150
+    },
+    {
+      "name": "Draakh",
+      "stat_bonuses": [
+        10,
+        5,
+        -5,
+        0,
+        5,
+        10,
+        5,
+        -10,
+        5,
+        0
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 150
+    },
+    {
+      "name": "Voyageur planaire",
+      "stat_bonuses": [
+        10,
+        5,
+        -10,
+        0,
+        5,
+        5,
+        10,
+        0,
+        5,
+        5
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 150
+    },
+    {
+      "name": "Hengeyokai renard",
+      "stat_bonuses": [
+        5,
+        10,
+        -5,
+        5,
+        10,
+        0,
+        10,
+        5,
+        0,
+        0
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 150
+    },
+    {
+      "name": "Semi-Nain",
+      "stat_bonuses": [
+        10,
+        0,
+        5,
+        0,
+        0,
+        5,
+        -5,
+        -5,
+        0,
+        0
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 120
+    },
+    {
+      "name": "Nain",
+      "stat_bonuses": [
+        15,
+        -5,
+        5,
+        0,
+        0,
+        5,
+        -5,
+        -10,
+        -10,
+        0
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 120
+    },
+    {
+      "name": "Semi-Homme",
+      "stat_bonuses": [
+        15,
+        15,
+        -10,
+        0,
+        0,
+        -20,
+        10,
+        -15,
+        0,
+        -5
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 80
+    },
+    {
+      "name": "Hobbit Pieds velus",
+      "stat_bonuses": [
+        10,
+        20,
+        -20,
+        0,
+        5,
+        -15,
+        15,
+        -10,
+        0,
+        0
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 90
+    },
+    {
+      "name": "Hobbit Fort",
+      "stat_bonuses": [
+        20,
+        10,
+        0,
+        0,
+        0,
+        -5,
+        5,
+        -10,
+        -10,
+        0
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 110
+    },
+    {
+      "name": "Semi-Orque",
+      "stat_bonuses": [
+        10,
+        0,
+        0,
+        -5,
+        -5,
+        10,
+        0,
+        -5,
+        0,
+        -5
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 130
+    },
+    {
+      "name": "Orque Inférieur",
+      "stat_bonuses": [
+        5,
+        0,
+        -10,
+        -10,
+        -5,
+        5,
+        0,
+        -5,
+        -10,
+        -5
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 80
+    },
+    {
+      "name": "Orque Supérieur",
+      "stat_bonuses": [
+        10,
+        0,
+        -5,
+        -5,
+        -5,
+        10,
+        0,
+        -5,
+        -5,
+        -5
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 140
+    },
+    {
+      "name": "Orque Seigneur",
+      "stat_bonuses": [
+        20,
+        0,
+        -5,
+        0,
+        -5,
+        10,
+        5,
+        -5,
+        -5,
+        -5
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 150
+    },
+    {
+      "name": "Gobelin",
+      "stat_bonuses": [
+        0,
+        15,
+        -5,
+        -5,
+        0,
+        -10,
+        15,
+        -5,
+        -10,
+        5
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 150
+    },
+    {
+      "name": "Gremlin",
+      "stat_bonuses": [
+        5,
+        15,
+        -10,
+        0,
+        0,
+        -10,
+        15,
+        -5,
+        5,
+        -10
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 100
+    },
+    {
+      "name": "Sylphe",
+      "stat_bonuses": [
+        -5,
+        30,
+        0,
+        0,
+        0,
+        -40,
+        30,
+        0,
+        15,
+        -10
+      ],
+      "body_dev_bonus": 5,
+      "experience_factor": 60
+    },
+    {
+      "name": "Satyre",
+      "stat_bonuses": [
+        10,
+        10,
+        -15,
+        5,
+        0,
+        5,
+        10,
+        -5,
+        0,
+        0
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 150
+    },
+    {
+      "name": "Nymphe",
+      "stat_bonuses": [
+        -10,
+        10,
+        0,
+        0,
+        0,
+        -15,
+        10,
+        20,
+        10,
+        0
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 70
+    },
+    {
+      "name": "Gnome",
+      "stat_bonuses": [
+        -5,
+        10,
+        0,
+        5,
+        5,
+        -15,
+        10,
+        -15,
+        10,
+        5
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 80
+    },
+    {
+      "name": "Fee",
+      "stat_bonuses": [
+        0,
+        15,
+        0,
+        0,
+        0,
+        -15,
+        10,
+        0,
+        10,
+        -10
+      ],
+      "body_dev_bonus": 8,
+      "experience_factor": 150
+    },
+    {
+      "name": "Semi-Ogres",
+      "stat_bonuses": [
+        10,
+        0,
+        -5,
+        0,
+        0,
+        15,
+        0,
+        -10,
+        -5,
+        -5
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 200
+    },
+    {
+      "name": "Semi-Trolls",
+      "stat_bonuses": [
+        20,
+        5,
+        0,
+        -5,
+        -5,
+        15,
+        0,
+        -5,
+        -5,
+        -5
+      ],
+      "body_dev_bonus": 15,
+      "experience_factor": 280
+    },
+    {
+      "name": "Trolls",
+      "stat_bonuses": [
+        15,
+        -10,
+        -10,
+        -10,
+        -10,
+        15,
+        -10,
+        -10,
+        -10,
+        -10
+      ],
+      "body_dev_bonus": 10,
+      "experience_factor": 250
+    },
+    {
+      "name": "Grands Hommes",
+      "stat_bonuses": [
+        20,
+        5,
+        -20,
+        -5,
+        -5,
+        15,
+        5,
+        5,
+        -10,
+        -10
+      ],
+      "body_dev_bonus": 20,
+      "experience_factor": 300
+    },
+    {
+      "name": "Olog-Hai",
+      "stat_bonuses": [
+        15,
+        -5,
+        -10,
+        -10,
+        -5,
+        20,
+        -5,
+        -5,
+        -10,
+        -10
+      ],
+      "body_dev_bonus": 20,
+      "experience_factor": 300
+    },
+    {
+      "name": "Semi-Ogres II",
+      "stat_bonuses": [
+        10,
+        0,
+        0,
+        0,
+        -5,
+        15,
+        0,
+        -10,
+        -5,
+        -5
+      ],
+      "body_dev_bonus": 12,
+      "experience_factor": 250
+    }
+  ],
+  "_metadata": {
+    "stat_bonuses_order": "Co, Ag, AD, Me, Ra, Fo, Rp, Pr, In, Em (0-indexed)",
+    "body_dev_bonus": "Base body development modifier per level",
+    "experience_factor": "Experience point cost modifier (higher = more XP needed)",
+    "race_groups": "Races grouped by type: Humans, Elves, Special, Dwarves/Hobbits/Orcs, Fey, Giants"
+  }
+}

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rolemaster-v1';
+const CACHE_NAME = 'rolemaster-v4';
 const ASSETS = [
   './',
   './index.html',
@@ -26,6 +26,7 @@ const ASSETS = [
   './data/categories.json',
   './data/simil.json',
   './data/options.json',
+  './data/monde.json',
   './manifest.json'
 ];
 

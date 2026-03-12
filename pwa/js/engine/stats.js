@@ -5,30 +5,23 @@ import { getData } from './data-loader.js';
 // 10 stats indexed 1-10 in game data (0 unused)
 export const STAT_COUNT = 10;
 
-// Stat indices used in skill data (1-based)
-export const STAT_INDICES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
 /**
  * Roll a single stat using the stat_roll_table.
- * Each row in the table has 37 values for stat scores.
- * We pick a random column (0-36) to get a stat value.
- * @param {number} rollIndex — which roll (0-9), maps to table row
+ * Each row has 38 values representing possible stat scores.
+ * @param {number} rollIndex — which roll tier (0-9)
  * @returns {number} the stat value (25-101)
  */
 export function rollStat(rollIndex) {
   const table = getData().carac_tables.stat_roll_table;
-  // Use a wrapping approach: pick from higher rows first for better stats
   const row = table[rollIndex] || table[0];
   const col = Math.floor(Math.random() * row.length);
-  // Skip 0 values (not achievable for that roll)
   let value = row[col];
   if (value === 0) {
-    // Find the first non-zero value in this row
+    // Find nearest non-zero value
     for (let i = col; i < row.length; i++) {
       if (row[i] > 0) { value = row[i]; break; }
     }
     if (value === 0) {
-      // Search backward
       for (let i = col; i >= 0; i--) {
         if (row[i] > 0) { value = row[i]; break; }
       }
@@ -38,10 +31,10 @@ export function rollStat(rollIndex) {
 }
 
 /**
- * Roll all 10 stats. Returns array of 10 values sorted descending.
- * Player then assigns them to stats of their choice.
+ * Roll one set of 10 stat values (one per tier row).
+ * Returns array of 10 values sorted descending.
  */
-export function rollAllStats() {
+export function rollOneSet() {
   const rolls = [];
   for (let i = 0; i < STAT_COUNT; i++) {
     rolls.push(rollStat(i));
@@ -50,21 +43,44 @@ export function rollAllStats() {
 }
 
 /**
- * Build the flat bonus table by concatenating all segments.
- * Index 0 is unused; index N gives the bonus for stat value N.
+ * Roll 3 sets of 10 stats (default RMSS method: Option 14).
+ * "Lancer 3 tirages de 10. assigner 2 tirages à temp/pot"
+ * Player picks 2 of 3 sets: one for Temp values, one for Pot values.
+ * @returns {number[][]} array of 3 sets, each containing 10 sorted values
  */
-function buildBonusTable() {
-  const segments = getData().carac_tables.stat_bonus_table;
-  const flat = [];
-  for (const seg of segments) {
-    flat.push(...seg);
+export function rollThreeSets() {
+  return [rollOneSet(), rollOneSet(), rollOneSet()];
+}
+
+/**
+ * Apply prime stat "bump to 90" rule.
+ * In RMSS, if a prime stat's temp or pot value is below 90,
+ * it gets bumped to 90.
+ * @param {number[]} stats — 10 temp or pot values
+ * @param {number[]} primeIndices — 0-based indices of prime stats
+ * @returns {number[]} adjusted stats
+ */
+export function applyPrimeStatBump(stats, primeIndices) {
+  const result = [...stats];
+  for (const idx of primeIndices) {
+    if (idx >= 0 && idx < result.length && result[idx] < 90) {
+      result[idx] = 90;
+    }
   }
+  return result;
+}
+
+// --- Bonus tables ---
+
+function buildFlatTable(segments) {
+  const flat = [];
+  for (const seg of segments) flat.push(...seg);
   return flat;
 }
 
 let _bonusTable = null;
 function getBonusTable() {
-  if (!_bonusTable) _bonusTable = buildBonusTable();
+  if (!_bonusTable) _bonusTable = buildFlatTable(getData().carac_tables.stat_bonus_table);
   return _bonusTable;
 }
 
@@ -80,21 +96,9 @@ export function getStatBonus(statValue) {
   return table[statValue];
 }
 
-/**
- * Build flat power points table.
- */
-function buildPowerPointsTable() {
-  const segments = getData().carac_tables.power_points_table;
-  const flat = [];
-  for (const seg of segments) {
-    flat.push(...seg);
-  }
-  return flat;
-}
-
 let _ppTable = null;
 function getPPTable() {
-  if (!_ppTable) _ppTable = buildPowerPointsTable();
+  if (!_ppTable) _ppTable = buildFlatTable(getData().carac_tables.power_points_table);
   return _ppTable;
 }
 
@@ -108,21 +112,9 @@ export function getPowerPointsMult(statValue) {
   return table[statValue];
 }
 
-/**
- * Build flat body development table.
- */
-function buildBodyDevTable() {
-  const segments = getData().carac_tables.body_development;
-  const flat = [];
-  for (const seg of segments) {
-    flat.push(...seg);
-  }
-  return flat;
-}
-
 let _bodyDevTable = null;
 function getBodyDevTable() {
-  if (!_bodyDevTable) _bodyDevTable = buildBodyDevTable();
+  if (!_bodyDevTable) _bodyDevTable = buildFlatTable(getData().carac_tables.body_development);
   return _bodyDevTable;
 }
 
@@ -138,26 +130,15 @@ export function getBodyDev(statValue) {
 
 /**
  * Calculate rank bonus for a number of skill ranks.
- * Rolemaster RMSS standard progression:
- * Ranks 1-10: +5 each (ranks 1=5, 2=10, ..., 10=50... wait no)
- * Actually the standard RM rank bonus:
- *   Rank 1: +5, 2: +5, 3: +5 (first 3 = +5 each)
- *   Ranks 4-10: +2 each
- *   Ranks 11-20: +1 each
- *   Ranks 21-30: +0.5 each
- *   Ranks 31+: +0 (no more bonus)
+ * RMSS standard: 1-3: +5 each, 4-10: +2 each, 11-20: +1 each, 21-30: +0.5 each
  */
 export function getRankBonus(ranks) {
   if (ranks <= 0) return -25;
   let bonus = 0;
   const r = Math.floor(ranks);
-  // Ranks 1-3: +5 each
   bonus += Math.min(r, 3) * 5;
-  // Ranks 4-10: +2 each
   if (r > 3) bonus += Math.min(r - 3, 7) * 2;
-  // Ranks 11-20: +1 each
   if (r > 10) bonus += Math.min(r - 10, 10) * 1;
-  // Ranks 21-30: +0.5 each
   if (r > 20) bonus += Math.min(r - 20, 10) * 0.5;
   return bonus;
 }

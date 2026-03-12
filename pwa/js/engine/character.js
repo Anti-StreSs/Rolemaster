@@ -4,79 +4,143 @@ import { getStatBonus, getBodyDev, getPowerPointsMult } from './stats.js';
 
 /**
  * Create a new blank character.
+ * Matches the original CPR093 data model.
  */
 export function createCharacter() {
   return {
-    version: 1,
+    version: 3,
+
+    // --- Info tab ---
     name: '',
-    level: 1,
-    // 10 stats (temp values), indexed 0-9
-    stats: new Array(10).fill(0),
-    // 10 stat potentials
-    potentials: new Array(10).fill(0),
-    // Class index
+    raceIndex: -1,         // Index into monde.json races
+    raceName: '',           // Display name
+    height: '',
+    weight: '',
+    hair: '',
+    eyes: '',
+    age: '',
+    sex: '',
+    appearance: '',
+    behavior: '',
+
+    // Class & level
     classIndex: -1,
-    // Realm (resolved from class): 'essence', 'channeling', 'mentalism', 'none'
+    level: 1,
+    xp: '',
+
+    // Realm (derived from class)
     realm: 'none',
-    // Prime stats (2 indices, 0-9)
+
+    // Prime stats (derived from class, 0-based indices)
     primeStats: [],
-    // Weapon categories (array of category indices)
-    weaponCategories: [],
-    // Armor type (0-4)
+
+    // Combat summary
     armorType: 0,
-    // Skill ranks: { globalSkillIndex: ranksThisLevel }
+    defenseBonus: 0,
+
+    // --- Stats tab ---
+    // 10 stats: Co, Ag, AD, Mé, Ra, Fo, Rp, Pr, In, Em
+    stats: new Array(10).fill(0),        // Temporary values
+    potentials: new Array(10).fill(0),    // Potential values
+    raceBonuses: new Array(10).fill(0),   // Race bonuses (from monde.json)
+    specialBonuses: new Array(10).fill(0),// Special bonuses
+
+    // Body dev and XP factor from race
+    raceBodyDevBonus: 0,
+    raceExperienceFactor: 0,
+
+    // --- Languages tab ---
+    languages: [],  // [{name, spoken, written}]
+
+    // --- Spells tab ---
+    spellLists: [],  // [{name, level, percent}]
+
+    // --- History tab ---
+    history: '',
+    equipment: '',
+
+    // --- Skills tab ---
     skillRanks: {},
-    // Total skill ranks (across all levels): { globalSkillIndex: totalRanks }
     totalSkillRanks: {},
-    // Spell lists chosen: array of { realmIndex, groupIndex, spellIndex }
-    spellLists: [],
-    // Development points spent this level
+    categoryLevelBonuses: {},
+    skillMiscBonuses: {},
     devPointsSpent: 0,
-    // Notes
-    notes: '',
-    // Timestamp
+
+    // Timestamps
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };
 }
 
 /**
- * Get computed stat bonuses for all 10 stats.
+ * Get computed stat bonuses (normal bonuses) for all 10 stats.
  */
 export function getStatBonuses(character) {
   return character.stats.map(v => getStatBonus(v));
 }
 
 /**
- * Calculate total hit points (body development).
- * HP = body_dev(Constitution) * level
+ * Get total bonus for a stat (normal + race + special).
+ */
+export function getTotalStatBonus(character, statIndex) {
+  const normal = getStatBonus(character.stats[statIndex]);
+  const race = character.raceBonuses[statIndex] || 0;
+  const special = character.specialBonuses[statIndex] || 0;
+  return normal + race + special;
+}
+
+/**
+ * Get development value for a stat.
+ * Constitution → body dev, realm stat → power points, others → null
+ */
+export function getStatDev(character, statIndex) {
+  if (statIndex === 0) {
+    return getBodyDev(character.stats[0]);
+  }
+  const realmStatMap = { 'essence': 9, 'channeling': 8, 'mentalism': 7 };
+  const realmStat = realmStatMap[character.realm];
+  if (realmStat === statIndex) {
+    return getPowerPointsMult(character.stats[statIndex]);
+  }
+  return null;
+}
+
+/**
+ * Calculate total hit points.
  */
 export function calcHitPoints(character) {
-  const coStat = character.stats[0]; // Constitution is stat 0
-  const devPerLevel = getBodyDev(coStat);
+  const devPerLevel = getBodyDev(character.stats[0]);
   return Math.floor(devPerLevel * character.level);
 }
 
 /**
- * Calculate power points (for spell users).
- * PP = power_point_mult(realm_stat) * level
- * Realm stat depends on realm: Essence=Empathy(9), Channeling=Intuition(8), Mentalism=Presence(7)
+ * Calculate power points.
  */
 export function calcPowerPoints(character) {
   if (character.realm === 'none') return 0;
-
-  const realmStatMap = {
-    'essence': 9,    // Empathy (index 9)
-    'channeling': 8, // Intuition (index 8)
-    'mentalism': 7,  // Presence (index 7)
-  };
-
+  const realmStatMap = { 'essence': 9, 'channeling': 8, 'mentalism': 7 };
   const statIdx = realmStatMap[character.realm];
   if (statIdx === undefined) return 0;
-
-  const statValue = character.stats[statIdx];
-  const mult = getPowerPointsMult(statValue);
+  const mult = getPowerPointsMult(character.stats[statIdx]);
   return Math.floor(mult * character.level);
+}
+
+/**
+ * Apply race bonuses from monde.json race data to character.
+ */
+export function applyRace(character, race) {
+  if (!race) {
+    character.raceIndex = -1;
+    character.raceName = '';
+    character.raceBonuses = new Array(10).fill(0);
+    character.raceBodyDevBonus = 0;
+    character.raceExperienceFactor = 0;
+    return;
+  }
+  character.raceName = race.name;
+  character.raceBonuses = [...race.stat_bonuses];
+  character.raceBodyDevBonus = race.body_dev_bonus || 0;
+  character.raceExperienceFactor = race.experience_factor || 0;
 }
 
 /**
@@ -84,23 +148,4 @@ export function calcPowerPoints(character) {
  */
 export function cloneCharacter(character) {
   return JSON.parse(JSON.stringify(character));
-}
-
-/**
- * Validate character completeness for a given step.
- */
-export function isStepComplete(character, step) {
-  switch (step) {
-    case 0: return character.name.trim().length > 0;
-    case 1: return character.stats.every(s => s > 0);
-    case 2: return character.classIndex >= 0;
-    case 3: return character.realm !== '' ;
-    case 4: return character.primeStats.length === 2;
-    case 5: return character.weaponCategories.length > 0;
-    case 6: return true; // Armor can be 0 (none)
-    case 7: return true; // Skills optional
-    case 8: return true; // Spells optional
-    case 9: return true; // Sheet view
-    default: return false;
-  }
 }
