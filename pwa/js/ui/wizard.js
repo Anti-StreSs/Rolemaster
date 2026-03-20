@@ -9,6 +9,7 @@ import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, g
 import { getAllRealms } from '../engine/spells.js';
 import { downloadCharacter, saveToLocalStorage } from '../engine/export.js';
 import { processLevelUpStatGains } from '../engine/stat_gain.js';
+import { generateBackground, getRacialLanguages } from '../engine/background.js';
 import { getData } from '../engine/data-loader.js';
 
 // --- Category translations ---
@@ -280,31 +281,8 @@ function renderInfosTab(lang) {
 
           <label>Race</label>
           <select id="f-race" class="field">${raceOptions}</select>
-
-          <label>Taille</label>
-          <input type="text" id="f-height" value="${esc(character.height)}" class="field field-sm" placeholder="1.80m">
-
-          <label>Poids</label>
-          <input type="text" id="f-weight" value="${esc(character.weight)}" class="field field-sm" placeholder="75kg">
-
-          <label>Cheveux</label>
-          <input type="text" id="f-hair" value="${esc(character.hair)}" class="field field-sm">
-
-          <label>Yeux</label>
-          <input type="text" id="f-eyes" value="${esc(character.eyes)}" class="field field-sm">
-
-          <label>Âge</label>
-          <input type="text" id="f-age" value="${esc(character.age)}" class="field field-sm">
-
-          <label>Sexe</label>
-          <input type="text" id="f-sex" value="${esc(character.sex)}" class="field field-sm">
-
-          <label>Apparence</label>
-          <input type="text" id="f-appearance" value="${esc(character.appearance)}" class="field">
-
-          <label>Comportement</label>
-          <input type="text" id="f-behavior" value="${esc(character.behavior)}" class="field">
         </div>
+        <p class="text-xs text-gray-600 mt-2">${lang === 'en' ? 'Physical description in History tab' : 'Description physique dans l\'onglet Historique'}</p>
       `)}
 
       ${panel(lang === 'en' ? 'Armor' : 'Armure', `
@@ -599,6 +577,7 @@ function bindRaceEvents(app) {
       character.raceIndex = idx;
       const race = getRaceByIndex(idx);
       applyRace(character, race);
+      autoFillBackground(race);
       renderEditor(app);
     });
   });
@@ -611,6 +590,31 @@ function bindRaceEvents(app) {
       applyRace(character, null);
       renderEditor(app);
     });
+  }
+}
+
+/**
+ * Auto-fill background fields when a race is selected.
+ * Generates size, appearance, age based on race and current sex.
+ * Also sets racial languages.
+ */
+function autoFillBackground(race) {
+  if (!race) return;
+  const sex = character.sex === 'Féminin' || character.sex === 'F' ? 'F' : 'M';
+  const bg = generateBackground(race.name, sex);
+  character.height = bg.height;
+  character.weight = bg.weight;
+  character.hair = bg.hair;
+  character.eyes = bg.eyes;
+  character.appearance = String(bg.appearance);
+  character.age = bg.age;
+  if (!character.sex) character.sex = bg.sex;
+
+  // Set racial languages (free ranks)
+  const racialLangs = getRacialLanguages(race.name);
+  // Only auto-fill if languages are empty (don't overwrite manual entries)
+  if (character.languages.length === 0) {
+    character.languages = racialLangs;
   }
 }
 
@@ -879,12 +883,44 @@ function renderSpellsTab(lang) {
 
 // === Tab: History ===
 function renderHistoryTab(lang) {
+  const hasRace = character.raceIndex >= 0;
   return `
+    ${panel(lang === 'en' ? 'Physical Description' : 'Description physique', `
+      <div class="info-grid">
+        <label>Sexe</label>
+        <select id="f-sex-select" class="field field-sm">
+          <option value="Masculin" ${character.sex === 'Masculin' || character.sex === 'M' ? 'selected' : ''}>Masculin</option>
+          <option value="Féminin" ${character.sex === 'Féminin' || character.sex === 'F' ? 'selected' : ''}>Féminin</option>
+        </select>
+
+        <label>Taille</label>
+        <input type="text" id="f-height" value="${esc(character.height)}" class="field field-sm" placeholder="178 cm">
+
+        <label>Poids</label>
+        <input type="text" id="f-weight" value="${esc(character.weight)}" class="field field-sm" placeholder="75 kg">
+
+        <label>Âge</label>
+        <input type="text" id="f-age" value="${esc(character.age)}" class="field field-sm">
+
+        <label>Cheveux</label>
+        <input type="text" id="f-hair" value="${esc(character.hair)}" class="field field-sm">
+
+        <label>Yeux</label>
+        <input type="text" id="f-eyes" value="${esc(character.eyes)}" class="field field-sm">
+
+        <label>Apparence (1-100)</label>
+        <input type="text" id="f-appearance" value="${esc(character.appearance)}" class="field field-sm">
+
+        <label>Comportement</label>
+        <input type="text" id="f-behavior" value="${esc(character.behavior)}" class="field">
+      </div>
+      ${hasRace ? `<button class="btn-secondary text-sm mt-3 no-print" id="btn-reroll-bg">${lang === 'en' ? 'Re-roll background' : 'Relancer l\'historique'}</button>` : ''}
+    `)}
     ${panel(lang === 'en' ? 'Equipment' : 'Équipement', `
-      <textarea id="f-equipment" class="field w-full" rows="8" placeholder="- 1 épée longue (1.5kg)\n- 1 armure de cuir souple\n- ...">${esc(character.equipment)}</textarea>
+      <textarea id="f-equipment" class="field w-full" rows="6" placeholder="- 1 épée longue (1.5kg)\n- 1 armure de cuir souple\n- ...">${esc(character.equipment)}</textarea>
     `)}
     ${panel(lang === 'en' ? 'Background & Notes' : 'Historique & Notes', `
-      <textarea id="f-history" class="field w-full" rows="10" placeholder="Historique du personnage...">${esc(character.history)}</textarea>
+      <textarea id="f-history" class="field w-full" rows="8" placeholder="Historique du personnage...">${esc(character.history)}</textarea>
     `)}
   `;
 }
@@ -1147,7 +1183,7 @@ function bindContentEvents(app) {
     case 'weapons': bindWeaponsEvents(app); break;
     case 'languages': bindLanguagesEvents(app); break;
     case 'spells': bindSpellsEvents(app); break;
-    case 'history': bindHistoryEvents(); break;
+    case 'history': bindHistoryEvents(app); break;
     case 'skills': bindSkillsEvents(app); break;
   }
 }
@@ -1218,12 +1254,7 @@ function performLevelUp(app) {
 }
 
 function bindInfosEvents(app) {
-  const fields = {
-    'f-name': 'name', 'f-height': 'height',
-    'f-weight': 'weight', 'f-hair': 'hair', 'f-eyes': 'eyes',
-    'f-age': 'age', 'f-sex': 'sex', 'f-appearance': 'appearance',
-    'f-behavior': 'behavior', 'f-xp': 'xp',
-  };
+  const fields = { 'f-name': 'name', 'f-xp': 'xp' };
 
   for (const [id, field] of Object.entries(fields)) {
     const el = document.getElementById(id);
@@ -1673,7 +1704,42 @@ function bindSpellsEvents(app) {
   });
 }
 
-function bindHistoryEvents() {
+function bindHistoryEvents(app) {
+  // Physical description fields
+  const fields = {
+    'f-height': 'height', 'f-weight': 'weight', 'f-age': 'age',
+    'f-hair': 'hair', 'f-eyes': 'eyes', 'f-appearance': 'appearance',
+    'f-behavior': 'behavior',
+  };
+  for (const [id, field] of Object.entries(fields)) {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', () => { character[field] = el.value; });
+  }
+
+  // Sex selector — triggers background re-generation
+  const sexEl = document.getElementById('f-sex-select');
+  if (sexEl) {
+    sexEl.addEventListener('change', () => {
+      character.sex = sexEl.value;
+      // Re-generate size if race is selected
+      if (character.raceIndex >= 0) {
+        const race = getRaceByIndex(character.raceIndex);
+        if (race) autoFillBackground(race);
+        renderEditor(app);
+      }
+    });
+  }
+
+  // Re-roll background button
+  const btnReroll = document.getElementById('btn-reroll-bg');
+  if (btnReroll) {
+    btnReroll.addEventListener('click', () => {
+      const race = getRaceByIndex(character.raceIndex);
+      if (race) autoFillBackground(race);
+      renderEditor(app);
+    });
+  }
+
   const eqEl = document.getElementById('f-equipment');
   if (eqEl) eqEl.addEventListener('input', () => { character.equipment = eqEl.value; });
   const histEl = document.getElementById('f-history');
