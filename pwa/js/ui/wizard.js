@@ -34,6 +34,7 @@ const CAT_NAMES_FR = {
 const TABS = [
   { id: 'infos', label_fr: 'Infos', label_en: 'Info' },
   { id: 'stats', label_fr: 'Caractéristiques', label_en: 'Stats' },
+  { id: 'race', label_fr: 'Race', label_en: 'Race' },
   { id: 'weapons', label_fr: 'Armes', label_en: 'Weapons' },
   { id: 'languages', label_fr: 'Langages', label_en: 'Languages' },
   { id: 'spells', label_fr: 'Listes de Sorts', label_en: 'Spell Lists' },
@@ -166,6 +167,7 @@ function renderTab(app) {
   switch (currentTab) {
     case 'infos': return renderInfosTab(app.lang);
     case 'stats': return renderStatsTab(app.lang);
+    case 'race': return renderRaceTab(app.lang);
     case 'weapons': return renderWeaponsTab(app.lang);
     case 'languages': return renderLanguagesTab(app.lang);
     case 'spells': return renderSpellsTab(app.lang);
@@ -501,6 +503,98 @@ function renderStatLog(lang) {
 
   html += `</div></details>`;
   return html;
+}
+
+// === Tab: Race ===
+let selectedRaceGroup = 0; // Index into race_groups
+
+function renderRaceTab(lang) {
+  const monde = getData().monde;
+  if (!monde || !monde.race_groups) {
+    return panel(lang === 'en' ? 'Race' : 'Race', `<p class="text-gray-500">No race data available.</p>`);
+  }
+
+  const groups = monde.race_groups;
+  const races = monde.races;
+  const currentRaceIdx = character.raceIndex;
+
+  // Group sub-tabs
+  let groupTabs = `<div class="flex flex-wrap gap-1 mb-3">`;
+  for (let g = 0; g < groups.length; g++) {
+    const active = g === selectedRaceGroup ? 'active' : '';
+    groupTabs += `<button class="phase-btn ${active}" data-race-group="${g}">${groups[g].name}</button>`;
+  }
+  groupTabs += `</div>`;
+
+  // Race table for selected group
+  const group = groups[selectedRaceGroup];
+  const groupRaces = group.races.map(name => {
+    const idx = races.findIndex(r => r.name === name);
+    return idx >= 0 ? { ...races[idx], index: idx } : null;
+  }).filter(Boolean);
+
+  let table = `<div class="overflow-x-auto"><table class="skill-table"><thead><tr>
+    <th>${lang === 'en' ? 'Race' : 'Race'}</th>`;
+  for (const abbr of STAT_ABBREVS) table += `<th class="text-center w-8">${abbr}</th>`;
+  table += `<th class="text-center">Dév</th><th class="text-center">XP</th>
+  </tr></thead><tbody>`;
+
+  for (const race of groupRaces) {
+    const isCurrent = race.index === currentRaceIdx;
+    const bonuses = race.stat_bonuses || [];
+    table += `<tr class="race-row ${isCurrent ? 'stat-row-assigned' : 'stat-row-clickable'}" data-race-idx="${race.index}" style="cursor:pointer">
+      <td class="${isCurrent ? 'text-amber-300 font-bold' : 'text-gray-300'}">${race.name}${isCurrent ? ' ★' : ''}</td>`;
+    for (let s = 0; s < 10; s++) {
+      const b = bonuses[s] || 0;
+      const cls = b > 0 ? 'text-green-400' : b < 0 ? 'text-red-400' : 'text-gray-600';
+      table += `<td class="text-center text-xs ${cls}">${b !== 0 ? (b > 0 ? '+' + b : b) : '·'}</td>`;
+    }
+    table += `<td class="text-center text-xs">${race.body_dev_bonus || '—'}</td>`;
+    table += `<td class="text-center text-xs">${race.experience_factor || '—'}</td>`;
+    table += `</tr>`;
+  }
+  table += `</tbody></table></div>`;
+
+  // Current race summary
+  let summary = '';
+  if (currentRaceIdx >= 0) {
+    const race = races[currentRaceIdx];
+    summary = `<div class="mt-3 text-sm text-amber-300">${lang === 'en' ? 'Selected' : 'Sélectionné'}: <strong>${race.name}</strong>
+      <button class="btn-secondary text-xs ml-2" id="btn-clear-race">${lang === 'en' ? 'Remove' : 'Retirer'}</button></div>`;
+  }
+
+  return panel(lang === 'en' ? 'Race Selection' : 'Choix de la Race', groupTabs + table + summary);
+}
+
+function bindRaceEvents(app) {
+  // Group sub-tabs
+  document.querySelectorAll('[data-race-group]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedRaceGroup = parseInt(btn.dataset.raceGroup);
+      renderEditor(app);
+    });
+  });
+
+  // Race row click
+  document.querySelectorAll('.race-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const idx = parseInt(row.dataset.raceIdx);
+      character.raceIndex = idx;
+      const race = getRaceByIndex(idx);
+      applyRace(character, race);
+      renderEditor(app);
+    });
+  });
+
+  // Clear race
+  const btnClear = document.getElementById('btn-clear-race');
+  if (btnClear) {
+    btnClear.addEventListener('click', () => {
+      character.raceIndex = -1;
+      applyRace(character, null);
+      renderEditor(app);
+    });
+  }
 }
 
 // === Tab: Weapons (CHOIXCAT) ===
@@ -954,6 +1048,7 @@ function bindContentEvents(app) {
   switch (currentTab) {
     case 'infos': bindInfosEvents(app); break;
     case 'stats': bindStatsEvents(app); break;
+    case 'race': bindRaceEvents(app); break;
     case 'weapons': bindWeaponsEvents(app); break;
     case 'languages': bindLanguagesEvents(app); break;
     case 'spells': bindSpellsEvents(app); break;

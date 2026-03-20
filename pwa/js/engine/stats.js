@@ -67,23 +67,25 @@ export function getBodyDev(statValue) {
   return table[statValue];
 }
 
-// RM2 Skill Rank Bonus table (verified: DM2=+10, DM1=+5, DM0=-25)
-const RM2_RANK_BONUS = [-25, 5, 10, 15, 20, 25, 27, 29, 31, 33, 35];
+// RM Classic Skill Rank Bonus table 07-01 (verified: DM0=-25, DM1=+5, DM2=+10)
+// Ranks 1-10: +5/rank, 11-20: +2/rank, 21-30: +1/rank, 30+: +1/rank
+const RANK_BONUS_TABLE = [
+  -25,                                          // rank 0
+   5, 10, 15, 20, 25, 30, 35, 40, 45, 50,     // ranks 1-10
+  52, 54, 56, 58, 60,                           // ranks 11-15
+  62, 64, 66, 68, 70,                           // ranks 16-20
+  71, 72, 73, 74, 75, 76, 77, 78, 79, 80,     // ranks 21-30
+];
 
 /**
  * Calculate rank bonus for a number of skill ranks.
- * RM2: specific values for ranks 0-10, then:
- *   ranks 11-15: +35 + 1 per rank above 10
- *   ranks 16-20: +40 + 0.5 per rank above 15
- *   ranks 21+:   +42.5 + 0.5 per rank above 20
+ * RM Classic table 07-01. For rank > 30: extrapolate +1/rank.
  */
 export function getRankBonus(ranks) {
   const r = Math.floor(ranks);
-  if (r <= 0) return -25;
-  if (r <= 10) return RM2_RANK_BONUS[r];
-  if (r <= 15) return 35 + (r - 10);       // 36, 37, 38, 39, 40
-  if (r <= 20) return 40 + (r - 15) * 0.5; // 40.5, 41, 41.5, 42, 42.5
-  return 42.5 + (r - 20) * 0.5;            // 43, 43.5, ...
+  if (r < 0) return -25;
+  if (r < RANK_BONUS_TABLE.length) return RANK_BONUS_TABLE[r];
+  return 80 + (r - 30); // Extrapolate
 }
 
 /**

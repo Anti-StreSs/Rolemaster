@@ -179,34 +179,65 @@ const REALM_STATS = {
 
 ---
 
-## 5. BONUS PAR RANG (Skill Rank Bonus) — TABLE CONFIRMÉE
+## 5. BONUS PAR RANG (Skill Rank Bonus) — TABLE 07-01 RM CLASSIC
 
-Observé sur le Barde :
-- Mystification DM=2, Base=+10 ✅
-- Eclair de feu DM=1, Base=+5 ✅
-- Projection du Pouvoir DM=1, Base=+5 ✅
+⚠️ **CORRECTION CRITIQUE** : Les valeurs précédemment supposées (RM2 standard) étaient fausses.
+Voici la table **07-01 Skill Rank Bonus** extraite de Rolemaster Classic Character Law :
 
-Table standard RM2 (par rang) :
 ```javascript
 const RANK_BONUS = [
   -25,  // rang 0
-  5,    // rang 1: +5
-  10,   // rang 2: +10
-  15,   // rang 3: +15
-  20,   // rang 4: +20
-  25,   // rang 5: +25
-  27,   // rang 6
-  29,   // rang 7
-  31,   // rang 8
-  33,   // rang 9
-  35,   // rang 10
-  // rang 11+: +35 + 1 par rang au-delà de 10
-  // rang 16+: +40 + 0.5 par rang
-  // rang 21+: +42.5 + 0.5 par rang
+  5,    // rang 1
+  10,   // rang 2
+  15,   // rang 3
+  20,   // rang 4
+  25,   // rang 5
+  30,   // rang 6   (PAS +27 !)
+  35,   // rang 7   (PAS +29 !)
+  40,   // rang 8   (PAS +31 !)
+  45,   // rang 9   (PAS +33 !)
+  50,   // rang 10  (PAS +35 !)
+  52,   // rang 11  (+2 par rang de 11 à 15)
+  54,   // rang 12
+  56,   // rang 13
+  58,   // rang 14
+  60,   // rang 15
+  62,   // rang 16  (+2 par rang de 16 à 20)
+  64,   // rang 17
+  66,   // rang 18
+  68,   // rang 19
+  70,   // rang 20
+  71,   // rang 21  (+1 par rang de 21 à 30)
+  72,   // rang 22
+  73,   // rang 23
+  74,   // rang 24
+  75,   // rang 25
+  76,   // rang 26
+  77,   // rang 27
+  78,   // rang 28
+  79,   // rang 29
+  80,   // rang 30
 ];
-// Pour rang > 10: RANK_BONUS[10] + (rang - 10) pour 11-15
-// Pour rang > 15: RANK_BONUS[10] + 5 + (rang - 15) * 0.5 pour 16-20
+// Pour rang > 30: 80 + (rang - 30) * 1 (extrapolation)
+
+function getRankBonus(rank) {
+  if (rank < 0) return -25;
+  if (rank < RANK_BONUS.length) return RANK_BONUS[rank];
+  // Extrapolate: +1 per rank beyond 30
+  return 80 + (rank - 30);
+}
 ```
+
+### Vérifications contre CPR093
+- Rang 0 → -25 ✅ (observé sur toutes les compétences à DM=0)
+- Rang 1 → +5 ✅ (Eclair de feu DM=1 → Base=+5)
+- Rang 2 → +10 ✅ (Mystification DM=2 → Base=+10)
+
+### Différence RM2 vs RM Classic
+RM2 standard (Character Law 1989) avait +27/+29/+31 pour rangs 6-8.
+RM Classic (Character Law reformatted) a +30/+35/+40 pour rangs 6-8.
+**CPR093 utilise probablement les valeurs RM2** — à vérifier avec un personnage ayant rang 6+ sur une compétence.
+En attendant, implémenter la table RM Classic et ajuster si nécessaire.
 
 ---
 
