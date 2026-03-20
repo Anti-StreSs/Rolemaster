@@ -918,7 +918,9 @@
         0
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-10",
+      "max_pc": 150
     },
     {
       "name": "Homme Commun",
@@ -935,7 +937,9 @@
         0
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 120
+      "experience_factor": 120,
+      "hit_die": "1-8",
+      "max_pc": 120
     },
     {
       "name": "Surhomme",
@@ -952,7 +956,9 @@
         0
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 120
+      "experience_factor": 120,
+      "hit_die": "1-10",
+      "max_pc": 120
     },
     {
       "name": "Tribus de l'Ours",
@@ -969,7 +975,9 @@
         5
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-10",
+      "max_pc": 150
     },
     {
       "name": "Tribus des Ténèbres",
@@ -986,7 +994,9 @@
         -5
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 120
+      "experience_factor": 120,
+      "hit_die": "1-8",
+      "max_pc": 120
     },
     {
       "name": "Nordique",
@@ -1003,7 +1013,9 @@
         0
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-10",
+      "max_pc": 150
     },
     {
       "name": "Homme Artique",
@@ -1020,7 +1032,9 @@
         5
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 120
+      "experience_factor": 120,
+      "hit_die": "1-8",
+      "max_pc": 120
     },
     {
       "name": "Homme Métis",
@@ -1037,7 +1051,9 @@
         0
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 135
+      "experience_factor": 135,
+      "hit_die": "1-10",
+      "max_pc": 135
     },
     {
       "name": "Homme des Bois",
@@ -1054,7 +1070,9 @@
         0
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 135
+      "experience_factor": 135,
+      "hit_die": "1-8",
+      "max_pc": 135
     },
     {
       "name": "Dunedain",
@@ -1071,7 +1089,9 @@
         0
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-10",
+      "max_pc": 150
     },
     {
       "name": "Homme urbain",
@@ -1088,7 +1108,9 @@
         5
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-8",
+      "max_pc": 150
     },
     {
       "name": "Numénoréen",
@@ -1105,7 +1127,9 @@
         -5
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-10",
+      "max_pc": 150
     },
     {
       "name": "Semi-Elfes",
@@ -1122,7 +1146,9 @@
         0
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-10",
+      "max_pc": 150
     },
     {
       "name": "Semi-Elfes B",
@@ -1139,7 +1165,9 @@
         0
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 130
+      "experience_factor": 130,
+      "hit_die": "1-10",
+      "max_pc": 130
     },
     {
       "name": "Semi-Elfes C",
@@ -1156,7 +1184,9 @@
         5
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-10",
+      "max_pc": 150
     },
     {
       "name": "Semi-Elfes D",
@@ -1173,7 +1203,9 @@
         0
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-10",
+      "max_pc": 150
     },
     {
       "name": "Semi-Elfes E",
@@ -1190,7 +1222,9 @@
         0
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 120
+      "experience_factor": 120,
+      "hit_die": "1-10",
+      "max_pc": 120
     },
     {
       "name": "Semi-Elfes F",
@@ -1207,7 +1241,9 @@
         -5
       ],
       "body_dev_bonus": 15,
-      "experience_factor": 300
+      "experience_factor": 300,
+      "hit_die": "1-15",
+      "max_pc": 300
     },
     {
       "name": "Elfe des Bois",
@@ -1224,7 +1260,9 @@
         0
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 100
+      "experience_factor": 100,
+      "hit_die": "1-8",
+      "max_pc": 100
     },
     {
       "name": "Grand Elfe",
@@ -1241,7 +1279,9 @@
         0
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 110
+      "experience_factor": 110,
+      "hit_die": "1-8",
+      "max_pc": 110
     },
     {
       "name": "Elfe Clair",
@@ -1258,7 +1298,9 @@
         0
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 120
+      "experience_factor": 120,
+      "hit_die": "1-10",
+      "max_pc": 120
     },
     {
       "name": "Elfe Gris",
@@ -1275,7 +1317,9 @@
         0
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 120
+      "experience_factor": 120,
+      "hit_die": "1-8",
+      "max_pc": 120
     },
     {
       "name": "Elfe des Ténèbres",
@@ -1292,7 +1336,9 @@
         -5
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 110
+      "experience_factor": 110,
+      "hit_die": "1-8",
+      "max_pc": 110
     },
     {
       "name": "Elfe Aquatique",
@@ -1309,7 +1355,9 @@
         0
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 110
+      "experience_factor": 110,
+      "hit_die": "1-8",
+      "max_pc": 110
     },
     {
       "name": "Elfe Noldor",
@@ -1326,7 +1374,9 @@
         0
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-10",
+      "max_pc": 150
     },
     {
       "name": "Homme Demon",
@@ -1343,7 +1393,9 @@
         0
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-10",
+      "max_pc": 150
     },
     {
       "name": "Elfe Demon",
@@ -1360,7 +1412,9 @@
         0
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-8",
+      "max_pc": 150
     },
     {
       "name": "Azurien (extraplanaire)",
@@ -1377,7 +1431,9 @@
         5
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-10",
+      "max_pc": 150
     },
     {
       "name": "Draakh",
@@ -1394,7 +1450,9 @@
         0
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-8",
+      "max_pc": 150
     },
     {
       "name": "Voyageur planaire",
@@ -1411,7 +1469,9 @@
         5
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-8",
+      "max_pc": 150
     },
     {
       "name": "Hengeyokai renard",
@@ -1428,7 +1488,9 @@
         0
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-8",
+      "max_pc": 150
     },
     {
       "name": "Semi-Nain",
@@ -1445,7 +1507,9 @@
         0
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 120
+      "experience_factor": 120,
+      "hit_die": "1-10",
+      "max_pc": 120
     },
     {
       "name": "Nain",
@@ -1462,7 +1526,9 @@
         0
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 120
+      "experience_factor": 120,
+      "hit_die": "1-10",
+      "max_pc": 120
     },
     {
       "name": "Semi-Homme",
@@ -1479,7 +1545,9 @@
         -5
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 80
+      "experience_factor": 80,
+      "hit_die": "1-8",
+      "max_pc": 80
     },
     {
       "name": "Hobbit Pieds velus",
@@ -1496,7 +1564,9 @@
         0
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 90
+      "experience_factor": 90,
+      "hit_die": "1-8",
+      "max_pc": 90
     },
     {
       "name": "Hobbit Fort",
@@ -1513,7 +1583,9 @@
         0
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 110
+      "experience_factor": 110,
+      "hit_die": "1-10",
+      "max_pc": 110
     },
     {
       "name": "Semi-Orque",
@@ -1530,7 +1602,9 @@
         -5
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 130
+      "experience_factor": 130,
+      "hit_die": "1-10",
+      "max_pc": 130
     },
     {
       "name": "Orque Inférieur",
@@ -1547,7 +1621,9 @@
         -5
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 80
+      "experience_factor": 80,
+      "hit_die": "1-8",
+      "max_pc": 80
     },
     {
       "name": "Orque Supérieur",
@@ -1564,7 +1640,9 @@
         -5
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 140
+      "experience_factor": 140,
+      "hit_die": "1-10",
+      "max_pc": 140
     },
     {
       "name": "Orque Seigneur",
@@ -1581,7 +1659,9 @@
         -5
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-10",
+      "max_pc": 150
     },
     {
       "name": "Gobelin",
@@ -1598,7 +1678,9 @@
         5
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-8",
+      "max_pc": 150
     },
     {
       "name": "Gremlin",
@@ -1615,7 +1697,9 @@
         -10
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 100
+      "experience_factor": 100,
+      "hit_die": "1-8",
+      "max_pc": 100
     },
     {
       "name": "Sylphe",
@@ -1632,7 +1716,9 @@
         -10
       ],
       "body_dev_bonus": 5,
-      "experience_factor": 60
+      "experience_factor": 60,
+      "hit_die": "1-5",
+      "max_pc": 60
     },
     {
       "name": "Satyre",
@@ -1649,7 +1735,9 @@
         0
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-10",
+      "max_pc": 150
     },
     {
       "name": "Nymphe",
@@ -1666,7 +1754,9 @@
         0
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 70
+      "experience_factor": 70,
+      "hit_die": "1-8",
+      "max_pc": 70
     },
     {
       "name": "Gnome",
@@ -1683,7 +1773,9 @@
         5
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 80
+      "experience_factor": 80,
+      "hit_die": "1-8",
+      "max_pc": 80
     },
     {
       "name": "Fee",
@@ -1700,7 +1792,9 @@
         -10
       ],
       "body_dev_bonus": 8,
-      "experience_factor": 150
+      "experience_factor": 150,
+      "hit_die": "1-8",
+      "max_pc": 150
     },
     {
       "name": "Semi-Ogres",
@@ -1717,7 +1811,9 @@
         -5
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 200
+      "experience_factor": 200,
+      "hit_die": "1-10",
+      "max_pc": 200
     },
     {
       "name": "Semi-Trolls",
@@ -1734,7 +1830,9 @@
         -5
       ],
       "body_dev_bonus": 15,
-      "experience_factor": 280
+      "experience_factor": 280,
+      "hit_die": "1-15",
+      "max_pc": 280
     },
     {
       "name": "Trolls",
@@ -1751,7 +1849,9 @@
         -10
       ],
       "body_dev_bonus": 10,
-      "experience_factor": 250
+      "experience_factor": 250,
+      "hit_die": "1-10",
+      "max_pc": 250
     },
     {
       "name": "Grands Hommes",
@@ -1768,7 +1868,9 @@
         -10
       ],
       "body_dev_bonus": 20,
-      "experience_factor": 300
+      "experience_factor": 300,
+      "hit_die": "1-20",
+      "max_pc": 300
     },
     {
       "name": "Olog-Hai",
@@ -1785,7 +1887,9 @@
         -10
       ],
       "body_dev_bonus": 20,
-      "experience_factor": 300
+      "experience_factor": 300,
+      "hit_die": "1-20",
+      "max_pc": 300
     },
     {
       "name": "Semi-Ogres II",
@@ -1802,7 +1906,9 @@
         -5
       ],
       "body_dev_bonus": 12,
-      "experience_factor": 250
+      "experience_factor": 250,
+      "hit_die": "1-12",
+      "max_pc": 250
     }
   ],
   "_metadata": {

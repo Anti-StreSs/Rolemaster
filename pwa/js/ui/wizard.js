@@ -536,7 +536,7 @@ function renderRaceTab(lang) {
   let table = `<div class="overflow-x-auto"><table class="skill-table"><thead><tr>
     <th>${lang === 'en' ? 'Race' : 'Race'}</th>`;
   for (const abbr of STAT_ABBREVS) table += `<th class="text-center w-8">${abbr}</th>`;
-  table += `<th class="text-center">Dév</th><th class="text-center">XP</th>
+  table += `<th class="text-center">${lang === 'en' ? 'Hit Die' : 'Dé vie'}</th><th class="text-center">Max PC</th>
   </tr></thead><tbody>`;
 
   for (const race of groupRaces) {
@@ -549,8 +549,8 @@ function renderRaceTab(lang) {
       const cls = b > 0 ? 'text-green-400' : b < 0 ? 'text-red-400' : 'text-gray-600';
       table += `<td class="text-center text-xs ${cls}">${b !== 0 ? (b > 0 ? '+' + b : b) : '·'}</td>`;
     }
-    table += `<td class="text-center text-xs">${race.body_dev_bonus || '—'}</td>`;
-    table += `<td class="text-center text-xs">${race.experience_factor || '—'}</td>`;
+    table += `<td class="text-center text-xs">${race.hit_die || '—'}</td>`;
+    table += `<td class="text-center text-xs">${race.max_pc || '—'}</td>`;
     table += `</tr>`;
   }
   table += `</tbody></table></div>`;

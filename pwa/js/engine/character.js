@@ -295,6 +295,8 @@ export function applyRace(character, race) {
   character.raceBonuses = [...race.stat_bonuses];
   character.raceBodyDevBonus = race.body_dev_bonus || 0;
   character.raceExperienceFactor = race.experience_factor || 0;
+  character.raceHitDie = race.hit_die || '1-10';
+  character.raceMaxPC = race.max_pc || 150;
 }
 
 /**
