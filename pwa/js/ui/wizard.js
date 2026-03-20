@@ -210,21 +210,22 @@ function renderInfosTab(lang) {
     ? character.primeStats.map(i => STAT_ABBREVS[i]).join(', ')
     : '—';
 
-  // RM 20 Armor Types (AT 1-20) in 4 maneuver categories
+  // RM 20 Armor Types (AT 1-20) from price chart + RM2 text
+  // AT 1-4: No Armor (skin/clothing/natural hide)
+  // AT 5-8: Soft Leather, AT 9-12: Rigid Leather, AT 13-16: Chain, AT 17-20: Plate
   const AT = lang === 'en' ? [
-    /*1*/ 'No Armor', /*2*/ 'Robes', /*3*/ 'Soft Leather', /*4*/ 'Soft Leather + Greaves',
-    /*5*/ 'Leather Coat', /*6*/ 'Leather Coat + Greaves', /*7*/ 'Leather Breastplate', /*8*/ 'Leather Breastplate + Greaves',
-    /*9*/ 'Chain Shirt', /*10*/ 'Chain Shirt + Greaves', /*11*/ 'Chain Hauberk', /*12*/ 'Chain Hauberk + Greaves',
-    /*13*/ 'Chain Mail', /*14*/ 'Chain Mail + Greaves', /*15*/ 'Half Plate', /*16*/ 'Half Plate + Greaves',
-    /*17*/ 'Full Plate', /*18*/ 'Full Plate + Greaves', /*19*/ 'Full Plate + Half Helm', /*20*/ 'Full Plate + Full Helm',
+    /*1*/ 'Skin / No Armor',            /*2*/ 'Normal Clothing / Robes',   /*3*/ 'Light Hide',          /*4*/ 'Heavy Hide / Scales',
+    /*5*/ 'Leather Jerkin',             /*6*/ 'Leather Coat',              /*7*/ 'Reinforced Leather Coat', /*8*/ 'Full Reinforced Leather',
+    /*9*/ 'Leather Breastplate',        /*10*/ 'Cuirbouilli / Studded',    /*11*/ 'Brigandine / Lamellar',  /*12*/ 'Laminated Leather',
+    /*13*/ 'Chain Shirt',               /*14*/ 'Chain Shirt + Greaves',    /*15*/ 'Full Chain',             /*16*/ 'Chain Hauberk',
+    /*17*/ 'Metal Breastplate',         /*18*/ 'Breastplate + Greaves',    /*19*/ 'Half Plate',             /*20*/ 'Full Plate',
   ] : [
-    /*1*/ 'Sans armure', /*2*/ 'Robes', /*3*/ 'Cuir souple', /*4*/ 'Cuir souple + Jambières',
-    /*5*/ 'Manteau de cuir', /*6*/ 'Manteau de cuir + Jambières', /*7*/ 'Plastron de cuir', /*8*/ 'Plastron de cuir + Jambières',
-    /*9*/ 'Chemise de mailles', /*10*/ 'Chemise de mailles + Jambières', /*11*/ 'Haubert', /*12*/ 'Haubert + Jambières',
-    /*13*/ 'Cotte de mailles', /*14*/ 'Cotte de mailles + Jambières', /*15*/ 'Demi-plates', /*16*/ 'Demi-plates + Jambières',
-    /*17*/ 'Plates complètes', /*18*/ 'Plates + Jambières', /*19*/ 'Plates + Demi-heaume', /*20*/ 'Plates + Heaume',
+    /*1*/ 'Peau / Sans armure',         /*2*/ 'Vêtements / Robes',         /*3*/ 'Peau légère (animal)',    /*4*/ 'Peau lourde / Écailles',
+    /*5*/ 'Pourpoint de cuir',          /*6*/ 'Manteau de cuir',           /*7*/ 'Manteau de cuir renforcé', /*8*/ 'Cuir renforcé complet',
+    /*9*/ 'Plastron de cuir rigide',    /*10*/ 'Cuir bouilli / Clouté',    /*11*/ 'Brigandine / Lamellaire', /*12*/ 'Cuir laminé',
+    /*13*/ 'Chemise de mailles',        /*14*/ 'Mailles + Jambières',      /*15*/ 'Cotte de mailles',       /*16*/ 'Haubert de mailles',
+    /*17*/ 'Plastron métallique',       /*18*/ 'Plastron + Jambières',     /*19*/ 'Demi-plates',            /*20*/ 'Plates complètes',
   ];
-  // Category separators for the select
   const atCatStart = { 1: lang === 'en' ? '── No Armor ──' : '── Sans armure ──', 5: lang === 'en' ? '── Soft Leather ──' : '── Cuir souple ──', 9: lang === 'en' ? '── Rigid Leather ──' : '── Cuir rigide ──', 13: lang === 'en' ? '── Chain ──' : '── Mailles ──', 17: lang === 'en' ? '── Plate ──' : '── Plates ──' };
   let armorOptions = '';
   for (let at = 1; at <= 20; at++) {
