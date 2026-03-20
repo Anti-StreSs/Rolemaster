@@ -69,6 +69,36 @@ export function getRealmKey(cls) {
   return info.baseRealm || 'none';
 }
 
+// Stat indices for power point calculation per realm
+// Em=8 (Essence), In=9 (Channeling/Théurgie), Pr=7 (Mentalism)
+const PP_STAT_MAP = { 'essence': 8, 'channeling': 9, 'mentalism': 7 };
+
+// Known RM2 hybrid professions: use average of two realm stats for PP
+// Sorcerer = Essence+Channeling, Mystic = Essence+Mentalism, Astrologer = Channeling+Mentalism
+const HYBRID_PP_NAMES = {
+  'Sorcier':     [8, 9], // Em + In (Essence + Channeling)
+  'Mystique':    [8, 7], // Em + Pr (Essence + Mentalism)
+  'Astrologue':  [9, 7], // In + Pr (Channeling + Mentalism)
+};
+
+/**
+ * Get the stat index(es) used for power point calculation.
+ * Returns array of 1-2 stat indices (0-based). Hybrids return 2 (averaged).
+ */
+export function getPPStatIndices(cls) {
+  // Check known hybrid professions by name
+  const hybridStats = HYBRID_PP_NAMES[cls.name_fr];
+  if (hybridStats) return hybridStats;
+
+  // Also check caster_type=3 (marked hybrid in data) — realm_code 7 = mentalism_essence
+  if (cls.realm_code === 7) return [8, 7]; // Em + Pr (Essence + Mentalism)
+
+  // Single realm
+  const realmKey = getRealmKey(cls);
+  const statIdx = PP_STAT_MAP[realmKey];
+  return statIdx !== undefined ? [statIdx] : [];
+}
+
 /**
  * Get realm label for display.
  */

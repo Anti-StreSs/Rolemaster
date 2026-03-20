@@ -194,10 +194,9 @@ export function getStatDev(character, statIndex) {
   if (statIndex === 0) {
     return getBodyDev(character.stats[0]);
   }
-  // Em=8, In=9, Pr=7 — matches stat order Co,Ag,AD,Mé,Ra,Fo,Rp,Pr,Em,In
-  const realmStatMap = { 'essence': 8, 'channeling': 9, 'mentalism': 7 };
-  const realmStat = realmStatMap[character.realm];
-  if (realmStat === statIndex) {
+  // Show PP multiplier for any stat used in PP calculation (single or hybrid)
+  const ppStats = character._ppStatIndices || [];
+  if (ppStats.includes(statIndex)) {
     return getPowerPointsMult(character.stats[statIndex]);
   }
   return null;
@@ -230,14 +229,21 @@ export function setBodyDevSkillIndex(idx) {
 
 /**
  * Calculate power points.
+ * Single realm: PP = ppTable[realmStat] × level
+ * Hybrid (2 realms): PP = ((ppTable[stat1] + ppTable[stat2]) / 2) × level
+ * Verified: Sorcier niv.5, Em=101, In=101 → ((3.5+3.5)/2)×5 = 17.5 ✓
  */
 export function calcPowerPoints(character) {
   if (character.realm === 'none') return 0;
-  const realmStatMap = { 'essence': 8, 'channeling': 9, 'mentalism': 7 };
-  const statIdx = realmStatMap[character.realm];
-  if (statIdx === undefined) return 0;
-  const mult = getPowerPointsMult(character.stats[statIdx]);
-  return Math.floor(mult * character.level);
+  const ppStats = character._ppStatIndices;
+  if (!ppStats || ppStats.length === 0) return 0;
+
+  let mult = 0;
+  for (const idx of ppStats) {
+    mult += getPowerPointsMult(character.stats[idx] || 0);
+  }
+  mult /= ppStats.length; // Average for hybrids, identity for single realm
+  return mult * character.level;
 }
 
 /**

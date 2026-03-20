@@ -67,18 +67,23 @@ export function getBodyDev(statValue) {
   return table[statValue];
 }
 
+// RM2 Skill Rank Bonus table (verified: DM2=+10, DM1=+5, DM0=-25)
+const RM2_RANK_BONUS = [-25, 5, 10, 15, 20, 25, 27, 29, 31, 33, 35];
+
 /**
  * Calculate rank bonus for a number of skill ranks.
- * RMSS: ranks 1-10: +5 each, 11-20: +2 each, 21-30: +1 each
+ * RM2: specific values for ranks 0-10, then:
+ *   ranks 11-15: +35 + 1 per rank above 10
+ *   ranks 16-20: +40 + 0.5 per rank above 15
+ *   ranks 21+:   +42.5 + 0.5 per rank above 20
  */
 export function getRankBonus(ranks) {
-  if (ranks <= 0) return -25;
-  let bonus = 0;
   const r = Math.floor(ranks);
-  bonus += Math.min(r, 10) * 5;
-  if (r > 10) bonus += Math.min(r - 10, 10) * 2;
-  if (r > 20) bonus += Math.min(r - 20, 10) * 1;
-  return bonus;
+  if (r <= 0) return -25;
+  if (r <= 10) return RM2_RANK_BONUS[r];
+  if (r <= 15) return 35 + (r - 10);       // 36, 37, 38, 39, 40
+  if (r <= 20) return 40 + (r - 15) * 0.5; // 40.5, 41, 41.5, 42, 42.5
+  return 42.5 + (r - 20) * 0.5;            // 43, 43.5, ...
 }
 
 /**

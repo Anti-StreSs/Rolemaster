@@ -4,7 +4,7 @@
 import { panel, showToast } from './components.js';
 import { createCharacter, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, applyRace, DEV_PHASES, getTotalRanks, getCurrentPhaseRanks, getCurrentPhaseRanksObj, getDevPointsSpent, setDevPointsSpent, getDevPointsTotal } from '../engine/character.js';
 import { generateStatRolls, getStatValues, statPotentialLookup, rollStatPairsRMSS, getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
-import { getAllClasses, getClassName, getRealmInfo, getRealmKey, getRealmLabel, isSpellUser, getClassPrimeStats } from '../engine/classes.js';
+import { getAllClasses, getClassName, getRealmInfo, getRealmKey, getRealmLabel, isSpellUser, getClassPrimeStats, getPPStatIndices } from '../engine/classes.js';
 import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts } from '../engine/skills.js';
 import { getAllRealms } from '../engine/spells.js';
 import { downloadCharacter, saveToLocalStorage } from '../engine/export.js';
@@ -977,11 +977,13 @@ function bindInfosEvents(app) {
         const cls = getAllClasses()[character.classIndex];
         character.realm = getRealmKey(cls);
         character.primeStats = getClassPrimeStats(cls);
+        character._ppStatIndices = getPPStatIndices(cls);
         // Recalculate assigned stats with new prime stat info
         reapplyAssignments();
       } else {
         character.realm = 'none';
         character.primeStats = [];
+        character._ppStatIndices = [];
         reapplyAssignments();
       }
       renderEditor(app);
