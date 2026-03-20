@@ -82,9 +82,11 @@ export function createCharacter() {
     spellPointsSpentApprenti: 0,
     spellPointsSpentLevel: 0,
 
-    // Weapon sub-skills chosen by the player
-    // [{name, weaponType (1-6), subcategory, cost: {first, second}, ranks per phase...}]
+    // Sub-skills chosen by the player for parent skills
+    // Weapon: [{name, weaponType, weaponTypeId, cost: {first, second}}]
     weaponSkills: [],
+    // Other parent sub-skills: [{parentIndex, name, cost: {first, second}}]
+    subSkills: [],
 
     // --- History tab ---
     history: '',

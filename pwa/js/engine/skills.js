@@ -199,6 +199,32 @@ export function getWeaponSkillCost(classIndex, weaponTypeId, weaponPriorities) {
 }
 
 /**
+ * Get sub-skill options for a parent skill.
+ * Returns array of {name} items the player can choose from.
+ */
+export function getParentSubSkillOptions(globalIndex) {
+  const monde = getData().monde;
+  if (!monde) return [];
+  const ws = monde.world_sections || [];
+
+  switch (globalIndex) {
+    case 61: // Arts Martiaux — martial arts styles from section 56
+      return (ws[56] || []).filter(s => s && s.length > 0).map(name => ({ name }));
+    case 136: // Linguistique — languages from section 43
+      return (ws[43] || []).map(name => ({ name: name + ' (parlé)' }))
+        .concat((ws[43] || []).map(name => ({ name: name + ' (écrit)' })));
+    case 147: // Langages Magiques — magical languages from section 45
+      return (ws[45] || []).filter(s => s && s.length > 1).map(name => ({ name }));
+    case 145: // Direction de Sorts — directed spell types from section 57
+      return (ws[57] || []).map(name => ({ name }));
+    case 148: // Maitrise de Sort — depends on character's known spell lists (dynamic)
+      return []; // Handled in UI from character.spellLists
+    default:
+      return [];
+  }
+}
+
+/**
  * Build a flat list of all skills with global indices.
  * Also registers the Body Development skill index.
  */
