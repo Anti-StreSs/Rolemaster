@@ -126,21 +126,52 @@ export function isSemiSpellUser(cls) {
   return !info.hasSpells && cls.realm_code !== 1;
 }
 
+// Prime stats per class (0-based indices into CO,AG,AD,ME,RS,FO,RP,PR,EM,IN)
+// Source: RM2/Classic profession descriptions. raw_params encoding was unreliable.
+// CO=0, AG=1, AD=2, ME=3, RS=4, FO=5, RP=6, PR=7, EM=8, IN=9
+const CLASS_PRIME_STATS = {
+  // Pure Arms (ST/CO → FO/CO)
+  'Guerrier': [0, 5], 'Barbare': [0, 5], 'Bashkar': [0, 5], 'Combattant': [0, 5],
+  'Cavalier': [0, 5], 'Larron': [1, 5], 'Marin': [0, 5],
+  // Semi-Arms (mixed)
+  'Assassin': [1, 6], 'Voleur': [1, 6], 'Monte-en-l\'air': [1, 6],
+  'Duelliste': [1, 5], 'Danseur': [1, 6], 'Escroc': [1, 7],
+  'Sicaire': [1, 6], 'Bohémien': [1, 9],
+  // Essence casters (EM primary)
+  'Magicien': [8, 1], 'Alchimiste': [8, 3], 'Illusioniste': [8, 3],
+  'Enchanteur': [8, 1], 'Evocateur': [8, 3], 'Runiste': [8, 3],
+  'Force Mage': [8, 2], 'Mage cristal': [8, 3], 'Mage du chaos': [8, 9],
+  // Channeling casters (IN primary)
+  'Clerc': [9, 7], 'Animiste': [9, 8], 'Guérisseur': [9, 8],
+  'Druide': [9, 8], 'Séléniste': [9, 7], 'Shamane': [9, 8],
+  'Necromancien': [9, 7], 'Macabre': [9, 7], 'Envoûteur': [9, 7],
+  'Prophète': [9, 7], 'Paladin': [9, 7],
+  // Mentalism casters (PR primary)
+  'Mentaliste': [7, 2], 'Barde': [7, 8], 'Sage': [7, 3],
+  'Soigneur': [7, 8], 'Lige': [7, 2], 'Limier': [7, 9],
+  // Hybrids
+  'Sorcier': [8, 9], 'Mystique': [8, 7], 'Astrologue': [9, 7],
+  'Archmage': [8, 9], 'Achiste': [8, 9],
+  // Monks / Martial
+  'Moine': [1, 2], 'Guerrier-moine': [1, 2], 'Monastique': [1, 2],
+  'Guerrier-mage': [5, 8], 'Magus': [8, 1],
+  // Semi / Special
+  'Ranger': [1, 0], 'Compagnon': [1, 0], 'Analyseur': [8, 3],
+  'Bestiaire': [8, 7], 'Commerçant': [7, 3], 'Derviche': [9, 2],
+  'Erudit': [9, 3], 'Oniromancien illusioniste': [8, 3], 'Oniromancien shamane': [9, 8],
+  'Seigneur du chaos': [9, 8],
+  // Non-spell / Craft
+  'Artisan': [1, 3], 'Fermier': [0, 5], 'Professionnel': [3, 4],
+  'Sans-profession': [0, 1], 'Leader': [7, 0],
+  'Chasseur de prime': [1, 6], 'Houri': [7, 8],
+};
+
 /**
- * Extract prime stat indices (0-based) from class raw_params.
- * raw_params[3] and raw_params[4] are the 2 prime stat indices (1-based in data).
- * Returns array of 2 zero-based indices.
+ * Get prime stat indices (0-based) for a class.
+ * Uses hardcoded RM2 profession primes — raw_params encoding was unreliable.
  */
 export function getClassPrimeStats(cls) {
-  const params = cls.raw_params;
-  if (!params || params.length < 5) return [];
-  const prime1 = params[3]; // 1-based
-  const prime2 = params[4]; // 1-based
-  const result = [];
-  if (prime1 >= 1 && prime1 <= 10) result.push(prime1 - 1);
-  if (prime2 >= 1 && prime2 <= 10 && prime2 !== prime1) result.push(prime2 - 1);
-  else if (prime2 >= 1 && prime2 <= 10) result.push(prime2 - 1); // Allow duplicate
-  return result;
+  return CLASS_PRIME_STATS[cls.name_fr] || [0, 5]; // Default: CO/FO
 }
 
 /**

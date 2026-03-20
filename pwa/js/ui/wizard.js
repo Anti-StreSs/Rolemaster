@@ -1055,8 +1055,8 @@ function renderSkillsTab(lang) {
                 </td>
                 <td class="text-center">
                   <span class="skill-pm">
-                    <button class="pm-btn pm-minus wpn-skill-minus" data-wpn-skill="${ws}" ${wPhaseRanks <= 0 ? 'disabled' : ''}>−</button>
-                    <button class="pm-btn pm-plus wpn-skill-plus" data-wpn-skill="${ws}" ${!wCanAdd || !wCanAfford ? 'disabled' : ''}>+</button>
+                    <button class="pm-btn wpn-skill-minus" data-wpn-skill="${ws}" ${wPhaseRanks <= 0 ? 'disabled' : ''}>−</button>
+                    <button class="pm-btn wpn-skill-plus" data-wpn-skill="${ws}" ${!wCanAdd || !wCanAfford ? 'disabled' : ''}>+</button>
                   </span>
                   <button class="text-red-400 text-xs ml-1 wpn-skill-remove" data-wpn-skill="${ws}">✕</button>
                 </td>
@@ -1096,8 +1096,8 @@ function renderSkillsTab(lang) {
                 </td>
                 <td class="text-center">
                   <span class="skill-pm">
-                    <button class="pm-btn pm-minus sub-skill-minus" data-sub-key="${subKey}" data-parent="${globalIndex}" data-sub-idx="${si}" ${sPhaseRanks <= 0 ? 'disabled' : ''}>−</button>
-                    <button class="pm-btn pm-plus sub-skill-plus" data-sub-key="${subKey}" data-parent="${globalIndex}" data-sub-idx="${si}" ${!sCanAdd || remaining < sNextCost ? 'disabled' : ''}>+</button>
+                    <button class="pm-btn sub-skill-minus" data-sub-key="${subKey}" data-parent="${globalIndex}" data-sub-idx="${si}" ${sPhaseRanks <= 0 ? 'disabled' : ''}>−</button>
+                    <button class="pm-btn sub-skill-plus" data-sub-key="${subKey}" data-parent="${globalIndex}" data-sub-idx="${si}" ${!sCanAdd || remaining < sNextCost ? 'disabled' : ''}>+</button>
                   </span>
                   <button class="text-red-400 text-xs ml-1 sub-skill-remove" data-parent="${globalIndex}" data-sub-idx="${si}">✕</button>
                 </td>

@@ -104,13 +104,15 @@ export function getSkillDevCost(classIndex, skillGlobalIndex) {
   const coutsIdx = getCoutsIndex(classIndex);
   if (coutsIdx < 0 || coutsIdx >= couts.classes.length) return null;
 
+  if (isNaN(skillGlobalIndex) || skillGlobalIndex < 0) return null;
+
   const costs = couts.classes[coutsIdx].cost_values;
   const idx = getCostOffset(skillGlobalIndex);
-  if (idx + 1 >= costs.length) return null;
+  if (isNaN(idx) || idx + 1 >= costs.length) return null;
 
   const first = costs[idx];
   const second = costs[idx + 1];
-  if (first === 0 && second === 0) return null;
+  if (first == null || second == null || (first === 0 && second === 0)) return null;
 
   // maxRanks per level: 2 if second cost exists, 1 if only first
   const maxRanks = second > 0 ? 2 : 1;
