@@ -1,74 +1,10 @@
-// Stats engine — stat rolling, bonus calculation, power points
+// Stats engine — stat rolling, bonus calculation, development points, power points
 
 import { getData } from './data-loader.js';
+export { generateStatRolls, getStatValues, statPotentialLookup } from './stat_potentials.js';
 
-// 10 stats indexed 1-10 in game data (0 unused)
+// 10 stats indexed 0-9
 export const STAT_COUNT = 10;
-
-/**
- * Roll a single stat using the stat_roll_table.
- * Each row has 38 values representing possible stat scores.
- * @param {number} rollIndex — which roll tier (0-9)
- * @returns {number} the stat value (25-101)
- */
-export function rollStat(rollIndex) {
-  const table = getData().carac_tables.stat_roll_table;
-  const row = table[rollIndex] || table[0];
-  const col = Math.floor(Math.random() * row.length);
-  let value = row[col];
-  if (value === 0) {
-    // Find nearest non-zero value
-    for (let i = col; i < row.length; i++) {
-      if (row[i] > 0) { value = row[i]; break; }
-    }
-    if (value === 0) {
-      for (let i = col; i >= 0; i--) {
-        if (row[i] > 0) { value = row[i]; break; }
-      }
-    }
-  }
-  return value;
-}
-
-/**
- * Roll one set of 10 stat values (one per tier row).
- * Returns array of 10 values sorted descending.
- */
-export function rollOneSet() {
-  const rolls = [];
-  for (let i = 0; i < STAT_COUNT; i++) {
-    rolls.push(rollStat(i));
-  }
-  return rolls.sort((a, b) => b - a);
-}
-
-/**
- * Roll 3 sets of 10 stats (default RMSS method: Option 14).
- * "Lancer 3 tirages de 10. assigner 2 tirages à temp/pot"
- * Player picks 2 of 3 sets: one for Temp values, one for Pot values.
- * @returns {number[][]} array of 3 sets, each containing 10 sorted values
- */
-export function rollThreeSets() {
-  return [rollOneSet(), rollOneSet(), rollOneSet()];
-}
-
-/**
- * Apply prime stat "bump to 90" rule.
- * In RMSS, if a prime stat's temp or pot value is below 90,
- * it gets bumped to 90.
- * @param {number[]} stats — 10 temp or pot values
- * @param {number[]} primeIndices — 0-based indices of prime stats
- * @returns {number[]} adjusted stats
- */
-export function applyPrimeStatBump(stats, primeIndices) {
-  const result = [...stats];
-  for (const idx of primeIndices) {
-    if (idx >= 0 && idx < result.length && result[idx] < 90) {
-      result[idx] = 90;
-    }
-  }
-  return result;
-}
 
 // --- Bonus tables ---
 
@@ -119,7 +55,10 @@ function getBodyDevTable() {
 }
 
 /**
- * Get body development hit points per level for a stat value.
+ * Get body development / dev points value for a stat temp.
+ * This table serves dual purpose in RM2:
+ * - Body Development HP per rank (indexed by Constitution)
+ * - Development points contribution per stat (indexed by any dev stat)
  */
 export function getBodyDev(statValue) {
   const table = getBodyDevTable();
@@ -130,17 +69,83 @@ export function getBodyDev(statValue) {
 
 /**
  * Calculate rank bonus for a number of skill ranks.
- * RMSS standard: 1-3: +5 each, 4-10: +2 each, 11-20: +1 each, 21-30: +0.5 each
+ * RMSS: ranks 1-10: +5 each, 11-20: +2 each, 21-30: +1 each
  */
 export function getRankBonus(ranks) {
   if (ranks <= 0) return -25;
   let bonus = 0;
   const r = Math.floor(ranks);
-  bonus += Math.min(r, 3) * 5;
-  if (r > 3) bonus += Math.min(r - 3, 7) * 2;
-  if (r > 10) bonus += Math.min(r - 10, 10) * 1;
-  if (r > 20) bonus += Math.min(r - 20, 10) * 0.5;
+  bonus += Math.min(r, 10) * 5;
+  if (r > 10) bonus += Math.min(r - 10, 10) * 2;
+  if (r > 20) bonus += Math.min(r - 20, 10) * 1;
   return bonus;
+}
+
+/**
+ * Calculate development points from stats.
+ * RM2 formula (verified against CPR093): DP = floor(Σ devTable[stat_i]) + 4
+ * Only the 5 development stats contribute: Co, Ag, AD, Mé, Ra (indices 0-4).
+ * @param {number[]} stats — array of 10 stat temporary values
+ * @returns {number} development points for this level
+ */
+export function calcDevelopmentPoints(stats) {
+  let sum = 0;
+  for (let i = 0; i < 5; i++) {
+    sum += getBodyDev(stats[i] || 0);
+  }
+  return Math.max(Math.floor(sum) + 4, 0);
+}
+
+// --- RMSS Option 14 rolling ---
+
+/**
+ * Roll a single stat using the stat_roll_table (RMSS method).
+ * Each row has 38 values — zeros are empty slots.
+ * @param {number} rollIndex — which roll tier (0-9)
+ * @returns {number} the stat value (25-101)
+ */
+export function rollStat(rollIndex) {
+  const table = getData().carac_tables.stat_roll_table;
+  const row = table[rollIndex] || table[0];
+  const valid = row.filter(v => v > 0);
+  if (valid.length === 0) return 50;
+  return valid[Math.floor(Math.random() * valid.length)];
+}
+
+/**
+ * Roll one set of 10 stat values (one per tier row).
+ * Returns array of 10 values sorted descending.
+ */
+function rollOneSet() {
+  const rolls = [];
+  for (let i = 0; i < STAT_COUNT; i++) {
+    rolls.push(rollStat(i));
+  }
+  return rolls.sort((a, b) => b - a);
+}
+
+/**
+ * RMSS Option 14: Roll 2 sets of 10, pair weaker→temp / stronger→pot.
+ * Returns array of 10 {temp, pot} pairs, sorted by pot descending.
+ * Also includes raw set data for audit logging.
+ * @returns {{pairs: {temp: number, pot: number}[], setA: number[], setB: number[]}}
+ */
+export function rollStatPairsRMSS() {
+  const setA = rollOneSet();
+  const setB = rollOneSet();
+  const sumA = setA.reduce((s, v) => s + v, 0);
+  const sumB = setB.reduce((s, v) => s + v, 0);
+  const tempSet = sumA <= sumB ? setA : setB;
+  const potSet = sumA <= sumB ? setB : setA;
+
+  const pairs = [];
+  for (let i = 0; i < STAT_COUNT; i++) {
+    const t = Math.min(tempSet[i], potSet[i]);
+    const p = Math.max(tempSet[i], potSet[i]);
+    pairs.push({ temp: t, pot: p });
+  }
+  pairs.sort((x, y) => y.pot - x.pot);
+  return { pairs, setA, setB };
 }
 
 /**

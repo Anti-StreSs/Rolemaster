@@ -1,93 +1,89 @@
 # Checkpoint — CPR093 Reverse Engineering
 
-*Updated: 2026-03-11*
+*Updated: 2026-03-20*
 
 ## Summary
 
-This session completed two major phases: a full Ghidra MCP scan of CPR093.exe (VB3 P-Code Rolemaster character creator) extracting 551 strings, 99 segments, 26 forms, and the VB3 project header; followed by copying all original game data files and parsing every .dat file into structured JSON using a universal parser. The complete Rolemaster game data (68 classes, 206 skills, 112 spell lists, development cost matrices, optional rules) is now available as machine-readable JSON for reconstruction.
+This session (Phase 4c) made critical fixes to the game engine discovered via INSTRUCTIONS batches 1-4. The stat rolling system was replaced with RM2's Stat Potentials Table (verified 8/8 against CPR093). The DP formula was corrected to `floor(Σ bodyDevTable[stat]) + 4`. Three major data structure bugs were found and fixed: the Em/In stat order swap (96 skills affected), the class-to-couts index mapping (64/68 classes wrong), and the cost array offset (+10 shift after Weapon Skill). A weapon categories assignment screen was added. Smart stat auto-assignment now prioritizes development stats and uses prime boost optimization. A stat audit log tracks rolling method, rerolls, and post-validation edits.
 
 ## Completed
 
-- [x] **Phase 1 — Initial Analysis** (Jan 2025): Ghidra exports, 1380 strings, Python+Web prototypes
-- [x] **Phase 2 — Full Ghidra MCP Scan** (2026-03-11): 99 segments mapped, 26 VB3 forms identified, VB3 project header decoded at 1120:0000, 551 strings categorized, bilingual data structures documented
-- [x] **Phase 3 — Data File Parsing** (2026-03-11): 17+ data files copied to `./data/`, universal parser `reconstruction/dat_parser.py` created, 10 structured JSON files produced in `data/parsed/`
+- [x] **Phase 1 — Initial Analysis** (Jan 2025)
+- [x] **Phase 2 — Full Ghidra MCP Scan** (2026-03-11)
+- [x] **Phase 3 — Data File Parsing** (2026-03-11)
+- [x] **Phase 4a — PWA Construction** (2026-03-12)
+- [x] **Phase 4b — Game Engine Fixes** (2026-03-20)
+- [x] **Phase 4c — RM2 Faithful Engine** (2026-03-20): stat potentials, DP formula, data fixes, weapon categories
 
-## In Progress
+## Phase 4c Changes (2026-03-20)
 
-- [ ] Cost matrix mismatch — PATHCLAS.DAT lists 69 class files but COUTS.DAT contains only 65 classes (4 missing)
-- [ ] Category_15 — 16th skill category in COMP.DAT exists but proper name not yet identified
+### Batch 1 — Stat Rolling & DP
+- RM2 Stat Potentials Table (`stat_potentials.js`) — verified 8/8 against CPR093
+- RMSS Option 14 available as alternative (method selector)
+- DP formula: `floor(Σ bodyDevTable[stat]) + 4` — verified (Guerrier=35, Voleur=43)
+- Smart auto-assign: lowest rolls → prime stats (boosted to 90), highest → dev stats
+- Stat audit log: method, rolls, rerolls, validated snapshot, post-validation edits
+- Stat order fixed: Co, Ag, AD, Mé, Ra, Fo, Rp, Pr, **Em, In** (was In, Em)
+- Realm stat mapping fixed: Essence→Em(8), Channeling→In(9), Mentalism→Pr(7)
 
-## TODO
+### Batch 2 — Skills & Weapons
+- 3-stat skill bonus formula: `floor(avg)` with tertiary stat from `raw_params[3]` (7 skills fixed)
+- Class-to-couts index mapping: `CLASS_TO_COUTS_MAP[68]` (was using wrong indices for 64/68 classes)
+- Cost array offset: +10 after Weapon Skill (index 63 takes 12 values for 6 weapon categories)
+- Weapon category priority costs extracted via `getWeaponCategoryCosts()`
+- Weapon Categories tab (CHOIXCAT): 6 types × 6 priority slots, click-to-assign UI
+- Cost display: single-rank skills show `X` instead of `X/*`
 
-- [ ] **Decode VB3 project structure** — form sizes, control arrays in 1120:0000+ (high priority)
-- [ ] **Analyze Code3 (1010)** — 23KB of VB control descriptors → form layouts, event tables
-- [ ] **Explore resource segments** — Rsrc4 (482KB) for form binary data
-- [ ] **Reconstruct core game logic** — use parsed JSON data + segment-to-form mapping to rebuild each form
-- [ ] **Validate against exampleCHARACTERS.pdf** — test reconstruction accuracy
+### Batch 3 — Confirmed/Already Correct
+- Table indexing: `table[statValue]` direct indexing ✅
+- DP budget same per phase ✅
+- Stat 101 supported ✅
+- Power points table verified ✅
 
-## Key Discoveries This Session
+## Still TODO from Batches 2-4
 
-### Phase 2 (Ghidra MCP)
-1. **VB3 Project Header** at 1120:0000 — version `03 20`, project "CPR093", 2 VBX, 26 forms (see `outputs/hexdumps/vb3_project_header_1120.txt`)
-2. **26 Forms** mapped to code segments — complete application structure (see `outputs/ghidra_full_scan_2026-03-11.md`)
-3. **CHOIXROY.FRM** — previously unknown realm selection form
-4. **Bilingual control IDs** — FR uses `4B 49`, EN uses `35 49` (see `outputs/hexdumps/stats_*.txt`)
-5. **String record structure** — VB3 control descriptor pattern with `81 04` type, `9A 38` segment ref
+### Immediate (discovered in batch 3-4 review)
+- [ ] **Rank Bonus table**: Currently RMSS (+5/rank 1-10 = +50 at rank 10). Must be RM2 (+5,+10,...+35 at rank 10)
+- [ ] **PP formula for hybrids**: `((ppTable[stat1] + ppTable[stat2]) / 2) × level`
 
-### Phase 3 (Data Parsing)
-1. **68 Rolemaster classes** — complete FR/EN (Guerrier/Fighter → Moine/Monk) in `data/parsed/classes.json`
-2. **206 skills** in 16 categories with stat associations in `data/parsed/competences.json`
-3. **112 spell lists** across 10 realms in `data/parsed/sorts.json`
-4. **Development cost matrix** — 65 classes × ~490 costs (422KB) in `data/parsed/couts.json`
-5. **ISO-8859-1 encoding** — all .dat files use Latin-1 with CRLF line endings
+### Priority 10 — Race Selection Screen
+- [ ] Tabbed UI (Humains, Elfes, Souterrains, Féériques, Géants, Autres)
+- [ ] Bonus/malus per stat, hit die, max HP display
+- [ ] Source: parse CUSTOM.MND or use RM2 Classic Table 04-01
 
-## Files Modified/Created
+### Priority 11 — Spell System Complete
+- [ ] Separate spell point pool (= DP total)
+- [ ] Popup: 4 realm tabs × 4 type sub-tabs (Base, Libres, Réservées, Autres)
+- [ ] Tier mechanism: invest points → roll D100 ≤ tier → gain spell levels
 
-### Phase 2 — Ghidra Outputs
-- `outputs/program_info.json` — binary metadata
-- `outputs/segments_map.json` — 99 segments with annotations
-- `outputs/imports_vbrun300.json` — VBRUN300 import analysis
-- `outputs/exports.json` — 2 exports
-- `outputs/namespaces.json` — 1 namespace
-- `outputs/functions.json` — 2 functions + call graph
-- `outputs/strings_categorized.json` — 551 strings in 15 categories
-- `outputs/xrefs_analysis.json` — cross-references + relocations
-- `outputs/code_analysis/entry_decompiled.c` — decompiled entry
-- `outputs/code_analysis/entry_disassembly.asm` — disassembled entry
-- `outputs/hexdumps/stats_fr_1018_0838.txt` — French stats hex
-- `outputs/hexdumps/stats_en_1018_0d10.txt` — English stats hex
-- `outputs/hexdumps/vb3_project_header_1120.txt` — project header hex
-- `outputs/ghidra_full_scan_2026-03-11.md` — complete scan summary
+### Priority 12 — Stat Gain (Level Up)
+- [ ] Stat Gain Table 05-02 lookup
+- [ ] D100 per stat, gain = f(roll, pot - temp), temp += gain (capped at pot)
 
-### Phase 3 — Data Parsing
-- `data/` — 17+ original .dat files copied from CPR093
-- `reconstruction/dat_parser.py` — universal parser (~450 lines)
-- `data/parsed/carac_tables.json` (13KB)
-- `data/parsed/classes.json` (23KB)
-- `data/parsed/competences.json` (102KB)
-- `data/parsed/sorts.json` (14KB)
-- `data/parsed/categories.json` (8.5KB)
-- `data/parsed/couts.json` (422KB)
-- `data/parsed/simil.json` (24KB)
-- `data/parsed/options.json` (22KB)
-- `data/parsed/monde_defaut.json` (33KB)
-- `data/parsed/config.json` (550B)
+### Priority 13 — Size/Appearance Table
+- [ ] Height/weight by race in History panel
 
-### Updated
-- `CHECKPOINT.md` — this file
+### Deferred
+- [ ] Editable stat associations (clickable stat abbreviations)
+- [ ] Double-mode skills (two stat sets, two bonuses)
+- [ ] Character sheet view (print-ready)
 
-## Architecture Summary
+## Key Files
 
-- **Pure VB3 P-Code** — only 3 native x86 instructions (CALLF ThunRTMain + dead code)
-- **26 forms** handle all UI (MDI application pattern)
-- **Bilingual FR/EN** with parallel data structures in code segments
-- **External .dat files** loaded at runtime for all game rules data
-- **.psg files** for character persistence, **.mnd files** for world config
-- **VBX controls**: THREED.VBX (3D buttons), CMDIALOG.VBX (file/print dialogs)
+| File | Purpose |
+|------|---------|
+| `pwa/js/engine/stat_potentials.js` | RM2 Stat Potentials Table (Table 15.1.1) |
+| `pwa/js/engine/stats.js` | Rolling (RM2+RMSS), bonuses, rank bonus, DP |
+| `pwa/js/engine/skills.js` | Costs (with class mapping + offset), 3-stat support, weapon costs |
+| `pwa/js/engine/character.js` | Model v4, stat audit log, weapon priorities |
+| `pwa/js/ui/wizard.js` | All tabs: stats, weapons, skills + smart auto-assign |
+| `pwa/sw.js` | Cache v10 |
 
 ## Next Session Entry Point
 
-All game data is now parsed into JSON. The next logical step is to **reconstruct the core game engine** using `data/parsed/*.json` as the data layer. Start by reviewing `reconstruction/cpr_core.py` (Phase 1 prototype), then extend it to use the actual parsed data. Alternatively, continue binary analysis by decoding the VB3 control descriptors in Code3 (segment 1010) to extract form layouts and event handlers, which would inform the UI reconstruction.
+1. Fix rank bonus table (RM2 instead of RMSS) — immediate
+2. Fix PP formula for hybrids — immediate
+3. Continue with Batch 3-4 priorities (races, spells, stat gain, level progression)
 
 ---
-*Phase 1: 2025-01-19 | Phase 2: 2026-03-11 | Phase 3: 2026-03-11*
+*Phase 1: 2025-01-19 | Phase 2: 2026-03-11 | Phase 3: 2026-03-11 | Phase 4a: 2026-03-12 | Phase 4b: 2026-03-20 | Phase 4c: 2026-03-20*

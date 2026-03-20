@@ -181,6 +181,22 @@ body {
   background: #4b5563;
 }
 
+.btn-secondary.active {
+  background: #f59e0b;
+  color: #1f2937;
+}
+
+.stat-log {
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+}
+
+.stat-log summary {
+  user-select: none;
+}
+
 /* Skill table */
 .skill-table {
   width: 100%;
@@ -293,6 +309,158 @@ body {
 .scroll-container::-webkit-scrollbar-thumb {
   background: #4b5563;
   border-radius: 3px;
+}
+
+/* Stat pair chips */
+.pair-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+  border: 2px solid #4b5563;
+  background: #1e293b;
+  color: #e5e7eb;
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+}
+
+.pair-chip:hover {
+  border-color: var(--color-gold);
+  background: #263347;
+}
+
+.pair-chip.selected {
+  border-color: var(--color-gold);
+  background: rgba(212, 160, 23, 0.15);
+  box-shadow: 0 0 8px rgba(212, 160, 23, 0.3);
+}
+
+.pair-chip.assigned {
+  border-color: #065f46;
+  background: rgba(6, 95, 70, 0.2);
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.pair-chip.assigned:hover {
+  opacity: 1;
+  border-color: #991b1b;
+}
+
+.pair-temp {
+  color: #fbbf24;
+}
+
+.pair-sep {
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+.pair-pot {
+  color: #60a5fa;
+}
+
+.pair-assigned-label {
+  font-size: 0.625rem;
+  color: #34d399;
+  margin-left: 0.25rem;
+  font-weight: 700;
+}
+
+/* Stat assignment mode */
+.stat-assign-mode .stat-row-clickable {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.stat-assign-mode .stat-row-clickable:hover {
+  background: rgba(212, 160, 23, 0.1) !important;
+}
+
+.stat-row-assigned {
+  background: rgba(6, 95, 70, 0.08);
+}
+
+/* Phase selector buttons */
+.phase-btn {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  border: 1px solid #4b5563;
+  background: transparent;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.phase-btn:hover {
+  border-color: var(--color-gold);
+  color: #d1d5db;
+}
+
+.phase-btn.active {
+  border-color: var(--color-gold);
+  background: rgba(212, 160, 23, 0.15);
+  color: var(--color-gold);
+}
+
+/* +/- buttons for skill development */
+.skill-pm {
+  display: inline-flex;
+  gap: 1px;
+}
+
+.pm-btn {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  border: 1px solid #4b5563;
+  border-radius: 2px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.1s;
+  line-height: 1;
+  padding: 0;
+}
+
+.pm-plus {
+  color: #34d399;
+}
+
+.pm-plus:hover:not(:disabled) {
+  background: rgba(52, 211, 153, 0.15);
+  border-color: #34d399;
+}
+
+.pm-minus {
+  color: #f87171;
+}
+
+.pm-minus:hover:not(:disabled) {
+  background: rgba(248, 113, 113, 0.15);
+  border-color: #f87171;
+}
+
+.pm-btn:disabled {
+  color: #1e293b;
+  border-color: #1e293b;
+  cursor: default;
+}
+
+/* New ranks highlight (added in current phase) */
+.rank-box.new-rank {
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.2);
 }
 
 /* Home screen */

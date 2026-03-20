@@ -2,6 +2,7 @@
 
 import { getData } from './data-loader.js';
 import { getStatBonus, getRankBonus } from './stats.js';
+import { setBodyDevSkillIndex } from './character.js';
 
 /**
  * Get all skill categories with their skills.
@@ -18,33 +19,50 @@ export function getSkillName(skill, lang) {
 }
 
 /**
+ * Get the tertiary stat index for 3-stat skills.
+ * Hidden in raw_params[3] (1-based), not exposed as a dedicated field.
+ */
+export function getTertiaryStat(skill) {
+  if (skill.stat_count >= 3 && skill.raw_params && skill.raw_params.length > 3) {
+    return skill.raw_params[3];
+  }
+  return 0;
+}
+
+/**
+ * Get all stat indices for a skill (1-based).
+ * Returns array of 1-3 stat indices.
+ */
+export function getSkillStatIndices(skill) {
+  const stats = [];
+  if (skill.primary_stat >= 1 && skill.primary_stat <= 10) stats.push(skill.primary_stat);
+  if (skill.stat_count >= 2 && skill.secondary_stat >= 1 && skill.secondary_stat <= 10) stats.push(skill.secondary_stat);
+  if (skill.stat_count >= 3) {
+    const tert = getTertiaryStat(skill);
+    if (tert >= 1 && tert <= 10) stats.push(tert);
+  }
+  return stats;
+}
+
+/**
  * Calculate the stat bonus for a skill based on character's stats.
- * Skills have primary_stat and secondary_stat (1-indexed into the 10 stats).
- * @param {object} skill — skill data from competences.json
- * @param {number[]} statValues — array of 10 stat values (index 0 = stat 1)
- * @returns {number} combined stat bonus
+ * Formula: floor(average of ALL stat bonuses) — works for 1, 2, or 3 stats.
+ * When a stat appears twice (e.g. FO/FO/AG), it counts double in the average.
  */
 export function calcSkillStatBonus(skill, statValues) {
-  const primary = skill.primary_stat;
-  const secondary = skill.secondary_stat;
+  const statIndices = getSkillStatIndices(skill);
+  if (statIndices.length === 0) return 0;
+  if (statIndices.length === 1) return getStatBonus(statValues[statIndices[0] - 1]);
 
-  let bonus = 0;
-  if (primary >= 1 && primary <= 10) {
-    bonus += getStatBonus(statValues[primary - 1]);
+  let sum = 0;
+  for (const idx of statIndices) {
+    sum += getStatBonus(statValues[idx - 1]);
   }
-  if (skill.stat_count >= 2 && secondary >= 1 && secondary <= 10) {
-    bonus += getStatBonus(statValues[secondary - 1]);
-  }
-  // Average the bonuses if two stats
-  if (skill.stat_count >= 2) {
-    bonus = Math.floor(bonus / 2);
-  }
-  return bonus;
+  return Math.floor(sum / statIndices.length);
 }
 
 /**
  * Calculate total bonus for a skill.
- * totalBonus = statBonus + rankBonus + itemBonus + misc
  */
 export function calcTotalSkillBonus(skill, statValues, ranks) {
   const statBonus = calcSkillStatBonus(skill, statValues);
@@ -52,46 +70,89 @@ export function calcTotalSkillBonus(skill, statValues, ranks) {
   return statBonus + rankBonus;
 }
 
+// Mapping from classes.json index → couts.json index
+// classes.json has 68 classes, couts.json has 65. 3 classes have no cost data.
+const CLASS_TO_COUTS_MAP = [0,1,2,3,-1,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,64,22,23,24,25,26,27,28,29,30,31,-1,32,33,-1,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63];
+
+/**
+ * Get the couts.json index for a classes.json class index.
+ */
+export function getCoutsIndex(classIndex) {
+  if (classIndex < 0 || classIndex >= CLASS_TO_COUTS_MAP.length) return -1;
+  return CLASS_TO_COUTS_MAP[classIndex];
+}
+
+// Weapon Skill at global index 63 takes 12 cost values (6 priority slots × 2)
+// instead of the normal 2, shifting all subsequent skill costs by +10.
+const WEAPON_SKILL_INDEX = 63;
+const WEAPON_COST_EXTRA = 10; // 12 values - 2 normal = 10 extra
+
+/**
+ * Get the cost array offset for a skill, accounting for the Weapon Skill
+ * taking 12 values (6 weapon category priority slots × 2) instead of 2.
+ */
+function getCostOffset(skillGlobalIndex) {
+  return skillGlobalIndex * 2 + (skillGlobalIndex > WEAPON_SKILL_INDEX ? WEAPON_COST_EXTRA : 0);
+}
+
 /**
  * Parse development cost for a skill.
- * Cost values in couts.json are encoded as pairs:
- * [first_rank_cost, second_rank_cost] for each skill category.
- * A cost of 0 means "cannot develop this skill".
- *
- * The cost_values array maps to skills in order of categories.
- * Returns {first: number, second: number} or null if not developable.
+ * Returns {first, second, maxRanks} or null if not developable.
  */
 export function getSkillDevCost(classIndex, skillGlobalIndex) {
   const couts = getData().couts;
-  if (classIndex < 0 || classIndex >= couts.classes.length) return null;
+  const coutsIdx = getCoutsIndex(classIndex);
+  if (coutsIdx < 0 || coutsIdx >= couts.classes.length) return null;
 
-  const costs = couts.classes[classIndex].cost_values;
-  // Each skill has 2 cost values (1st rank cost, 2nd rank cost per level)
-  const idx = skillGlobalIndex * 2;
+  const costs = couts.classes[coutsIdx].cost_values;
+  const idx = getCostOffset(skillGlobalIndex);
   if (idx + 1 >= costs.length) return null;
 
   const first = costs[idx];
   const second = costs[idx + 1];
-  if (first === 0 && second === 0) return null; // Not developable
+  if (first === 0 && second === 0) return null;
 
-  return { first, second };
+  // maxRanks per level: 2 if second cost exists, 1 if only first
+  const maxRanks = second > 0 ? 2 : 1;
+  return { first, second, maxRanks };
 }
 
 /**
- * Calculate how many dev points it costs to buy N ranks in a skill.
- * In RMSS: 1st rank costs `first`, 2nd rank costs `first + second`.
- * Max 2 ranks per level typically.
+ * Get weapon category priority costs for a class.
+ * Returns array of 6 {first, second} pairs, one per priority slot.
+ * The player assigns the 6 weapon types to these slots.
+ */
+export function getWeaponCategoryCosts(classIndex) {
+  const couts = getData().couts;
+  const coutsIdx = getCoutsIndex(classIndex);
+  if (coutsIdx < 0 || coutsIdx >= couts.classes.length) return null;
+
+  const costs = couts.classes[coutsIdx].cost_values;
+  const basePos = WEAPON_SKILL_INDEX * 2; // Position 126
+  const slots = [];
+  for (let i = 0; i < 6; i++) {
+    const pos = basePos + i * 2;
+    if (pos + 1 >= costs.length) break;
+    slots.push({ first: costs[pos], second: costs[pos + 1] });
+  }
+  return slots;
+}
+
+/**
+ * Calculate how many DP it costs to buy N ranks in a skill this level.
+ * 1st rank = cost.first, 2nd rank = cost.second. Max 2 per level.
  */
 export function calcDevCostForRanks(cost, numRanks) {
   if (!cost || numRanks <= 0) return 0;
   let total = 0;
   if (numRanks >= 1) total += cost.first;
-  if (numRanks >= 2) total += cost.second;
+  if (numRanks >= 2 && cost.second > 0) total += cost.second;
   return total;
 }
 
 /**
  * Build a flat list of all skills with global indices.
+ * Also registers the Body Development skill index.
  */
 export function getAllSkillsFlat() {
   const categories = getAllCategories();
@@ -100,6 +161,10 @@ export function getAllSkillsFlat() {
   for (const cat of categories) {
     for (const skill of cat.skills) {
       flat.push({ ...skill, globalIndex, categoryName: cat.name });
+      // Detect Body Development skill
+      if (skill.name_en === 'Body Development' || skill.name_fr === 'Développement Corporel') {
+        setBodyDevSkillIndex(globalIndex);
+      }
       globalIndex++;
     }
   }
@@ -107,10 +172,16 @@ export function getAllSkillsFlat() {
 }
 
 /**
- * Get total development points for a character.
- * Base dev points in RMSS = 50 at level 1.
- * This is simplified — the actual formula may depend on class and stats.
+ * Find the global index of a skill by English name.
  */
-export function getBaseDevelopmentPoints() {
-  return 50;
+export function findSkillIndex(nameEn) {
+  const categories = getAllCategories();
+  let globalIndex = 0;
+  for (const cat of categories) {
+    for (const skill of cat.skills) {
+      if (skill.name_en === nameEn) return globalIndex;
+      globalIndex++;
+    }
+  }
+  return -1;
 }

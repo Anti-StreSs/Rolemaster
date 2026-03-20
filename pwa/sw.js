@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rolemaster-v4';
+const CACHE_NAME = 'rolemaster-v10';
 const ASSETS = [
   './',
   './index.html',
@@ -7,6 +7,7 @@ const ASSETS = [
   './js/engine/data-loader.js',
   './js/engine/character.js',
   './js/engine/stats.js',
+  './js/engine/stat_potentials.js',
   './js/engine/classes.js',
   './js/engine/skills.js',
   './js/engine/spells.js',

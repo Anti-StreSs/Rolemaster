@@ -2,10 +2,10 @@
 // Profession chosen first, then stats (temp/pot pairs), then everything else
 
 import { panel, showToast } from './components.js';
-import { createCharacter, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, applyRace } from '../engine/character.js';
-import { rollThreeSets, applyPrimeStatBump, getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
+import { createCharacter, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, applyRace, DEV_PHASES, getTotalRanks, getCurrentPhaseRanks, getCurrentPhaseRanksObj, getDevPointsSpent, setDevPointsSpent, getDevPointsTotal } from '../engine/character.js';
+import { generateStatRolls, getStatValues, statPotentialLookup, rollStatPairsRMSS, getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
 import { getAllClasses, getClassName, getRealmInfo, getRealmKey, getRealmLabel, isSpellUser, getClassPrimeStats } from '../engine/classes.js';
-import { getAllCategories, getSkillName, getSkillDevCost, getBaseDevelopmentPoints } from '../engine/skills.js';
+import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts } from '../engine/skills.js';
 import { getAllRealms } from '../engine/spells.js';
 import { downloadCharacter, saveToLocalStorage } from '../engine/export.js';
 import { getData } from '../engine/data-loader.js';
@@ -33,36 +33,77 @@ const CAT_NAMES_FR = {
 const TABS = [
   { id: 'infos', label_fr: 'Infos', label_en: 'Info' },
   { id: 'stats', label_fr: 'Caractéristiques', label_en: 'Stats' },
+  { id: 'weapons', label_fr: 'Armes', label_en: 'Weapons' },
   { id: 'languages', label_fr: 'Langages', label_en: 'Languages' },
   { id: 'spells', label_fr: 'Listes de Sorts', label_en: 'Spell Lists' },
   { id: 'history', label_fr: 'Historique', label_en: 'History' },
   { id: 'skills', label_fr: 'Compétences', label_en: 'Skills' },
 ];
 
-const STAT_NAMES_FR = ['Constitution', 'Agilité', 'Auto-discipline', 'Mémoire', 'Raisonnement', 'Force', 'Rapidité', 'Présence', 'Intuition', 'Empathie'];
-const STAT_NAMES_EN = ['Constitution', 'Agility', 'Self Discipline', 'Memory', 'Reasoning', 'Strength', 'Quickness', 'Presence', 'Intuition', 'Empathy'];
-const STAT_ABBREVS = ['Co', 'Ag', 'AD', 'Mé', 'Ra', 'Fo', 'Rp', 'Pr', 'In', 'Em'];
+// 6 fixed weapon categories (from CPR093 CHOIXCAT screen)
+const WEAPON_CATEGORIES = [
+  { id: 'edged_1h',   fr: 'Tranchantes à une main',   en: 'Edged Weapons',      stats: 'FO/FO/AG' },
+  { id: 'blunt_1h',   fr: 'Contondantes à une main',  en: 'Crushing Weapons',   stats: 'FO/FO/AG' },
+  { id: 'two_handed', fr: 'Armes à deux mains',       en: 'Two-Handed Weapons', stats: 'FO/FO/AG' },
+  { id: 'polearm',    fr: 'Armes d\'Hast',            en: 'Pole Arms',          stats: 'FO/FO/AG' },
+  { id: 'ranged',     fr: 'Arcs et Arbalètes',        en: 'Missile & Bows',     stats: 'AG/AG/FO' },
+  { id: 'thrown',     fr: 'Armes de jet',              en: 'Thrown Weapons',     stats: 'FO/AG' },
+];
+
+const STAT_NAMES_FR = ['Constitution', 'Agilité', 'Auto-discipline', 'Mémoire', 'Raisonnement', 'Force', 'Rapidité', 'Présence', 'Empathie', 'Intuition'];
+const STAT_NAMES_EN = ['Constitution', 'Agility', 'Self Discipline', 'Memory', 'Reasoning', 'Strength', 'Quickness', 'Presence', 'Empathy', 'Intuition'];
+const STAT_ABBREVS = ['Co', 'Ag', 'AD', 'Mé', 'Ra', 'Fo', 'Rp', 'Pr', 'Em', 'In'];
 
 let character = null;
 let currentTab = 'infos';
 
-// Rolling state: 3 sets of 10 values
-let rolledSets = []; // [[10 values], [10 values], [10 values]]
-let selectedTempSet = -1; // Which set (0-2) for temp
-let selectedPotSet = -1;  // Which set (0-2) for pot
+// Rolling state
+let rolledStats = [];   // RM2: [{tempRoll, potRoll, temp, pot}], RMSS: [{temp, pot}]
+let rollAssignments = new Array(10).fill(-1);
+let selectedRoll = -1;
+let editMode = false;
+let rollingMethod = 'rm2'; // 'rm2' or 'rmss' — persists per character via statLog
+let statsValidated = false; // True once "Valider" is clicked
 
 export function startWizard(app, forceNew = true) {
   if (forceNew || !character) {
     character = createCharacter();
-    rolledSets = [];
-    selectedTempSet = -1;
-    selectedPotSet = -1;
+    rolledStats = [];
+    rollAssignments = new Array(10).fill(-1);
+    selectedRoll = -1;
+    editMode = false;
+    rollingMethod = 'rm2';
+    statsValidated = false;
   }
   renderEditor(app);
 }
 
 export function loadIntoWizard(app, loadedCharacter) {
   character = loadedCharacter;
+  // Ensure statLog exists (for characters saved before this feature)
+  if (!character.statLog) {
+    character.statLog = { method: 'rm2', rerollCount: 0, rolls: [], validated: null, editsAfterValidation: [] };
+  }
+  rollingMethod = character.statLog.method || 'rm2';
+  statsValidated = !!character.statLog.validated;
+
+  // Restore rolling state from saved rawRolls if available
+  if (character.rawRolls && character.rawRolls.length === STAT_COUNT && rollingMethod === 'rm2') {
+    rolledStats = character.rawRolls.map(r => {
+      const temp = r.tempRoll;
+      const pot = statPotentialLookup(r.potRoll, temp);
+      return { tempRoll: r.tempRoll, potRoll: r.potRoll, temp, pot };
+    });
+  } else {
+    rolledStats = [];
+  }
+  // If validated, reconstruct assignments in order
+  rollAssignments = new Array(STAT_COUNT).fill(-1);
+  if (character.stats.some(s => s > 0) && rolledStats.length === STAT_COUNT) {
+    for (let r = 0; r < STAT_COUNT; r++) rollAssignments[r] = r;
+  }
+  selectedRoll = -1;
+  editMode = false;
   currentTab = 'infos';
   renderEditor(app);
 }
@@ -87,6 +128,10 @@ function renderEditor(app) {
   const main = document.getElementById('app-main');
   const lang = app.lang;
 
+  // Preserve scroll position of skill list across re-renders
+  const scrollEl = main.querySelector('.scroll-container');
+  const savedScroll = scrollEl ? scrollEl.scrollTop : 0;
+
   let tabBar = `<div class="tab-bar">`;
   for (const tab of TABS) {
     const label = lang === 'en' ? tab.label_en : tab.label_fr;
@@ -108,12 +153,19 @@ function renderEditor(app) {
   bindTabEvents(app);
   bindActionEvents();
   bindContentEvents(app);
+
+  // Restore scroll position
+  if (savedScroll > 0) {
+    const newScrollEl = main.querySelector('.scroll-container');
+    if (newScrollEl) newScrollEl.scrollTop = savedScroll;
+  }
 }
 
 function renderTab(app) {
   switch (currentTab) {
     case 'infos': return renderInfosTab(app.lang);
     case 'stats': return renderStatsTab(app.lang);
+    case 'weapons': return renderWeaponsTab(app.lang);
     case 'languages': return renderLanguagesTab(app.lang);
     case 'spells': return renderSpellsTab(app.lang);
     case 'history': return renderHistoryTab(app.lang);
@@ -245,51 +297,75 @@ function renderInfosTab(lang) {
 // === Tab: Stats ===
 function renderStatsTab(lang) {
   const statNames = lang === 'en' ? STAT_NAMES_EN : STAT_NAMES_FR;
+  const hasRolls = rolledStats.length === STAT_COUNT;
+  const allAssigned = hasRolls && rollAssignments.every(a => a >= 0);
+  const log = character.statLog;
+  const canChangeMethod = !hasRolls && !statsValidated;
 
-  // Rolling section: 3 sets
-  const hasSets = rolledSets.length === 3;
-  let rollHtml = `
-    <div class="mb-4 no-print">
-      <button class="btn-primary" id="btn-roll-stats">${hasSets ? 'Relancer 3 tirages' : 'Lancer 3 tirages de 10'}</button>
-      ${character.classIndex < 0 ? `<span class="ml-3 text-red-400 text-sm">Choisissez d'abord une profession !</span>` : ''}
+  // Method selector (locked once rolls are generated or stats validated)
+  let methodHtml = `
+    <div class="flex items-center gap-3 mb-3 no-print">
+      <span class="text-gray-500 text-sm">${lang === 'en' ? 'Method:' : 'Méthode :'}</span>
+      <label class="text-sm cursor-pointer ${canChangeMethod ? '' : 'opacity-50'}">
+        <input type="radio" name="roll-method" value="rm2" ${rollingMethod === 'rm2' ? 'checked' : ''} ${canChangeMethod ? '' : 'disabled'}> RM2 (Table 15.1.1)
+      </label>
+      <label class="text-sm cursor-pointer ${canChangeMethod ? '' : 'opacity-50'}">
+        <input type="radio" name="roll-method" value="rmss" ${rollingMethod === 'rmss' ? 'checked' : ''} ${canChangeMethod ? '' : 'disabled'}> RMSS (Option 14)
+      </label>
+      ${!canChangeMethod && !statsValidated ? `<span class="text-xs text-gray-600">(${lang === 'en' ? 'reset to change' : 'réinitialiser pour changer'})</span>` : ''}
+      ${statsValidated ? `<span class="text-xs text-green-500 font-bold">${lang === 'en' ? 'VALIDATED' : 'VALIDÉ'}</span>` : ''}
     </div>
   `;
 
-  if (hasSets) {
-    rollHtml += `<div class="mb-4">`;
-    rollHtml += `<p class="text-xs text-gray-400 mb-2">Choisissez 2 tirages: un pour les valeurs Temporaires, un pour les Potentielles.</p>`;
-    for (let s = 0; s < 3; s++) {
-      const isTempSel = selectedTempSet === s;
-      const isPotSel = selectedPotSet === s;
-      const label = isTempSel ? 'TEMP' : isPotSel ? 'POT' : '';
-      const borderClass = isTempSel ? 'border-amber-500' : isPotSel ? 'border-blue-500' : 'border-gray-600';
+  // Rolling section — buttons
+  let rollHtml = `<div class="mb-4 no-print flex flex-wrap gap-2">`;
+  if (!statsValidated) {
+    rollHtml += `<button class="btn-primary" id="btn-roll-stats">${hasRolls ? 'Retirer' : (lang === 'en' ? 'Roll stats' : 'Tirer les caractéristiques')}</button>`;
+    if (hasRolls && !allAssigned) rollHtml += `<button class="btn-secondary" id="btn-auto-assign">${lang === 'en' ? 'Auto-assign' : 'Assigner auto'}</button>`;
+    if (hasRolls && rollAssignments.some(a => a >= 0)) rollHtml += `<button class="btn-secondary" id="btn-clear-assign">${lang === 'en' ? 'Reset' : 'Réinitialiser'}</button>`;
+    if (allAssigned) rollHtml += `<button class="btn-primary" id="btn-validate-stats" style="background:#16a34a">${lang === 'en' ? 'Validate stats' : 'Valider les stats'}</button>`;
+  }
+  rollHtml += `<button class="btn-secondary ${editMode ? 'active' : ''}" id="btn-edit-mode">${lang === 'en' ? 'Edit' : 'Editer'}</button>`;
+  rollHtml += `</div>`;
+
+  // Rolled results display
+  if (hasRolls && !editMode && !statsValidated) {
+    const assignedCount = rollAssignments.filter(a => a >= 0).length;
+    rollHtml += `<p class="text-xs text-green-400 mb-2">${lang === 'en' ? 'Select a result, and choose a stat.' : 'Sélectionnez un résultat, puis choisissez une caractéristique.'} (${assignedCount}/${STAT_COUNT})</p>`;
+    rollHtml += `<div class="flex flex-wrap gap-2 mb-4" id="roll-pool">`;
+    for (let r = 0; r < rolledStats.length; r++) {
+      const roll = rolledStats[r];
+      const assigned = rollAssignments[r] >= 0;
+      const isSelected = selectedRoll === r;
+      const assignedTo = assigned ? STAT_ABBREVS[rollAssignments[r]] : '';
+
+      let chipClass = 'pair-chip';
+      if (assigned) chipClass += ' assigned';
+      if (isSelected) chipClass += ' selected';
+
+      // RM2: show temp(pot), RMSS: show temp/pot
+      const sep1 = rollingMethod === 'rm2' ? '(' : '/';
+      const sep2 = rollingMethod === 'rm2' ? ')' : '';
+
       rollHtml += `
-        <div class="flex items-center gap-2 mb-1 p-2 rounded border ${borderClass} bg-gray-800">
-          <span class="text-xs text-gray-500 w-12">Set ${s + 1}:</span>
-          <span class="flex-1 font-mono text-sm">
-            ${rolledSets[s].map(v => `<span class="inline-block w-8 text-center text-amber-300">${v}</span>`).join('')}
-          </span>
-          <button class="btn-secondary text-xs py-0.5 px-2 set-temp-btn" data-set="${s}" ${isTempSel ? 'disabled' : ''}>
-            ${isTempSel ? '✓ Temp' : 'Temp'}
-          </button>
-          <button class="btn-secondary text-xs py-0.5 px-2 set-pot-btn" data-set="${s}" ${isPotSel ? 'disabled' : ''}>
-            ${isPotSel ? '✓ Pot' : 'Pot'}
-          </button>
-          ${label ? `<span class="text-xs font-bold ${isTempSel ? 'text-amber-400' : 'text-blue-400'}">${label}</span>` : ''}
-        </div>
+        <button class="${chipClass}" data-roll="${r}" ${assigned ? 'title="→ ' + assignedTo + '"' : ''}>
+          <span class="pair-temp">${roll.temp}</span>
+          <span class="pair-sep">${sep1}</span>
+          <span class="pair-pot">${roll.pot}</span>
+          ${sep2 ? `<span class="pair-sep">${sep2}</span>` : ''}
+          ${assigned ? `<span class="pair-assigned-label">${assignedTo}</span>` : ''}
+        </button>
       `;
     }
     rollHtml += `</div>`;
-
-    if (selectedTempSet >= 0 && selectedPotSet >= 0) {
-      rollHtml += `<p class="text-xs text-gray-400 mb-2">Glissez les valeurs dans le tableau ci-dessous ou saisissez-les manuellement.</p>`;
-    }
   }
 
   // Stats table
+  const canClickRows = hasRolls && selectedRoll >= 0 && !editMode && !statsValidated;
+
   let table = `
     <div class="overflow-x-auto">
-    <table class="skill-table">
+    <table class="skill-table ${canClickRows ? 'stat-assign-mode' : ''}">
       <thead>
         <tr>
           <th></th>
@@ -320,12 +396,24 @@ function renderStatsTab(lang) {
     const normClass = norm > 0 ? 'positive' : norm < 0 ? 'negative' : 'zero';
     const totalClass = total > 0 ? 'positive' : total < 0 ? 'negative' : 'zero';
 
+    const assignedRollIdx = rollAssignments.indexOf(i);
+    const hasAssignment = assignedRollIdx >= 0;
+    const rowClickable = canClickRows && !hasAssignment;
+
+    // In edit mode, show editable inputs; otherwise show readonly values
+    const tempCell = editMode
+      ? `<input type="number" class="field-inline stat-input" data-stat="${i}" data-field="temp" value="${temp || ''}" min="1" max="102">`
+      : `<span class="${temp > 0 ? '' : 'text-gray-600'}">${temp || '—'}</span>`;
+    const potCell = editMode
+      ? `<input type="number" class="field-inline stat-input" data-stat="${i}" data-field="pot" value="${pot || ''}" min="1" max="102">`
+      : `<span class="${pot > 0 ? '' : 'text-gray-600'}">${pot || '—'}</span>`;
+
     table += `
-      <tr>
+      <tr class="stat-row ${rowClickable ? 'stat-row-clickable' : ''} ${hasAssignment ? 'stat-row-assigned' : ''}" data-stat-idx="${i}">
         <td class="text-center font-bold ${isPrime ? 'text-amber-400' : 'text-gray-500'}">${STAT_ABBREVS[i]}${isPrime ? ' ★' : ''}</td>
         <td class="${isPrime ? 'text-amber-300 font-bold' : 'text-gray-300'}">${statNames[i]}</td>
-        <td class="text-center"><input type="number" class="field-inline stat-input" data-stat="${i}" data-field="temp" value="${temp || ''}" min="1" max="102"></td>
-        <td class="text-center"><input type="number" class="field-inline stat-input" data-stat="${i}" data-field="pot" value="${pot || ''}" min="1" max="102"></td>
+        <td class="text-center">${tempCell}</td>
+        <td class="text-center">${potCell}</td>
         <td class="text-center text-gray-500">${devStr}</td>
         <td class="text-center stat-bonus ${normClass}">${norm >= 0 ? '+' + norm : norm}</td>
         <td class="text-center stat-bonus ${race > 0 ? 'positive' : race < 0 ? 'negative' : 'zero'}">${race !== 0 ? (race >= 0 ? '+' + race : race) : '0'}</td>
@@ -334,9 +422,228 @@ function renderStatsTab(lang) {
       </tr>
     `;
   }
-
   table += `</tbody></table></div>`;
-  return panel(lang === 'en' ? 'Characteristics — Temp / Pot / Bonuses' : 'Caractéristiques — Temp / Pot / Bonus', rollHtml + table);
+
+  // Audit log display (collapsible)
+  let logHtml = '';
+  if (log.rolls.length > 0 || log.validated || log.editsAfterValidation.length > 0) {
+    logHtml = renderStatLog(lang);
+  }
+
+  return panel(
+    lang === 'en' ? 'Characteristics — Temp / Pot / Bonuses' : 'Caractéristiques — Temp / Pot / Bonus',
+    methodHtml + rollHtml + table + logHtml
+  );
+}
+
+/**
+ * Render the audit log as a collapsible section.
+ */
+function renderStatLog(lang) {
+  const log = character.statLog;
+  const methodLabel = log.method === 'rm2' ? 'RM2 (Table 15.1.1)' : 'RMSS (Option 14)';
+  const rerolls = log.rerollCount;
+  const edits = log.editsAfterValidation.length;
+
+  let html = `<details class="mt-4 stat-log"><summary class="text-xs text-gray-500 cursor-pointer hover:text-amber-300">`;
+  html += lang === 'en'
+    ? `Audit log — ${methodLabel}, ${rerolls} reroll${rerolls !== 1 ? 's' : ''}${log.validated ? ', validated' : ''}${edits > 0 ? `, ${edits} edit${edits !== 1 ? 's' : ''} after validation` : ''}`
+    : `Journal d'audit — ${methodLabel}, ${rerolls} relance${rerolls !== 1 ? 's' : ''}${log.validated ? ', validé' : ''}${edits > 0 ? `, ${edits} modif${edits !== 1 ? 's' : ''} après validation` : ''}`;
+  html += `</summary><div class="mt-2 text-xs text-gray-500 space-y-2 max-h-60 overflow-y-auto">`;
+
+  // Roll history
+  for (const entry of log.rolls) {
+    const time = new Date(entry.timestamp).toLocaleTimeString();
+    const label = entry.action === 'roll' ? (lang === 'en' ? 'Initial roll' : 'Tirage initial') : (lang === 'en' ? 'Reroll' : 'Relance');
+    html += `<div><span class="text-gray-600">[${time}]</span> <span class="text-amber-400">${label}</span>`;
+    if (entry.rollData) {
+      html += `<div class="ml-4 font-mono">`;
+      if (log.method === 'rm2') {
+        html += entry.rollData.map((r, i) => `${i + 1}: d100=${r.tempRoll},${r.potRoll} → ${r.temp}(${r.pot})`).join(' | ');
+      } else {
+        html += entry.rollData.map((r, i) => `${i + 1}: ${r.temp}/${r.pot}`).join(' | ');
+      }
+      html += `</div>`;
+    }
+    html += `</div>`;
+  }
+
+  // Validation snapshot
+  if (log.validated) {
+    const time = new Date(log.validated.timestamp).toLocaleTimeString();
+    html += `<div class="border-t border-gray-700 pt-2"><span class="text-gray-600">[${time}]</span> <span class="text-green-400 font-bold">${lang === 'en' ? 'VALIDATED' : 'VALIDÉ'}</span>`;
+    html += `<div class="ml-4 font-mono">`;
+    for (let i = 0; i < STAT_COUNT; i++) {
+      const s = log.validated.stats[i];
+      const p = log.validated.potentials[i];
+      html += `${STAT_ABBREVS[i]}=${s}(${p}) `;
+    }
+    html += `</div></div>`;
+  }
+
+  // Post-validation edits
+  if (log.editsAfterValidation.length > 0) {
+    html += `<div class="border-t border-gray-700 pt-2 text-red-400">`;
+    html += lang === 'en' ? 'Manual edits after validation:' : 'Modifications manuelles après validation :';
+    for (const edit of log.editsAfterValidation) {
+      const time = new Date(edit.timestamp).toLocaleTimeString();
+      html += `<div class="ml-4"><span class="text-gray-600">[${time}]</span> ${STAT_ABBREVS[edit.statIndex]}.${edit.field}: ${edit.oldVal} → ${edit.newVal}</div>`;
+    }
+    html += `</div>`;
+  }
+
+  html += `</div></details>`;
+  return html;
+}
+
+// === Tab: Weapons (CHOIXCAT) ===
+let selectedWeaponType = -1; // Index into WEAPON_CATEGORIES for click-to-assign
+
+function renderWeaponsTab(lang) {
+  if (character.classIndex < 0) {
+    return panel(lang === 'en' ? 'Weapon Categories' : 'Catégories d\'armes', `
+      <p class="text-gray-500">${lang === 'en' ? 'Choose a profession first (Info tab).' : 'Choisissez d\'abord une profession (onglet Infos).'}</p>
+    `);
+  }
+
+  const wpnCosts = getWeaponCategoryCosts(character.classIndex);
+  if (!wpnCosts) {
+    return panel(lang === 'en' ? 'Weapon Categories' : 'Catégories d\'armes', `
+      <p class="text-gray-500">${lang === 'en' ? 'No cost data for this class.' : 'Pas de données de coûts pour cette classe.'}</p>
+    `);
+  }
+
+  const priorities = character.weaponPriorities;
+  const allAssigned = priorities.every(p => p !== null);
+
+  // Left: weapon types available
+  let typesHtml = `<div class="mb-2 text-xs text-green-400">${lang === 'en' ? 'Click a weapon type, then click a priority slot to assign it.' : 'Cliquez sur un type d\'arme, puis sur un slot de priorité.'}</div>`;
+  typesHtml += `<div class="flex flex-wrap gap-2 mb-4">`;
+  for (let w = 0; w < WEAPON_CATEGORIES.length; w++) {
+    const wc = WEAPON_CATEGORIES[w];
+    const name = lang === 'en' ? wc.en : wc.fr;
+    const assigned = priorities.includes(wc.id);
+    const isSelected = selectedWeaponType === w;
+    let cls = 'pair-chip';
+    if (assigned) cls += ' assigned';
+    if (isSelected) cls += ' selected';
+    typesHtml += `<button class="${cls}" data-wpn-type="${w}" style="min-width:8rem" ${assigned ? 'title="Slot ' + (priorities.indexOf(wc.id) + 1) + '"' : ''}>
+      <span class="text-sm">${name}</span>
+      <span class="text-xs text-gray-500 ml-1">(${wc.stats})</span>
+      ${assigned ? `<span class="pair-assigned-label">${priorities.indexOf(wc.id) + 1}</span>` : ''}
+    </button>`;
+  }
+  typesHtml += `</div>`;
+
+  // Right: priority slots with costs
+  let slotsHtml = `<table class="skill-table"><thead><tr>
+    <th class="text-center w-10">#</th>
+    <th>${lang === 'en' ? 'Priority Slot' : 'Slot de priorité'}</th>
+    <th class="text-center">${lang === 'en' ? 'Cost' : 'Coût'}</th>
+    <th>${lang === 'en' ? 'Assigned Weapon' : 'Arme assignée'}</th>
+  </tr></thead><tbody>`;
+
+  for (let s = 0; s < 6; s++) {
+    const cost = wpnCosts[s];
+    const costStr = cost.second > 0 ? `${cost.first}/${cost.second}` : `${cost.first}`;
+    const assignedId = priorities[s];
+    const assignedWpn = assignedId ? WEAPON_CATEGORIES.find(w => w.id === assignedId) : null;
+    const assignedName = assignedWpn ? (lang === 'en' ? assignedWpn.en : assignedWpn.fr) : '';
+    const canClick = selectedWeaponType >= 0 && !assignedId;
+    const rowCls = canClick ? 'stat-row-clickable' : '';
+
+    slotsHtml += `<tr class="wpn-slot ${rowCls} ${assignedId ? 'stat-row-assigned' : ''}" data-slot="${s}">
+      <td class="text-center font-bold text-amber-400">${s + 1}</td>
+      <td class="text-gray-400">${s === 0 ? (lang === 'en' ? 'Best' : 'Meilleur') : s === 5 ? (lang === 'en' ? 'Worst' : 'Pire') : ''}</td>
+      <td class="text-center font-mono ${s < 2 ? 'text-green-400' : s >= 4 ? 'text-red-400' : ''}">${costStr}</td>
+      <td class="${assignedId ? 'text-amber-300 font-bold' : 'text-gray-600'}">
+        ${assignedName || (lang === 'en' ? '— empty —' : '— vide —')}
+      </td>
+    </tr>`;
+  }
+
+  slotsHtml += `</tbody></table>`;
+
+  // Buttons
+  let btns = `<div class="flex gap-2 mt-3 no-print">`;
+  if (priorities.some(p => p !== null)) {
+    btns += `<button class="btn-secondary" id="btn-wpn-clear">${lang === 'en' ? 'Reset' : 'Réinitialiser'}</button>`;
+  }
+  if (!allAssigned) {
+    btns += `<button class="btn-secondary" id="btn-wpn-auto">${lang === 'en' ? 'Auto-assign' : 'Assigner auto'}</button>`;
+  }
+  btns += `</div>`;
+
+  return panel(lang === 'en' ? 'Weapon Category Priorities' : 'Priorité des catégories d\'armes', typesHtml + slotsHtml + btns);
+}
+
+function bindWeaponsEvents(app) {
+  // Weapon type chip click
+  document.querySelectorAll('[data-wpn-type]').forEach(chip => {
+    chip.addEventListener('click', (e) => {
+      e.preventDefault();
+      const w = parseInt(chip.dataset.wpnType);
+      const wc = WEAPON_CATEGORIES[w];
+      const assigned = character.weaponPriorities.includes(wc.id);
+
+      if (assigned) {
+        // Unassign: remove from slot
+        const slot = character.weaponPriorities.indexOf(wc.id);
+        character.weaponPriorities[slot] = null;
+        selectedWeaponType = -1;
+        renderEditor(app);
+        return;
+      }
+
+      selectedWeaponType = selectedWeaponType === w ? -1 : w;
+      renderEditor(app);
+    });
+  });
+
+  // Priority slot click
+  document.querySelectorAll('.wpn-slot').forEach(row => {
+    row.addEventListener('click', () => {
+      const slot = parseInt(row.dataset.slot);
+      if (selectedWeaponType < 0) return;
+      if (character.weaponPriorities[slot] !== null) return;
+
+      const wc = WEAPON_CATEGORIES[selectedWeaponType];
+      if (character.weaponPriorities.includes(wc.id)) return;
+
+      character.weaponPriorities[slot] = wc.id;
+
+      // Auto-advance to next unassigned weapon type
+      const nextType = WEAPON_CATEGORIES.findIndex(w => !character.weaponPriorities.includes(w.id));
+      selectedWeaponType = nextType >= 0 ? nextType : -1;
+
+      renderEditor(app);
+    });
+  });
+
+  // Clear
+  const btnClear = document.getElementById('btn-wpn-clear');
+  if (btnClear) {
+    btnClear.addEventListener('click', () => {
+      character.weaponPriorities = [null, null, null, null, null, null];
+      selectedWeaponType = -1;
+      renderEditor(app);
+    });
+  }
+
+  // Auto-assign (default order)
+  const btnAuto = document.getElementById('btn-wpn-auto');
+  if (btnAuto) {
+    btnAuto.addEventListener('click', () => {
+      const remaining = WEAPON_CATEGORIES.filter(w => !character.weaponPriorities.includes(w.id));
+      for (let s = 0; s < 6; s++) {
+        if (character.weaponPriorities[s] === null && remaining.length > 0) {
+          character.weaponPriorities[s] = remaining.shift().id;
+        }
+      }
+      selectedWeaponType = -1;
+      renderEditor(app);
+    });
+  }
 }
 
 // === Tab: Languages ===
@@ -441,15 +748,45 @@ function renderHistoryTab(lang) {
 // === Tab: Skills ===
 function renderSkillsTab(lang) {
   const categories = getAllCategories();
-  const devPts = getBaseDevelopmentPoints();
-  const spent = character.devPointsSpent;
+  const devPts = getDevPointsTotal(character);
+  const spent = getDevPointsSpent(character);
   const remaining = devPts - spent;
 
+  const phaseLabels = {
+    adolescent: { fr: 'Adolescent', en: 'Adolescent' },
+    apprenti: { fr: 'Apprenti', en: 'Apprentice' },
+    level: { fr: `Niveau ${character.level}`, en: `Level ${character.level}` },
+  };
+  const phaseName = phaseLabels[character.devPhase] || phaseLabels.level;
+
+  // Phase selector + DP counter
   let header = `
-    <div class="flex justify-between items-center mb-3">
-      <span class="text-gray-400">Points de dév: <span class="text-amber-300 font-bold text-lg">${remaining}</span> / ${devPts}</span>
+    <div class="flex flex-wrap justify-between items-center mb-3 gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-gray-500 text-sm">${lang === 'en' ? 'Phase:' : 'Phase :'}</span>
+        <button class="phase-btn ${character.devPhase === 'adolescent' ? 'active' : ''}" data-phase="adolescent">
+          ${lang === 'en' ? 'Adolescent' : 'Adolescent'}
+        </button>
+        <button class="phase-btn ${character.devPhase === 'apprenti' ? 'active' : ''}" data-phase="apprenti">
+          ${lang === 'en' ? 'Apprentice' : 'Apprenti'}
+        </button>
+        <button class="phase-btn ${character.devPhase === 'level' ? 'active' : ''}" data-phase="level">
+          ${lang === 'en' ? `Level ${character.level}` : `Niveau ${character.level}`}
+        </button>
+      </div>
+      <div class="text-right">
+        <span class="text-gray-400 text-sm">${lang === 'en' ? 'Dev Points:' : 'Points de dév :'} </span>
+        <span class="text-amber-300 font-bold text-lg">${remaining}</span>
+        <span class="text-gray-500"> / ${devPts}</span>
+        ${remaining < 0 ? '<span class="text-red-400 text-xs ml-2">Dépassement !</span>' : ''}
+      </div>
     </div>
   `;
+
+  // Warning if no stats assigned
+  if (devPts <= 0 && character.stats.every(s => s === 0)) {
+    header += `<p class="text-red-400 text-sm mb-3">${lang === 'en' ? 'Assign stats first to get development points!' : 'Assignez d\'abord les caractéristiques pour obtenir des points de développement !'}</p>`;
+  }
 
   let table = `
     <div class="scroll-container" style="max-height:70vh">
@@ -458,11 +795,11 @@ function renderSkillsTab(lang) {
         <tr>
           <th class="sticky-col">${lang === 'en' ? 'Skill' : 'Compétence'}</th>
           <th class="text-center w-14">${lang === 'en' ? 'Cost' : 'Coût'}</th>
-          <th class="text-center w-16">DM</th>
-          <th class="text-center w-14">Bonus</th>
-          <th class="text-center w-14">Carac</th>
-          <th class="text-center w-14">Niv</th>
-          <th class="text-center w-14">Div</th>
+          <th class="text-center" style="min-width:5rem">${lang === 'en' ? 'Ranks' : 'Degrés'}</th>
+          <th class="text-center w-10"></th>
+          <th class="text-center w-14">${lang === 'en' ? 'Rank' : 'Rang'}</th>
+          <th class="text-center w-14">${lang === 'en' ? 'Stat' : 'Carac'}</th>
+          <th class="text-center w-14">${lang === 'en' ? 'Misc' : 'Div'}</th>
           <th class="text-center w-16 font-bold">Total</th>
         </tr>
       </thead>
@@ -475,50 +812,56 @@ function renderSkillsTab(lang) {
     const catName = lang === 'en' ? cat.name : catNameFr;
     table += `<tr><td colspan="8" class="skill-category-header">${catName}</td></tr>`;
 
-    const catIdx = categories.indexOf(cat);
     for (const skill of cat.skills) {
       const name = getSkillName(skill, lang);
-      const ranks = character.skillRanks[globalIndex] || 0;
-      const prevRanks = character.totalSkillRanks[globalIndex] || 0;
-      const totalRanks = prevRanks + ranks;
+      const phaseRanks = getCurrentPhaseRanks(character, globalIndex);
+      const totalRanks = getTotalRanks(character, globalIndex);
 
       // Cost
       const cost = getSkillDevCost(character.classIndex, globalIndex);
       let costStr = '—';
+      let maxRanks = 0;
       if (cost) {
-        costStr = cost.second > 0 ? `${cost.first}/${cost.second}` : `${cost.first}/*`;
+        costStr = cost.second > 0 ? `${cost.first}/${cost.second}` : `${cost.first}`;
+        maxRanks = cost.maxRanks;
       }
+
+      // Can add/remove?
+      const canAdd = cost && phaseRanks < maxRanks && remaining > 0;
+      const nextRankCost = phaseRanks === 0 ? (cost ? cost.first : 0) : (cost ? cost.second : 0);
+      const canAfford = remaining >= nextRankCost;
+      const canRemove = phaseRanks > 0;
 
       // Bonuses
       const rankBonus = getRankBonus(totalRanks);
       const statTotalBonus = calcSkillStatBonusTotal(skill, character);
-      const lvlBonus = (character.categoryLevelBonuses[catIdx] || 0) * character.level;
       const miscBonus = character.skillMiscBonuses[globalIndex] || 0;
-      const total = rankBonus + statTotalBonus + lvlBonus + miscBonus;
+      const total = rankBonus + statTotalBonus + miscBonus;
 
-      // Rank checkboxes (0, 1, or 2 this level)
-      const maxRanks = cost ? (cost.second > 0 ? 2 : 1) : 0;
-      let rankBoxes = '';
-      for (let r = 0; r < Math.max(maxRanks, 2); r++) {
-        if (r < maxRanks) {
-          const filled = r < ranks;
-          rankBoxes += `<span class="rank-box ${filled ? 'filled' : ''}" data-skill="${globalIndex}" data-rank="${r + 1}">${filled ? '■' : '□'}</span>`;
-        } else {
-          rankBoxes += `<span class="rank-box disabled">·</span>`;
-        }
-      }
+      // Rank boxes — visual representation of total ranks (like RM character sheet)
+      let rankBoxes = renderRankBoxes(totalRanks, phaseRanks);
+
+      // +/- buttons
+      const addDisabled = !canAdd || !canAfford ? 'disabled' : '';
+      const removeDisabled = !canRemove ? 'disabled' : '';
+      const plusMinus = cost ? `
+        <span class="skill-pm">
+          <button class="pm-btn pm-minus" data-skill="${globalIndex}" ${removeDisabled}>−</button>
+          <button class="pm-btn pm-plus" data-skill="${globalIndex}" ${addDisabled}>+</button>
+        </span>
+      ` : '';
 
       table += `
         <tr class="${totalRanks > 0 ? '' : 'text-gray-600'}">
           <td class="sticky-col text-gray-300">${name}</td>
           <td class="text-center text-gray-500 text-xs">${costStr}</td>
           <td class="text-center">
-            <span class="rank-boxes">${rankBoxes}</span>
+            ${rankBoxes}
             <span class="text-xs text-amber-300 ml-1">${totalRanks > 0 ? totalRanks : ''}</span>
           </td>
+          <td class="text-center">${plusMinus}</td>
           <td class="text-center stat-bonus ${rankBonus >= 0 ? 'positive' : 'negative'}">${rankBonus >= 0 ? '+' + rankBonus : rankBonus}</td>
           <td class="text-center stat-bonus ${statTotalBonus >= 0 ? 'positive' : 'negative'}">${statTotalBonus >= 0 ? '+' + statTotalBonus : statTotalBonus}</td>
-          <td class="text-center"><input type="number" class="field-inline skill-lvl-input" data-cat="${catIdx}" value="${lvlBonus || ''}" style="width:2.5rem" title="Bonus de niveau"></td>
           <td class="text-center"><input type="number" class="field-inline skill-misc-input" data-skill="${globalIndex}" value="${miscBonus || ''}" style="width:2.5rem" title="Bonus divers"></td>
           <td class="text-center font-bold stat-bonus ${total >= 0 ? 'positive' : 'negative'}">${total >= 0 ? '+' + total : total}</td>
         </tr>
@@ -528,26 +871,44 @@ function renderSkillsTab(lang) {
   }
 
   table += `</tbody></table></div>`;
-  return panel(lang === 'en' ? 'Skills' : 'Compétences', header + table);
+  return panel(lang === 'en' ? 'Skills — ' + phaseName.en : 'Compétences — ' + phaseName.fr, header + table);
+}
+
+/**
+ * Render rank boxes ■□ style (iconic RM character sheet look).
+ * Shows up to 10 boxes for the first tier, condensed display after that.
+ */
+function renderRankBoxes(totalRanks, phaseRanks) {
+  const maxDisplay = Math.max(totalRanks + 2, 5);
+  const capped = Math.min(maxDisplay, 10);
+  let html = '<span class="rank-boxes">';
+  for (let r = 0; r < capped; r++) {
+    const isFilled = r < totalRanks;
+    const isNewThisPhase = r >= (totalRanks - phaseRanks) && r < totalRanks;
+    const cls = isFilled ? (isNewThisPhase ? 'filled new-rank' : 'filled') : '';
+    html += `<span class="rank-box ${cls}">${isFilled ? '■' : '□'}</span>`;
+  }
+  if (totalRanks > 10) {
+    html += `<span class="text-xs text-gray-500">+${totalRanks - 10}</span>`;
+  }
+  html += '</span>';
+  return html;
 }
 
 /**
  * Calculate stat bonus using total bonuses (normal + race + special).
+ * Handles 1, 2, or 3 stats: floor(average of all stat bonuses).
  */
 function calcSkillStatBonusTotal(skill, char) {
-  const primary = skill.primary_stat;
-  const secondary = skill.secondary_stat;
-  let bonus = 0;
-  if (primary >= 1 && primary <= 10) {
-    bonus += getTotalStatBonus(char, primary - 1);
+  const statIndices = getSkillStatIndices(skill);
+  if (statIndices.length === 0) return 0;
+  if (statIndices.length === 1) return getTotalStatBonus(char, statIndices[0] - 1);
+
+  let sum = 0;
+  for (const idx of statIndices) {
+    sum += getTotalStatBonus(char, idx - 1);
   }
-  if (skill.stat_count >= 2 && secondary >= 1 && secondary <= 10) {
-    bonus += getTotalStatBonus(char, secondary - 1);
-  }
-  if (skill.stat_count >= 2) {
-    bonus = Math.floor(bonus / 2);
-  }
-  return bonus;
+  return Math.floor(sum / statIndices.length);
 }
 
 // === Event bindings ===
@@ -586,6 +947,7 @@ function bindContentEvents(app) {
   switch (currentTab) {
     case 'infos': bindInfosEvents(app); break;
     case 'stats': bindStatsEvents(app); break;
+    case 'weapons': bindWeaponsEvents(app); break;
     case 'languages': bindLanguagesEvents(app); break;
     case 'spells': bindSpellsEvents(app); break;
     case 'history': bindHistoryEvents(); break;
@@ -615,14 +977,12 @@ function bindInfosEvents(app) {
         const cls = getAllClasses()[character.classIndex];
         character.realm = getRealmKey(cls);
         character.primeStats = getClassPrimeStats(cls);
-        // Apply prime stat bump if stats already assigned
-        if (character.stats.some(s => s > 0) && character.primeStats.length > 0) {
-          character.stats = applyPrimeStatBump(character.stats, character.primeStats);
-          character.potentials = applyPrimeStatBump(character.potentials, character.primeStats);
-        }
+        // Recalculate assigned stats with new prime stat info
+        reapplyAssignments();
       } else {
         character.realm = 'none';
         character.primeStats = [];
+        reapplyAssignments();
       }
       renderEditor(app);
     });
@@ -661,44 +1021,162 @@ function bindInfosEvents(app) {
 }
 
 function bindStatsEvents(app) {
-  // Roll button
+  // Method selector radio buttons
+  document.querySelectorAll('input[name="roll-method"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      rollingMethod = radio.value;
+      character.statLog.method = rollingMethod;
+      renderEditor(app);
+    });
+  });
+
+  // Roll / Reroll button ("Retirer" = reroll all)
   const btnRoll = document.getElementById('btn-roll-stats');
   if (btnRoll) {
     btnRoll.addEventListener('click', () => {
-      rolledSets = rollThreeSets();
-      selectedTempSet = -1;
-      selectedPotSet = -1;
+      const isReroll = rolledStats.length === STAT_COUNT;
+      const log = character.statLog;
+      log.method = rollingMethod;
+
+      if (rollingMethod === 'rm2') {
+        rolledStats = generateStatRolls();
+        character.rawRolls = rolledStats.map(r => ({ tempRoll: r.tempRoll, potRoll: r.potRoll }));
+      } else {
+        const result = rollStatPairsRMSS();
+        rolledStats = result.pairs;
+        character.rawRolls = null; // RMSS doesn't use raw rolls for recalculation
+      }
+
+      // Log the roll
+      log.rolls.push({
+        timestamp: new Date().toISOString(),
+        rollData: rolledStats.map(r => ({ ...r })),
+        action: isReroll ? 'reroll' : 'roll',
+      });
+      if (isReroll) log.rerollCount++;
+
+      rollAssignments = new Array(STAT_COUNT).fill(-1);
+      selectedRoll = -1;
+      editMode = false;
+      character.stats = new Array(STAT_COUNT).fill(0);
+      character.potentials = new Array(STAT_COUNT).fill(0);
       renderEditor(app);
     });
   }
 
-  // Set assignment buttons (Temp / Pot)
-  document.querySelectorAll('.set-temp-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const s = parseInt(btn.dataset.set);
-      selectedTempSet = s;
-      if (selectedPotSet === s) selectedPotSet = -1; // Can't use same set twice
-      applyRolledSets();
+  // Auto-assign button
+  const btnAuto = document.getElementById('btn-auto-assign');
+  if (btnAuto) {
+    btnAuto.addEventListener('click', () => {
+      autoAssignRolls();
+      selectedRoll = -1;
+      renderEditor(app);
+    });
+  }
+
+  // Clear assignments (does NOT count as reroll, just clears assignment)
+  const btnClear = document.getElementById('btn-clear-assign');
+  if (btnClear) {
+    btnClear.addEventListener('click', () => {
+      rollAssignments = new Array(STAT_COUNT).fill(-1);
+      selectedRoll = -1;
+      character.stats = new Array(STAT_COUNT).fill(0);
+      character.potentials = new Array(STAT_COUNT).fill(0);
+      renderEditor(app);
+    });
+  }
+
+  // Validate stats — locks the roll and creates audit snapshot
+  const btnValidate = document.getElementById('btn-validate-stats');
+  if (btnValidate) {
+    btnValidate.addEventListener('click', () => {
+      character.statLog.validated = {
+        timestamp: new Date().toISOString(),
+        stats: [...character.stats],
+        potentials: [...character.potentials],
+        assignments: [...rollAssignments],
+      };
+      statsValidated = true;
+      showToast('Stats validées !');
+      renderEditor(app);
+    });
+  }
+
+  // Edit mode toggle (manual entry)
+  const btnEdit = document.getElementById('btn-edit-mode');
+  if (btnEdit) {
+    btnEdit.addEventListener('click', () => {
+      editMode = !editMode;
+      selectedRoll = -1;
+      renderEditor(app);
+    });
+  }
+
+  // Roll chip click — select/deselect a roll (only before validation)
+  document.querySelectorAll('.pair-chip').forEach(chip => {
+    chip.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (statsValidated) return;
+      const r = parseInt(chip.dataset.roll);
+      if (isNaN(r)) return;
+      const assigned = rollAssignments[r] >= 0;
+
+      if (assigned) {
+        const statIdx = rollAssignments[r];
+        character.stats[statIdx] = 0;
+        character.potentials[statIdx] = 0;
+        rollAssignments[r] = -1;
+        selectedRoll = -1;
+        renderEditor(app);
+        return;
+      }
+
+      selectedRoll = selectedRoll === r ? -1 : r;
       renderEditor(app);
     });
   });
 
-  document.querySelectorAll('.set-pot-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const s = parseInt(btn.dataset.set);
-      selectedPotSet = s;
-      if (selectedTempSet === s) selectedTempSet = -1;
-      applyRolledSets();
+  // Stat row click — assign selected roll to this stat
+  document.querySelectorAll('.stat-row').forEach(row => {
+    row.addEventListener('click', (e) => {
+      if (e.target.tagName === 'INPUT') return;
+      if (editMode || statsValidated) return;
+
+      const statIdx = parseInt(row.dataset.statIdx);
+      if (selectedRoll < 0) return;
+      if (rollAssignments[selectedRoll] >= 0) return;
+
+      const existingRoll = rollAssignments.indexOf(statIdx);
+      if (existingRoll >= 0) rollAssignments[existingRoll] = -1;
+
+      assignRollToStat(selectedRoll, statIdx);
+      const nextRoll = rollAssignments.findIndex(a => a < 0);
+      selectedRoll = nextRoll >= 0 ? nextRoll : -1;
       renderEditor(app);
     });
   });
 
-  // Manual stat inputs
+  // Manual stat inputs (edit mode) — logs edits if stats already validated
   document.querySelectorAll('.stat-input').forEach(input => {
     input.addEventListener('change', () => {
       const idx = parseInt(input.dataset.stat);
       const field = input.dataset.field;
       const val = parseInt(input.value) || 0;
+
+      // Record edit if stats were validated
+      if (statsValidated && (field === 'temp' || field === 'pot')) {
+        const oldVal = field === 'temp' ? character.stats[idx] : character.potentials[idx];
+        if (oldVal !== val) {
+          character.statLog.editsAfterValidation.push({
+            timestamp: new Date().toISOString(),
+            statIndex: idx,
+            field,
+            oldVal,
+            newVal: val,
+          });
+        }
+      }
+
       switch (field) {
         case 'temp':
           character.stats[idx] = val;
@@ -715,23 +1193,99 @@ function bindStatsEvents(app) {
 }
 
 /**
- * Apply the selected rolled sets to character stats.
+ * Assign a roll to a stat.
+ * RM2: prime stats get temp boosted to max(roll, 90) and pot recalculated.
+ * RMSS: prime stats get temp and pot bumped to at least 90.
  */
-function applyRolledSets() {
-  if (selectedTempSet >= 0 && rolledSets[selectedTempSet]) {
-    let tempVals = [...rolledSets[selectedTempSet]];
-    // Apply prime stat bump
-    if (character.primeStats.length > 0) {
-      tempVals = applyPrimeStatBump(tempVals, character.primeStats);
+function assignRollToStat(rollIdx, statIdx) {
+  const roll = rolledStats[rollIdx];
+  const isPrime = character.primeStats.includes(statIdx);
+
+  if (rollingMethod === 'rm2') {
+    const values = getStatValues(roll, isPrime);
+    character.stats[statIdx] = values.temp;
+    character.potentials[statIdx] = values.pot;
+  } else {
+    // RMSS: simple bump to 90 for prime stats
+    let temp = roll.temp;
+    let pot = roll.pot;
+    if (isPrime) {
+      if (temp < 90) temp = 90;
+      if (pot < 90) pot = 90;
     }
-    character.stats = tempVals;
+    if (temp > pot) pot = temp;
+    character.stats[statIdx] = temp;
+    character.potentials[statIdx] = pot;
   }
-  if (selectedPotSet >= 0 && rolledSets[selectedPotSet]) {
-    let potVals = [...rolledSets[selectedPotSet]];
-    if (character.primeStats.length > 0) {
-      potVals = applyPrimeStatBump(potVals, character.primeStats);
+  rollAssignments[rollIdx] = statIdx;
+}
+
+/**
+ * Smart auto-assign: best rolls → most useful stats for the chosen class.
+ *
+ * Strategy:
+ *   - Prime stats get the LOWEST rolls (prime boost raises temp to 90 anyway)
+ *   - Non-prime dev stats (Co,Ag,AD,Mé,Ra) get the HIGHEST rolls (maximize DP)
+ *   - Realm stat (for casters) gets the next best roll (maximize power points)
+ *   - Remaining stats fill with whatever's left
+ */
+function autoAssignRolls() {
+  const primeSet = new Set(character.primeStats);
+  const devStatIndices = [0, 1, 2, 3, 4]; // Co, Ag, AD, Mé, Ra
+  const realmStatMap = { 'essence': 8, 'channeling': 9, 'mentalism': 7 };
+  const realmStat = realmStatMap[character.realm]; // undefined if no realm
+
+  // Categorize unassigned stats into priority tiers
+  const tierA = []; // Non-prime dev stats → best rolls (maximize DP)
+  const tierB = []; // Realm stat (if not in A) → good roll (maximize PP)
+  const tierC = []; // Other non-prime, non-dev stats → medium rolls
+  const tierD = []; // Prime stats → worst rolls (prime boost compensates)
+
+  for (let i = 0; i < STAT_COUNT; i++) {
+    if (rollAssignments.includes(i)) continue; // Already assigned
+    const isPrime = primeSet.has(i);
+    const isDev = devStatIndices.includes(i);
+
+    if (isPrime) {
+      tierD.push(i);
+    } else if (isDev) {
+      tierA.push(i);
+    } else if (realmStat === i) {
+      tierB.push(i);
+    } else {
+      tierC.push(i);
     }
-    character.potentials = potVals;
+  }
+
+  // Stats ordered: best rolls first → A, B, C, then worst rolls → D
+  const statPriority = [...tierA, ...tierB, ...tierC, ...tierD];
+
+  // Sort unassigned rolls by quality (best first)
+  const unassignedRolls = [];
+  for (let r = 0; r < STAT_COUNT; r++) {
+    if (rollAssignments[r] >= 0) continue;
+    const quality = rollingMethod === 'rm2' ? rolledStats[r].tempRoll : rolledStats[r].temp;
+    unassignedRolls.push({ rollIdx: r, quality });
+  }
+  unassignedRolls.sort((a, b) => b.quality - a.quality); // Best first
+
+  // Assign: best roll → highest priority stat
+  for (let i = 0; i < Math.min(statPriority.length, unassignedRolls.length); i++) {
+    assignRollToStat(unassignedRolls[i].rollIdx, statPriority[i]);
+  }
+}
+
+/**
+ * Reapply all current roll assignments (e.g., after class change affects prime stats).
+ * Recalculates temp/pot for each assigned roll using current prime stat info.
+ */
+function reapplyAssignments() {
+  if (rolledStats.length !== STAT_COUNT) return;
+  for (let r = 0; r < STAT_COUNT; r++) {
+    const statIdx = rollAssignments[r];
+    if (statIdx < 0) continue;
+    // Re-use assignRollToStat which handles both RM2/RMSS prime logic
+    assignRollToStat(r, statIdx);
   }
 }
 
@@ -802,39 +1356,59 @@ function bindHistoryEvents() {
 }
 
 function bindSkillsEvents(app) {
-  // Rank checkboxes
-  document.querySelectorAll('.rank-box:not(.disabled)').forEach(box => {
-    box.addEventListener('click', () => {
-      const skillIdx = parseInt(box.dataset.skill);
-      const targetRank = parseInt(box.dataset.rank);
-      const currentRanks = character.skillRanks[skillIdx] || 0;
+  // Phase selector buttons
+  document.querySelectorAll('.phase-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      character.devPhase = btn.dataset.phase;
+      renderEditor(app);
+    });
+  });
+
+  // + buttons (add rank)
+  document.querySelectorAll('.pm-plus').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const skillIdx = parseInt(btn.dataset.skill);
       const cost = getSkillDevCost(character.classIndex, skillIdx);
       if (!cost) return;
 
-      if (targetRank <= currentRanks) {
-        let refund = 0;
-        for (let r = currentRanks; r >= targetRank; r--) {
-          refund += (r === 2) ? cost.second : cost.first;
-        }
-        character.skillRanks[skillIdx] = targetRank - 1;
-        character.devPointsSpent -= refund;
-      } else {
-        let addCost = 0;
-        for (let r = currentRanks + 1; r <= targetRank; r++) {
-          addCost += (r === 2) ? cost.second : cost.first;
-        }
-        const devPts = getBaseDevelopmentPoints();
-        if (character.devPointsSpent + addCost > devPts) {
-          showToast('Pas assez de points de développement !', true);
-          return;
-        }
-        character.skillRanks[skillIdx] = targetRank;
-        character.devPointsSpent += addCost;
+      const phaseRanks = getCurrentPhaseRanks(character, skillIdx);
+      if (phaseRanks >= cost.maxRanks) return;
+
+      const rankCost = phaseRanks === 0 ? cost.first : cost.second;
+      const devPts = getDevPointsTotal(character);
+      const spent = getDevPointsSpent(character);
+      if (spent + rankCost > devPts) {
+        showToast('Pas assez de points de développement !', true);
+        return;
       }
-      if (character.devPointsSpent < 0) character.devPointsSpent = 0;
+
+      const ranksObj = getCurrentPhaseRanksObj(character);
+      ranksObj[skillIdx] = phaseRanks + 1;
+      setDevPointsSpent(character, spent + rankCost);
       renderEditor(app);
     });
-    box.style.cursor = 'pointer';
+  });
+
+  // - buttons (remove rank)
+  document.querySelectorAll('.pm-minus').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const skillIdx = parseInt(btn.dataset.skill);
+      const cost = getSkillDevCost(character.classIndex, skillIdx);
+      if (!cost) return;
+
+      const phaseRanks = getCurrentPhaseRanks(character, skillIdx);
+      if (phaseRanks <= 0) return;
+
+      // Refund the last rank's cost
+      const refund = phaseRanks === 2 ? cost.second : cost.first;
+      const ranksObj = getCurrentPhaseRanksObj(character);
+      ranksObj[skillIdx] = phaseRanks - 1;
+      if (ranksObj[skillIdx] === 0) delete ranksObj[skillIdx];
+
+      const spent = getDevPointsSpent(character);
+      setDevPointsSpent(character, Math.max(0, spent - refund));
+      renderEditor(app);
+    });
   });
 
   // Misc bonus inputs
@@ -842,15 +1416,6 @@ function bindSkillsEvents(app) {
     input.addEventListener('change', () => {
       const idx = parseInt(input.dataset.skill);
       character.skillMiscBonuses[idx] = parseInt(input.value) || 0;
-    });
-  });
-
-  // Level bonus inputs (per category)
-  document.querySelectorAll('.skill-lvl-input').forEach(input => {
-    input.addEventListener('change', () => {
-      const catIdx = parseInt(input.dataset.cat);
-      const val = parseInt(input.value) || 0;
-      character.categoryLevelBonuses[catIdx] = Math.round(val / character.level) || 0;
     });
   });
 }
