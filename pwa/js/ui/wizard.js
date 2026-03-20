@@ -994,22 +994,31 @@ function renderSkillsTab(lang) {
 
     for (const skill of cat.skills) {
       const name = getSkillName(skill, lang);
-      const isParent = isParentSkill(skill);
+      const isParent = isParentSkill(skill, globalIndex);
 
       if (isParent) {
         // Parent skill — non-developable container with "add sub-skill" button
         const isWeapon = globalIndex === WEAPON_SKILL_GLOBAL_INDEX;
         const hasWeaponPriorities = character.weaponPriorities.some(p => p !== null);
-        const showAdd = isWeapon && hasWeaponPriorities;
 
+        // Determine the action button for each parent type
+        let parentAction = '';
+        if (isWeapon) {
+          if (hasWeaponPriorities) {
+            parentAction = `<button class="text-xs text-amber-400 hover:text-amber-300 font-bold btn-add-weapon-skill">⚔ ${lang === 'en' ? '+ Add weapon skill' : '+ Ajouter comp. d\'arme'}</button>`;
+          } else {
+            parentAction = `<span class="text-xs text-red-400">${lang === 'en' ? '→ Assign weapon priorities first (Weapons tab)' : '→ Assignez d\'abord les priorités (onglet Armes)'}</span>`;
+          }
+        } else {
+          parentAction = `<span class="text-xs text-gray-600">${lang === 'en' ? '(sub-skills — not yet implemented)' : '(sous-compétences — pas encore implémenté)'}</span>`;
+        }
+
+        const wpnCount = isWeapon ? character.weaponSkills.length : 0;
         table += `
-          <tr class="text-gray-500">
-            <td class="sticky-col text-purple-400 font-bold">${name} ${isWeapon ? '⚔' : '▸'}</td>
-            <td colspan="3" class="text-center text-xs text-gray-600">${lang === 'en' ? '(sub-skill selection)' : '(sélection de sous-compétences)'}</td>
-            <td colspan="3" class="text-center">
-              ${showAdd ? `<button class="text-xs text-amber-400 hover:text-amber-300 btn-add-weapon-skill">${lang === 'en' ? '+ Add weapon' : '+ Ajouter arme'}</button>` : ''}
-            </td>
-            <td></td>
+          <tr class="text-gray-500" style="background:rgba(139,92,246,0.05)">
+            <td class="sticky-col text-purple-400 font-bold">${name} ${isWeapon ? '⚔' : '▸'}${wpnCount > 0 ? ` <span class="text-xs text-gray-500">(${wpnCount})</span>` : ''}</td>
+            <td colspan="3"></td>
+            <td colspan="4" class="text-right">${parentAction}</td>
           </tr>
         `;
 

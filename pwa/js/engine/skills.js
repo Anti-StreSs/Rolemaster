@@ -150,12 +150,24 @@ export function calcDevCostForRanks(cost, numRanks) {
   return total;
 }
 
+// Explicit list of parent skills that open sub-skill selection menus.
+// These cannot receive ranks directly — you pick a specific sub-skill instead.
+// Determined by RM2 rules, NOT by subskill_data (which is general metadata on most skills).
+const PARENT_SKILL_INDICES = new Set([
+  63,  // Compétence aux armes (Weapon Skill) — choose specific weapon
+  61,  // Arts Martiaux (Martial Arts) — choose martial arts style
+  136, // Linguistique (Language) — choose a language
+  147, // Langages Magiques (Magical Languages) — choose a magical language
+  148, // Maitrise de Sort (Spell Mastery) — choose which spell list to master
+  145, // Direction de Sorts (Directed Spells) — choose directed spell type
+]);
+
 /**
- * Check if a skill is a parent/container (stat_count=0) that opens sub-skill selection.
- * These skills cannot receive ranks directly.
+ * Check if a skill is a parent/container that opens sub-skill selection.
+ * Uses an explicit list — most skills with subskill_data are still normal skills.
  */
-export function isParentSkill(skill) {
-  return skill.stat_count === 0;
+export function isParentSkill(skill, globalIndex) {
+  return PARENT_SKILL_INDICES.has(globalIndex);
 }
 
 // Global index of the "Weapon Skill" parent skill
