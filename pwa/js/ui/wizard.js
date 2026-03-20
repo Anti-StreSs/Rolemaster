@@ -2,7 +2,7 @@
 // Profession chosen first, then stats (temp/pot pairs), then everything else
 
 import { panel, showToast } from './components.js';
-import { createCharacter, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, applyRace, DEV_PHASES, getTotalRanks, getCurrentPhaseRanks, getCurrentPhaseRanksObj, getDevPointsSpent, setDevPointsSpent, getDevPointsTotal } from '../engine/character.js';
+import { createCharacter, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, applyRace, DEV_PHASES, getTotalRanks, getCurrentPhaseRanks, getCurrentPhaseRanksObj, getDevPointsSpent, setDevPointsSpent, getDevPointsTotal, getSpellPointsSpent, setSpellPointsSpent, getSpellPointsTotal } from '../engine/character.js';
 import { generateStatRolls, getStatValues, statPotentialLookup, rollStatPairsRMSS, getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
 import { getAllClasses, getClassName, getRealmInfo, getRealmKey, getRealmLabel, isSpellUser, getClassPrimeStats, getPPStatIndices } from '../engine/classes.js';
 import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts } from '../engine/skills.js';
@@ -780,58 +780,84 @@ function renderLanguagesTab(lang) {
 // === Tab: Spells ===
 function renderSpellsTab(lang) {
   const cls = character.classIndex >= 0 ? getAllClasses()[character.classIndex] : null;
+  const spellBudget = getSpellPointsTotal(character);
+  const spellSpent = getSpellPointsSpent(character);
+  const spellRemaining = spellBudget - spellSpent;
+
   if (cls && !isSpellUser(cls)) {
-    return panel(lang === 'en' ? 'Spell Lists' : 'Listes de Sorts', `
-      <p class="text-gray-500">Ce personnage n'est pas un lanceur de sorts (${getRealmLabel(cls, lang)}).</p>
+    return panel(lang === 'en' ? `Spell Lists (0 pts)` : `Listes de Sorts (0 pts)`, `
+      <p class="text-gray-500">${lang === 'en' ? 'This character is not a spell user.' : 'Ce personnage n\'est pas un lanceur de sorts.'} (${getRealmLabel(cls, lang)})</p>
     `);
   }
 
+  // Spell point counter
+  let header = `<div class="flex justify-between items-center mb-3">
+    <span class="text-gray-400 text-sm">${lang === 'en' ? 'Spell Points:' : 'Points de sorts :'} </span>
+    <span>
+      <span class="text-purple-300 font-bold text-lg">${spellRemaining}</span>
+      <span class="text-gray-500"> / ${spellBudget}</span>
+      ${spellRemaining < 0 ? '<span class="text-red-400 text-xs ml-2">!</span>' : ''}
+    </span>
+  </div>`;
+
+  // Spell lists table with tier mechanism
   let rows = '';
   character.spellLists.forEach((sl, i) => {
-    rows += `
-      <tr>
-        <td class="text-center text-gray-500">${i + 1}</td>
-        <td><input type="text" class="field-inline spell-input" data-spell="${i}" data-field="name" value="${esc(sl.name)}" style="width:16rem" placeholder="Nom de la liste..."></td>
-        <td class="text-center"><input type="number" class="field-inline spell-input" data-spell="${i}" data-field="level" value="${sl.level}" min="0" max="50" style="width:3rem"></td>
-        <td class="text-center"><input type="text" class="field-inline spell-input" data-spell="${i}" data-field="percent" value="${esc(sl.percent || '')}" style="width:3rem"></td>
-        <td><button class="text-red-400 hover:text-red-300 text-sm spell-remove" data-spell="${i}">✕</button></td>
-      </tr>
-    `;
+    const palier = sl.palier || 0;
+    const niveau = sl.niveau || 0;
+    const cost = sl.cost || 4;
+    const canInvest = spellRemaining >= cost;
+
+    rows += `<tr>
+      <td class="text-gray-300">${esc(sl.name)}</td>
+      <td class="text-center text-xs text-gray-500">${cost}/*</td>
+      <td class="text-center">
+        <span class="skill-pm">
+          <button class="pm-btn pm-minus spell-palier-minus" data-spell="${i}" ${palier <= 0 ? 'disabled' : ''}>−</button>
+          <span class="text-purple-300 font-bold mx-1">${palier}</span>
+          <button class="pm-btn pm-plus spell-palier-plus" data-spell="${i}" ${!canInvest ? 'disabled' : ''}>+</button>
+        </span>
+      </td>
+      <td class="text-center ${niveau > 0 ? 'text-green-400 font-bold' : 'text-gray-600'}">${niveau > 0 ? niveau : '—'}</td>
+      <td class="text-center text-xs text-gray-500">${esc(sl.reference || '')}</td>
+      <td>
+        ${palier > 0 && niveau === 0 ? `<button class="text-xs text-purple-400 hover:text-purple-300 spell-roll" data-spell="${i}">D100</button>` : ''}
+        <button class="text-red-400 hover:text-red-300 text-xs spell-remove" data-spell="${i}">✕</button>
+      </td>
+    </tr>`;
   });
 
-  // Available lists from data
+  let table = `<table class="skill-table"><thead><tr>
+    <th>${lang === 'en' ? 'List' : 'Liste'}</th>
+    <th class="text-center w-12">${lang === 'en' ? 'Cost' : 'Coût'}</th>
+    <th class="text-center" style="min-width:5rem">${lang === 'en' ? 'Tier' : 'Palier'}</th>
+    <th class="text-center w-12">${lang === 'en' ? 'Lvl' : 'Niv'}</th>
+    <th class="text-center w-16">Réf</th>
+    <th></th>
+  </tr></thead><tbody>${rows}</tbody></table>`;
+
+  // Available lists from data (collapsible by realm)
   const realms = getAllRealms();
-  let availableHtml = `<div class="mt-4"><details><summary class="text-sm text-gray-400 cursor-pointer hover:text-amber-300">Listes disponibles (cliquez pour ajouter)</summary>`;
+  let availableHtml = `<div class="mt-4"><details><summary class="text-sm text-gray-400 cursor-pointer hover:text-amber-300">${lang === 'en' ? 'Available spell lists (click to add)' : 'Listes disponibles (cliquez pour ajouter)'}</summary>`;
   availableHtml += `<div class="mt-2 scroll-container" style="max-height:40vh">`;
   for (const realm of realms) {
-    for (let g = 0; g < realm.groups.length; g++) {
-      const group = realm.groups[g];
-      if (group.length === 0) continue;
-      availableHtml += `<div class="text-xs text-purple-400 font-bold mt-2">${realm.name}</div>`;
+    let realmLists = '';
+    for (const group of realm.groups) {
       for (const spell of group) {
         const name = lang === 'en' ? spell.name_en : spell.name_fr;
-        availableHtml += `<button class="text-xs text-gray-400 hover:text-amber-300 block py-0.5 add-spell-list" data-spell-name="${esc(name)}">${name}</button>`;
+        realmLists += `<button class="text-xs text-gray-400 hover:text-amber-300 block py-0.5 add-spell-list" data-spell-name="${esc(name)}" data-spell-realm="${esc(realm.name)}">${name}</button>`;
       }
+    }
+    if (realmLists) {
+      availableHtml += `<div class="text-xs text-purple-400 font-bold mt-2">${realm.name}</div>${realmLists}`;
     }
   }
   availableHtml += `</div></details></div>`;
 
-  return panel(lang === 'en' ? 'Spell Lists' : 'Listes de Sorts', `
-    <table class="skill-table">
-      <thead>
-        <tr>
-          <th class="w-8">#</th>
-          <th>${lang === 'en' ? 'List' : 'Liste'}</th>
-          <th class="text-center">Niv</th>
-          <th class="text-center">%</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>${rows}</tbody>
-    </table>
-    <button class="btn-secondary text-sm mt-3" id="btn-add-spell">+ ${lang === 'en' ? 'Add List' : 'Ajouter une liste'}</button>
-    ${availableHtml}
-  `);
+  return panel(
+    lang === 'en' ? `Spell Lists (${spellBudget} pts)` : `Listes de Sorts (${spellBudget} pts)`,
+    header + table + `<button class="btn-secondary text-sm mt-3" id="btn-add-spell">+ ${lang === 'en' ? 'Add List' : 'Ajouter une liste'}</button>` + availableHtml
+  );
 }
 
 // === Tab: History ===
@@ -1491,33 +1517,88 @@ function bindLanguagesEvents(app) {
 }
 
 function bindSpellsEvents(app) {
-  document.querySelectorAll('.spell-input').forEach(input => {
-    input.addEventListener('change', () => {
-      const idx = parseInt(input.dataset.spell);
-      const field = input.dataset.field;
-      if (field === 'level') character.spellLists[idx].level = parseInt(input.value) || 0;
-      else character.spellLists[idx][field] = input.value;
-    });
-  });
-
-  document.querySelectorAll('.spell-remove').forEach(btn => {
+  // Palier + (invest spell points into a list's tier)
+  document.querySelectorAll('.spell-palier-plus').forEach(btn => {
     btn.addEventListener('click', () => {
-      character.spellLists.splice(parseInt(btn.dataset.spell), 1);
+      const idx = parseInt(btn.dataset.spell);
+      const sl = character.spellLists[idx];
+      const cost = sl.cost || 4;
+      const spent = getSpellPointsSpent(character);
+      const budget = getSpellPointsTotal(character);
+      if (spent + cost > budget) { showToast('Pas assez de points de sorts !', true); return; }
+      sl.palier = (sl.palier || 0) + cost;
+      setSpellPointsSpent(character, spent + cost);
       renderEditor(app);
     });
   });
 
+  // Palier - (refund spell points from tier)
+  document.querySelectorAll('.spell-palier-minus').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.spell);
+      const sl = character.spellLists[idx];
+      const cost = sl.cost || 4;
+      if ((sl.palier || 0) < cost) return;
+      sl.palier -= cost;
+      const spent = getSpellPointsSpent(character);
+      setSpellPointsSpent(character, Math.max(0, spent - cost));
+      renderEditor(app);
+    });
+  });
+
+  // D100 roll to resolve tier (D100 ≤ palier → gain spell levels)
+  document.querySelectorAll('.spell-roll').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.spell);
+      const sl = character.spellLists[idx];
+      const palier = sl.palier || 0;
+      const roll = Math.floor(Math.random() * 100) + 1;
+      if (roll <= palier) {
+        // Success: gain next 5 levels
+        sl.niveau = (sl.niveau || 0) + 5;
+        sl.palier = 0; // Reset tier after success
+        showToast(`D100=${roll} ≤ ${palier} → Niveaux ${sl.niveau - 4}-${sl.niveau} acquis !`);
+      } else {
+        showToast(`D100=${roll} > ${palier} — Echec. Continuez à investir.`, true);
+      }
+      renderEditor(app);
+    });
+  });
+
+  // Remove spell list
+  document.querySelectorAll('.spell-remove').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.spell);
+      // Refund palier points
+      const sl = character.spellLists[idx];
+      if (sl.palier > 0) {
+        const spent = getSpellPointsSpent(character);
+        setSpellPointsSpent(character, Math.max(0, spent - sl.palier));
+      }
+      character.spellLists.splice(idx, 1);
+      renderEditor(app);
+    });
+  });
+
+  // Add spell list (manual)
   const addBtn = document.getElementById('btn-add-spell');
   if (addBtn) {
     addBtn.addEventListener('click', () => {
-      character.spellLists.push({ name: '', level: 0, percent: '' });
+      character.spellLists.push({ name: '', cost: 4, palier: 0, niveau: 0, reference: '' });
       renderEditor(app);
     });
   }
 
+  // Add from available lists
   document.querySelectorAll('.add-spell-list').forEach(btn => {
     btn.addEventListener('click', () => {
-      character.spellLists.push({ name: btn.dataset.spellName, level: 0, percent: '' });
+      character.spellLists.push({
+        name: btn.dataset.spellName,
+        cost: 4, // Default cost, should be looked up from class data
+        palier: 0,
+        niveau: 0,
+        reference: btn.dataset.spellRealm || '',
+      });
       renderEditor(app);
     });
   });

@@ -74,7 +74,13 @@ export function createCharacter() {
     languages: [],  // [{name, spoken, written}]
 
     // --- Spells tab ---
-    spellLists: [],  // [{name, level, percent}]
+    // Each spell list: {name, cost, palier, niveau, reference, realm}
+    // cost = DP per tier point, palier = accumulated tier, niveau = spell levels gained
+    spellLists: [],
+    // Spell points spent per phase (separate pool, budget = DP total)
+    spellPointsSpentAdolescent: 0,
+    spellPointsSpentApprenti: 0,
+    spellPointsSpentLevel: 0,
 
     // --- History tab ---
     history: '',
@@ -166,6 +172,33 @@ export function setDevPointsSpent(character, value) {
  * DP = sum of stat bonuses for Co, Ag, AD, Mé, Ra (indices 0-4).
  */
 export function getDevPointsTotal(character) {
+  return calcDevelopmentPoints(character.stats);
+}
+
+/**
+ * Get spell points spent in current phase.
+ * Spell points are a SEPARATE pool from DP (same budget value).
+ */
+export function getSpellPointsSpent(character) {
+  switch (character.devPhase) {
+    case 'adolescent': return character.spellPointsSpentAdolescent || 0;
+    case 'apprenti': return character.spellPointsSpentApprenti || 0;
+    default: return character.spellPointsSpentLevel || 0;
+  }
+}
+
+export function setSpellPointsSpent(character, value) {
+  switch (character.devPhase) {
+    case 'adolescent': character.spellPointsSpentAdolescent = value; break;
+    case 'apprenti': character.spellPointsSpentApprenti = value; break;
+    default: character.spellPointsSpentLevel = value; break;
+  }
+}
+
+/**
+ * Get spell points budget (= DP total, same value).
+ */
+export function getSpellPointsTotal(character) {
   return calcDevelopmentPoints(character.stats);
 }
 
