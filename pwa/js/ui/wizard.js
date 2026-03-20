@@ -5,7 +5,7 @@ import { panel, showToast } from './components.js';
 import { createCharacter, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, applyRace, DEV_PHASES, getTotalRanks, getCurrentPhaseRanks, getCurrentPhaseRanksObj, getDevPointsSpent, setDevPointsSpent, getDevPointsTotal, getSpellPointsSpent, setSpellPointsSpent, getSpellPointsTotal } from '../engine/character.js';
 import { generateStatRolls, getStatValues, statPotentialLookup, rollStatPairsRMSS, getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
 import { getAllClasses, getClassName, getRealmInfo, getRealmKey, getRealmLabel, isSpellUser, getClassPrimeStats, getPPStatIndices } from '../engine/classes.js';
-import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts } from '../engine/skills.js';
+import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts, isParentSkill, getWeaponSubcategories, getWeaponSkillCost, WEAPON_SKILL_GLOBAL_INDEX } from '../engine/skills.js';
 import { getAllRealms } from '../engine/spells.js';
 import { downloadCharacter, saveToLocalStorage } from '../engine/export.js';
 import { processLevelUpStatGains } from '../engine/stat_gain.js';
@@ -941,58 +941,110 @@ function renderSkillsTab(lang) {
 
     for (const skill of cat.skills) {
       const name = getSkillName(skill, lang);
-      const phaseRanks = getCurrentPhaseRanks(character, globalIndex);
-      const totalRanks = getTotalRanks(character, globalIndex);
+      const isParent = isParentSkill(skill);
 
-      // Cost
-      const cost = getSkillDevCost(character.classIndex, globalIndex);
-      let costStr = '—';
-      let maxRanks = 0;
-      if (cost) {
-        costStr = cost.second > 0 ? `${cost.first}/${cost.second}` : `${cost.first}`;
-        maxRanks = cost.maxRanks;
+      if (isParent) {
+        // Parent skill — non-developable container with "add sub-skill" button
+        const isWeapon = globalIndex === WEAPON_SKILL_GLOBAL_INDEX;
+        const hasWeaponPriorities = character.weaponPriorities.some(p => p !== null);
+        const showAdd = isWeapon && hasWeaponPriorities;
+
+        table += `
+          <tr class="text-gray-500">
+            <td class="sticky-col text-purple-400 font-bold">${name} ${isWeapon ? '⚔' : '▸'}</td>
+            <td colspan="3" class="text-center text-xs text-gray-600">${lang === 'en' ? '(sub-skill selection)' : '(sélection de sous-compétences)'}</td>
+            <td colspan="3" class="text-center">
+              ${showAdd ? `<button class="text-xs text-amber-400 hover:text-amber-300 btn-add-weapon-skill">${lang === 'en' ? '+ Add weapon' : '+ Ajouter arme'}</button>` : ''}
+            </td>
+            <td></td>
+          </tr>
+        `;
+
+        // Render weapon sub-skills added by the player (under the parent)
+        if (isWeapon) {
+          for (let ws = 0; ws < character.weaponSkills.length; ws++) {
+            const wpn = character.weaponSkills[ws];
+            const wsKey = 'wpn_' + ws;
+            const wPhaseRanks = getCurrentPhaseRanks(character, wsKey);
+            const wTotalRanks = getTotalRanks(character, wsKey);
+            const wCost = wpn.cost;
+            const wCostStr = wCost.second > 0 ? `${wCost.first}/${wCost.second}` : `${wCost.first}`;
+            const wMaxRanks = wCost.second > 0 ? 2 : 1;
+            const wCanAdd = wPhaseRanks < wMaxRanks && remaining > 0;
+            const wNextCost = wPhaseRanks === 0 ? wCost.first : wCost.second;
+            const wCanAfford = remaining >= wNextCost;
+            const wRankBonus = getRankBonus(wTotalRanks);
+            const wMisc = character.skillMiscBonuses[wsKey] || 0;
+            const wTotal = wRankBonus + wMisc;
+
+            table += `
+              <tr class="${wTotalRanks > 0 ? '' : 'text-gray-600'}">
+                <td class="sticky-col text-gray-300 pl-6">↳ ${esc(wpn.name)}</td>
+                <td class="text-center text-gray-500 text-xs">${wCostStr}</td>
+                <td class="text-center">
+                  ${renderRankBoxes(wTotalRanks, wPhaseRanks)}
+                  <span class="text-xs text-amber-300 ml-1">${wTotalRanks > 0 ? wTotalRanks : ''}</span>
+                </td>
+                <td class="text-center">
+                  <span class="skill-pm">
+                    <button class="pm-btn pm-minus wpn-skill-minus" data-wpn-skill="${ws}" ${wPhaseRanks <= 0 ? 'disabled' : ''}>−</button>
+                    <button class="pm-btn pm-plus wpn-skill-plus" data-wpn-skill="${ws}" ${!wCanAdd || !wCanAfford ? 'disabled' : ''}>+</button>
+                  </span>
+                  <button class="text-red-400 text-xs ml-1 wpn-skill-remove" data-wpn-skill="${ws}">✕</button>
+                </td>
+                <td class="text-center stat-bonus ${wRankBonus >= 0 ? 'positive' : 'negative'}">${wRankBonus >= 0 ? '+' + wRankBonus : wRankBonus}</td>
+                <td class="text-center text-gray-600">—</td>
+                <td class="text-center"><input type="number" class="field-inline skill-misc-input" data-skill="${wsKey}" value="${wMisc || ''}" style="width:2.5rem"></td>
+                <td class="text-center font-bold stat-bonus ${wTotal >= 0 ? 'positive' : 'negative'}">${wTotal >= 0 ? '+' + wTotal : wTotal}</td>
+              </tr>
+            `;
+          }
+        }
+      } else {
+        // Normal developable skill
+        const phaseRanks = getCurrentPhaseRanks(character, globalIndex);
+        const totalRanks = getTotalRanks(character, globalIndex);
+        const cost = getSkillDevCost(character.classIndex, globalIndex);
+        let costStr = '—';
+        let maxRanks = 0;
+        if (cost) {
+          costStr = cost.second > 0 ? `${cost.first}/${cost.second}` : `${cost.first}`;
+          maxRanks = cost.maxRanks;
+        }
+        const canAdd = cost && phaseRanks < maxRanks && remaining > 0;
+        const nextRankCost = phaseRanks === 0 ? (cost ? cost.first : 0) : (cost ? cost.second : 0);
+        const canAfford = remaining >= nextRankCost;
+        const canRemove = phaseRanks > 0;
+        const rankBonus = getRankBonus(totalRanks);
+        const statTotalBonus = calcSkillStatBonusTotal(skill, character);
+        const miscBonus = character.skillMiscBonuses[globalIndex] || 0;
+        const total = rankBonus + statTotalBonus + miscBonus;
+        let rankBoxes = renderRankBoxes(totalRanks, phaseRanks);
+        const addDisabled = !canAdd || !canAfford ? 'disabled' : '';
+        const removeDisabled = !canRemove ? 'disabled' : '';
+        const plusMinus = cost ? `
+          <span class="skill-pm">
+            <button class="pm-btn pm-minus" data-skill="${globalIndex}" ${removeDisabled}>−</button>
+            <button class="pm-btn pm-plus" data-skill="${globalIndex}" ${addDisabled}>+</button>
+          </span>
+        ` : '';
+
+        table += `
+          <tr class="${totalRanks > 0 ? '' : 'text-gray-600'}">
+            <td class="sticky-col text-gray-300">${name}</td>
+            <td class="text-center text-gray-500 text-xs">${costStr}</td>
+            <td class="text-center">
+              ${rankBoxes}
+              <span class="text-xs text-amber-300 ml-1">${totalRanks > 0 ? totalRanks : ''}</span>
+            </td>
+            <td class="text-center">${plusMinus}</td>
+            <td class="text-center stat-bonus ${rankBonus >= 0 ? 'positive' : 'negative'}">${rankBonus >= 0 ? '+' + rankBonus : rankBonus}</td>
+            <td class="text-center stat-bonus ${statTotalBonus >= 0 ? 'positive' : 'negative'}">${statTotalBonus >= 0 ? '+' + statTotalBonus : statTotalBonus}</td>
+            <td class="text-center"><input type="number" class="field-inline skill-misc-input" data-skill="${globalIndex}" value="${miscBonus || ''}" style="width:2.5rem" title="Bonus divers"></td>
+            <td class="text-center font-bold stat-bonus ${total >= 0 ? 'positive' : 'negative'}">${total >= 0 ? '+' + total : total}</td>
+          </tr>
+        `;
       }
-
-      // Can add/remove?
-      const canAdd = cost && phaseRanks < maxRanks && remaining > 0;
-      const nextRankCost = phaseRanks === 0 ? (cost ? cost.first : 0) : (cost ? cost.second : 0);
-      const canAfford = remaining >= nextRankCost;
-      const canRemove = phaseRanks > 0;
-
-      // Bonuses
-      const rankBonus = getRankBonus(totalRanks);
-      const statTotalBonus = calcSkillStatBonusTotal(skill, character);
-      const miscBonus = character.skillMiscBonuses[globalIndex] || 0;
-      const total = rankBonus + statTotalBonus + miscBonus;
-
-      // Rank boxes — visual representation of total ranks (like RM character sheet)
-      let rankBoxes = renderRankBoxes(totalRanks, phaseRanks);
-
-      // +/- buttons
-      const addDisabled = !canAdd || !canAfford ? 'disabled' : '';
-      const removeDisabled = !canRemove ? 'disabled' : '';
-      const plusMinus = cost ? `
-        <span class="skill-pm">
-          <button class="pm-btn pm-minus" data-skill="${globalIndex}" ${removeDisabled}>−</button>
-          <button class="pm-btn pm-plus" data-skill="${globalIndex}" ${addDisabled}>+</button>
-        </span>
-      ` : '';
-
-      table += `
-        <tr class="${totalRanks > 0 ? '' : 'text-gray-600'}">
-          <td class="sticky-col text-gray-300">${name}</td>
-          <td class="text-center text-gray-500 text-xs">${costStr}</td>
-          <td class="text-center">
-            ${rankBoxes}
-            <span class="text-xs text-amber-300 ml-1">${totalRanks > 0 ? totalRanks : ''}</span>
-          </td>
-          <td class="text-center">${plusMinus}</td>
-          <td class="text-center stat-bonus ${rankBonus >= 0 ? 'positive' : 'negative'}">${rankBonus >= 0 ? '+' + rankBonus : rankBonus}</td>
-          <td class="text-center stat-bonus ${statTotalBonus >= 0 ? 'positive' : 'negative'}">${statTotalBonus >= 0 ? '+' + statTotalBonus : statTotalBonus}</td>
-          <td class="text-center"><input type="number" class="field-inline skill-misc-input" data-skill="${globalIndex}" value="${miscBonus || ''}" style="width:2.5rem" title="Bonus divers"></td>
-          <td class="text-center font-bold stat-bonus ${total >= 0 ? 'positive' : 'negative'}">${total >= 0 ? '+' + total : total}</td>
-        </tr>
-      `;
       globalIndex++;
     }
   }
@@ -1667,11 +1719,144 @@ function bindSkillsEvents(app) {
     });
   });
 
-  // Misc bonus inputs
+  // Misc bonus inputs (handles both numeric skill indices and 'wpn_N' string keys)
   document.querySelectorAll('.skill-misc-input').forEach(input => {
     input.addEventListener('change', () => {
-      const idx = parseInt(input.dataset.skill);
+      const key = input.dataset.skill;
+      const idx = key.startsWith('wpn_') ? key : parseInt(key);
       character.skillMiscBonuses[idx] = parseInt(input.value) || 0;
+    });
+  });
+
+  // "Add weapon" button — opens selection popup
+  document.querySelectorAll('.btn-add-weapon-skill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      openWeaponSkillSelector(app);
+    });
+  });
+
+  // Weapon sub-skill + buttons
+  document.querySelectorAll('.wpn-skill-plus').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const wsIdx = parseInt(btn.dataset.wpnSkill);
+      const wpn = character.weaponSkills[wsIdx];
+      if (!wpn) return;
+      const wsKey = 'wpn_' + wsIdx;
+      const phaseRanks = getCurrentPhaseRanks(character, wsKey);
+      const maxRanks = wpn.cost.second > 0 ? 2 : 1;
+      if (phaseRanks >= maxRanks) return;
+      const rankCost = phaseRanks === 0 ? wpn.cost.first : wpn.cost.second;
+      const devPts = getDevPointsTotal(character);
+      const spent = getDevPointsSpent(character);
+      if (spent + rankCost > devPts) return;
+      const ranksObj = getCurrentPhaseRanksObj(character);
+      ranksObj[wsKey] = phaseRanks + 1;
+      setDevPointsSpent(character, spent + rankCost);
+      renderEditor(app);
+    });
+  });
+
+  // Weapon sub-skill - buttons
+  document.querySelectorAll('.wpn-skill-minus').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const wsIdx = parseInt(btn.dataset.wpnSkill);
+      const wpn = character.weaponSkills[wsIdx];
+      if (!wpn) return;
+      const wsKey = 'wpn_' + wsIdx;
+      const phaseRanks = getCurrentPhaseRanks(character, wsKey);
+      if (phaseRanks <= 0) return;
+      const refund = phaseRanks === 2 ? wpn.cost.second : wpn.cost.first;
+      const ranksObj = getCurrentPhaseRanksObj(character);
+      ranksObj[wsKey] = phaseRanks - 1;
+      if (ranksObj[wsKey] === 0) delete ranksObj[wsKey];
+      const spent = getDevPointsSpent(character);
+      setDevPointsSpent(character, Math.max(0, spent - refund));
+      renderEditor(app);
+    });
+  });
+
+  // Weapon sub-skill remove
+  document.querySelectorAll('.wpn-skill-remove').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const wsIdx = parseInt(btn.dataset.wpnSkill);
+      character.weaponSkills.splice(wsIdx, 1);
+      renderEditor(app);
+    });
+  });
+}
+
+// Weapon type ID → monde.weapon_categories type number
+const WEAPON_TYPE_MAP = {
+  'edged_1h': 1, 'blunt_1h': 2, 'two_handed': 3,
+  'polearm': 4, 'ranged': 5, 'thrown': 6,
+};
+
+/**
+ * Open weapon skill selector — shows subcategories and individual weapons
+ * from the 6 weapon categories the player chose in the Armes tab.
+ */
+function openWeaponSkillSelector(app) {
+  const monde = getData().monde;
+  if (!monde || !monde.weapon_categories) return;
+
+  // Build HTML: for each weapon priority, show subcategories and weapons
+  let html = `<div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center" id="wpn-selector-overlay">
+    <div class="bg-gray-800 rounded-lg p-4 max-w-lg max-h-[80vh] overflow-y-auto">
+      <h3 class="text-amber-300 font-bold mb-3">Choisir une arme</h3>`;
+
+  for (let slot = 0; slot < 6; slot++) {
+    const typeId = character.weaponPriorities[slot];
+    if (!typeId) continue;
+    const typeNum = WEAPON_TYPE_MAP[typeId];
+    const wcDef = WEAPON_CATEGORIES.find(w => w.id === typeId);
+    const subcats = monde.weapon_categories.filter(wc => wc.type === typeNum);
+    const cost = getWeaponSkillCost(character.classIndex, typeId, character.weaponPriorities);
+    const costStr = cost ? (cost.second > 0 ? `${cost.first}/${cost.second}` : `${cost.first}`) : '?';
+
+    html += `<div class="mb-3">
+      <div class="text-sm text-purple-400 font-bold">${slot + 1}. ${wcDef ? wcDef.fr : typeId} <span class="text-gray-500 text-xs">(coût: ${costStr})</span></div>`;
+    for (const sc of subcats) {
+      html += `<div class="ml-3 text-xs text-gray-500">${sc.name}</div>`;
+      for (const weapon of sc.weapons) {
+        const already = character.weaponSkills.some(ws => ws.name === weapon && ws.weaponType === typeNum);
+        html += `<button class="ml-6 text-xs py-0.5 block ${already ? 'text-gray-600' : 'text-gray-400 hover:text-amber-300'} wpn-select-item"
+          data-wpn-name="${esc(weapon)}" data-wpn-type="${typeNum}" data-wpn-type-id="${typeId}"
+          ${already ? 'disabled' : ''}>${weapon}${already ? ' ✓' : ''}</button>`;
+      }
+    }
+    html += `</div>`;
+  }
+
+  html += `<button class="btn-secondary text-sm mt-3" id="wpn-selector-close">Fermer</button>
+    </div></div>`;
+
+  document.body.insertAdjacentHTML('beforeend', html);
+
+  // Bind events
+  document.getElementById('wpn-selector-close').addEventListener('click', () => {
+    document.getElementById('wpn-selector-overlay').remove();
+  });
+  document.getElementById('wpn-selector-overlay').addEventListener('click', (e) => {
+    if (e.target.id === 'wpn-selector-overlay') e.target.remove();
+  });
+
+  document.querySelectorAll('.wpn-select-item:not([disabled])').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.dataset.wpnName;
+      const typeNum = parseInt(btn.dataset.wpnType);
+      const typeId = btn.dataset.wpnTypeId;
+      const cost = getWeaponSkillCost(character.classIndex, typeId, character.weaponPriorities);
+      if (!cost) return;
+
+      character.weaponSkills.push({
+        name,
+        weaponType: typeNum,
+        weaponTypeId: typeId,
+        cost: { first: cost.first, second: cost.second },
+      });
+
+      document.getElementById('wpn-selector-overlay').remove();
+      renderEditor(app);
     });
   });
 }

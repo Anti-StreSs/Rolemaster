@@ -151,6 +151,42 @@ export function calcDevCostForRanks(cost, numRanks) {
 }
 
 /**
+ * Check if a skill is a parent/container (stat_count=0) that opens sub-skill selection.
+ * These skills cannot receive ranks directly.
+ */
+export function isParentSkill(skill) {
+  return skill.stat_count === 0;
+}
+
+// Global index of the "Weapon Skill" parent skill
+export const WEAPON_SKILL_GLOBAL_INDEX = 63;
+
+/**
+ * Get weapon subcategories for a given weapon type (1-6).
+ * Returns array of {name, weapons: string[]} from monde.json.
+ */
+export function getWeaponSubcategories(weaponTypeIndex) {
+  const monde = getData().monde;
+  if (!monde || !monde.weapon_categories) return [];
+  return monde.weapon_categories.filter(wc => wc.type === weaponTypeIndex);
+}
+
+/**
+ * Get the weapon priority cost for a weapon type based on character's weapon priorities.
+ * @param {number} classIndex - class index
+ * @param {string} weaponTypeId - weapon type ID (e.g. 'edged_1h')
+ * @param {(string|null)[]} weaponPriorities - character.weaponPriorities array
+ * @returns {{first: number, second: number}|null}
+ */
+export function getWeaponSkillCost(classIndex, weaponTypeId, weaponPriorities) {
+  const slotIndex = weaponPriorities.indexOf(weaponTypeId);
+  if (slotIndex < 0) return null;
+  const wpnCosts = getWeaponCategoryCosts(classIndex);
+  if (!wpnCosts || slotIndex >= wpnCosts.length) return null;
+  return wpnCosts[slotIndex];
+}
+
+/**
  * Build a flat list of all skills with global indices.
  * Also registers the Body Development skill index.
  */
