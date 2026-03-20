@@ -1,0 +1,954 @@
+{
+  "_source": "CUSTOM.MND bonuses + monde_CUSTOM-revise-races.json groups",
+  "_stat_order": [
+    "CO",
+    "AG",
+    "AD",
+    "ME",
+    "RS",
+    "FO",
+    "RP",
+    "PR",
+    "EM",
+    "IT"
+  ],
+  "groups": [
+    {
+      "group_id": "&&",
+      "group_label": "Variantes humaines",
+      "races": [
+        {
+          "name": "Sans Race",
+          "bonuses": {
+            "CO": 0,
+            "AG": 0,
+            "AD": 0,
+            "ME": 0,
+            "RS": 0,
+            "FO": 0,
+            "RP": 0,
+            "PR": 0,
+            "EM": 0,
+            "IT": 0
+          },
+          "hit_die": "1-10",
+          "max_pc": 150
+        },
+        {
+          "name": "Homme Commun",
+          "bonuses": {
+            "CO": 0,
+            "AG": 0,
+            "AD": 5,
+            "ME": 0,
+            "RS": 0,
+            "FO": 5,
+            "RP": 0,
+            "PR": 0,
+            "EM": 0,
+            "IT": 0
+          },
+          "hit_die": "1-8",
+          "max_pc": 120
+        },
+        {
+          "name": "Surhomme",
+          "bonuses": {
+            "CO": 10,
+            "AG": -5,
+            "AD": 0,
+            "ME": 0,
+            "RS": 0,
+            "FO": 10,
+            "RP": -5,
+            "PR": 10,
+            "EM": 5,
+            "IT": 0
+          },
+          "hit_die": "1-10",
+          "max_pc": 120
+        },
+        {
+          "name": "Tribus de l'Ours",
+          "bonuses": {
+            "CO": 15,
+            "AG": 0,
+            "AD": 0,
+            "ME": 0,
+            "RS": 0,
+            "FO": 15,
+            "RP": -5,
+            "PR": 5,
+            "EM": -10,
+            "IT": 5
+          },
+          "hit_die": "1-10",
+          "max_pc": 150
+        },
+        {
+          "name": "Tribus des Ténèbres",
+          "bonuses": {
+            "CO": 5,
+            "AG": 5,
+            "AD": 0,
+            "ME": 0,
+            "RS": 0,
+            "FO": 5,
+            "RP": 5,
+            "PR": -5,
+            "EM": 5,
+            "IT": -5
+          },
+          "hit_die": "1-8",
+          "max_pc": 120
+        },
+        {
+          "name": "Nordique",
+          "bonuses": {
+            "CO": 10,
+            "AG": 0,
+            "AD": 5,
+            "ME": 0,
+            "RS": 0,
+            "FO": 10,
+            "RP": 0,
+            "PR": 5,
+            "EM": -5,
+            "IT": 0
+          },
+          "hit_die": "1-10",
+          "max_pc": 150
+        },
+        {
+          "name": "Homme Artique",
+          "bonuses": {
+            "CO": 10,
+            "AG": 0,
+            "AD": 5,
+            "ME": 0,
+            "RS": 0,
+            "FO": 5,
+            "RP": 0,
+            "PR": -5,
+            "EM": 0,
+            "IT": 5
+          },
+          "hit_die": "1-8",
+          "max_pc": 120
+        },
+        {
+          "name": "Homme Métis",
+          "bonuses": {
+            "CO": 5,
+            "AG": 0,
+            "AD": 5,
+            "ME": 0,
+            "RS": 0,
+            "FO": 5,
+            "RP": 0,
+            "PR": 5,
+            "EM": 0,
+            "IT": 0
+          },
+          "hit_die": "1-10",
+          "max_pc": 135
+        },
+        {
+          "name": "Homme des Bois",
+          "bonuses": {
+            "CO": 10,
+            "AG": 5,
+            "AD": 0,
+            "ME": 0,
+            "RS": -5,
+            "FO": 10,
+            "RP": 0,
+            "PR": -10,
+            "EM": -5,
+            "IT": 0
+          },
+          "hit_die": "1-8",
+          "max_pc": 135
+        },
+        {
+          "name": "Dunedain",
+          "bonuses": {
+            "CO": 10,
+            "AG": 0,
+            "AD": 0,
+            "ME": 0,
+            "RS": 0,
+            "FO": 5,
+            "RP": 0,
+            "PR": 10,
+            "EM": 5,
+            "IT": 0
+          },
+          "hit_die": "1-10",
+          "max_pc": 150
+        },
+        {
+          "name": "Homme urbain",
+          "bonuses": {
+            "CO": 0,
+            "AG": 5,
+            "AD": 0,
+            "ME": 0,
+            "RS": 0,
+            "FO": 5,
+            "RP": 0,
+            "PR": 5,
+            "EM": 0,
+            "IT": 5
+          },
+          "hit_die": "1-8",
+          "max_pc": 150
+        },
+        {
+          "name": "Numénoréen",
+          "bonuses": {
+            "CO": 10,
+            "AG": 5,
+            "AD": 0,
+            "ME": 0,
+            "RS": 0,
+            "FO": 5,
+            "RP": 0,
+            "PR": 10,
+            "EM": 5,
+            "IT": -5
+          },
+          "hit_die": "1-10",
+          "max_pc": 150
+        }
+      ]
+    },
+    {
+      "group_id": "Semi-Elfes",
+      "group_label": "Sous-types elfes / semi-elfes",
+      "races": [
+        {
+          "name": "Semi-Elfes",
+          "bonuses": {
+            "CO": 5,
+            "AG": 5,
+            "AD": 10,
+            "ME": 0,
+            "RS": 0,
+            "FO": 5,
+            "RP": 10,
+            "PR": 10,
+            "EM": 0,
+            "IT": 0
+          },
+          "hit_die": "1-10",
+          "max_pc": 150
+        },
+        {
+          "name": "Semi-Elfes B",
+          "bonuses": {
+            "CO": 0,
+            "AG": 10,
+            "AD": 5,
+            "ME": 0,
+            "RS": 0,
+            "FO": 0,
+            "RP": 10,
+            "PR": 10,
+            "EM": 0,
+            "IT": 0
+          },
+          "hit_die": "1-10",
+          "max_pc": 130
+        },
+        {
+          "name": "Semi-Elfes C",
+          "bonuses": {
+            "CO": 10,
+            "AG": 5,
+            "AD": 10,
+            "ME": 0,
+            "RS": 0,
+            "FO": 10,
+            "RP": 10,
+            "PR": 5,
+            "EM": -5,
+            "IT": 5
+          },
+          "hit_die": "1-10",
+          "max_pc": 150
+        },
+        {
+          "name": "Semi-Elfes D",
+          "bonuses": {
+            "CO": 5,
+            "AG": 5,
+            "AD": 5,
+            "ME": 0,
+            "RS": 0,
+            "FO": 5,
+            "RP": 10,
+            "PR": 10,
+            "EM": 0,
+            "IT": 0
+          },
+          "hit_die": "1-10",
+          "max_pc": 150
+        },
+        {
+          "name": "Semi-Elfes E",
+          "bonuses": {
+            "CO": 0,
+            "AG": 10,
+            "AD": 5,
+            "ME": 0,
+            "RS": 0,
+            "FO": 5,
+            "RP": 10,
+            "PR": 5,
+            "EM": 0,
+            "IT": 0
+          },
+          "hit_die": "1-10",
+          "max_pc": 120
+        },
+        {
+          "name": "Semi-Elfes F",
+          "bonuses": {
+            "CO": 15,
+            "AG": 5,
+            "AD": -10,
+            "ME": -5,
+            "RS": -5,
+            "FO": 15,
+            "RP": 5,
+            "PR": -5,
+            "EM": -5,
+            "IT": -5
+          },
+          "hit_die": "1-15",
+          "max_pc": 300
+        },
+        {
+          "name": "Elfe des Bois",
+          "bonuses": {
+            "CO": 0,
+            "AG": 10,
+            "AD": -20,
+            "ME": 5,
+            "RS": 0,
+            "FO": 0,
+            "RP": 5,
+            "PR": 0,
+            "EM": 5,
+            "IT": 0
+          },
+          "hit_die": "1-8",
+          "max_pc": 100
+        },
+        {
+          "name": "Grand Elfe",
+          "bonuses": {
+            "CO": 0,
+            "AG": 5,
+            "AD": -20,
+            "ME": 5,
+            "RS": 0,
+            "FO": 0,
+            "RP": 10,
+            "PR": 10,
+            "EM": 10,
+            "IT": 0
+          },
+          "hit_die": "1-8",
+          "max_pc": 110
+        },
+        {
+          "name": "Elfe Clair",
+          "bonuses": {
+            "CO": 0,
+            "AG": 5,
+            "AD": -20,
+            "ME": 5,
+            "RS": 0,
+            "FO": 0,
+            "RP": 15,
+            "PR": 15,
+            "EM": 5,
+            "IT": 0
+          },
+          "hit_die": "1-10",
+          "max_pc": 120
+        },
+        {
+          "name": "Elfe Gris",
+          "bonuses": {
+            "CO": 5,
+            "AG": 5,
+            "AD": -20,
+            "ME": 5,
+            "RS": 0,
+            "FO": 5,
+            "RP": 10,
+            "PR": 5,
+            "EM": 5,
+            "IT": 0
+          },
+          "hit_die": "1-8",
+          "max_pc": 120
+        },
+        {
+          "name": "Elfe des Ténèbres",
+          "bonuses": {
+            "CO": -5,
+            "AG": 10,
+            "AD": -20,
+            "ME": 5,
+            "RS": 5,
+            "FO": 0,
+            "RP": 10,
+            "PR": 10,
+            "EM": 10,
+            "IT": -5
+          },
+          "hit_die": "1-8",
+          "max_pc": 110
+        },
+        {
+          "name": "Elfe Aquatique",
+          "bonuses": {
+            "CO": 5,
+            "AG": 10,
+            "AD": -20,
+            "ME": 5,
+            "RS": 0,
+            "FO": 5,
+            "RP": 10,
+            "PR": 5,
+            "EM": 5,
+            "IT": 0
+          },
+          "hit_die": "1-8",
+          "max_pc": 110
+        },
+        {
+          "name": "Elfe Noldor",
+          "bonuses": {
+            "CO": 10,
+            "AG": 10,
+            "AD": 10,
+            "ME": 5,
+            "RS": 5,
+            "FO": 10,
+            "RP": 10,
+            "PR": 15,
+            "EM": 10,
+            "IT": 0
+          },
+          "hit_die": "1-10",
+          "max_pc": 150
+        }
+      ]
+    },
+    {
+      "group_id": "Homme Demon",
+      "group_label": "Races extraplanaires ou démoniaques",
+      "races": [
+        {
+          "name": "Homme Demon",
+          "bonuses": {
+            "CO": 10,
+            "AG": 5,
+            "AD": -10,
+            "ME": 0,
+            "RS": 0,
+            "FO": 5,
+            "RP": 5,
+            "PR": -10,
+            "EM": 5,
+            "IT": 0
+          },
+          "hit_die": "1-10",
+          "max_pc": 150
+        },
+        {
+          "name": "Elfe Demon",
+          "bonuses": {
+            "CO": 5,
+            "AG": 5,
+            "AD": -20,
+            "ME": 0,
+            "RS": 5,
+            "FO": 5,
+            "RP": 0,
+            "PR": 0,
+            "EM": 10,
+            "IT": 0
+          },
+          "hit_die": "1-8",
+          "max_pc": 150
+        },
+        {
+          "name": "Azurien (extraplanaire)",
+          "bonuses": {
+            "CO": 5,
+            "AG": 5,
+            "AD": -5,
+            "ME": 0,
+            "RS": 0,
+            "FO": 5,
+            "RP": 10,
+            "PR": 10,
+            "EM": -5,
+            "IT": 5
+          },
+          "hit_die": "1-10",
+          "max_pc": 150
+        },
+        {
+          "name": "Draakh",
+          "bonuses": {
+            "CO": 10,
+            "AG": 5,
+            "AD": -5,
+            "ME": 0,
+            "RS": 5,
+            "FO": 10,
+            "RP": 5,
+            "PR": -10,
+            "EM": 5,
+            "IT": 0
+          },
+          "hit_die": "1-8",
+          "max_pc": 150
+        },
+        {
+          "name": "Voyageur planaire",
+          "bonuses": {
+            "CO": 10,
+            "AG": 5,
+            "AD": -10,
+            "ME": 0,
+            "RS": 5,
+            "FO": 5,
+            "RP": 10,
+            "PR": 0,
+            "EM": 5,
+            "IT": 5
+          },
+          "hit_die": "1-8",
+          "max_pc": 150
+        },
+        {
+          "name": "Hengeyokai renard",
+          "bonuses": {
+            "CO": 5,
+            "AG": 10,
+            "AD": -5,
+            "ME": 5,
+            "RS": 10,
+            "FO": 0,
+            "RP": 10,
+            "PR": 5,
+            "EM": 0,
+            "IT": 0
+          },
+          "hit_die": "1-8",
+          "max_pc": 150
+        }
+      ]
+    },
+    {
+      "group_id": "Semi-Nain",
+      "group_label": "Races naines / petites / orquines apparentées",
+      "races": [
+        {
+          "name": "Semi-Nain",
+          "bonuses": {
+            "CO": 10,
+            "AG": 0,
+            "AD": 5,
+            "ME": 0,
+            "RS": 0,
+            "FO": 5,
+            "RP": -5,
+            "PR": -5,
+            "EM": 0,
+            "IT": 0
+          },
+          "hit_die": "1-10",
+          "max_pc": 120
+        },
+        {
+          "name": "Nain",
+          "bonuses": {
+            "CO": 15,
+            "AG": -5,
+            "AD": 5,
+            "ME": 0,
+            "RS": 0,
+            "FO": 5,
+            "RP": -5,
+            "PR": -10,
+            "EM": -10,
+            "IT": 0
+          },
+          "hit_die": "1-10",
+          "max_pc": 120
+        },
+        {
+          "name": "Semi-Homme",
+          "bonuses": {
+            "CO": 15,
+            "AG": 15,
+            "AD": -10,
+            "ME": 0,
+            "RS": 0,
+            "FO": -20,
+            "RP": 10,
+            "PR": -15,
+            "EM": 0,
+            "IT": -5
+          },
+          "hit_die": "1-8",
+          "max_pc": 80
+        },
+        {
+          "name": "Hobbit Pieds velus",
+          "bonuses": {
+            "CO": 10,
+            "AG": 20,
+            "AD": -20,
+            "ME": 0,
+            "RS": 5,
+            "FO": -15,
+            "RP": 15,
+            "PR": -10,
+            "EM": 0,
+            "IT": 0
+          },
+          "hit_die": "1-8",
+          "max_pc": 90
+        },
+        {
+          "name": "Hobbit Fort",
+          "bonuses": {
+            "CO": 20,
+            "AG": 10,
+            "AD": 0,
+            "ME": 0,
+            "RS": 0,
+            "FO": -5,
+            "RP": 5,
+            "PR": -10,
+            "EM": -10,
+            "IT": 0
+          },
+          "hit_die": "1-10",
+          "max_pc": 110
+        },
+        {
+          "name": "Semi-Orque",
+          "bonuses": {
+            "CO": 10,
+            "AG": 0,
+            "AD": 0,
+            "ME": -5,
+            "RS": -5,
+            "FO": 10,
+            "RP": 0,
+            "PR": -5,
+            "EM": 0,
+            "IT": -5
+          },
+          "hit_die": "1-10",
+          "max_pc": 130
+        },
+        {
+          "name": "Orque Inférieur",
+          "bonuses": {
+            "CO": 5,
+            "AG": 0,
+            "AD": -10,
+            "ME": -10,
+            "RS": -5,
+            "FO": 5,
+            "RP": 0,
+            "PR": -5,
+            "EM": -10,
+            "IT": -5
+          },
+          "hit_die": "1-8",
+          "max_pc": 80
+        },
+        {
+          "name": "Orque Supérieur",
+          "bonuses": {
+            "CO": 10,
+            "AG": 0,
+            "AD": -5,
+            "ME": -5,
+            "RS": -5,
+            "FO": 10,
+            "RP": 0,
+            "PR": -5,
+            "EM": -5,
+            "IT": -5
+          },
+          "hit_die": "1-10",
+          "max_pc": 140
+        },
+        {
+          "name": "Orque Seigneur",
+          "bonuses": {
+            "CO": 20,
+            "AG": 0,
+            "AD": -5,
+            "ME": 0,
+            "RS": -5,
+            "FO": 10,
+            "RP": 5,
+            "PR": -5,
+            "EM": -5,
+            "IT": -5
+          },
+          "hit_die": "1-10",
+          "max_pc": 150
+        },
+        {
+          "name": "Gobelin",
+          "bonuses": {
+            "CO": 0,
+            "AG": 15,
+            "AD": -5,
+            "ME": -5,
+            "RS": 0,
+            "FO": -10,
+            "RP": 15,
+            "PR": -5,
+            "EM": -10,
+            "IT": 5
+          },
+          "hit_die": "1-8",
+          "max_pc": 150
+        }
+      ]
+    },
+    {
+      "group_id": "Gremlin",
+      "group_label": "Petites races féeriques",
+      "races": [
+        {
+          "name": "Gremlin",
+          "bonuses": {
+            "CO": 5,
+            "AG": 15,
+            "AD": -10,
+            "ME": 0,
+            "RS": 0,
+            "FO": -10,
+            "RP": 15,
+            "PR": -5,
+            "EM": 5,
+            "IT": -10
+          },
+          "hit_die": "1-8",
+          "max_pc": 100
+        },
+        {
+          "name": "Sylphe",
+          "bonuses": {
+            "CO": -5,
+            "AG": 30,
+            "AD": 0,
+            "ME": 0,
+            "RS": 0,
+            "FO": -40,
+            "RP": 30,
+            "PR": 0,
+            "EM": 15,
+            "IT": -10
+          },
+          "hit_die": "1-5",
+          "max_pc": 60
+        },
+        {
+          "name": "Satyre",
+          "bonuses": {
+            "CO": 10,
+            "AG": 10,
+            "AD": -15,
+            "ME": 5,
+            "RS": 0,
+            "FO": 5,
+            "RP": 10,
+            "PR": -5,
+            "EM": 0,
+            "IT": 0
+          },
+          "hit_die": "1-10",
+          "max_pc": 150
+        },
+        {
+          "name": "Nymphe",
+          "bonuses": {
+            "CO": -10,
+            "AG": 10,
+            "AD": 0,
+            "ME": 0,
+            "RS": 0,
+            "FO": -15,
+            "RP": 10,
+            "PR": 20,
+            "EM": 10,
+            "IT": 0
+          },
+          "hit_die": "1-8",
+          "max_pc": 70
+        },
+        {
+          "name": "Gnome",
+          "bonuses": {
+            "CO": -5,
+            "AG": 10,
+            "AD": 0,
+            "ME": 5,
+            "RS": 5,
+            "FO": -15,
+            "RP": 10,
+            "PR": -15,
+            "EM": 10,
+            "IT": 5
+          },
+          "hit_die": "1-8",
+          "max_pc": 80
+        },
+        {
+          "name": "Fee",
+          "bonuses": {
+            "CO": 0,
+            "AG": 15,
+            "AD": 0,
+            "ME": 0,
+            "RS": 0,
+            "FO": -15,
+            "RP": 10,
+            "PR": 0,
+            "EM": 10,
+            "IT": -10
+          },
+          "hit_die": "1-8",
+          "max_pc": 150
+        }
+      ]
+    },
+    {
+      "group_id": "Semi-Ogres",
+      "group_label": "Races ogres / trolls / géantes apparentées",
+      "races": [
+        {
+          "name": "Semi-Ogres",
+          "bonuses": {
+            "CO": 10,
+            "AG": 0,
+            "AD": -5,
+            "ME": 0,
+            "RS": 0,
+            "FO": 15,
+            "RP": 0,
+            "PR": -10,
+            "EM": -5,
+            "IT": -5
+          },
+          "hit_die": "1-10",
+          "max_pc": 200
+        },
+        {
+          "name": "Semi-Trolls",
+          "bonuses": {
+            "CO": 20,
+            "AG": 5,
+            "AD": 0,
+            "ME": -5,
+            "RS": -5,
+            "FO": 15,
+            "RP": 0,
+            "PR": -5,
+            "EM": -5,
+            "IT": -5
+          },
+          "hit_die": "1-15",
+          "max_pc": 280
+        },
+        {
+          "name": "Trolls",
+          "bonuses": {
+            "CO": 15,
+            "AG": -10,
+            "AD": -10,
+            "ME": -10,
+            "RS": -10,
+            "FO": 15,
+            "RP": -10,
+            "PR": -10,
+            "EM": -10,
+            "IT": -10
+          },
+          "hit_die": "1-10",
+          "max_pc": 250
+        },
+        {
+          "name": "Grands Hommes",
+          "bonuses": {
+            "CO": 20,
+            "AG": 5,
+            "AD": -20,
+            "ME": -5,
+            "RS": -5,
+            "FO": 15,
+            "RP": 5,
+            "PR": 5,
+            "EM": -10,
+            "IT": -10
+          },
+          "hit_die": "1-20",
+          "max_pc": 300
+        },
+        {
+          "name": "Olog-Hai",
+          "bonuses": {
+            "CO": 15,
+            "AG": -5,
+            "AD": -10,
+            "ME": -10,
+            "RS": -5,
+            "FO": 20,
+            "RP": -5,
+            "PR": -5,
+            "EM": -10,
+            "IT": -10
+          },
+          "hit_die": "1-20",
+          "max_pc": 300
+        },
+        {
+          "name": "Semi-Ogres II",
+          "bonuses": {
+            "CO": 10,
+            "AG": 0,
+            "AD": 0,
+            "ME": 0,
+            "RS": -5,
+            "FO": 15,
+            "RP": 0,
+            "PR": -10,
+            "EM": -5,
+            "IT": -5
+          },
+          "hit_die": "1-12",
+          "max_pc": 250
+        }
+      ]
+    }
+  ]
+}

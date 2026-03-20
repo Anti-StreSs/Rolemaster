@@ -819,7 +819,8 @@
   ],
   "race_groups": [
     {
-      "name": "Humains",
+      "name": "Variantes humaines",
+      "group_id": "&&",
       "races": [
         "Sans Race",
         "Homme Commun",
@@ -836,7 +837,8 @@
       ]
     },
     {
-      "name": "Elfes",
+      "name": "Sous-types elfes / semi-elfes",
+      "group_id": "Semi-Elfes",
       "races": [
         "Semi-Elfes",
         "Semi-Elfes B",
@@ -854,7 +856,8 @@
       ]
     },
     {
-      "name": "Planaires/Spéciaux",
+      "name": "Races extraplanaires ou démoniaques",
+      "group_id": "Homme Demon",
       "races": [
         "Homme Demon",
         "Elfe Demon",
@@ -865,7 +868,8 @@
       ]
     },
     {
-      "name": "Nains/Hobbits/Orques",
+      "name": "Races naines / petites / orquines apparentées",
+      "group_id": "Semi-Nain",
       "races": [
         "Semi-Nain",
         "Nain",
@@ -880,7 +884,8 @@
       ]
     },
     {
-      "name": "Fées/Sylvains",
+      "name": "Petites races féeriques",
+      "group_id": "Gremlin",
       "races": [
         "Gremlin",
         "Sylphe",
@@ -891,7 +896,8 @@
       ]
     },
     {
-      "name": "Géants/Ogres",
+      "name": "Races ogres / trolls / géantes apparentées",
+      "group_id": "Semi-Ogres",
       "races": [
         "Semi-Ogres",
         "Semi-Trolls",
