@@ -210,10 +210,28 @@ function renderInfosTab(lang) {
     ? character.primeStats.map(i => STAT_ABBREVS[i]).join(', ')
     : '—';
 
-  // Armor labels
-  const armorLabels = lang === 'en'
-    ? ['No Armor', 'Soft Leather', 'Rigid Leather', 'Chain', 'Plate']
-    : ['Sans armure', 'Cuir souple', 'Cuir rigide', 'Cotte de mailles', 'Plates'];
+  // RM 20 Armor Types (AT 1-20) in 4 maneuver categories
+  const AT = lang === 'en' ? [
+    /*1*/ 'No Armor', /*2*/ 'Robes', /*3*/ 'Soft Leather', /*4*/ 'Soft Leather + Greaves',
+    /*5*/ 'Leather Coat', /*6*/ 'Leather Coat + Greaves', /*7*/ 'Leather Breastplate', /*8*/ 'Leather Breastplate + Greaves',
+    /*9*/ 'Chain Shirt', /*10*/ 'Chain Shirt + Greaves', /*11*/ 'Chain Hauberk', /*12*/ 'Chain Hauberk + Greaves',
+    /*13*/ 'Chain Mail', /*14*/ 'Chain Mail + Greaves', /*15*/ 'Half Plate', /*16*/ 'Half Plate + Greaves',
+    /*17*/ 'Full Plate', /*18*/ 'Full Plate + Greaves', /*19*/ 'Full Plate + Half Helm', /*20*/ 'Full Plate + Full Helm',
+  ] : [
+    /*1*/ 'Sans armure', /*2*/ 'Robes', /*3*/ 'Cuir souple', /*4*/ 'Cuir souple + Jambières',
+    /*5*/ 'Manteau de cuir', /*6*/ 'Manteau de cuir + Jambières', /*7*/ 'Plastron de cuir', /*8*/ 'Plastron de cuir + Jambières',
+    /*9*/ 'Chemise de mailles', /*10*/ 'Chemise de mailles + Jambières', /*11*/ 'Haubert', /*12*/ 'Haubert + Jambières',
+    /*13*/ 'Cotte de mailles', /*14*/ 'Cotte de mailles + Jambières', /*15*/ 'Demi-plates', /*16*/ 'Demi-plates + Jambières',
+    /*17*/ 'Plates complètes', /*18*/ 'Plates + Jambières', /*19*/ 'Plates + Demi-heaume', /*20*/ 'Plates + Heaume',
+  ];
+  // Category separators for the select
+  const atCatStart = { 1: lang === 'en' ? '── No Armor ──' : '── Sans armure ──', 5: lang === 'en' ? '── Soft Leather ──' : '── Cuir souple ──', 9: lang === 'en' ? '── Rigid Leather ──' : '── Cuir rigide ──', 13: lang === 'en' ? '── Chain ──' : '── Mailles ──', 17: lang === 'en' ? '── Plate ──' : '── Plates ──' };
+  let armorOptions = '';
+  for (let at = 1; at <= 20; at++) {
+    if (atCatStart[at]) armorOptions += `<option disabled class="text-gray-600">${atCatStart[at]}</option>`;
+    const sel = at === character.armorType ? 'selected' : '';
+    armorOptions += `<option value="${at}" ${sel}>AT ${at}: ${AT[at - 1]}</option>`;
+  }
 
   return `
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -290,10 +308,8 @@ function renderInfosTab(lang) {
 
       ${panel(lang === 'en' ? 'Armor' : 'Armure', `
         <div class="info-grid">
-          <label>Type d'Armure</label>
-          <select id="f-armor" class="field">
-            ${armorLabels.map((l, i) => `<option value="${i}" ${i === character.armorType ? 'selected' : ''}>${i}: ${l}</option>`).join('')}
-          </select>
+          <label>Type d'Armure (TA)</label>
+          <select id="f-armor" class="field">${armorOptions}</select>
 
           <label>Bonus Déf.</label>
           <input type="number" id="f-defbonus" value="${character.defenseBonus}" class="field field-sm">

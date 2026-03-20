@@ -38,7 +38,7 @@ export function createCharacter() {
     primeStats: [],
 
     // Combat summary
-    armorType: 0,
+    armorType: 1, // AT 1-20 (1=No Armor, 20=Full Plate + Full Helm)
     defenseBonus: 0,
 
     // Weapon category priorities (CHOIXCAT screen)
