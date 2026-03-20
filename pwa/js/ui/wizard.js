@@ -8,6 +8,7 @@ import { getAllClasses, getClassName, getRealmInfo, getRealmKey, getRealmLabel, 
 import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts } from '../engine/skills.js';
 import { getAllRealms } from '../engine/spells.js';
 import { downloadCharacter, saveToLocalStorage } from '../engine/export.js';
+import { processLevelUpStatGains } from '../engine/stat_gain.js';
 import { getData } from '../engine/data-loader.js';
 
 // --- Category translations ---
@@ -242,6 +243,12 @@ function renderInfosTab(lang) {
             <div class="text-2xl font-bold text-blue-400">${pp}</div>
             <div class="text-xs text-gray-500">Pts de Pouvoir</div>
           </div>` : ''}
+        </div>
+
+        <div class="mt-4 no-print border-t border-gray-700 pt-3">
+          <button class="btn-primary text-sm" id="btn-level-up">${lang === 'en' ? 'Level Up' : 'Monter de niveau'}</button>
+          <span class="text-xs text-gray-500 ml-2">${getPhaseLabel(character, lang)}</span>
+          ${character._lastStatGains ? renderStatGainsResult(lang) : ''}
         </div>
       `)}
 
@@ -955,6 +962,71 @@ function bindContentEvents(app) {
   }
 }
 
+function getPhaseLabel(char, lang) {
+  if (char.devPhase === 'adolescent') return lang === 'en' ? 'Adolescent phase' : 'Phase adolescent';
+  if (char.devPhase === 'apprenti') return lang === 'en' ? 'Apprentice phase' : 'Phase apprenti';
+  return (lang === 'en' ? 'Level ' : 'Niveau ') + char.level;
+}
+
+function renderStatGainsResult(lang) {
+  const gains = character._lastStatGains;
+  if (!gains) return '';
+  let html = `<div class="mt-2 text-xs"><table class="skill-table"><thead><tr>
+    <th>Stat</th><th class="text-center">D100</th><th class="text-center">Diff</th>
+    <th class="text-center">${lang === 'en' ? 'Gain' : 'Gain'}</th>
+    <th class="text-center">${lang === 'en' ? 'Result' : 'Résultat'}</th>
+  </tr></thead><tbody>`;
+  for (const g of gains) {
+    const gained = g.gain > 0;
+    html += `<tr class="${gained ? '' : 'text-gray-600'}">
+      <td class="font-bold">${STAT_ABBREVS[g.statIndex]}</td>
+      <td class="text-center">${g.roll || '—'}</td>
+      <td class="text-center">${g.diff}</td>
+      <td class="text-center ${gained ? 'text-green-400 font-bold' : ''}">${gained ? '+' + g.gain : '0'}${g.openEnded ? '*' : ''}</td>
+      <td class="text-center">${g.oldTemp} → ${g.newTemp}</td>
+    </tr>`;
+  }
+  html += `</tbody></table></div>`;
+  return html;
+}
+
+/**
+ * Process level-up: advance phase/level, roll stat gains, reset DP.
+ */
+function performLevelUp(app) {
+  // Advance phase: adolescent → apprenti → level 1 → level 2 → ...
+  if (character.devPhase === 'adolescent') {
+    character.devPhase = 'apprenti';
+  } else if (character.devPhase === 'apprenti') {
+    character.devPhase = 'level';
+    character.level = 1;
+  } else {
+    character.level++;
+  }
+
+  // Roll stat gains (only for level 1+ phases, not adolescent/apprenti)
+  if (character.devPhase === 'level' && character.stats.some(s => s > 0)) {
+    const gains = processLevelUpStatGains(character.stats, character.potentials);
+    character._lastStatGains = gains;
+
+    // Apply gains
+    for (const g of gains) {
+      character.stats[g.statIndex] = g.newTemp;
+    }
+  } else {
+    character._lastStatGains = null;
+  }
+
+  // Reset current level DP spending
+  setDevPointsSpent(character, 0);
+
+  showToast(character.devPhase === 'level'
+    ? `Niveau ${character.level} !`
+    : character.devPhase === 'apprenti' ? 'Phase Apprenti !' : 'Phase Adolescent !');
+
+  renderEditor(app);
+}
+
 function bindInfosEvents(app) {
   const fields = {
     'f-name': 'name', 'f-height': 'height',
@@ -966,6 +1038,12 @@ function bindInfosEvents(app) {
   for (const [id, field] of Object.entries(fields)) {
     const el = document.getElementById(id);
     if (el) el.addEventListener('input', () => { character[field] = el.value; });
+  }
+
+  // Level up button
+  const btnLevelUp = document.getElementById('btn-level-up');
+  if (btnLevelUp) {
+    btnLevelUp.addEventListener('click', () => performLevelUp(app));
   }
 
   // Class selector — sets realm and prime stats automatically
