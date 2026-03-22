@@ -361,7 +361,8 @@ export function calcPowerPoints(character) {
     mult += getPowerPointsMult(character.stats[idx] || 0);
   }
   mult /= ppStats.length; // Average for hybrids, identity for single realm
-  return mult * character.level + (character.manualBonuses?.ppBonus || 0);
+  const base = Math.ceil(mult * character.level); // Always round up
+  return base + (character.manualBonuses?.ppBonus || 0);
 }
 
 /**
