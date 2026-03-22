@@ -77,7 +77,7 @@
               "name_en": "+15 bonus for any secondary skill",
               "name_fr": "+15 bonus pour une compétence secondaire",
               "description_en": "+15 bonus for any secondary skill",
-              "description_fr": null,
+              "description_fr": "Bonus de +15 à n'importe quelle compétence secondaire.",
               "type": "mixed",
               "effects": {
                 "skill_bonus": 15,
@@ -94,7 +94,7 @@
               "name_en": "+10 bonus for any primary skill",
               "name_fr": "+10 bonus pour une compétence primaire",
               "description_en": "+10 bonus for any primary skill",
-              "description_fr": null,
+              "description_fr": "Bonus de +10 à n'importe quelle compétence primaire.",
               "type": "mixed",
               "effects": {
                 "skill_bonus": 10,
@@ -111,7 +111,7 @@
               "name_en": "+1 Spell Adder",
               "name_fr": "+1 sort supplémentaire",
               "description_en": "+1 Spell Adder",
-              "description_fr": null,
+              "description_fr": "Ajouteur de sort +1 : le personnage gagne 1 point de magie supplémentaire par niveau.",
               "type": "ability",
               "effects": {
                 "spell_adder": 1
@@ -127,7 +127,7 @@
               "name_en": "A language to skill rank 10 spoken and written",
               "name_fr": "Une langue au rang 10 (parlé et écrit)",
               "description_en": "A language to skill rank 10 spoken and written",
-              "description_fr": null,
+              "description_fr": "Une langue maîtrisée au rang 10 (parlé et écrit).",
               "type": "ability",
               "effects": {
                 "language_rank": 10
@@ -143,7 +143,7 @@
               "name_en": "Increase one stat by 2 or three stats by 1 each (temp and pot, max 101)",
               "name_fr": "+2 à une stat OU +1 à trois stats (temp et pot, max 101)",
               "description_en": "Increase one stat by 2 or three stats by 1 each (temp and pot, max 101)",
-              "description_fr": null,
+              "description_fr": "Augmenter une caractéristique de 2 points, ou trois caractéristiques de 1 point chacune (temporaire et potentiel, max 101).",
               "type": "stat_bonus",
               "effects": {
                 "stat_increase": "2_or_1x3"
@@ -159,7 +159,7 @@
               "name_en": "Skill rank 5 in a random secondary skill (or GM chosen)",
               "name_fr": "Rang 5 dans une compétence secondaire aléatoire (ou choisie par le MJ)",
               "description_en": "Skill rank 5 in a random secondary skill (or GM chosen)",
-              "description_fr": null,
+              "description_fr": "Rang 5 dans une compétence secondaire aléatoire (ou choisie par le MJ).",
               "type": "mixed",
               "effects": {
                 "skill_ranks": 5,
@@ -176,7 +176,7 @@
               "name_en": "Mannish Appearance (optional - for orcs/trolls)",
               "name_fr": "Apparence humaine (optionnel - pour orques/trolls)",
               "description_en": "Mannish Appearance (optional - for orcs/trolls)",
-              "description_fr": null,
+              "description_fr": "Apparence humaine (optionnel — pour orques et trolls uniquement).",
               "type": "mixed",
               "effects": {
                 "appearance": "mannish"
@@ -192,7 +192,7 @@
               "name_en": "Unusual Tongue (optional - speak a normally impossible language)",
               "name_fr": "Langue inhabituelle (optionnel - parler une langue normalement impossible)",
               "description_en": "Unusual Tongue (optional - speak a normally impossible language)",
-              "description_fr": null,
+              "description_fr": "Langue inhabituelle (optionnel — le personnage parle une langue normalement inaccessible à sa race).",
               "type": "ability",
               "effects": {
                 "unusual_tongue": true
@@ -208,7 +208,7 @@
               "name_en": "Offset Racial Flaw (optional - cancel one racial flaw)",
               "name_fr": "Annuler un défaut racial (optionnel)",
               "description_en": "Offset Racial Flaw (optional - cancel one racial flaw)",
-              "description_fr": null,
+              "description_fr": "Annulation d'un défaut racial (optionnel — annule un désavantage racial).",
               "type": "mixed",
               "effects": {
                 "offset_flaw": true
@@ -231,7 +231,7 @@
               "name_en": "Neutral Odor",
               "name_fr": "Odeur Neutre",
               "description_en": "The character has a neutral body odor that is hard to detect or track.",
-              "description_fr": null,
+              "description_fr": "Le personnage dégage une odeur corporelle neutre, difficile à détecter ou à pister.",
               "type": "ability",
               "effects": {
                 "special_ability": "neutral_odor"
@@ -246,7 +246,7 @@
               "name_en": "Exceptional Tone",
               "name_fr": "Tonalité Exceptionnelle",
               "description_en": "The character possesses a remarkable vocal tone that aids singing.",
-              "description_fr": null,
+              "description_fr": "Le personnage possède une tonalité vocale remarquable qui améliore sa pratique du chant.",
               "type": "ability",
               "effects": {
                 "special_ability": "exceptional_tone",
@@ -264,7 +264,7 @@
               "name_en": "Acute Smell",
               "name_fr": "Odorat Aiguisé",
               "description_en": "The character has a sharply developed sense of smell.",
-              "description_fr": null,
+              "description_fr": "Le personnage dispose d'un odorat particulièrement développé.",
               "type": "ability",
               "effects": {
                 "special_ability": "acute_smell",
@@ -282,7 +282,7 @@
               "name_en": "Infravision",
               "name_fr": "Infravision",
               "description_en": "The character can see heat signatures in darkness.",
-              "description_fr": null,
+              "description_fr": "Le personnage peut percevoir les sources de chaleur dans l'obscurité.",
               "type": "ability",
               "effects": {
                 "special_ability": "infravision",
@@ -298,7 +298,7 @@
               "name_en": "Exceptional Voice",
               "name_fr": "Voix Exceptionnelle",
               "description_en": "The character has an exceptional voice that aids singing and leadership.",
-              "description_fr": null,
+              "description_fr": "Le personnage possède une voix exceptionnelle qui améliore sa pratique du chant et du leadership.",
               "type": "ability",
               "effects": {
                 "special_ability": "exceptional_voice",
@@ -317,7 +317,7 @@
               "name_en": "Empathy",
               "name_fr": "Empathie",
               "description_en": "The character senses emotional states more readily than normal.",
-              "description_fr": null,
+              "description_fr": "Le personnage perçoit les états émotionnels des autres plus facilement que la normale.",
               "type": "ability",
               "effects": {
                 "special_ability": "empathy",
@@ -335,7 +335,7 @@
               "name_en": "Acute Hearing",
               "name_fr": "Ouïe Aiguisée",
               "description_en": "The character has an unusually keen sense of hearing.",
-              "description_fr": null,
+              "description_fr": "Le personnage bénéficie d'une ouïe anormalement fine et précise.",
               "type": "ability",
               "effects": {
                 "special_ability": "acute_hearing",
@@ -353,7 +353,7 @@
               "name_en": "Exceptional Spatial Judgment",
               "name_fr": "Jugement Spatial Exceptionnel",
               "description_en": "The character judges space, distance, and orientation exceptionally well.",
-              "description_fr": null,
+              "description_fr": "Le personnage évalue l'espace, les distances et l'orientation avec une précision exceptionnelle.",
               "type": "ability",
               "effects": {
                 "special_ability": "spatial_judgment",
@@ -371,7 +371,7 @@
               "name_en": "Nimble",
               "name_fr": "Agile",
               "description_en": "The character is naturally nimble and gains an Agility bonus.",
-              "description_fr": null,
+              "description_fr": "Le personnage est naturellement agile et bénéficie d'un bonus en Agilité.",
               "type": "ability",
               "effects": {
                 "special_ability": "nimble",
@@ -389,7 +389,7 @@
               "name_en": "Charismatic",
               "name_fr": "Charismatique",
               "description_en": "The character radiates personal magnetism and gains a Presence bonus.",
-              "description_fr": null,
+              "description_fr": "Le personnage irradie un magnétisme personnel et bénéficie d'un bonus en Présence.",
               "type": "ability",
               "effects": {
                 "special_ability": "charismatic",
@@ -407,7 +407,7 @@
               "name_en": "Good Tendons",
               "name_fr": "Bons Tendons",
               "description_en": "The character moves with resilient, springy tendons.",
-              "description_fr": null,
+              "description_fr": "Les tendons du personnage sont souples et résistants, lui conférant une mobilité accrue.",
               "type": "ability",
               "effects": {
                 "special_ability": "good_tendons",
@@ -423,7 +423,7 @@
               "name_en": "Increased Lung Capacity",
               "name_fr": "Capacité Pulmonaire Accrue",
               "description_en": "The character has increased lung capacity and endurance.",
-              "description_fr": null,
+              "description_fr": "Le personnage dispose d'une capacité pulmonaire accrue et d'une meilleure endurance à l'effort.",
               "type": "ability",
               "effects": {
                 "special_ability": "lung_capacity",
@@ -439,7 +439,7 @@
               "name_en": "Quick Thinker",
               "name_fr": "Esprit Vif",
               "description_en": "The character thinks quickly and gains a Reasoning bonus.",
-              "description_fr": null,
+              "description_fr": "Le personnage réfléchit rapidement et bénéficie d'un bonus en Raisonnement.",
               "type": "ability",
               "effects": {
                 "special_ability": "quick_thinker",
@@ -457,7 +457,7 @@
               "name_en": "Lightning Reactions",
               "name_fr": "Réflexes Foudroyants",
               "description_en": "The character reacts with exceptional speed in dangerous situations.",
-              "description_fr": null,
+              "description_fr": "Le personnage réagit avec une rapidité foudroyante dans les situations dangereuses.",
               "type": "ability",
               "effects": {
                 "special_ability": "lightning_reactions",
@@ -473,7 +473,7 @@
               "name_en": "High Pain Threshold",
               "name_fr": "Seuil de Douleur Élevé",
               "description_en": "The character withstands pain and shock better than normal.",
-              "description_fr": null,
+              "description_fr": "Le personnage supporte la douleur et le choc mieux que la normale.",
               "type": "ability",
               "effects": {
                 "special_ability": "high_pain_threshold",
@@ -489,7 +489,7 @@
               "name_en": "Unusual Agility",
               "name_fr": "Agilité Exceptionnelle",
               "description_en": "The character has exceptionally high agility.",
-              "description_fr": null,
+              "description_fr": "Le personnage possède une agilité exceptionnellement élevée.",
               "type": "ability",
               "effects": {
                 "special_ability": "unusual_agility",
@@ -507,7 +507,7 @@
               "name_en": "Silent Mover",
               "name_fr": "Déplacement Silencieux",
               "description_en": "The character moves quietly and gains a Stalk/Hide bonus.",
-              "description_fr": null,
+              "description_fr": "Le personnage se déplace silencieusement et bénéficie d'un bonus en Pistage/Dissimulation.",
               "type": "ability",
               "effects": {
                 "special_ability": "silent_mover",
@@ -525,7 +525,7 @@
               "name_en": "Great Strength",
               "name_fr": "Grande Force",
               "description_en": "The character has exceptional physical strength.",
-              "description_fr": null,
+              "description_fr": "Le personnage dispose d'une force physique exceptionnelle.",
               "type": "ability",
               "effects": {
                 "special_ability": "great_strength",
@@ -543,7 +543,7 @@
               "name_en": "Lycanthropy",
               "name_fr": "Lycanthropie",
               "description_en": "The character is affected by lycanthropy; exact handling is determined by the GM.",
-              "description_fr": null,
+              "description_fr": "Le personnage est atteint de lycanthropie ; les modalités exactes sont déterminées par le MJ.",
               "type": "ability",
               "effects": {
                 "special_ability": "lycanthropy",
@@ -559,7 +559,7 @@
               "name_en": "Highly Resistant",
               "name_fr": "Très Résistant",
               "description_en": "The character has heightened resistance to hostile effects.",
-              "description_fr": null,
+              "description_fr": "Le personnage bénéficie d'une résistance accrue aux effets hostiles.",
               "type": "ability",
               "effects": {
                 "special_ability": "highly_resistant",
@@ -575,7 +575,7 @@
               "name_en": "Unusually Enchanted",
               "name_fr": "Inhabituellement Enchanté",
               "description_en": "The character has a minor innate magical attunement.",
-              "description_fr": null,
+              "description_fr": "Le personnage possède une légère connexion innée à la magie.",
               "type": "ability",
               "effects": {
                 "special_ability": "unusually_enchanted",
@@ -591,7 +591,7 @@
               "name_en": "Exceptionally Enchanted",
               "name_fr": "Exceptionnellement Enchanté",
               "description_en": "The character has a major innate magical attunement.",
-              "description_fr": null,
+              "description_fr": "Le personnage possède une puissante connexion innée à la magie.",
               "type": "ability",
               "effects": {
                 "special_ability": "exceptionally_enchanted",
@@ -614,7 +614,7 @@
               "name_en": "Herb, Bread, or Poison",
               "name_fr": "Herbe, Pain ou Poison",
               "description_en": "One bread, poison, or herb from the Enchanted Herbs, Breads, and Poisons Price Table (pp. 113-118). The GM may require a random roll or permit the PC to select one.",
-              "description_fr": null,
+              "description_fr": "Un pain, poison ou herbe issu de la Table des prix des Herbes, Pains et Poisons enchantés (pp. 113-118). Le MJ peut imposer un jet aléatoire ou autoriser le joueur à en choisir un.",
               "type": "item",
               "effects": {
                 "item_category": "enchanted_consumable"
@@ -629,7 +629,7 @@
               "name_en": "+5 Bonus Magic Item",
               "name_fr": "Objet Magique +5",
               "description_en": "A +5 bonus magic item* of the player's choice.",
-              "description_fr": null,
+              "description_fr": "Un objet magique* de +5 au choix du joueur.",
               "type": "item",
               "effects": {
                 "magic_item_bonus": 5
@@ -644,7 +644,7 @@
               "name_en": "+10 Bonus Magic Accessory",
               "name_fr": "Accessoire Magique +10",
               "description_en": "A +10 bonus magic item* of the player's choice from the Accessory Price Table (p. 108).",
-              "description_fr": null,
+              "description_fr": "Un objet magique* de +10 au choix du joueur, issu de la Table des prix des Accessoires (p. 108).",
               "type": "item",
               "effects": {
                 "magic_item_bonus": 10
@@ -659,7 +659,7 @@
               "name_en": "+10 Bonus Non-Magic Item",
               "name_fr": "Objet Non Magique +10",
               "description_en": "A +10 bonus non-magic item** of the player's choice.",
-              "description_fr": null,
+              "description_fr": "Un objet non magique** de +10 au choix du joueur.",
               "type": "item",
               "effects": {
                 "non_magic_item_bonus": 10
@@ -674,7 +674,7 @@
               "name_en": "+10 Magic Item or +1 Spell Adder",
               "name_fr": "Objet Magique +10 ou Ajouteur de Sort +1",
               "description_en": "A +10 bonus magic item* of the player's choice or a +1 spell adder item***.",
-              "description_fr": null,
+              "description_fr": "Un objet magique* de +10 au choix du joueur, ou un objet ajouteur de sort*** de +1.",
               "type": "item",
               "effects": {
                 "choice_options": [
@@ -696,7 +696,7 @@
               "name_en": "Daily I Spell Item",
               "name_fr": "Objet de Sort Quotidien I",
               "description_en": "A Daily I spell item****.",
-              "description_fr": null,
+              "description_fr": "Un objet de sort Quotidien I****.",
               "type": "item",
               "effects": {
                 "daily_spell_item": 1
@@ -711,7 +711,7 @@
               "name_en": "+15 Non-Magic Item or x2 Spell Multiplier",
               "name_fr": "Objet Non Magique +15 ou Multiplicateur x2",
               "description_en": "A +15 bonus non-magic item** of the player's choice or a x2 spell multiplier item.",
-              "description_fr": null,
+              "description_fr": "Un objet non magique** de +15 au choix du joueur, ou un objet multiplicateur de sorts ×2.",
               "type": "item",
               "effects": {
                 "choice_options": [
@@ -733,7 +733,7 @@
               "name_en": "+15 Magic Item or +2 Spell Adder",
               "name_fr": "Objet Magique +15 ou Ajouteur de Sort +2",
               "description_en": "A +15 bonus magic item* of the player's choice or a +2 spell adder item***.",
-              "description_fr": null,
+              "description_fr": "Un objet magique* de +15 au choix du joueur, ou un objet ajouteur de sort*** de +2.",
               "type": "item",
               "effects": {
                 "choice_options": [
@@ -755,7 +755,7 @@
               "name_en": "Daily II Spell Item",
               "name_fr": "Objet de Sort Quotidien II",
               "description_en": "A Daily II spell item****.",
-              "description_fr": null,
+              "description_fr": "Un objet de sort Quotidien II****.",
               "type": "item",
               "effects": {
                 "daily_spell_item": 2
@@ -770,7 +770,7 @@
               "name_en": "+20 Non-Magic Item / x2 Multiplier / +3 Adder",
               "name_fr": "Objet Non Magique +20 / x2 / Ajouteur +3",
               "description_en": "A +20 bonus non-magic item** of the player's choice or a x2 spell multiplier item or a +3 spell adder item***.",
-              "description_fr": null,
+              "description_fr": "Un objet non magique** de +20 au choix du joueur, un objet multiplicateur de sorts ×2, ou un objet ajouteur de sort*** de +3.",
               "type": "item",
               "effects": {
                 "choice_options": [
@@ -795,7 +795,7 @@
               "name_en": "Daily III Spell Item",
               "name_fr": "Objet de Sort Quotidien III",
               "description_en": "A Daily III spell item****.",
-              "description_fr": null,
+              "description_fr": "Un objet de sort Quotidien III****.",
               "type": "item",
               "effects": {
                 "daily_spell_item": 3
@@ -810,7 +810,7 @@
               "name_en": "Daily IV Spell Item",
               "name_fr": "Objet de Sort Quotidien IV",
               "description_en": "A Daily IV spell item****.",
-              "description_fr": null,
+              "description_fr": "Un objet de sort Quotidien IV****.",
               "type": "item",
               "effects": {
                 "daily_spell_item": 4
@@ -825,7 +825,7 @@
               "name_en": "+25 Magic Item / x3 Multiplier / +4 Adder",
               "name_fr": "Objet Magique +25 / x3 / Ajouteur +4",
               "description_en": "A +25 bonus magic item* of the player's choice or a x3 spell multiplier item or a +4 spell adder item***.",
-              "description_fr": null,
+              "description_fr": "Un objet magique* de +25 au choix du joueur, un objet multiplicateur de sorts ×3, ou un objet ajouteur de sort*** de +4.",
               "type": "item",
               "effects": {
                 "choice_options": [
@@ -850,7 +850,7 @@
               "name_en": "Loyal Unusual Creature",
               "name_fr": "Créature Inhabituelle Loyale",
               "description_en": "One loyal unusual creature (e.g., a monster).",
-              "description_fr": null,
+              "description_fr": "Une créature inhabituelle loyale (ex. : un monstre).",
               "type": "item",
               "effects": {
                 "companion_creature": "unusual_loyal_creature"
@@ -872,7 +872,7 @@
               "name_en": "Gold (1 gp)",
               "name_fr": "Or (1 po)",
               "description_en": "1 gp",
-              "description_fr": null,
+              "description_fr": "1 pièce d'or.",
               "type": "wealth",
               "effects": {
                 "gold": 1
@@ -887,7 +887,7 @@
               "name_en": "Gold (2 gp)",
               "name_fr": "Or (2 po)",
               "description_en": "2 gp",
-              "description_fr": null,
+              "description_fr": "2 pièces d'or.",
               "type": "wealth",
               "effects": {
                 "gold": 2
@@ -902,7 +902,7 @@
               "name_en": "Gold (3 gp)",
               "name_fr": "Or (3 po)",
               "description_en": "3 gp",
-              "description_fr": null,
+              "description_fr": "3 pièces d'or.",
               "type": "wealth",
               "effects": {
                 "gold": 3
@@ -917,7 +917,7 @@
               "name_en": "Gold (4 gp)",
               "name_fr": "Or (4 po)",
               "description_en": "4 gp",
-              "description_fr": null,
+              "description_fr": "4 pièces d'or.",
               "type": "wealth",
               "effects": {
                 "gold": 4
@@ -932,7 +932,7 @@
               "name_en": "Gold (5 gp)",
               "name_fr": "Or (5 po)",
               "description_en": "5 gp",
-              "description_fr": null,
+              "description_fr": "5 pièces d'or.",
               "type": "wealth",
               "effects": {
                 "gold": 5
@@ -947,7 +947,7 @@
               "name_en": "Gold (10 gp)",
               "name_fr": "Or (10 po)",
               "description_en": "10 gp",
-              "description_fr": null,
+              "description_fr": "10 pièces d'or.",
               "type": "wealth",
               "effects": {
                 "gold": 10
@@ -962,7 +962,7 @@
               "name_en": "Gold (15 gp)",
               "name_fr": "Or (15 po)",
               "description_en": "15 gp",
-              "description_fr": null,
+              "description_fr": "15 pièces d'or.",
               "type": "wealth",
               "effects": {
                 "gold": 15
@@ -977,7 +977,7 @@
               "name_en": "Gold (20 gp)",
               "name_fr": "Or (20 po)",
               "description_en": "20 gp",
-              "description_fr": null,
+              "description_fr": "20 pièces d'or.",
               "type": "wealth",
               "effects": {
                 "gold": 20
@@ -992,7 +992,7 @@
               "name_en": "Gold (25 gp)",
               "name_fr": "Or (25 po)",
               "description_en": "25 gp",
-              "description_fr": null,
+              "description_fr": "25 pièces d'or.",
               "type": "wealth",
               "effects": {
                 "gold": 25
@@ -1007,7 +1007,7 @@
               "name_en": "Gold (30 gp)",
               "name_fr": "Or (30 po)",
               "description_en": "30 gp",
-              "description_fr": null,
+              "description_fr": "30 pièces d'or.",
               "type": "wealth",
               "effects": {
                 "gold": 30
@@ -1022,7 +1022,7 @@
               "name_en": "Gold (35 gp)",
               "name_fr": "Or (35 po)",
               "description_en": "35 gp",
-              "description_fr": null,
+              "description_fr": "35 pièces d'or.",
               "type": "wealth",
               "effects": {
                 "gold": 35
@@ -1037,7 +1037,7 @@
               "name_en": "Gems (10 x 10 gp)",
               "name_fr": "Gemmes (10 x 10 po)",
               "description_en": "10 gems worth 10 gp each",
-              "description_fr": null,
+              "description_fr": "10 gemmes d'une valeur de 10 po chacune.",
               "type": "wealth",
               "effects": {
                 "gems": {
@@ -1055,7 +1055,7 @@
               "name_en": "Gold (40 gp)",
               "name_fr": "Or (40 po)",
               "description_en": "40 gp",
-              "description_fr": null,
+              "description_fr": "40 pièces d'or.",
               "type": "wealth",
               "effects": {
                 "gold": 40
@@ -1070,7 +1070,7 @@
               "name_en": "Gold (50 gp)",
               "name_fr": "Or (50 po)",
               "description_en": "50 gp",
-              "description_fr": null,
+              "description_fr": "50 pièces d'or.",
               "type": "wealth",
               "effects": {
                 "gold": 50
@@ -1085,7 +1085,7 @@
               "name_en": "Gold (60 gp)",
               "name_fr": "Or (60 po)",
               "description_en": "60 gp",
-              "description_fr": null,
+              "description_fr": "60 pièces d'or.",
               "type": "wealth",
               "effects": {
                 "gold": 60
@@ -1100,7 +1100,7 @@
               "name_en": "Gold (70 gp)",
               "name_fr": "Or (70 po)",
               "description_en": "70 gp",
-              "description_fr": null,
+              "description_fr": "70 pièces d'or.",
               "type": "wealth",
               "effects": {
                 "gold": 70
@@ -1115,7 +1115,7 @@
               "name_en": "Gold (80 gp)",
               "name_fr": "Or (80 po)",
               "description_en": "80 gp",
-              "description_fr": null,
+              "description_fr": "80 pièces d'or.",
               "type": "wealth",
               "effects": {
                 "gold": 80
@@ -1130,7 +1130,7 @@
               "name_en": "Gold (100 gp)",
               "name_fr": "Or (100 po)",
               "description_en": "100 gp",
-              "description_fr": null,
+              "description_fr": "100 pièces d'or.",
               "type": "wealth",
               "effects": {
                 "gold": 100
@@ -1145,7 +1145,7 @@
               "name_en": "Gems (6 x 20 gp)",
               "name_fr": "Gemmes (6 x 20 po)",
               "description_en": "6 gems worth 20 gp each",
-              "description_fr": null,
+              "description_fr": "6 gemmes d'une valeur de 20 po chacune.",
               "type": "wealth",
               "effects": {
                 "gems": {
@@ -1163,7 +1163,7 @@
               "name_en": "Gems (15 x 10 gp)",
               "name_fr": "Gemmes (15 x 10 po)",
               "description_en": "15 gems worth 10 gp each",
-              "description_fr": null,
+              "description_fr": "15 gemmes d'une valeur de 10 po chacune.",
               "type": "wealth",
               "effects": {
                 "gems": {
@@ -1181,7 +1181,7 @@
               "name_en": "Monthly Income (5 gp)",
               "name_fr": "Revenu Mensuel (5 po)",
               "description_en": "Income of 5 gp/month*",
-              "description_fr": null,
+              "description_fr": "Revenu mensuel de 5 po*.",
               "type": "wealth",
               "effects": {
                 "income_monthly": 5
@@ -1196,7 +1196,7 @@
               "name_en": "Monthly Income (10 gp)",
               "name_fr": "Revenu Mensuel (10 po)",
               "description_en": "Income of 10 gp/month*",
-              "description_fr": null,
+              "description_fr": "Revenu mensuel de 10 po*.",
               "type": "wealth",
               "effects": {
                 "income_monthly": 10
@@ -1218,7 +1218,7 @@
               "name_en": "Cursed",
               "name_fr": "Maudit",
               "description_en": "The character or family is marked by a curse.",
-              "description_fr": null,
+              "description_fr": "Le personnage ou sa famille est marqué par une malédiction.",
               "type": "status",
               "effects": {
                 "status": "cursed"
@@ -1233,7 +1233,7 @@
               "name_en": "Impoverished family",
               "name_fr": "Famille Déshéritée",
               "description_en": "The character comes from an exceptionally impoverished family.",
-              "description_fr": null,
+              "description_fr": "Le personnage est issu d'une famille exceptionnellement pauvre.",
               "type": "status",
               "effects": {
                 "social": "impoverished_family"
@@ -1248,7 +1248,7 @@
               "name_en": "Criminal background",
               "name_fr": "Passé Criminel",
               "description_en": "The character comes from a criminal background.",
-              "description_fr": null,
+              "description_fr": "Le personnage est issu d'un milieu criminel.",
               "type": "status",
               "effects": {
                 "social": "criminal_background"
@@ -1263,7 +1263,7 @@
               "name_en": "Guild background",
               "name_fr": "Passé de Guilde",
               "description_en": "The character comes from a guild background.",
-              "description_fr": null,
+              "description_fr": "Le personnage est issu d'une guilde professionnelle.",
               "type": "status",
               "effects": {
                 "social": "guild_background"
@@ -1278,7 +1278,7 @@
               "name_en": "Multi-cultural, multi-linguistic",
               "name_fr": "Multiculturel et Multilingue",
               "description_en": "The character has a multi-cultural and multi-linguistic background.",
-              "description_fr": null,
+              "description_fr": "Le personnage a une formation multiculturelle et multilingue.",
               "type": "status",
               "effects": {
                 "social": "multicultural",
@@ -1294,7 +1294,7 @@
               "name_en": "Animal-friend",
               "name_fr": "Ami des Animaux",
               "description_en": "The character has a special rapport with animals.",
-              "description_fr": null,
+              "description_fr": "Le personnage entretient un rapport particulier avec les animaux.",
               "type": "status",
               "effects": {
                 "social": "animal_friend"
@@ -1309,7 +1309,7 @@
               "name_en": "Race-friend",
               "name_fr": "Ami d'un Peuple",
               "description_en": "The character has a special rapport with another race.",
-              "description_fr": null,
+              "description_fr": "Le personnage entretient un rapport particulier avec une autre race.",
               "type": "status",
               "effects": {
                 "social": "race_friend"
@@ -1324,7 +1324,7 @@
               "name_en": "Royal blood",
               "name_fr": "Sang Royal",
               "description_en": "The character possesses royal blood.",
-              "description_fr": null,
+              "description_fr": "Le personnage possède du sang royal.",
               "type": "status",
               "effects": {
                 "social": "royal_blood"
@@ -1339,7 +1339,7 @@
               "name_en": "Conspiratorial background",
               "name_fr": "Passé Conspirateur",
               "description_en": "The character or family is tied to a conspiracy.",
-              "description_fr": null,
+              "description_fr": "Le personnage ou sa famille est lié à une conspiration.",
               "type": "status",
               "effects": {
                 "social": "conspiratorial_background"
@@ -1354,7 +1354,7 @@
               "name_en": "Rich",
               "name_fr": "Riche",
               "description_en": "The character's family is rich.",
-              "description_fr": null,
+              "description_fr": "La famille du personnage est riche.",
               "type": "status",
               "effects": {
                 "social": "rich_family",
@@ -1370,7 +1370,7 @@
               "name_en": "Charmed",
               "name_fr": "Choyé par la Chance",
               "description_en": "Events tied to luck or happenstance favor the character by 20%.",
-              "description_fr": null,
+              "description_fr": "Les événements liés au hasard favorisent le personnage à hauteur de 20 %.",
               "type": "status",
               "effects": {
                 "luck_event_modifier": 20
@@ -1399,7 +1399,7 @@
               "name_en": "Hemophilia",
               "name_fr": "Hémophilie",
               "description_en": "All bleeding results are doubled.",
-              "description_fr": null,
+              "description_fr": "Tous les résultats de saignement sont doublés.",
               "type": "flaw",
               "effects": {
                 "bleeding_multiplier": 2
@@ -1414,7 +1414,7 @@
               "name_en": "Psychotic Temper",
               "name_fr": "Tempérament Psychotique",
               "description_en": "Base (40 - SD Mod)% chance of responding to insult or offense with a killing fit.",
-              "description_fr": null,
+              "description_fr": "Chance de base de (40 - mod. AD)% de répondre à une insulte ou une offense par un accès de violence meurtrière.",
               "type": "flaw",
               "effects": {
                 "trigger_chance_formula": "40 - SD_mod"
@@ -1429,7 +1429,7 @@
               "name_en": "Wanted Criminal",
               "name_fr": "Criminel Recherché",
               "description_en": "Accused of Murder, Banditry, Assassination, Theft, Assault, or Treason.",
-              "description_fr": null,
+              "description_fr": "Accusé de meurtre, banditisme, assassinat, vol, agression ou trahison.",
               "type": "flaw",
               "effects": {
                 "social": "wanted"
@@ -1444,7 +1444,7 @@
               "name_en": "Blood-Guilt",
               "name_fr": "Culpabilité du Sang",
               "description_en": "PC experiences severe guilt if he causes the death or injury of a human, Elf, Hobbit, or Dwarf.",
-              "description_fr": null,
+              "description_fr": "Le personnage ressent une culpabilité intense s'il cause la mort ou blesse un humain, un elfe, un hobbit ou un nain.",
               "type": "flaw",
               "effects": {
                 "restriction": "guilt_on_kill"
@@ -1459,7 +1459,7 @@
               "name_en": "Chivalrous",
               "name_fr": "Chevaleresque",
               "description_en": "Will never fight in an unchivalrous manner; always gives opponent first initiative, never fights horseback vs foot, always allows enemy to rearm.",
-              "description_fr": null,
+              "description_fr": "Ne combat jamais de façon non chevaleresque : cède toujours l'initiative à l'adversaire, ne combat pas à cheval contre un adversaire à pied, permet toujours à l'ennemi de se réarmer.",
               "type": "flaw",
               "effects": {
                 "restriction": "chivalry_code"
@@ -1474,7 +1474,7 @@
               "name_en": "Terrible Fearlessness",
               "name_fr": "Intrépidité Terrible",
               "description_en": "Base (40 - SD Mod)% chance of charging heedless into a combat situation.",
-              "description_fr": null,
+              "description_fr": "Chance de base de (40 - mod. AD)% de se précipiter tête baissée dans toute situation de combat.",
               "type": "flaw",
               "effects": {
                 "trigger_chance_formula": "40 - SD_mod"
@@ -1489,7 +1489,7 @@
               "name_en": "Terrible Phobia",
               "name_fr": "Phobie Terrible",
               "description_en": "PC is victim of a terrible phobia. Details determined by the GM.",
-              "description_fr": null,
+              "description_fr": "Le personnage est victime d'une phobie terrible. Les détails sont déterminés par le MJ.",
               "type": "flaw",
               "effects": {
                 "gm_determined": true
@@ -1504,7 +1504,7 @@
               "name_en": "Faithful Vassal",
               "name_fr": "Vassal Fidèle",
               "description_en": "The PC is a faithful vassal to a very wicked Lord or Lady.",
-              "description_fr": null,
+              "description_fr": "Le personnage est un vassal fidèle d'un seigneur ou d'une dame particulièrement maléfique.",
               "type": "flaw",
               "effects": {
                 "social": "vassal_to_evil"
@@ -1519,7 +1519,7 @@
               "name_en": "Superstitious",
               "name_fr": "Superstitieux",
               "description_en": "The PC is superstitious: his morale is influenced by bad 'omens'.",
-              "description_fr": null,
+              "description_fr": "Le personnage est superstitieux : son moral est influencé par les mauvais présages.",
               "type": "flaw",
               "effects": {
                 "morale_penalty": true
@@ -1534,7 +1534,7 @@
               "name_en": "Passive",
               "name_fr": "Passif",
               "description_en": "-15 to all OB's until he gets 'worked up'. May roll once each turn, (20 + SD Mod)% chance.",
-              "description_fr": null,
+              "description_fr": "-15 à toutes les BO jusqu'à ce qu'il soit « chauffé à blanc ». Peut tenter de s'échauffer une fois par tour avec (20 + mod. AD)% de chance.",
               "type": "flaw",
               "effects": {
                 "ob_penalty": -15,
@@ -1550,7 +1550,7 @@
               "name_en": "Martial Arts Training",
               "name_fr": "Entraînement Arts Martiaux",
               "description_en": "If non-monk, may train in Martial Arts, Adrenal Moves, and Adrenal Defense as if he were a Monk. If Monk, no penalty when using weapon kata.",
-              "description_fr": null,
+              "description_fr": "Si non-moine, peut s'entraîner aux Arts martiaux, Mouvements adrénaline et Défense adrénaline comme un moine. Si moine, aucune pénalité pour l'utilisation des kata armés.",
               "type": "talent",
               "effects": {
                 "unlock_monk_skills": true
@@ -1565,7 +1565,7 @@
               "name_en": "Natural Archer",
               "name_fr": "Archer Naturel",
               "description_en": "25% increase to all bow ranges.",
-              "description_fr": null,
+              "description_fr": "Augmentation de 25 % de toutes les portées d'arc.",
               "type": "talent",
               "effects": {
                 "bow_range_multiplier": 1.25
@@ -1580,7 +1580,7 @@
               "name_en": "Subtle",
               "name_fr": "Subtil",
               "description_en": "Stalk and Hide skill bonus modified by +25.",
-              "description_fr": null,
+              "description_fr": "Le bonus en Pistage/Dissimulation est augmenté de +25.",
               "type": "talent",
               "effects": {
                 "skill_bonus": {
@@ -1597,7 +1597,7 @@
               "name_en": "Mind Over Matter",
               "name_fr": "L'Esprit sur la Matière",
               "description_en": "+25 modification to all Adrenal Moves rolls.",
-              "description_fr": null,
+              "description_fr": "+25 à tous les jets de Mouvements adrénaline.",
               "type": "talent",
               "effects": {
                 "skill_bonus": {
@@ -1614,7 +1614,7 @@
               "name_en": "Natural Horseman",
               "name_fr": "Cavalier Naturel",
               "description_en": "+25 bonus to riding bonuses.",
-              "description_fr": null,
+              "description_fr": "+25 au bonus d'Équitation.",
               "type": "talent",
               "effects": {
                 "skill_bonus": {
@@ -1631,7 +1631,7 @@
               "name_en": "Knighted",
               "name_fr": "Adoubé",
               "description_en": "The PC has been knighted for a personal act of heroism on behalf of a noble or royalty.",
-              "description_fr": null,
+              "description_fr": "Le personnage a été adoubé chevalier pour un acte personnel d'héroïsme au service d'un noble ou de la royauté.",
               "type": "talent",
               "effects": {
                 "social": "knight"
@@ -1646,7 +1646,7 @@
               "name_en": "Natural Facility With Armor",
               "name_fr": "Facilité Naturelle avec l'Armure",
               "description_en": "All armor development costs are cut in half.",
-              "description_fr": null,
+              "description_fr": "Tous les coûts de développement des armures sont réduits de moitié.",
               "type": "talent",
               "effects": {
                 "armor_cost_multiplier": 0.5
@@ -1661,7 +1661,7 @@
               "name_en": "Unnatural Stamina",
               "name_fr": "Endurance Surnaturelle",
               "description_en": "May run at up to 3x normal movement rate and spend only 1 exhaustion point every 60 rounds.",
-              "description_fr": null,
+              "description_fr": "Peut courir jusqu'à 3 fois la vitesse normale et ne dépense qu'1 point d'épuisement toutes les 60 rounds.",
               "type": "talent",
               "effects": {
                 "movement_multiplier": 3,
@@ -1677,7 +1677,7 @@
               "name_en": "Natural Weapon Master",
               "name_fr": "Maître d'Armes Naturel",
               "description_en": "May develop skill ranks in one similar weapons category; all weapons in that category may use that skill rank for their OB's.",
-              "description_fr": null,
+              "description_fr": "Peut développer des rangs dans une catégorie d'armes similaire ; toutes les armes de cette catégorie peuvent utiliser ce rang pour leurs BO.",
               "type": "talent",
               "effects": {
                 "weapon_category_mastery": true
@@ -1692,7 +1692,7 @@
               "name_en": "Assassin Training",
               "name_fr": "Entraînement d'Assassin",
               "description_en": "Ambush development costs are cut in half.",
-              "description_fr": null,
+              "description_fr": "Les coûts de développement pour l'Embuscade sont réduits de moitié.",
               "type": "talent",
               "effects": {
                 "ambush_cost_multiplier": 0.5
@@ -1707,7 +1707,7 @@
               "name_en": "Natural Physique",
               "name_fr": "Physique Naturel",
               "description_en": "Half development point cost for Body Development. Maximum racial body hits are increased by 50%.",
-              "description_fr": null,
+              "description_fr": "Le coût en PD pour le Développement corporel est réduit de moitié. Les PdC raciaux maximaux sont augmentés de 50 %.",
               "type": "talent",
               "effects": {
                 "body_dev_cost_multiplier": 0.5,
@@ -1723,7 +1723,7 @@
               "name_en": "Hammerhand",
               "name_fr": "Main de Marteau",
               "description_en": "Hands hit as maces when using MA Strikes skill; treat as a 'Mace' weapon kata with no penalty.",
-              "description_fr": null,
+              "description_fr": "Les mains frappent comme des masses lors de l'utilisation de Frappes AM ; traité comme un kata « Masse » sans pénalité.",
               "type": "talent",
               "effects": {
                 "unarmed_as_mace": true
@@ -1738,7 +1738,7 @@
               "name_en": "Lucky",
               "name_fr": "Chanceux",
               "description_en": "May modify any die roll directly concerning the character by either +5 or -5.",
-              "description_fr": null,
+              "description_fr": "Peut modifier tout jet de dés concernant directement le personnage de +5 ou de -5.",
               "type": "talent",
               "effects": {
                 "die_modifier": 5
@@ -1753,7 +1753,7 @@
               "name_en": "Directed Weapons Master",
               "name_fr": "Maître d'Arme Dirigée",
               "description_en": "One selected category of weapons yields 3 skill ranks for every 2 developed. All other weapon dev costs increased by 50%.",
-              "description_fr": null,
+              "description_fr": "Une catégorie d'armes choisie rapporte 3 rangs pour 2 développés. Tous les autres coûts de développement d'armes sont augmentés de 50 %.",
               "type": "mixed",
               "effects": {
                 "weapon_rank_bonus": "3_per_2",
@@ -1769,7 +1769,7 @@
               "name_en": "Disarm Skill",
               "name_fr": "Compétence de Désarmement",
               "description_en": "May intentionally attempt to disarm opponent. Subtract enemy OB from PC OB; add open-ended roll; if 101+ enemy must roll RR vs PC level or lose weapon.",
-              "description_fr": null,
+              "description_fr": "Peut tenter intentionnellement de désarmer l'adversaire. Soustraire la BO ennemie de la BO du personnage, ajouter un jet ouvert ; si 101+, l'ennemi doit réussir un JR contre le niveau du personnage ou perdre son arme.",
               "type": "talent",
               "effects": {
                 "special_maneuver": "disarm"
@@ -1784,7 +1784,7 @@
               "name_en": "Immovable Will",
               "name_fr": "Volonté Inébranlable",
               "description_en": "Immune to fear and charm attacks. Sleep attacks are halved for attack level and duration.",
-              "description_fr": null,
+              "description_fr": "Immunisé aux attaques de peur et de charme. Les attaques de sommeil voient leur niveau et leur durée divisés par deux.",
               "type": "talent",
               "effects": {
                 "immunity": [
@@ -1803,7 +1803,7 @@
               "name_en": "Tolerance",
               "name_fr": "Tolérance",
               "description_en": "May take 150% of total hit points before becoming unconscious.",
-              "description_fr": null,
+              "description_fr": "Peut encaisser jusqu'à 150 % de ses PdC totaux avant de perdre conscience.",
               "type": "talent",
               "effects": {
                 "unconscious_threshold_multiplier": 1.5
@@ -1818,7 +1818,7 @@
               "name_en": "Accelerated Mending",
               "name_fr": "Guérison Accélérée",
               "description_en": "PC's injuries heal twice as quickly as normal.",
-              "description_fr": null,
+              "description_fr": "Les blessures du personnage guérissent deux fois plus vite que la normale.",
               "type": "talent",
               "effects": {
                 "healing_multiplier": 2
@@ -1833,7 +1833,7 @@
               "name_en": "Unbeliever",
               "name_fr": "Incrédule",
               "description_en": "Resists magic at 3x level. May not use spells or spell devices.",
-              "description_fr": null,
+              "description_fr": "Résiste à la magie avec un niveau × 3. Ne peut pas utiliser de sorts ni de dispositifs magiques.",
               "type": "mixed",
               "effects": {
                 "rr_level_multiplier": 3,
@@ -1849,7 +1849,7 @@
               "name_en": "Animal Friend",
               "name_fr": "Ami des Animaux",
               "description_en": "Vegetarian; has (35 + Em Mod)% chance each round of befriending any animal within 10' if concentrating. May not control animal, but animal will act friendly.",
-              "description_fr": null,
+              "description_fr": "Végétarien ; chance de (35 + mod. EM)% par round de se lier d'amitié avec tout animal dans un rayon de 3 m s'il se concentre. Ne peut pas contrôler l'animal, mais celui-ci se montrera amical.",
               "type": "mixed",
               "effects": {
                 "restriction": "vegetarian",
@@ -1865,7 +1865,7 @@
               "name_en": "Master Tactician",
               "name_fr": "Maître Tacticien",
               "description_en": "Has an open-ended chance equal to his IN modification to receive information directly from the GM concerning an immediate tactical situation.",
-              "description_fr": null,
+              "description_fr": "Possède une chance ouverte égale à son modificateur d'IN de recevoir directement du MJ des informations concernant la situation tactique immédiate.",
               "type": "talent",
               "effects": {
                 "gm_info_chance": "IN_mod"
@@ -1880,7 +1880,7 @@
               "name_en": "Subconscious Preparation",
               "name_fr": "Préparation Subconsciente",
               "description_en": "Readies weapons and bows 1 round quicker than normal.",
-              "description_fr": null,
+              "description_fr": "Prépare ses armes et arcs 1 round plus vite que la normale.",
               "type": "talent",
               "effects": {
                 "weapon_ready_bonus": -1
@@ -1895,7 +1895,7 @@
               "name_en": "Trained Regular Footman",
               "name_fr": "Fantassin Entraîné",
               "description_en": "May make MA Rank 1 Sweeps/Throws attack each round in addition to normal action.",
-              "description_fr": null,
+              "description_fr": "Peut effectuer une attaque AM Rang 1 Balayages/Projections chaque round en plus de son action normale.",
               "type": "talent",
               "effects": {
                 "bonus_attack": "MA_sweep_throw"
@@ -1910,7 +1910,7 @@
               "name_en": "Danger Sense",
               "name_fr": "Sens du Danger",
               "description_en": "GM may warn of general danger on a roll less than or equal to the PC's IN modification.",
-              "description_fr": null,
+              "description_fr": "Le MJ peut avertir d'un danger général sur un jet inférieur ou égal au modificateur d'IN du personnage.",
               "type": "talent",
               "effects": {
                 "danger_sense_chance": "IN_mod"
@@ -1925,7 +1925,7 @@
               "name_en": "Light Sleeper",
               "name_fr": "Sommeil Léger",
               "description_en": "PC may make perception rolls to wake and take action immediately from normal sleep.",
-              "description_fr": null,
+              "description_fr": "Le personnage peut effectuer des jets de Perception pour se réveiller et agir immédiatement depuis un sommeil normal.",
               "type": "talent",
               "effects": {
                 "wake_perception": true
@@ -1940,7 +1940,7 @@
               "name_en": "Look Of Eagles",
               "name_fr": "Regard d'Aigle",
               "description_en": "Those who are allies, troops, or henchmen under the PC never panic while he is well & in sight.",
-              "description_fr": null,
+              "description_fr": "Les alliés, troupes et sbires sous les ordres du personnage ne paniquent jamais tant qu'il est en bonne santé et visible.",
               "type": "talent",
               "effects": {
                 "morale_aura": "no_panic"
@@ -1955,7 +1955,7 @@
               "name_en": "Eye Of The Tiger",
               "name_fr": "Oeil du Tigre",
               "description_en": "PC may prepare as for the adrenal move 'Strength' except that his chance of success is his level + ((SD Mod + EM Mod)/2). If he succeeds, his OB and DB are modified by +15 for the next round.",
-              "description_fr": null,
+              "description_fr": "Le personnage peut se préparer comme pour le Mouvement adrénaline « Force », mais sa chance de succès est son niveau + ((mod. AD + mod. EM)/2). En cas de succès, sa BO et sa BD sont majorées de +15 pour le round suivant.",
               "type": "talent",
               "effects": {
                 "special_adrenal": true,
@@ -1971,7 +1971,7 @@
               "name_en": "Outdoorsman",
               "name_fr": "Homme des Bois",
               "description_en": "Gets +50 to all forage, fire starting, and locate shelter rolls while outdoors. +20 to all Tracking, Trapping, and Stalk/Hide rolls while outdoors.",
-              "description_fr": null,
+              "description_fr": "+50 à tous les jets de Fourragement, Allumage de feu et Recherche d'abri en plein air. +20 à tous les jets de Pistage, Piégeage et Pistage/Dissimulation en plein air.",
               "type": "talent",
               "effects": {
                 "outdoor_bonus": 50,
@@ -1987,7 +1987,7 @@
               "name_en": "Portage Skill",
               "name_fr": "Compétence de Portage",
               "description_en": "Encumbrance Penalties are halved for the PC.",
-              "description_fr": null,
+              "description_fr": "Les pénalités d'encombrement sont réduites de moitié pour le personnage.",
               "type": "talent",
               "effects": {
                 "encumbrance_multiplier": 0.5
@@ -2002,7 +2002,7 @@
               "name_en": "Favored",
               "name_fr": "Favorisé",
               "description_en": "Liked by a very high ranking noble. May be a relative.",
-              "description_fr": null,
+              "description_fr": "Apprécié par un noble de très haut rang, qui peut être un parent du personnage.",
               "type": "talent",
               "effects": {
                 "social": "noble_favor"
@@ -2017,7 +2017,7 @@
               "name_en": "Blessed",
               "name_fr": "Béni",
               "description_en": "PC enjoys the favor of a particular god, demi-god, angel, etc.",
-              "description_fr": null,
+              "description_fr": "Le personnage bénéficie de la faveur d'un dieu, demi-dieu, ange ou entité similaire.",
               "type": "talent",
               "effects": {
                 "social": "divine_favor"
@@ -2032,7 +2032,7 @@
               "name_en": "Judge of Weaponry",
               "name_fr": "Juge d'Armement",
               "description_en": "May determine the pluses or minuses, magical and non-magical, on weapons and armor.",
-              "description_fr": null,
+              "description_fr": "Peut déterminer les bonus ou malus magiques et non magiques sur les armes et armures.",
               "type": "talent",
               "effects": {
                 "special_skill": "identify_weapons"
@@ -2047,7 +2047,7 @@
               "name_en": "Survival Instinct",
               "name_fr": "Instinct de Survie",
               "description_en": "When using entire OB to parry, the OB is modified by an additional +25.",
-              "description_fr": null,
+              "description_fr": "Lorsqu'il consacre toute sa BO à la parade, celle-ci est majorée de +25 supplémentaires.",
               "type": "talent",
               "effects": {
                 "parry_bonus": 25
@@ -2062,7 +2062,7 @@
               "name_en": "+15 Agility",
               "name_fr": "+15 Agilité",
               "description_en": "+15 to AG modification.",
-              "description_fr": null,
+              "description_fr": "+15 au modificateur d'Agilité (AG).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2079,7 +2079,7 @@
               "name_en": "+15 Self Discipline",
               "name_fr": "+15 Auto-discipline",
               "description_en": "+15 to SD modification.",
-              "description_fr": null,
+              "description_fr": "+15 au modificateur d'Auto-discipline (AD).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2096,7 +2096,7 @@
               "name_en": "+15 Quickness",
               "name_fr": "+15 Rapidité",
               "description_en": "+15 to QU modification.",
-              "description_fr": null,
+              "description_fr": "+15 au modificateur de Rapidité (RP).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2113,7 +2113,7 @@
               "name_en": "+15 Constitution",
               "name_fr": "+15 Constitution",
               "description_en": "+15 to CO modification.",
-              "description_fr": null,
+              "description_fr": "+15 au modificateur de Constitution (CO).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2130,7 +2130,7 @@
               "name_en": "+15 Strength",
               "name_fr": "+15 Force",
               "description_en": "+15 to ST modification.",
-              "description_fr": null,
+              "description_fr": "+15 au modificateur de Force (FO).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2147,7 +2147,7 @@
               "name_en": "+20 Agility",
               "name_fr": "+20 Agilité",
               "description_en": "+20 to AG modification.",
-              "description_fr": null,
+              "description_fr": "+20 au modificateur d'Agilité (AG).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2164,7 +2164,7 @@
               "name_en": "+20 Self Discipline",
               "name_fr": "+20 Auto-discipline",
               "description_en": "+20 to SD modification.",
-              "description_fr": null,
+              "description_fr": "+20 au modificateur d'Auto-discipline (AD).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2181,7 +2181,7 @@
               "name_en": "+20 Quickness",
               "name_fr": "+20 Rapidité",
               "description_en": "+20 to QU modification.",
-              "description_fr": null,
+              "description_fr": "+20 au modificateur de Rapidité (RP).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2198,7 +2198,7 @@
               "name_en": "+20 Constitution",
               "name_fr": "+20 Constitution",
               "description_en": "+20 to CO modification.",
-              "description_fr": null,
+              "description_fr": "+20 au modificateur de Constitution (CO).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2215,7 +2215,7 @@
               "name_en": "+20 Strength",
               "name_fr": "+20 Force",
               "description_en": "+20 to ST modification.",
-              "description_fr": null,
+              "description_fr": "+20 au modificateur de Force (FO).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2232,7 +2232,7 @@
               "name_en": "+20 to AG/SD/QU/CO/ST (GM choice)",
               "name_fr": "+20 à AG/AD/RP/CO/FO (choix du MJ)",
               "description_en": "+20 to AG, SD, QU, CO, or ST modification (GM choice: assign, PC choice, or random).",
-              "description_fr": null,
+              "description_fr": "+20 au modificateur d'AG, AD, RP, CO ou FO (choix du MJ : attribuer, laisser choisir le joueur ou tirage aléatoire).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2255,7 +2255,7 @@
               "name_en": "Dark Temptation",
               "name_fr": "Tentation Noire",
               "description_en": "PC is tempted to the 'Dark Side'. He learns one Evil spell list to 50th level. GM controls details.",
-              "description_fr": null,
+              "description_fr": "Le personnage est tenté par la Voie des Ténèbres. Il apprend une liste de sorts maléfiques jusqu'au 50e niveau. Le MJ contrôle les détails.",
               "type": "mixed",
               "effects": {
                 "learn_evil_list": 50
@@ -2270,7 +2270,7 @@
               "name_en": "Poor Control",
               "name_fr": "Mauvais Contrôle",
               "description_en": "Roll non-attack spell failures as attack spell failures. Add +10 to the roll for attack spell failures.",
-              "description_fr": null,
+              "description_fr": "Les échecs de sorts non offensifs sont traités comme des échecs de sorts offensifs. Ajoutez +10 au jet pour les échecs de sorts offensifs.",
               "type": "flaw",
               "effects": {
                 "spell_failure_penalty": 10
@@ -2285,7 +2285,7 @@
               "name_en": "Prejudice",
               "name_fr": "Préjudice",
               "description_en": "Deep irrational hatred for one GM chosen race.",
-              "description_fr": null,
+              "description_fr": "Haine irrationnelle profonde envers une race choisie par le MJ.",
               "type": "flaw",
               "effects": {
                 "gm_determined": true
@@ -2300,7 +2300,7 @@
               "name_en": "Open Door",
               "name_fr": "Porte Ouverte",
               "description_en": "Subject to temporary fits of demonic possession. Weekly chance = 5%.",
-              "description_fr": null,
+              "description_fr": "Sujet à des crises temporaires de possession démoniaque. Probabilité hebdomadaire : 5 %.",
               "type": "flaw",
               "effects": {
                 "possession_chance": 5
@@ -2315,7 +2315,7 @@
               "name_en": "Lycanthropy",
               "name_fr": "Lycanthropie",
               "description_en": "This is the uncontrollable, bestial, psychotic type.",
-              "description_fr": null,
+              "description_fr": "Il s'agit du type incontrôlable, bestial et psychotique de lycanthropie.",
               "type": "flaw",
               "effects": {
                 "lycanthropy": "uncontrollable"
@@ -2330,7 +2330,7 @@
               "name_en": "Necromantic Urge",
               "name_fr": "Pulsion Nécromantique",
               "description_en": "PC becomes a lich or powerful vampire when his soul departs his body.",
-              "description_fr": null,
+              "description_fr": "Le personnage devient un liche ou un puissant vampire lorsque son âme quitte son corps.",
               "type": "flaw",
               "effects": {
                 "undeath": true
@@ -2345,7 +2345,7 @@
               "name_en": "Physical Investment",
               "name_fr": "Investissement Physique",
               "description_en": "Any time the PC casts a spell that is over 8th level, the PC suffers 5 points concussion damage.",
-              "description_fr": null,
+              "description_fr": "Chaque fois que le personnage lance un sort de niveau supérieur au 8e, il subit 5 points de dégâts de contusion.",
               "type": "flaw",
               "effects": {
                 "spell_hp_cost": 5,
@@ -2361,7 +2361,7 @@
               "name_en": "Friendslayer",
               "name_fr": "Tueur d'Amis",
               "description_en": "Instead of following normal attack spell failure procedure, the attack works on the nearest friend or associate within range.",
-              "description_fr": null,
+              "description_fr": "Au lieu de la procédure normale d'échec de sort offensif, l'attaque cible l'ami ou l'associé le plus proche à portée.",
               "type": "flaw",
               "effects": {
                 "friendly_fire": true
@@ -2376,7 +2376,7 @@
               "name_en": "Wrath",
               "name_fr": "Courroux",
               "description_en": "The PC has the disfavor of a particular god, demi-god, demon, etc.",
-              "description_fr": null,
+              "description_fr": "Le personnage subit la défaveur d'un dieu, demi-dieu, démon ou entité similaire.",
               "type": "flaw",
               "effects": {
                 "social": "divine_disfavor"
@@ -2391,7 +2391,7 @@
               "name_en": "Split Personality Neurosis",
               "name_fr": "Névrose de Personnalité Multiple",
               "description_en": "PC has uncontrollable split personality. Must prepare character sheets for 1-3 additional personalities. Stats, levels, classes can vary.",
-              "description_fr": null,
+              "description_fr": "Le personnage souffre d'un dédoublement de personnalité incontrôlable. Des fiches doivent être préparées pour 1 à 3 personnalités supplémentaires, avec statistiques, niveaux et classes potentiellement différents.",
               "type": "flaw",
               "effects": {
                 "split_personality": true
@@ -2406,7 +2406,7 @@
               "name_en": "Transcendence",
               "name_fr": "Transcendance",
               "description_en": "PC is not penalized for wearing armor while casting spells.",
-              "description_fr": null,
+              "description_fr": "Le personnage ne subit aucune pénalité pour le port d'armure lors de l'incantation de sorts.",
               "type": "talent",
               "effects": {
                 "no_armor_spell_penalty": true
@@ -2421,7 +2421,7 @@
               "name_en": "Aggression",
               "name_fr": "Agression",
               "description_en": "+10 bonus on Base Attack or Elemental Spell rolls.",
-              "description_fr": null,
+              "description_fr": "+10 aux jets d'attaque de base ou de sorts élémentaires.",
               "type": "talent",
               "effects": {
                 "spell_attack_bonus": 10
@@ -2436,7 +2436,7 @@
               "name_en": "Resistance",
               "name_fr": "Résistance",
               "description_en": "PC receives a +25 bonus for RR's for any 1 realm.",
-              "description_fr": null,
+              "description_fr": "Le personnage reçoit un bonus de +25 à tous les Jets de résistance pour n'importe quel domaine.",
               "type": "talent",
               "effects": {
                 "rr_bonus": 25
@@ -2451,7 +2451,7 @@
               "name_en": "Power",
               "name_fr": "Pouvoir",
               "description_en": "PC knows any 1 spell list to 50th level. May be from any realm or profession.",
-              "description_fr": null,
+              "description_fr": "Le personnage connaît n'importe quelle liste de sorts jusqu'au 50e niveau, de tout domaine ou profession.",
               "type": "talent",
               "effects": {
                 "learn_any_list": 50
@@ -2466,7 +2466,7 @@
               "name_en": "Eloquence",
               "name_fr": "Éloquence",
               "description_en": "PC requires one less round of preparation than normal to cast a spell.",
-              "description_fr": null,
+              "description_fr": "Le personnage a besoin d'un round de préparation de moins que la normale pour lancer un sort.",
               "type": "talent",
               "effects": {
                 "casting_time_reduction": 1
@@ -2481,7 +2481,7 @@
               "name_en": "Item Lore",
               "name_fr": "Connaissance des Objets",
               "description_en": "PC gets +25 on all Staves/Wands rolls.",
-              "description_fr": null,
+              "description_fr": "Le personnage obtient +25 à tous les jets impliquant Bâtons/Baguettes.",
               "type": "talent",
               "effects": {
                 "skill_bonus": {
@@ -2498,7 +2498,7 @@
               "name_en": "Runic Lore",
               "name_fr": "Connaissance Runique",
               "description_en": "PC gets +25 on all scrolls and runes rolls.",
-              "description_fr": null,
+              "description_fr": "Le personnage obtient +25 à tous les jets de Parchemins et Runes.",
               "type": "talent",
               "effects": {
                 "skill_bonus": {
@@ -2515,7 +2515,7 @@
               "name_en": "Elvish Training",
               "name_fr": "Entraînement Elfique",
               "description_en": "PC gets +25 bonus to his meditation skill bonus.",
-              "description_fr": null,
+              "description_fr": "Le personnage obtient +25 à son bonus de Méditation.",
               "type": "talent",
               "effects": {
                 "skill_bonus": {
@@ -2532,7 +2532,7 @@
               "name_en": "Aura",
               "name_fr": "Aura",
               "description_en": "PC gets one additional power point each level.",
-              "description_fr": null,
+              "description_fr": "Le personnage gagne un point de magie supplémentaire par niveau.",
               "type": "talent",
               "effects": {
                 "pp_per_level": 1
@@ -2547,7 +2547,7 @@
               "name_en": "Subconscious Discipline",
               "name_fr": "Discipline Subconsciente",
               "description_en": "Concentration spells continue after the caster ceases concentrating for a period equal to the number of rounds he originally spent concentrating.",
-              "description_fr": null,
+              "description_fr": "Les sorts de concentration continuent après que le lanceur cesse de se concentrer, pendant un nombre de rounds égal au nombre de rounds initialement consacrés à la concentration.",
               "type": "talent",
               "effects": {
                 "concentration_persist": true
@@ -2562,7 +2562,7 @@
               "name_en": "Archmage Abilities",
               "name_fr": "Capacités d'Archimage",
               "description_en": "PC has abilities similar to an Archmage. Dev point costs are now the same as any one hybrid spell user. Base lists don't change, but may make spell picks as a hybrid for all three realms.",
-              "description_fr": null,
+              "description_fr": "Le personnage acquiert des capacités similaires à un Archimage. Les coûts en PD deviennent identiques à ceux d'un utilisateur hybride. Les listes de base ne changent pas, mais le personnage peut faire des choix de sorts comme un hybride pour les trois domaines.",
               "type": "talent",
               "effects": {
                 "archmage": true
@@ -2577,7 +2577,7 @@
               "name_en": "Ethereal Sight",
               "name_fr": "Vision Éthérée",
               "description_en": "PC may see invisible or ethereal items if he concentrates.",
-              "description_fr": null,
+              "description_fr": "Le personnage peut voir les objets invisibles ou éthérés s'il se concentre.",
               "type": "talent",
               "effects": {
                 "see_invisible": true
@@ -2592,7 +2592,7 @@
               "name_en": "Mana Sensing",
               "name_fr": "Détection de Mana",
               "description_en": "PC's neck hairs prickle around a great power source, enchanted location, etc.",
-              "description_fr": null,
+              "description_fr": "Les cheveux du personnage se dressent en présence d'une grande source de puissance, d'un lieu enchanté, etc.",
               "type": "talent",
               "effects": {
                 "mana_sense": true
@@ -2607,7 +2607,7 @@
               "name_en": "Visions",
               "name_fr": "Visions",
               "description_en": "PC receives spontaneous glimpses of events associated with a place, person, item, etc. that he touches.",
-              "description_fr": null,
+              "description_fr": "Le personnage reçoit des aperçus spontanés d'événements liés à un lieu, une personne, un objet, etc. qu'il touche.",
               "type": "talent",
               "effects": {
                 "psychometry": true
@@ -2622,7 +2622,7 @@
               "name_en": "Lore",
               "name_fr": "Érudition",
               "description_en": "May learn the Arcane Spell Lists as if they were his base lists.",
-              "description_fr": null,
+              "description_fr": "Peut apprendre les Listes de sorts arcaniques comme s'il s'agissait de ses listes de base.",
               "type": "talent",
               "effects": {
                 "arcane_as_base": true
@@ -2637,7 +2637,7 @@
               "name_en": "Mentor",
               "name_fr": "Mentor",
               "description_en": "PC has a high-level non-alchemist magic user as a good friend.",
-              "description_fr": null,
+              "description_fr": "Le personnage a pour ami un utilisateur de magie de haut niveau (non-alchimiste).",
               "type": "talent",
               "effects": {
                 "social": "magic_mentor"
@@ -2652,7 +2652,7 @@
               "name_en": "Equipper",
               "name_fr": "Fournisseur",
               "description_en": "As '26' except friend is an Alchemist who will make or sell items to the PC for 51-100% of normal cost.",
-              "description_fr": null,
+              "description_fr": "Comme le résultat 26, mais l'ami est un Alchimiste qui fabriquera ou vendra des objets au personnage pour 51 à 100 % du coût normal.",
               "type": "talent",
               "effects": {
                 "social": "alchemist_friend",
@@ -2668,7 +2668,7 @@
               "name_en": "Mana Reading",
               "name_fr": "Lecture de Mana",
               "description_en": "10% chance of determining each ability of a magic item. Roll each characteristic.",
-              "description_fr": null,
+              "description_fr": "10 % de chance de déterminer chaque capacité d'un objet magique. Lancez les dés pour chaque caractéristique.",
               "type": "talent",
               "effects": {
                 "identify_item_chance": 10
@@ -2683,7 +2683,7 @@
               "name_en": "Archetype",
               "name_fr": "Archétype",
               "description_en": "Without a spell bonus item or with a PP adder, the PC normally has 2x normal Power Points. If using a PP multiplier, the bonus increases 1 level (x2→x3, etc.).",
-              "description_fr": null,
+              "description_fr": "Sans objet bonus de sorts ou avec un ajouteur de PM, le personnage dispose normalement de 2× ses PM habituels. En cas d'utilisation d'un multiplicateur de PM, le bonus augmente d'un niveau (×2→×3, etc.).",
               "type": "talent",
               "effects": {
                 "pp_multiplier": 2
@@ -2698,7 +2698,7 @@
               "name_en": "Innate Magician",
               "name_fr": "Magicien Inné",
               "description_en": "PC may designate 1 spell list on which he never needs to make an Extraordinary Spell Failure roll.",
-              "description_fr": null,
+              "description_fr": "Le personnage peut désigner 1 liste de sorts sur laquelle il n'a jamais besoin d'effectuer un jet d'Échec de sort extraordinaire.",
               "type": "talent",
               "effects": {
                 "no_spell_failure_on_list": 1
@@ -2713,7 +2713,7 @@
               "name_en": "Psionic",
               "name_fr": "Psionique",
               "description_en": "PC has an additional set of Power Points based on his PR stat to use with the lists in Future Law. May be developed as if a 'Semi-telepath'.",
-              "description_fr": null,
+              "description_fr": "Le personnage dispose d'un ensemble supplémentaire de Points de magie basé sur sa caractéristique PR, utilisable avec les listes de Future Law. Peut être développé comme un « Semi-télépathe ».",
               "type": "talent",
               "effects": {
                 "psionic_pp": true
@@ -2728,7 +2728,7 @@
               "name_en": "+15 Presence",
               "name_fr": "+15 Présence",
               "description_en": "+15 to PR modification.",
-              "description_fr": null,
+              "description_fr": "+15 au modificateur de Présence (PR).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2745,7 +2745,7 @@
               "name_en": "+15 Intuition",
               "name_fr": "+15 Intuition",
               "description_en": "+15 to IN modification.",
-              "description_fr": null,
+              "description_fr": "+15 au modificateur d'Intuition (IN).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2762,7 +2762,7 @@
               "name_en": "+15 Empathy",
               "name_fr": "+15 Empathie",
               "description_en": "+15 to EM modification.",
-              "description_fr": null,
+              "description_fr": "+15 au modificateur d'Empathie (EM).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2779,7 +2779,7 @@
               "name_en": "+15 Memory",
               "name_fr": "+15 Mémoire",
               "description_en": "+15 to ME modification.",
-              "description_fr": null,
+              "description_fr": "+15 au modificateur de Mémoire (Mé).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2796,7 +2796,7 @@
               "name_en": "+15 Reasoning",
               "name_fr": "+15 Raisonnement",
               "description_en": "+15 to RE modification.",
-              "description_fr": null,
+              "description_fr": "+15 au modificateur de Raisonnement (RS).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2813,7 +2813,7 @@
               "name_en": "+20 Presence",
               "name_fr": "+20 Présence",
               "description_en": "+20 to PR modification.",
-              "description_fr": null,
+              "description_fr": "+20 au modificateur de Présence (PR).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2830,7 +2830,7 @@
               "name_en": "+20 Intuition",
               "name_fr": "+20 Intuition",
               "description_en": "+20 to IN modification.",
-              "description_fr": null,
+              "description_fr": "+20 au modificateur d'Intuition (IN).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2847,7 +2847,7 @@
               "name_en": "+20 Empathy",
               "name_fr": "+20 Empathie",
               "description_en": "+20 to EM modification.",
-              "description_fr": null,
+              "description_fr": "+20 au modificateur d'Empathie (EM).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2864,7 +2864,7 @@
               "name_en": "+20 Memory",
               "name_fr": "+20 Mémoire",
               "description_en": "+20 to ME modification.",
-              "description_fr": null,
+              "description_fr": "+20 au modificateur de Mémoire (Mé).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2881,7 +2881,7 @@
               "name_en": "+20 Reasoning",
               "name_fr": "+20 Raisonnement",
               "description_en": "+20 to RE modification.",
-              "description_fr": null,
+              "description_fr": "+20 au modificateur de Raisonnement (RS).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {
@@ -2898,7 +2898,7 @@
               "name_en": "+20 to PR/IN/EM/ME/RE (GM choice)",
               "name_fr": "+20 à PR/IN/EM/ME/RS (choix du MJ)",
               "description_en": "+20 to PR, IN, EM, ME, or RE modification (GM choice).",
-              "description_fr": null,
+              "description_fr": "+20 au modificateur de PR, IN, EM, Mé ou RS (choix du MJ).",
               "type": "stat_bonus",
               "effects": {
                 "stat_bonus": {

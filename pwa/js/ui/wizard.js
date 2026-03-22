@@ -1303,6 +1303,9 @@ function renderHistoryTab(lang) {
         <div class="text-xs" style="margin-top:2px">${esc(opt.description || '').slice(0, 200)}</div>
         <input type="text" class="field bg-opt-notes" data-bg-idx="${i}" value="${esc(opt.playerNotes || '')}" placeholder="Notes..." style="font-size:0.75rem;margin-top:4px;width:100%">
         ${(() => {
+          const BG_STAT_FR = { AG:'AG', CO:'CO', EM:'EM', IN:'IN', ME:'Mé', PR:'PR', QU:'RP', RE:'RS', SD:'AD', ST:'FO', choice:'au choix' };
+          const BG_SKILL_FR = { adrenal_moves:'Mvts Adrénaline', leadership:'Leadership', meditation:'Méditation', navigation:'Navigation', riding:'Équitation', runes:'Runes', singing:'Chant', spatial_location_awareness:'Conscience spatiale', stalk_hide:'Pistage/Dissimulation', staves_wands:'Bâtons/Baguettes' };
+          const BG_ABILITY_FR = { acute_hearing:'Ouïe aiguisée', acute_smell:'Odorat aiguisé', charismatic:'Charisme naturel', empathy:'Empathie naturelle', exceptional_tone:'Tonalité exceptionnelle', exceptional_voice:'Voix exceptionnelle', exceptionally_enchanted:'Très enchanté', good_tendons:'Bons tendons', great_strength:'Grande force', high_pain_threshold:'Tolérance à la douleur', highly_resistant:'Très résistant', infravision:'Infravision', lightning_reactions:'Réflexes foudroyants', lung_capacity:'Capacité pulmonaire accrue', lycanthropy:'Lycanthropie', neutral_odor:'Odeur neutre', nimble:'Agilité naturelle', quick_thinker:'Esprit vif', silent_mover:'Déplacement silencieux', spatial_judgment:'Jugement spatial', unusual_agility:'Agilité inhabituelle', unusually_enchanted:'Légèrement enchanté' };
           const effKeys = Object.keys(opt.effects || {});
           const isResolved = !opt.requires_choice || (opt.resolved && Object.keys(opt.resolved).length > 0);
           if (effKeys.length === 0) return '';
@@ -1310,15 +1313,15 @@ function renderHistoryTab(lang) {
             const parts = [];
             if (opt.effects.stat_bonus) {
               const sb = opt.effects.stat_bonus;
-              if (typeof sb === 'object') parts.push(Object.entries(sb).map(([k,v]) => `${k} +${v}`).join(', '));
+              if (typeof sb === 'object') parts.push(Object.entries(sb).map(([k,v]) => `${BG_STAT_FR[k]||k} +${v}`).join(', '));
             }
             if (opt.effects.skill_bonus && typeof opt.effects.skill_bonus === 'object')
-              parts.push(Object.entries(opt.effects.skill_bonus).map(([k,v]) => `${k} +${v}`).join(', '));
-            if (opt.effects.spell_adder) parts.push(`+${opt.effects.spell_adder} Spell Adder`);
-            if (opt.effects.pp_bonus) parts.push(`+${opt.effects.pp_bonus} PP`);
+              parts.push(Object.entries(opt.effects.skill_bonus).map(([k,v]) => `${BG_SKILL_FR[k]||k} +${v}`).join(', '));
+            if (opt.effects.spell_adder) parts.push(`+${opt.effects.spell_adder} ${lang === 'en' ? 'Spell Adder' : 'Ajouteur de sort'}`);
+            if (opt.effects.pp_bonus) parts.push(`+${opt.effects.pp_bonus} ${lang === 'en' ? 'PP' : 'PM'}`);
             if (opt.effects.gold) parts.push(`${opt.effects.gold} po`);
-            if (opt.effects.rr_bonus) parts.push(`RR +${opt.effects.rr_bonus}`);
-            if (opt.effects.special_ability) parts.push(opt.effects.special_ability);
+            if (opt.effects.rr_bonus) parts.push(`JR +${opt.effects.rr_bonus}`);
+            if (opt.effects.special_ability) parts.push(lang === 'en' ? opt.effects.special_ability : (BG_ABILITY_FR[opt.effects.special_ability] || opt.effects.special_ability));
             return parts.length > 0 ? `<div class="text-xs text-green-400 mt-1">✓ ${parts.join(' | ')}</div>` : '';
           } else {
             return `<div class="text-xs text-amber-400 mt-1">⚠ ${lang === 'en' ? 'Choice required' : 'Choix requis'} <button class="btn-primary text-xs bg-opt-resolve" data-bg-idx="${i}" style="padding:1px 6px;margin-left:4px">${lang === 'en' ? 'Choose' : 'Choisir'}</button></div>`;
