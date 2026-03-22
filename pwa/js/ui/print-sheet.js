@@ -71,45 +71,51 @@ function getFilteredSkills(character, config) {
           bold: (character.skillBold || {})[globalIndex] || false,
         });
       }
+
+      // Insert weapon sub-skills right after weapon parent (index 63)
+      if (globalIndex === 63) {
+        for (let ws = 0; ws < (character.weaponSkills || []).length; ws++) {
+          const wpn = character.weaponSkills[ws];
+          const wsKey = 'wpn_' + ws;
+          const wRanks = getTotalRanks(character, wsKey);
+          const wRankB = getRankBonus(wRanks);
+          const wMisc = character.skillMiscBonuses[wsKey] || 0;
+          const wTotal = wRankB + wMisc;
+          if (wRanks > 0 || wTotal > 0) {
+            result.push({
+              name: '  ↳ ' + wpn.name, categoryName: '', totalRanks: wRanks, rankBonus: wRankB,
+              statBonus: 0, lvlBonus: 0, miscBonus: wMisc || '', total: wTotal,
+              costStr: wpn.cost ? `${wpn.cost.first}/${wpn.cost.second}` : '—',
+              highlight: (character.skillHighlights || {})[wsKey] || null,
+              textColor: (character.skillTextColors || {})[wsKey] || null,
+              bold: (character.skillBold || {})[wsKey] || false,
+            });
+          }
+        }
+      }
+
+      // Insert generic sub-skills right after their parent
+      const parentSubs = (character.subSkills || []).filter(s => s.parentIndex === globalIndex);
+      for (let si = 0; si < parentSubs.length; si++) {
+        const sub = parentSubs[si];
+        const subKey = 'sub_' + globalIndex + '_' + si;
+        const sRanks = getTotalRanks(character, subKey);
+        const sRankB = getRankBonus(sRanks);
+        const sMisc = character.skillMiscBonuses[subKey] || 0;
+        const sTotal = sRankB + sMisc;
+        if (sRanks > 0 || sTotal > 0) {
+          result.push({
+            name: '  ↳ ' + sub.name, categoryName: '', totalRanks: sRanks, rankBonus: sRankB,
+            statBonus: 0, lvlBonus: 0, miscBonus: sMisc || '', total: sTotal,
+            costStr: sub.cost ? `${sub.cost.first}/${sub.cost.second || ''}` : '—',
+            highlight: (character.skillHighlights || {})[subKey] || null,
+            textColor: (character.skillTextColors || {})[subKey] || null,
+            bold: (character.skillBold || {})[subKey] || false,
+          });
+        }
+      }
+
       globalIndex++;
-    }
-  }
-
-  // Add weapon sub-skills
-  for (let ws = 0; ws < (character.weaponSkills || []).length; ws++) {
-    const wpn = character.weaponSkills[ws];
-    const wsKey = 'wpn_' + ws;
-    const totalRanks = getTotalRanks(character, wsKey);
-    const rankBonus = getRankBonus(totalRanks);
-    const miscBonus = character.skillMiscBonuses[wsKey] || 0;
-    const total = rankBonus + miscBonus;
-    if (totalRanks > 0 || total > 0) {
-      result.push({
-        name: '  ↳ ' + wpn.name,
-        categoryName: 'Combat',
-        totalRanks, rankBonus, statBonus: 0, miscBonus: miscBonus || '', total,
-        costStr: wpn.cost ? `${wpn.cost.first}/${wpn.cost.second}` : '—',
-        highlight: null, textColor: null, bold: false,
-      });
-    }
-  }
-
-  // Add generic sub-skills
-  for (let si = 0; si < (character.subSkills || []).length; si++) {
-    const sub = character.subSkills[si];
-    const subKey = 'sub_' + sub.parentIndex + '_' + si;
-    const totalRanks = getTotalRanks(character, subKey);
-    const rankBonus = getRankBonus(totalRanks);
-    const miscBonus = character.skillMiscBonuses[subKey] || 0;
-    const total = rankBonus + miscBonus;
-    if (totalRanks > 0 || total > 0) {
-      result.push({
-        name: '  ↳ ' + sub.name,
-        categoryName: '',
-        totalRanks, rankBonus, statBonus: 0, miscBonus: miscBonus || '', total,
-        costStr: sub.cost ? `${sub.cost.first}/${sub.cost.second || ''}` : '—',
-        highlight: null, textColor: null, bold: false,
-      });
     }
   }
 
