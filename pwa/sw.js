@@ -1,8 +1,10 @@
-const CACHE_NAME = 'rolemaster-v24';
+const CACHE_NAME = 'rolemaster-v26';
 const ASSETS = [
   './',
   './index.html',
   './css/styles.css',
+  './css/theme.css',
+  './css/print.css',
   './js/app.js',
   './js/engine/data-loader.js',
   './js/engine/character.js',

@@ -4,6 +4,7 @@ import { loadAllData, getData } from './engine/data-loader.js';
 import { startWizard, loadIntoWizard, getCharacter } from './ui/wizard.js';
 import { renderLoadView, bindLoadEvents } from './ui/settings.js';
 import { panel, showToast } from './ui/components.js';
+import { getLocalSaves, uploadCharacter, loadFromLocalStorage, deleteLocalSave } from './engine/export.js';
 import frLabels from './i18n/fr.js';
 import enLabels from './i18n/en.js';
 
@@ -55,6 +56,12 @@ function render() {
 function renderHome(main) {
   const t = app.t;
   const data = getData();
+  const nav = document.getElementById('main-nav');
+  const footerActions = document.getElementById('app-footer-actions');
+
+  // Hide nav and footer actions on home
+  if (nav) nav.innerHTML = '';
+  if (footerActions) footerActions.innerHTML = '';
 
   const classCount = data.classes.total_classes;
   const skillCount = data.competences.total_skills;
@@ -65,19 +72,51 @@ function renderHome(main) {
     .replace('{skills}', skillCount)
     .replace('{spells}', spellCount);
 
+  // Local saves list
+  const saves = getLocalSaves();
+  const saveNames = Object.keys(saves);
+  let savesHtml = '';
+  if (saveNames.length > 0) {
+    savesHtml = `<div style="margin-top:2rem;text-align:left;max-width:28rem;margin-left:auto;margin-right:auto">
+      <div style="font-size:0.9rem;color:#4a3520;font-weight:bold;margin-bottom:0.5rem">${t.save.localStorage}</div>`;
+    for (const name of saveNames) {
+      const save = saves[name];
+      const date = save.updatedAt ? new Date(save.updatedAt).toLocaleDateString() : '';
+      const cls = save.classIndex >= 0 ? (save.raceName || '') : '';
+      const lvl = save.level || 1;
+      savesHtml += `
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:0.4rem 0.6rem;border-bottom:1px solid rgba(139,92,20,0.15)">
+          <div>
+            <span style="font-weight:bold;color:#3a1a08">${name}</span>
+            <span style="font-size:0.75rem;color:#6b5030;margin-left:0.5rem">${cls} Niv.${lvl} — ${date}</span>
+          </div>
+          <div style="display:flex;gap:0.3rem">
+            <button class="btn-primary load-local-btn" style="font-size:0.75rem;padding:2px 10px" data-name="${name}">${t.save.load || 'Charger'}</button>
+            <button class="btn-secondary delete-local-btn" style="font-size:0.75rem;padding:2px 6px" data-name="${name}">✕</button>
+          </div>
+        </div>`;
+    }
+    savesHtml += `</div>`;
+  }
+
+  // File upload section
+  const uploadHtml = `<div style="margin-top:1.5rem;text-align:center">
+    <label style="cursor:pointer;font-size:0.85rem;color:#6b5030;border:1px dashed rgba(139,92,20,0.3);border-radius:6px;padding:0.5rem 1.5rem;display:inline-block">
+      ${t.save.upload || 'Charger un fichier JSON'}
+      <input type="file" id="home-file-upload" accept=".json" style="display:none">
+    </label>
+  </div>`;
+
   main.innerHTML = `
-    <div class="home-hero">
-      <h2>${t.home.title}</h2>
-      <p>${t.home.subtitle}</p>
-      <p class="text-sm text-gray-500 mb-6">${statsLine}</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <button class="btn-primary text-lg px-8 py-3" id="btn-create">
-          ⚔ ${t.home.createBtn}
-        </button>
-        <button class="btn-secondary text-lg px-8 py-3" id="btn-load">
-          📂 ${t.home.loadBtn}
-        </button>
-      </div>
+    <div class="home-hero" style="text-align:center;padding:2.5rem 1rem 1rem">
+      <h2 style="font-family:var(--font-title);font-size:2rem;color:#c49a20;margin-bottom:0.5rem;text-shadow:1px 1px 0 #1a0e04, -1px -1px 0 #1a0e04, 1px -1px 0 #1a0e04, -1px 1px 0 #1a0e04, 0 2px 4px rgba(0,0,0,0.4)">${t.home.title}</h2>
+      <p style="margin-bottom:1rem;color:#4a3520;font-size:1.05rem">${t.home.subtitle}</p>
+      <p style="font-size:0.85rem;color:#6b5030;margin-bottom:1.5rem">${statsLine}</p>
+      <button class="btn-primary" style="font-size:1.1rem;padding:0.75rem 2rem" id="btn-create">
+        ${t.home.createBtn}
+      </button>
+      ${savesHtml}
+      ${uploadHtml}
     </div>
   `;
 
@@ -85,42 +124,60 @@ function renderHome(main) {
     editorStarted = false;
     app.navigate('create');
   });
-  document.getElementById('btn-load').addEventListener('click', () => app.navigate('load'));
+
+  // Load from local saves
+  document.querySelectorAll('.load-local-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const character = loadFromLocalStorage(btn.dataset.name);
+      if (character) app.loadCharacter(character);
+    });
+  });
+
+  // Delete local saves
+  document.querySelectorAll('.delete-local-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (confirm(t.save.confirmDelete || 'Supprimer cette sauvegarde ?')) {
+        deleteLocalSave(btn.dataset.name);
+        render();
+      }
+    });
+  });
+
+  // File upload
+  const fileInput = document.getElementById('home-file-upload');
+  if (fileInput) {
+    fileInput.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        const character = await uploadCharacter(file);
+        app.loadCharacter(character);
+      } catch (err) {
+        showToast('Fichier invalide: ' + err.message, true);
+      }
+    });
+  }
 }
 
 function updateNav() {
-  document.querySelectorAll('.nav-link').forEach(link => {
-    const view = link.dataset.view;
-    if (view === app.currentView) {
-      link.classList.add('text-amber-400');
-      link.classList.remove('text-gray-400');
-    } else {
-      link.classList.remove('text-amber-400');
-      link.classList.add('text-gray-400');
-    }
-  });
+  // Nav is now handled by wizard.js tab rendering
 }
 
 function setupLangToggle() {
-  const btn = document.getElementById('btn-lang');
-  if (btn) {
-    btn.addEventListener('click', () => {
-      app.lang = app.lang === 'fr' ? 'en' : 'fr';
-      app.t = LANGS[app.lang];
-      btn.textContent = app.lang === 'fr' ? 'FR/EN' : 'EN/FR';
-      render();
-    });
+  // Flag buttons for language toggle
+  const btnFr = document.getElementById('btn-lang-fr');
+  const btnEn = document.getElementById('btn-lang-en');
+  function updateFlags() {
+    if (btnFr) btnFr.classList.toggle('active', app.lang === 'fr');
+    if (btnEn) btnEn.classList.toggle('active', app.lang === 'en');
   }
-}
-
-function setupMobileMenu() {
-  const btn = document.getElementById('btn-menu');
-  if (btn) {
-    btn.addEventListener('click', () => {
-      const nav = document.getElementById('app-nav');
-      nav.classList.toggle('hidden');
-    });
-  }
+  if (btnFr) btnFr.addEventListener('click', () => {
+    app.lang = 'fr'; app.t = LANGS.fr; updateFlags(); render();
+  });
+  if (btnEn) btnEn.addEventListener('click', () => {
+    app.lang = 'en'; app.t = LANGS.en; updateFlags(); render();
+  });
+  updateFlags();
 }
 
 function handleHash() {
@@ -142,17 +199,15 @@ async function init() {
     await loadAllData();
 
     setupLangToggle();
-    setupMobileMenu();
+    // Banner click → home
+    const banner = document.getElementById('rm-header-banner');
+    if (banner) banner.addEventListener('click', (e) => {
+      if (e.target.closest('.rm-lang-toggle')) return; // don't trigger on flag buttons
+      app.navigate('home');
+    });
     handleHash();
 
     window.addEventListener('hashchange', handleHash);
-
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        app.navigate(link.dataset.view);
-      });
-    });
 
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').catch(() => {});

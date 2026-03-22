@@ -2,15 +2,16 @@
 // Profession chosen first, then stats (temp/pot pairs), then everything else
 
 import { panel, showToast } from './components.js';
-import { createCharacter, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, applyRace, DEV_PHASES, getTotalRanks, getCurrentPhaseRanks, getCurrentPhaseRanksObj, getDevPointsSpent, setDevPointsSpent, getDevPointsTotal, getSpellPointsSpent, setSpellPointsSpent, getSpellPointsTotal } from '../engine/character.js';
-import { generateStatRolls, getStatValues, statPotentialLookup, rollStatPairsRMSS, getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
+import { createCharacter, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, applyRace, DEV_PHASES, getTotalRanks, getCurrentPhaseRanks, getCurrentPhaseRanksObj, getDevPointsSpent, setDevPointsSpent, getDevPointsTotal, getSpellPointsSpent, setSpellPointsSpent, getSpellPointsTotal, SHIELD_TYPES, calculateDB, setAdrenalDefenseIndex, rollBodyDevHitDie, getBodyDevSkillIndex } from '../engine/character.js';
+import { generateStatRolls, getStatValues, statPotentialLookup, generateStatRollsHybrid, generateStatRollsAntiLose, getStatValuesHybrid, rollStatPairsRMSS, getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
 import { getAllClasses, getClassName, getRealmInfo, getRealmKey, getRealmLabel, isSpellUser, getClassPrimeStats, getPPStatIndices } from '../engine/classes.js';
-import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts, isParentSkill, getWeaponSubcategories, getWeaponSkillCost, getParentSubSkillOptions, WEAPON_SKILL_GLOBAL_INDEX } from '../engine/skills.js';
-import { getAllRealms } from '../engine/spells.js';
+import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts, isParentSkill, getWeaponSubcategories, getWeaponSkillCost, getParentSubSkillOptions, WEAPON_SKILL_GLOBAL_INDEX, getAllSkillsFlat } from '../engine/skills.js';
+import { getAllRealms, getSpellListCost, getSpellRankCost, getSpellBlockSize, getListTypeKey, isPureCaster, getClassBaseSpellLists } from '../engine/spells.js';
 import { downloadCharacter, saveToLocalStorage } from '../engine/export.js';
 import { processLevelUpStatGains } from '../engine/stat_gain.js';
 import { generateBackground, getRacialLanguages } from '../engine/background.js';
 import { getData } from '../engine/data-loader.js';
+import { showPrintPreview } from './print-sheet.js';
 
 // --- Category translations ---
 const CAT_NAMES_FR = {
@@ -43,6 +44,17 @@ const TABS = [
   { id: 'skills', label_fr: 'Compétences', label_en: 'Skills' },
 ];
 
+const TAB_ICONS = {
+  infos:     'assets/ui/icons/tab_infos_shield.webp',
+  stats:     'assets/ui/icons/tab_stats_dice.webp',
+  race:      'assets/ui/icons/tab_race_face.webp',
+  weapons:   'assets/ui/icons/tab_weapons_sword.webp',
+  skills:    'assets/ui/icons/tab_skills_scroll.webp',
+  spells:    'assets/ui/icons/tab_spells_book.webp',
+  languages: 'assets/ui/icons/tab_languages_globe.webp',
+  history:   'assets/ui/icons/tab_history_quill.webp',
+};
+
 // 6 fixed weapon categories (from CPR093 CHOIXCAT screen)
 const WEAPON_CATEGORIES = [
   { id: 'edged_1h',   fr: 'Tranchantes à une main',   en: 'Edged Weapons',      stats: 'FO/FO/AG' },
@@ -68,7 +80,25 @@ let editMode = false;
 let rollingMethod = 'rm2'; // 'rm2' or 'rmss' — persists per character via statLog
 let statsValidated = false; // True once "Valider" is clicked
 
+function initAdrenalDefense() {
+  const cats = getAllCategories();
+  let idx = 0;
+  for (const cat of cats) {
+    for (const skill of cat.skills) {
+      if (skill.name_fr && (skill.name_fr.includes('Défense Adrénale') || skill.name_fr.includes('Defense Adrenale'))) {
+        setAdrenalDefenseIndex(idx);
+        return;
+      }
+      idx++;
+    }
+  }
+}
+
 export function startWizard(app, forceNew = true) {
+  // Initialize skill index caches (body dev, adrenal defense)
+  getAllSkillsFlat();
+  initAdrenalDefense();
+
   if (forceNew || !character) {
     character = createCharacter();
     rolledStats = [];
@@ -77,6 +107,11 @@ export function startWizard(app, forceNew = true) {
     editMode = false;
     rollingMethod = 'rm2';
     statsValidated = false;
+  }
+  // Ensure PP stat indices are set from class
+  if (character.classIndex >= 0) {
+    const cls = getAllClasses()[character.classIndex];
+    if (cls) character._ppStatIndices = getPPStatIndices(cls);
   }
   renderEditor(app);
 }
@@ -87,6 +122,11 @@ export function loadIntoWizard(app, loadedCharacter) {
   if (!character.statLog) {
     character.statLog = { method: 'rm2', rerollCount: 0, rolls: [], validated: null, editsAfterValidation: [] };
   }
+  // Ensure new fields exist for backward compatibility
+  if (!character.spellLog) character.spellLog = [];
+  if (!character.spellStudy) character.spellStudy = { listName: null, listType: null, listRealm: null, ranks: 0, sgrDone: false, blockSize: 5, nextBlockStart: 1 };
+  if (!character.phases) character.phases = [];
+  if (character.phaseValidated === undefined) character.phaseValidated = false;
   rollingMethod = character.statLog.method || 'rm2';
   statsValidated = !!character.statLog.validated;
 
@@ -96,6 +136,14 @@ export function loadIntoWizard(app, loadedCharacter) {
       const temp = r.tempRoll;
       const pot = statPotentialLookup(r.potRoll, temp);
       return { tempRoll: r.tempRoll, potRoll: r.potRoll, temp, pot };
+    });
+  } else if (character.rawRolls && character.rawRolls.length === STAT_COUNT && (rollingMethod === 'hybrid' || rollingMethod === 'antilose')) {
+    const bonus = rollingMethod === 'antilose' ? 10 : 5;
+    rolledStats = character.rawRolls.map(r => {
+      const temp = r.tempRoll;
+      const potRollBoosted = r.potRollBoosted !== undefined ? r.potRollBoosted : Math.min(r.potRoll + bonus, 100);
+      const pot = r.forced100 ? 100 : statPotentialLookup(potRollBoosted, temp);
+      return { tempRoll: r.tempRoll, potRoll: r.potRoll, potRollBoosted, temp, pot, forced100: !!r.forced100 };
     });
   } else {
     rolledStats = [];
@@ -108,6 +156,15 @@ export function loadIntoWizard(app, loadedCharacter) {
   selectedRoll = -1;
   editMode = false;
   currentTab = 'infos';
+
+  // Initialize caches
+  getAllSkillsFlat(); // sets _bodyDevSkillIndex
+  initAdrenalDefense();
+  if (character.classIndex >= 0) {
+    const cls = getAllClasses()[character.classIndex];
+    if (cls) character._ppStatIndices = getPPStatIndices(cls);
+  }
+
   renderEditor(app);
 }
 
@@ -129,30 +186,40 @@ function getRaceByIndex(index) {
 // --- Main render ---
 function renderEditor(app) {
   const main = document.getElementById('app-main');
+  const nav = document.getElementById('main-nav');
+  const footerActions = document.getElementById('app-footer-actions');
   const lang = app.lang;
 
   // Preserve scroll position of skill list across re-renders
   const scrollEl = main.querySelector('.scroll-container');
   const savedScroll = scrollEl ? scrollEl.scrollTop : 0;
 
-  let tabBar = `<div class="tab-bar">`;
-  for (const tab of TABS) {
-    const label = lang === 'en' ? tab.label_en : tab.label_fr;
-    const active = tab.id === currentTab ? 'active' : '';
-    tabBar += `<button class="tab-btn ${active}" data-tab="${tab.id}">${label}</button>`;
+  // Render tab bar with icons into nav
+  if (nav) {
+    let tabBar = '';
+    for (const tab of TABS) {
+      const label = lang === 'en' ? tab.label_en : tab.label_fr;
+      const active = tab.id === currentTab ? 'active' : '';
+      const icon = TAB_ICONS[tab.id] || '';
+      tabBar += `<button class="rm-tab-icon ${active}" data-tab="${tab.id}">
+        ${icon ? `<img src="${icon}" alt="${label}">` : ''}
+        <span>${label}</span>
+      </button>`;
+    }
+    nav.innerHTML = tabBar;
   }
-  tabBar += `</div>`;
 
-  const actions = `
-    <div class="flex gap-2 mb-3 no-print flex-wrap">
-      <button class="btn-primary text-sm" id="btn-save-json">Télécharger JSON</button>
-      <button class="btn-secondary text-sm" id="btn-save-local">Sauvegarde locale</button>
-      <button class="btn-secondary text-sm" id="btn-print">Imprimer</button>
-    </div>
-  `;
+  // Render footer action buttons
+  if (footerActions) {
+    footerActions.innerHTML = `
+      <button class="btn-primary text-sm" id="btn-save-json">${lang === 'en' ? 'Download JSON' : 'Télécharger JSON'}</button>
+      <button class="btn-secondary text-sm" id="btn-save-local">${lang === 'en' ? 'Local Save' : 'Sauvegarde locale'}</button>
+      <button class="btn-secondary text-sm" id="btn-print">${lang === 'en' ? 'Print' : 'Imprimer'}</button>
+    `;
+  }
 
   const content = renderTab(app);
-  main.innerHTML = actions + tabBar + `<div id="tab-content">${content}</div>`;
+  main.innerHTML = content;
   bindTabEvents(app);
   bindActionEvents();
   bindContentEvents(app);
@@ -162,6 +229,16 @@ function renderEditor(app) {
     const newScrollEl = main.querySelector('.scroll-container');
     if (newScrollEl) newScrollEl.scrollTop = savedScroll;
   }
+
+  // Accordion: only one <details> open at a time
+  const allDetails = main.querySelectorAll('details');
+  allDetails.forEach(det => {
+    det.addEventListener('toggle', () => {
+      if (det.open) {
+        allDetails.forEach(other => { if (other !== det && other.open) other.open = false; });
+      }
+    });
+  });
 }
 
 function renderTab(app) {
@@ -257,8 +334,12 @@ function renderInfosTab(lang) {
 
         <div class="mt-4 flex gap-6 text-center">
           <div>
-            <div class="text-2xl font-bold text-red-400">${hp}</div>
+            <div class="text-2xl font-bold text-red-400">${hp.base}</div>
             <div class="text-xs text-gray-500">PdeC Base</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-red-400">${hp.cap}</div>
+            <div class="text-xs text-gray-500">Cap PdeC</div>
           </div>
           ${character.realm !== 'none' ? `
           <div>
@@ -268,8 +349,8 @@ function renderInfosTab(lang) {
         </div>
 
         <div class="mt-4 no-print border-t border-gray-700 pt-3">
-          <button class="btn-primary text-sm" id="btn-level-up">${lang === 'en' ? 'Level Up' : 'Monter de niveau'}</button>
-          <span class="text-xs text-gray-500 ml-2">${getPhaseLabel(character, lang)}</span>
+          <button class="btn-primary text-sm" id="btn-level-up" ${!character.phaseValidated ? 'disabled title="' + (lang === 'en' ? 'Validate current phase first' : 'Validez d\'abord la phase en cours') + '"' : ''}>${lang === 'en' ? 'Level Up' : 'Monter de niveau'}</button>
+          <span class="text-xs text-gray-500 ml-2">${getPhaseLabel(character, lang)}${character.phaseValidated ? ` — <span class="text-green-500">${lang === 'en' ? 'validated' : 'validé'}</span>` : ''}</span>
           ${character._lastStatGains ? renderStatGainsResult(lang) : ''}
         </div>
       `)}
@@ -285,15 +366,66 @@ function renderInfosTab(lang) {
         <p class="text-xs text-gray-600 mt-2">${lang === 'en' ? 'Physical description in History tab' : 'Description physique dans l\'onglet Historique'}</p>
       `)}
 
-      ${panel(lang === 'en' ? 'Armor' : 'Armure', `
-        <div class="info-grid">
-          <label>Type d'Armure (TA)</label>
-          <select id="f-armor" class="field">${armorOptions}</select>
+      ${(() => {
+        const shieldOptions = SHIELD_TYPES.map(s =>
+          `<option value="${s.id}" ${character.shieldType === s.id ? 'selected' : ''}>${lang === 'en' ? s.en : s.fr}</option>`
+        ).join('');
+        const db = calculateDB(character);
+        return panel(lang === 'en' ? 'Armor & Defense' : 'Armure & Défense', `
+          <div class="info-grid">
+            <label>${lang === 'en' ? 'Armor Type (AT)' : 'Type d\'Armure (TA)'}</label>
+            <select id="f-armor" class="field">${armorOptions}</select>
 
-          <label>Bonus Déf.</label>
-          <input type="number" id="f-defbonus" value="${character.defenseBonus}" class="field field-sm">
+            <label>${lang === 'en' ? 'Shield' : 'Bouclier'}</label>
+            <select id="f-shield" class="field">${shieldOptions}</select>
+
+            <label>${lang === 'en' ? 'Item DB bonus' : 'BD objets'}</label>
+            <input type="number" id="f-db-item-bonus" value="${character.dbItemBonus || 0}" class="field field-sm" title="${lang === 'en' ? 'DB bonus from magical items' : 'Bonus BD objets magiques'}">
+
+            <label>${lang === 'en' ? 'DB Melee' : 'BD Mélée'}</label>
+            <span class="text-sm"><b>${db.meleeBD}</b> <span class="text-xs text-gray-500">(RP:${db.rpBonus}${db.shieldMelee ? ' +Bcl:' + db.shieldMelee : ''}${db.adrenalMelee ? ' +Adr:' + db.adrenalMelee : ''}${db.itemBonus ? ' +Obj:' + db.itemBonus : ''})</span></span>
+
+            <label>${lang === 'en' ? 'DB Missile' : 'BD Projectiles'}</label>
+            <span class="text-sm"><b>${db.missileBD}</b> <span class="text-xs text-gray-500">(RP:${db.rpBonus}${db.shieldMissile ? ' +Bcl:' + db.shieldMissile : ''}${db.adrenalMissile ? ' +Adr:' + db.adrenalMissile : ''}${db.itemBonus ? ' +Obj:' + db.itemBonus : ''})</span></span>
+          </div>
+        `);
+      })()}
+
+      ${panel(lang === 'en' ? 'Portrait' : 'Portrait', `
+        <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
+          <div style="flex:1;min-width:200px">
+            <label style="font-size:0.8rem;color:#6b5030">${lang === 'en' ? 'Upload image or paste URL' : 'Télécharger une image ou coller un lien'}</label>
+            <input type="file" id="portrait-upload" accept="image/*" style="display:block;margin:0.5rem 0;font-size:0.8rem">
+            <input type="text" id="portrait-url" class="field" value="${esc(character.portraitUrl && !character.portraitUrl.startsWith('data:') ? character.portraitUrl : '')}" placeholder="https://..." style="font-size:0.8rem">
+            ${character.portraitUrl ? `<button class="btn-secondary text-xs" id="portrait-clear" style="margin-top:0.5rem">${lang === 'en' ? 'Remove' : 'Supprimer'}</button>` : ''}
+          </div>
+          ${character.portraitUrl ? `<div style="flex-shrink:0"><img src="${esc(character.portraitUrl)}" alt="Portrait" style="max-width:120px;max-height:160px;border-radius:4px;border:1px solid rgba(139,92,20,0.3)"></div>` : ''}
         </div>
       `)}
+
+      ${(() => {
+        const mb = character.manualBonuses || {};
+        const fields = [
+          ['dbItem', lang === 'en' ? 'DB (items)' : 'BD (objets)'],
+          ['obItem', lang === 'en' ? 'OB (items)' : 'BO (objets)'],
+          ['ppBonus', lang === 'en' ? 'PP bonus' : 'PP (bonus)'],
+          ['hpBonus', lang === 'en' ? 'HP bonus' : 'PdC (bonus)'],
+          ['rrEssence', 'RR Essence'],
+          ['rrChanneling', lang === 'en' ? 'RR Channeling' : 'RR Théurgie'],
+          ['rrMentalism', lang === 'en' ? 'RR Mentalism' : 'RR Mentalisme'],
+          ['rrPoison', 'RR Poison'],
+          ['rrDisease', lang === 'en' ? 'RR Disease' : 'RR Maladie'],
+        ];
+        let grid = '<div style="display:grid;grid-template-columns:repeat(2,auto 4rem);gap:0.3rem 0.75rem;align-items:center">';
+        for (const [key, label] of fields) {
+          grid += `<label style="font-size:0.8rem;text-align:right">${label}</label>
+            <input type="number" class="field-inline manual-bonus-input" data-mb-key="${key}" value="${mb[key] || ''}" style="width:3.5rem">`;
+        }
+        grid += '</div>';
+        grid += `<div style="margin-top:0.5rem"><label style="font-size:0.8rem">Notes</label>
+          <input type="text" id="mb-notes" class="field" value="${esc(mb.miscNotes || '')}" placeholder="${lang === 'en' ? 'Ring +10 DB, Boots +5...' : 'Anneau +10 BD, Bottes +5...'}" style="font-size:0.8rem;width:100%"></div>`;
+        return `<details class="panel" style="cursor:pointer"><summary class="panel-title" style="list-style:none">${lang === 'en' ? '▸ Manual bonuses (items / background / GM)' : '▸ Bonus manuels (objets / historique / MJ)'}</summary><div style="margin-top:0.75rem">${grid}</div></details>`;
+      })()}
     </div>
   `;
 }
@@ -308,13 +440,19 @@ function renderStatsTab(lang) {
 
   // Method selector (locked once rolls are generated or stats validated)
   let methodHtml = `
-    <div class="flex items-center gap-3 mb-3 no-print">
+    <div class="flex flex-wrap items-center gap-3 mb-3 no-print">
       <span class="text-gray-500 text-sm">${lang === 'en' ? 'Method:' : 'Méthode :'}</span>
       <label class="text-sm cursor-pointer ${canChangeMethod ? '' : 'opacity-50'}">
-        <input type="radio" name="roll-method" value="rm2" ${rollingMethod === 'rm2' ? 'checked' : ''} ${canChangeMethod ? '' : 'disabled'}> RM2 (Table 15.1.1)
+        <input type="radio" name="roll-method" value="rm2" ${rollingMethod === 'rm2' ? 'checked' : ''} ${canChangeMethod ? '' : 'disabled'}> RM2 (Roots)
       </label>
       <label class="text-sm cursor-pointer ${canChangeMethod ? '' : 'opacity-50'}">
-        <input type="radio" name="roll-method" value="rmss" ${rollingMethod === 'rmss' ? 'checked' : ''} ${canChangeMethod ? '' : 'disabled'}> RMSS (Option 14)
+        <input type="radio" name="roll-method" value="rmss" ${rollingMethod === 'rmss' ? 'checked' : ''} ${canChangeMethod ? '' : 'disabled'}> RMSS (Heroes)
+      </label>
+      <label class="text-sm cursor-pointer ${canChangeMethod ? '' : 'opacity-50'}" title="${lang === 'en' ? 'RM2 table + pot roll +5 bonus. If no pot > 91, first pair gets pot=100' : 'Table RM2 + bonus +5 au tirage POT. Si aucun POT > 91, le 1er couple reçoit POT=100'}">
+        <input type="radio" name="roll-method" value="hybrid" ${rollingMethod === 'hybrid' ? 'checked' : ''} ${canChangeMethod ? '' : 'disabled'}> Hybride (Real)
+      </label>
+      <label class="text-sm cursor-pointer ${canChangeMethod ? '' : 'opacity-50'}" title="${lang === 'en' ? 'RM2 table + pot roll +10 bonus. Weakest pot is always set to 100' : 'Table RM2 + bonus +10 au tirage POT. Le POT le plus faible est toujours remplacé par 100'}">
+        <input type="radio" name="roll-method" value="antilose" ${rollingMethod === 'antilose' ? 'checked' : ''} ${canChangeMethod ? '' : 'disabled'}> Anti-Lose
       </label>
       ${!canChangeMethod && !statsValidated ? `<span class="text-xs text-gray-600">(${lang === 'en' ? 'reset to change' : 'réinitialiser pour changer'})</span>` : ''}
       ${statsValidated ? `<span class="text-xs text-green-500 font-bold">${lang === 'en' ? 'VALIDATED' : 'VALIDÉ'}</span>` : ''}
@@ -347,16 +485,18 @@ function renderStatsTab(lang) {
       if (assigned) chipClass += ' assigned';
       if (isSelected) chipClass += ' selected';
 
-      // RM2: show temp(pot), RMSS: show temp/pot
-      const sep1 = rollingMethod === 'rm2' ? '(' : '/';
-      const sep2 = rollingMethod === 'rm2' ? ')' : '';
+      // RM2/Hybrid: show temp(pot), RMSS: show temp/pot
+      const isRM2Style = rollingMethod !== 'rmss';
+      const sep1 = isRM2Style ? '(' : '/';
+      const sep2 = isRM2Style ? ')' : '';
+      const forced = (rollingMethod === 'hybrid' || rollingMethod === 'antilose') && roll.forced100 ? ' ★' : '';
 
       rollHtml += `
         <button class="${chipClass}" data-roll="${r}" ${assigned ? 'title="→ ' + assignedTo + '"' : ''}>
           <span class="pair-temp">${roll.temp}</span>
           <span class="pair-sep">${sep1}</span>
           <span class="pair-pot">${roll.pot}</span>
-          ${sep2 ? `<span class="pair-sep">${sep2}</span>` : ''}
+          ${sep2 ? `<span class="pair-sep">${sep2}</span>` : ''}${forced}
           ${assigned ? `<span class="pair-assigned-label">${assignedTo}</span>` : ''}
         </button>
       `;
@@ -445,7 +585,8 @@ function renderStatsTab(lang) {
  */
 function renderStatLog(lang) {
   const log = character.statLog;
-  const methodLabel = log.method === 'rm2' ? 'RM2 (Table 15.1.1)' : 'RMSS (Option 14)';
+  const methodLabels = { rm2: 'RM2 (Roots)', rmss: 'RMSS (Heroes)', hybrid: 'Hybride (Real)', antilose: 'Anti-Lose' };
+  const methodLabel = methodLabels[log.method] || log.method;
   const rerolls = log.rerollCount;
   const edits = log.editsAfterValidation.length;
 
@@ -464,6 +605,13 @@ function renderStatLog(lang) {
       html += `<div class="ml-4 font-mono">`;
       if (log.method === 'rm2') {
         html += entry.rollData.map((r, i) => `${i + 1}: d100=${r.tempRoll},${r.potRoll} → ${r.temp}(${r.pot})`).join(' | ');
+      } else if (log.method === 'hybrid' || log.method === 'antilose') {
+        const bonus = log.method === 'antilose' ? 10 : 5;
+        html += entry.rollData.map((r, i) => {
+          const boosted = r.potRollBoosted !== undefined ? r.potRollBoosted : Math.min((r.potRoll || 0) + bonus, 100);
+          const f = r.forced100 ? ' ★' : '';
+          return `${i + 1}: d100=${r.tempRoll},${r.potRoll}+${bonus}=${boosted} → ${r.temp}(${r.pot})${f}`;
+        }).join(' | ');
       } else {
         html += entry.rollData.map((r, i) => `${i + 1}: ${r.temp}/${r.pot}`).join(' | ');
       }
@@ -801,90 +949,425 @@ function renderLanguagesTab(lang) {
 // === Tab: Spells ===
 function renderSpellsTab(lang) {
   const cls = character.classIndex >= 0 ? getAllClasses()[character.classIndex] : null;
-  const spellBudget = getSpellPointsTotal(character);
-  const spellSpent = getSpellPointsSpent(character);
-  const spellRemaining = spellBudget - spellSpent;
+  const dpTotal = getDevPointsTotal(character);
+  const dpSpent = getDevPointsSpent(character);
+  const dpRemaining = dpTotal - dpSpent;
+  const spellLocked = !!character.phaseValidated;
 
   if (cls && !isSpellUser(cls)) {
-    return panel(lang === 'en' ? `Spell Lists (0 pts)` : `Listes de Sorts (0 pts)`, `
+    return panel(lang === 'en' ? 'Spell Lists' : 'Listes de Sorts', `
       <p class="text-gray-500">${lang === 'en' ? 'This character is not a spell user.' : 'Ce personnage n\'est pas un lanceur de sorts.'} (${getRealmLabel(cls, lang)})</p>
     `);
   }
 
-  // Spell point counter
+  // Ensure spellStudy exists
+  if (!character.spellStudy) character.spellStudy = { listName: null, listType: null, listRealm: null, ranks: 0, sgrDone: false, blockSize: 5, nextBlockStart: 1 };
+  const study = character.spellStudy;
+  const rankCost = getSpellRankCost(cls);
+
+  // DP header
   let header = `<div class="flex justify-between items-center mb-3">
-    <span class="text-gray-400 text-sm">${lang === 'en' ? 'Spell Points:' : 'Points de sorts :'} </span>
+    <span class="text-gray-400 text-sm">${lang === 'en' ? 'Dev Points remaining:' : 'Points de dév restants :'} </span>
     <span>
-      <span class="text-purple-300 font-bold text-lg">${spellRemaining}</span>
-      <span class="text-gray-500"> / ${spellBudget}</span>
-      ${spellRemaining < 0 ? '<span class="text-red-400 text-xs ml-2">!</span>' : ''}
+      <span class="${dpRemaining <= 0 ? 'text-red-400' : 'text-amber-300'} font-bold text-lg">${dpRemaining}</span>
+      <span class="text-gray-500"> / ${dpTotal}</span>
+      <span class="text-xs text-gray-600 ml-2">(${lang === 'en' ? 'rank cost' : 'coût/rang'}: ${rankCost})</span>
     </span>
   </div>`;
 
-  // Spell lists table with tier mechanism
-  let rows = '';
-  character.spellLists.forEach((sl, i) => {
-    const palier = sl.palier || 0;
-    const niveau = sl.niveau || 0;
-    const cost = sl.cost || 4;
-    const canInvest = spellRemaining >= cost;
+  // === CURRENT STUDY SECTION ===
+  let studyHtml = '';
+  if (study.listName) {
+    const sgrBonus = study.ranks * 5;
+    const sgrChance = Math.min(100, sgrBonus); // D100 + bonus ≥ 101
+    const blockEnd = study.nextBlockStart + study.blockSize - 1;
+    const autoLearn = study.ranks >= 20;
 
-    rows += `<tr>
-      <td class="text-gray-300">${esc(sl.name)}</td>
-      <td class="text-center text-xs text-gray-500">${cost}/*</td>
-      <td class="text-center">
-        <span class="skill-pm">
-          <button class="pm-btn pm-minus spell-palier-minus" data-spell="${i}" ${palier <= 0 ? 'disabled' : ''}>−</button>
-          <span class="text-purple-300 font-bold mx-1">${palier}</span>
-          <button class="pm-btn pm-plus spell-palier-plus" data-spell="${i}" ${!canInvest ? 'disabled' : ''}>+</button>
-        </span>
-      </td>
-      <td class="text-center ${niveau > 0 ? 'text-green-400 font-bold' : 'text-gray-600'}">${niveau > 0 ? niveau : '—'}</td>
-      <td class="text-center text-xs text-gray-500">${esc(sl.reference || '')}</td>
-      <td>
-        ${palier > 0 && niveau === 0 ? `<button class="text-xs text-purple-400 hover:text-purple-300 spell-roll" data-spell="${i}">D100</button>` : ''}
-        <button class="text-red-400 hover:text-red-300 text-xs spell-remove" data-spell="${i}">✕</button>
-      </td>
-    </tr>`;
+    // Rank boxes display (20 max)
+    let rankBoxes = '<span class="rank-boxes">';
+    for (let r = 0; r < 20; r++) {
+      rankBoxes += `<span class="rank-box ${r < study.ranks ? 'filled' : ''}">${r < study.ranks ? '■' : '□'}</span>`;
+    }
+    rankBoxes += '</span>';
+
+    const typeColors = { base_own: 'text-green-400', open: 'text-blue-400', closed: 'text-yellow-400', other: 'text-gray-400' };
+    const typeLabels = { base_own: 'Base', open: 'Libre', closed: 'Réservée', other: 'Autre' };
+    const tColor = typeColors[study.listType] || 'text-gray-400';
+    const tLabel = typeLabels[study.listType] || study.listType;
+
+    studyHtml = `<div class="panel mb-4" style="border-left-color: var(--color-purple)">
+      <div class="text-purple-300 font-bold mb-2">${lang === 'en' ? 'Studying' : 'Étude en cours'} : ${esc(study.listName)} <span class="text-xs ${tColor}">[${tLabel}]</span></div>
+      <div class="text-xs text-gray-600 mb-2" title="Spell Gain Roll — Character Law 7.4">SGR = Spell Gain Roll</div>
+      <div class="mb-2">${rankBoxes} <span class="text-xs text-gray-400 ml-1">${study.ranks}/20</span></div>
+      ${autoLearn
+        ? `<div class="text-green-400 font-bold mb-2">${lang === 'en' ? 'Auto-learned!' : 'Appris automatiquement !'} ${lang === 'en' ? 'Levels' : 'Niveaux'} ${study.nextBlockStart}-${blockEnd}</div>`
+        : `<div class="text-xs text-gray-400 mb-2"><span class="text-purple-400" title="Spell Gain Roll">SGR</span> = D100 + ${sgrBonus} → ${lang === 'en' ? 'success if' : 'succès si'} ≥ 101 (${lang === 'en' ? 'chance' : 'chance'}: ${sgrChance}%) — ${lang === 'en' ? 'Next block' : 'Bloc suivant'}: ${lang === 'en' ? 'levels' : 'niveaux'} ${study.nextBlockStart}-${blockEnd}</div>`
+      }
+      <div class="flex gap-2 flex-wrap no-print">
+        ${!spellLocked && !autoLearn ? `<button class="btn-primary text-xs" id="btn-spell-rank" ${dpRemaining < rankCost || study.ranks >= 20 ? 'disabled' : ''}>+ ${lang === 'en' ? 'Rank' : 'Rang'} (${rankCost} PD)</button>` : ''}
+        ${!spellLocked && study.ranks > 0 && !autoLearn && !study.sgrDone ? `<button class="btn-primary text-xs" id="btn-spell-sgr" style="background:linear-gradient(135deg,#5b21b6,#7c3aed)" title="Spell Gain Roll">SGR (D100+${sgrBonus})</button>` : ''}
+        ${!spellLocked && study.ranks > 0 && study.sgrDone && !autoLearn ? `<button class="btn-secondary text-xs" id="btn-spell-sgr-table" title="${lang === 'en' ? 'Re-roll (table roll) — logged as extra roll' : 'Relancer (jet sur table) — journalisé comme jet supplémentaire'}">🎲 ${lang === 'en' ? 'Table roll' : 'Jet sur table'} (D100+${sgrBonus})</button>` : ''}
+        ${autoLearn ? `<button class="btn-primary text-xs" id="btn-spell-confirm-auto" style="background:#16a34a">${lang === 'en' ? 'Confirm learning' : 'Confirmer l\'apprentissage'}</button>` : ''}
+        ${!spellLocked ? `<button class="btn-secondary text-xs" id="btn-spell-abandon">${lang === 'en' ? 'Abandon' : 'Abandonner'}</button>` : ''}
+      </div>
+    </div>`;
+  }
+
+  // === SPELL LISTS (learned + added but not yet learned) ===
+  const isPure = isPureCaster(cls);
+  let learnedHtml = '';
+  if (character.spellLists.length > 0) {
+    const tColors = { base_own: 'text-green-400', open: 'text-blue-400', closed: 'text-yellow-400', other: 'text-gray-400' };
+    const tLabels = { base_own: 'Base', open: 'Libre', closed: 'Réservée', other: 'Autre' };
+    let learnedRows = '';
+    character.spellLists.forEach((sl, i) => {
+      const isStudying = study.listName === sl.name;
+      const canStudy = !spellLocked && !study.listName;
+      const hasLevels = sl.maxLevel > 0;
+      const slBlockSize = getSpellBlockSize(cls, sl.type || 'other');
+      const nextStart = (sl.maxLevel || 0) + 1;
+      const nextEnd = nextStart + slBlockSize - 1;
+      learnedRows += `<tr class="${isStudying ? 'text-purple-300' : ''}">
+        <td class="text-gray-300">${esc(sl.name)} <span class="text-xs ${tColors[sl.type] || 'text-gray-500'}">[${tLabels[sl.type] || sl.type || ''}]</span></td>
+        <td class="text-center text-xs text-gray-500">${rankCost}</td>
+        <td class="text-center text-xs text-gray-500">${slBlockSize}</td>
+        <td class="text-center ${hasLevels ? 'text-green-400 font-bold' : 'text-gray-600'}">${hasLevels ? `1-${sl.maxLevel}` : '—'}</td>
+        <td class="text-center text-xs text-purple-400">${nextStart}-${nextEnd}</td>
+        <td>
+          ${isStudying ? `<span class="text-xs text-purple-400">◆ ${lang === 'en' ? 'studying' : 'en étude'}</span>` : ''}
+          ${canStudy ? `<button class="text-xs text-purple-400 hover:text-purple-300 spell-study-list" data-idx="${i}">${hasLevels ? (lang === 'en' ? 'Next block' : 'Bloc suivant') : (lang === 'en' ? 'Study' : 'Étudier')}</button>` : ''}
+          ${!spellLocked && !isStudying ? `<button class="text-xs ${sl.type === 'base_own' ? 'text-green-400' : 'text-gray-600 hover:text-green-400'} ml-1 spell-toggle-base" data-idx="${i}" title="${lang === 'en' ? 'Toggle base list (10 lvl blocks for pure casters)' : 'Basculer liste de base (blocs de 10 niv pour lanceurs purs)'}">♦</button>` : ''}
+          ${!spellLocked && !isStudying ? `<button class="text-red-400 hover:text-red-300 text-xs ml-1 spell-remove-list" data-idx="${i}">✕</button>` : ''}
+        </td>
+      </tr>`;
+    });
+    learnedHtml = `<div class="mb-4">
+      <div class="text-sm text-gray-400 mb-1">${lang === 'en' ? 'Spell lists' : 'Listes de sorts'}</div>
+      <table class="skill-table"><thead><tr>
+        <th>${lang === 'en' ? 'List' : 'Liste'}</th>
+        <th class="text-center w-10" title="${lang === 'en' ? 'DP per rank' : 'PD par rang'}">${lang === 'en' ? '$/rk' : 'PD/rg'}</th>
+        <th class="text-center w-10" title="${lang === 'en' ? 'Levels per block' : 'Niveaux par bloc'}">${lang === 'en' ? 'Blk' : 'Bloc'}</th>
+        <th class="text-center w-16">${lang === 'en' ? 'Learned' : 'Appris'}</th>
+        <th class="text-center w-16" title="${lang === 'en' ? 'Next block to study' : 'Prochain bloc à étudier'}">${lang === 'en' ? 'Next' : 'Suiv.'}</th>
+        <th></th>
+      </tr></thead><tbody>${learnedRows}</tbody></table>
+    </div>`;
+  }
+
+  // === AVAILABLE LISTS — tabbed by realm, sub-grouped by type ===
+  const REALM_NAMES_FR = {
+    'Mentalism (Open)': 'Mentalisme (Libres)',
+    'Mentalism (Closed)': 'Mentalisme (Réservées)',
+    'Mentalism (Evil)': 'Mentalisme (Maléfiques)',
+    'Essence (Open)': 'Essence (Libres)',
+    'Essence (Closed)': 'Essence (Réservées)',
+    'Essence (Evil)': 'Essence (Maléfiques)',
+    'Channeling (Open)': 'Théisme (Libres)',
+    'Channeling (Closed)': 'Théisme (Réservées)',
+    'Channeling (Evil)': 'Théisme (Maléfiques)',
+    'Arcane/Other': 'Arcanes / Autres',
+  };
+  const REALM_GROUPS = [
+    { key: 'Mentalism', label_fr: 'Mentalisme', label_en: 'Mentalism' },
+    { key: 'Essence', label_fr: 'Essence', label_en: 'Essence' },
+    { key: 'Channeling', label_fr: 'Théisme', label_en: 'Channeling' },
+    { key: 'Arcane', label_fr: 'Arcanes', label_en: 'Arcane' },
+  ];
+  const realms = getAllRealms();
+  const classRealm = cls ? getRealmKey(cls) : 'none';
+  const canAdd = !spellLocked;
+  const realmSortKey = { essence: 'Essence', channeling: 'Channeling', mentalism: 'Mentalism' }[classRealm] || '';
+  const classBaseLists = character.classIndex >= 0 ? getClassBaseSpellLists(character.classIndex) : [];
+
+  // Build realm tabs
+  let realmTabsHtml = `<div class="flex gap-1 flex-wrap mb-2">`;
+  // Sort: class realm first
+  const sortedGroups = [...REALM_GROUPS].sort((a, b) => {
+    if (a.key === realmSortKey) return -1;
+    if (b.key === realmSortKey) return 1;
+    return 0;
   });
 
-  let table = `<table class="skill-table"><thead><tr>
-    <th>${lang === 'en' ? 'List' : 'Liste'}</th>
-    <th class="text-center w-12">${lang === 'en' ? 'Cost' : 'Coût'}</th>
-    <th class="text-center" style="min-width:5rem">${lang === 'en' ? 'Tier' : 'Palier'}</th>
-    <th class="text-center w-12">${lang === 'en' ? 'Lvl' : 'Niv'}</th>
-    <th class="text-center w-16">Réf</th>
-    <th></th>
-  </tr></thead><tbody>${rows}</tbody></table>`;
+  // Add "Base" tab first if class has base lists
+  if (classBaseLists.length > 0) {
+    realmTabsHtml += `<button class="spell-realm-tab phase-btn text-xs" data-realm-tab="base" style="border-color:var(--color-success);color:var(--color-success)">Base (${classBaseLists.length})</button>`;
+  }
+  for (const rg of sortedGroups) {
+    const isActive = rg.key === realmSortKey;
+    const label = lang === 'en' ? rg.label_en : rg.label_fr;
+    realmTabsHtml += `<button class="spell-realm-tab phase-btn text-xs ${isActive ? '' : ''}" data-realm-tab="${rg.key}">${label}${isActive ? ' ★' : ''}</button>`;
+  }
+  realmTabsHtml += `</div>`;
 
-  // Available lists from data (collapsible by realm)
-  const realms = getAllRealms();
-  let availableHtml = `<div class="mt-4"><details><summary class="text-sm text-gray-400 cursor-pointer hover:text-amber-300">${lang === 'en' ? 'Available spell lists (click to add)' : 'Listes disponibles (cliquez pour ajouter)'}</summary>`;
-  availableHtml += `<div class="mt-2 scroll-container" style="max-height:40vh">`;
-  for (const realm of realms) {
-    let realmLists = '';
-    for (const group of realm.groups) {
-      for (const spell of group) {
-        const name = lang === 'en' ? spell.name_en : spell.name_fr;
-        realmLists += `<button class="text-xs text-gray-400 hover:text-amber-300 block py-0.5 add-spell-list" data-spell-name="${esc(name)}" data-spell-realm="${esc(realm.name)}">${name}</button>`;
+  // Build content for each realm tab (hidden by default, shown via JS)
+  let realmPanels = '';
+
+  // Base panel — class base lists
+  if (classBaseLists.length > 0) {
+    let baseItems = '';
+    for (const blName of classBaseLists) {
+      // Find matching spell in sorts.json
+      const already = character.spellLists.some(sl => sl.name === blName || sl.name.includes(blName) || blName.includes(sl.name));
+      const studying = study.listName === blName;
+      // Try to find the realm for this list
+      let foundRealm = '';
+      for (const realm of realms) {
+        for (const group of realm.groups) {
+          for (const spell of group) {
+            if (spell.name_fr === blName || spell.name_fr.includes(blName) || blName.includes(spell.name_fr)) {
+              foundRealm = realm.name;
+            }
+          }
+        }
+      }
+      baseItems += `<button class="text-xs ${already || studying ? 'text-gray-600' : 'text-green-400 hover:text-amber-300'} block py-0.5 add-spell-list" data-spell-name="${esc(blName)}" data-spell-realm="${esc(foundRealm)}" ${already || studying || !canAdd ? 'disabled' : ''}>${blName}${already ? ' ✓' : studying ? ' ◆' : ''}</button>`;
+    }
+    const baseBlockSize = getSpellBlockSize(cls, 'base_own');
+    const baseCostHeader = `<div class="text-xs text-gray-500 mb-1 p-1 rounded" style="background:rgba(52,211,153,0.08)">
+      ${lang === 'en' ? 'Cost' : 'Coût'}: <span class="text-amber-300 font-bold">${rankCost} PD/${lang === 'en' ? 'rank' : 'rang'}</span> —
+      ${lang === 'en' ? 'Block' : 'Bloc'}: <span class="text-green-400 font-bold">${baseBlockSize} ${lang === 'en' ? 'levels' : 'niveaux'}</span> —
+      SGR: D100 + (${lang === 'en' ? 'ranks' : 'rangs'}×5) ≥ 101
+    </div>`;
+    realmPanels += `<div class="spell-realm-panel hidden" data-realm-panel="base">${baseCostHeader}${baseItems}</div>`;
+  }
+
+  // Per-realm panels
+  for (const rg of sortedGroups) {
+    let panelContent = '';
+    const matchingRealms = realms.filter(r => r.name.includes(rg.key));
+    for (const realm of matchingRealms) {
+      const realmLabel = lang === 'en' ? realm.name : (REALM_NAMES_FR[realm.name] || realm.name);
+      let items = '';
+      for (const group of realm.groups) {
+        for (const spell of group) {
+          const name = lang === 'en' ? spell.name_en : spell.name_fr;
+          const already = character.spellLists.some(sl => sl.name === name);
+          const studying = study.listName === name;
+          items += `<button class="text-xs ${already || studying ? 'text-gray-600' : 'text-gray-400 hover:text-amber-300'} block py-0.5 add-spell-list" data-spell-name="${esc(name)}" data-spell-realm="${esc(realm.name)}" ${already || studying || !canAdd ? 'disabled' : ''}>${name}${already ? ' ✓' : studying ? ' ◆' : ''}</button>`;
+        }
+      }
+      if (items) {
+        // Determine cost info for this realm sub-category
+        const rn = realm.name.toLowerCase();
+        const classRealmKw2 = realmSortKey.toLowerCase();
+        const realmMatches = classRealmKw2 && rn.includes(classRealmKw2);
+        let subType = 'other';
+        if (realmMatches && rn.includes('open')) subType = 'open';
+        else if (realmMatches && rn.includes('closed')) subType = 'closed';
+        else if (rn.includes('evil')) subType = 'other';
+        const subBlockSize = getSpellBlockSize(cls, subType);
+        const costHint = `<span class="text-gray-600 font-normal ml-2">[${rankCost} PD/${lang === 'en' ? 'rk' : 'rg'}, ${lang === 'en' ? 'block' : 'bloc'} ${subBlockSize} ${lang === 'en' ? 'lvl' : 'niv'}]</span>`;
+        panelContent += `<div class="text-xs text-purple-400 font-bold mt-2">${realmLabel}${costHint}</div>${items}`;
       }
     }
-    if (realmLists) {
-      availableHtml += `<div class="text-xs text-purple-400 font-bold mt-2">${realm.name}</div>${realmLists}`;
-    }
+    if (!panelContent) panelContent = `<div class="text-xs text-gray-600">${lang === 'en' ? 'No lists available' : 'Aucune liste disponible'}</div>`;
+    realmPanels += `<div class="spell-realm-panel hidden" data-realm-panel="${rg.key}">${panelContent}</div>`;
   }
-  availableHtml += `</div></details></div>`;
+
+  let availableHtml = `<div class="mt-4"><details><summary class="text-sm text-gray-400 cursor-pointer hover:text-amber-300">${lang === 'en' ? 'Available spell lists (click to add)' : 'Listes disponibles (cliquez pour ajouter)'}</summary>
+    <div class="mt-2">
+      ${realmTabsHtml}
+      <div class="scroll-container" style="max-height:40vh">${realmPanels}</div>
+    </div>
+  </details></div>`;
+
+  // Spell audit log
+  let logHtml = '';
+  if (character.spellLog && character.spellLog.length > 0) {
+    logHtml = renderSpellLog(lang);
+  }
 
   return panel(
-    lang === 'en' ? `Spell Lists (${spellBudget} pts)` : `Listes de Sorts (${spellBudget} pts)`,
-    header + table + `<button class="btn-secondary text-sm mt-3" id="btn-add-spell">+ ${lang === 'en' ? 'Add List' : 'Ajouter une liste'}</button>` + availableHtml
+    lang === 'en' ? 'Spell Lists' : 'Listes de Sorts',
+    header + studyHtml + learnedHtml + availableHtml + logHtml
   );
+}
+
+function renderSpellLog(lang) {
+  const log = character.spellLog;
+  const sgrCount = log.filter(e => e.action === 'sgr').length;
+  const sgrSuccess = log.filter(e => e.action === 'sgr' && e.details.success).length;
+
+  let html = `<details class="mt-4 stat-log"><summary class="text-xs text-gray-500 cursor-pointer hover:text-purple-300">`;
+  html += lang === 'en'
+    ? `Spell log — ${log.length} actions, ${sgrSuccess}/${sgrCount} SGR success`
+    : `Journal des sorts — ${log.length} actions, ${sgrSuccess}/${sgrCount} SGR réussis`;
+  html += `</summary><div class="mt-2 text-xs text-gray-500 space-y-1 max-h-60 overflow-y-auto">`;
+
+  const actionLabels = {
+    invest:  { fr: '+ Rang', en: '+ Rank' },
+    sgr:     { fr: 'SGR', en: 'SGR' },
+    auto:    { fr: 'Auto', en: 'Auto' },
+    start:   { fr: 'Début étude', en: 'Start study' },
+    abandon: { fr: 'Abandon', en: 'Abandon' },
+    add:     { fr: 'Ajout', en: 'Add' },
+  };
+
+  for (const entry of log) {
+    const time = new Date(entry.timestamp).toLocaleTimeString();
+    const label = (actionLabels[entry.action] || {})[lang === 'en' ? 'en' : 'fr'] || entry.action;
+    let detail = '';
+    const d = entry.details || {};
+
+    if (entry.action === 'invest') {
+      detail = `${d.cost} PD → rang ${d.newRanks}`;
+    } else if (entry.action === 'sgr') {
+      const resultCls = d.success ? 'text-green-400' : 'text-red-400';
+      const resultText = d.success
+        ? (lang === 'en' ? `SUCCESS → lvl ${d.block}` : `RÉUSSI → niv ${d.block}`)
+        : (lang === 'en' ? 'FAIL' : 'ÉCHEC');
+      const extraTag = d.extraRoll ? ` <span class="text-yellow-400">[${lang === 'en' ? 'extra' : 'suppl'}${d.sgrNumber ? ' #' + d.sgrNumber : ''}]</span>` : '';
+      const manualTag = d.manualEntry ? ` <span class="text-blue-400">[${lang === 'en' ? 'table' : 'table'}]</span>` : '';
+      detail = `D100=${d.roll}+${d.bonus}=${d.total} vs 101 — <span class="${resultCls} font-bold">${resultText}</span>${extraTag}${manualTag}`;
+    } else if (entry.action === 'auto') {
+      detail = `<span class="text-green-400 font-bold">20 rangs → niv ${d.block}</span>`;
+    } else if (entry.action === 'start') {
+      detail = `[${d.type}] bloc ${d.blockSize} niv`;
+    } else if (entry.action === 'abandon') {
+      detail = `<span class="text-red-400">${d.ranksLost} rang${d.ranksLost > 1 ? 's' : ''} perdus</span>`;
+    }
+
+    html += `<div><span class="text-gray-600">[${time}]</span> <span class="text-purple-400">${label}</span> <span class="text-amber-300">${esc(entry.listName || '')}</span> ${detail}</div>`;
+  }
+
+  html += `</div></details>`;
+  return html;
 }
 
 // === Tab: History ===
 function renderHistoryTab(lang) {
   const hasRace = character.raceIndex >= 0;
+
+  // === Section A: Background Options ===
+  const bgData = getData().background_options_merged;
+  if (!character.backgroundOptions) character.backgroundOptions = { totalOptions: 0, options: [], companionIIITalents: [] };
+  const bgOpts = character.backgroundOptions;
+
+  // Determine total options from race
+  let totalOpts = bgOpts.totalOptions;
+  if (totalOpts <= 0 && hasRace && bgData) {
+    const raceSection = bgData.sources[0]?.sections?.[0];
+    if (raceSection) {
+      const raceMatch = raceSection.entries.find(e =>
+        (character.raceName || '').toLowerCase().includes(e.race.toLowerCase()) ||
+        e.race.toLowerCase().includes((character.raceName || '').toLowerCase().split(' ')[0])
+      );
+      totalOpts = raceMatch ? parseInt(raceMatch.background_options) || 4 : 4;
+      bgOpts.totalOptions = totalOpts;
+    }
+  }
+
+  // Build category options for dropdown
+  const categories = [];
+  if (bgData) {
+    const s0 = bgData.sources[0]; // Character Law
+    if (s0) {
+      for (let si = 1; si < (s0.sections || []).length; si++) {
+        const sec = s0.sections[si];
+        categories.push({ source: 'character_law', sectionIdx: si, label: sec.name_fr || sec.name_en || sec.name || `Section ${si}`, needsRoll: si > 1 });
+      }
+    }
+    const s1 = bgData.sources[1]; // Companion I
+    if (s1) {
+      for (let si = 0; si < (s1.sections || []).length; si++) {
+        const sec = s1.sections[si];
+        categories.push({ source: 'companion_1', sectionIdx: si, label: `${sec.name_fr || sec.name_en || sec.name} (C1)`, needsRoll: true });
+      }
+    }
+  }
+
+  let optionsHtml = '';
+  for (let i = 0; i < totalOpts; i++) {
+    const opt = bgOpts.options[i];
+    if (opt) {
+      // Filled option
+      const typeColor = opt.type === 'flaw' ? 'text-red-400' : opt.type === 'talent' ? 'text-green-400' : 'text-amber-300';
+      optionsHtml += `<div class="panel" style="padding:0.5rem 0.75rem;margin-bottom:0.5rem">
+        <div class="text-xs text-gray-500">Option ${i + 1}/${totalOpts}</div>
+        <div class="font-bold ${typeColor}">${esc(opt.name_fr || opt.name)}</div>
+        ${opt.roll ? `<div class="text-xs text-gray-500">D100: ${opt.roll}</div>` : ''}
+        <div class="text-xs" style="margin-top:2px">${esc(opt.description || '').slice(0, 200)}</div>
+        <input type="text" class="field bg-opt-notes" data-bg-idx="${i}" value="${esc(opt.playerNotes || '')}" placeholder="Notes..." style="font-size:0.75rem;margin-top:4px;width:100%">
+        <button class="text-red-400 text-xs mt-1 bg-opt-remove" data-bg-idx="${i}">✕ ${lang === 'en' ? 'Remove' : 'Retirer'}</button>
+      </div>`;
+    } else {
+      // Empty slot — show category selector
+      let catOptions = categories.map((c, ci) =>
+        `<option value="${ci}">${esc(c.label)}</option>`
+      ).join('');
+      optionsHtml += `<div class="panel" style="padding:0.5rem 0.75rem;margin-bottom:0.5rem">
+        <div class="text-xs text-gray-500">Option ${i + 1}/${totalOpts}</div>
+        <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap">
+          <select class="field bg-opt-category" data-bg-idx="${i}" style="font-size:0.8rem;flex:1">
+            <option value="">— ${lang === 'en' ? 'Choose category' : 'Choisir catégorie'} —</option>
+            ${catOptions}
+          </select>
+          <button class="btn-primary text-xs bg-opt-roll" data-bg-idx="${i}" style="padding:2px 10px">🎲 ${lang === 'en' ? 'Roll' : 'Jet'}</button>
+        </div>
+      </div>`;
+    }
+  }
+
+  const bgPanel = totalOpts > 0 ? panel(
+    `${lang === 'en' ? 'Background Options' : 'Options d\'Historique'} (${bgOpts.options.filter(Boolean).length}/${totalOpts})`,
+    optionsHtml
+  ) : '';
+
+  // === Section B: Innate Talents (Companion III) ===
+  let talentsHtml = '';
+  if (bgData) {
+    const c3 = bgData.sources.find(s => s.id === 'companion_3');
+    if (c3) {
+      const STAT_NAMES_EN = ['Constitution', 'Agility', 'Self-Discipline', 'Memory', 'Reasoning', 'Strength', 'Quickness', 'Presence', 'Empathy', 'Intuition'];
+      let hasTalents = false;
+      let talentRows = '';
+      for (let i = 0; i < 10; i++) {
+        const val = character.stats[i];
+        if (val < 102) continue;
+        hasTalents = true;
+        const section = c3.sections.find(s => (s.name_en || s.name || '').toLowerCase() === STAT_NAMES_EN[i].toLowerCase());
+        let picksDesc = '';
+        if (val >= 110) picksDesc = '1C ou 1B+2A';
+        else if (val >= 105) picksDesc = '1B ou 2A';
+        else picksDesc = '1A';
+
+        // Show existing picks
+        const existing = (bgOpts.companionIIITalents || []).filter(t => t.statIndex === i);
+        let existingHtml = existing.map((t, ti) =>
+          `<div class="text-xs text-green-400 ml-4">→ ${esc(t.name)} <span class="text-gray-500">(${t.pickTier})</span></div>`
+        ).join('');
+
+        // Available entries for picking
+        let pickBtns = '';
+        if (section && existing.length === 0) {
+          const allowedTiers = val >= 110 ? ['A','B','C'] : val >= 105 ? ['A','B'] : ['A'];
+          const available = (section.entries || []).filter(e => allowedTiers.includes(e.pick_tier));
+          if (available.length > 0) {
+            pickBtns = `<select class="field c3-talent-pick" data-stat-idx="${i}" style="font-size:0.75rem;margin-left:1rem">
+              <option value="">— ${lang === 'en' ? 'Pick talent' : 'Choisir talent'} —</option>
+              ${available.map(e => `<option value="${esc(e.id || e.name_en)}" data-tier="${e.pick_tier}">${e.pick_tier}: ${esc(e.name_fr || e.name_en || e.name)}</option>`).join('')}
+            </select>
+            <button class="btn-primary text-xs c3-talent-confirm" data-stat-idx="${i}" style="padding:2px 8px;margin-left:4px">OK</button>`;
+          }
+        }
+
+        talentRows += `<div style="margin-bottom:0.3rem">
+          <span class="font-bold">${STAT_ABBREVS[i]}: ${val}</span>
+          <span class="text-xs text-gray-500 ml-2">${picksDesc}</span>
+          ${pickBtns}
+          ${existingHtml}
+        </div>`;
+      }
+      if (hasTalents) {
+        talentsHtml = panel(lang === 'en' ? 'Innate Talents (Companion III)' : 'Talents Innés (Compagnon III)', talentRows);
+      }
+    }
+  }
+
   return `
+    ${bgPanel}
+    ${talentsHtml}
+
     ${panel(lang === 'en' ? 'Physical Description' : 'Description physique', `
       <div class="info-grid">
         <label>Sexe</label>
@@ -892,25 +1375,18 @@ function renderHistoryTab(lang) {
           <option value="Masculin" ${character.sex === 'Masculin' || character.sex === 'M' ? 'selected' : ''}>Masculin</option>
           <option value="Féminin" ${character.sex === 'Féminin' || character.sex === 'F' ? 'selected' : ''}>Féminin</option>
         </select>
-
         <label>Taille</label>
         <input type="text" id="f-height" value="${esc(character.height)}" class="field field-sm" placeholder="178 cm">
-
         <label>Poids</label>
         <input type="text" id="f-weight" value="${esc(character.weight)}" class="field field-sm" placeholder="75 kg">
-
         <label>Âge</label>
         <input type="text" id="f-age" value="${esc(character.age)}" class="field field-sm">
-
         <label>Cheveux</label>
         <input type="text" id="f-hair" value="${esc(character.hair)}" class="field field-sm">
-
         <label>Yeux</label>
         <input type="text" id="f-eyes" value="${esc(character.eyes)}" class="field field-sm">
-
         <label>Apparence (1-100)</label>
         <input type="text" id="f-appearance" value="${esc(character.appearance)}" class="field field-sm">
-
         <label>Comportement</label>
         <input type="text" id="f-behavior" value="${esc(character.behavior)}" class="field">
       </div>
@@ -932,34 +1408,37 @@ function renderSkillsTab(lang) {
   const spent = getDevPointsSpent(character);
   const remaining = devPts - spent;
 
-  const phaseLabels = {
-    adolescent: { fr: 'Adolescent', en: 'Adolescent' },
-    apprenti: { fr: 'Apprenti', en: 'Apprentice' },
-    level: { fr: `Niveau ${character.level}`, en: `Level ${character.level}` },
-  };
-  const phaseName = phaseLabels[character.devPhase] || phaseLabels.level;
+  const isValidated = !!character.phaseValidated;
+  const phaseLabelFr = character.devPhase === 'adolescent' ? 'Adolescent' : character.devPhase === 'apprenti' ? 'Apprenti' : `Niveau ${character.level}`;
+  const phaseLabelEn = character.devPhase === 'adolescent' ? 'Adolescent' : character.devPhase === 'apprenti' ? 'Apprentice' : `Level ${character.level}`;
+  const phaseLabel = lang === 'en' ? phaseLabelEn : phaseLabelFr;
 
-  // Phase selector + DP counter
+  // Phase indicator (no free switching — strict order)
   let header = `
     <div class="flex flex-wrap justify-between items-center mb-3 gap-2">
       <div class="flex items-center gap-2">
         <span class="text-gray-500 text-sm">${lang === 'en' ? 'Phase:' : 'Phase :'}</span>
-        <button class="phase-btn ${character.devPhase === 'adolescent' ? 'active' : ''}" data-phase="adolescent">
-          ${lang === 'en' ? 'Adolescent' : 'Adolescent'}
-        </button>
-        <button class="phase-btn ${character.devPhase === 'apprenti' ? 'active' : ''}" data-phase="apprenti">
-          ${lang === 'en' ? 'Apprentice' : 'Apprenti'}
-        </button>
-        <button class="phase-btn ${character.devPhase === 'level' ? 'active' : ''}" data-phase="level">
-          ${lang === 'en' ? `Level ${character.level}` : `Niveau ${character.level}`}
-        </button>
+        <span class="phase-btn active" style="cursor:default">${phaseLabel}</span>
+        ${isValidated
+          ? `<span class="text-green-500 text-xs font-bold ml-1">${lang === 'en' ? 'VALIDATED' : 'VALIDÉ'}</span>`
+          : `<span class="text-yellow-500 text-xs ml-1">${lang === 'en' ? 'In progress' : 'En cours'}</span>`
+        }
       </div>
       <div class="text-right">
         <span class="text-gray-400 text-sm">${lang === 'en' ? 'Dev Points:' : 'Points de dév :'} </span>
         <span class="text-amber-300 font-bold text-lg">${remaining}</span>
         <span class="text-gray-500"> / ${devPts}</span>
         ${remaining < 0 ? '<span class="text-red-400 text-xs ml-2">Dépassement !</span>' : ''}
+        ${devPts > 0 ? `<div class="dp-bar"><div class="dp-bar-fill${remaining <= Math.floor(devPts * 0.1) ? ' low' : ''}" style="width:${Math.max(0, Math.min(100, (spent / devPts) * 100))}%"></div></div>` : ''}
       </div>
+    </div>
+    <div class="flex gap-2 mb-3 no-print">
+      ${!isValidated
+        ? `<button class="btn-primary text-sm" id="btn-validate-phase">${lang === 'en' ? 'End development phase' : 'Fin de la phase de développement'}</button>`
+        : `<button class="btn-primary text-sm" id="btn-next-phase">${lang === 'en' ? 'Advance to next level' : 'Monter au prochain niveau'}</button>`
+      }
+      ${(character.phases || []).length > 0 ? `<button class="btn-secondary text-xs" id="btn-phase-history">${lang === 'en' ? 'History' : 'Historique'} (${character.phases.length})</button>` : ''}
+      ${!isValidated && (character.phases || []).length > 0 ? `<button class="btn-secondary text-xs" id="btn-repeat-previous" title="${lang === 'en' ? 'Copy skill ranks from the last validated phase' : 'Copier les rangs de compétences de la dernière phase validée'}">${lang === 'en' ? 'Same as previous' : 'Comme au niveau précédent'}</button>` : ''}
     </div>
   `;
 
@@ -1020,9 +1499,17 @@ function renderSkillsTab(lang) {
         }
 
         const wpnCount = isWeapon ? character.weaponSkills.length : 0;
+        const subCount = isWeapon ? wpnCount : character.subSkills.filter(s => s.parentIndex === globalIndex).length;
+        // Inline + button next to the name (more visible)
+        let inlineAddBtn = '';
+        if (isWeapon && hasWeaponPriorities) {
+          inlineAddBtn = `<button class="btn-add-weapon-skill" style="background:none;border:1px solid currentColor;border-radius:3px;width:1.2rem;height:1.2rem;font-size:0.75rem;cursor:pointer;color:inherit;line-height:1;padding:0;margin-left:4px" title="${lang === 'en' ? 'Add weapon' : 'Ajouter arme'}">+</button>`;
+        } else if (!isWeapon && !(globalIndex === 148 && character.spellLists.length === 0)) {
+          inlineAddBtn = `<button class="btn-add-subskill" data-parent="${globalIndex}" style="background:none;border:1px solid currentColor;border-radius:3px;width:1.2rem;height:1.2rem;font-size:0.75rem;cursor:pointer;color:inherit;line-height:1;padding:0;margin-left:4px" title="${lang === 'en' ? 'Add' : 'Ajouter'}">+</button>`;
+        }
         table += `
           <tr class="text-gray-500" style="background:rgba(139,92,246,0.05)">
-            <td class="sticky-col text-purple-400 font-bold">${name} ${isWeapon ? '⚔' : '▸'}${wpnCount > 0 ? ` <span class="text-xs text-gray-500">(${wpnCount})</span>` : ''}</td>
+            <td class="sticky-col text-purple-400 font-bold">${name} ${isWeapon ? '⚔' : '▸'}${subCount > 0 ? ` <span class="text-xs text-gray-500">(${subCount})</span>` : ''} ${inlineAddBtn}</td>
             <td colspan="3"></td>
             <td colspan="4" class="text-right">${parentAction}</td>
           </tr>
@@ -1038,16 +1525,21 @@ function renderSkillsTab(lang) {
             const wCost = wpn.cost;
             const wCostStr = wCost.second > 0 ? `${wCost.first}/${wCost.second}` : `${wCost.first}`;
             const wMaxRanks = wCost.second > 0 ? 2 : 1;
-            const wCanAdd = wPhaseRanks < wMaxRanks && remaining > 0;
+            const wCanAdd = !isValidated && wPhaseRanks < wMaxRanks && remaining > 0;
             const wNextCost = wPhaseRanks === 0 ? wCost.first : wCost.second;
             const wCanAfford = remaining >= wNextCost;
             const wRankBonus = getRankBonus(wTotalRanks);
+            const wStatBonus = calcSkillStatBonusTotal(skill, character);
             const wMisc = character.skillMiscBonuses[wsKey] || 0;
-            const wTotal = wRankBonus + wMisc;
+            const wTotal = wRankBonus + wStatBonus + wMisc;
 
+            const wHlColor = (character.skillHighlights || {})[wsKey] || '';
+            const wHlClass = wHlColor ? `highlight-${wHlColor}` : '';
+            const wBoldClass = (character.skillBold || {})[wsKey] ? 'skill-bold' : '';
+            const wTextColorClass = (character.skillTextColors || {})[wsKey] ? `skill-text-${character.skillTextColors[wsKey]}` : '';
             table += `
-              <tr class="${wTotalRanks > 0 ? '' : 'text-gray-600'}">
-                <td class="sticky-col text-gray-300 pl-6">↳ ${esc(wpn.name)}</td>
+              <tr class="${wTotalRanks > 0 ? '' : 'text-gray-600'} ${wHlClass} ${wBoldClass} ${wTextColorClass}">
+                <td class="sticky-col text-gray-300 pl-6 skill-highlight-cell" data-skill-hl="${wsKey}" style="cursor:pointer">↳ ${esc(wpn.name)}</td>
                 <td class="text-center text-gray-500 text-xs">${wCostStr}</td>
                 <td class="text-center">
                   ${renderRankBoxes(wTotalRanks, wPhaseRanks)}
@@ -1055,13 +1547,13 @@ function renderSkillsTab(lang) {
                 </td>
                 <td class="text-center">
                   <span class="skill-pm">
-                    <button class="pm-btn wpn-skill-minus" data-wpn-skill="${ws}" ${wPhaseRanks <= 0 ? 'disabled' : ''}>−</button>
+                    <button class="pm-btn wpn-skill-minus" data-wpn-skill="${ws}" ${isValidated || wPhaseRanks <= 0 ? 'disabled' : ''}>−</button>
                     <button class="pm-btn wpn-skill-plus" data-wpn-skill="${ws}" ${!wCanAdd || !wCanAfford ? 'disabled' : ''}>+</button>
                   </span>
                   <button class="text-red-400 text-xs ml-1 wpn-skill-remove" data-wpn-skill="${ws}">✕</button>
                 </td>
                 <td class="text-center stat-bonus ${wRankBonus >= 0 ? 'positive' : 'negative'}">${wRankBonus >= 0 ? '+' + wRankBonus : wRankBonus}</td>
-                <td class="text-center text-gray-600">—</td>
+                <td class="text-center stat-bonus ${wStatBonus >= 0 ? 'positive' : 'negative'}">${wStatBonus >= 0 ? '+' + wStatBonus : wStatBonus}</td>
                 <td class="text-center"><input type="number" class="field-inline skill-misc-input" data-skill="${wsKey}" value="${wMisc || ''}" style="width:2.5rem"></td>
                 <td class="text-center font-bold stat-bonus ${wTotal >= 0 ? 'positive' : 'negative'}">${wTotal >= 0 ? '+' + wTotal : wTotal}</td>
               </tr>
@@ -1080,15 +1572,22 @@ function renderSkillsTab(lang) {
             const sCost = sub.cost || getSkillDevCost(character.classIndex, globalIndex) || { first: 4, second: 0 };
             const sCostStr = sCost.second > 0 ? `${sCost.first}/${sCost.second}` : `${sCost.first}`;
             const sMaxRanks = sCost.second > 0 ? 2 : 1;
-            const sCanAdd = sPhaseRanks < sMaxRanks && remaining > 0;
+            const sCanAdd = !isValidated && sPhaseRanks < sMaxRanks && remaining > 0;
             const sNextCost = sPhaseRanks === 0 ? sCost.first : sCost.second;
             const sRankBonus = getRankBonus(sTotalRanks);
+            // Stat bonus: use custom stats if defined, else inherit parent skill's stats
+            const sStatBonus = calcSubSkillStatBonus(sub, skill, character);
+            const sStatLabel = getSubSkillStatLabel(sub, skill);
             const sMisc = character.skillMiscBonuses[subKey] || 0;
-            const sTotal = sRankBonus + sMisc;
+            const sTotal = sRankBonus + sStatBonus + sMisc;
 
+            const sHlColor = (character.skillHighlights || {})[subKey] || '';
+            const sHlClass = sHlColor ? `highlight-${sHlColor}` : '';
+            const sBoldClass = (character.skillBold || {})[subKey] ? 'skill-bold' : '';
+            const sTextColorClass = (character.skillTextColors || {})[subKey] ? `skill-text-${character.skillTextColors[subKey]}` : '';
             table += `
-              <tr class="${sTotalRanks > 0 ? '' : 'text-gray-600'}">
-                <td class="sticky-col text-gray-300 pl-6">↳ ${esc(sub.name)}</td>
+              <tr class="${sTotalRanks > 0 ? '' : 'text-gray-600'} ${sHlClass} ${sBoldClass} ${sTextColorClass}">
+                <td class="sticky-col text-gray-300 pl-6 skill-highlight-cell" data-skill-hl="${subKey}" style="cursor:pointer">↳ ${esc(sub.name)} <button class="text-gray-600 hover:text-amber-300 text-xs ml-1 sub-skill-edit" data-parent="${globalIndex}" data-sub-idx="${si}" title="${lang === 'en' ? 'Edit name & stats' : 'Modifier nom & carac'}">✎</button></td>
                 <td class="text-center text-gray-500 text-xs">${sCostStr}</td>
                 <td class="text-center">
                   ${renderRankBoxes(sTotalRanks, sPhaseRanks)}
@@ -1096,13 +1595,13 @@ function renderSkillsTab(lang) {
                 </td>
                 <td class="text-center">
                   <span class="skill-pm">
-                    <button class="pm-btn sub-skill-minus" data-sub-key="${subKey}" data-parent="${globalIndex}" data-sub-idx="${si}" ${sPhaseRanks <= 0 ? 'disabled' : ''}>−</button>
+                    <button class="pm-btn sub-skill-minus" data-sub-key="${subKey}" data-parent="${globalIndex}" data-sub-idx="${si}" ${isValidated || sPhaseRanks <= 0 ? 'disabled' : ''}>−</button>
                     <button class="pm-btn sub-skill-plus" data-sub-key="${subKey}" data-parent="${globalIndex}" data-sub-idx="${si}" ${!sCanAdd || remaining < sNextCost ? 'disabled' : ''}>+</button>
                   </span>
                   <button class="text-red-400 text-xs ml-1 sub-skill-remove" data-parent="${globalIndex}" data-sub-idx="${si}">✕</button>
                 </td>
                 <td class="text-center stat-bonus ${sRankBonus >= 0 ? 'positive' : 'negative'}">${sRankBonus >= 0 ? '+' + sRankBonus : sRankBonus}</td>
-                <td class="text-center text-gray-600">—</td>
+                <td class="text-center stat-bonus ${sStatBonus >= 0 ? 'positive' : 'negative'}" title="${sStatLabel}">${sStatBonus >= 0 ? '+' + sStatBonus : sStatBonus}</td>
                 <td class="text-center"><input type="number" class="field-inline skill-misc-input" data-skill="${subKey}" value="${sMisc || ''}" style="width:2.5rem"></td>
                 <td class="text-center font-bold stat-bonus ${sTotal >= 0 ? 'positive' : 'negative'}">${sTotal >= 0 ? '+' + sTotal : sTotal}</td>
               </tr>
@@ -1120,10 +1619,10 @@ function renderSkillsTab(lang) {
           costStr = cost.second > 0 ? `${cost.first}/${cost.second}` : `${cost.first}`;
           maxRanks = cost.maxRanks;
         }
-        const canAdd = cost && phaseRanks < maxRanks && remaining > 0;
+        const canAdd = !isValidated && cost && phaseRanks < maxRanks && remaining > 0;
         const nextRankCost = phaseRanks === 0 ? (cost ? cost.first : 0) : (cost ? cost.second : 0);
         const canAfford = remaining >= nextRankCost;
-        const canRemove = phaseRanks > 0;
+        const canRemove = !isValidated && phaseRanks > 0;
         const rankBonus = getRankBonus(totalRanks);
         const statTotalBonus = calcSkillStatBonusTotal(skill, character);
         const miscBonus = character.skillMiscBonuses[globalIndex] || 0;
@@ -1138,9 +1637,13 @@ function renderSkillsTab(lang) {
           </span>
         ` : '';
 
+        const hlColor = (character.skillHighlights || {})[globalIndex] || '';
+        const hlClass = hlColor ? `highlight-${hlColor}` : '';
+        const boldClass = (character.skillBold || {})[globalIndex] ? 'skill-bold' : '';
+        const textColorClass = (character.skillTextColors || {})[globalIndex] ? `skill-text-${character.skillTextColors[globalIndex]}` : '';
         table += `
-          <tr class="${totalRanks > 0 ? '' : 'text-gray-600'}">
-            <td class="sticky-col text-gray-300">${name}</td>
+          <tr class="${totalRanks > 0 ? '' : 'text-gray-600'} ${hlClass} ${boldClass} ${textColorClass}">
+            <td class="sticky-col text-gray-300 skill-highlight-cell" data-skill-hl="${globalIndex}" style="cursor:pointer">${name}</td>
             <td class="text-center text-gray-500 text-xs">${costStr}</td>
             <td class="text-center">
               ${rankBoxes}
@@ -1159,7 +1662,7 @@ function renderSkillsTab(lang) {
   }
 
   table += `</tbody></table></div>`;
-  return panel(lang === 'en' ? 'Skills — ' + phaseName.en : 'Compétences — ' + phaseName.fr, header + table);
+  return panel(lang === 'en' ? 'Skills — ' + phaseLabel : 'Compétences — ' + phaseLabel, header + table);
 }
 
 /**
@@ -1184,6 +1687,40 @@ function renderRankBoxes(totalRanks, phaseRanks) {
 }
 
 /**
+ * Get the stat label string for a sub-skill (e.g. "Ag/Fo").
+ * Uses custom stats if defined, else inherits parent skill's stats.
+ */
+function getSubSkillStatLabel(sub, parentSkill) {
+  if (sub.stats && sub.stats.length > 0) {
+    return sub.stats.map(i => STAT_ABBREVS[i]).join('/');
+  }
+  const indices = getSkillStatIndices(parentSkill);
+  if (indices.length === 0) return '—';
+  return indices.map(i => STAT_ABBREVS[i - 1]).join('/');
+}
+
+/**
+ * Calculate stat bonus for a sub-skill.
+ * Uses sub.stats (0-based) if defined, else inherits parent skill's stats (1-based).
+ */
+function calcSubSkillStatBonus(sub, parentSkill, char) {
+  let statIndices0; // 0-based indices
+  if (sub.stats && sub.stats.length > 0) {
+    statIndices0 = sub.stats;
+  } else {
+    const parentIndices = getSkillStatIndices(parentSkill); // 1-based
+    if (parentIndices.length === 0) return 0;
+    statIndices0 = parentIndices.map(i => i - 1);
+  }
+  if (statIndices0.length === 1) return getTotalStatBonus(char, statIndices0[0]);
+  let sum = 0;
+  for (const idx of statIndices0) {
+    sum += getTotalStatBonus(char, idx);
+  }
+  return Math.floor(sum / statIndices0.length);
+}
+
+/**
  * Calculate stat bonus using total bonuses (normal + race + special).
  * Handles 1, 2, or 3 stats: floor(average of all stat bonuses).
  */
@@ -1202,7 +1739,7 @@ function calcSkillStatBonusTotal(skill, char) {
 // === Event bindings ===
 
 function bindTabEvents(app) {
-  document.querySelectorAll('.tab-btn').forEach(btn => {
+  document.querySelectorAll('.rm-tab-icon, .tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       saveCurrentTabData();
       currentTab = btn.dataset.tab;
@@ -1228,7 +1765,7 @@ function bindActionEvents() {
     saveToLocalStorage(character);
     showToast('Personnage sauvegardé !');
   });
-  if (btnPrint) btnPrint.addEventListener('click', () => window.print());
+  if (btnPrint) btnPrint.addEventListener('click', () => openPrintConfigPopup());
 }
 
 function bindContentEvents(app) {
@@ -1283,15 +1820,19 @@ function performLevelUp(app) {
     character.devPhase = 'level';
     character.level = 1;
   } else {
+    // Level N → Level N+1: accumulate prior ranks before advancing
+    const currentRanks = character.skillRanksLevel || {};
+    for (const [key, val] of Object.entries(currentRanks)) {
+      character.skillRanksPrior[key] = (character.skillRanksPrior[key] || 0) + val;
+    }
+    character.skillRanksLevel = {};
     character.level++;
   }
 
-  // Roll stat gains (only for level 1+ phases, not adolescent/apprenti)
-  if (character.devPhase === 'level' && character.stats.some(s => s > 0)) {
+  // Roll stat gains (only for level 2+ transitions, not ado→app or app→lvl1)
+  if (character.devPhase === 'level' && character.level >= 2 && character.stats.some(s => s > 0)) {
     const gains = processLevelUpStatGains(character.stats, character.potentials);
     character._lastStatGains = gains;
-
-    // Apply gains
     for (const g of gains) {
       character.stats[g.statIndex] = g.newTemp;
     }
@@ -1299,13 +1840,17 @@ function performLevelUp(app) {
     character._lastStatGains = null;
   }
 
-  // Reset current level DP spending
+  // Reset for new phase
+  character.phaseValidated = false;
   setDevPointsSpent(character, 0);
+  // Reset SGR flag for new phase (allow one SGR per phase)
+  if (character.spellStudy) character.spellStudy.sgrDone = false;
 
-  showToast(character.devPhase === 'level'
-    ? `Niveau ${character.level} !`
-    : character.devPhase === 'apprenti' ? 'Phase Apprenti !' : 'Phase Adolescent !');
-
+  const lang = character.language || 'fr';
+  const label = character.devPhase === 'level'
+    ? (lang === 'en' ? `Level ${character.level}!` : `Niveau ${character.level} !`)
+    : (character.devPhase === 'apprenti' ? (lang === 'en' ? 'Apprentice phase!' : 'Phase Apprenti !') : 'Phase Adolescent !');
+  showToast(label);
   renderEditor(app);
 }
 
@@ -1370,11 +1915,77 @@ function bindInfosEvents(app) {
     character.armorType = parseInt(armorEl.value);
   });
 
+  // Shield selector
+  const shieldEl = document.getElementById('f-shield');
+  if (shieldEl) shieldEl.addEventListener('change', () => {
+    character.shieldType = parseInt(shieldEl.value) || 0;
+    renderEditor(app);
+  });
+
   // Defense bonus
   const defEl = document.getElementById('f-defbonus');
   if (defEl) defEl.addEventListener('change', () => {
     character.defenseBonus = parseInt(defEl.value) || 0;
   });
+
+  // DB item bonus
+  const dbItemEl = document.getElementById('f-db-item-bonus');
+  if (dbItemEl) dbItemEl.addEventListener('change', () => {
+    character.dbItemBonus = parseInt(dbItemEl.value) || 0;
+    renderEditor(app);
+  });
+
+  // Manual bonuses
+  document.querySelectorAll('.manual-bonus-input').forEach(input => {
+    input.addEventListener('change', () => {
+      if (!character.manualBonuses) character.manualBonuses = {};
+      const key = input.dataset.mbKey;
+      const val = parseInt(input.value) || 0;
+      character.manualBonuses[key] = val;
+      renderEditor(app);
+    });
+  });
+  const mbNotesEl = document.getElementById('mb-notes');
+  if (mbNotesEl) mbNotesEl.addEventListener('change', () => {
+    if (!character.manualBonuses) character.manualBonuses = {};
+    character.manualBonuses.miscNotes = mbNotesEl.value;
+  });
+
+  // Portrait upload (base64)
+  const portraitUpload = document.getElementById('portrait-upload');
+  if (portraitUpload) {
+    portraitUpload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      if (file.size > 500000) { showToast('Image trop grande (max 500KB)', true); return; }
+      const reader = new FileReader();
+      reader.onload = () => {
+        character.portraitUrl = reader.result; // data:image/...;base64,...
+        renderEditor(app);
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // Portrait URL
+  const portraitUrlEl = document.getElementById('portrait-url');
+  if (portraitUrlEl) {
+    portraitUrlEl.addEventListener('change', () => {
+      const url = portraitUrlEl.value.trim();
+      if (url && !url.startsWith('http')) { showToast('URL invalide', true); return; }
+      character.portraitUrl = url;
+      renderEditor(app);
+    });
+  }
+
+  // Portrait clear
+  const portraitClear = document.getElementById('portrait-clear');
+  if (portraitClear) {
+    portraitClear.addEventListener('click', () => {
+      character.portraitUrl = '';
+      renderEditor(app);
+    });
+  }
 }
 
 function bindStatsEvents(app) {
@@ -1398,6 +2009,12 @@ function bindStatsEvents(app) {
       if (rollingMethod === 'rm2') {
         rolledStats = generateStatRolls();
         character.rawRolls = rolledStats.map(r => ({ tempRoll: r.tempRoll, potRoll: r.potRoll }));
+      } else if (rollingMethod === 'hybrid') {
+        rolledStats = generateStatRollsHybrid();
+        character.rawRolls = rolledStats.map(r => ({ tempRoll: r.tempRoll, potRoll: r.potRoll, potRollBoosted: r.potRollBoosted, forced100: r.forced100 }));
+      } else if (rollingMethod === 'antilose') {
+        rolledStats = generateStatRollsAntiLose();
+        character.rawRolls = rolledStats.map(r => ({ tempRoll: r.tempRoll, potRoll: r.potRoll, potRollBoosted: r.potRollBoosted, forced100: r.forced100 }));
       } else {
         const result = rollStatPairsRMSS();
         rolledStats = result.pairs;
@@ -1562,6 +2179,10 @@ function assignRollToStat(rollIdx, statIdx) {
     const values = getStatValues(roll, isPrime);
     character.stats[statIdx] = values.temp;
     character.potentials[statIdx] = values.pot;
+  } else if (rollingMethod === 'hybrid' || rollingMethod === 'antilose') {
+    const values = getStatValuesHybrid(roll, isPrime);
+    character.stats[statIdx] = values.temp;
+    character.potentials[statIdx] = values.pot;
   } else {
     // RMSS: simple bump to 90 for prime stats
     let temp = roll.temp;
@@ -1621,7 +2242,7 @@ function autoAssignRolls() {
   const unassignedRolls = [];
   for (let r = 0; r < STAT_COUNT; r++) {
     if (rollAssignments[r] >= 0) continue;
-    const quality = rollingMethod === 'rm2' ? rolledStats[r].tempRoll : rolledStats[r].temp;
+    const quality = rollingMethod === 'rmss' ? rolledStats[r].temp : rolledStats[r].tempRoll;
     unassignedRolls.push({ rollIdx: r, quality });
   }
   unassignedRolls.sort((a, b) => b.quality - a.quality); // Best first
@@ -1673,94 +2294,233 @@ function bindLanguagesEvents(app) {
 }
 
 function bindSpellsEvents(app) {
-  // Palier + (invest spell points into a list's tier)
-  document.querySelectorAll('.spell-palier-plus').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const idx = parseInt(btn.dataset.spell);
-      const sl = character.spellLists[idx];
-      const cost = sl.cost || 4;
-      const spent = getSpellPointsSpent(character);
-      const budget = getSpellPointsTotal(character);
-      if (spent + cost > budget) { showToast('Pas assez de points de sorts !', true); return; }
-      sl.palier = (sl.palier || 0) + cost;
-      setSpellPointsSpent(character, spent + cost);
-      renderEditor(app);
-    });
-  });
+  if (!character.spellLog) character.spellLog = [];
+  if (!character.spellStudy) character.spellStudy = { listName: null, listType: null, listRealm: null, ranks: 0, sgrDone: false, blockSize: 5, nextBlockStart: 1 };
+  const study = character.spellStudy;
+  const cls = character.classIndex >= 0 ? getAllClasses()[character.classIndex] : null;
+  const rankCost = getSpellRankCost(cls);
 
-  // Palier - (refund spell points from tier)
-  document.querySelectorAll('.spell-palier-minus').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const idx = parseInt(btn.dataset.spell);
-      const sl = character.spellLists[idx];
-      const cost = sl.cost || 4;
-      if ((sl.palier || 0) < cost) return;
-      sl.palier -= cost;
-      const spent = getSpellPointsSpent(character);
-      setSpellPointsSpent(character, Math.max(0, spent - cost));
-      renderEditor(app);
-    });
-  });
-
-  // D100 roll to resolve tier (D100 ≤ palier → gain spell levels)
-  document.querySelectorAll('.spell-roll').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const idx = parseInt(btn.dataset.spell);
-      const sl = character.spellLists[idx];
-      const palier = sl.palier || 0;
-      const roll = Math.floor(Math.random() * 100) + 1;
-      if (roll <= palier) {
-        // Success: gain next 5 levels
-        sl.niveau = (sl.niveau || 0) + 5;
-        sl.palier = 0; // Reset tier after success
-        showToast(`D100=${roll} ≤ ${palier} → Niveaux ${sl.niveau - 4}-${sl.niveau} acquis !`);
-      } else {
-        showToast(`D100=${roll} > ${palier} — Echec. Continuez à investir.`, true);
+  // + Rank button (invest DP into current study)
+  const btnRank = document.getElementById('btn-spell-rank');
+  if (btnRank) {
+    btnRank.addEventListener('click', () => {
+      const spent = getDevPointsSpent(character);
+      const budget = getDevPointsTotal(character);
+      if (spent + rankCost > budget) { showToast('Pas assez de PD !', true); return; }
+      if (study.ranks >= 20) return;
+      study.ranks++;
+      setDevPointsSpent(character, spent + rankCost);
+      character.spellLog.push({
+        timestamp: new Date().toISOString(), action: 'invest', listName: study.listName,
+        phase: character.devPhase, details: { cost: rankCost, newRanks: study.ranks },
+      });
+      // Auto-learn at 20 ranks
+      if (study.ranks >= 20) {
+        applySpellLearn(study);
       }
       renderEditor(app);
     });
+  }
+
+  // SGR button (Spell Gain Roll: D100 + ranks×5 ≥ 101)
+  const btnSgr = document.getElementById('btn-spell-sgr');
+  if (btnSgr) {
+    btnSgr.addEventListener('click', () => {
+      performSGR(false);
+    });
+  }
+
+  // Table roll button (extra SGR after first one — logged as extra)
+  const btnSgrTable = document.getElementById('btn-spell-sgr-table');
+  if (btnSgrTable) {
+    btnSgrTable.addEventListener('click', () => {
+      const lang = character.language || 'fr';
+      const input = prompt(lang === 'en'
+        ? `Enter D100 result from table roll (1-100), or leave empty for digital roll:`
+        : `Entrez le résultat du jet sur table (1-100), ou laissez vide pour un jet numérique :`);
+      if (input === null) return; // cancelled
+      const manualRoll = input.trim() ? parseInt(input.trim()) : 0;
+      if (input.trim() && (isNaN(manualRoll) || manualRoll < 1 || manualRoll > 100)) {
+        showToast(lang === 'en' ? 'Invalid roll (1-100)' : 'Jet invalide (1-100)', true);
+        return;
+      }
+      performSGR(true, input.trim() ? manualRoll : 0);
+    });
+  }
+
+  function performSGR(isExtra, manualRoll) {
+    const roll = manualRoll || Math.floor(Math.random() * 100) + 1;
+    const bonus = study.ranks * 5;
+    const total = roll + bonus;
+    const success = total >= 101;
+    if (!isExtra) study.sgrDone = true;
+    const sgrCount = character.spellLog.filter(e => e.action === 'sgr' && e.details.phase === character.devPhase).length;
+    character.spellLog.push({
+      timestamp: new Date().toISOString(), action: 'sgr', listName: study.listName,
+      phase: character.devPhase,
+      details: {
+        roll, bonus, total, success,
+        block: `${study.nextBlockStart}-${study.nextBlockStart + study.blockSize - 1}`,
+        extraRoll: isExtra,
+        manualEntry: !!manualRoll,
+        sgrNumber: sgrCount + 1,
+      },
+    });
+    if (success) {
+      const blockStr = `${study.nextBlockStart}-${study.nextBlockStart + study.blockSize - 1}`;
+      finalizeSpellLearn();
+      showToast(`SGR: D100=${roll} + ${bonus} = ${total} ≥ 101 → Niveaux ${blockStr} appris !`);
+    } else {
+      showToast(`SGR: D100=${roll} + ${bonus} = ${total} < 101 — Échec. Rangs conservés.`, true);
+    }
+    renderEditor(app);
+  }
+
+  // Confirm auto-learn (when 20 ranks reached)
+  const btnAutoConfirm = document.getElementById('btn-spell-confirm-auto');
+  if (btnAutoConfirm) {
+    btnAutoConfirm.addEventListener('click', () => {
+      const blockStart = study.nextBlockStart;
+      const blockEnd = blockStart + study.blockSize - 1;
+      character.spellLog.push({
+        timestamp: new Date().toISOString(), action: 'auto', listName: study.listName,
+        phase: character.devPhase, details: { ranks: 20, block: `${blockStart}-${blockEnd}` },
+      });
+      finalizeSpellLearn();
+      showToast(`Niveaux ${blockStart}-${blockEnd} appris automatiquement !`);
+      renderEditor(app);
+    });
+  }
+
+  // Abandon current study
+  const btnAbandon = document.getElementById('btn-spell-abandon');
+  if (btnAbandon) {
+    btnAbandon.addEventListener('click', () => {
+      const lang = character.language || 'fr';
+      if (!confirm(lang === 'en' ? 'Abandon current study? All accumulated ranks will be lost.' : 'Abandonner l\'étude en cours ? Tous les rangs accumulés seront perdus.')) return;
+      character.spellLog.push({
+        timestamp: new Date().toISOString(), action: 'abandon', listName: study.listName,
+        phase: character.devPhase, details: { ranksLost: study.ranks },
+      });
+      // Note: DP already spent are NOT refunded
+      study.listName = null; study.listType = null; study.listRealm = null;
+      study.ranks = 0; study.sgrDone = false; study.blockSize = 5; study.nextBlockStart = 1;
+      renderEditor(app);
+    });
+  }
+
+  // Study a list (from spell lists table — learned or not yet)
+  document.querySelectorAll('.spell-study-list').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.idx);
+      const sl = character.spellLists[idx];
+      const classRealm = cls ? getRealmKey(cls) : 'none';
+      const costInfo = getSpellListCost(cls, classRealm, sl.name, sl.realm || '');
+      const typeKey = sl.type || getListTypeKey(costInfo.type, false);
+      const blockSize = getSpellBlockSize(cls, typeKey);
+      study.listName = sl.name;
+      study.listType = typeKey;
+      study.listRealm = sl.realm || '';
+      study.ranks = 0;
+      study.sgrDone = false;
+      study.blockSize = blockSize;
+      study.nextBlockStart = (sl.maxLevel || 0) + 1;
+      character.spellLog.push({
+        timestamp: new Date().toISOString(), action: 'start', listName: sl.name,
+        phase: character.devPhase, details: { realm: sl.realm, type: typeKey, blockSize, nextBlock: study.nextBlockStart },
+      });
+      renderEditor(app);
+    });
   });
 
-  // Remove spell list
-  document.querySelectorAll('.spell-remove').forEach(btn => {
+  // Toggle base list type
+  document.querySelectorAll('.spell-toggle-base').forEach(btn => {
     btn.addEventListener('click', () => {
-      const idx = parseInt(btn.dataset.spell);
-      // Refund palier points
+      const idx = parseInt(btn.dataset.idx);
       const sl = character.spellLists[idx];
-      if (sl.palier > 0) {
-        const spent = getSpellPointsSpent(character);
-        setSpellPointsSpent(character, Math.max(0, spent - sl.palier));
+      sl.type = sl.type === 'base_own' ? 'open' : 'base_own';
+      renderEditor(app);
+    });
+  });
+
+  // Remove a list from the character's spell lists
+  document.querySelectorAll('.spell-remove-list').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.idx);
+      const sl = character.spellLists[idx];
+      if (sl.maxLevel > 0) {
+        const lang = character.language || 'fr';
+        if (!confirm(lang === 'en' ? `Remove ${sl.name}? Learned levels will be lost.` : `Retirer ${sl.name} ? Les niveaux appris seront perdus.`)) return;
       }
+      character.spellLog.push({
+        timestamp: new Date().toISOString(), action: 'remove', listName: sl.name,
+        phase: character.devPhase, details: { maxLevel: sl.maxLevel || 0 },
+      });
       character.spellLists.splice(idx, 1);
       renderEditor(app);
     });
   });
 
-  // Add spell list (manual)
-  const addBtn = document.getElementById('btn-add-spell');
-  if (addBtn) {
-    addBtn.addEventListener('click', () => {
-      character.spellLists.push({ name: '', cost: 4, palier: 0, niveau: 0, reference: '' });
-      renderEditor(app);
+  // Realm tab switching
+  document.querySelectorAll('.spell-realm-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const key = tab.dataset.realmTab;
+      document.querySelectorAll('.spell-realm-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('.spell-realm-panel').forEach(p => p.classList.add('hidden'));
+      const panel = document.querySelector(`.spell-realm-panel[data-realm-panel="${key}"]`);
+      if (panel) panel.classList.remove('hidden');
     });
-  }
+  });
+  // Auto-show first tab (Base if exists, else class realm)
+  const firstTab = document.querySelector('.spell-realm-tab');
+  if (firstTab) firstTab.click();
 
-  // Add from available lists
-  document.querySelectorAll('.add-spell-list').forEach(btn => {
+  // Add spell list from available lists (just adds to character's list, doesn't start study)
+  const baseLists = character.classIndex >= 0 ? getClassBaseSpellLists(character.classIndex) : [];
+  document.querySelectorAll('.add-spell-list:not([disabled])').forEach(btn => {
     btn.addEventListener('click', () => {
+      const name = btn.dataset.spellName;
+      const realm = btn.dataset.spellRealm || '';
+      const classRealm = cls ? getRealmKey(cls) : 'none';
+      const costInfo = getSpellListCost(cls, classRealm, name, realm);
+      const isBaseOwn = baseLists.some(bl => name.includes(bl) || bl.includes(name));
+      const typeKey = isBaseOwn ? 'base_own' : getListTypeKey(costInfo.type, false);
       character.spellLists.push({
-        name: btn.dataset.spellName,
-        cost: 4, // Default cost, should be looked up from class data
-        palier: 0,
-        niveau: 0,
-        reference: btn.dataset.spellRealm || '',
+        name, maxLevel: 0, reference: realm, type: typeKey, realm: realm,
+      });
+      character.spellLog.push({
+        timestamp: new Date().toISOString(), action: 'add', listName: name,
+        phase: character.devPhase, details: { realm, type: typeKey },
       });
       renderEditor(app);
     });
   });
+
+  function finalizeSpellLearn() {
+    const blockStart = study.nextBlockStart;
+    const blockEnd = blockStart + study.blockSize - 1;
+    // Check if list already in learned lists
+    const existing = character.spellLists.find(sl => sl.name === study.listName);
+    if (existing) {
+      existing.maxLevel = blockEnd;
+    } else {
+      character.spellLists.push({
+        name: study.listName,
+        maxLevel: blockEnd,
+        reference: study.listRealm,
+        type: study.listType,
+        realm: study.listRealm,
+      });
+    }
+    // Reset study
+    study.listName = null; study.listType = null; study.listRealm = null;
+    study.ranks = 0; study.sgrDone = false; study.blockSize = 5; study.nextBlockStart = 1;
+  }
 }
 
 function bindHistoryEvents(app) {
+  const lang = character.language || 'fr';
   // Physical description fields
   const fields = {
     'f-height': 'height', 'f-weight': 'weight', 'f-age': 'age',
@@ -1800,14 +2560,222 @@ function bindHistoryEvents(app) {
   if (eqEl) eqEl.addEventListener('input', () => { character.equipment = eqEl.value; });
   const histEl = document.getElementById('f-history');
   if (histEl) histEl.addEventListener('input', () => { character.history = histEl.value; });
+
+  // Background option roll buttons
+  document.querySelectorAll('.bg-opt-roll').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.bgIdx);
+      const catSelect = document.querySelector(`.bg-opt-category[data-bg-idx="${idx}"]`);
+      if (!catSelect || !catSelect.value) { showToast(lang === 'en' ? 'Select a category first' : 'Choisissez une catégorie', true); return; }
+
+      const bgData = getData().background_options_merged;
+      const catIdx = parseInt(catSelect.value);
+      const categories = [];
+      const s0 = bgData.sources[0];
+      if (s0) for (let si = 1; si < (s0.sections || []).length; si++) categories.push({ source: s0, sectionIdx: si });
+      const s1 = bgData.sources[1];
+      if (s1) for (let si = 0; si < (s1.sections || []).length; si++) categories.push({ source: s1, sectionIdx: si });
+
+      const cat = categories[catIdx];
+      if (!cat) return;
+      const section = cat.source.sections[cat.sectionIdx];
+      const entries = section.entries || [];
+
+      if (section.name_en === 'Set Options' || section.name === 'Set Options') {
+        // Direct choice — show popup
+        const names = entries.map(e => e.name_fr || e.name_en || e.name || '?');
+        const choice = prompt((lang === 'en' ? 'Choose:\n' : 'Choisissez :\n') + names.map((n, i) => `${i + 1}. ${n}`).join('\n'));
+        if (!choice) return;
+        const ci = parseInt(choice) - 1;
+        if (ci < 0 || ci >= entries.length) return;
+        const entry = entries[ci];
+        if (!character.backgroundOptions) character.backgroundOptions = { totalOptions: 0, options: [], companionIIITalents: [] };
+        character.backgroundOptions.options[idx] = {
+          index: idx + 1, source: cat.source.id, category: section.name_en || section.name,
+          roll: null, name: entry.name_en || entry.name, name_fr: entry.name_fr || entry.name,
+          description: entry.description_fr || entry.description_en || entry.description || '',
+          type: entry.type || 'mixed', effects: entry.effects || {}, playerNotes: '', timestamp: new Date().toISOString(),
+        };
+      } else {
+        // D100 roll
+        const roll = Math.floor(Math.random() * 100) + 1;
+        const entry = entries.find(e => {
+          if (!e.roll) return false;
+          const r = String(e.roll);
+          if (r.includes('-')) { const [lo, hi] = r.split('-').map(Number); return roll >= lo && roll <= hi; }
+          return parseInt(r) === roll;
+        });
+        if (!character.backgroundOptions) character.backgroundOptions = { totalOptions: 0, options: [], companionIIITalents: [] };
+        character.backgroundOptions.options[idx] = {
+          index: idx + 1, source: cat.source.id, category: section.name_en || section.name,
+          roll, name: entry ? (entry.name_en || entry.name || `Roll ${roll}`) : `Roll ${roll}`,
+          name_fr: entry ? (entry.name_fr || entry.name) : `Jet ${roll}`,
+          description: entry ? (entry.description_fr || entry.description_en || entry.description || '') : '',
+          type: entry?.type || 'mixed', effects: entry?.effects || {}, playerNotes: '', timestamp: new Date().toISOString(),
+        };
+        showToast(`D100 = ${roll} → ${entry ? (entry.name_fr || entry.name_en || entry.name) : '?'}`);
+      }
+      renderEditor(app);
+    });
+  });
+
+  // Remove background option
+  document.querySelectorAll('.bg-opt-remove').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.bgIdx);
+      if (character.backgroundOptions) character.backgroundOptions.options[idx] = null;
+      renderEditor(app);
+    });
+  });
+
+  // Background option notes
+  document.querySelectorAll('.bg-opt-notes').forEach(input => {
+    input.addEventListener('change', () => {
+      const idx = parseInt(input.dataset.bgIdx);
+      if (character.backgroundOptions?.options[idx]) character.backgroundOptions.options[idx].playerNotes = input.value;
+    });
+  });
+
+  // Companion III talent selection
+  document.querySelectorAll('.c3-talent-confirm').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const statIdx = parseInt(btn.dataset.statIdx);
+      const select = document.querySelector(`.c3-talent-pick[data-stat-idx="${statIdx}"]`);
+      if (!select || !select.value) return;
+      const tier = select.selectedOptions[0]?.dataset.tier || 'A';
+      const name = select.selectedOptions[0]?.textContent.replace(/^[ABC]: /, '') || select.value;
+      if (!character.backgroundOptions) character.backgroundOptions = { totalOptions: 0, options: [], companionIIITalents: [] };
+      if (!character.backgroundOptions.companionIIITalents) character.backgroundOptions.companionIIITalents = [];
+      character.backgroundOptions.companionIIITalents.push({
+        statIndex: statIdx, statValue: character.stats[statIdx],
+        pickTier: tier, name, entryId: select.value, timestamp: new Date().toISOString(),
+      });
+      renderEditor(app);
+    });
+  });
 }
 
 function bindSkillsEvents(app) {
-  // Phase selector buttons
-  document.querySelectorAll('.phase-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      character.devPhase = btn.dataset.phase;
+  // Phase validation: end current development phase (irréversible)
+  const btnValidatePhase = document.getElementById('btn-validate-phase');
+  if (btnValidatePhase) {
+    btnValidatePhase.addEventListener('click', () => {
+      const lang = character.language || 'fr';
+      const phaseLabel = character.devPhase === 'adolescent' ? 'Adolescent' : character.devPhase === 'apprenti' ? 'Apprenti' : `Niveau ${character.level}`;
+      const msg = lang === 'en'
+        ? `End the ${phaseLabel} development phase?\nUnspent DP will be lost. This action is irreversible.`
+        : `Valider la phase de développement ${phaseLabel} ?\nLes PD non dépensés seront perdus. Cette action est irréversible.`;
+      if (!confirm(msg)) return;
+
+      // Snapshot current phase
+      if (!character.phases) character.phases = [];
+      character.phases.push({
+        phase: character.devPhase === 'level' ? character.level : character.devPhase,
+        dpTotal: getDevPointsTotal(character),
+        dpSpent: getDevPointsSpent(character),
+        skillRanks: { ...getCurrentPhaseRanksObj(character) },
+        validatedAt: new Date().toISOString(),
+      });
+      character.phaseValidated = true;
+      showToast(lang === 'en' ? `${phaseLabel} phase validated!` : `Phase ${phaseLabel} validée !`);
       renderEditor(app);
+    });
+  }
+
+  // Next phase: advance to next level (only when validated)
+  const btnNextPhase = document.getElementById('btn-next-phase');
+  if (btnNextPhase) {
+    btnNextPhase.addEventListener('click', () => performLevelUp(app));
+  }
+
+  // Repeat previous phase ranks
+  const btnRepeat = document.getElementById('btn-repeat-previous');
+  if (btnRepeat) {
+    btnRepeat.addEventListener('click', () => {
+      const phases = character.phases || [];
+      if (phases.length === 0) return;
+      const lastPhase = phases[phases.length - 1];
+      const prevRanks = lastPhase.skillRanks || {};
+      const ranksObj = getCurrentPhaseRanksObj(character);
+      const budget = getDevPointsTotal(character);
+      const bodyDevIdx = getBodyDevSkillIndex();
+      const lang = character.language || 'fr';
+      let totalCost = 0;
+
+      for (const [key, ranks] of Object.entries(prevRanks)) {
+        if (ranks <= 0) continue;
+        const skillIdx = key.startsWith('wpn_') || key.startsWith('sub_') ? key : parseInt(key);
+        const cost = typeof skillIdx === 'number' ? getSkillDevCost(character.classIndex, skillIdx) : null;
+        if (!cost) {
+          ranksObj[key] = ranks;
+          totalCost += ranks * 4;
+          continue;
+        }
+        const rankCost = ranks >= 1 ? cost.first : 0;
+        const rank2Cost = ranks >= 2 && cost.second > 0 ? cost.second : 0;
+        const thisCost = rankCost + rank2Cost;
+        if (totalCost + thisCost <= budget) {
+          ranksObj[key] = ranks;
+          totalCost += thisCost;
+          // Body Dev: roll hit dice for each rank copied
+          if (skillIdx === bodyDevIdx) {
+            const dieStr = character.raceHitDie || '1-10';
+            const dieMatch = dieStr.match(/1-(\d+)/);
+            const dieMax = dieMatch ? parseInt(dieMatch[1]) : 10;
+            if (!character.bodyDevRolls) character.bodyDevRolls = [];
+            for (let r = 0; r < ranks; r++) {
+              const autoRoll = Math.floor(Math.random() * dieMax) + 1;
+              const input = prompt(
+                lang === 'en'
+                  ? `Body Dev rank ${r + 1}/${ranks} — hit die (1d${dieMax}): auto = ${autoRoll}.\nOK to accept or enter table roll:`
+                  : `Dév. Corporel rang ${r + 1}/${ranks} — dé de vie (1d${dieMax}) : auto = ${autoRoll}.\nOK pour accepter ou entrez votre jet :`,
+                String(autoRoll)
+              );
+              const val = input !== null ? (parseInt(input) || autoRoll) : autoRoll;
+              character.bodyDevRolls.push(Math.max(1, Math.min(dieMax, val)));
+            }
+          }
+        }
+      }
+      setDevPointsSpent(character, totalCost);
+      showToast(lang === 'en' ? `Copied ${Object.keys(prevRanks).length} skills from previous phase` : `${Object.keys(prevRanks).length} compétences copiées de la phase précédente`);
+      renderEditor(app);
+    });
+  }
+
+  // Phase history popup
+  const btnHistory = document.getElementById('btn-phase-history');
+  if (btnHistory) {
+    btnHistory.addEventListener('click', () => openPhaseHistoryPopup());
+  }
+
+  // Skill highlighting — click to cycle colors
+  const HL_COLORS = ['', 'yellow', 'green', 'pink', 'blue', 'orange'];
+  document.querySelectorAll('.skill-highlight-cell').forEach(cell => {
+    cell.addEventListener('click', (e) => {
+      // Don't trigger on button clicks inside the cell
+      if (e.target.tagName === 'BUTTON') return;
+      const idx = cell.dataset.skillHl;
+      if (!character.skillHighlights) character.skillHighlights = {};
+      const current = character.skillHighlights[idx] || '';
+      const currentPos = HL_COLORS.indexOf(current);
+      const next = HL_COLORS[(currentPos + 1) % HL_COLORS.length];
+      if (next) {
+        character.skillHighlights[idx] = next;
+      } else {
+        delete character.skillHighlights[idx];
+      }
+      // Update row class immediately
+      const row = cell.closest('tr');
+      HL_COLORS.forEach(c => { if (c) row.classList.remove('highlight-' + c); });
+      if (next) row.classList.add('highlight-' + next);
+    });
+
+    // Right-click: format menu (bold, text color)
+    cell.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      const idx = cell.dataset.skillHl;
+      showSkillFormatMenu(e.pageX, e.pageY, idx, app);
     });
   });
 
@@ -1832,6 +2800,32 @@ function bindSkillsEvents(app) {
       const ranksObj = getCurrentPhaseRanksObj(character);
       ranksObj[skillIdx] = phaseRanks + 1;
       setDevPointsSpent(character, spent + rankCost);
+      // Body Dev: roll hit die (or manual entry)
+      if (skillIdx === getBodyDevSkillIndex()) {
+        const dieStr = character.raceHitDie || '1-10';
+        const match = dieStr.match(/1-(\d+)/);
+        const dieMax = match ? parseInt(match[1]) : 10;
+        const autoRoll = Math.floor(Math.random() * dieMax) + 1;
+        const lang = character.language || 'fr';
+        const input = prompt(
+          lang === 'en'
+            ? `Body Dev hit die (1d${dieMax}): auto roll = ${autoRoll}.\nPress OK to accept, or enter your own table roll (1-${dieMax}):`
+            : `Dé de vie Dév. Corporel (1d${dieMax}) : jet auto = ${autoRoll}.\nAppuyez OK pour accepter, ou entrez votre jet sur table (1-${dieMax}) :`,
+          String(autoRoll)
+        );
+        if (input === null) {
+          // Cancelled — undo the rank
+          ranksObj[skillIdx] = phaseRanks;
+          if (ranksObj[skillIdx] === 0) delete ranksObj[skillIdx];
+          setDevPointsSpent(character, spent);
+        } else {
+          const val = parseInt(input) || autoRoll;
+          const clamped = Math.max(1, Math.min(dieMax, val));
+          if (!character.bodyDevRolls) character.bodyDevRolls = [];
+          character.bodyDevRolls.push(clamped);
+          showToast(`Body Dev +1 → ${clamped === autoRoll ? '' : '(table) '}${clamped} PdC`);
+        }
+      }
       renderEditor(app);
     });
   });
@@ -1854,6 +2848,10 @@ function bindSkillsEvents(app) {
 
       const spent = getDevPointsSpent(character);
       setDevPointsSpent(character, Math.max(0, spent - refund));
+      // Body Dev: remove last die roll
+      if (skillIdx === getBodyDevSkillIndex() && character.bodyDevRolls && character.bodyDevRolls.length > 0) {
+        character.bodyDevRolls.pop();
+      }
       renderEditor(app);
     });
   });
@@ -1862,8 +2860,15 @@ function bindSkillsEvents(app) {
   document.querySelectorAll('.skill-misc-input').forEach(input => {
     input.addEventListener('change', () => {
       const key = input.dataset.skill;
-      const idx = key.startsWith('wpn_') ? key : parseInt(key);
-      character.skillMiscBonuses[idx] = parseInt(input.value) || 0;
+      // Keys: numeric for skills, 'wpn_N' for weapons, 'sub_P_N' for sub-skills
+      const idx = key.startsWith('wpn_') || key.startsWith('sub_') ? key : parseInt(key);
+      const val = parseInt(input.value) || 0;
+      if (val) {
+        character.skillMiscBonuses[idx] = val;
+      } else {
+        delete character.skillMiscBonuses[idx];
+      }
+      renderEditor(app);
     });
   });
 
@@ -1988,6 +2993,15 @@ function bindSkillsEvents(app) {
       renderEditor(app);
     });
   });
+
+  // Generic sub-skill edit (name + stats)
+  document.querySelectorAll('.sub-skill-edit').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const parentIdx = parseInt(btn.dataset.parent);
+      const subIdx = parseInt(btn.dataset.subIdx);
+      openSubSkillEditor(app, parentIdx, subIdx);
+    });
+  });
 }
 
 // Weapon type ID → monde.weapon_categories type number
@@ -2006,7 +3020,7 @@ function openWeaponSkillSelector(app) {
 
   // Build HTML: for each weapon priority, show subcategories and weapons
   let html = `<div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center" id="wpn-selector-overlay">
-    <div class="bg-gray-800 rounded-lg p-4 max-w-lg" style="max-height:80vh;display:flex;flex-direction:column">
+    <div class="bg-gray-800 rounded-lg p-4 max-w-lg" style="display:flex;flex-direction:column">
       <h3 class="text-amber-300 font-bold mb-3">Choisir une arme</h3>
       <div class="overflow-y-auto flex-1">`;
 
@@ -2101,7 +3115,7 @@ function openSubSkillSelector(app, parentIndex) {
   }
 
   let html = `<div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center" id="subskill-selector-overlay">
-    <div class="bg-gray-800 rounded-lg p-4 max-w-md" style="max-height:80vh;display:flex;flex-direction:column">
+    <div class="bg-gray-800 rounded-lg p-4 max-w-md" style="display:flex;flex-direction:column">
       <h3 class="text-amber-300 font-bold mb-1">${esc(parentName)}</h3>
       <p class="text-xs text-gray-500 mb-3">Coût: ${costStr} par rang</p>
       <div class="overflow-y-auto flex-1" style="max-height:60vh">`;
@@ -2137,6 +3151,291 @@ function openSubSkillSelector(app, parentIndex) {
       document.getElementById('subskill-selector-overlay').remove();
       renderEditor(app);
     });
+  });
+}
+
+/**
+ * Open editor popup for a sub-skill: rename + change determining stats.
+ */
+function openSubSkillEditor(app, parentIndex, subIdx) {
+  const subs = character.subSkills.filter(s => s.parentIndex === parentIndex);
+  if (subIdx >= subs.length) return;
+  const sub = subs[subIdx];
+  const lang = character.language || 'fr';
+
+  // Find parent skill to get default stats
+  let parentSkill = null;
+  let gIdx = 0;
+  const categories = getAllCategories();
+  for (const cat of categories) {
+    for (const skill of cat.skills) {
+      if (gIdx === parentIndex) parentSkill = skill;
+      gIdx++;
+    }
+  }
+  const parentStatIndices = parentSkill ? getSkillStatIndices(parentSkill) : [];
+  // Current custom stats (0-based) or null
+  const currentStats = sub.stats && sub.stats.length > 0 ? sub.stats : null;
+  // If no custom stats, default display is parent's stats (convert 1-based to 0-based)
+  const displayStats = currentStats || parentStatIndices.map(i => i - 1);
+  const statCount = displayStats.length || 2; // default to 2 slots if parent has none
+
+  const statNames = lang === 'en' ? STAT_NAMES_EN : STAT_NAMES_FR;
+
+  let html = `<div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center" id="subskill-editor-overlay">
+    <div class="bg-gray-800 rounded-lg p-4 w-80">
+      <h3 class="text-amber-300 font-bold mb-3">${lang === 'en' ? 'Edit Sub-Skill' : 'Modifier sous-compétence'}</h3>
+      <div class="mb-3">
+        <label class="text-xs text-gray-500">${lang === 'en' ? 'Name' : 'Nom'}</label>
+        <input type="text" id="subskill-edit-name" class="field-inline w-full text-sm" value="${esc(sub.name)}" style="background:#1f2937;border:1px solid #4b5563;padding:4px 8px;border-radius:4px">
+      </div>
+      <div class="mb-3">
+        <label class="text-xs text-gray-500">${lang === 'en' ? 'Determining Stats (for bonus)' : 'Caractéristiques déterminantes (pour bonus)'}</label>
+        <div class="flex gap-2 mt-1">`;
+
+  // Render 1-3 stat selectors
+  const numSlots = Math.max(statCount, 1);
+  for (let s = 0; s < 3; s++) {
+    const selected = s < displayStats.length ? displayStats[s] : -1;
+    html += `<select class="subskill-stat-select text-sm" data-slot="${s}" style="background:#1f2937;border:1px solid #4b5563;padding:2px 4px;border-radius:4px;color:#d1d5db;flex:1${s >= numSlots ? ';opacity:0.4' : ''}">
+      <option value="-1" ${selected === -1 ? 'selected' : ''}>—</option>`;
+    for (let si = 0; si < 10; si++) {
+      html += `<option value="${si}" ${selected === si ? 'selected' : ''}>${STAT_ABBREVS[si]} — ${statNames[si]}</option>`;
+    }
+    html += `</select>`;
+  }
+
+  html += `</div>
+        <p class="text-xs text-gray-600 mt-1">${lang === 'en' ? 'Average of selected stats = bonus' : 'Moyenne des carac. sélectionnées = bonus'}</p>
+      </div>
+      <div class="flex gap-2">
+        <button class="btn-primary text-sm flex-1" id="subskill-edit-save">${lang === 'en' ? 'Save' : 'Enregistrer'}</button>
+        <button class="btn-secondary text-sm flex-1" id="subskill-edit-cancel">${lang === 'en' ? 'Cancel' : 'Annuler'}</button>
+      </div>
+    </div></div>`;
+
+  document.body.insertAdjacentHTML('beforeend', html);
+
+  document.getElementById('subskill-edit-cancel').addEventListener('click', () => {
+    document.getElementById('subskill-editor-overlay').remove();
+  });
+  document.getElementById('subskill-editor-overlay').addEventListener('click', (e) => {
+    if (e.target.id === 'subskill-editor-overlay') e.target.remove();
+  });
+
+  document.getElementById('subskill-edit-save').addEventListener('click', () => {
+    const newName = document.getElementById('subskill-edit-name').value.trim();
+    if (newName) sub.name = newName;
+
+    // Collect selected stats
+    const newStats = [];
+    document.querySelectorAll('.subskill-stat-select').forEach(sel => {
+      const v = parseInt(sel.value);
+      if (v >= 0 && v <= 9) newStats.push(v);
+    });
+    sub.stats = newStats.length > 0 ? newStats : undefined;
+
+    document.getElementById('subskill-editor-overlay').remove();
+    renderEditor(app);
+  });
+}
+
+/**
+ * Show phase history popup — lists all validated phases.
+ */
+function showSkillFormatMenu(x, y, skillIdx, app) {
+  document.getElementById('skill-format-menu')?.remove();
+  const lang = character.language || 'fr';
+  const isBold = (character.skillBold || {})[skillIdx] || false;
+  const currentColor = (character.skillTextColors || {})[skillIdx] || '';
+
+  const menu = document.createElement('div');
+  menu.id = 'skill-format-menu';
+  menu.style.cssText = `position:absolute;z-index:1000;background:#2a2218;border:1px solid #8b6914;border-radius:6px;padding:4px 0;min-width:140px;box-shadow:0 4px 16px rgba(0,0,0,0.6);left:${x}px;top:${y}px`;
+  menu.innerHTML = `
+    <div class="scm-item" data-action="bold" style="padding:4px 12px;cursor:pointer;font-size:0.8rem;color:#d4c5a9">
+      ${isBold ? '☑' : '☐'} ${lang === 'en' ? 'Bold' : 'Gras'}
+    </div>
+    <div style="border-top:1px solid #444;margin:2px 0"></div>
+    <div style="padding:4px 12px;font-size:0.7rem;color:#888">${lang === 'en' ? 'Text color:' : 'Couleur texte :'}</div>
+    <div class="scm-item" data-action="color-none" style="padding:4px 12px;cursor:pointer;font-size:0.8rem;color:#d4c5a9${currentColor === '' ? ';font-weight:bold' : ''}">● ${lang === 'en' ? 'Normal' : 'Normal'}</div>
+    <div class="scm-item" data-action="color-red" style="padding:4px 12px;cursor:pointer;font-size:0.8rem;color:#c00${currentColor === 'red' ? ';font-weight:bold' : ''}">● ${lang === 'en' ? 'Red' : 'Rouge'}</div>
+    <div class="scm-item" data-action="color-blue" style="padding:4px 12px;cursor:pointer;font-size:0.8rem;color:#06c${currentColor === 'blue' ? ';font-weight:bold' : ''}">● ${lang === 'en' ? 'Blue' : 'Bleu'}</div>
+    <div class="scm-item" data-action="color-green" style="padding:4px 12px;cursor:pointer;font-size:0.8rem;color:#060${currentColor === 'green' ? ';font-weight:bold' : ''}">● ${lang === 'en' ? 'Green' : 'Vert'}</div>
+  `;
+
+  document.body.appendChild(menu);
+
+  menu.querySelectorAll('.scm-item').forEach(item => {
+    item.addEventListener('mouseenter', () => { item.style.background = 'rgba(212,160,23,0.15)'; });
+    item.addEventListener('mouseleave', () => { item.style.background = ''; });
+  });
+
+  menu.addEventListener('click', (e) => {
+    const action = e.target.closest('.scm-item')?.dataset.action;
+    if (!action) return;
+    if (action === 'bold') {
+      if (!character.skillBold) character.skillBold = {};
+      character.skillBold[skillIdx] = !isBold;
+    } else if (action.startsWith('color-')) {
+      if (!character.skillTextColors) character.skillTextColors = {};
+      const color = action.replace('color-', '');
+      if (color === 'none') delete character.skillTextColors[skillIdx];
+      else character.skillTextColors[skillIdx] = color;
+    }
+    menu.remove();
+    renderEditor(app);
+  });
+
+  setTimeout(() => {
+    document.addEventListener('click', function closeMenu() {
+      menu.remove();
+      document.removeEventListener('click', closeMenu);
+    }, { once: true });
+  }, 10);
+}
+
+function openPhaseHistoryPopup() {
+  const lang = character.language || 'fr';
+  const phases = character.phases || [];
+  let rows = '';
+  for (const p of phases) {
+    const label = typeof p.phase === 'number' ? `Niveau ${p.phase}` : (p.phase === 'adolescent' ? 'Adolescent' : 'Apprenti');
+    const date = new Date(p.validatedAt).toLocaleString();
+    const rankCount = Object.values(p.skillRanks || {}).reduce((s, v) => s + v, 0);
+    rows += `<tr>
+      <td class="text-amber-300">${label}</td>
+      <td class="text-center">${p.dpSpent} / ${p.dpTotal}</td>
+      <td class="text-center">${rankCount}</td>
+      <td class="text-xs text-gray-500">${date}</td>
+    </tr>`;
+  }
+
+  const html = `<div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center" id="phase-history-overlay">
+    <div class="bg-gray-800 rounded-lg p-4 max-w-lg" style="display:flex;flex-direction:column">
+      <h3 class="text-amber-300 font-bold mb-3">${lang === 'en' ? 'Phase History' : 'Historique des phases'}</h3>
+      <div class="overflow-y-auto flex-1">
+        <table class="skill-table text-sm">
+          <thead><tr>
+            <th>Phase</th>
+            <th class="text-center">${lang === 'en' ? 'DP Used' : 'PD utilisés'}</th>
+            <th class="text-center">${lang === 'en' ? 'Ranks' : 'Rangs'}</th>
+            <th>${lang === 'en' ? 'Date' : 'Date'}</th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+      <button class="btn-secondary text-sm mt-3" id="phase-history-close">${lang === 'en' ? 'Close' : 'Fermer'}</button>
+    </div>
+  </div>`;
+
+  document.body.insertAdjacentHTML('beforeend', html);
+  document.getElementById('phase-history-close').addEventListener('click', () => {
+    document.getElementById('phase-history-overlay').remove();
+  });
+  document.getElementById('phase-history-overlay').addEventListener('click', (e) => {
+    if (e.target.id === 'phase-history-overlay') e.target.remove();
+  });
+}
+
+/**
+ * Print configuration popup — font, skill filters, spell options, etc.
+ */
+function openPrintConfigPopup() {
+  const lang = character.language || 'fr';
+  // Print config state (stored on character for persistence)
+  if (!character.printConfig) {
+    character.printConfig = {
+      font: 'Arial',
+      skillFilter: 'both', // 'developed', 'positive', 'both', 'all', 'highlighted'
+      spellFilter: 'all', // 'all', 'developed'
+      showStats: true,
+      showCosts: false,
+      historyInline: true,
+      skillsPerPage1: 60,
+      skillsPerPageN: 85,
+    };
+  }
+  const pc = character.printConfig;
+
+  const html = `<div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center" id="print-config-overlay">
+    <div class="bg-gray-800 rounded-lg p-4" style="display:flex;flex-direction:column">
+      <h3 class="text-amber-300 font-bold mb-3">${lang === 'en' ? 'Print Configuration' : 'Configuration d\'impression'}</h3>
+
+      <div class="grid gap-3 text-sm" style="grid-template-columns: auto 1fr">
+        <label class="text-gray-400">${lang === 'en' ? 'Font' : 'Police'}</label>
+        <select id="pc-font" class="field field-sm">
+          ${['Arial', 'Times New Roman', 'Courier New', 'Georgia', 'Verdana'].map(f => `<option value="${f}" ${pc.font === f ? 'selected' : ''}>${f}</option>`).join('')}
+        </select>
+
+        <label class="text-gray-400">${lang === 'en' ? 'Skills' : 'Compétences'}</label>
+        <div class="flex flex-col gap-1">
+          ${[
+            ['developed', lang === 'en' ? 'Developed only' : 'Développées uniquement'],
+            ['positive', lang === 'en' ? 'Positive bonus' : 'Bonus positif'],
+            ['both', lang === 'en' ? 'Developed + positive (default)' : 'Développées + bonus positif (défaut)'],
+            ['all', lang === 'en' ? 'All skills' : 'Toutes les compétences'],
+            ['highlighted', lang === 'en' ? 'Highlighted only' : 'Surlignées uniquement'],
+          ].map(([val, label]) =>
+            `<label class="text-xs cursor-pointer"><input type="radio" name="pc-skill-filter" value="${val}" ${pc.skillFilter === val ? 'checked' : ''}> ${label}</label>`
+          ).join('')}
+        </div>
+
+        <label class="text-gray-400">${lang === 'en' ? 'Spells' : 'Sorts'}</label>
+        <div class="flex gap-3">
+          <label class="text-xs cursor-pointer"><input type="radio" name="pc-spell-filter" value="all" ${pc.spellFilter === 'all' ? 'checked' : ''}> ${lang === 'en' ? 'All lists' : 'Toutes'}</label>
+          <label class="text-xs cursor-pointer"><input type="radio" name="pc-spell-filter" value="developed" ${pc.spellFilter === 'developed' ? 'checked' : ''}> ${lang === 'en' ? 'Developed only' : 'Développées'}</label>
+        </div>
+
+        <label class="text-gray-400">${lang === 'en' ? 'Options' : 'Options'}</label>
+        <div class="flex flex-col gap-1">
+          <label class="text-xs cursor-pointer"><input type="checkbox" id="pc-stats" ${pc.showStats ? 'checked' : ''}> ${lang === 'en' ? 'Show characteristics' : 'Caractéristiques'}</label>
+          <label class="text-xs cursor-pointer"><input type="checkbox" id="pc-costs" ${pc.showCosts ? 'checked' : ''}> ${lang === 'en' ? 'Show dev costs' : 'Coûts de développement'}</label>
+          <label class="text-xs cursor-pointer"><input type="checkbox" id="pc-history" ${pc.historyInline ? 'checked' : ''}> ${lang === 'en' ? 'Print history inline' : 'Historique à la suite'}</label>
+        </div>
+
+        <label class="text-gray-400">${lang === 'en' ? 'Skills/page' : 'Comp/page'}</label>
+        <div class="flex gap-2 items-center">
+          <span class="text-xs text-gray-500">P1:</span>
+          <input type="number" id="pc-spp1" value="${pc.skillsPerPage1}" class="field-inline" style="width:3rem" min="20" max="80">
+          <span class="text-xs text-gray-500">P2+:</span>
+          <input type="number" id="pc-sppn" value="${pc.skillsPerPageN}" class="field-inline" style="width:3rem" min="20" max="100">
+        </div>
+      </div>
+
+      <div class="flex gap-2 mt-4">
+        <button class="btn-primary text-sm flex-1" id="pc-print">${lang === 'en' ? 'Print' : 'Imprimer'}</button>
+        <button class="btn-secondary text-sm flex-1" id="pc-cancel">${lang === 'en' ? 'Cancel' : 'Annuler'}</button>
+      </div>
+    </div>
+  </div>`;
+
+  document.body.insertAdjacentHTML('beforeend', html);
+
+  document.getElementById('pc-cancel').addEventListener('click', () => {
+    document.getElementById('print-config-overlay').remove();
+  });
+  document.getElementById('print-config-overlay').addEventListener('click', (e) => {
+    if (e.target.id === 'print-config-overlay') e.target.remove();
+  });
+
+  document.getElementById('pc-print').addEventListener('click', () => {
+    // Save config
+    pc.font = document.getElementById('pc-font').value;
+    pc.skillFilter = document.querySelector('input[name="pc-skill-filter"]:checked')?.value || 'both';
+    pc.spellFilter = document.querySelector('input[name="pc-spell-filter"]:checked')?.value || 'all';
+    pc.showStats = document.getElementById('pc-stats').checked;
+    pc.showCosts = document.getElementById('pc-costs').checked;
+    pc.historyInline = document.getElementById('pc-history').checked;
+    pc.skillsPerPage1 = parseInt(document.getElementById('pc-spp1').value) || 60;
+    pc.skillsPerPageN = parseInt(document.getElementById('pc-sppn').value) || 85;
+
+    // Apply print font
+    document.documentElement.style.setProperty('--print-font-family', pc.font);
+    document.documentElement.style.setProperty('--print-font-size', '8pt');
+
+    document.getElementById('print-config-overlay').remove();
+    showPrintPreview(character, pc, character.language || 'fr');
   });
 }
 

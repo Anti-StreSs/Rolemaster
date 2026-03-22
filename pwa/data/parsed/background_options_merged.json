@@ -1,0 +1,3535 @@
+{
+  "version": 2,
+  "description": "Background options for Rolemaster character creation — merged from Character Law, Companions I & III",
+  "generated_notes": [
+    "Character Law + Companion I: extracted by Claude from PDFs and normalized tables",
+    "Companion II: confirmed by GPT as having no background options section",
+    "Companion III: section 5.3 Innate Stat Abilities extracted and normalized by GPT"
+  ],
+  "sources": [
+    {
+      "id": "character_law",
+      "name": "Character Law",
+      "name_fr": "Loi des Personnages",
+      "reference": "RM Classic / RM2 Character Law, Chapter 6",
+      "sections": [
+        {
+          "name_en": "Race Background Options",
+          "name_fr": "Options d'historique par Race",
+          "table_id": "06-01",
+          "entries": [
+            {
+              "race": "Common Men",
+              "background_options": "6"
+            },
+            {
+              "race": "High Men",
+              "background_options": "4"
+            },
+            {
+              "race": "Half-elves",
+              "background_options": "4"
+            },
+            {
+              "race": "Wood-elves",
+              "background_options": "4"
+            },
+            {
+              "race": "High-elves",
+              "background_options": "3"
+            },
+            {
+              "race": "Fair-elves",
+              "background_options": "2"
+            },
+            {
+              "race": "Dwarves",
+              "background_options": "5"
+            },
+            {
+              "race": "Halflings",
+              "background_options": "5"
+            },
+            {
+              "race": "Orcs",
+              "background_options": "5"
+            },
+            {
+              "race": "Greater Orcs",
+              "background_options": "4"
+            },
+            {
+              "race": "Trolls",
+              "background_options": "4"
+            }
+          ]
+        },
+        {
+          "name_en": "Set Options Category",
+          "name_fr": "Options Fixes",
+          "table_id": "06-02",
+          "entries": [
+            {
+              "id": 1,
+              "name_en": "+15 bonus for any secondary skill",
+              "name_fr": "+15 bonus pour une compétence secondaire",
+              "effects": {
+                "skill_bonus": 15,
+                "skill_type": "secondary"
+              }
+            },
+            {
+              "id": 2,
+              "name_en": "+10 bonus for any primary skill",
+              "name_fr": "+10 bonus pour une compétence primaire",
+              "effects": {
+                "skill_bonus": 10,
+                "skill_type": "primary"
+              }
+            },
+            {
+              "id": 3,
+              "name_en": "+1 Spell Adder",
+              "name_fr": "+1 sort supplémentaire",
+              "effects": {
+                "spell_adder": 1
+              }
+            },
+            {
+              "id": 4,
+              "name_en": "A language to skill rank 10 spoken and written",
+              "name_fr": "Une langue au rang 10 (parlé et écrit)",
+              "effects": {
+                "language_rank": 10
+              }
+            },
+            {
+              "id": 5,
+              "name_en": "Increase one stat by 2 or three stats by 1 each (temp and pot, max 101)",
+              "name_fr": "+2 à une stat OU +1 à trois stats (temp et pot, max 101)",
+              "effects": {
+                "stat_increase": "2_or_1x3"
+              }
+            },
+            {
+              "id": 6,
+              "name_en": "Skill rank 5 in a random secondary skill (or GM chosen)",
+              "name_fr": "Rang 5 dans une compétence secondaire aléatoire (ou choisie par le MJ)",
+              "effects": {
+                "skill_ranks": 5,
+                "skill_type": "secondary_random"
+              }
+            },
+            {
+              "id": 7,
+              "name_en": "Mannish Appearance (optional - for orcs/trolls)",
+              "name_fr": "Apparence humaine (optionnel - pour orques/trolls)",
+              "effects": {
+                "appearance": "mannish"
+              },
+              "optional": true
+            },
+            {
+              "id": 8,
+              "name_en": "Unusual Tongue (optional - speak a normally impossible language)",
+              "name_fr": "Langue inhabituelle (optionnel - parler une langue normalement impossible)",
+              "effects": {
+                "unusual_tongue": true
+              },
+              "optional": true
+            },
+            {
+              "id": 9,
+              "name_en": "Offset Racial Flaw (optional - cancel one racial flaw)",
+              "name_fr": "Annuler un défaut racial (optionnel)",
+              "effects": {
+                "offset_flaw": true
+              },
+              "optional": true
+            }
+          ]
+        },
+        {
+          "name_en": "Special Abilities Category",
+          "name_fr": "Capacités Spéciales",
+          "table_id": "06-03",
+          "entries": [
+            {
+              "roll": "01-05",
+              "special_ability": "Neutral Odor"
+            },
+            {
+              "roll": "06-10",
+              "special_ability": "Exceptional Tone"
+            },
+            {
+              "roll": "11-15",
+              "special_ability": "Acute Smell"
+            },
+            {
+              "roll": "16-20",
+              "special_ability": "Infravision"
+            },
+            {
+              "roll": "21-25",
+              "special_ability": "Exceptional Voice"
+            },
+            {
+              "roll": "26-30",
+              "special_ability": "Empathy"
+            },
+            {
+              "roll": "31-35",
+              "special_ability": "Acute Hearing"
+            },
+            {
+              "roll": "36-40",
+              "special_ability": "Exceptional Spatial Judgment"
+            },
+            {
+              "roll": "41-45",
+              "special_ability": "Nimble"
+            },
+            {
+              "roll": "46-50",
+              "special_ability": "Charismatic"
+            },
+            {
+              "roll": "51-55",
+              "special_ability": "Good Tendons"
+            },
+            {
+              "roll": "56-60",
+              "special_ability": "Increased Lung Capacity"
+            },
+            {
+              "roll": "61-65",
+              "special_ability": "Quick Thinker"
+            },
+            {
+              "roll": "67-70",
+              "special_ability": "Lightning Reactions"
+            },
+            {
+              "roll": "71-75",
+              "special_ability": "High Pain Threshold"
+            },
+            {
+              "roll": "76-80",
+              "special_ability": "Unusual Agility"
+            },
+            {
+              "roll": "81-85",
+              "special_ability": "Silent Mover"
+            },
+            {
+              "roll": "86-90",
+              "special_ability": "Great Strength"
+            },
+            {
+              "roll": "91-95",
+              "special_ability": "Lycanthropy"
+            },
+            {
+              "roll": "96-97",
+              "special_ability": "Highly Resistant"
+            },
+            {
+              "roll": "98-99",
+              "special_ability": "Unusually Enchanted"
+            },
+            {
+              "roll": "100",
+              "special_ability": "Exceptionally Enchanted"
+            }
+          ]
+        },
+        {
+          "name_en": "Special Items Category",
+          "name_fr": "Objets Spéciaux",
+          "table_id": "06-04",
+          "entries": [
+            {
+              "roll": "01-10",
+              "special_item": "Onebread,poison,orherbfromthe Enchanted Herbs, Breads,and Poisons Price Tableonpages113-118.The GM mayrequirearandomrollorpermitthe P Ctoselectone."
+            },
+            {
+              "roll": "11-20",
+              "special_item": "A+5bonusmagicitem*oftheplayer'schoice."
+            },
+            {
+              "roll": "21-30",
+              "special_item": "A+10bonusmagicitem*oftheplayer'schoicefromthe Accessory Price Tableonpage108."
+            },
+            {
+              "roll": "31-50",
+              "special_item": "A+10bonusnon-magicitem**oftheplayer'schoice."
+            },
+            {
+              "roll": "51-65",
+              "special_item": "A+10bonusmagicitem*oftheplayer'schoiceora+1 spelladderitem***."
+            },
+            {
+              "roll": "66-75",
+              "special_item": "A Daily Ispellitem****."
+            },
+            {
+              "roll": "81-85",
+              "special_item": "A+15bonusmagicitem*oftheplayer'schoiceora+2 spelladderitem***."
+            },
+            {
+              "roll": "86-90",
+              "special_item": "A Daily I Ispellitem****."
+            },
+            {
+              "roll": "91-95",
+              "special_item": "A+20bonusnon-magicitem**oftheplayer'schoice orax2spellmultiplieritemora+3spelladder item***."
+            },
+            {
+              "roll": "96-97",
+              "special_item": "A Daily Illspellitem****."
+            },
+            {
+              "roll": "98",
+              "special_item": "A Daily I Vspellitem****."
+            },
+            {
+              "roll": "100",
+              "special_item": "Oneloyalunusualcreature(e.g.,amonster)."
+            }
+          ]
+        },
+        {
+          "name_en": "Special Wealth Category",
+          "name_fr": "Richesse Spéciale",
+          "table_id": "06-05",
+          "entries": [
+            {
+              "roll": "01-02",
+              "amount": "1gp"
+            },
+            {
+              "roll": "03-05",
+              "amount": "2gp"
+            },
+            {
+              "roll": "06-10",
+              "amount": "3gp"
+            },
+            {
+              "roll": "11-15",
+              "amount": "4gp"
+            },
+            {
+              "roll": "16-20",
+              "amount": "5gp"
+            },
+            {
+              "roll": "21-25",
+              "amount": "10gp"
+            },
+            {
+              "roll": "26-30",
+              "amount": "15gp"
+            },
+            {
+              "roll": "31-40",
+              "amount": "20gp"
+            },
+            {
+              "roll": "41-50",
+              "amount": "25gp"
+            },
+            {
+              "roll": "51-60",
+              "amount": "30gp"
+            },
+            {
+              "roll": "61-65",
+              "amount": "35gp"
+            },
+            {
+              "roll": "66",
+              "amount": "ten10gpgems"
+            },
+            {
+              "roll": "67-70",
+              "amount": "40gp"
+            },
+            {
+              "roll": "71-75",
+              "amount": "50gp"
+            },
+            {
+              "roll": "76-80",
+              "amount": "60gp"
+            },
+            {
+              "roll": "81-85",
+              "amount": "70gp"
+            },
+            {
+              "roll": "86-90",
+              "amount": "80gp"
+            },
+            {
+              "roll": "91-93",
+              "amount": "100gp"
+            },
+            {
+              "roll": "94-95",
+              "amount": "six20gpgems"
+            },
+            {
+              "roll": "96-97",
+              "amount": "fifteen10gpgems"
+            },
+            {
+              "roll": "98-99",
+              "amount": "incomeof5gp/month*"
+            },
+            {
+              "roll": "100",
+              "amount": "incomeof10gp/month*"
+            }
+          ]
+        },
+        {
+          "name_en": "Special Status Category",
+          "name_fr": "Statut Spécial",
+          "table_id": "06-06",
+          "entries": [
+            {
+              "roll": "01-10",
+              "special_status": "Cursed."
+            },
+            {
+              "roll": "11-20",
+              "special_status": "Impoverishedfamily."
+            },
+            {
+              "roll": "21-30",
+              "special_status": "Criminalbackground."
+            },
+            {
+              "roll": "31-40",
+              "special_status": "Guildbackground."
+            },
+            {
+              "roll": "41-50",
+              "special_status": "Multi-cultural,multi-linguistic."
+            },
+            {
+              "roll": "51-60",
+              "special_status": "Animal-friend."
+            },
+            {
+              "roll": "61-70",
+              "special_status": "Race-friend."
+            },
+            {
+              "roll": "71-80",
+              "special_status": "Royalblood."
+            },
+            {
+              "roll": "81-90",
+              "special_status": "Conspiratorialbackground."
+            },
+            {
+              "roll": "91-96",
+              "special_status": "Rich."
+            },
+            {
+              "roll": "97-10",
+              "special_status": "0 Charmed."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "companion_1",
+      "name": "Companion I",
+      "name_fr": "Compagnon I",
+      "reference": "ICE #1500, Section 4.5",
+      "sections": [
+        {
+          "name_en": "Skill at Arms",
+          "name_fr": "Compétences Martiales",
+          "entries": [
+            {
+              "roll": "01",
+              "name_en": "Hemophilia",
+              "name_fr": "Hémophilie",
+              "type": "flaw",
+              "description_en": "All bleeding results are doubled.",
+              "effects": {
+                "bleeding_multiplier": 2
+              }
+            },
+            {
+              "roll": "02",
+              "name_en": "Psychotic Temper",
+              "name_fr": "Tempérament Psychotique",
+              "type": "flaw",
+              "description_en": "Base (40 - SD Mod)% chance of responding to insult or offense with a killing fit.",
+              "effects": {
+                "trigger_chance_formula": "40 - SD_mod"
+              }
+            },
+            {
+              "roll": "03",
+              "name_en": "Wanted Criminal",
+              "name_fr": "Criminel Recherché",
+              "type": "flaw",
+              "description_en": "Accused of Murder, Banditry, Assassination, Theft, Assault, or Treason.",
+              "effects": {
+                "social": "wanted"
+              }
+            },
+            {
+              "roll": "04",
+              "name_en": "Blood-Guilt",
+              "name_fr": "Culpabilité du Sang",
+              "type": "flaw",
+              "description_en": "PC experiences severe guilt if he causes the death or injury of a human, Elf, Hobbit, or Dwarf.",
+              "effects": {
+                "restriction": "guilt_on_kill"
+              }
+            },
+            {
+              "roll": "05",
+              "name_en": "Chivalrous",
+              "name_fr": "Chevaleresque",
+              "type": "flaw",
+              "description_en": "Will never fight in an unchivalrous manner; always gives opponent first initiative, never fights horseback vs foot, always allows enemy to rearm.",
+              "effects": {
+                "restriction": "chivalry_code"
+              }
+            },
+            {
+              "roll": "06",
+              "name_en": "Terrible Fearlessness",
+              "name_fr": "Intrépidité Terrible",
+              "type": "flaw",
+              "description_en": "Base (40 - SD Mod)% chance of charging heedless into a combat situation.",
+              "effects": {
+                "trigger_chance_formula": "40 - SD_mod"
+              }
+            },
+            {
+              "roll": "07",
+              "name_en": "Terrible Phobia",
+              "name_fr": "Phobie Terrible",
+              "type": "flaw",
+              "description_en": "PC is victim of a terrible phobia. Details determined by the GM.",
+              "effects": {
+                "gm_determined": true
+              }
+            },
+            {
+              "roll": "08",
+              "name_en": "Faithful Vassal",
+              "name_fr": "Vassal Fidèle",
+              "type": "flaw",
+              "description_en": "The PC is a faithful vassal to a very wicked Lord or Lady.",
+              "effects": {
+                "social": "vassal_to_evil"
+              }
+            },
+            {
+              "roll": "09",
+              "name_en": "Superstitious",
+              "name_fr": "Superstitieux",
+              "type": "flaw",
+              "description_en": "The PC is superstitious: his morale is influenced by bad 'omens'.",
+              "effects": {
+                "morale_penalty": true
+              }
+            },
+            {
+              "roll": "10",
+              "name_en": "Passive",
+              "name_fr": "Passif",
+              "type": "flaw",
+              "description_en": "-15 to all OB's until he gets 'worked up'. May roll once each turn, (20 + SD Mod)% chance.",
+              "effects": {
+                "ob_penalty": -15,
+                "activation_formula": "20 + SD_mod"
+              }
+            },
+            {
+              "roll": "11",
+              "name_en": "Martial Arts Training",
+              "name_fr": "Entraînement Arts Martiaux",
+              "type": "talent",
+              "description_en": "If non-monk, may train in Martial Arts, Adrenal Moves, and Adrenal Defense as if he were a Monk. If Monk, no penalty when using weapon kata.",
+              "effects": {
+                "unlock_monk_skills": true
+              }
+            },
+            {
+              "roll": "12",
+              "name_en": "Natural Archer",
+              "name_fr": "Archer Naturel",
+              "type": "talent",
+              "description_en": "25% increase to all bow ranges.",
+              "effects": {
+                "bow_range_multiplier": 1.25
+              }
+            },
+            {
+              "roll": "13",
+              "name_en": "Subtle",
+              "name_fr": "Subtil",
+              "type": "talent",
+              "description_en": "Stalk and Hide skill bonus modified by +25.",
+              "effects": {
+                "skill_bonus": {
+                  "stalk_hide": 25
+                }
+              }
+            },
+            {
+              "roll": "14",
+              "name_en": "Mind Over Matter",
+              "name_fr": "L'Esprit sur la Matière",
+              "type": "talent",
+              "description_en": "+25 modification to all Adrenal Moves rolls.",
+              "effects": {
+                "skill_bonus": {
+                  "adrenal_moves": 25
+                }
+              }
+            },
+            {
+              "roll": "15",
+              "name_en": "Natural Horseman",
+              "name_fr": "Cavalier Naturel",
+              "type": "talent",
+              "description_en": "+25 bonus to riding bonuses.",
+              "effects": {
+                "skill_bonus": {
+                  "riding": 25
+                }
+              }
+            },
+            {
+              "roll": "16",
+              "name_en": "Knighted",
+              "name_fr": "Adoubé",
+              "type": "talent",
+              "description_en": "The PC has been knighted for a personal act of heroism on behalf of a noble or royalty.",
+              "effects": {
+                "social": "knight"
+              }
+            },
+            {
+              "roll": "17",
+              "name_en": "Natural Facility With Armor",
+              "name_fr": "Facilité Naturelle avec l'Armure",
+              "type": "talent",
+              "description_en": "All armor development costs are cut in half.",
+              "effects": {
+                "armor_cost_multiplier": 0.5
+              }
+            },
+            {
+              "roll": "18",
+              "name_en": "Unnatural Stamina",
+              "name_fr": "Endurance Surnaturelle",
+              "type": "talent",
+              "description_en": "May run at up to 3x normal movement rate and spend only 1 exhaustion point every 60 rounds.",
+              "effects": {
+                "movement_multiplier": 3,
+                "exhaustion_rate": "1/60rds"
+              }
+            },
+            {
+              "roll": "19",
+              "name_en": "Natural Weapon Master",
+              "name_fr": "Maître d'Armes Naturel",
+              "type": "talent",
+              "description_en": "May develop skill ranks in one similar weapons category; all weapons in that category may use that skill rank for their OB's.",
+              "effects": {
+                "weapon_category_mastery": true
+              }
+            },
+            {
+              "roll": "20",
+              "name_en": "Assassin Training",
+              "name_fr": "Entraînement d'Assassin",
+              "type": "talent",
+              "description_en": "Ambush development costs are cut in half.",
+              "effects": {
+                "ambush_cost_multiplier": 0.5
+              }
+            },
+            {
+              "roll": "21",
+              "name_en": "Natural Physique",
+              "name_fr": "Physique Naturel",
+              "type": "talent",
+              "description_en": "Half development point cost for Body Development. Maximum racial body hits are increased by 50%.",
+              "effects": {
+                "body_dev_cost_multiplier": 0.5,
+                "max_hp_multiplier": 1.5
+              }
+            },
+            {
+              "roll": "22",
+              "name_en": "Hammerhand",
+              "name_fr": "Main de Marteau",
+              "type": "talent",
+              "description_en": "Hands hit as maces when using MA Strikes skill; treat as a 'Mace' weapon kata with no penalty.",
+              "effects": {
+                "unarmed_as_mace": true
+              }
+            },
+            {
+              "roll": "23",
+              "name_en": "Lucky",
+              "name_fr": "Chanceux",
+              "type": "talent",
+              "description_en": "May modify any die roll directly concerning the character by either +5 or -5.",
+              "effects": {
+                "die_modifier": 5
+              }
+            },
+            {
+              "roll": "24",
+              "name_en": "Directed Weapons Master",
+              "name_fr": "Maître d'Arme Dirigée",
+              "type": "mixed",
+              "description_en": "One selected category of weapons yields 3 skill ranks for every 2 developed. All other weapon dev costs increased by 50%.",
+              "effects": {
+                "weapon_rank_bonus": "3_per_2",
+                "other_weapon_cost_multiplier": 1.5
+              }
+            },
+            {
+              "roll": "25",
+              "name_en": "Disarm Skill",
+              "name_fr": "Compétence de Désarmement",
+              "type": "talent",
+              "description_en": "May intentionally attempt to disarm opponent. Subtract enemy OB from PC OB; add open-ended roll; if 101+ enemy must roll RR vs PC level or lose weapon.",
+              "effects": {
+                "special_maneuver": "disarm"
+              }
+            },
+            {
+              "roll": "26",
+              "name_en": "Immovable Will",
+              "name_fr": "Volonté Inébranlable",
+              "type": "talent",
+              "description_en": "Immune to fear and charm attacks. Sleep attacks are halved for attack level and duration.",
+              "effects": {
+                "immunity": [
+                  "fear",
+                  "charm"
+                ],
+                "sleep_resistance": 0.5
+              }
+            },
+            {
+              "roll": "27",
+              "name_en": "Tolerance",
+              "name_fr": "Tolérance",
+              "type": "talent",
+              "description_en": "May take 150% of total hit points before becoming unconscious.",
+              "effects": {
+                "unconscious_threshold_multiplier": 1.5
+              }
+            },
+            {
+              "roll": "28",
+              "name_en": "Accelerated Mending",
+              "name_fr": "Guérison Accélérée",
+              "type": "talent",
+              "description_en": "PC's injuries heal twice as quickly as normal.",
+              "effects": {
+                "healing_multiplier": 2
+              }
+            },
+            {
+              "roll": "29",
+              "name_en": "Unbeliever",
+              "name_fr": "Incrédule",
+              "type": "mixed",
+              "description_en": "Resists magic at 3x level. May not use spells or spell devices.",
+              "effects": {
+                "rr_level_multiplier": 3,
+                "restriction": "no_magic"
+              }
+            },
+            {
+              "roll": "30",
+              "name_en": "Animal Friend",
+              "name_fr": "Ami des Animaux",
+              "type": "mixed",
+              "description_en": "Vegetarian; has (35 + Em Mod)% chance each round of befriending any animal within 10' if concentrating. May not control animal, but animal will act friendly.",
+              "effects": {
+                "restriction": "vegetarian",
+                "befriend_chance_formula": "35 + EM_mod"
+              }
+            },
+            {
+              "roll": "31",
+              "name_en": "Master Tactician",
+              "name_fr": "Maître Tacticien",
+              "type": "talent",
+              "description_en": "Has an open-ended chance equal to his IN modification to receive information directly from the GM concerning an immediate tactical situation.",
+              "effects": {
+                "gm_info_chance": "IN_mod"
+              }
+            },
+            {
+              "roll": "32",
+              "name_en": "Subconscious Preparation",
+              "name_fr": "Préparation Subconsciente",
+              "type": "talent",
+              "description_en": "Readies weapons and bows 1 round quicker than normal.",
+              "effects": {
+                "weapon_ready_bonus": -1
+              }
+            },
+            {
+              "roll": "33",
+              "name_en": "Trained Regular Footman",
+              "name_fr": "Fantassin Entraîné",
+              "type": "talent",
+              "description_en": "May make MA Rank 1 Sweeps/Throws attack each round in addition to normal action.",
+              "effects": {
+                "bonus_attack": "MA_sweep_throw"
+              }
+            },
+            {
+              "roll": "34",
+              "name_en": "Danger Sense",
+              "name_fr": "Sens du Danger",
+              "type": "talent",
+              "description_en": "GM may warn of general danger on a roll less than or equal to the PC's IN modification.",
+              "effects": {
+                "danger_sense_chance": "IN_mod"
+              }
+            },
+            {
+              "roll": "35",
+              "name_en": "Light Sleeper",
+              "name_fr": "Sommeil Léger",
+              "type": "talent",
+              "description_en": "PC may make perception rolls to wake and take action immediately from normal sleep.",
+              "effects": {
+                "wake_perception": true
+              }
+            },
+            {
+              "roll": "36",
+              "name_en": "Look Of Eagles",
+              "name_fr": "Regard d'Aigle",
+              "type": "talent",
+              "description_en": "Those who are allies, troops, or henchmen under the PC never panic while he is well & in sight.",
+              "effects": {
+                "morale_aura": "no_panic"
+              }
+            },
+            {
+              "roll": "37",
+              "name_en": "Eye Of The Tiger",
+              "name_fr": "Oeil du Tigre",
+              "type": "talent",
+              "description_en": "PC may prepare as for the adrenal move 'Strength' except that his chance of success is his level + ((SD Mod + EM Mod)/2). If he succeeds, his OB and DB are modified by +15 for the next round.",
+              "effects": {
+                "special_adrenal": true,
+                "ob_db_bonus": 15
+              }
+            },
+            {
+              "roll": "38",
+              "name_en": "Outdoorsman",
+              "name_fr": "Homme des Bois",
+              "type": "talent",
+              "description_en": "Gets +50 to all forage, fire starting, and locate shelter rolls while outdoors. +20 to all Tracking, Trapping, and Stalk/Hide rolls while outdoors.",
+              "effects": {
+                "outdoor_bonus": 50,
+                "tracking_bonus": 20
+              }
+            },
+            {
+              "roll": "39",
+              "name_en": "Portage Skill",
+              "name_fr": "Compétence de Portage",
+              "type": "talent",
+              "description_en": "Encumbrance Penalties are halved for the PC.",
+              "effects": {
+                "encumbrance_multiplier": 0.5
+              }
+            },
+            {
+              "roll": "40",
+              "name_en": "Favored",
+              "name_fr": "Favorisé",
+              "type": "talent",
+              "description_en": "Liked by a very high ranking noble. May be a relative.",
+              "effects": {
+                "social": "noble_favor"
+              }
+            },
+            {
+              "roll": "41",
+              "name_en": "Blessed",
+              "name_fr": "Béni",
+              "type": "talent",
+              "description_en": "PC enjoys the favor of a particular god, demi-god, angel, etc.",
+              "effects": {
+                "social": "divine_favor"
+              }
+            },
+            {
+              "roll": "42",
+              "name_en": "Judge of Weaponry",
+              "name_fr": "Juge d'Armement",
+              "type": "talent",
+              "description_en": "May determine the pluses or minuses, magical and non-magical, on weapons and armor.",
+              "effects": {
+                "special_skill": "identify_weapons"
+              }
+            },
+            {
+              "roll": "43",
+              "name_en": "Survival Instinct",
+              "name_fr": "Instinct de Survie",
+              "type": "talent",
+              "description_en": "When using entire OB to parry, the OB is modified by an additional +25.",
+              "effects": {
+                "parry_bonus": 25
+              }
+            },
+            {
+              "roll": "44-52",
+              "name_en": "+15 Agility",
+              "name_fr": "+15 Agilité",
+              "type": "stat_bonus",
+              "description_en": "+15 to AG modification.",
+              "effects": {
+                "stat_bonus": {
+                  "AG": 15
+                }
+              }
+            },
+            {
+              "roll": "53-61",
+              "name_en": "+15 Self Discipline",
+              "name_fr": "+15 Auto-discipline",
+              "type": "stat_bonus",
+              "description_en": "+15 to SD modification.",
+              "effects": {
+                "stat_bonus": {
+                  "SD": 15
+                }
+              }
+            },
+            {
+              "roll": "62-70",
+              "name_en": "+15 Quickness",
+              "name_fr": "+15 Rapidité",
+              "type": "stat_bonus",
+              "description_en": "+15 to QU modification.",
+              "effects": {
+                "stat_bonus": {
+                  "QU": 15
+                }
+              }
+            },
+            {
+              "roll": "71-79",
+              "name_en": "+15 Constitution",
+              "name_fr": "+15 Constitution",
+              "type": "stat_bonus",
+              "description_en": "+15 to CO modification.",
+              "effects": {
+                "stat_bonus": {
+                  "CO": 15
+                }
+              }
+            },
+            {
+              "roll": "80-89",
+              "name_en": "+15 Strength",
+              "name_fr": "+15 Force",
+              "type": "stat_bonus",
+              "description_en": "+15 to ST modification.",
+              "effects": {
+                "stat_bonus": {
+                  "ST": 15
+                }
+              }
+            },
+            {
+              "roll": "90-91",
+              "name_en": "+20 Agility",
+              "name_fr": "+20 Agilité",
+              "type": "stat_bonus",
+              "description_en": "+20 to AG modification.",
+              "effects": {
+                "stat_bonus": {
+                  "AG": 20
+                }
+              }
+            },
+            {
+              "roll": "92-93",
+              "name_en": "+20 Self Discipline",
+              "name_fr": "+20 Auto-discipline",
+              "type": "stat_bonus",
+              "description_en": "+20 to SD modification.",
+              "effects": {
+                "stat_bonus": {
+                  "SD": 20
+                }
+              }
+            },
+            {
+              "roll": "94-95",
+              "name_en": "+20 Quickness",
+              "name_fr": "+20 Rapidité",
+              "type": "stat_bonus",
+              "description_en": "+20 to QU modification.",
+              "effects": {
+                "stat_bonus": {
+                  "QU": 20
+                }
+              }
+            },
+            {
+              "roll": "96-97",
+              "name_en": "+20 Constitution",
+              "name_fr": "+20 Constitution",
+              "type": "stat_bonus",
+              "description_en": "+20 to CO modification.",
+              "effects": {
+                "stat_bonus": {
+                  "CO": 20
+                }
+              }
+            },
+            {
+              "roll": "98-99",
+              "name_en": "+20 Strength",
+              "name_fr": "+20 Force",
+              "type": "stat_bonus",
+              "description_en": "+20 to ST modification.",
+              "effects": {
+                "stat_bonus": {
+                  "ST": 20
+                }
+              }
+            },
+            {
+              "roll": "100",
+              "name_en": "+20 to AG/SD/QU/CO/ST (GM choice)",
+              "name_fr": "+20 à AG/AD/RP/CO/FO (choix du MJ)",
+              "type": "stat_bonus",
+              "description_en": "+20 to AG, SD, QU, CO, or ST modification (GM choice: assign, PC choice, or random).",
+              "effects": {
+                "stat_bonus": {
+                  "choice": 20
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name_en": "Skill at Magic",
+          "name_fr": "Compétences Magiques",
+          "entries": [
+            {
+              "roll": "01",
+              "name_en": "Dark Temptation",
+              "name_fr": "Tentation Noire",
+              "type": "mixed",
+              "description_en": "PC is tempted to the 'Dark Side'. He learns one Evil spell list to 50th level. GM controls details.",
+              "effects": {
+                "learn_evil_list": 50
+              }
+            },
+            {
+              "roll": "02",
+              "name_en": "Poor Control",
+              "name_fr": "Mauvais Contrôle",
+              "type": "flaw",
+              "description_en": "Roll non-attack spell failures as attack spell failures. Add +10 to the roll for attack spell failures.",
+              "effects": {
+                "spell_failure_penalty": 10
+              }
+            },
+            {
+              "roll": "03",
+              "name_en": "Prejudice",
+              "name_fr": "Préjudice",
+              "type": "flaw",
+              "description_en": "Deep irrational hatred for one GM chosen race.",
+              "effects": {
+                "gm_determined": true
+              }
+            },
+            {
+              "roll": "04",
+              "name_en": "Open Door",
+              "name_fr": "Porte Ouverte",
+              "type": "flaw",
+              "description_en": "Subject to temporary fits of demonic possession. Weekly chance = 5%.",
+              "effects": {
+                "possession_chance": 5
+              }
+            },
+            {
+              "roll": "05",
+              "name_en": "Lycanthropy",
+              "name_fr": "Lycanthropie",
+              "type": "flaw",
+              "description_en": "This is the uncontrollable, bestial, psychotic type.",
+              "effects": {
+                "lycanthropy": "uncontrollable"
+              }
+            },
+            {
+              "roll": "06",
+              "name_en": "Necromantic Urge",
+              "name_fr": "Pulsion Nécromantique",
+              "type": "flaw",
+              "description_en": "PC becomes a lich or powerful vampire when his soul departs his body.",
+              "effects": {
+                "undeath": true
+              }
+            },
+            {
+              "roll": "07",
+              "name_en": "Physical Investment",
+              "name_fr": "Investissement Physique",
+              "type": "flaw",
+              "description_en": "Any time the PC casts a spell that is over 8th level, the PC suffers 5 points concussion damage.",
+              "effects": {
+                "spell_hp_cost": 5,
+                "spell_level_threshold": 8
+              }
+            },
+            {
+              "roll": "08",
+              "name_en": "Friendslayer",
+              "name_fr": "Tueur d'Amis",
+              "type": "flaw",
+              "description_en": "Instead of following normal attack spell failure procedure, the attack works on the nearest friend or associate within range.",
+              "effects": {
+                "friendly_fire": true
+              }
+            },
+            {
+              "roll": "09",
+              "name_en": "Wrath",
+              "name_fr": "Courroux",
+              "type": "flaw",
+              "description_en": "The PC has the disfavor of a particular god, demi-god, demon, etc.",
+              "effects": {
+                "social": "divine_disfavor"
+              }
+            },
+            {
+              "roll": "10",
+              "name_en": "Split Personality Neurosis",
+              "name_fr": "Névrose de Personnalité Multiple",
+              "type": "flaw",
+              "description_en": "PC has uncontrollable split personality. Must prepare character sheets for 1-3 additional personalities. Stats, levels, classes can vary.",
+              "effects": {
+                "split_personality": true
+              }
+            },
+            {
+              "roll": "11",
+              "name_en": "Transcendence",
+              "name_fr": "Transcendance",
+              "type": "talent",
+              "description_en": "PC is not penalized for wearing armor while casting spells.",
+              "effects": {
+                "no_armor_spell_penalty": true
+              }
+            },
+            {
+              "roll": "12",
+              "name_en": "Aggression",
+              "name_fr": "Agression",
+              "type": "talent",
+              "description_en": "+10 bonus on Base Attack or Elemental Spell rolls.",
+              "effects": {
+                "spell_attack_bonus": 10
+              }
+            },
+            {
+              "roll": "13",
+              "name_en": "Resistance",
+              "name_fr": "Résistance",
+              "type": "talent",
+              "description_en": "PC receives a +25 bonus for RR's for any 1 realm.",
+              "effects": {
+                "rr_bonus": 25
+              }
+            },
+            {
+              "roll": "14",
+              "name_en": "Power",
+              "name_fr": "Pouvoir",
+              "type": "talent",
+              "description_en": "PC knows any 1 spell list to 50th level. May be from any realm or profession.",
+              "effects": {
+                "learn_any_list": 50
+              }
+            },
+            {
+              "roll": "15",
+              "name_en": "Eloquence",
+              "name_fr": "Éloquence",
+              "type": "talent",
+              "description_en": "PC requires one less round of preparation than normal to cast a spell.",
+              "effects": {
+                "casting_time_reduction": 1
+              }
+            },
+            {
+              "roll": "16",
+              "name_en": "Item Lore",
+              "name_fr": "Connaissance des Objets",
+              "type": "talent",
+              "description_en": "PC gets +25 on all Staves/Wands rolls.",
+              "effects": {
+                "skill_bonus": {
+                  "staves_wands": 25
+                }
+              }
+            },
+            {
+              "roll": "17",
+              "name_en": "Runic Lore",
+              "name_fr": "Connaissance Runique",
+              "type": "talent",
+              "description_en": "PC gets +25 on all scrolls and runes rolls.",
+              "effects": {
+                "skill_bonus": {
+                  "runes": 25
+                }
+              }
+            },
+            {
+              "roll": "18",
+              "name_en": "Elvish Training",
+              "name_fr": "Entraînement Elfique",
+              "type": "talent",
+              "description_en": "PC gets +25 bonus to his meditation skill bonus.",
+              "effects": {
+                "skill_bonus": {
+                  "meditation": 25
+                }
+              }
+            },
+            {
+              "roll": "19",
+              "name_en": "Aura",
+              "name_fr": "Aura",
+              "type": "talent",
+              "description_en": "PC gets one additional power point each level.",
+              "effects": {
+                "pp_per_level": 1
+              }
+            },
+            {
+              "roll": "20",
+              "name_en": "Subconscious Discipline",
+              "name_fr": "Discipline Subconsciente",
+              "type": "talent",
+              "description_en": "Concentration spells continue after the caster ceases concentrating for a period equal to the number of rounds he originally spent concentrating.",
+              "effects": {
+                "concentration_persist": true
+              }
+            },
+            {
+              "roll": "21",
+              "name_en": "Archmage Abilities",
+              "name_fr": "Capacités d'Archimage",
+              "type": "talent",
+              "description_en": "PC has abilities similar to an Archmage. Dev point costs are now the same as any one hybrid spell user. Base lists don't change, but may make spell picks as a hybrid for all three realms.",
+              "effects": {
+                "archmage": true
+              }
+            },
+            {
+              "roll": "22",
+              "name_en": "Ethereal Sight",
+              "name_fr": "Vision Éthérée",
+              "type": "talent",
+              "description_en": "PC may see invisible or ethereal items if he concentrates.",
+              "effects": {
+                "see_invisible": true
+              }
+            },
+            {
+              "roll": "23",
+              "name_en": "Mana Sensing",
+              "name_fr": "Détection de Mana",
+              "type": "talent",
+              "description_en": "PC's neck hairs prickle around a great power source, enchanted location, etc.",
+              "effects": {
+                "mana_sense": true
+              }
+            },
+            {
+              "roll": "24",
+              "name_en": "Visions",
+              "name_fr": "Visions",
+              "type": "talent",
+              "description_en": "PC receives spontaneous glimpses of events associated with a place, person, item, etc. that he touches.",
+              "effects": {
+                "psychometry": true
+              }
+            },
+            {
+              "roll": "25",
+              "name_en": "Lore",
+              "name_fr": "Érudition",
+              "type": "talent",
+              "description_en": "May learn the Arcane Spell Lists as if they were his base lists.",
+              "effects": {
+                "arcane_as_base": true
+              }
+            },
+            {
+              "roll": "26",
+              "name_en": "Mentor",
+              "name_fr": "Mentor",
+              "type": "talent",
+              "description_en": "PC has a high-level non-alchemist magic user as a good friend.",
+              "effects": {
+                "social": "magic_mentor"
+              }
+            },
+            {
+              "roll": "27",
+              "name_en": "Equipper",
+              "name_fr": "Fournisseur",
+              "type": "talent",
+              "description_en": "As '26' except friend is an Alchemist who will make or sell items to the PC for 51-100% of normal cost.",
+              "effects": {
+                "social": "alchemist_friend",
+                "item_discount": "51-100%"
+              }
+            },
+            {
+              "roll": "28",
+              "name_en": "Mana Reading",
+              "name_fr": "Lecture de Mana",
+              "type": "talent",
+              "description_en": "10% chance of determining each ability of a magic item. Roll each characteristic.",
+              "effects": {
+                "identify_item_chance": 10
+              }
+            },
+            {
+              "roll": "29",
+              "name_en": "Archetype",
+              "name_fr": "Archétype",
+              "type": "talent",
+              "description_en": "Without a spell bonus item or with a PP adder, the PC normally has 2x normal Power Points. If using a PP multiplier, the bonus increases 1 level (x2→x3, etc.).",
+              "effects": {
+                "pp_multiplier": 2
+              }
+            },
+            {
+              "roll": "30",
+              "name_en": "Innate Magician",
+              "name_fr": "Magicien Inné",
+              "type": "talent",
+              "description_en": "PC may designate 1 spell list on which he never needs to make an Extraordinary Spell Failure roll.",
+              "effects": {
+                "no_spell_failure_on_list": 1
+              }
+            },
+            {
+              "roll": "31",
+              "name_en": "Psionic",
+              "name_fr": "Psionique",
+              "type": "talent",
+              "description_en": "PC has an additional set of Power Points based on his PR stat to use with the lists in Future Law. May be developed as if a 'Semi-telepath'.",
+              "effects": {
+                "psionic_pp": true
+              }
+            },
+            {
+              "roll": "32-40",
+              "name_en": "+15 Presence",
+              "name_fr": "+15 Présence",
+              "type": "stat_bonus",
+              "description_en": "+15 to PR modification.",
+              "effects": {
+                "stat_bonus": {
+                  "PR": 15
+                }
+              }
+            },
+            {
+              "roll": "41-49",
+              "name_en": "+15 Intuition",
+              "name_fr": "+15 Intuition",
+              "type": "stat_bonus",
+              "description_en": "+15 to IN modification.",
+              "effects": {
+                "stat_bonus": {
+                  "IN": 15
+                }
+              }
+            },
+            {
+              "roll": "50-58",
+              "name_en": "+15 Empathy",
+              "name_fr": "+15 Empathie",
+              "type": "stat_bonus",
+              "description_en": "+15 to EM modification.",
+              "effects": {
+                "stat_bonus": {
+                  "EM": 15
+                }
+              }
+            },
+            {
+              "roll": "59-67",
+              "name_en": "+15 Memory",
+              "name_fr": "+15 Mémoire",
+              "type": "stat_bonus",
+              "description_en": "+15 to ME modification.",
+              "effects": {
+                "stat_bonus": {
+                  "ME": 15
+                }
+              }
+            },
+            {
+              "roll": "68-76",
+              "name_en": "+15 Reasoning",
+              "name_fr": "+15 Raisonnement",
+              "type": "stat_bonus",
+              "description_en": "+15 to RE modification.",
+              "effects": {
+                "stat_bonus": {
+                  "RE": 15
+                }
+              }
+            },
+            {
+              "roll": "77-82",
+              "name_en": "+20 Presence",
+              "name_fr": "+20 Présence",
+              "type": "stat_bonus",
+              "description_en": "+20 to PR modification.",
+              "effects": {
+                "stat_bonus": {
+                  "PR": 20
+                }
+              }
+            },
+            {
+              "roll": "83-88",
+              "name_en": "+20 Intuition",
+              "name_fr": "+20 Intuition",
+              "type": "stat_bonus",
+              "description_en": "+20 to IN modification.",
+              "effects": {
+                "stat_bonus": {
+                  "IN": 20
+                }
+              }
+            },
+            {
+              "roll": "89-93",
+              "name_en": "+20 Empathy",
+              "name_fr": "+20 Empathie",
+              "type": "stat_bonus",
+              "description_en": "+20 to EM modification.",
+              "effects": {
+                "stat_bonus": {
+                  "EM": 20
+                }
+              }
+            },
+            {
+              "roll": "94-97",
+              "name_en": "+20 Memory",
+              "name_fr": "+20 Mémoire",
+              "type": "stat_bonus",
+              "description_en": "+20 to ME modification.",
+              "effects": {
+                "stat_bonus": {
+                  "ME": 20
+                }
+              }
+            },
+            {
+              "roll": "98-99",
+              "name_en": "+20 Reasoning",
+              "name_fr": "+20 Raisonnement",
+              "type": "stat_bonus",
+              "description_en": "+20 to RE modification.",
+              "effects": {
+                "stat_bonus": {
+                  "RE": 20
+                }
+              }
+            },
+            {
+              "roll": "100",
+              "name_en": "+20 to PR/IN/EM/ME/RE (GM choice)",
+              "name_fr": "+20 à PR/IN/EM/ME/RS (choix du MJ)",
+              "type": "stat_bonus",
+              "description_en": "+20 to PR, IN, EM, ME, or RE modification (GM choice).",
+              "effects": {
+                "stat_bonus": {
+                  "choice": 20
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "companion_2",
+      "name": "Companion II",
+      "name_fr": "Compagnon II",
+      "reference": "Rolemaster, le Compagnon II",
+      "status": "no_background_options",
+      "note": "La table des matieres et le contenu montrent des professions optionnelles, des voies des sorts, des regles optionnelles sur les competences, la resolution des actions, le monde des esprits et des descriptions de competences, mais pas de section equivalente a des options d'historique ou a des talents par statistique.",
+      "sections": []
+    },
+    {
+      "id": "companion_3",
+      "name": "Companion III",
+      "name_fr": "Compagnon III",
+      "reference": "ICE #1700, Section 5.3 Innate Stat Abilities",
+      "selection_rules": {
+        "Group A": {
+          "stat_range": "102-104",
+          "selection": "1 A pick"
+        },
+        "Group B": {
+          "stat_range": "105-109",
+          "selection": "1 B pick or 2 A picks"
+        },
+        "Group C": {
+          "stat_range": "110-120",
+          "selection": "1 C pick or 1 B pick and 2 A picks"
+        }
+      },
+      "general_notes": [
+        "Abilities are split by stat into Group A, Group B, and Group C.",
+        "Some entries are direct references to background options; others are spell-like or unique talents.",
+        "Spell-like abilities may be used an unlimited number of times per day unless a limit is stated, but only once per round."
+      ],
+      "sections": [
+        {
+          "name_en": "Constitution",
+          "name_fr": "Constitution",
+          "stat_code": "CO",
+          "entries": [
+            {
+              "id": "rmc3-constitution-a-01",
+              "pick_tier": "A",
+              "name_en": "Unnatural Stamina",
+              "name_fr": null,
+              "description_en": "Unnatural Stamina as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": {
+                "source": "Rolemaster Companion 1",
+                "section": "4.5 Background Options",
+                "roll": "18",
+                "name_en": "Unnatural Stamina"
+              }
+            },
+            {
+              "id": "rmc3-constitution-a-02",
+              "pick_tier": "A",
+              "name_en": "Tolerance",
+              "name_fr": null,
+              "description_en": "Tolerance as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": {
+                "source": "Rolemaster Companion 1",
+                "section": "4.5 Background Options",
+                "roll": "27",
+                "name_en": "Tolerance"
+              }
+            },
+            {
+              "id": "rmc3-constitution-a-03",
+              "pick_tier": "A",
+              "name_en": "Accelerated Healing I",
+              "name_fr": null,
+              "description_en": "Healing occurs at twice the normal rate.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-constitution-a-04",
+              "pick_tier": "A",
+              "name_en": "No Stat Loss on Level Gain",
+              "name_fr": null,
+              "description_en": "Stat loss (due to stress) never occurs upon gaining a level; i.e., stat gain rolls of 01-04 are ignored.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-constitution-a-05",
+              "pick_tier": "A",
+              "name_en": "Clotting I",
+              "name_fr": null,
+              "description_en": "Clotting I as the spell, once per round.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {
+                "frequency": "once_per_round"
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-constitution-b-01",
+              "pick_tier": "B",
+              "name_en": "Natural Physique",
+              "name_fr": null,
+              "description_en": "Natural Physique as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": {
+                "source": "Rolemaster Companion 1",
+                "section": "4.5 Background Options",
+                "roll": "21",
+                "name_en": "Natural Physique"
+              }
+            },
+            {
+              "id": "rmc3-constitution-b-02",
+              "pick_tier": "B",
+              "name_en": "Pain Relief I",
+              "name_fr": null,
+              "description_en": "Pain Relief I as the spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-constitution-b-03",
+              "pick_tier": "B",
+              "name_en": "Major Fracture/Cartilage Repair",
+              "name_fr": null,
+              "description_en": "Major Fracture/Cartilage Repair as the Healer spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-constitution-b-04",
+              "pick_tier": "B",
+              "name_en": "Muscle/Tendon Repair",
+              "name_fr": null,
+              "description_en": "Muscle/Tendon Repair as the Healer spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-constitution-b-05",
+              "pick_tier": "B",
+              "name_en": "Preservation",
+              "name_fr": null,
+              "description_en": "Preservation as the Cleric spell, 1 hour per level duration.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-constitution-b-06",
+              "pick_tier": "B",
+              "name_en": "Cut Repair I",
+              "name_fr": null,
+              "description_en": "Cut Repair I as the spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-constitution-b-07",
+              "pick_tier": "B",
+              "name_en": "Accelerated Healing II",
+              "name_fr": null,
+              "description_en": "Healing occurs at three times the normal rate (not cumulative with Accelerated Healing I).",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-constitution-b-08",
+              "pick_tier": "B",
+              "name_en": "Tough Skin AT 3",
+              "name_fr": null,
+              "description_en": "Skin toughens to AT 3 permanently.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-constitution-b-09",
+              "pick_tier": "B",
+              "name_en": "Poison/Disease Resistance I",
+              "name_fr": null,
+              "description_en": "Poison/Disease Resistance I as the Open Channeling spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-constitution-b-10",
+              "pick_tier": "B",
+              "name_en": "Stun Reduction I",
+              "name_fr": null,
+              "description_en": "Stuns accumulated from each blow taken are reduced by one round.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-constitution-c-01",
+              "pick_tier": "C",
+              "name_en": "Undisease/Unpoison",
+              "name_fr": null,
+              "description_en": "Undisease/Unpoison as the Open Channeling spell, usable 5 times per day.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {
+                "uses_per_day": 5
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-constitution-c-02",
+              "pick_tier": "C",
+              "name_en": "Cancel True",
+              "name_fr": null,
+              "description_en": "Cancel True as the Closed Essence spell, usable 5 times per day. Alternatively, only one realm may be cancelled but this ability may be used once per round an unlimited number of times per day.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {
+                "uses_per_day": 5,
+                "frequency": "once_per_round"
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-constitution-c-03",
+              "pick_tier": "C",
+              "name_en": "Major Vessel Repair I",
+              "name_fr": null,
+              "description_en": "Major Vessel Repair I as the Healer spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-constitution-c-04",
+              "pick_tier": "C",
+              "name_en": "Major Fracture Repair True",
+              "name_fr": null,
+              "description_en": "Major Fracture Repair True as the Healer spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-constitution-c-05",
+              "pick_tier": "C",
+              "name_en": "Muscle/Tendon Repair True",
+              "name_fr": null,
+              "description_en": "Muscle/Tendon Repair True as the Healer spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-constitution-c-06",
+              "pick_tier": "C",
+              "name_en": "Reduced Critical Severity I",
+              "name_fr": null,
+              "description_en": "All criticals taken are reduced one level in severity.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            }
+          ]
+        },
+        {
+          "name_en": "Agility",
+          "name_fr": "Agilite",
+          "stat_code": "AG",
+          "entries": [
+            {
+              "id": "rmc3-agility-a-01",
+              "pick_tier": "A",
+              "name_en": "Natural Facility with Armor",
+              "name_fr": null,
+              "description_en": "Natural Facility with Armor as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": {
+                "source": "Rolemaster Companion 1",
+                "section": "4.5 Background Options",
+                "roll": "17",
+                "name_en": "Natural Facility with Armor"
+              }
+            },
+            {
+              "id": "rmc3-agility-a-02",
+              "pick_tier": "A",
+              "name_en": "Body Control",
+              "name_fr": null,
+              "description_en": "Body Control as the Nightblade spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-agility-a-03",
+              "pick_tier": "A",
+              "name_en": "Landing",
+              "name_fr": null,
+              "description_en": "Landing (10' per level) as the Closed Mentalism spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-agility-a-04",
+              "pick_tier": "A",
+              "name_en": "Edgerunning",
+              "name_fr": null,
+              "description_en": "Edgerunning as the Monk spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-agility-a-05",
+              "pick_tier": "A",
+              "name_en": "Halved Fumble Ranges",
+              "name_fr": null,
+              "description_en": "All fumble ranges are halved (round down).",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {
+                "modifier": "halved"
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-agility-b-01",
+              "pick_tier": "B",
+              "name_en": "Ambidextrous",
+              "name_fr": null,
+              "description_en": "All one-handed melee weapons that character has proficiency in may be used in either or both hands; no cost for this two-weapon combination.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-agility-b-02",
+              "pick_tier": "B",
+              "name_en": "No Weapon Kata Penalties",
+              "name_fr": null,
+              "description_en": "Weapon Kata penalties are eliminated.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-agility-b-03",
+              "pick_tier": "B",
+              "name_en": "Parry Directed Elemental Spells",
+              "name_fr": null,
+              "description_en": "Directed elemental attack spells may be parried using melee OBs and a weapon/shield.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-agility-b-04",
+              "pick_tier": "B",
+              "name_en": "Agile Parry Disarm",
+              "name_fr": null,
+              "description_en": "Agile parrying ability causes opponents to resist vs. character's level or be disarmed if the character uses at least half of his OB to parry.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-agility-c-01",
+              "pick_tier": "C",
+              "name_en": "Scope Skill",
+              "name_fr": null,
+              "description_en": "Scope Skill (choose directed or nondirected spells); otherwise as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-agility-c-02",
+              "pick_tier": "C",
+              "name_en": "Multiple Attack Penalties Halved",
+              "name_fr": null,
+              "description_en": "Penalties for engaging in multiple melee attacks are reduced by 50%.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-agility-c-03",
+              "pick_tier": "C",
+              "name_en": "Pinpoint Accuracy",
+              "name_fr": null,
+              "description_en": "All missile, directed spell, or melee criticals delivered increase one level in severity.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-agility-c-04",
+              "pick_tier": "C",
+              "name_en": "Deftness",
+              "name_fr": null,
+              "description_en": "Open-ended high (OEH) roll range for rolls involving skills that receive an AG bonus becomes 91-100.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {
+                "roll_rule": "open_ended_high_modified"
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-agility-c-05",
+              "pick_tier": "C",
+              "name_en": "Sureness",
+              "name_fr": null,
+              "description_en": "Open-ended low (OEL) range for rolls involving skills that receive an AG bonus becomes 01-02.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {
+                "roll_rule": "open_ended_low_modified"
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            }
+          ]
+        },
+        {
+          "name_en": "Self-Discipline",
+          "name_fr": "Autodiscipline",
+          "stat_code": "SD",
+          "entries": [
+            {
+              "id": "rmc3-self-discipline-a-01",
+              "pick_tier": "A",
+              "name_en": "Courage",
+              "name_fr": null,
+              "description_en": "Courage as the Paladin spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-self-discipline-a-02",
+              "pick_tier": "A",
+              "name_en": "Levitation",
+              "name_fr": null,
+              "description_en": "Levitation as the Closed Essence spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-self-discipline-a-03",
+              "pick_tier": "A",
+              "name_en": "Meditation III",
+              "name_fr": null,
+              "description_en": "Meditation III as the Shaman spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-self-discipline-a-04",
+              "pick_tier": "A",
+              "name_en": "Unpain 50%",
+              "name_fr": null,
+              "description_en": "Unpain 50% as the Open Mentalism spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-self-discipline-b-01",
+              "pick_tier": "B",
+              "name_en": "Improved Frenzy",
+              "name_fr": null,
+              "description_en": "When frenzied, defense is normal and crits are reduced one level. A total roll of 116 is needed to achieve this state.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-self-discipline-b-02",
+              "pick_tier": "B",
+              "name_en": "Iron Will",
+              "name_fr": null,
+              "description_en": "Adds +50 to RRs versus any mind-influencing spells.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {
+                "bonus": 50
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-self-discipline-b-03",
+              "pick_tier": "B",
+              "name_en": "Stun Reduction I",
+              "name_fr": null,
+              "description_en": "Stuns accumulated from each blow taken are reduced by one round.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-self-discipline-b-04",
+              "pick_tier": "B",
+              "name_en": "Concentration II",
+              "name_fr": null,
+              "description_en": "Concentration II as the Monk spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-self-discipline-b-05",
+              "pick_tier": "B",
+              "name_en": "Unpain 100%",
+              "name_fr": null,
+              "description_en": "Unpain 100% as the Open Mentalism spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-self-discipline-c-01",
+              "pick_tier": "C",
+              "name_en": "Unpresence",
+              "name_fr": null,
+              "description_en": "Unpresence as the Mystic spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-self-discipline-c-02",
+              "pick_tier": "C",
+              "name_en": "Hyperfrenzy",
+              "name_fr": null,
+              "description_en": "As Improved Frenzy, but instantaneous spells may be cast while frenzied, crits are reduced two levels, and a roll of 131 must be attained.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-self-discipline-c-03",
+              "pick_tier": "C",
+              "name_en": "Mountain Heart I",
+              "name_fr": null,
+              "description_en": "Mountain Heart I as the Nightblade spell, usable 3 times per day.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {
+                "uses_per_day": 3
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-self-discipline-c-04",
+              "pick_tier": "C",
+              "name_en": "Temporal Skill",
+              "name_fr": null,
+              "description_en": "Temporal Skill as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": {
+                "source": "Rolemaster Companion 1",
+                "section": "4.5 Background Options",
+                "roll": "33",
+                "name_en": "Temporal Skill"
+              }
+            },
+            {
+              "id": "rmc3-self-discipline-c-05",
+              "pick_tier": "C",
+              "name_en": "Additional RR Bonus",
+              "name_fr": null,
+              "description_en": "Additional +15 bonus to all RRs that can be actively resisted (i.e., nonsubtle attacks).",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {
+                "bonus": 15
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-self-discipline-c-06",
+              "pick_tier": "C",
+              "name_en": "Self-Keeping",
+              "name_fr": null,
+              "description_en": "Self-Keeping as the Monk spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            }
+          ]
+        },
+        {
+          "name_en": "Memory",
+          "name_fr": "Memoire",
+          "stat_code": "ME",
+          "entries": [
+            {
+              "id": "rmc3-memory-a-01",
+              "pick_tier": "A",
+              "name_en": "Total Recall",
+              "name_fr": null,
+              "description_en": "Total Recall as the Closed Mentalism spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-memory-a-02",
+              "pick_tier": "A",
+              "name_en": "Languages at Half Cost",
+              "name_fr": null,
+              "description_en": "All languages are learned at half-cost (and time).",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-memory-a-03",
+              "pick_tier": "A",
+              "name_en": "Study I",
+              "name_fr": null,
+              "description_en": "Study I as the Bard spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-memory-a-04",
+              "pick_tier": "A",
+              "name_en": "Earned Experience +5%",
+              "name_fr": null,
+              "description_en": "Permanent 5% bonus to all earned experience.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-memory-a-05",
+              "pick_tier": "A",
+              "name_en": "Procedural Memory",
+              "name_fr": null,
+              "description_en": "Allows two chosen skills to be developed at half cost, subject to GM approval. Skills must be specific; examples: martial arts striking, a certain spell list, or acrobatics.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-memory-b-01",
+              "pick_tier": "B",
+              "name_en": "Subconscious Discipline",
+              "name_fr": null,
+              "description_en": "Subconscious Discipline as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-memory-b-02",
+              "pick_tier": "B",
+              "name_en": "Spell Store",
+              "name_fr": null,
+              "description_en": "Spell Store as the Closed Essence spell, except one other spell may be cast before the stored spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-memory-b-03",
+              "pick_tier": "B",
+              "name_en": "Earned Experience +10%",
+              "name_fr": null,
+              "description_en": "Permanent 10% bonus to earned experience (noncumulative with Earned Experience +5%).",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {
+                "bonus": 5
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-memory-c-01",
+              "pick_tier": "C",
+              "name_en": "Earned Experience +15%",
+              "name_fr": null,
+              "description_en": "Permanent 15% bonus to earned experience (noncumulative with lower experience bonuses).",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-memory-c-02",
+              "pick_tier": "C",
+              "name_en": "Previously Seen Actions +10",
+              "name_fr": null,
+              "description_en": "Permanent +10 bonus to all actions that must have been previously seen or attempted.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {
+                "bonus": 10
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            }
+          ]
+        },
+        {
+          "name_en": "Reasoning",
+          "name_fr": "Raisonnement",
+          "stat_code": "RE",
+          "entries": [
+            {
+              "id": "rmc3-reasoning-a-01",
+              "pick_tier": "A",
+              "name_en": "Tactician",
+              "name_fr": null,
+              "description_en": "Tactician as the background option (substitute reasoning for intuition).",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": {
+                "source": "Rolemaster Companion 1",
+                "section": "4.5 Background Options",
+                "roll": "31",
+                "name_en": "Master Tactician"
+              }
+            },
+            {
+              "id": "rmc3-reasoning-a-02",
+              "pick_tier": "A",
+              "name_en": "Judge of Weaponry",
+              "name_fr": null,
+              "description_en": "Judge of Weaponry as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": {
+                "source": "Rolemaster Companion 1",
+                "section": "4.5 Background Options",
+                "roll": "42",
+                "name_en": "Judge of Weaponry"
+              }
+            },
+            {
+              "id": "rmc3-reasoning-a-03",
+              "pick_tier": "A",
+              "name_en": "Detect Lie",
+              "name_fr": null,
+              "description_en": "Detect Lie (50% chance per lie).",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-reasoning-a-04",
+              "pick_tier": "A",
+              "name_en": "Observation",
+              "name_fr": null,
+              "description_en": "Observation as the Closed Mentalism spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-reasoning-a-05",
+              "pick_tier": "A",
+              "name_en": "Calculate II",
+              "name_fr": null,
+              "description_en": "Calculate II as the Sage spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-reasoning-a-06",
+              "pick_tier": "A",
+              "name_en": "Awareness",
+              "name_fr": null,
+              "description_en": "Awareness as the Mentalist spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-reasoning-b-01",
+              "pick_tier": "B",
+              "name_en": "Martial Art Leverage",
+              "name_fr": null,
+              "description_en": "Clever attacking strategies increase effectiveness of martial art ranks used by one factor.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-reasoning-b-02",
+              "pick_tier": "B",
+              "name_en": "Correlate",
+              "name_fr": null,
+              "description_en": "Correlate as the Closed Mentalism spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-reasoning-b-03",
+              "pick_tier": "B",
+              "name_en": "Detect Illusion",
+              "name_fr": null,
+              "description_en": "Detect Illusion as the Monk spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-reasoning-b-04",
+              "pick_tier": "B",
+              "name_en": "Calculate III",
+              "name_fr": null,
+              "description_en": "Calculate III as the Sage spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-reasoning-c-01",
+              "pick_tier": "C",
+              "name_en": "Weigh Decision",
+              "name_fr": null,
+              "description_en": "Weigh Decision (45% bias) as the Sage spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-reasoning-c-02",
+              "pick_tier": "C",
+              "name_en": "Ambush Mastery",
+              "name_fr": null,
+              "description_en": "Ambush skill rank increases 50% and is one-half cost thereafter.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-reasoning-c-03",
+              "pick_tier": "C",
+              "name_en": "Awareness True",
+              "name_fr": null,
+              "description_en": "Awareness True as the Mentalist spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-reasoning-c-04",
+              "pick_tier": "C",
+              "name_en": "Racial Slayer Insight",
+              "name_fr": null,
+              "description_en": "Complete understanding of one race allows crits against the race to be 'Slaying'.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            }
+          ]
+        },
+        {
+          "name_en": "Strength",
+          "name_fr": "Force",
+          "stat_code": "ST",
+          "entries": [
+            {
+              "id": "rmc3-strength-a-01",
+              "pick_tier": "A",
+              "name_en": "Half Armor Min Penalties",
+              "name_fr": null,
+              "description_en": "Armor minimum maneuver penalties are halved.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {
+                "modifier": "halved"
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-strength-a-02",
+              "pick_tier": "A",
+              "name_en": "Hammerhand",
+              "name_fr": null,
+              "description_en": "Hammerhand as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": {
+                "source": "Rolemaster Companion 1",
+                "section": "4.5 Background Options",
+                "roll": "22",
+                "name_en": "Hammerhand"
+              }
+            },
+            {
+              "id": "rmc3-strength-a-03",
+              "pick_tier": "A",
+              "name_en": "Missile Range +50%",
+              "name_fr": null,
+              "description_en": "All missile ranges increase 50%.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-strength-a-04",
+              "pick_tier": "A",
+              "name_en": "Unbalancing Crit Rider",
+              "name_fr": null,
+              "description_en": "Criticals delivered also yield Unbalancing crits (2 degrees less severity).",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-strength-a-05",
+              "pick_tier": "A",
+              "name_en": "Firm Grip",
+              "name_fr": null,
+              "description_en": "Allows 2-handed weapons to be wielded in one hand at a -25 penalty. Two-weapon combo is unusable when employing this ability.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-strength-b-01",
+              "pick_tier": "B",
+              "name_en": "Death Grip",
+              "name_fr": null,
+              "description_en": "Yields Krush crits the following round after grappling a target.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-strength-b-02",
+              "pick_tier": "B",
+              "name_en": "Shocking Blows",
+              "name_fr": null,
+              "description_en": "All melee strikes yield double concussion damage.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-strength-b-03",
+              "pick_tier": "B",
+              "name_en": "Bow Tester",
+              "name_fr": null,
+              "description_en": "All missile strikes yield double concussion damage.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-strength-b-04",
+              "pick_tier": "B",
+              "name_en": "Heave-Ho",
+              "name_fr": null,
+              "description_en": "May throw objects as a giant would, with a 200' range. Skill must be developed.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-strength-c-01",
+              "pick_tier": "C",
+              "name_en": "Bone Breaker",
+              "name_fr": null,
+              "description_en": "50% of all strikes made with blunt weapons are 'Shattering'.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-strength-c-02",
+              "pick_tier": "C",
+              "name_en": "Hulking Frame",
+              "name_fr": null,
+              "description_en": "Yields ability to throw weight into blows, inflicting additional Impact crits in melee.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-strength-c-03",
+              "pick_tier": "C",
+              "name_en": "Break Mithril-Strong Items",
+              "name_fr": null,
+              "description_en": "Items as strong as Mithril may be bent/broken if the item fails an RR.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-strength-c-04",
+              "pick_tier": "C",
+              "name_en": "Ginsu Master",
+              "name_fr": null,
+              "description_en": "50% of all strikes made with edged weapons are 'Cleaving'.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            }
+          ]
+        },
+        {
+          "name_en": "Quickness",
+          "name_fr": "Rapidite",
+          "stat_code": "QU",
+          "entries": [
+            {
+              "id": "rmc3-quickness-a-01",
+              "pick_tier": "A",
+              "name_en": "Fluidity +5",
+              "name_fr": null,
+              "description_en": "Adds +5 to all OBs and non-rear DBs (includes DB versus elemental attack spells).",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {
+                "bonus": 5
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-quickness-a-02",
+              "pick_tier": "A",
+              "name_en": "Lightning Reactions",
+              "name_fr": null,
+              "description_en": "Allow negation of 1 surprise or disorientation round.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-quickness-a-03",
+              "pick_tier": "A",
+              "name_en": "Roll With Blows",
+              "name_fr": null,
+              "description_en": "Subtracts 5 from all criticals taken if the character is aware of the attack.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-quickness-a-04",
+              "pick_tier": "A",
+              "name_en": "Efficiency +10%",
+              "name_fr": null,
+              "description_en": "Gives an additional 10% activity each round.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-quickness-a-05",
+              "pick_tier": "A",
+              "name_en": "Anti-Flank by Fewer Than Three",
+              "name_fr": null,
+              "description_en": "Ability to change facing in melee prevents the character from being flanked/attacked from rear by less than 3 opponents if aware of them.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-quickness-b-01",
+              "pick_tier": "B",
+              "name_en": "Fluidity +10",
+              "name_fr": null,
+              "description_en": "As Fluidity, but the bonus is +10 instead of +5.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {
+                "bonus": 10
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-quickness-b-02",
+              "pick_tier": "B",
+              "name_en": "Negate Opponent Quickness/Adrenal Defense",
+              "name_fr": null,
+              "description_en": "Opponent's Quickness and/or adrenal defense may be negated 50% of the time if the opponent possesses quickness below 102.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-quickness-b-03",
+              "pick_tier": "B",
+              "name_en": "Preemptive Striking",
+              "name_fr": null,
+              "description_en": "Character may act one combat phase earlier (e.g. fire a missile in the spell phase); a penalty of -30 to first swing points (FSP) is applied when this ability is used.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-quickness-b-04",
+              "pick_tier": "B",
+              "name_en": "Efficiency +20%",
+              "name_fr": null,
+              "description_en": "As Efficiency, but the additional activity is 20%.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-quickness-c-01",
+              "pick_tier": "C",
+              "name_en": "Fluidity +15",
+              "name_fr": null,
+              "description_en": "As Fluidity, but the bonus is +15 instead of +5.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {
+                "bonus": 15
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-quickness-c-02",
+              "pick_tier": "C",
+              "name_en": "Dodging III",
+              "name_fr": null,
+              "description_en": "Dodging III as the Monk spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-quickness-c-03",
+              "pick_tier": "C",
+              "name_en": "Spell Dodge II",
+              "name_fr": null,
+              "description_en": "Spell Dodge II as the Nightblade spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-quickness-c-04",
+              "pick_tier": "C",
+              "name_en": "Efficiency +40%",
+              "name_fr": null,
+              "description_en": "As Efficiency, but the additional activity is 40%.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            }
+          ]
+        },
+        {
+          "name_en": "Presence",
+          "name_fr": "Presence",
+          "stat_code": "PR",
+          "entries": [
+            {
+              "id": "rmc3-presence-a-01",
+              "pick_tier": "A",
+              "name_en": "Look of Eagles",
+              "name_fr": null,
+              "description_en": "Look of Eagles as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": {
+                "source": "Rolemaster Companion 1",
+                "section": "4.5 Background Options",
+                "roll": "36",
+                "name_en": "Look of Eagles"
+              }
+            },
+            {
+              "id": "rmc3-presence-a-02",
+              "pick_tier": "A",
+              "name_en": "Suggestion",
+              "name_fr": null,
+              "description_en": "Suggestion as the Closed Essence spell; targets gain a +30 to resist.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {
+                "bonus": 30
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-presence-a-03",
+              "pick_tier": "A",
+              "name_en": "Mind Merge",
+              "name_fr": null,
+              "description_en": "Mind Merge as the Mentalist spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-presence-a-04",
+              "pick_tier": "A",
+              "name_en": "Mind Shield",
+              "name_fr": null,
+              "description_en": "Mind Shield as the Open Mentalism spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-presence-a-05",
+              "pick_tier": "A",
+              "name_en": "Inner Thoughts",
+              "name_fr": null,
+              "description_en": "Inner Thoughts as the Mentalist spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-presence-a-06",
+              "pick_tier": "A",
+              "name_en": "Mind Voice 100'",
+              "name_fr": null,
+              "description_en": "Mind Voice 100' as the Mentalist spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-presence-b-01",
+              "pick_tier": "B",
+              "name_en": "Look of Terror I",
+              "name_fr": null,
+              "description_en": "Look of Terror I as the Warlock spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-presence-b-02",
+              "pick_tier": "B",
+              "name_en": "Aggression",
+              "name_fr": null,
+              "description_en": "Aggression as the background option, except it applies to all attack rolls.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": {
+                "source": "Rolemaster Companion 1",
+                "section": "4.5 Background Options",
+                "roll": "12",
+                "name_en": "Aggression"
+              }
+            },
+            {
+              "id": "rmc3-presence-b-03",
+              "pick_tier": "B",
+              "name_en": "Inner Wall V",
+              "name_fr": null,
+              "description_en": "Inner Wall V as the Closed Mentalism spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-presence-b-04",
+              "pick_tier": "B",
+              "name_en": "Aura",
+              "name_fr": null,
+              "description_en": "Aura as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": {
+                "source": "Rolemaster Companion 1",
+                "section": "4.5 Background Options",
+                "roll": "19",
+                "name_en": "Aura"
+              }
+            },
+            {
+              "id": "rmc3-presence-b-05",
+              "pick_tier": "B",
+              "name_en": "Lifekeeping",
+              "name_fr": null,
+              "description_en": "Lifekeeping (1 hour per level) as the Cleric spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-presence-b-06",
+              "pick_tier": "B",
+              "name_en": "Charm Kind",
+              "name_fr": null,
+              "description_en": "Charm Kind as the Mentalist spell; targets gain a +30 to RRs.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {
+                "bonus": 30
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-presence-b-07",
+              "pick_tier": "B",
+              "name_en": "Hold Kind",
+              "name_fr": null,
+              "description_en": "Hold Kind as the Mentalist spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-presence-c-01",
+              "pick_tier": "C",
+              "name_en": "Inspirations II",
+              "name_fr": null,
+              "description_en": "Inspirations II as the Paladin spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-presence-c-02",
+              "pick_tier": "C",
+              "name_en": "Misfeel True",
+              "name_fr": null,
+              "description_en": "Misfeel True as the Mystic spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-presence-c-03",
+              "pick_tier": "C",
+              "name_en": "Control Demon V",
+              "name_fr": null,
+              "description_en": "Control Demon V as the Evil Magician spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-presence-c-04",
+              "pick_tier": "C",
+              "name_en": "Master of Kind",
+              "name_fr": null,
+              "description_en": "Master of Kind as the Mentalist spell; targets gain a +30 to RRs.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {
+                "bonus": 30
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-presence-c-05",
+              "pick_tier": "C",
+              "name_en": "Fist of Power",
+              "name_fr": null,
+              "description_en": "Ability to externalize mind force allows the caster to simulate the effects of the Mentalist spell Shock E twice per day. Alternatively, 'Shattering' may be used.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            }
+          ]
+        },
+        {
+          "name_en": "Intuition",
+          "name_fr": "Intuition",
+          "stat_code": "IN",
+          "entries": [
+            {
+              "id": "rmc3-intuition-a-01",
+              "pick_tier": "A",
+              "name_en": "Dream I",
+              "name_fr": null,
+              "description_en": "Dream I as the Cleric spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-intuition-a-02",
+              "pick_tier": "A",
+              "name_en": "Divination",
+              "name_fr": null,
+              "description_en": "Divination as the secondary skill, 80% chance of success.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-intuition-a-03",
+              "pick_tier": "A",
+              "name_en": "Direction Sense",
+              "name_fr": null,
+              "description_en": "Direction Sense as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-intuition-a-04",
+              "pick_tier": "A",
+              "name_en": "Guess",
+              "name_fr": null,
+              "description_en": "Guess as the Cleric spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-intuition-a-05",
+              "pick_tier": "A",
+              "name_en": "Spatial Location Awareness +50",
+              "name_fr": null,
+              "description_en": "Provides a +50 bonus to the skill Spatial Location Awareness.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {
+                "bonus": 50
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-intuition-a-06",
+              "pick_tier": "A",
+              "name_en": "Future Insight DB +10",
+              "name_fr": null,
+              "description_en": "Intuitive understanding of the near future bestows a +10 bonus to all DBs, including rear DBs.",
+              "description_fr": null,
+              "type": "bonus",
+              "mechanical_effects": {
+                "bonus": 10
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-intuition-b-01",
+              "pick_tier": "B",
+              "name_en": "Awakening",
+              "name_fr": null,
+              "description_en": "Awakening as the Monk spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-intuition-b-02",
+              "pick_tier": "B",
+              "name_en": "Intuitions V",
+              "name_fr": null,
+              "description_en": "Intuitions V as the Cleric spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-intuition-b-03",
+              "pick_tier": "B",
+              "name_en": "Detect Ambush",
+              "name_fr": null,
+              "description_en": "Detect Ambush as the Ranger spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-intuition-b-04",
+              "pick_tier": "B",
+              "name_en": "Channel Opening",
+              "name_fr": null,
+              "description_en": "Channel Opening (10 miles per level) as the Cleric spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-intuition-c-01",
+              "pick_tier": "C",
+              "name_en": "Luck",
+              "name_fr": null,
+              "description_en": "Luck as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": {
+                "source": "Rolemaster Companion 1",
+                "section": "4.5 Background Options",
+                "roll": "23",
+                "name_en": "Luck"
+              }
+            },
+            {
+              "id": "rmc3-intuition-c-02",
+              "pick_tier": "C",
+              "name_en": "Destiny Sense",
+              "name_fr": null,
+              "description_en": "Destiny Sense as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-intuition-c-03",
+              "pick_tier": "C",
+              "name_en": "Dangersense",
+              "name_fr": null,
+              "description_en": "Dangersense as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-intuition-c-04",
+              "pick_tier": "C",
+              "name_en": "Fervor",
+              "name_fr": null,
+              "description_en": "A special tie to deity allows use of the Dervish spell Dance of Fervor once per week.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {
+                "frequency": "once_per_week"
+              },
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-intuition-c-05",
+              "pick_tier": "C",
+              "name_en": "Anticipate True",
+              "name_fr": null,
+              "description_en": "Anticipate True as the Open Mentalism spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            }
+          ]
+        },
+        {
+          "name_en": "Empathy",
+          "name_fr": "Empathie",
+          "stat_code": "EM",
+          "entries": [
+            {
+              "id": "rmc3-empathy-a-01",
+              "pick_tier": "A",
+              "name_en": "Animal Friendship",
+              "name_fr": null,
+              "description_en": "Animal Friendship as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-empathy-a-02",
+              "pick_tier": "A",
+              "name_en": "Mind Typing",
+              "name_fr": null,
+              "description_en": "Mind Typing as the Mentalist spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-empathy-a-03",
+              "pick_tier": "A",
+              "name_en": "Emotions",
+              "name_fr": null,
+              "description_en": "Emotions as the Mentalist spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-empathy-a-04",
+              "pick_tier": "A",
+              "name_en": "Detect Realm",
+              "name_fr": null,
+              "description_en": "As Detect Channeling, but applies to all realms.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-empathy-a-05",
+              "pick_tier": "A",
+              "name_en": "Mana Sensing",
+              "name_fr": null,
+              "description_en": "Mana Sensing as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": {
+                "source": "Rolemaster Companion 1",
+                "section": "4.5 Background Options",
+                "roll": "23",
+                "name_en": "Mana Sensing"
+              }
+            },
+            {
+              "id": "rmc3-empathy-a-06",
+              "pick_tier": "A",
+              "name_en": "Presence/Feel/Mind Store",
+              "name_fr": null,
+              "description_en": "Presence, Feel, and Mind Store as the Mentalist spells.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-empathy-a-07",
+              "pick_tier": "A",
+              "name_en": "Location 500'",
+              "name_fr": null,
+              "description_en": "Location 500' as the Open Channeling spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-empathy-b-01",
+              "pick_tier": "B",
+              "name_en": "Visions",
+              "name_fr": null,
+              "description_en": "Visions as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": {
+                "source": "Rolemaster Companion 1",
+                "section": "4.5 Background Options",
+                "roll": "24",
+                "name_en": "Visions"
+              }
+            },
+            {
+              "id": "rmc3-empathy-b-02",
+              "pick_tier": "B",
+              "name_en": "Mana Reading",
+              "name_fr": null,
+              "description_en": "Mana Reading as the background option, except there is only a 50% chance for each ability.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": {
+                "source": "Rolemaster Companion 1",
+                "section": "4.5 Background Options",
+                "roll": "28",
+                "name_en": "Mana Reading"
+              }
+            },
+            {
+              "id": "rmc3-empathy-b-03",
+              "pick_tier": "B",
+              "name_en": "Awareness",
+              "name_fr": null,
+              "description_en": "Awareness as the Mentalist spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-empathy-b-04",
+              "pick_tier": "B",
+              "name_en": "Neutralize Curse",
+              "name_fr": null,
+              "description_en": "Neutralize Curse (1 minute per level) as the Cleric spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-empathy-b-05",
+              "pick_tier": "B",
+              "name_en": "Analysis",
+              "name_fr": null,
+              "description_en": "Analysis as the Open Essence spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-empathy-c-01",
+              "pick_tier": "C",
+              "name_en": "Transcendence",
+              "name_fr": null,
+              "description_en": "Transcendence as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": {
+                "source": "Rolemaster Companion 1",
+                "section": "4.5 Background Options",
+                "roll": "11",
+                "name_en": "Transcendence"
+              }
+            },
+            {
+              "id": "rmc3-empathy-c-02",
+              "pick_tier": "C",
+              "name_en": "Spatial Skill",
+              "name_fr": null,
+              "description_en": "Spatial Skill as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": {
+                "source": "Rolemaster Companion 1",
+                "section": "4.5 Background Options",
+                "roll": "32",
+                "name_en": "Spatial Skill"
+              }
+            },
+            {
+              "id": "rmc3-empathy-c-03",
+              "pick_tier": "C",
+              "name_en": "Detect True",
+              "name_fr": null,
+              "description_en": "Detect True as the Open Essence spell.",
+              "description_fr": null,
+              "type": "spell_like_talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-empathy-c-04",
+              "pick_tier": "C",
+              "name_en": "Ensorcellment Cure",
+              "name_fr": null,
+              "description_en": "Ensorcellment Cure as the background option.",
+              "description_fr": null,
+              "type": "background_option_reference",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            },
+            {
+              "id": "rmc3-empathy-c-05",
+              "pick_tier": "C",
+              "name_en": "Power Parasite",
+              "name_fr": null,
+              "description_en": "Power may be leeched from an earthnode, item, or person imbued with Essence power; rate of drain is 10 PP per round and user must make a BAR vs unwilling targets, who then make an RR to attempt to resist the draining. Concentration must be maintained during each round of the drain.",
+              "description_fr": null,
+              "type": "talent",
+              "mechanical_effects": {},
+              "translation_status": "english_only_substitution_source",
+              "cross_reference_companion_1": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

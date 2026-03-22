@@ -12,6 +12,7 @@ const FILES = [
   'simil',
   'options',
   'monde',
+  'background_options_merged',
 ];
 
 let gameData = null;

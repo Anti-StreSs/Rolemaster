@@ -1,0 +1,430 @@
+/* ============================================
+   ROLEMASTER CHARACTER CREATOR — MEDIEVAL THEME
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+  --font-title: 'Cinzel', 'Georgia', serif;
+  --font-body: 'Crimson Text', 'Georgia', serif;
+  --font-data: 'Segoe UI', system-ui, sans-serif;
+
+  --frame-corner: 48px;
+  --color-parchment-text: #2a1a08;
+  --color-parchment-dim: #6b5030;
+  --color-parchment-accent: #8b2500;
+  --color-gold: #d4a017;
+  --color-gold-bright: #f0c040;
+  --color-wood-dark: #2a1a08;
+}
+
+/* === BODY & BACKDROP === */
+body.rm-theme {
+  margin: 0;
+  min-height: 100vh;
+  background: #0a0806 url('../assets/ui/backgrounds/stone_wall_1248.webp') center center;
+  background-size: cover;
+  font-family: var(--font-body);
+  color: #d4c5a9;
+  overflow-x: hidden;
+}
+
+/* === TORCHES (desktop only) === */
+.rm-torch {
+  position: fixed;
+  width: 48px;
+  top: 60px;
+  z-index: 50;
+  pointer-events: none;
+  display: none;
+}
+.rm-torch-left {
+  left: 8px;
+  background: url('../assets/ui/decorations/torch_left.webp') top center no-repeat;
+  background-size: contain;
+  height: 200px;
+}
+.rm-torch-right {
+  right: 8px;
+  background: url('../assets/ui/decorations/torch_right.webp') top center no-repeat;
+  background-size: contain;
+  height: 200px;
+}
+.rm-torch::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(255,150,30,0.25) 0%, transparent 70%);
+  animation: torch-flicker 2.5s ease-in-out infinite alternate;
+}
+@keyframes torch-flicker {
+  0% { opacity: 0.6; transform: translateX(-50%) scale(0.9); }
+  50% { opacity: 1; transform: translateX(-48%) scale(1.05); }
+  100% { opacity: 0.75; transform: translateX(-52%) scale(0.95); }
+}
+
+/* === HEADER === */
+.rm-header {
+  height: 72px;
+  background: url('../assets/ui/header/rolemaster_banner_1400w.webp') center center no-repeat;
+  background-size: contain;
+  background-color: #0a0806;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 16px;
+  position: relative;
+  z-index: 20;
+}
+.rm-lang-toggle {
+  display: flex;
+  gap: 6px;
+}
+.rm-flag {
+  background: none;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 2px;
+  opacity: 0.6;
+  transition: all 0.2s;
+}
+.rm-flag.active, .rm-flag:hover {
+  opacity: 1;
+  border-color: var(--color-gold);
+}
+.rm-flag img { display: block; height: 24px; width: auto; }
+
+/* === LAYOUT === */
+.rm-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 72px - 60px);
+}
+
+/* === NAV ONGLETS === */
+.rm-nav {
+  display: flex;
+  gap: 2px;
+  padding: 8px 12px;
+  overflow-x: auto;
+  justify-content: center;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.rm-nav::-webkit-scrollbar { display: none; }
+
+.rm-tab-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+.rm-tab-icon:hover { opacity: 0.9; }
+.rm-tab-icon.active {
+  opacity: 1;
+}
+.rm-tab-icon img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  filter: brightness(1.3) contrast(1.1) drop-shadow(0 1px 3px rgba(0,0,0,0.7));
+  transition: filter 0.3s, transform 0.2s;
+}
+.rm-tab-icon:hover img {
+  filter: brightness(1.5) contrast(1.15) drop-shadow(0 0 6px rgba(212,200,180,0.4));
+  transform: scale(1.08);
+}
+.rm-tab-icon.active img {
+  filter: brightness(1.6) contrast(1.2) saturate(1.2) drop-shadow(0 0 10px rgba(255,216,99,0.5)) drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+  transform: scale(1.1);
+}
+.rm-tab-icon span {
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #c8beb0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  transition: color 0.3s, text-shadow 0.3s;
+}
+.rm-tab-icon:hover span {
+  color: #e8e0d4;
+  text-shadow: 0 0 6px rgba(232,224,212,0.4), 0 1px 3px rgba(0,0,0,0.8);
+}
+.rm-tab-icon.active span {
+  color: #ffd863;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(255,216,99,0.6), 0 0 20px rgba(212,160,23,0.35), 0 1px 3px rgba(0,0,0,0.9);
+}
+
+/* === CONTENU PRINCIPAL === */
+.rm-main {
+  flex: 1;
+  padding: 0 12px 12px;
+}
+
+.rm-frame {
+  position: relative;
+  background:
+    url('../assets/ui/frames/central_frame_9slice/top_left.webp') top left no-repeat,
+    url('../assets/ui/frames/central_frame_9slice/top_right.webp') top right no-repeat,
+    url('../assets/ui/frames/central_frame_9slice/bottom_left.webp') bottom left no-repeat,
+    url('../assets/ui/frames/central_frame_9slice/bottom_right.webp') bottom right no-repeat,
+    url('../assets/ui/frames/central_frame_9slice/top.webp') top center repeat-x,
+    url('../assets/ui/frames/central_frame_9slice/bottom.webp') bottom center repeat-x,
+    url('../assets/ui/frames/central_frame_9slice/left.webp') center left repeat-y,
+    url('../assets/ui/frames/central_frame_9slice/right.webp') center right repeat-y;
+  background-size: 48px 48px;
+  padding: 48px;
+  min-height: 400px;
+}
+
+.rm-parchment {
+  background: #f5efe0 url('../assets/ui/backgrounds/parchment_texture_1024.webp') center center repeat;
+  background-blend-mode: overlay;
+  color: var(--color-parchment-text);
+  padding: 20px 24px;
+  min-height: 300px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Override dark-theme text colors inside parchment */
+.rm-parchment .text-gray-300,
+.rm-parchment .text-gray-400 { color: #2a1a08 !important; }
+.rm-parchment .text-gray-500,
+.rm-parchment .text-gray-600 { color: #3e2a18 !important; }
+.rm-parchment .text-amber-300,
+.rm-parchment .text-amber-400 { color: #8b6914 !important; }
+.rm-parchment .text-purple-300,
+.rm-parchment .text-purple-400 { color: #6b21a8 !important; }
+.rm-parchment .text-green-400,
+.rm-parchment .text-green-500 { color: #1a6b30 !important; }
+.rm-parchment .text-red-400 { color: #8b2500 !important; }
+.rm-parchment .text-blue-400 { color: #1a4a8b !important; }
+.rm-parchment .text-yellow-400,
+.rm-parchment .text-yellow-500 { color: #8b6914 !important; }
+
+.rm-parchment .stat-bonus.positive { color: #1a6b30 !important; }
+.rm-parchment .stat-bonus.negative { color: #8b2500 !important; }
+
+/* Panels on parchment */
+.rm-parchment .panel {
+  background: rgba(139, 92, 20, 0.06);
+  border: 1px solid rgba(139, 92, 20, 0.15);
+  border-left: 3px solid rgba(139, 92, 20, 0.3);
+}
+.rm-parchment .panel:hover {
+  border-left-color: var(--color-gold);
+}
+.rm-parchment .panel-title {
+  color: #3a1a08;
+  text-shadow: none;
+  border-bottom-color: rgba(139, 92, 20, 0.2);
+}
+
+/* Tables on parchment */
+.rm-parchment .skill-table th {
+  background: #e0d4b8;
+  color: #3a2010;
+  border-bottom: 2px solid rgba(139,92,20,0.3);
+}
+.rm-parchment .skill-table td {
+  border-bottom: 1px solid rgba(139,92,20,0.08);
+}
+.rm-parchment .skill-table tr:hover td {
+  background: rgba(139,92,20,0.06);
+}
+.rm-parchment .skill-category-header {
+  background: rgba(139,92,20,0.1) !important;
+  color: #5c3a10 !important;
+}
+
+/* Fields on parchment */
+.rm-parchment .field {
+  background: rgba(255,255,255,0.4);
+  border-color: rgba(139,92,20,0.2);
+  color: #2a1a08;
+}
+.rm-parchment .field:focus {
+  border-color: var(--color-gold);
+  background: rgba(255,255,255,0.6);
+}
+.rm-parchment .field-inline {
+  color: #2a1a08;
+  border-bottom-color: rgba(139,92,20,0.2);
+}
+
+/* Buttons on parchment */
+.rm-parchment .btn-primary {
+  background: linear-gradient(135deg, #8b6914, #a07820);
+  color: #fef3c7;
+  border-color: #c49a20;
+}
+.rm-parchment .btn-secondary {
+  background: rgba(139,92,20,0.15);
+  color: #3a2010;
+  border-color: rgba(139,92,20,0.3);
+}
+.rm-parchment .btn-secondary:hover {
+  background: rgba(139,92,20,0.25);
+}
+
+/* +/- on parchment */
+.rm-parchment .pm-btn {
+  border-color: rgba(139,92,20,0.3);
+  background: rgba(139,92,20,0.05);
+}
+.rm-parchment .pm-plus { color: #1a6b30; }
+.rm-parchment .pm-minus { color: #8b2500; }
+.rm-parchment .pm-btn:hover:not(:disabled) {
+  background: rgba(139,92,20,0.15);
+  border-color: var(--color-gold);
+}
+.rm-parchment .pm-btn:disabled {
+  color: rgba(139,92,20,0.15);
+  border-color: rgba(139,92,20,0.1);
+}
+
+/* Rank boxes on parchment */
+.rm-parchment .rank-box { color: rgba(139,92,20,0.2); }
+.rm-parchment .rank-box.filled { color: #8b6914; background: rgba(139,92,20,0.15); }
+.rm-parchment .rank-box.new-rank { color: #1a6b30; background: rgba(26,107,48,0.15); }
+
+/* Phase button on parchment */
+.rm-parchment .phase-btn {
+  border-color: rgba(139,92,20,0.3);
+  color: #6b5030;
+}
+.rm-parchment .phase-btn.active {
+  border-color: var(--color-gold);
+  background: rgba(139,92,20,0.12);
+  color: #3a1a08;
+}
+
+/* Stat log on parchment */
+.rm-parchment .stat-log {
+  background: rgba(139,92,20,0.04);
+  border-color: rgba(139,92,20,0.1);
+}
+
+/* Pair chips on parchment */
+.rm-parchment .pair-chip {
+  border-color: rgba(139,92,20,0.3);
+  background: rgba(255,255,255,0.3);
+  color: #2a1a08;
+}
+.rm-parchment .pair-temp { color: #8b6914; }
+.rm-parchment .pair-pot { color: #1a4a8b; }
+.rm-parchment .pair-chip.assigned {
+  border-color: #1a6b30;
+  background: rgba(26,107,48,0.1);
+}
+
+/* DP bar on parchment */
+.rm-parchment .dp-bar { background: rgba(139,92,20,0.1); }
+
+/* Highlighting on parchment */
+.rm-parchment .highlight-yellow { background: rgba(255, 255, 0, 0.25) !important; }
+.rm-parchment .highlight-green  { background: rgba(0, 200, 0, 0.2) !important; }
+.rm-parchment .highlight-pink   { background: rgba(255, 105, 180, 0.2) !important; }
+.rm-parchment .highlight-blue   { background: rgba(100, 150, 255, 0.2) !important; }
+.rm-parchment .highlight-orange { background: rgba(255, 165, 0, 0.2) !important; }
+
+/* Scroll container on parchment */
+.rm-parchment .scroll-container {
+  scrollbar-color: rgba(139,92,20,0.3) transparent;
+}
+
+/* Toast stays dark (outside parchment) */
+
+/* === FOOTER === */
+.rm-footer {
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.rm-footer-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.rm-footer-deco {
+  display: none;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+  padding: 8px 0;
+}
+.rm-footer-deco img { height: 64px; width: auto; }
+
+/* === RESPONSIVE === */
+@media (min-width: 1200px) {
+  .rm-torch { display: block; }
+  .rm-footer-deco { display: flex; }
+  .rm-layout { padding: 0 64px; }
+  .rm-tab-icon img { width: 52px; height: 52px; }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .rm-tab-icon img { width: 40px; height: 40px; }
+  .rm-frame { padding: 32px; background-size: 32px 32px; }
+}
+
+@media (max-width: 767px) {
+  .rm-header {
+    height: 48px;
+    background-size: auto 48px;
+  }
+  .rm-nav {
+    justify-content: flex-start;
+    padding: 4px 8px;
+    gap: 0;
+  }
+  .rm-tab-icon { padding: 4px 8px; }
+  .rm-tab-icon img { width: 32px; height: 32px; }
+  .rm-tab-icon span { font-size: 0.5rem; }
+  .rm-frame {
+    padding: 12px;
+    background-size: 16px 16px;
+  }
+  .rm-parchment { padding: 12px; font-size: 0.85rem; }
+  .rm-footer-deco { display: none; }
+}
+
+/* === PRINT === */
+@media print {
+  .rm-torch, .rm-header, .rm-nav, .rm-footer, .rm-footer-deco { display: none !important; }
+  body.rm-theme { background: white !important; }
+  .rm-frame { padding: 0 !important; background: none !important; }
+  .rm-parchment {
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+  }
+  .rm-parchment .text-gray-300,
+  .rm-parchment .text-gray-400,
+  .rm-parchment .text-gray-500,
+  .rm-parchment .text-gray-600,
+  .rm-parchment .text-amber-300,
+  .rm-parchment .text-purple-300 { color: black !important; }
+}

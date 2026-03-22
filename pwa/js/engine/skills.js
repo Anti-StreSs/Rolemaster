@@ -162,6 +162,7 @@ const PARENT_SKILL_INDICES = new Set([
   147, // Langages Magiques (Magical Languages) — choose a magical language
   148, // Maitrise de Sort (Spell Mastery) — choose which spell list to master
   145, // Direction de Sorts (Directed Spells) — choose directed spell type
+  173, // Perception Générale (General Perception) — choose sense type
 ]);
 
 /**
@@ -221,6 +222,14 @@ export function getParentSubSkillOptions(globalIndex) {
       return (ws[57] || []).map(name => ({ name }));
     case 148: // Maitrise de Sort — depends on character's known spell lists (dynamic)
       return []; // Handled in UI from character.spellLists
+    case 173: // Perception Générale — 5 sens
+      return [
+        { name: 'Vue' },
+        { name: 'Ouïe' },
+        { name: 'Odorat' },
+        { name: 'Toucher' },
+        { name: 'Goût' },
+      ];
     default:
       return [];
   }

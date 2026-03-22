@@ -38,7 +38,7 @@ export function renderSheet(character, app) {
       </div>
       <div class="flex gap-4 text-center">
         <div>
-          <div class="text-2xl font-bold text-red-400">${hp}</div>
+          <div class="text-2xl font-bold text-red-400">${hp.base}</div>
           <div class="text-xs text-gray-500">${t.sheet.hitPoints}</div>
         </div>
         ${character.realm !== 'none' ? `

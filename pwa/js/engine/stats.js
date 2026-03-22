@@ -1,7 +1,7 @@
 // Stats engine — stat rolling, bonus calculation, development points, power points
 
 import { getData } from './data-loader.js';
-export { generateStatRolls, getStatValues, statPotentialLookup } from './stat_potentials.js';
+export { generateStatRolls, getStatValues, statPotentialLookup, generateStatRollsHybrid, generateStatRollsAntiLose, getStatValuesHybrid } from './stat_potentials.js';
 
 // 10 stats indexed 0-9
 export const STAT_COUNT = 10;

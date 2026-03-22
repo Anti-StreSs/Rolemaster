@@ -108,6 +108,73 @@ export function generateStatRolls() {
 }
 
 /**
+ * Hybrid method: RM2 Table 15.1.1 with +5 bonus on pot rolls.
+ * Rule: if no resulting pot exceeds 91, the first pair gets pot forced to 100.
+ * @returns {Array<{tempRoll: number, potRoll: number, potRollBoosted: number, temp: number, pot: number, forced100: boolean}>}
+ */
+export function generateStatRollsHybrid() {
+  const rolls = [];
+  for (let i = 0; i < 10; i++) {
+    const tempRoll = Math.floor(Math.random() * 100) + 1;
+    const potRoll = Math.floor(Math.random() * 100) + 1;
+    const potRollBoosted = Math.min(potRoll + 5, 100);
+    const temp = tempRoll;
+    const pot = statPotentialLookup(potRollBoosted, temp);
+    rolls.push({ tempRoll, potRoll, potRollBoosted, temp, pot, forced100: false });
+  }
+  // Safety net: if no pot > 91, force first pair's pot to 100
+  const hasHigh = rolls.some(r => r.pot > 91);
+  if (!hasHigh) {
+    rolls[0].pot = 100;
+    rolls[0].forced100 = true;
+  }
+  return rolls;
+}
+
+/**
+ * Anti-Lose method: RM2 Table 15.1.1 with +10 bonus on pot rolls.
+ * The weakest pot is always replaced by 100.
+ * @returns {Array<{tempRoll: number, potRoll: number, potRollBoosted: number, temp: number, pot: number, forced100: boolean}>}
+ */
+export function generateStatRollsAntiLose() {
+  const rolls = [];
+  for (let i = 0; i < 10; i++) {
+    const tempRoll = Math.floor(Math.random() * 100) + 1;
+    const potRoll = Math.floor(Math.random() * 100) + 1;
+    const potRollBoosted = Math.min(potRoll + 10, 100);
+    const temp = tempRoll;
+    const pot = statPotentialLookup(potRollBoosted, temp);
+    rolls.push({ tempRoll, potRoll, potRollBoosted, temp, pot, forced100: false });
+  }
+  // Always force the weakest pot to 100
+  let minIdx = 0;
+  for (let i = 1; i < rolls.length; i++) {
+    if (rolls[i].pot < rolls[minIdx].pot) minIdx = i;
+  }
+  rolls[minIdx].pot = 100;
+  rolls[minIdx].forced100 = true;
+  return rolls;
+}
+
+/**
+ * Get displayed values for a hybrid/anti-lose roll, applying prime bonus if needed.
+ * Prime stats: temp boosted to max(roll, 90), pot recalculated from boosted potRoll.
+ * If the roll was forced to 100, prime recalc won't lower it below 100.
+ */
+export function getStatValuesHybrid(roll, isPrime) {
+  if (isPrime) {
+    const newTemp = Math.max(roll.tempRoll, 90);
+    const newPot = statPotentialLookup(roll.potRollBoosted, newTemp);
+    const basePot = roll.forced100 ? 100 : Math.max(newPot, newTemp);
+    return { temp: newTemp, pot: Math.max(basePot, newTemp) };
+  }
+  return {
+    temp: roll.tempRoll,
+    pot: roll.forced100 ? 100 : statPotentialLookup(roll.potRollBoosted, roll.tempRoll)
+  };
+}
+
+/**
  * Get displayed values for a roll, applying prime bonus if needed.
  * Prime stats get temp boosted to at least 90, pot recalculated from raw potRoll.
  * @param {{tempRoll: number, potRoll: number}} roll

@@ -1,0 +1,356 @@
+/* =============================================
+   ROLEMASTER CHARACTER SHEET — PRINT STYLES
+   ============================================= */
+
+@media print {
+  /* Hide app chrome always in print */
+  .rm-header, .rm-nav, .rm-footer, .rm-footer-deco,
+  .rm-torch, .no-print,
+  .tab-bar, #main-nav, #app-footer-actions { display: none !important; }
+
+  /* When print preview is active (class added by JS), hide main content */
+  body.printing .rm-layout,
+  body.printing .rm-footer { display: none !important; }
+
+  body {
+    background: white !important;
+    color: black !important;
+    font-family: var(--print-font-family, 'Arial'), sans-serif;
+    font-size: var(--print-font-size, 8pt);
+    margin: 0;
+    padding: 0;
+  }
+
+  .rm-parchment {
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  .print-preview-toolbar { display: none !important; }
+  .print-preview-overlay {
+    position: static !important;
+    background: white !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  .print-preview-content {
+    overflow: visible !important;
+  }
+  .print-preview-content .print-page {
+    width: auto !important;
+    min-height: auto !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 4mm !important;
+  }
+}
+
+/* === Print page structure === */
+.print-page {
+  page-break-after: always;
+  position: relative;
+  padding: 4mm;
+}
+.print-page:last-child { page-break-after: avoid; }
+
+@page {
+  size: A4 portrait;
+  margin: 5mm;
+}
+
+/* === Title === */
+.ps-title {
+  text-align: center;
+  font-size: 14pt;
+  font-weight: bold;
+  border-bottom: 2px solid black;
+  margin: 0 0 4pt;
+  padding-bottom: 2pt;
+}
+
+/* === Top 3-column grid (Identity / Languages / Spells) === */
+/* Top grid: Identity | Languages | Portrait */
+.ps-top-grid {
+  display: grid;
+  grid-template-columns: 40% 30% 30%;
+  gap: 0;
+  border: 1px solid black;
+  margin-bottom: 2mm;
+  font-size: 7.5pt;
+}
+
+.ps-portrait-zone {
+  padding: 2mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100pt;
+}
+
+/* Mid grid: Stats | Combat recap | Spell lists */
+.ps-mid-grid {
+  display: grid;
+  grid-template-columns: auto 18% 1fr;
+  gap: 0;
+  border: 1px solid black;
+  margin-bottom: 2mm;
+  align-items: stretch;
+}
+
+.ps-stats-col {
+  border-right: 1px solid #999;
+}
+.ps-stats-col .ps-stats-table {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  border: none;
+}
+
+.ps-combat-col {
+  padding: 2mm;
+  border-right: 1px solid #999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1pt;
+}
+
+.ps-spells-col {
+  padding: 2mm;
+}
+
+.ps-identity, .ps-languages, .ps-spells-summary {
+  padding: 2mm;
+  border-right: 1px solid black;
+}
+.ps-spells-summary { border-right: none; }
+
+.ps-field { line-height: 1.4; }
+
+/* === Mini tables (languages, spells) === */
+.ps-table-mini {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 7pt;
+}
+.ps-table-mini th {
+  font-weight: bold;
+  text-align: left;
+  font-size: 7.5pt;
+  border-bottom: 1px solid black;
+  padding: 1pt 2pt;
+}
+.ps-table-mini td {
+  padding: 0.5pt 2pt;
+  line-height: 1.3;
+}
+
+/* === Stats table (compact) === */
+.ps-stats-table {
+  width: auto;
+  max-width: 55%;
+  border-collapse: collapse;
+  font-size: 7.5pt;
+  margin-bottom: 2mm;
+  border: 1px solid black;
+}
+.ps-stats-table th {
+  background: #e8e0d0;
+  font-size: 7pt;
+  padding: 1pt 3pt;
+  border: 1px solid #999;
+  text-align: center;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.ps-stats-table td {
+  padding: 1pt 3pt;
+  border-bottom: 0.5pt solid #ccc;
+}
+.ps-stat-name { white-space: nowrap; font-size: 6.5pt; }
+
+/* === Magic effects === */
+.ps-magic-effects {
+  border-top: 0.5pt solid #999;
+  padding-top: 2pt;
+  margin-top: 2pt;
+  font-size: 7pt;
+}
+.ps-blank-lines {
+  color: #ccc;
+  line-height: 1.6;
+  font-size: 6pt;
+}
+
+/* === Combat block (table 2×4) === */
+.ps-combat-table {
+  width: 100%;
+  border: 1px solid black;
+  border-collapse: collapse;
+  font-size: 7.5pt;
+  margin-bottom: 2mm;
+}
+.ps-combat-table td {
+  padding: 1.5pt 3pt;
+  border: 0.5pt solid #ccc;
+  width: 50%;
+}
+.ps-pencil-space {
+  color: #bbb;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 2pt;
+}
+
+/* === Skills table === */
+.ps-skills-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 7pt;
+}
+.ps-skills-table th {
+  background: #e8e0d0;
+  font-size: 6.5pt;
+  padding: 1pt 2pt;
+  border-bottom: 1.5pt solid black;
+  text-align: center;
+  text-transform: uppercase;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.ps-skills-table td {
+  padding: 0.5pt 2pt;
+  border-bottom: 0.25pt solid #ddd;
+  line-height: 1.2;
+}
+
+/* Category separator row */
+.ps-cat-row td {
+  background: #eee8d8;
+  font-size: 7pt;
+  padding: 1pt 2pt;
+  border-top: 1pt solid #999;
+  border-bottom: 0.5pt solid #999;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* DM boxes — monospace for alignment */
+.ps-dm-boxes {
+  font-family: 'Courier New', monospace;
+  font-size: 5.5pt;
+  letter-spacing: 0.5pt;
+  white-space: nowrap;
+}
+
+/* Skill name */
+.ps-skill-name { white-space: nowrap; max-width: 180pt; overflow: hidden; }
+
+/* Cost column */
+.ps-cost { font-size: 6pt; color: #666; }
+
+/* Bonus columns */
+.ps-bonus { font-size: 7pt; }
+.ps-bonus-total { font-size: 7.5pt; }
+
+/* === Highlight colors on full row (screen preview AND print) === */
+.ps-hl-yellow td { background-color: #ffff00 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.ps-hl-green td  { background-color: #90ee90 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.ps-hl-pink td   { background-color: #ffb6c1 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.ps-hl-blue td   { background-color: #add8e6 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.ps-hl-orange td { background-color: #ffd700 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+/* Text colors */
+.ps-text-red td   { color: #cc0000 !important; }
+.ps-text-blue td  { color: #0066cc !important; }
+.ps-text-green td { color: #006600 !important; }
+.ps-bold td       { font-weight: bold !important; }
+
+/* === Footer === */
+.print-footer {
+  position: absolute;
+  bottom: 2mm;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 6pt;
+  color: #999;
+  border-top: 0.5pt solid #ccc;
+  padding-top: 1pt;
+}
+
+/* === Alignment helper === */
+.tc { text-align: center; }
+
+/* === Print preview overlay (screen) === */
+.print-preview-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #333;
+  overflow-y: auto;
+  padding: 20px;
+  /* Reset all inherited styles */
+  font-family: var(--print-font-family, 'Arial'), sans-serif;
+  font-size: var(--print-font-size, 8pt);
+  color: black;
+}
+
+.print-preview-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+  background: #222;
+  padding: 8px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+}
+
+.print-preview-toolbar .pp-info {
+  color: #999;
+  font-size: 0.85rem;
+  margin-left: auto;
+}
+
+.print-preview-content .print-page {
+  background: white;
+  color: black;
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto 20px;
+  padding: 5mm;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  position: relative;
+  font-family: var(--print-font-family, 'Arial'), sans-serif;
+  font-size: var(--print-font-size, 8pt);
+  /* Override any parchment/theme styles */
+  line-height: 1.4;
+}
+
+/* Reset parchment overrides inside print preview */
+.print-preview-content .text-gray-300,
+.print-preview-content .text-gray-400,
+.print-preview-content .text-gray-500,
+.print-preview-content .text-gray-600 { color: #333 !important; }
+.print-preview-content .text-amber-300,
+.print-preview-content .text-amber-400 { color: #333 !important; }
+.print-preview-content .text-purple-300,
+.print-preview-content .text-purple-400 { color: #333 !important; }
+
+/* Responsive: on small screens, scale the A4 page down */
+@media (max-width: 900px) {
+  .print-preview-content .print-page {
+    width: 100%;
+    min-height: auto;
+    padding: 3mm;
+    font-size: 7pt;
+  }
+  .print-preview-overlay { padding: 8px; }
+}

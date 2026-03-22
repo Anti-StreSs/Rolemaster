@@ -39,7 +39,9 @@ export function createCharacter() {
 
     // Combat summary
     armorType: 1, // AT 1-20 (1=No Armor, 20=Full Plate + Full Helm)
+    shieldType: 0, // 0=none, 1=buckler, 2=normal, 3=full, 4=wall
     defenseBonus: 0,
+    dbItemBonus: 0, // Bonus BD from magical items (manual entry)
 
     // Weapon category priorities (CHOIXCAT screen)
     // Array of 6 weapon type IDs, index = priority slot (0=best cost, 5=worst)
@@ -69,15 +71,31 @@ export function createCharacter() {
     // Body dev and XP factor from race
     raceBodyDevBonus: 0,
     raceExperienceFactor: 0,
+    // Hit point rolls: one die roll per rank of Body Development
+    bodyDevRolls: [],     // [7, 4, 8, ...] — persisted
+    raceHitDie: '1-10',   // from race (e.g. "1-10", "1-8")
+    raceMaxPC: 150,        // max racial HP
 
     // --- Languages tab ---
     languages: [],  // [{name, spoken, written}]
 
     // --- Spells tab ---
-    // Each spell list: {name, cost, palier, niveau, reference, realm}
-    // cost = DP per tier point, palier = accumulated tier, niveau = spell levels gained
+    // Learned spell lists: [{name, maxLevel, reference, type, realm}]
     spellLists: [],
+    // Current spell study: one list at a time
+    spellStudy: {
+      listName: null,       // name of list being studied
+      listType: null,       // 'base_own', 'open', 'closed', 'other'
+      listRealm: null,      // realm name
+      ranks: 0,             // accumulated ranks (each costs DP)
+      sgrDone: false,       // SGR already attempted this phase?
+      blockSize: 5,         // levels per block (5 or 10)
+      nextBlockStart: 1,    // next block starts at this level
+    },
+    // Spell audit log: [{timestamp, action, listName, details}]
+    spellLog: [],
     // Spell points spent per phase (separate pool, budget = DP total)
+    // Legacy (kept for save compat) — spell points now share DP pool
     spellPointsSpentAdolescent: 0,
     spellPointsSpentApprenti: 0,
     spellPointsSpentLevel: 0,
@@ -95,6 +113,10 @@ export function createCharacter() {
     // --- Skills tab ---
     // Development phase: 'adolescent', 'apprenti', or 'level' (level 1+)
     devPhase: 'adolescent',
+    // Phase validation state: false = development (can spend DP), true = validated (locked)
+    phaseValidated: false,
+    // Phase history: [{phase, dpTotal, dpSpent, skillRanks, spellInvestments, validatedAt}]
+    phases: [],
 
     // Skill ranks per phase: { skillIndex: rankCount }
     // Adolescent and apprenti ranks accumulate into base ranks for level 1+
@@ -112,6 +134,36 @@ export function createCharacter() {
 
     // Misc bonuses (manual adjustments)
     skillMiscBonuses: {},
+    // Skill formatting for print
+    skillHighlights: {},  // {skillIndex: 'yellow'|'green'|...}
+    skillBold: {},        // {skillIndex: true}
+    skillTextColors: {},  // {skillIndex: 'red'|'blue'|'green'}
+    // Print configuration
+    printConfig: null,
+
+    // Manual bonuses (items, background options, GM fiat)
+    manualBonuses: {
+      dbItem: 0,
+      obItem: 0,
+      ppBonus: 0,
+      hpBonus: 0,
+      rrEssence: 0,
+      rrChanneling: 0,
+      rrMentalism: 0,
+      rrPoison: 0,
+      rrDisease: 0,
+      miscNotes: '',
+    },
+
+    // Background options (Character Law + Companions)
+    backgroundOptions: {
+      totalOptions: 0,
+      options: [],
+      companionIIITalents: [],
+    },
+
+    // Portrait (base64 data URL or external URL)
+    portraitUrl: '',    // URL externe ou data:image/...;base64,...
 
     // Timestamps
     createdAt: new Date().toISOString(),
@@ -183,29 +235,21 @@ export function getDevPointsTotal(character) {
 
 /**
  * Get spell points spent in current phase.
- * Spell points are a SEPARATE pool from DP (same budget value).
+ * Spells share the SAME DP pool as skills — single budget.
  */
 export function getSpellPointsSpent(character) {
-  switch (character.devPhase) {
-    case 'adolescent': return character.spellPointsSpentAdolescent || 0;
-    case 'apprenti': return character.spellPointsSpentApprenti || 0;
-    default: return character.spellPointsSpentLevel || 0;
-  }
+  return getDevPointsSpent(character);
 }
 
 export function setSpellPointsSpent(character, value) {
-  switch (character.devPhase) {
-    case 'adolescent': character.spellPointsSpentAdolescent = value; break;
-    case 'apprenti': character.spellPointsSpentApprenti = value; break;
-    default: character.spellPointsSpentLevel = value; break;
-  }
+  setDevPointsSpent(character, value);
 }
 
 /**
- * Get spell points budget (= DP total, same value).
+ * Get spell points budget (= DP total, same pool).
  */
 export function getSpellPointsTotal(character) {
-  return calcDevelopmentPoints(character.stats);
+  return getDevPointsTotal(character);
 }
 
 /**
@@ -227,13 +271,16 @@ export function getTotalStatBonus(character, statIndex) {
 
 /**
  * Get development value for a stat.
- * Constitution → body dev, realm stat → power points, others → null
+ * Indices 0-4 (Co, Ag, AD, Mé, Ra) → body dev table value (contributes to DP)
+ * Realm stat → power points multiplier (shown as info)
+ * Others → null
  */
 export function getStatDev(character, statIndex) {
-  if (statIndex === 0) {
-    return getBodyDev(character.stats[0]);
+  // The 5 development stats (indices 0-4) all contribute to DP via bodyDev table
+  if (statIndex >= 0 && statIndex <= 4) {
+    return getBodyDev(character.stats[statIndex]);
   }
-  // Show PP multiplier for any stat used in PP calculation (single or hybrid)
+  // Show PP multiplier for realm stats
   const ppStats = character._ppStatIndices || [];
   if (ppStats.includes(statIndex)) {
     return getPowerPointsMult(character.stats[statIndex]);
@@ -242,14 +289,44 @@ export function getStatDev(character, statIndex) {
 }
 
 /**
- * Calculate total hit points from Body Development skill ranks.
- * HP = body_dev_table[CON] × ranks in Body Development
+ * Calculate Hit Points (PdC / Concussion Hits) — RM2 formula.
+ * Base = ceil(CO / 10) + sum of body dev die rolls
+ * Cap = ceil(Base × (1 + totalCOBonus / 100))
+ * @returns {{ base: number, cap: number, maxRacial: number, dieType: string }}
  */
 export function calcHitPoints(character) {
-  const devPerLevel = getBodyDev(character.stats[0]);
-  const bodyDevRanks = getTotalRanks(character, getBodyDevSkillIndex());
-  if (bodyDevRanks <= 0) return Math.floor(devPerLevel);
-  return Math.floor(devPerLevel * bodyDevRanks);
+  const co = character.stats[0];
+  if (co <= 0) return { base: 0, cap: 0, maxRacial: character.raceMaxPC || 150, dieType: character.raceHitDie || '1-10' };
+
+  const coBonus = getTotalStatBonus(character, 0);
+  const baseFromCO = Math.ceil(co / 10);
+  const rolls = character.bodyDevRolls || [];
+  const rollsTotal = rolls.reduce((sum, r) => sum + r, 0);
+  const bht = baseFromCO + rollsTotal;
+  const cap = Math.ceil(bht * (1 + coBonus / 100));
+  const maxRacial = character.raceMaxPC || 150;
+
+  const hpBonus = character.manualBonuses?.hpBonus || 0;
+  return {
+    base: bht + hpBonus,
+    cap: Math.min(cap + hpBonus, maxRacial),
+    maxRacial,
+    dieType: character.raceHitDie || '1-10',
+  };
+}
+
+/**
+ * Roll a hit die for a new rank of Body Development.
+ * @returns {number} the roll result (added to character.bodyDevRolls)
+ */
+export function rollBodyDevHitDie(character) {
+  const dieStr = character.raceHitDie || '1-10';
+  const match = dieStr.match(/1-(\d+)/);
+  const dieMax = match ? parseInt(match[1]) : 10;
+  const roll = Math.floor(Math.random() * dieMax) + 1;
+  if (!character.bodyDevRolls) character.bodyDevRolls = [];
+  character.bodyDevRolls.push(roll);
+  return roll;
 }
 
 /**
@@ -282,7 +359,7 @@ export function calcPowerPoints(character) {
     mult += getPowerPointsMult(character.stats[idx] || 0);
   }
   mult /= ppStats.length; // Average for hybrids, identity for single realm
-  return mult * character.level;
+  return mult * character.level + (character.manualBonuses?.ppBonus || 0);
 }
 
 /**
@@ -310,4 +387,69 @@ export function applyRace(character, race) {
  */
 export function cloneCharacter(character) {
   return JSON.parse(JSON.stringify(character));
+}
+
+// Shield types (RM2/Classic)
+export const SHIELD_TYPES = [
+  { id: 0, key: 'none',    fr: 'Sans',               en: 'None',          dbMelee: 0,  dbMissile: 0  },
+  { id: 1, key: 'buckler', fr: 'Rondache (+10/+5)',   en: 'Buckler',       dbMelee: 10, dbMissile: 5  },
+  { id: 2, key: 'normal',  fr: 'Bouclier (+20/+10)',  en: 'Normal Shield', dbMelee: 20, dbMissile: 10 },
+  { id: 3, key: 'full',    fr: 'Grand (+25/+25)',     en: 'Full Shield',   dbMelee: 25, dbMissile: 25 },
+  { id: 4, key: 'wall',    fr: 'Pavois (+30/+40)',    en: 'Wall Shield',   dbMelee: 30, dbMissile: 40 },
+];
+
+// Quickness penalties by armor type (RM2 table 07-05 simplified)
+const ARMOR_QK_PENALTIES = [0, 0, 0, 0, 0, 0, 10, 15, 15, 0, 5, 15, 15, 5, 10, 20, 20, 10, 20, 30, 40];
+
+/**
+ * Calculate Defensive Bonus (DB).
+ * DB = RP bonus (adjusted for armor penalty offset by strength) + shield/adrenal + items
+ */
+export function calculateDB(character) {
+  const rpBonus = getTotalStatBonus(character, 6); // index 6 = Rapidité (Quickness)
+  const strBonus = getTotalStatBonus(character, 5); // index 5 = Force (Strength)
+  const armorPenalty = ARMOR_QK_PENALTIES[character.armorType] || 0;
+  // Strength can offset armor penalty on quickness
+  const effectivePenalty = Math.max(0, armorPenalty - Math.max(0, strBonus));
+  const effectiveRP = Math.max(0, rpBonus - effectivePenalty);
+
+  const shield = SHIELD_TYPES[character.shieldType || 0];
+
+  // Adrenal Defense: only without armor (AT≤1) and without shield
+  let adrenalMelee = 0;
+  let adrenalMissile = 0;
+  if (character.armorType <= 1 && (character.shieldType || 0) === 0) {
+    const adRanks = findAdrenalDefenseRanks(character);
+    adrenalMelee = getRankBonus(adRanks);
+    adrenalMissile = Math.floor(adrenalMelee / 2);
+  }
+
+  const itemBonus = (character.manualBonuses?.dbItem || 0) + (character.dbItemBonus || 0);
+
+  const dbMeleeNoShield = effectiveRP + adrenalMelee + itemBonus;
+  const dbMeleeWithShield = effectiveRP + shield.dbMelee + itemBonus;
+  const dbMissileNoShield = effectiveRP + adrenalMissile + itemBonus;
+  const dbMissileWithShield = effectiveRP + shield.dbMissile + itemBonus;
+
+  return {
+    rpBonus: effectiveRP,
+    shieldMelee: shield.dbMelee,
+    shieldMissile: shield.dbMissile,
+    adrenalMelee,
+    adrenalMissile,
+    itemBonus,
+    meleeBD: character.shieldType > 0 ? dbMeleeWithShield : dbMeleeNoShield,
+    missileBD: character.shieldType > 0 ? dbMissileWithShield : dbMissileNoShield,
+    printDisplay: `${dbMeleeNoShield}(${dbMeleeWithShield})`,
+  };
+}
+
+// Cache adrenal defense skill index (set from UI on first use)
+let _adrenalDefenseIdx = -1;
+
+export function setAdrenalDefenseIndex(idx) { _adrenalDefenseIdx = idx; }
+
+function findAdrenalDefenseRanks(character) {
+  if (_adrenalDefenseIdx >= 0) return getTotalRanks(character, _adrenalDefenseIdx);
+  return 0;
 }
