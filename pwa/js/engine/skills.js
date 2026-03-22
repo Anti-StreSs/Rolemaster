@@ -165,12 +165,34 @@ const PARENT_SKILL_INDICES = new Set([
   173, // Perception Générale (General Perception) — choose sense type
 ]);
 
+// Skills that are normal (developable) but can ALSO have specializations
+const SPECIALIZABLE_INDICES = new Set([
+  43,  // Equitation
+  61,  // Arts Martiaux
+  107, // Artisanat
+  108, // Artisanat de la Pierre
+  109, // Artisanat du Bois
+  112, // Forge
+  114, // Instrument
+  173, // Perception Générale
+  201, // Environnement Hostile
+  202, // Récupération
+  23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, // Savoirs
+  154, 155, 156, // Savoirs spécialisés
+]);
+
 /**
  * Check if a skill is a parent/container that opens sub-skill selection.
- * Uses an explicit list — most skills with subskill_data are still normal skills.
  */
 export function isParentSkill(skill, globalIndex) {
   return PARENT_SKILL_INDICES.has(globalIndex);
+}
+
+/**
+ * Check if a skill can have specializations (but is also developable itself).
+ */
+export function isSpecializableSkill(globalIndex) {
+  return SPECIALIZABLE_INDICES.has(globalIndex);
 }
 
 // Global index of the "Weapon Skill" parent skill
@@ -269,4 +291,130 @@ export function findSkillIndex(nameEn) {
     }
   }
   return -1;
+}
+
+/**
+ * Calculate similarity bonus for a skill.
+ * Formula: floor(sum(coeff × ranks_of_similar_skill) / 4)
+ */
+export function calcSimilarityBonus(globalIndex, character) {
+  const similData = getData().skill_similarity_pairs;
+  if (!similData || !similData.pairs) return 0;
+
+  // Find all pairs where this skill is the target (from_global)
+  const pairs = similData.pairs.filter(p => p.from_global === globalIndex);
+  if (pairs.length === 0) return 0;
+
+  let sum = 0;
+  for (const pair of pairs) {
+    const ranks = (character.skillRanksAdolescent?.[pair.to_global] || 0)
+                + (character.skillRanksApprenti?.[pair.to_global] || 0)
+                + (character.skillRanksPrior?.[pair.to_global] || 0)
+                + (character.skillRanksLevel?.[pair.to_global] || 0);
+    if (ranks > 0) {
+      sum += pair.coefficient * ranks;
+    }
+  }
+  return Math.floor(sum / 4);
+}
+
+// === Level Bonus (Table 09-07, RM2 Option) ===
+// Bonus per level by profession and skill category. Cap at level 20.
+
+const LEVEL_BONUS_TABLE = {
+  'Fighter':     { combat: 3, baseSpells: 0, directedSpells: 0, outdoor: 1, subterfuge: 0, item: 0, perception: 0, bodyDev: 3 },
+  'Thief':       { combat: 2, baseSpells: 0, directedSpells: 0, outdoor: 1, subterfuge: 3, item: 0, perception: 1, bodyDev: 0 },
+  'Rogue':       { combat: 3, baseSpells: 0, directedSpells: 0, outdoor: 1, subterfuge: 2, item: 0, perception: 0, bodyDev: 1 },
+  'WarriorMonk': { combat: 2, baseSpells: 0, directedSpells: 0, outdoor: 2, subterfuge: 0, item: 0, perception: 1, bodyDev: 2 },
+  'Magician':    { combat: 0, baseSpells: 1, directedSpells: 3, outdoor: 0, subterfuge: 0, item: 2, perception: 0, bodyDev: 0 },
+  'Illusionist': { combat: 0, baseSpells: 1, directedSpells: 1, outdoor: 0, subterfuge: 0, item: 2, perception: 1, bodyDev: 0 },
+  'Alchemist':   { combat: 0, baseSpells: 1, directedSpells: 1, outdoor: 0, subterfuge: 1, item: 3, perception: 0, bodyDev: 0 },
+  'Cleric':      { combat: 1, baseSpells: 1, directedSpells: 1, outdoor: 1, subterfuge: 0, item: 1, perception: 1, bodyDev: 0 },
+  'Animist':     { combat: 0, baseSpells: 1, directedSpells: 1, outdoor: 2, subterfuge: 0, item: 1, perception: 1, bodyDev: 0 },
+  'Healer':      { combat: 0, baseSpells: 1, directedSpells: 1, outdoor: 0, subterfuge: 0, item: 0, perception: 1, bodyDev: 3 },
+  'Mentalist':   { combat: 0, baseSpells: 2, directedSpells: 1, outdoor: 0, subterfuge: 0, item: 1, perception: 1, bodyDev: 1 },
+  'LayHealer':   { combat: 0, baseSpells: 1, directedSpells: 1, outdoor: 0, subterfuge: 0, item: 1, perception: 1, bodyDev: 2 },
+  'Seer':        { combat: 0, baseSpells: 1, directedSpells: 1, outdoor: 0, subterfuge: 0, item: 1, perception: 3, bodyDev: 0 },
+  'Sorcerer':    { combat: 0, baseSpells: 2, directedSpells: 2, outdoor: 0, subterfuge: 0, item: 2, perception: 0, bodyDev: 0 },
+  'Mystic':      { combat: 0, baseSpells: 2, directedSpells: 1, outdoor: 0, subterfuge: 1, item: 1, perception: 1, bodyDev: 0 },
+  'Astrologer':  { combat: 0, baseSpells: 1, directedSpells: 1, outdoor: 0, subterfuge: 0, item: 2, perception: 2, bodyDev: 0 },
+  'Monk':        { combat: 1, baseSpells: 0, directedSpells: 0, outdoor: 1, subterfuge: 0, item: 0, perception: 1, bodyDev: 2 },
+  'Ranger':      { combat: 1, baseSpells: 0, directedSpells: 0, outdoor: 2, subterfuge: 1, item: 0, perception: 1, bodyDev: 0 },
+  'Bard':        { combat: 1, baseSpells: 0, directedSpells: 0, outdoor: 0, subterfuge: 1, item: 2, perception: 1, bodyDev: 0 },
+  'default':     { combat: 0, baseSpells: 0, directedSpells: 0, outdoor: 0, subterfuge: 0, item: 0, perception: 0, bodyDev: 0 },
+};
+
+const SKILL_CATEGORY_TO_BONUS_TYPE = {
+  'Combat': 'combat',
+  'Athletic': null,
+  'Academic': null,
+  'Animal': 'outdoor',
+  'General': null,
+  'Gymnastic': null,
+  'Medical': null,
+  'Perception': 'perception',
+  'Social': null,
+  'Subterfuge': 'subterfuge',
+  'Survival': 'outdoor',
+  'Deadly': null,
+  'Evaluation': null,
+  'Linguistic': null,
+  'Magical': 'item',
+  'Category_15': 'outdoor',
+};
+
+function getLevelBonusProfile(cls) {
+  if (!cls) return LEVEL_BONUS_TABLE['default'];
+  const name = (cls.name_en || '').replace(/\s+/g, '');
+  if (LEVEL_BONUS_TABLE[name]) return LEVEL_BONUS_TABLE[name];
+
+  const lc = (cls.name_en || '').toLowerCase();
+  if (lc.includes('fighter') || (lc.includes('warrior') && !lc.includes('monk'))) return LEVEL_BONUS_TABLE['Fighter'];
+  if (lc.includes('thief') || lc.includes('burglar')) return LEVEL_BONUS_TABLE['Thief'];
+  if (lc.includes('rogue')) return LEVEL_BONUS_TABLE['Rogue'];
+  if (lc.includes('monk') && lc.includes('warrior')) return LEVEL_BONUS_TABLE['WarriorMonk'];
+  if (lc.includes('magician') || lc.includes('archmage') || lc.includes('mage')) return LEVEL_BONUS_TABLE['Magician'];
+  if (lc.includes('illusionist')) return LEVEL_BONUS_TABLE['Illusionist'];
+  if (lc.includes('alchemist')) return LEVEL_BONUS_TABLE['Alchemist'];
+  if (lc.includes('cleric') || lc.includes('paladin')) return LEVEL_BONUS_TABLE['Cleric'];
+  if (lc.includes('animist') || lc.includes('druid')) return LEVEL_BONUS_TABLE['Animist'];
+  if (lc.includes('healer') && !lc.includes('lay')) return LEVEL_BONUS_TABLE['Healer'];
+  if (lc.includes('lay healer') || lc.includes('lay_healer')) return LEVEL_BONUS_TABLE['LayHealer'];
+  if (lc.includes('mentalist')) return LEVEL_BONUS_TABLE['Mentalist'];
+  if (lc.includes('seer') || lc.includes('prophet')) return LEVEL_BONUS_TABLE['Seer'];
+  if (lc.includes('sorcerer')) return LEVEL_BONUS_TABLE['Sorcerer'];
+  if (lc.includes('mystic')) return LEVEL_BONUS_TABLE['Mystic'];
+  if (lc.includes('astrologer')) return LEVEL_BONUS_TABLE['Astrologer'];
+  if (lc.includes('monk')) return LEVEL_BONUS_TABLE['Monk'];
+  if (lc.includes('ranger')) return LEVEL_BONUS_TABLE['Ranger'];
+  if (lc.includes('bard')) return LEVEL_BONUS_TABLE['Bard'];
+
+  // Fallback by caster type
+  if (cls.caster_type === 1) return LEVEL_BONUS_TABLE['Fighter'];
+  if (cls.caster_type >= 3) return LEVEL_BONUS_TABLE['Sorcerer'];
+  return LEVEL_BONUS_TABLE['default'];
+}
+
+let _bodyDevIdx = -1;
+
+/**
+ * Get level bonus for a skill.
+ * @param {object} cls - class object
+ * @param {number} level - character level (capped at 20)
+ * @param {string} categoryName - skill category name (e.g. 'Combat')
+ * @param {number} skillIndex - global skill index
+ * @returns {number} level bonus
+ */
+export function getLevelBonus(cls, level, categoryName, skillIndex) {
+  const profile = getLevelBonusProfile(cls);
+  const cappedLevel = Math.min(level, 20);
+
+  // Special case: Body Development
+  if (_bodyDevIdx < 0) { _bodyDevIdx = findSkillIndex('Body Development'); }
+  if (skillIndex === _bodyDevIdx) return (profile.bodyDev || 0) * cappedLevel;
+
+  // Determine bonus type from category
+  const bonusType = SKILL_CATEGORY_TO_BONUS_TYPE[categoryName];
+  if (!bonusType || !profile[bonusType]) return 0;
+  return profile[bonusType] * cappedLevel;
 }

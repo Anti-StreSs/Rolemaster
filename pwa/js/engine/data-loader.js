@@ -13,6 +13,7 @@ const FILES = [
   'options',
   'monde',
   'background_options_merged',
+  'skill_similarity_pairs',
 ];
 
 let gameData = null;

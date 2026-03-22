@@ -5,7 +5,7 @@ import { panel, showToast } from './components.js';
 import { createCharacter, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, applyRace, DEV_PHASES, getTotalRanks, getCurrentPhaseRanks, getCurrentPhaseRanksObj, getDevPointsSpent, setDevPointsSpent, getDevPointsTotal, getSpellPointsSpent, setSpellPointsSpent, getSpellPointsTotal, SHIELD_TYPES, calculateDB, setAdrenalDefenseIndex, rollBodyDevHitDie, getBodyDevSkillIndex } from '../engine/character.js';
 import { generateStatRolls, getStatValues, statPotentialLookup, generateStatRollsHybrid, generateStatRollsAntiLose, getStatValuesHybrid, rollStatPairsRMSS, getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
 import { getAllClasses, getClassName, getRealmInfo, getRealmKey, getRealmLabel, isSpellUser, getClassPrimeStats, getPPStatIndices } from '../engine/classes.js';
-import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts, isParentSkill, getWeaponSubcategories, getWeaponSkillCost, getParentSubSkillOptions, WEAPON_SKILL_GLOBAL_INDEX, getAllSkillsFlat } from '../engine/skills.js';
+import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts, isParentSkill, isSpecializableSkill, getWeaponSubcategories, getWeaponSkillCost, getParentSubSkillOptions, WEAPON_SKILL_GLOBAL_INDEX, getAllSkillsFlat, getLevelBonus, calcSimilarityBonus } from '../engine/skills.js';
 import { getAllRealms, getSpellListCost, getSpellRankCost, getSpellBlockSize, getListTypeKey, isPureCaster, getClassBaseSpellLists } from '../engine/spells.js';
 import { downloadCharacter, saveToLocalStorage } from '../engine/export.js';
 import { processLevelUpStatGains } from '../engine/stat_gain.js';
@@ -1458,6 +1458,8 @@ function renderSkillsTab(lang) {
           <th class="text-center w-10"></th>
           <th class="text-center w-14">${lang === 'en' ? 'Rank' : 'Rang'}</th>
           <th class="text-center w-14">${lang === 'en' ? 'Stat' : 'Carac'}</th>
+          <th class="text-center w-10">${lang === 'en' ? 'Lvl' : 'Niv'}</th>
+          <th class="text-center w-10">${lang === 'en' ? 'Sim' : 'Sim'}</th>
           <th class="text-center w-14">${lang === 'en' ? 'Misc' : 'Div'}</th>
           <th class="text-center w-16 font-bold">Total</th>
         </tr>
@@ -1469,7 +1471,7 @@ function renderSkillsTab(lang) {
   for (const cat of categories) {
     const catNameFr = CAT_NAMES_FR[cat.name] || cat.name;
     const catName = lang === 'en' ? cat.name : catNameFr;
-    table += `<tr><td colspan="8" class="skill-category-header">${catName}</td></tr>`;
+    table += `<tr><td colspan="10" class="skill-category-header">${catName}</td></tr>`;
 
     for (const skill of cat.skills) {
       const name = getSkillName(skill, lang);
@@ -1511,7 +1513,7 @@ function renderSkillsTab(lang) {
           <tr class="text-gray-500" style="background:rgba(139,92,246,0.05)">
             <td class="sticky-col text-purple-400 font-bold">${name} ${isWeapon ? '⚔' : '▸'}${subCount > 0 ? ` <span class="text-xs text-gray-500">(${subCount})</span>` : ''} ${inlineAddBtn}</td>
             <td colspan="3"></td>
-            <td colspan="4" class="text-right">${parentAction}</td>
+            <td colspan="6" class="text-right">${parentAction}</td>
           </tr>
         `;
 
@@ -1554,6 +1556,7 @@ function renderSkillsTab(lang) {
                 </td>
                 <td class="text-center stat-bonus ${wRankBonus >= 0 ? 'positive' : 'negative'}">${wRankBonus >= 0 ? '+' + wRankBonus : wRankBonus}</td>
                 <td class="text-center stat-bonus ${wStatBonus >= 0 ? 'positive' : 'negative'}">${wStatBonus >= 0 ? '+' + wStatBonus : wStatBonus}</td>
+                <td class="text-center text-xs"></td>
                 <td class="text-center"><input type="number" class="field-inline skill-misc-input" data-skill="${wsKey}" value="${wMisc || ''}" style="width:2.5rem"></td>
                 <td class="text-center font-bold stat-bonus ${wTotal >= 0 ? 'positive' : 'negative'}">${wTotal >= 0 ? '+' + wTotal : wTotal}</td>
               </tr>
@@ -1602,6 +1605,7 @@ function renderSkillsTab(lang) {
                 </td>
                 <td class="text-center stat-bonus ${sRankBonus >= 0 ? 'positive' : 'negative'}">${sRankBonus >= 0 ? '+' + sRankBonus : sRankBonus}</td>
                 <td class="text-center stat-bonus ${sStatBonus >= 0 ? 'positive' : 'negative'}" title="${sStatLabel}">${sStatBonus >= 0 ? '+' + sStatBonus : sStatBonus}</td>
+                <td class="text-center text-xs"></td>
                 <td class="text-center"><input type="number" class="field-inline skill-misc-input" data-skill="${subKey}" value="${sMisc || ''}" style="width:2.5rem"></td>
                 <td class="text-center font-bold stat-bonus ${sTotal >= 0 ? 'positive' : 'negative'}">${sTotal >= 0 ? '+' + sTotal : sTotal}</td>
               </tr>
@@ -1625,8 +1629,11 @@ function renderSkillsTab(lang) {
         const canRemove = !isValidated && phaseRanks > 0;
         const rankBonus = getRankBonus(totalRanks);
         const statTotalBonus = calcSkillStatBonusTotal(skill, character);
+        const cls = character.classIndex >= 0 ? getAllClasses()[character.classIndex] : null;
+        const lvlBonus = getLevelBonus(cls, character.level, cat.name, globalIndex);
+        const similBonus = calcSimilarityBonus(globalIndex, character);
         const miscBonus = character.skillMiscBonuses[globalIndex] || 0;
-        const total = rankBonus + statTotalBonus + miscBonus;
+        const total = rankBonus + statTotalBonus + lvlBonus + similBonus + miscBonus;
         let rankBoxes = renderRankBoxes(totalRanks, phaseRanks);
         const addDisabled = !canAdd || !canAfford ? 'disabled' : '';
         const removeDisabled = !canRemove ? 'disabled' : '';
@@ -1643,7 +1650,7 @@ function renderSkillsTab(lang) {
         const textColorClass = (character.skillTextColors || {})[globalIndex] ? `skill-text-${character.skillTextColors[globalIndex]}` : '';
         table += `
           <tr class="${totalRanks > 0 ? '' : 'text-gray-600'} ${hlClass} ${boldClass} ${textColorClass}">
-            <td class="sticky-col text-gray-300 skill-highlight-cell" data-skill-hl="${globalIndex}" style="cursor:pointer">${name}</td>
+            <td class="sticky-col text-gray-300 skill-highlight-cell" data-skill-hl="${globalIndex}" style="cursor:pointer">${name} <span class="skill-stats-label">(${getSkillStatIndices(skill).map(i => STAT_ABBREVS[i-1]).join('/')})</span>${isSpecializableSkill(globalIndex) ? ` <button class="btn-add-subskill text-xs" data-parent="${globalIndex}" style="background:none;border:1px solid currentColor;border-radius:3px;width:1rem;height:1rem;font-size:0.6rem;cursor:pointer;color:inherit;padding:0;line-height:1" title="${lang === 'en' ? 'Add specialization' : 'Spécialiser'}">▸</button>` : ''}</td>
             <td class="text-center text-gray-500 text-xs">${costStr}</td>
             <td class="text-center">
               ${rankBoxes}
@@ -1652,10 +1659,45 @@ function renderSkillsTab(lang) {
             <td class="text-center">${plusMinus}</td>
             <td class="text-center stat-bonus ${rankBonus >= 0 ? 'positive' : 'negative'}">${rankBonus >= 0 ? '+' + rankBonus : rankBonus}</td>
             <td class="text-center stat-bonus ${statTotalBonus >= 0 ? 'positive' : 'negative'}">${statTotalBonus >= 0 ? '+' + statTotalBonus : statTotalBonus}</td>
+            <td class="text-center text-xs">${lvlBonus > 0 ? '+' + lvlBonus : ''}</td>
+            <td class="text-center text-xs">${similBonus > 0 ? '+' + similBonus : ''}</td>
             <td class="text-center"><input type="number" class="field-inline skill-misc-input" data-skill="${globalIndex}" value="${miscBonus || ''}" style="width:2.5rem" title="Bonus divers"></td>
             <td class="text-center font-bold stat-bonus ${total >= 0 ? 'positive' : 'negative'}">${total >= 0 ? '+' + total : total}</td>
           </tr>
         `;
+        // Render specializations for specializable skills (same as sub-skills)
+        if (isSpecializableSkill(globalIndex)) {
+          const specSubs = character.subSkills.filter(s => s.parentIndex === globalIndex);
+          for (let si = 0; si < specSubs.length; si++) {
+            const sub = specSubs[si];
+            const subKey = 'sub_' + globalIndex + '_' + si;
+            const sPhaseRanks = getCurrentPhaseRanks(character, subKey);
+            const sTotalRanks = getTotalRanks(character, subKey);
+            const sCost = sub.cost || cost || { first: 4, second: 0 };
+            const sCostStr = sCost.second > 0 ? `${sCost.first}/${sCost.second}` : `${sCost.first}`;
+            const sMaxRanks = sCost.second > 0 ? 2 : 1;
+            const sCanAdd = !isValidated && sPhaseRanks < sMaxRanks && remaining > 0;
+            const sNextCost = sPhaseRanks === 0 ? sCost.first : sCost.second;
+            const sRankBonus = getRankBonus(sTotalRanks);
+            const sStatBonus = calcSubSkillStatBonus(sub, skill, character);
+            const sMisc = character.skillMiscBonuses[subKey] || 0;
+            const sTotal = sRankBonus + sStatBonus + sMisc;
+            const sHlColor = (character.skillHighlights || {})[subKey] || '';
+            const sHlClass = sHlColor ? `highlight-${sHlColor}` : '';
+            table += `
+              <tr class="${sTotalRanks > 0 ? '' : 'text-gray-600'} ${sHlClass}">
+                <td class="sticky-col text-gray-300 pl-6 skill-highlight-cell" data-skill-hl="${subKey}" style="cursor:pointer">↳ ${esc(sub.name)} <button class="text-gray-600 hover:text-amber-300 text-xs ml-1 sub-skill-edit" data-parent="${globalIndex}" data-sub-idx="${si}">✎</button></td>
+                <td class="text-center text-gray-500 text-xs">${sCostStr}</td>
+                <td class="text-center">${renderRankBoxes(sTotalRanks, sPhaseRanks)} <span class="text-xs text-amber-300 ml-1">${sTotalRanks > 0 ? sTotalRanks : ''}</span></td>
+                <td class="text-center"><span class="skill-pm"><button class="pm-btn sub-skill-minus" data-sub-key="${subKey}" data-parent="${globalIndex}" data-sub-idx="${si}" ${isValidated || sPhaseRanks <= 0 ? 'disabled' : ''}>−</button><button class="pm-btn sub-skill-plus" data-sub-key="${subKey}" data-parent="${globalIndex}" data-sub-idx="${si}" ${!sCanAdd || remaining < sNextCost ? 'disabled' : ''}>+</button></span> <button class="text-red-400 text-xs ml-1 sub-skill-remove" data-parent="${globalIndex}" data-sub-idx="${si}">✕</button></td>
+                <td class="text-center stat-bonus ${sRankBonus >= 0 ? 'positive' : 'negative'}">${sRankBonus >= 0 ? '+' + sRankBonus : sRankBonus}</td>
+                <td class="text-center stat-bonus ${sStatBonus >= 0 ? 'positive' : 'negative'}">${sStatBonus >= 0 ? '+' + sStatBonus : sStatBonus}</td>
+                <td class="text-center text-xs"></td>
+                <td class="text-center"><input type="number" class="field-inline skill-misc-input" data-skill="${subKey}" value="${sMisc || ''}" style="width:2.5rem"></td>
+                <td class="text-center font-bold stat-bonus ${sTotal >= 0 ? 'positive' : 'negative'}">${sTotal >= 0 ? '+' + sTotal : sTotal}</td>
+              </tr>`;
+          }
+        }
       }
       globalIndex++;
     }
@@ -3095,7 +3137,17 @@ function openSubSkillSelector(app, parentIndex) {
   }
 
   if (options.length === 0) {
-    showToast('Aucune option disponible', true);
+    // Free-text specialization for specializable skills
+    const lang = character.language || 'fr';
+    const input = prompt(lang === 'en' ? 'Enter specialization name:' : 'Nom de la spécialisation :');
+    if (!input || !input.trim()) return;
+    const cost = getSkillDevCost(character.classIndex, parentIndex);
+    character.subSkills.push({
+      parentIndex,
+      name: input.trim(),
+      cost: cost ? { first: cost.first, second: cost.second } : { first: 4, second: 0 },
+    });
+    renderEditor(app);
     return;
   }
 

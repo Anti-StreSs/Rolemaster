@@ -546,6 +546,14 @@
 .highlight-blue   { background: rgba(100, 180, 255, 0.15) !important; }
 .highlight-orange { background: rgba(255, 165, 0, 0.15) !important; }
 
+/* Skill stat label */
+.skill-stats-label {
+  font-size: 0.6rem;
+  color: #8a7a60;
+  margin-left: 2px;
+  font-weight: normal;
+}
+
 /* Skill formatting (bold, text colors, highlight on full row) */
 .skill-bold td { font-weight: bold !important; }
 .skill-text-red td { color: #c00 !important; }

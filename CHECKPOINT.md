@@ -4,7 +4,7 @@
 
 ## Summary
 
-Session 2026-03-21/22 (Phase 4d-4e) implements Batches 6-14: sub-skill editing, 4 stat rolling methods, spell system (SGR mechanics), medieval-fantasy theme with UI assets, print system with WYSIWYG preview, shield/DB system, hit point mechanics with die rolls, phase progression, and major UX polish.
+Session 2026-03-21/22 (Phase 4d-4e) implements Batches 6-16: sub-skill editing, 4 stat rolling methods, spell system (SGR mechanics), medieval-fantasy theme with UI assets, print system with WYSIWYG preview, shield/DB system, hit point mechanics with die rolls, phase progression, manual bonuses, background options, and major UX polish.
 
 ## Completed
 
@@ -165,6 +165,25 @@ Session 2026-03-21/22 (Phase 4d-4e) implements Batches 6-14: sub-skill editing, 
 - Companion III innate talents: auto-detected from stats ≥ 102, tier-based picks (A/B/C)
 - All options persisted in `character.backgroundOptions`
 
+### Batch 17 — Level Bonus (Table 09-07)
+- 19 profession profiles + default with 8 bonus categories (combat, spells, outdoor, subterfuge, item, perception, bodyDev)
+- Class → profile mapping: exact name, keyword fuzzy match, fallback by caster type
+- "Niv" column in skill table (editor + print), capped at level 20
+- Level bonus integrated into total: rank + stat + lvl + sim + misc
+
+### Batch 18 — Stats Display, Specializations, Similarity
+- **Stat labels** on each skill: "(AG/FO)" shown next to skill name
+- **Specializable skills** (25+): normal developable skills with ▸ button for free-text specialization (Artisanat, Forge, Instrument, Savoirs, etc.)
+- **Similarity bonus auto-calculated** from `skill_similarity_pairs.json` (251 pairs): `floor(Σ(coeff×ranks)/4)`
+- "Sim" column in skill table (auto-calculated, non-editable)
+- Skill table now 10 columns: Skill(Stats) | Cost | DM | +/- | Rank | Stat | Lvl | Sim | Misc | Total
+
+### Post-batch fixes
+- Adrenal defense: only adds to DB if ranks > 0 AND bonus > 0 (no penalty)
+- Body Dev die roll: prompt with auto-roll + manual override for table rolls
+- "Same as previous" also prompts for Body Dev die rolls (per rank)
+- background_options_merged.json copied to pwa/data/ (was only in parsed/)
+
 ### Other Improvements
 - Perception Générale added as parent skill (Vue/Ouïe/Odorat/Toucher/Goût)
 - Inline + button on parent skills (next to name, more visible)
@@ -180,9 +199,10 @@ Session 2026-03-21/22 (Phase 4d-4e) implements Batches 6-14: sub-skill editing, 
 ## Still TODO
 
 ### Immediate
-- [ ] **Rank Bonus table**: Currently RMSS formula. Must verify RM2 table (+5,+10,...+35 at rank 10)
-- [ ] **Level Bonus (table 09-07)**: per-class bonus by category and level (column "Niv" in CPR093)
-- [ ] **Spell costs from `spell_cost_by_realm`**: decode carac_tables.json fully instead of hardcoded costs
+- [x] **Rank Bonus table**: Verified — already correct RM2 table 07-01
+- [x] **Level Bonus (table 09-07)**: Implemented in Batch 17
+- [x] **Similarity Bonus**: Auto-calculated from skill_similarity_pairs.json (Batch 18)
+- [ ] **Spell costs from `spell_cost_by_realm`**: Low priority — hardcoded values work correctly
 
 ### Gameplay
 - [ ] Optional rules screen (89 rules from options.json)
@@ -201,12 +221,14 @@ Session 2026-03-21/22 (Phase 4d-4e) implements Batches 6-14: sub-skill editing, 
 | `pwa/js/engine/stats.js` | Rolling (4 methods), bonuses, rank bonus, DP |
 | `pwa/js/engine/skills.js` | Costs, 3-stat support, weapon costs, parent skills, base spell list parser |
 | `pwa/js/engine/spells.js` | SGR mechanics, rank cost, block size, realm mapping |
-| `pwa/js/engine/character.js` | Model v6, HP/DB calc, shield types, audit logs, phases |
+| `pwa/js/engine/character.js` | Model v7, HP/DB calc, shield types, manual bonuses, background options |
 | `pwa/js/ui/wizard.js` | All tabs + phase validation + spell SGR + highlighting + portrait |
 | `pwa/js/ui/print-sheet.js` | Multi-page A4 character sheet generator |
 | `pwa/css/theme.css` | Medieval parchment theme with UI assets |
 | `pwa/css/styles.css` | Component styles (parchment-compatible) |
 | `pwa/css/print.css` | Print + WYSIWYG preview styles |
+| `pwa/data/background_options_merged.json` | 333 background options (Char Law + Companions I/III) |
+| `pwa/data/skill_similarity_pairs.json` | 251 skill similarity pairs with coefficients |
 
 ## Next Session Entry Point
 

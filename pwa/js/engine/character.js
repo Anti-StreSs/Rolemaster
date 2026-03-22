@@ -134,6 +134,8 @@ export function createCharacter() {
 
     // Misc bonuses (manual adjustments)
     skillMiscBonuses: {},
+    // Skill similarity bonuses (manual entry for now)
+    skillSimilBonuses: {},
     // Skill formatting for print
     skillHighlights: {},  // {skillIndex: 'yellow'|'green'|...}
     skillBold: {},        // {skillIndex: true}
@@ -415,13 +417,18 @@ export function calculateDB(character) {
 
   const shield = SHIELD_TYPES[character.shieldType || 0];
 
-  // Adrenal Defense: only without armor (AT≤1) and without shield
+  // Adrenal Defense: only without armor (AT≤1), without shield, and only if positive
   let adrenalMelee = 0;
   let adrenalMissile = 0;
   if (character.armorType <= 1 && (character.shieldType || 0) === 0) {
     const adRanks = findAdrenalDefenseRanks(character);
-    adrenalMelee = getRankBonus(adRanks);
-    adrenalMissile = Math.floor(adrenalMelee / 2);
+    if (adRanks > 0) {
+      const adBonus = getRankBonus(adRanks);
+      if (adBonus > 0) {
+        adrenalMelee = adBonus;
+        adrenalMissile = Math.floor(adBonus / 2);
+      }
+    }
   }
 
   const itemBonus = (character.manualBonuses?.dbItem || 0) + (character.dbItemBonus || 0);

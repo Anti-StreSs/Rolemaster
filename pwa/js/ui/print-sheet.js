@@ -2,7 +2,7 @@
 // Reproduces CPR093 layout: identity, stats, combat, skills with DM boxes
 
 import { getAllClasses, getClassName, getRealmKey, getRealmLabel } from '../engine/classes.js';
-import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices } from '../engine/skills.js';
+import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getLevelBonus } from '../engine/skills.js';
 import { getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
 import { getTotalRanks, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, calculateDB } from '../engine/character.js';
 
@@ -38,8 +38,10 @@ function getFilteredSkills(character, config) {
       const totalRanks = getTotalRanks(character, globalIndex);
       const rankBonus = getRankBonus(totalRanks);
       const statBonus = calcSkillStatBonus(skill, character);
+      const cls = character.classIndex >= 0 ? getAllClasses()[character.classIndex] : null;
+      const lvlBonus = getLevelBonus(cls, character.level, cat.name, globalIndex);
       const miscBonus = character.skillMiscBonuses[globalIndex] || 0;
-      const total = rankBonus + statBonus + miscBonus;
+      const total = rankBonus + statBonus + lvlBonus + miscBonus;
       const highlight = (character.skillHighlights || {})[globalIndex] || null;
 
       let include = false;
@@ -60,6 +62,7 @@ function getFilteredSkills(character, config) {
           totalRanks,
           rankBonus,
           statBonus,
+          lvlBonus,
           miscBonus: miscBonus || '',
           total,
           costStr: cost ? (cost.second > 0 ? `${cost.first}/${cost.second}` : `${cost.first}`) : '—',
@@ -163,7 +166,7 @@ function generateStatsBlock(character) {
 function generateSkillTable(skills, config) {
   let rows = '';
   let currentCategory = null;
-  const colSpan = config.showCosts ? 8 : 7;
+  const colSpan = config.showCosts ? 9 : 8;
 
   for (const sk of skills) {
     if (sk.categoryName && sk.categoryName !== currentCategory) {
@@ -190,6 +193,7 @@ function generateSkillTable(skills, config) {
       <td class="ps-dm-boxes">${dmBoxes}</td>
       <td class="tc ps-bonus">${sk.rankBonus >= 0 ? '+' + sk.rankBonus : sk.rankBonus}</td>
       <td class="tc ps-bonus">${sk.statBonus >= 0 ? '+' + sk.statBonus : sk.statBonus}</td>
+      <td class="tc">${sk.lvlBonus > 0 ? '+' + sk.lvlBonus : ''}</td>
       <td class="tc">${sk.miscBonus || ''}</td>
       <td class="tc ps-bonus-total"><b>${sk.total >= 0 ? '+' + sk.total : sk.total}</b></td>
     </tr>`;
@@ -204,6 +208,7 @@ function generateSkillTable(skills, config) {
           <th>DM</th>
           <th class="tc">Rang</th>
           <th class="tc">Carac</th>
+          <th class="tc">Niv</th>
           <th class="tc">Div</th>
           <th class="tc">Total</th>
         </tr>
