@@ -183,6 +183,12 @@ Session 2026-03-21/22 (Phase 4d-4e) implements Batches 6-16: sub-skill editing, 
 - Body Dev die roll: prompt with auto-roll + manual override for table rolls
 - "Same as previous" also prompts for Body Dev die rolls (per rank)
 - background_options_merged.json copied to pwa/data/ (was only in parsed/)
+- Sub-skills now print under their parent skill (was at end of list)
+- Sub-skill highlight/bold/textColor preserved in print output
+- Print page padding: 6mm top, 14mm bottom for footer clearance
+- Print page breaks: `break-after: page` + fixed height preview (297mm with overflow:hidden)
+- Skills per page defaults reduced to 40/70 (was 60/85)
+- Power points: Math.ceil applied (was returning raw float)
 
 ### Other Improvements
 - Perception Générale added as parent skill (Vue/Ouïe/Odorat/Toucher/Goût)
