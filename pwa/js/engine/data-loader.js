@@ -2,19 +2,21 @@
 
 const DATA_PATH = './data/';
 
-const FILES = [
-  'carac_tables',
-  'classes',
-  'competences',
-  'sorts',
-  'couts',
-  'categories',
-  'simil',
-  'options',
-  'monde',
-  'background_options_merged',
-  'skill_similarity_pairs',
-];
+// Map of data keys to filenames (key: used in code, value: actual filename without .json)
+// When key !== value, the file is loaded under the key name
+const FILES_MAP = {
+  'carac_tables': 'carac_tables',
+  'classes': 'classes',
+  'competences': 'competences',
+  'sorts': 'sorts',
+  'couts': 'couts',
+  'categories': 'categories',
+  'simil': 'simil',
+  'options': 'options',
+  'monde': 'monde',
+  'background_options_merged': 'background_options_v3_patched',
+  'skill_similarity_pairs': 'skill_similarity_pairs',
+};
 
 let gameData = null;
 
@@ -22,10 +24,10 @@ export async function loadAllData() {
   if (gameData) return gameData;
 
   const entries = await Promise.all(
-    FILES.map(async name => {
-      const resp = await fetch(`${DATA_PATH}${name}.json`);
-      if (!resp.ok) throw new Error(`Failed to load ${name}.json: ${resp.status}`);
-      return [name, await resp.json()];
+    Object.entries(FILES_MAP).map(async ([key, filename]) => {
+      const resp = await fetch(`${DATA_PATH}${filename}.json`);
+      if (!resp.ok) throw new Error(`Failed to load ${filename}.json: ${resp.status}`);
+      return [key, await resp.json()];
     })
   );
 

@@ -4,7 +4,7 @@
 
 ## Summary
 
-Session 2026-03-21/22 (Phase 4d-4e) implements Batches 6-16: sub-skill editing, 4 stat rolling methods, spell system (SGR mechanics), medieval-fantasy theme with UI assets, print system with WYSIWYG preview, shield/DB system, hit point mechanics with die rolls, phase progression, manual bonuses, background options, and major UX polish.
+Session 2026-03-22 (Phase 4f — Batch 19) integrates the background option mechanical effects into the PWA. `background-effects.js` (357 lines, 6 exported functions) was already in place; this batch wires it into the game engine (`character.js`: PP/HP/DB bonus application) and the UI (`wizard.js`: skill stat+misc bonuses, effects display under each option, resolve-choice dialogs, background bonus summary panel in Infos, wealth auto-inject into Equipment). Service worker updated to v27 with `background-effects.js` in the asset cache list.
 
 ## Completed
 
@@ -15,87 +15,45 @@ Session 2026-03-21/22 (Phase 4d-4e) implements Batches 6-16: sub-skill editing, 
 - [x] **Phase 4b — Game Engine Fixes** (2026-03-20)
 - [x] **Phase 4c — RM2 Faithful Engine** (2026-03-20): stat potentials, DP formula, data fixes, weapon categories
 - [x] **Phase 4d — Engine + UX Overhaul** (2026-03-21): sub-skills, rolling methods, spells, phases, theme
-- [x] **Phase 4e — Full UI + Game Mechanics** (2026-03-22): UI assets, print system, shields/DB, hit points, spell SGR
+- [x] **Phase 4e — Full UI + Game Mechanics** (2026-03-22): UI assets, print system, shields/DB, hit points, spell SGR, background options system
+- [x] **Phase 4f — Background Effects Integration** (2026-03-22): Batch 19 — all 7 tasks A-G
 
-## Phase 4d Changes (2026-03-21)
+## Phase 4f Changes (2026-03-22 — Batch 19)
 
-### Sub-Skill Editing
-- Sub-skill name editable via ✎ button (modal with text input)
-- Custom determining stats (up to 3) selectable per sub-skill, with stat bonus recalculated
-- Sub-skills now display stat bonus column (was showing `—`), inheriting parent skill's stats by default
-- Custom `sub.stats` array (0-based) stored on character, persists through save/load
+### Task A — character.js engine integration
+- `calcPowerPoints`: bgBonuses.ppBonus + ppPerLevel×level + spellAdder applied before return; ppMultiplier applied via Math.ceil
+- `calculateDB`: bgBonuses.dbBonus added to itemBonus (let instead of const)
+- `calcHitPoints`: bgBonuses.maxHpMultiplier applied to cap before hpBonus (let instead of const)
+- Import: `getBackgroundBonuses` from `./background-effects.js`
 
-### Stat Rolling — 4 Methods
-- **RM2 (Roots)**: Original Table 15.1.1 (renamed from "RM2 (Table 15.1.1)")
-- **RMSS (Heroes)**: Option 14, 2×10d100 (renamed from "RMSS (Option 14)")
-- **Hybride (Real)**: RM2 table + pot roll +5 bonus. If no pot > 91 → first pair gets pot=100
-- **Anti-Lose**: RM2 table + pot roll +10 bonus. Weakest pot always replaced by 100
-- Forced pots marked with ★ in chips and audit log
-- Audit log clearly shows method name and `potRoll+N=boosted` format for hybrid/antilose
-- `stat_potentials.js`: `generateStatRollsHybrid()`, `generateStatRollsAntiLose()`, `getStatValuesHybrid()`
+### Task B — Skill bonuses (wizard.js)
+- `bgBonuses` and `bgStatMods` computed once before the skill table loop
+- Per normal skill: `bgStatBonus` = averaged `statBonusMods[i-1]` over skill's stat indices
+- Per normal skill: `bgSkillBonus` = `getSkillBackgroundBonus(bgBonuses, skill.name, skill.name_en)` added to Misc column
 
-### Spell System Overhaul (Batch 7A)
-- **Palier mechanism fixed**: palier = tier count (1-20), each = +5% chance. Max 20 = 100%
-- Previously palier stored DP invested (was broken). Now: 1 click + = 1 palier, costs `cost` DP
-- D100 roll: threshold = `palier × 5`, success → +5 spell levels, paliers reset. Available at any palier > 0
-- **Spell audit log** (`character.spellLog[]`): every invest, refund, D100 roll (result, threshold, success), add, remove
-- Log displayed in collapsible `<details>` section with roll success counter
+### Task C — Effects display under each option (wizard.js)
+- Filled options now show an effect line: green ✓ with a formatted summary of effects (stat, skill, spell, PP, gold, RR, special_ability)
+- If `requires_choice` and unresolved: amber ⚠ + "Choisir" button (`.bg-opt-resolve`)
 
-### Design & UX (Batch 7C)
-- Medieval-fantasy CSS theme: body gradient, panel left-border accent, gold text-shadow
-- Buttons: engraved metal style with hover transform + glow
-- +/- buttons: scale animation + colored glow on hover
-- Tab bar: book-binding style with hidden scrollbar
-- Progress bars: DP (gold→red when low) and spell points (purple), mana/life style
-- Toast: fade-out animation added
-- Home hero: radial gold glow
-- Placeholder class `.bg-placeholder` for future background images
-- Responsive breakpoints improved (640px + 768px)
+### Task D — Resolve-choice dialogs (wizard.js)
+- Handlers for `.bg-opt-resolve` buttons: dispatches by `opt.choice_type`
+- skill → prompt for skill name → `resolveBackgroundChoice`
+- stat → prompt from STAT_ABBREVS → `resolveBackgroundChoice`
+- language → prompt for language name → `resolveBackgroundChoice`
+- stat_increase → mode 2 (+2 one stat) or 3 (+1 three stats) → `resolveStatIncrease`
 
-### Print Improvements (Batch 7D)
-- `@page A4 portrait; margin: 5mm`
-- Extended hide list: phase buttons, +/- buttons, spell controls, stat logs, etc.
-- DM squares CSS ready (`.dm-square` / `.dm-square.filled`)
-- Skill highlighting classes with `print-color-adjust: exact`
-- Sticky positioning disabled in print
+### Task E — Background bonus summary panel (wizard.js)
+- Collapsible `<details>` panel "Bonus d'historique" in Infos tab, after manual bonuses panel
+- Uses `summarizeBackgroundBonuses(bgBonuses, lang)` for content
+- Shows amber warning if unresolvedChoices.length > 0
 
-### Phase Progression System (Batch 8)
-- **Strict phase order**: Adolescent → Apprenti → Level 1 → Level 2 → ...
-- Phase selector replaced with read-only indicator + state badge (En cours / VALIDÉ)
-- **"Fin de la phase de développement"** button with confirmation dialog (irréversible)
-- Validation snapshots stored in `character.phases[]` (dpTotal, dpSpent, skillRanks, timestamp)
-- All +/- buttons disabled when phase validated (skills AND spells)
-- **"Monter au prochain niveau"** only active when phase validated
-- Level-up button in Infos tab also gated by `phaseValidated`
-- Phase history popup showing all validated phases (DP used, rank count, date)
-- Rank accumulation: `skillRanksLevel` → `skillRanksPrior` on level transition
-- Stat gains only on Level N → Level N+1 transitions (not ado→app or app→lvl1)
-- Backward compatibility: `spellLog`, `phases`, `phaseValidated` auto-initialized on load
+### Task F — Wealth auto-inject into Equipment (wizard.js)
+- After storing any background option (both Set Options and D100 paths)
+- `generateWealthText(getBackgroundBonuses(character))` → replaces old "Richesse d'historique" block in `character.equipment`
 
-## Phase 4c Changes (2026-03-20)
-
-### Batch 1 — Stat Rolling & DP
-- RM2 Stat Potentials Table (`stat_potentials.js`) — verified 8/8 against CPR093
-- RMSS Option 14 available as alternative (method selector)
-- DP formula: `floor(Σ bodyDevTable[stat]) + 4` — verified (Guerrier=35, Voleur=43)
-- Smart auto-assign: lowest rolls → prime stats (boosted to 90), highest → dev stats
-- Stat audit log: method, rolls, rerolls, validated snapshot, post-validation edits
-- Stat order fixed: Co, Ag, AD, Mé, Ra, Fo, Rp, Pr, **Em, In** (was In, Em)
-- Realm stat mapping fixed: Essence→Em(8), Channeling→In(9), Mentalism→Pr(7)
-
-### Batch 2 — Skills & Weapons
-- 3-stat skill bonus formula: `floor(avg)` with tertiary stat from `raw_params[3]` (7 skills fixed)
-- Class-to-couts index mapping: `CLASS_TO_COUTS_MAP[68]` (was using wrong indices for 64/68 classes)
-- Cost array offset: +10 after Weapon Skill (index 63 takes 12 values for 6 weapon categories)
-- Weapon category priority costs extracted via `getWeaponCategoryCosts()`
-- Weapon Categories tab (CHOIXCAT): 6 types × 6 priority slots, click-to-assign UI
-- Cost display: single-rank skills show `X` instead of `X/*`
-
-### Batch 3 — Confirmed/Already Correct
-- Table indexing: `table[statValue]` direct indexing ✅
-- DP budget same per phase ✅
-- Stat 101 supported ✅
-- Power points table verified ✅
+### Task G — Service worker (sw.js)
+- Cache version: `v26` → `v27`
+- `background-effects.js` added to ASSETS list (was missing → would 404 offline)
 
 ## Phase 4e Changes (2026-03-22)
 
@@ -173,12 +131,12 @@ Session 2026-03-21/22 (Phase 4d-4e) implements Batches 6-16: sub-skill editing, 
 
 ### Batch 18 — Stats Display, Specializations, Similarity
 - **Stat labels** on each skill: "(AG/FO)" shown next to skill name
-- **Specializable skills** (25+): normal developable skills with ▸ button for free-text specialization (Artisanat, Forge, Instrument, Savoirs, etc.)
+- **Specializable skills** (25+): normal developable skills with ▸ button for free-text specialization
 - **Similarity bonus auto-calculated** from `skill_similarity_pairs.json` (251 pairs): `floor(Σ(coeff×ranks)/4)`
 - "Sim" column in skill table (auto-calculated, non-editable)
 - Skill table now 10 columns: Skill(Stats) | Cost | DM | +/- | Rank | Stat | Lvl | Sim | Misc | Total
 
-### Post-batch fixes
+### Post-batch fixes (2026-03-22)
 - Adrenal defense: only adds to DB if ranks > 0 AND bonus > 0 (no penalty)
 - Body Dev die roll: prompt with auto-roll + manual override for table rolls
 - "Same as previous" also prompts for Body Dev die rolls (per rank)
@@ -190,30 +148,33 @@ Session 2026-03-21/22 (Phase 4d-4e) implements Batches 6-16: sub-skill editing, 
 - Skills per page defaults reduced to 40/70 (was 60/85)
 - Power points: Math.ceil applied (was returning raw float)
 
-### Other Improvements
-- Perception Générale added as parent skill (Vue/Ouïe/Odorat/Toucher/Goût)
-- Inline + button on parent skills (next to name, more visible)
-- "Same as previous level" button copies skill ranks from last validated phase
-- Skill table header opaque background (#e0d4b8) for scroll readability
-- Portrait upload (base64 < 500KB) or URL, displayed in editor + printed
-- Home screen: local saves displayed inline with load/delete, JSON file upload
-- Banner click → return to home
-- Tab labels: larger (0.75rem), bold, brighter silver/gold with text shadows
-- Accordion behavior: only one `<details>` open at a time
-- `skillBold`, `skillTextColors` added to character model (persisted)
+## Phase 4d Changes (2026-03-21)
+
+### Sub-Skill Editing
+- Sub-skill name editable via ✎ button (modal with text input)
+- Custom determining stats (up to 3) selectable per sub-skill, with stat bonus recalculated
+- Sub-skills now display stat bonus column (was showing `—`), inheriting parent skill's stats by default
+- Custom `sub.stats` array (0-based) stored on character, persists through save/load
+
+### Stat Rolling — 4 Methods
+- **RM2 (Roots)**: Original Table 15.1.1
+- **RMSS (Heroes)**: Option 14, 2×10d100
+- **Hybride (Real)**: RM2 table + pot roll +5 bonus. If no pot > 91 → first pair gets pot=100
+- **Anti-Lose**: RM2 table + pot roll +10 bonus. Weakest pot always replaced by 100
+- Forced pots marked with ★ in chips and audit log
+
+### Spell System Overhaul (Batch 7A)
+- Palier mechanism fixed: 1 click = 1 palier, D100 roll: threshold = palier×5
+- Spell audit log (`character.spellLog[]`): every invest, refund, D100 roll
+- Phase progression system: strict order, snapshot on validation
 
 ## Still TODO
-
-### Immediate
-- [x] **Rank Bonus table**: Verified — already correct RM2 table 07-01
-- [x] **Level Bonus (table 09-07)**: Implemented in Batch 17
-- [x] **Similarity Bonus**: Auto-calculated from skill_similarity_pairs.json (Batch 18)
-- [ ] **Spell costs from `spell_cost_by_realm`**: Low priority — hardcoded values work correctly
 
 ### Gameplay
 - [ ] Optional rules screen (89 rules from options.json)
 - [ ] Double-mode skills (two stat sets, two bonuses)
 - [ ] Stat gain undo/redo (batch 8 menu items)
+- [ ] Spell costs from `spell_cost_by_realm` (low priority — hardcoded values work)
 
 ### Polish
 - [ ] Blank character sheet print option
@@ -223,25 +184,23 @@ Session 2026-03-21/22 (Phase 4d-4e) implements Batches 6-16: sub-skill editing, 
 
 | File | Purpose |
 |------|---------|
+| `pwa/js/engine/background-effects.js` | 6 functions: getBackgroundBonuses, getSkillBackgroundBonus, resolveBackgroundChoice, resolveStatIncrease, summarizeBackgroundBonuses, generateWealthText |
+| `pwa/data/background_options_v3_patched.json` | 335 background options normalized (242KB) |
+| `pwa/js/engine/character.js` | Model v4, HP/DB/PP calc with bgBonuses, shield types, manual bonuses |
+| `pwa/js/ui/wizard.js` | All tabs, background effects display, resolve dialogs, bg summary panel |
 | `pwa/js/engine/stat_potentials.js` | RM2 Stat Potentials Table + Hybrid/Anti-Lose methods |
-| `pwa/js/engine/stats.js` | Rolling (4 methods), bonuses, rank bonus, DP |
 | `pwa/js/engine/skills.js` | Costs, 3-stat support, weapon costs, parent skills, base spell list parser |
 | `pwa/js/engine/spells.js` | SGR mechanics, rank cost, block size, realm mapping |
-| `pwa/js/engine/character.js` | Model v7, HP/DB calc, shield types, manual bonuses, background options |
-| `pwa/js/ui/wizard.js` | All tabs + phase validation + spell SGR + highlighting + portrait |
 | `pwa/js/ui/print-sheet.js` | Multi-page A4 character sheet generator |
 | `pwa/css/theme.css` | Medieval parchment theme with UI assets |
-| `pwa/css/styles.css` | Component styles (parchment-compatible) |
 | `pwa/css/print.css` | Print + WYSIWYG preview styles |
-| `pwa/data/background_options_merged.json` | 333 background options (Char Law + Companions I/III) |
-| `pwa/data/skill_similarity_pairs.json` | 251 skill similarity pairs with coefficients |
 
 ## Next Session Entry Point
 
-1. Level bonus table (09-07) per class
-2. Rank bonus table verification (RM2 vs RMSS)
-3. Full spell cost decode from carac_tables.json
-4. Continue with user feedback and testing
+1. Test background options end-to-end: roll options → verify PP/DB/HP modified → check Infos panel shows bonus summary
+2. Test wealth inject: roll a "Richesse" option → verify Equipment field updated
+3. Test resolve-choice dialog: find an option with `requires_choice: true` → click Choisir → verify resolved flag shown
+4. Continue with user feedback and additional gameplay polish
 
 ---
-*Phase 1: 2025-01-19 | Phase 2: 2026-03-11 | Phase 3: 2026-03-11 | Phase 4a: 2026-03-12 | Phase 4b: 2026-03-20 | Phase 4c: 2026-03-20 | Phase 4d: 2026-03-21 | Phase 4e: 2026-03-22*
+*Phase 1: 2025-01-19 | Phase 2: 2026-03-11 | Phase 3: 2026-03-11 | Phase 4a: 2026-03-12 | Phase 4b: 2026-03-20 | Phase 4c: 2026-03-20 | Phase 4d: 2026-03-21 | Phase 4e-4f: 2026-03-22*

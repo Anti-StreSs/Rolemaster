@@ -11,6 +11,7 @@ import { downloadCharacter, saveToLocalStorage } from '../engine/export.js';
 import { processLevelUpStatGains } from '../engine/stat_gain.js';
 import { generateBackground, getRacialLanguages } from '../engine/background.js';
 import { getData } from '../engine/data-loader.js';
+import { getBackgroundBonuses, getSkillBackgroundBonus, resolveBackgroundChoice, resolveStatIncrease, summarizeBackgroundBonuses, generateWealthText } from '../engine/background-effects.js';
 import { showPrintPreview } from './print-sheet.js';
 
 // --- Category translations ---
@@ -425,6 +426,19 @@ function renderInfosTab(lang) {
         grid += `<div style="margin-top:0.5rem"><label style="font-size:0.8rem">Notes</label>
           <input type="text" id="mb-notes" class="field" value="${esc(mb.miscNotes || '')}" placeholder="${lang === 'en' ? 'Ring +10 DB, Boots +5...' : 'Anneau +10 BD, Bottes +5...'}" style="font-size:0.8rem;width:100%"></div>`;
         return `<details class="panel" style="cursor:pointer"><summary class="panel-title" style="list-style:none">${lang === 'en' ? '▸ Manual bonuses (items / background / GM)' : '▸ Bonus manuels (objets / historique / MJ)'}</summary><div style="margin-top:0.75rem">${grid}</div></details>`;
+      })()}
+
+      ${(() => {
+        const bgBonuses = getBackgroundBonuses(character);
+        const bgSummaryLines = summarizeBackgroundBonuses(bgBonuses, lang === 'en' ? 'en' : 'fr');
+        if (bgSummaryLines.length === 0) return '';
+        return `<details class="panel" style="cursor:pointer">
+          <summary class="panel-title" style="list-style:none">${lang === 'en' ? '▸ Background bonuses' : '▸ Bonus d\'historique'}</summary>
+          <div style="margin-top:0.75rem">
+            ${bgSummaryLines.map(l => `<div class="text-xs" style="margin-bottom:2px">${l}</div>`).join('')}
+            ${bgBonuses.unresolvedChoices.length > 0 ? `<div class="text-xs text-amber-400 mt-2">⚠ ${bgBonuses.unresolvedChoices.length} choix non résolus — allez dans l'onglet Historique</div>` : ''}
+          </div>
+        </details>`;
       })()}
     </div>
   `;
@@ -1288,6 +1302,28 @@ function renderHistoryTab(lang) {
         ${opt.roll ? `<div class="text-xs text-gray-500">D100: ${opt.roll}</div>` : ''}
         <div class="text-xs" style="margin-top:2px">${esc(opt.description || '').slice(0, 200)}</div>
         <input type="text" class="field bg-opt-notes" data-bg-idx="${i}" value="${esc(opt.playerNotes || '')}" placeholder="Notes..." style="font-size:0.75rem;margin-top:4px;width:100%">
+        ${(() => {
+          const effKeys = Object.keys(opt.effects || {});
+          const isResolved = !opt.requires_choice || (opt.resolved && Object.keys(opt.resolved).length > 0);
+          if (effKeys.length === 0) return '';
+          if (isResolved || !opt.requires_choice) {
+            const parts = [];
+            if (opt.effects.stat_bonus) {
+              const sb = opt.effects.stat_bonus;
+              if (typeof sb === 'object') parts.push(Object.entries(sb).map(([k,v]) => `${k} +${v}`).join(', '));
+            }
+            if (opt.effects.skill_bonus && typeof opt.effects.skill_bonus === 'object')
+              parts.push(Object.entries(opt.effects.skill_bonus).map(([k,v]) => `${k} +${v}`).join(', '));
+            if (opt.effects.spell_adder) parts.push(`+${opt.effects.spell_adder} Spell Adder`);
+            if (opt.effects.pp_bonus) parts.push(`+${opt.effects.pp_bonus} PP`);
+            if (opt.effects.gold) parts.push(`${opt.effects.gold} po`);
+            if (opt.effects.rr_bonus) parts.push(`RR +${opt.effects.rr_bonus}`);
+            if (opt.effects.special_ability) parts.push(opt.effects.special_ability);
+            return parts.length > 0 ? `<div class="text-xs text-green-400 mt-1">✓ ${parts.join(' | ')}</div>` : '';
+          } else {
+            return `<div class="text-xs text-amber-400 mt-1">⚠ ${lang === 'en' ? 'Choice required' : 'Choix requis'} <button class="btn-primary text-xs bg-opt-resolve" data-bg-idx="${i}" style="padding:1px 6px;margin-left:4px">${lang === 'en' ? 'Choose' : 'Choisir'}</button></div>`;
+          }
+        })()}
         <button class="text-red-400 text-xs mt-1 bg-opt-remove" data-bg-idx="${i}">✕ ${lang === 'en' ? 'Remove' : 'Retirer'}</button>
       </div>`;
     } else {
@@ -1467,6 +1503,9 @@ function renderSkillsTab(lang) {
       <tbody>
   `;
 
+  const bgBonuses = getBackgroundBonuses(character);
+  const bgStatMods = bgBonuses.statBonusMods || new Array(10).fill(0);
+
   let globalIndex = 0;
   for (const cat of categories) {
     const catNameFr = CAT_NAMES_FR[cat.name] || cat.name;
@@ -1628,11 +1667,15 @@ function renderSkillsTab(lang) {
         const canAfford = remaining >= nextRankCost;
         const canRemove = !isValidated && phaseRanks > 0;
         const rankBonus = getRankBonus(totalRanks);
-        const statTotalBonus = calcSkillStatBonusTotal(skill, character);
+        const statTotalBonusBase = calcSkillStatBonusTotal(skill, character);
+        const _skillSI = getSkillStatIndices(skill);
+        const bgStatBonus = _skillSI.length === 0 ? 0 : Math.floor(_skillSI.reduce((s, i) => s + (bgStatMods[i - 1] || 0), 0) / _skillSI.length);
+        const statTotalBonus = statTotalBonusBase + bgStatBonus;
         const cls = character.classIndex >= 0 ? getAllClasses()[character.classIndex] : null;
         const lvlBonus = getLevelBonus(cls, character.level, cat.name, globalIndex);
         const similBonus = calcSimilarityBonus(globalIndex, character);
-        const miscBonus = character.skillMiscBonuses[globalIndex] || 0;
+        const bgSkillBonus = getSkillBackgroundBonus(bgBonuses, skill.name, skill.name_en);
+        const miscBonus = (character.skillMiscBonuses[globalIndex] || 0) + bgSkillBonus;
         const total = rankBonus + statTotalBonus + lvlBonus + similBonus + miscBonus;
         let rankBoxes = renderRankBoxes(totalRanks, phaseRanks);
         const addDisabled = !canAdd || !canAfford ? 'disabled' : '';
@@ -2638,6 +2681,12 @@ function bindHistoryEvents(app) {
           description: entry.description_fr || entry.description_en || entry.description || '',
           type: entry.type || 'mixed', effects: entry.effects || {}, playerNotes: '', timestamp: new Date().toISOString(),
         };
+        const _bgW1 = generateWealthText(getBackgroundBonuses(character));
+        if (_bgW1) {
+          const _eq1 = character.equipment || '';
+          character.equipment = _eq1.replace(/--- Richesse d'historique ---[\s\S]*?(?=\n---|$)/, '').trim();
+          character.equipment += (character.equipment ? '\n\n' : '') + _bgW1;
+        }
       } else {
         // D100 roll
         const roll = Math.floor(Math.random() * 100) + 1;
@@ -2655,6 +2704,12 @@ function bindHistoryEvents(app) {
           description: entry ? (entry.description_fr || entry.description_en || entry.description || '') : '',
           type: entry?.type || 'mixed', effects: entry?.effects || {}, playerNotes: '', timestamp: new Date().toISOString(),
         };
+        const _bgW2 = generateWealthText(getBackgroundBonuses(character));
+        if (_bgW2) {
+          const _eq2 = character.equipment || '';
+          character.equipment = _eq2.replace(/--- Richesse d'historique ---[\s\S]*?(?=\n---|$)/, '').trim();
+          character.equipment += (character.equipment ? '\n\n' : '') + _bgW2;
+        }
         showToast(`D100 = ${roll} → ${entry ? (entry.name_fr || entry.name_en || entry.name) : '?'}`);
       }
       renderEditor(app);
@@ -2675,6 +2730,44 @@ function bindHistoryEvents(app) {
     input.addEventListener('change', () => {
       const idx = parseInt(input.dataset.bgIdx);
       if (character.backgroundOptions?.options[idx]) character.backgroundOptions.options[idx].playerNotes = input.value;
+    });
+  });
+
+  // Background option resolve buttons
+  document.querySelectorAll('.bg-opt-resolve').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.bgIdx);
+      const opt = character.backgroundOptions?.options[idx];
+      if (!opt) return;
+      const choiceType = opt.choice_type;
+      if (choiceType === 'skill') {
+        const skillName = prompt(lang === 'en'
+          ? `Choose a ${opt.effects.skill_type || ''} skill for the +${opt.effects.skill_bonus} bonus:`
+          : `Choisissez une compétence ${opt.effects.skill_type === 'secondary' ? 'secondaire' : 'primaire'} pour le bonus de +${opt.effects.skill_bonus}:`);
+        if (skillName) { resolveBackgroundChoice(character, idx, { skill_choice: skillName }); renderEditor(app); }
+      } else if (choiceType === 'stat') {
+        const STAT_ABBREVS = ['CO','AG','AD','Mé','RS','FO','RP','PR','EM','IN'];
+        const statKeys = ['CO','AG','AD','ME','RS','FO','RP','PR','EM','IN'];
+        const choice = prompt((lang === 'en' ? 'Choose stat: ' : 'Choisissez la stat: ') + STAT_ABBREVS.join(', '));
+        if (choice && statKeys.includes(choice.toUpperCase())) { resolveBackgroundChoice(character, idx, { stat_choice: choice.toUpperCase() }); renderEditor(app); }
+      } else if (choiceType === 'language') {
+        const langName = prompt(lang === 'en' ? 'Language name:' : 'Nom de la langue:');
+        if (langName) { resolveBackgroundChoice(character, idx, { language_name: langName }); renderEditor(app); }
+      } else if (choiceType === 'stat_increase') {
+        const mode = prompt(lang === 'en'
+          ? 'Mode: type "2" for +2 to one stat, or "3" for +1 to three stats'
+          : 'Mode: tapez "2" pour +2 à une stat, ou "3" pour +1 à trois stats');
+        if (mode === '2') {
+          const stat = prompt('Quelle stat? (CO,AG,AD,ME,RS,FO,RP,PR,EM,IN)');
+          const si = ['CO','AG','AD','ME','RS','FO','RP','PR','EM','IN'].indexOf(stat?.toUpperCase());
+          if (si >= 0) { resolveStatIncrease(character, idx, '2', [si]); renderEditor(app); }
+        } else if (mode === '3') {
+          const s1 = prompt('Stat 1?'), s2 = prompt('Stat 2?'), s3 = prompt('Stat 3?');
+          const keys = ['CO','AG','AD','ME','RS','FO','RP','PR','EM','IN'];
+          const indices = [s1,s2,s3].map(s => keys.indexOf(s?.toUpperCase())).filter(i => i >= 0);
+          if (indices.length === 3) { resolveStatIncrease(character, idx, '1x3', indices); renderEditor(app); }
+        }
+      }
     });
   });
 

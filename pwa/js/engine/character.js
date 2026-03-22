@@ -1,6 +1,7 @@
 // Character state — holds all data for one character
 
 import { getStatBonus, getBodyDev, getPowerPointsMult, getRankBonus, calcDevelopmentPoints } from './stats.js';
+import { getBackgroundBonuses } from './background-effects.js';
 
 // Development phases matching CPR093: adolescent → apprenti → level 1+
 export const DEV_PHASES = ['adolescent', 'apprenti'];
@@ -305,8 +306,11 @@ export function calcHitPoints(character) {
   const rolls = character.bodyDevRolls || [];
   const rollsTotal = rolls.reduce((sum, r) => sum + r, 0);
   const bht = baseFromCO + rollsTotal;
-  const cap = Math.ceil(bht * (1 + coBonus / 100));
+  let cap = Math.ceil(bht * (1 + coBonus / 100));
   const maxRacial = character.raceMaxPC || 150;
+
+  const bgBonuses = getBackgroundBonuses(character);
+  if (bgBonuses.maxHpMultiplier !== 1) cap = Math.ceil(cap * bgBonuses.maxHpMultiplier);
 
   const hpBonus = character.manualBonuses?.hpBonus || 0;
   return {
@@ -362,7 +366,13 @@ export function calcPowerPoints(character) {
   }
   mult /= ppStats.length; // Average for hybrids, identity for single realm
   const base = Math.ceil(mult * character.level); // Always round up
-  return base + (character.manualBonuses?.ppBonus || 0);
+  const bgBonuses = getBackgroundBonuses(character);
+  let pp = base;
+  pp += bgBonuses.ppBonus;
+  pp += bgBonuses.ppPerLevel * character.level;
+  pp += bgBonuses.spellAdder;
+  if (bgBonuses.ppMultiplier !== 1) pp = Math.ceil(pp * bgBonuses.ppMultiplier);
+  return pp + (character.manualBonuses?.ppBonus || 0);
 }
 
 /**
@@ -432,7 +442,9 @@ export function calculateDB(character) {
     }
   }
 
-  const itemBonus = (character.manualBonuses?.dbItem || 0) + (character.dbItemBonus || 0);
+  let itemBonus = (character.manualBonuses?.dbItem || 0) + (character.dbItemBonus || 0);
+  const bgBonuses = getBackgroundBonuses(character);
+  itemBonus += bgBonuses.dbBonus || 0;
 
   const dbMeleeNoShield = effectiveRP + adrenalMelee + itemBonus;
   const dbMeleeWithShield = effectiveRP + shield.dbMelee + itemBonus;
