@@ -3404,8 +3404,8 @@ function openPrintConfigPopup() {
       showStats: true,
       showCosts: false,
       historyInline: true,
-      skillsPerPage1: 60,
-      skillsPerPageN: 85,
+      skillsPerPage1: 40,
+      skillsPerPageN: 70,
     };
   }
   const pc = character.printConfig;
