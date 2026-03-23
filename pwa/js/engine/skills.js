@@ -165,20 +165,99 @@ const PARENT_SKILL_INDICES = new Set([
   173, // Perception Générale (General Perception) — choose sense type
 ]);
 
-// Skills that are normal (developable) but can ALSO have specializations
+// Skills that are normal (developable) but can ALSO have specializations.
+// Determined by non-trivial subskill_data in competences.json (raw binary metadata).
 const SPECIALIZABLE_INDICES = new Set([
+  // Academic
+  0,   // Administration
+  1,   // Alchimie
+  2,   // Anthropologie
+  3,   // Architecture
+  4,   // Astronomie
+  5,   // Biochimie
+  8,   // Doctrine Philosophique/Religieuse
+  9,   // Exploitation Minière
+  10,  // Héraldique
+  11,  // Histoire de la race
+  12,  // Ingéneurie
+  13,  // Maths Avancées
+  14,  // Maths de base
+  15,  // Mécanique
+  17,  // Navigation
+  18,  // Organisation Militaire
+  19,  // Physique
+  20,  // Pilote de Bateau
+  21,  // Planétologie
+  22,  // Repérage aux Etoiles
+  23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, // Savoirs
+  35,  // Sièges
+  36,  // Tactique
+  37,  // Xéno-Savoir
+  // Animal
+  38,  // Animalerie
+  39,  // Chargement
+  40,  // Conduite
+  41,  // Contrôle Animalier
+  42,  // Dressage
   43,  // Equitation
+  // Athletic
+  49,  // Expression Corporelle
+  56,  // Sport
+  59,  // Vol
+  // Combat
+  60,  // Artillerie
   61,  // Arts Martiaux
+  66,  // Désarmement avec Arme
+  67,  // Désarmement sans Arme
+  70,  // Inconscience
+  77,  // Revers
+  78,  // Yado
+  // Deadly
+  79,  // Contrôle Lycantropique
+  91,  // Mouvement Adrénal Dégainer
+  // General
+  101, // Estimation
+  102, // Evaluation des Armes
+  103, // Evaluation des Armures
+  104, // Evaluation des Métaux
+  105, // Evaluation des Pierres
+  // Gymnastic
+  106, // Alimentation
   107, // Artisanat
   108, // Artisanat de la Pierre
   109, // Artisanat du Bois
   112, // Forge
+  113, // Horticulture
   114, // Instrument
+  115, // Jeux Tactiques
+  119, // Publicité
+  121, // Travail du Cuir
+  // Medical
+  146, // Divination
+  152, // Rituel Magique
+  154, 155, 156, // Savoirs spécialisés
+  // Perception
+  159, // Accouchement
+  160, // Chirurgie
+  161, // Diagnostique
+  163, // Premiers Soins
+  164, // Résistance aux Drogues
+  165, // Secours
+  // Social
+  170, // Lecture des Traces
+  // Subterfuge
   173, // Perception Générale
+  180, // Diplomatie
+  182, // Jeu
+  // Survival
+  189, // Corruption
+  193, // Falsification
   201, // Environnement Hostile
   202, // Récupération
-  23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, // Savoirs
-  154, 155, 156, // Savoirs spécialisés
+  // Category_15
+  200, // Contacts
+  203, // Savoir Régional
+  205, // Survie dans la Nature
 ]);
 
 /**
