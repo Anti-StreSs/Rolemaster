@@ -1,4 +1,24 @@
-// Export engine — save/load characters as JSON
+// Export engine — save/load characters as JSON + IndexedDB persistence
+
+import { saveCharacter, loadCharacter, deleteCharacter,
+         getAllCharacters, migrateFromLocalStorage } from './db.js';
+
+// Re-export DB functions under legacy names for backwards compatibility
+export { saveCharacter as saveToLocalStorage };
+export { loadCharacter as loadFromLocalStorage };
+export { deleteCharacter as deleteLocalSave };
+export { migrateFromLocalStorage };
+
+/**
+ * Get all saved characters as {name: character} object.
+ * Now async — returns Promise.
+ */
+export async function getLocalSaves() {
+  const chars = await getAllCharacters();
+  const obj = {};
+  for (const c of chars) obj[c.name || 'unnamed'] = c;
+  return obj;
+}
 
 /**
  * Serialize a character to JSON string.
@@ -49,42 +69,4 @@ export function uploadCharacter(file) {
     reader.onerror = () => reject(reader.error);
     reader.readAsText(file);
   });
-}
-
-/**
- * Save character to localStorage.
- */
-export function saveToLocalStorage(character) {
-  const saves = getLocalSaves();
-  const key = character.name || 'unnamed';
-  saves[key] = { ...character, updatedAt: new Date().toISOString() };
-  localStorage.setItem('rolemaster_saves', JSON.stringify(saves));
-}
-
-/**
- * Get all locally saved characters.
- */
-export function getLocalSaves() {
-  try {
-    return JSON.parse(localStorage.getItem('rolemaster_saves') || '{}');
-  } catch {
-    return {};
-  }
-}
-
-/**
- * Delete a local save by name.
- */
-export function deleteLocalSave(name) {
-  const saves = getLocalSaves();
-  delete saves[name];
-  localStorage.setItem('rolemaster_saves', JSON.stringify(saves));
-}
-
-/**
- * Load a character from localStorage by name.
- */
-export function loadFromLocalStorage(name) {
-  const saves = getLocalSaves();
-  return saves[name] || null;
 }

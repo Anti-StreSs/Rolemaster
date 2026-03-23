@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rolemaster-v27';
+const CACHE_NAME = 'rolemaster-v28';
 const ASSETS = [
   './',
   './index.html',
@@ -18,6 +18,9 @@ const ASSETS = [
   './js/engine/spells.js',
   './js/engine/equipment.js',
   './js/engine/export.js',
+  './js/engine/db.js',
+  './js/engine/event-log.js',
+  './js/engine/tools-api.js',
   './js/ui/wizard.js',
   './js/ui/sheet.js',
   './js/ui/components.js',

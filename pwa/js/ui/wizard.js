@@ -8,6 +8,9 @@ import { getAllClasses, getClassName, getRealmInfo, getRealmKey, getRealmLabel, 
 import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts, isParentSkill, isSpecializableSkill, getWeaponSubcategories, getWeaponSkillCost, getParentSubSkillOptions, WEAPON_SKILL_GLOBAL_INDEX, getAllSkillsFlat, getLevelBonus, calcSimilarityBonus } from '../engine/skills.js';
 import { getAllRealms, getSpellListCost, getSpellRankCost, getSpellBlockSize, getListTypeKey, isPureCaster, getClassBaseSpellLists } from '../engine/spells.js';
 import { downloadCharacter, saveToLocalStorage } from '../engine/export.js';
+import { logStatRoll, logStatValidate, logSkillDevelop, logSpellSGR,
+         logPhaseValidate, logLevelUp, logBgOption, logHpRoll,
+         getCharacterHistory } from '../engine/event-log.js';
 import { processLevelUpStatGains } from '../engine/stat_gain.js';
 import { generateBackground, getRacialLanguages } from '../engine/background.js';
 import { getData } from '../engine/data-loader.js';
@@ -1437,6 +1440,9 @@ function renderHistoryTab(lang) {
     ${panel(lang === 'en' ? 'Background & Notes' : 'Historique & Notes', `
       <textarea id="f-history" class="field w-full" rows="8" placeholder="Historique du personnage...">${esc(character.history)}</textarea>
     `)}
+    ${panel(lang === 'en' ? 'Event Journal' : 'Journal des événements',
+      '<div id="event-journal-container" style="max-height:300px;overflow-y:auto"><div class="text-xs text-gray-500">Chargement...</div></div>'
+    )}
   `;
 }
 
@@ -1847,10 +1853,10 @@ function bindActionEvents() {
     downloadCharacter(character);
     showToast('Personnage téléchargé !');
   });
-  if (btnSaveLocal) btnSaveLocal.addEventListener('click', () => {
+  if (btnSaveLocal) btnSaveLocal.addEventListener('click', async () => {
     saveCurrentTabData();
     character.updatedAt = new Date().toISOString();
-    saveToLocalStorage(character);
+    await saveToLocalStorage(character);
     showToast('Personnage sauvegardé !');
   });
   if (btnPrint) btnPrint.addEventListener('click', () => openPrintConfigPopup());
@@ -1938,6 +1944,9 @@ function performLevelUp(app) {
   const label = character.devPhase === 'level'
     ? (lang === 'en' ? `Level ${character.level}!` : `Niveau ${character.level} !`)
     : (character.devPhase === 'apprenti' ? (lang === 'en' ? 'Apprentice phase!' : 'Phase Apprenti !') : 'Phase Adolescent !');
+  if (character.name && character.devPhase === 'level') logLevelUp(character.name, {
+    oldLevel: character.level - 1, newLevel: character.level,
+  });
   showToast(label);
   renderEditor(app);
 }
@@ -2116,6 +2125,7 @@ function bindStatsEvents(app) {
         action: isReroll ? 'reroll' : 'roll',
       });
       if (isReroll) log.rerollCount++;
+      if (character.name) logStatRoll(character.name, { method: log.method, rolls: rolledStats.map(r => ({ ...r })) });
 
       rollAssignments = new Array(STAT_COUNT).fill(-1);
       selectedRoll = -1;
@@ -2159,6 +2169,7 @@ function bindStatsEvents(app) {
         assignments: [...rollAssignments],
       };
       statsValidated = true;
+      if (character.name) logStatValidate(character.name, { stats: [...character.stats], potentials: [...character.potentials] });
       showToast('Stats validées !');
       renderEditor(app);
     });
@@ -2454,6 +2465,10 @@ function bindSpellsEvents(app) {
         sgrNumber: sgrCount + 1,
       },
     });
+    if (character.name) logSpellSGR(character.name, {
+      listName: study.listName, d100: roll, bonus, total, threshold: 101,
+      success, levelsGained: success ? study.blockSize : 0, level: character.level,
+    });
     if (success) {
       const blockStr = `${study.nextBlockStart}-${study.nextBlockStart + study.blockSize - 1}`;
       finalizeSpellLearn();
@@ -2714,6 +2729,11 @@ function bindHistoryEvents(app) {
           character.equipment += (character.equipment ? '\n\n' : '') + _bgW2;
         }
         showToast(`D100 = ${roll} → ${entry ? (entry.name_fr || entry.name_en || entry.name) : '?'}`);
+        if (character.name) logBgOption(character.name, {
+          category: section.name_en || section.name,
+          d100: roll, resultName: entry ? (entry.name_fr || entry.name_en || entry.name || `Roll ${roll}`) : `Roll ${roll}`,
+          effects: entry?.effects || {}, level: character.level,
+        });
       }
       renderEditor(app);
     });
@@ -2791,6 +2811,32 @@ function bindHistoryEvents(app) {
       renderEditor(app);
     });
   });
+
+  // Load event journal async and inject into container
+  if (character.name) {
+    getCharacterHistory(character.name, { limit: 50 }).then(history => {
+      const container = document.getElementById('event-journal-container');
+      if (!container || history.length === 0) {
+        if (container) container.innerHTML = `<div class="text-xs text-gray-500">${lang === 'en' ? 'No events yet.' : 'Aucun événement.'}</div>`;
+        return;
+      }
+      const EVENT_ICONS = {
+        'stat_roll': '🎲', 'stat_validate': '✅', 'skill_develop': '📚',
+        'spell_sgr': '🔮', 'phase_validate': '🏁', 'level_up': '⬆️',
+        'bg_option_roll': '🎰', 'hp_roll': '❤️', 'note': '📝', 'save': '💾',
+      };
+      const rows = [...history].reverse().map(e => {
+        const d = new Date(e.timestamp);
+        const time = d.toLocaleDateString('fr') + ' ' +
+          d.toLocaleTimeString('fr', { hour: '2-digit', minute: '2-digit' });
+        const icon = EVENT_ICONS[e.type] || '•';
+        return `<div class="text-xs" style="margin-bottom:2px;opacity:0.85">
+          <span class="text-gray-500">${time}</span> ${icon} ${e.summary || e.type}
+        </div>`;
+      }).join('');
+      container.innerHTML = rows;
+    }).catch(() => {});
+  }
 }
 
 function bindSkillsEvents(app) {
@@ -2815,6 +2861,11 @@ function bindSkillsEvents(app) {
         validatedAt: new Date().toISOString(),
       });
       character.phaseValidated = true;
+      if (character.name) logPhaseValidate(character.name, {
+        phase: character.devPhase === 'level' ? character.level : character.devPhase,
+        dpTotal: getDevPointsTotal(character), dpSpent: getDevPointsSpent(character),
+        level: character.level,
+      });
       showToast(lang === 'en' ? `${phaseLabel} phase validated!` : `Phase ${phaseLabel} validée !`);
       renderEditor(app);
     });
@@ -2938,6 +2989,11 @@ function bindSkillsEvents(app) {
       const ranksObj = getCurrentPhaseRanksObj(character);
       ranksObj[skillIdx] = phaseRanks + 1;
       setDevPointsSpent(character, spent + rankCost);
+      const _skills = getAllSkillsFlat();
+      if (character.name) logSkillDevelop(character.name, {
+        skillIndex: skillIdx, skillName: _skills[skillIdx]?.name_fr || String(skillIdx),
+        ranksAdded: 1, dpCost: rankCost, phase: character.devPhase, level: character.level,
+      });
       // Body Dev: roll hit die (or manual entry)
       if (skillIdx === getBodyDevSkillIndex()) {
         const dieStr = character.raceHitDie || '1-10';
@@ -2961,6 +3017,10 @@ function bindSkillsEvents(app) {
           const clamped = Math.max(1, Math.min(dieMax, val));
           if (!character.bodyDevRolls) character.bodyDevRolls = [];
           character.bodyDevRolls.push(clamped);
+          if (character.name) logHpRoll(character.name, {
+            rank: character.bodyDevRolls.length, dieRoll: clamped, dieType: dieMax,
+            level: character.level,
+          });
           showToast(`Body Dev +1 → ${clamped === autoRoll ? '' : '(table) '}${clamped} PdC`);
         }
       }

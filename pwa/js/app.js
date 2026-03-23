@@ -4,7 +4,7 @@ import { loadAllData, getData } from './engine/data-loader.js';
 import { startWizard, loadIntoWizard, getCharacter } from './ui/wizard.js';
 import { renderLoadView, bindLoadEvents } from './ui/settings.js';
 import { panel, showToast } from './ui/components.js';
-import { getLocalSaves, uploadCharacter, loadFromLocalStorage, deleteLocalSave } from './engine/export.js';
+import { getLocalSaves, uploadCharacter, loadFromLocalStorage, deleteLocalSave, migrateFromLocalStorage } from './engine/export.js';
 import frLabels from './i18n/fr.js';
 import enLabels from './i18n/en.js';
 
@@ -30,13 +30,13 @@ const app = {
 
 let editorStarted = false;
 
-function render() {
+async function render() {
   const main = document.getElementById('app-main');
 
   switch (app.currentView) {
     case 'home':
       editorStarted = false;
-      renderHome(main);
+      await renderHome(main);
       break;
     case 'create':
       startWizard(app, !editorStarted);
@@ -53,7 +53,7 @@ function render() {
   updateNav();
 }
 
-function renderHome(main) {
+async function renderHome(main) {
   const t = app.t;
   const data = getData();
   const nav = document.getElementById('main-nav');
@@ -73,7 +73,7 @@ function renderHome(main) {
     .replace('{spells}', spellCount);
 
   // Local saves list
-  const saves = getLocalSaves();
+  const saves = await getLocalSaves();
   const saveNames = Object.keys(saves);
   let savesHtml = '';
   if (saveNames.length > 0) {
@@ -127,17 +127,17 @@ function renderHome(main) {
 
   // Load from local saves
   document.querySelectorAll('.load-local-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const character = loadFromLocalStorage(btn.dataset.name);
+    btn.addEventListener('click', async () => {
+      const character = await loadFromLocalStorage(btn.dataset.name);
       if (character) app.loadCharacter(character);
     });
   });
 
   // Delete local saves
   document.querySelectorAll('.delete-local-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', async () => {
       if (confirm(t.save.confirmDelete || 'Supprimer cette sauvegarde ?')) {
-        deleteLocalSave(btn.dataset.name);
+        await deleteLocalSave(btn.dataset.name);
         render();
       }
     });
@@ -197,6 +197,10 @@ async function init() {
 
   try {
     await loadAllData();
+
+    // Migrate any existing localStorage saves to IndexedDB
+    const migrated = await migrateFromLocalStorage();
+    if (migrated > 0) console.log(`Migrated ${migrated} character(s) to IndexedDB`);
 
     setupLangToggle();
     // Banner click → home
