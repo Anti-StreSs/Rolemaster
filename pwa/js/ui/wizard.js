@@ -5,9 +5,10 @@ import { panel, showToast } from './components.js';
 import { createCharacter, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, applyRace, DEV_PHASES, getTotalRanks, getCurrentPhaseRanks, getCurrentPhaseRanksObj, getDevPointsSpent, setDevPointsSpent, getDevPointsTotal, getSpellPointsSpent, setSpellPointsSpent, getSpellPointsTotal, SHIELD_TYPES, calculateDB, setAdrenalDefenseIndex, rollBodyDevHitDie, getBodyDevSkillIndex } from '../engine/character.js';
 import { generateStatRolls, getStatValues, statPotentialLookup, generateStatRollsHybrid, generateStatRollsAntiLose, getStatValuesHybrid, rollStatPairsRMSS, getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
 import { getAllClasses, getClassName, getRealmInfo, getRealmKey, getRealmLabel, isSpellUser, getClassPrimeStats, getPPStatIndices } from '../engine/classes.js';
-import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts, isParentSkill, isSpecializableSkill, getWeaponSubcategories, getWeaponSkillCost, getParentSubSkillOptions, WEAPON_SKILL_GLOBAL_INDEX, getAllSkillsFlat, getLevelBonus, calcSimilarityBonus } from '../engine/skills.js';
+import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts, isParentSkill, isSpecializableSkill, getWeaponSubcategories, getWeaponSkillCost, getParentSubSkillOptions, WEAPON_SKILL_GLOBAL_INDEX, getAllSkillsFlat, getLevelBonus, calcSimilarityBonus, getSpecializationSuggestion } from '../engine/skills.js';
 import { getAllRealms, getSpellListCost, getSpellRankCost, getSpellBlockSize, getListTypeKey, isPureCaster, getClassBaseSpellLists } from '../engine/spells.js';
 import { downloadCharacter, saveToLocalStorage } from '../engine/export.js';
+import { generateCharacterPDF } from '../engine/pdf-export.js';
 import { logStatRoll, logStatValidate, logSkillDevelop, logSpellSGR,
          logPhaseValidate, logLevelUp, logBgOption, logHpRoll,
          getCharacterHistory } from '../engine/event-log.js';
@@ -16,6 +17,8 @@ import { generateBackground, getRacialLanguages } from '../engine/background.js'
 import { getData } from '../engine/data-loader.js';
 import { getBackgroundBonuses, getSkillBackgroundBonus, resolveBackgroundChoice, resolveStatIncrease, summarizeBackgroundBonuses, generateWealthText } from '../engine/background-effects.js';
 import { showPrintPreview } from './print-sheet.js';
+import { projectProgression } from '../engine/build-compare.js';
+import { getOptionalRules, setOptionalRule, resetOptionalRules } from '../engine/optional-rules.js';
 
 // --- Category translations ---
 const CAT_NAMES_FR = {
@@ -46,6 +49,7 @@ const TABS = [
   { id: 'spells', label_fr: 'Listes de Sorts', label_en: 'Spell Lists' },
   { id: 'history', label_fr: 'Historique', label_en: 'History' },
   { id: 'skills', label_fr: 'Compétences', label_en: 'Skills' },
+  { id: 'options', label_fr: 'Règles opt.', label_en: 'Options' },
 ];
 
 const TAB_ICONS = {
@@ -57,6 +61,7 @@ const TAB_ICONS = {
   spells:    'assets/ui/icons/tab_spells_book.webp',
   languages: 'assets/ui/icons/tab_languages_globe.webp',
   history:   'assets/ui/icons/tab_history_quill.webp',
+  options:   'assets/ui/icons/tab_options_gear.webp',
 };
 
 // 6 fixed weapon categories (from CPR093 CHOIXCAT screen)
@@ -219,6 +224,7 @@ function renderEditor(app) {
       <button class="btn-primary text-sm" id="btn-save-json">${lang === 'en' ? 'Download JSON' : 'Télécharger JSON'}</button>
       <button class="btn-secondary text-sm" id="btn-save-local">${lang === 'en' ? 'Local Save' : 'Sauvegarde locale'}</button>
       <button class="btn-secondary text-sm" id="btn-print">${lang === 'en' ? 'Print' : 'Imprimer'}</button>
+      <button class="btn-secondary text-sm" id="btn-export-pdf">${lang === 'en' ? 'Export PDF' : 'Export PDF'}</button>
     `;
   }
 
@@ -255,8 +261,104 @@ function renderTab(app) {
     case 'spells': return renderSpellsTab(app.lang);
     case 'history': return renderHistoryTab(app.lang);
     case 'skills': return renderSkillsTab(app.lang);
+    case 'options': return renderOptionsTab(app.lang);
     default: return '';
   }
+}
+
+// === Tab: Options ===
+function renderOptionsTab(lang) {
+  return `
+    <div>
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-bold">${lang === 'en' ? 'Optional Rules' : 'Règles optionnelles'}</h2>
+        <button class="btn-secondary text-sm" id="btn-reset-options">${lang === 'en' ? 'Reset to defaults' : 'Réinitialiser les défauts'}</button>
+      </div>
+      <p class="text-xs text-gray-500 mb-3">${lang === 'en' ? 'These settings are global and persist across all characters.' : 'Ces paramètres sont globaux et persistent pour tous les personnages.'}</p>
+      <div id="options-content">
+        <div class="text-gray-500 text-sm">${lang === 'en' ? 'Loading…' : 'Chargement…'}</div>
+      </div>
+    </div>
+  `;
+}
+
+async function bindOptionsEvents(app) {
+  const lang = app.lang;
+  const container = document.getElementById('options-content');
+  if (!container) return;
+
+  // Load and render rules
+  const rules = await getOptionalRules();
+  let html = '';
+  let currentGroup = null;
+
+  for (const rule of rules) {
+    if (rule.isHeader) {
+      if (currentGroup !== null) html += '</div></details>';
+      currentGroup = rule.description_fr;
+      const title = lang === 'en' ? (rule.description_en || rule.description_fr) : (rule.description_fr || rule.description_en);
+      html += `<details class="panel" style="cursor:pointer;margin-bottom:0.5rem">
+        <summary class="panel-title" style="list-style:none">▸ ${title}</summary>
+        <div style="margin-top:0.5rem;padding-left:1rem">`;
+      continue;
+    }
+
+    if (rule.isDisabled) {
+      html += `<div class="text-xs text-gray-500" style="margin-bottom:4px;opacity:0.4">${lang === 'en' ? (rule.description_en || rule.description_fr) : (rule.description_fr || rule.description_en)} <span class="text-xs">(non implémenté)</span></div>`;
+      continue;
+    }
+
+    const desc = lang === 'en' ? (rule.description_en || rule.description_fr) : (rule.description_fr || rule.description_en);
+    const ref = rule.reference ? `<span class="text-xs text-gray-500 ml-2">[${rule.reference}]</span>` : '';
+
+    if (rule.type === 1) {
+      html += `<div style="margin-bottom:4px"><label class="text-sm" style="cursor:pointer"><input type="checkbox" class="opt-rule-checkbox" data-idx="${rule.index}" ${rule.currentValue > 0 ? 'checked' : ''}> ${desc}${ref}</label></div>`;
+    } else if (rule.type === 2) {
+      html += `<div style="margin-bottom:4px"><label class="text-sm" style="cursor:pointer;${rule.currentValue >= 0 ? 'font-weight:bold' : 'opacity:0.7'}"><input type="radio" name="opt-group-${encodeURIComponent(rule.groupHeader || 'default')}" class="opt-rule-radio" data-idx="${rule.index}" ${rule.currentValue >= 0 ? 'checked' : ''}> ${desc}${ref}</label></div>`;
+    } else if (rule.type === 3) {
+      html += `<div style="margin-bottom:4px"><label class="text-sm" style="cursor:pointer"><input type="checkbox" class="opt-rule-checkbox" data-idx="${rule.index}" ${rule.currentValue >= 0 ? 'checked' : ''}> ${desc}${ref}</label></div>`;
+    } else if (rule.type === 8 || rule.type === 9) {
+      html += `<div style="margin-bottom:4px;display:flex;align-items:center;gap:0.5rem"><span class="text-sm">${desc}${ref}</span><input type="number" class="field field-sm opt-rule-numeric" data-idx="${rule.index}" value="${rule.currentValue >= 0 ? rule.currentValue : ''}" style="width:4rem;text-align:center"></div>`;
+    }
+  }
+
+  if (currentGroup !== null) html += '</div></details>';
+  container.innerHTML = html;
+
+  // Checkboxes
+  container.querySelectorAll('.opt-rule-checkbox').forEach(cb => {
+    cb.addEventListener('change', async () => {
+      await setOptionalRule(parseInt(cb.dataset.idx), cb.checked ? 1 : -1);
+    });
+  });
+
+  // Radio buttons — deactivate siblings, activate selected
+  container.querySelectorAll('.opt-rule-radio').forEach(rb => {
+    rb.addEventListener('change', async () => {
+      const groupName = rb.name;
+      const siblings = container.querySelectorAll(`input[name="${groupName}"]`);
+      for (const other of siblings) {
+        if (other !== rb) await setOptionalRule(parseInt(other.dataset.idx), -1);
+      }
+      await setOptionalRule(parseInt(rb.dataset.idx), 1);
+    });
+  });
+
+  // Numeric inputs
+  container.querySelectorAll('.opt-rule-numeric').forEach(input => {
+    input.addEventListener('change', async () => {
+      const val = parseInt(input.value);
+      await setOptionalRule(parseInt(input.dataset.idx), isNaN(val) ? -1 : val);
+    });
+  });
+
+  // Reset button
+  document.getElementById('btn-reset-options')?.addEventListener('click', async () => {
+    if (confirm(lang === 'en' ? 'Reset all rules to defaults?' : 'Réinitialiser toutes les règles ?')) {
+      await resetOptionalRules();
+      renderEditor(app);
+    }
+  });
 }
 
 // === Tab: Infos ===
@@ -443,6 +545,19 @@ function renderInfosTab(lang) {
           </div>
         </details>`;
       })()}
+
+      <details class="panel no-print" id="projection-panel" style="cursor:pointer">
+        <summary class="panel-title" style="list-style:none">${lang === 'en' ? '▸ Progression projection' : '▸ Projection de progression'}</summary>
+        <div style="margin-top:0.75rem">
+          <p class="text-xs text-amber-400 font-bold mb-2">⚠ ${lang === 'en' ? 'SIMULATION — does not modify the character' : 'SIMULATION — ne modifie pas le personnage'}</p>
+          <div class="flex items-center gap-3 mb-3">
+            <label class="text-sm">${lang === 'en' ? 'Target level:' : 'Niveau cible :'}</label>
+            <input type="number" id="proj-target-level" min="${character.level + 1}" max="20" value="${Math.min(character.level + 5, 20)}" class="field field-sm" style="width:4rem">
+            <button class="btn-secondary text-sm" id="btn-project">${lang === 'en' ? 'Simulate' : 'Simuler'}</button>
+          </div>
+          <div id="proj-result" class="text-xs font-mono" style="max-height:200px;overflow-y:auto"></div>
+        </div>
+      </details>
     </div>
   `;
 }
@@ -1860,6 +1975,21 @@ function bindActionEvents() {
     showToast('Personnage sauvegardé !');
   });
   if (btnPrint) btnPrint.addEventListener('click', () => openPrintConfigPopup());
+
+  const btnExportPdf = document.getElementById('btn-export-pdf');
+  if (btnExportPdf) btnExportPdf.addEventListener('click', () => {
+    if (!window.jspdf) {
+      showToast('jsPDF non disponible — vérifier la connexion internet', true);
+      return;
+    }
+    try {
+      const lang = character.language || 'fr';
+      generateCharacterPDF(character, { lang });
+      showToast(lang === 'en' ? 'PDF downloaded!' : 'PDF téléchargé !');
+    } catch (e) {
+      showToast('Erreur PDF: ' + e.message, true);
+    }
+  });
 }
 
 function bindContentEvents(app) {
@@ -1872,6 +2002,7 @@ function bindContentEvents(app) {
     case 'spells': bindSpellsEvents(app); break;
     case 'history': bindHistoryEvents(app); break;
     case 'skills': bindSkillsEvents(app); break;
+    case 'options': bindOptionsEvents(app); break;
   }
 }
 
@@ -2081,6 +2212,41 @@ function bindInfosEvents(app) {
     portraitClear.addEventListener('click', () => {
       character.portraitUrl = '';
       renderEditor(app);
+    });
+  }
+
+  // Projection simulate
+  const btnProject = document.getElementById('btn-project');
+  if (btnProject) {
+    btnProject.addEventListener('click', async () => {
+      const targetLvl = parseInt(document.getElementById('proj-target-level')?.value) || 0;
+      const resultEl = document.getElementById('proj-result');
+      if (!resultEl) return;
+      if (targetLvl <= character.level) {
+        resultEl.innerHTML = `<span class="text-red-400">${app.lang === 'en' ? 'Target level must be > current level' : 'Le niveau cible doit être > niveau actuel'}</span>`;
+        return;
+      }
+      resultEl.innerHTML = `<span class="text-gray-500">${app.lang === 'en' ? 'Simulating…' : 'Simulation…'}</span>`;
+      try {
+        const result = await projectProgression(character.name, targetLvl);
+        if (result.error) { resultEl.innerHTML = `<span class="text-red-400">${result.error}</span>`; return; }
+        let html = `<table style="border-collapse:collapse;width:100%">`;
+        html += `<tr style="color:#9ca3af"><th style="text-align:left;padding:1px 4px">Niv</th><th style="padding:1px 4px">PdC</th><th style="padding:1px 4px">PP</th><th style="padding:1px 4px">BD</th><th style="text-align:left;padding:1px 4px">${app.lang === 'en' ? 'Top skill' : 'Meill. comp.'}</th></tr>`;
+        for (const s of result.snapshots) {
+          const top = s.topSkills[0];
+          html += `<tr style="border-top:1px solid #374151">
+            <td style="padding:1px 4px;color:#f59e0b;font-weight:bold">${s.level}</td>
+            <td style="padding:1px 4px;color:#f87171;text-align:center">${s.hp}</td>
+            <td style="padding:1px 4px;color:#60a5fa;text-align:center">${s.pp}</td>
+            <td style="padding:1px 4px;color:#a3e635;text-align:center">${s.db.meleeBD ?? s.db}</td>
+            <td style="padding:1px 4px;color:#d1d5db">${top ? `${top.name} (+${top.bonus})` : '—'}</td>
+          </tr>`;
+        }
+        html += `</table>`;
+        resultEl.innerHTML = html;
+      } catch (e) {
+        resultEl.innerHTML = `<span class="text-red-400">Erreur: ${e.message}</span>`;
+      }
     });
   }
 }
@@ -3295,7 +3461,11 @@ function openSubSkillSelector(app, parentIndex) {
   if (options.length === 0) {
     // Free-text specialization for specializable skills
     const lang = character.language || 'fr';
-    const input = prompt(lang === 'en' ? 'Enter specialization name:' : 'Nom de la spécialisation :');
+    const suggestion = getSpecializationSuggestion(parentIndex, lang);
+    const msg = lang === 'en'
+      ? `Enter specialization name:${suggestion ? `\nEx.: ${suggestion}` : ''}`
+      : `Nom de la spécialisation :${suggestion ? `\nEx. : ${suggestion}` : ''}`;
+    const input = prompt(msg);
     if (!input || !input.trim()) return;
     const cost = getSkillDevCost(character.classIndex, parentIndex);
     character.subSkills.push({

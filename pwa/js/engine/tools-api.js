@@ -11,6 +11,11 @@ import { getBackgroundBonuses, getSkillBackgroundBonus } from './background-effe
 import { getAllClasses, getClassName } from './classes.js';
 import { getSpellListCost, getSpellRankCost } from './spells.js';
 import { getData } from './data-loader.js';
+import { getOptionalRules, setOptionalRule, isRuleActive } from './optional-rules.js';
+import { resolveStaticManeuver, resolveResistanceRoll, rollOpenEndedD100,
+         DIFFICULTIES, DIFFICULTY_LABELS, getRRStatIndex } from './maneuvers.js';
+import { resolveAttack, resolveCritical, resolveFumble, resolveFullAttack,
+         getAvailableWeapons, getAvailableCriticalTypes } from './combat.js';
 
 // --- Tool Registry ---
 const TOOLS = {};
@@ -43,6 +48,9 @@ export async function executeTool(name, params = {}) {
 if (typeof window !== 'undefined') {
   window.__rmTools = { getToolDefinitions, executeTool };
 }
+
+import { generateNPC, getTopSkills } from './npc-generator.js';
+import { compareBuilds, projectProgression } from './build-compare.js';
 
 // --- Group 1: Character Management ---
 
@@ -219,4 +227,154 @@ registerTool('get_rank_bonus',
   'Get the RM2 rank bonus for a given number of ranks',
   { ranks: { type: 'number', required: true } },
   async ({ ranks }) => ({ bonus: getRankBonus(ranks) })
+);
+
+// --- Group 7: NPC Generation ---
+
+registerTool('generate_npc',
+  'Generate a complete NPC with auto-rolled stats, skills, and background',
+  {
+    name:       { type: 'string',  required: true },
+    raceIndex:  { type: 'number',  required: true },
+    classIndex: { type: 'number',  required: true },
+    level:      { type: 'number',  default: 1 },
+    save:       { type: 'boolean', default: true },
+  },
+  async (params) => {
+    const char = await generateNPC(params);
+    const topSkills = getTopSkills(char, 5);
+    return {
+      name: char.name,
+      race: char.raceName,
+      class: getAllClasses()[char.classIndex]?.name_fr || '?',
+      level: char.level,
+      hp: char.hp,
+      pp: char.pp,
+      stats: char.stats,
+      topSkills,
+    };
+  }
+);
+
+// --- Group 8: Build Comparison & Projection ---
+
+registerTool('compare_builds',
+  'Compare 2+ characters side by side: stats, HP, PP, DB, top skills',
+  { names: { type: 'array', required: true, description: 'Array of character names to compare' } },
+  async ({ names }) => compareBuilds(names)
+);
+
+registerTool('project_progression',
+  'Simulate a character progressing to a target level without modifying the real character',
+  {
+    name:        { type: 'string', required: true },
+    targetLevel: { type: 'number', required: true },
+  },
+  async ({ name, targetLevel }) => projectProgression(name, targetLevel)
+);
+
+// --- Group 9: Optional Rules ---
+
+registerTool('get_optional_rules',
+  'Get all 89 optional rules with current values and group structure',
+  {},
+  async () => {
+    const rules = await getOptionalRules();
+    return rules.filter(r => !r.isDisabled);
+  }
+);
+
+registerTool('set_optional_rule',
+  'Enable or disable an optional rule',
+  {
+    index: { type: 'number', required: true, description: 'Rule index (0-88)' },
+    value: { type: 'number', required: true, description: '-1=disabled, 1=enabled, N=numeric' },
+  },
+  async ({ index, value }) => {
+    await setOptionalRule(index, value);
+    return { success: true, index, value };
+  }
+);
+
+registerTool('is_rule_active',
+  'Check if a specific optional rule is active',
+  { index: { type: 'number', required: true } },
+  async ({ index }) => ({ index, active: await isRuleActive(index) })
+);
+
+// --- Group 10: Maneuvers & Resistance Rolls ---
+
+registerTool('resolve_maneuver',
+  'Resolve a static/moving maneuver: skill + modifiers vs difficulty',
+  {
+    difficulty: { type: 'string', required: true,
+      description: 'routine|easy|light|medium|hard|very_hard|extremely_hard|sheer_folly|absurd' },
+    bonus: { type: 'number', required: true, description: 'Total skill + stat + modifiers' },
+    roll: { type: 'number', default: null, description: 'D100 open-ended (null = auto)' },
+  },
+  async (params) => resolveStaticManeuver(params)
+);
+
+registerTool('resolve_rr',
+  'Resolve a Resistance Roll against a spell, poison, disease, or fear',
+  {
+    defenderLevel: { type: 'number', required: true },
+    attackerLevel:  { type: 'number', required: true },
+    statBonus:      { type: 'number', required: true },
+    realm:          { type: 'string', default: 'essence',
+      description: 'essence|channeling|mentalism|poison|disease|fear' },
+    racialMod:  { type: 'number', default: 0 },
+    itemMod:    { type: 'number', default: 0 },
+    bgRRBonus:  { type: 'number', default: 0 },
+    roll:       { type: 'number', default: null },
+  },
+  async (params) => resolveResistanceRoll(params)
+);
+
+registerTool('list_difficulties',
+  'List all maneuver difficulty levels with FR/EN labels',
+  {},
+  async () => DIFFICULTIES.map(d => ({ id: d, ...DIFFICULTY_LABELS[d] }))
+);
+
+registerTool('roll_open_ended',
+  'Roll an open-ended D100 (Rolemaster standard)',
+  {},
+  async () => ({ roll: rollOpenEndedD100() })
+);
+
+// --- Group 11: Combat (Arms Law) ---
+
+registerTool('list_weapons',
+  'List all available weapon attack tables',
+  {},
+  async () => getAvailableWeapons()
+);
+
+registerTool('resolve_attack',
+  'Resolve a full attack: roll → hits → critical → fumble, all in one call',
+  {
+    weaponTable: { type: 'string',  required: true, description: 'Weapon id (e.g. atk-rmss5520-broadsword)' },
+    ob:          { type: 'number',  required: true, description: 'Total offensive bonus' },
+    db:          { type: 'number',  required: true, description: 'Total defensive bonus' },
+    armorType:   { type: 'number',  required: true, description: 'Armor type 1-20' },
+    attackRoll:  { type: 'number',  default: null,  description: 'D100 open-ended (null = auto)' },
+    critRoll:    { type: 'number',  default: null,  description: 'D100 for critical (null = auto)' },
+  },
+  async (params) => resolveFullAttack(params)
+);
+
+registerTool('resolve_critical',
+  'Resolve a critical strike separately',
+  {
+    critCode: { type: 'string', required: true, description: 'e.g. B_slash, C_krush' },
+    roll:     { type: 'number', default: null,  description: 'D100 1-100 (null = auto)' },
+  },
+  async ({ critCode, roll }) => resolveCritical(critCode, roll)
+);
+
+registerTool('list_critical_types',
+  'List available critical strike table ids',
+  {},
+  async () => getAvailableCriticalTypes()
 );

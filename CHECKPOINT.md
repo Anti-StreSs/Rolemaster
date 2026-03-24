@@ -1,10 +1,12 @@
 # Checkpoint — CPR093 Reverse Engineering
 
-*Updated: 2026-03-22*
+*Updated: 2026-03-24*
 
 ## Summary
 
-Session 2026-03-22 (Phase 4f — Batch 19) integrates the background option mechanical effects into the PWA. `background-effects.js` (357 lines, 6 exported functions) was already in place; this batch wires it into the game engine (`character.js`: PP/HP/DB bonus application) and the UI (`wizard.js`: skill stat+misc bonuses, effects display under each option, resolve-choice dialogs, background bonus summary panel in Infos, wealth auto-inject into Equipment). Service worker updated to v27 with `background-effects.js` in the asset cache list.
+Session 2026-03-24 (Phase 4h — Batches 23-24-26-27) adds PDF export, NPC generator, build comparator, and optional rules engine. `pdf-export.js` generates A4 multi-page PDF via jsPDF. `npc-generator.js` creates full NPCs (stats, skills, spells) in one call with `isNPC` flag for home screen tagging. `build-compare.js` loads multiple characters from IndexedDB and renders a side-by-side stats/skills comparison overlay with gold highlighting of maxima. `optional-rules.js` exposes the 89 options from `options.json` with activation state and effect summary. `tools-api.js` and `wizard.js`/`app.js` wired with new tools (`generate_npc`, `compare_builds`) and new UI popups. Service worker updated to v29.
+
+Session 2026-03-23 (Phase 4g — Batches 20-22 + Specializable Skills) implements three infrastructure upgrades. **Batch 20**: IndexedDB replaces localStorage (`db.js` created, `export.js` rewrapped, `app.js`/`wizard.js` made async, migration on startup). **Batch 21**: Agent-ready Tools API (`tools-api.js`, 11 registered tools, `window.__rmTools` console access). **Batch 22**: Unified event journal (`event-log.js`, 8 typed log helpers, Journal panel in History tab). Additionally, `SPECIALIZABLE_INDICES` in `skills.js` expanded from 25 to 90 entries (65 new skills identified by Python analysis of `subskill_data` in `competences.json`). Service worker updated to v28.
 
 ## Completed
 
@@ -17,6 +19,62 @@ Session 2026-03-22 (Phase 4f — Batch 19) integrates the background option mech
 - [x] **Phase 4d — Engine + UX Overhaul** (2026-03-21): sub-skills, rolling methods, spells, phases, theme
 - [x] **Phase 4e — Full UI + Game Mechanics** (2026-03-22): UI assets, print system, shields/DB, hit points, spell SGR, background options system
 - [x] **Phase 4f — Background Effects Integration** (2026-03-22): Batch 19 — all 7 tasks A-G
+- [x] **Phase 4g — Infrastructure & Tooling** (2026-03-23): Batches 20-22 + specializable skills expansion
+- [x] **Phase 4h — Studio augmenté** (2026-03-24): Batches 23-24-26-27 — PDF export, NPC generator, build compare, optional rules
+
+## Phase 4h Changes (2026-03-24)
+
+### Batch 23 — PDF Export (pdf-export.js, wizard.js, index.html)
+- `pdf-export.js` created (394 lines): multi-page A4 PDF via jsPDF CDN
+- Pages: identity/stats, skills, spells — mirrors print-sheet.js layout
+- "Export PDF" button added to Impression tab in wizard.js
+- jsPDF loaded via CDN in index.html
+
+### Batch 24 — NPC Generator (npc-generator.js, tools-api.js, app.js)
+- `npc-generator.js` created (230 lines): `generateNPC({name, raceIndex, classIndex, level, save})`
+- Auto-rolls stats, assigns skills proportional to level DP, picks spell lists for casters
+- Sets `isNPC: true` on character — home screen shows "PNJ" badge on saves
+- `generate_npc` tool added to tools-api.js
+- "Générer un PNJ" button on home screen opens popup (name/race/class/level)
+
+### Batch 26 — Build Comparator (build-compare.js, tools-api.js, app.js)
+- `build-compare.js` created (197 lines): loads chars from IndexedDB, builds summary objects
+- Summary: name, race, class, level, hp, pp, db, stats[10], topSkills[5], totalDevelopedSkills
+- `compareBuilds(names[])` returns `{characters: [...], error}`
+- `compare_builds` tool added to tools-api.js
+- Home screen: checkboxes on each save, "Comparer la sélection" button appears when ≥2 checked
+- Overlay table with gold highlighting of max numeric values per row
+
+### Batch 27 — Optional Rules (optional-rules.js)
+- `optional-rules.js` created (96 lines): loads options.json (89 rules), activation state in character
+- `getOptionalRules()`, `isRuleActive(char, ruleKey)`, `toggleRule(char, ruleKey)`, `getActiveRulesSummary(char)`
+
+## Phase 4g Changes (2026-03-23)
+
+### Specializable Skills Expansion (skills.js)
+- `SPECIALIZABLE_INDICES` expanded from 25 to 90 entries
+- 65 new skills identified via Python analysis of `subskill_data` in `competences.json`
+- Organized by game category with comments
+- All skills with non-trivial subskill_data now show ▸ specialization button in UI
+
+### Batch 20 — IndexedDB Persistence (db.js, export.js, app.js, wizard.js)
+- `db.js` created: 3 object stores (`characters`, `settings`, `event_log`), DB_VERSION=1
+- `export.js` rewritten: wraps db.js functions under legacy names for caller compatibility
+- `app.js`: `render()` and `renderHome()` made async; save/load/delete handlers await properly
+- `wizard.js`: `btnSaveLocal` handler awaits `saveToLocalStorage`
+- Migration: `migrateFromLocalStorage()` on startup reads old `rolemaster_saves` key, writes missing chars to IndexedDB
+
+### Batch 21 — Tools API (tools-api.js)
+- 11 registered tools: `list_characters`, `get_character`, `get_character_summary`, `get_stat_bonus`, `get_all_stat_bonuses`, `get_skill_total`, `get_all_skills`, `get_spell_lists`, `get_combat_stats`, `lookup_rule`, `get_rank_bonus`
+- `window.__rmTools = { getToolDefinitions, executeTool }` exposed for console/LLM access
+- `get_skill_total`: full breakdown (ranks, rankBonus, statBonus with bg mods, lvlBonus, simBonus, bgBonus, miscBonus, total)
+- `get_all_skills`: filter by `'developed'` / `'positive'` / `'all'`
+
+### Batch 22 — Event Log (event-log.js, wizard.js)
+- `event-log.js` created: typed helpers `logStatRoll`, `logStatValidate`, `logSkillDevelop`, `logSpellSGR`, `logPhaseValidate`, `logLevelUp`, `logBgOption`, `logHpRoll`, `logNote`, `getCharacterHistory`
+- All log calls are fire-and-forget (not awaited) to keep UI responsive
+- Journal panel added to History tab (last 50 events, reversed chronological)
+- Service worker updated to v28, 3 new files added to ASSETS
 
 ## Phase 4f Changes (2026-03-22 — Batch 19)
 
@@ -197,10 +255,57 @@ Session 2026-03-22 (Phase 4f — Batch 19) integrates the background option mech
 
 ## Next Session Entry Point
 
-1. Test background options end-to-end: roll options → verify PP/DB/HP modified → check Infos panel shows bonus summary
-2. Test wealth inject: roll a "Richesse" option → verify Equipment field updated
-3. Test resolve-choice dialog: find an option with `requires_choice: true` → click Choisir → verify resolved flag shown
-4. Continue with user feedback and additional gameplay polish
+1. Test combat engine in browser console:
+   ```javascript
+   await window.__rmTools.executeTool('list_weapons', {})
+   await window.__rmTools.executeTool('resolve_attack', { weaponTable: 'atk-rmss5520-broadsword', ob: 75, db: 20, armorType: 5 })
+   await window.__rmTools.executeTool('resolve_maneuver', { difficulty: 'hard', bonus: 45 })
+   await window.__rmTools.executeTool('resolve_rr', { defenderLevel: 5, attackerLevel: 8, statBonus: 10 })
+   ```
+2. Test NPC generator: "Générer un PNJ" → vérifier badge PNJ sur home
+3. Test Build Compare: cocher 2 personnages → "Comparer la sélection"
+4. Test PDF Export: onglet Impression → bouton "Export PDF"
+5. Continuer avec Batch 29 (combat tracker UI) ou polish gameplay
+
+## Key Files (updated)
+
+| File | Purpose |
+|------|---------|
+| `pwa/js/engine/db.js` | IndexedDB module: 3 stores (characters, settings, event_log), migration |
+| `pwa/js/engine/export.js` | Re-exports db.js under legacy names; async getLocalSaves |
+| `pwa/js/engine/tools-api.js` | Agent-ready Tools API: 13 tools including generate_npc + compare_builds |
+| `pwa/js/engine/event-log.js` | Typed event journal: 8 helpers + getCharacterHistory |
+| `pwa/js/engine/skills.js` | SPECIALIZABLE_INDICES: 90 entries (was 25) |
+| `pwa/js/engine/pdf-export.js` | A4 PDF generation via jsPDF (394 lines) |
+| `pwa/js/engine/npc-generator.js` | Quick NPC creation: stats + skills + spells auto-generated (230 lines) |
+| `pwa/js/engine/build-compare.js` | Multi-character comparison: stats, top skills, DB/HP/PP (197 lines) |
+| `pwa/js/engine/optional-rules.js` | Optional rules loader + activation state management (96 lines) |
 
 ---
-*Phase 1: 2025-01-19 | Phase 2: 2026-03-11 | Phase 3: 2026-03-11 | Phase 4a: 2026-03-12 | Phase 4b: 2026-03-20 | Phase 4c: 2026-03-20 | Phase 4d: 2026-03-21 | Phase 4e-4f: 2026-03-22*
+## Phase 4i Changes (2026-03-24)
+
+### Batch 28 — Manœuvres & Jets de Résistance (maneuvers.js)
+- `maneuvers.js` créé (130 lignes) : D100 open-ended, table manœuvre statique 9 degrés, RR
+- `rollOpenEndedD100()` : explosion ≥96, fumble ≤5 (double open-ended RM2)
+- `resolveStaticManeuver({difficulty, bonus, roll})` : 4 résultats (spectacular_failure/failure/partial/success)
+- `resolveResistanceRoll({defenderLevel, attackerLevel, statBonus, realm, ...})` : seuil 50, marge calculée
+- `getRRStatIndex(realm)` : EM/IN/PR/CO/AD selon realm
+- `DIFFICULTIES` + `DIFFICULTY_LABELS` (FR/EN) exportés
+- Tools : `resolve_maneuver`, `resolve_rr`, `list_difficulties`, `roll_open_ended`
+- sw.js : v32 → v33
+
+### Batch 25 — Combat Arms Law (combat.js + attack/critical/fumble_tables.json)
+- `data-loader.js` : +3 entrées FILES_MAP (attack_tables, critical_tables, fumble_tables)
+- `combat.js` créé (220 lignes) — adapté aux formats JSON réels (tableaux, non objets) :
+  - Indexes lazy par `id` (construits au premier appel)
+  - `parseRowBand()` : gère `"150+"`, `"UM-41"`, `"56-57"`, `"149"` → {min, max}
+  - `parseFumbleRange()` : `"01 - 03 UM"` → max=3
+  - `resolveAttack()` : row_band lookup par total (roll+OB-DB), fumble sur roll brut
+  - `resolveCritical()` : lookup par type suffix d'id (`B_slash` → `crit-rmss5520-slash`), `parsed_effects.bonus_hits`
+  - `resolveFumble()` : table `fumble-al2003-weapon-fumble-table`, mapping 26 `weapon_family` → 6 colonnes
+  - `resolveFullAttack()` : attaque + critique + fumble en un appel
+- Tools : `list_weapons` (36 tables), `resolve_attack`, `resolve_critical`, `list_critical_types`
+- sw.js : v33 → v34, +combat.js +3 JSON
+
+---
+*Phase 1: 2025-01-19 | Phase 2: 2026-03-11 | Phase 3: 2026-03-11 | Phase 4a: 2026-03-12 | Phase 4b: 2026-03-20 | Phase 4c: 2026-03-20 | Phase 4d: 2026-03-21 | Phase 4e-4f: 2026-03-22 | Phase 4g: 2026-03-23 | Phase 4h-4i: 2026-03-24*

@@ -1,0 +1,2274 @@
+[
+  {
+    "id": "fumble-tmwtd-firearm-fumble-table",
+    "name": "Firearm Fumble Table",
+    "source": {
+      "primary_pdf": "3E - 5705 - 10 Million Ways to Die.pdf",
+      "primary_pages": [
+        81
+      ]
+    },
+    "structure_type": "row_band_matrix",
+    "column_labels": [
+      "revolvers",
+      "one_handed_firearms",
+      "two_handed_firearms",
+      "muzzle_loaders",
+      "full_automatics",
+      "semi_automatics"
+    ],
+    "entries": [
+      {
+        "row_band": "01-05",
+        "cells": {
+          "revolvers": {
+            "raw_text": "Mysteriously, you elect\n01-05 fire during this phase.\nYour clumsy maneuvers\npreventan effectiveshooting",
+            "parsed_effects": null
+          },
+          "one_handed_firearms": {
+            "raw_text": "not to A moment's hesitation\nyou the opportunity to\nphase .\nPoor grip and nasty\nreally do a number on",
+            "parsed_effects": null
+          },
+          "two_handed_firearms": {
+            "raw_text": "loses Wet powder. Reload.\nfire this\nkickback Spilled powder out of\nyour onto theground . Re-prime",
+            "parsed_effects": null
+          },
+          "muzzle_loaders": {
+            "raw_text": "Dud round. You may fire\nnormally next phase.\nthe pan Dud round.You waste\nof the round swearing .",
+            "parsed_effects": null
+          },
+          "full_automatics": {
+            "raw_text": "again Dud round prevents fire\nround. You must manually\nthe chamber (10l activity)\nbefore firing again.\ntherest Dud in the middle of firing\nburst. You get half the",
+            "parsed_effects": null
+          },
+          "semi_automatics": {
+            "raw_text": "this Dud round. You must manually\nclear clear the chamber (10l\nactivity) before firing again.\nDud round. Loose the rest of\neffect this round being annoyed . You",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "06-10",
+        "cells": {
+          "revolvers": {
+            "raw_text": "06-10 opportunity. Try again\nphase.\nDistracted by a passing\nyou fail to fire this round.",
+            "parsed_effects": null
+          },
+          "one_handed_firearms": {
+            "raw_text": "next shoulder . You miss and\nhits.\nbird, You pull the trigger while\naiming at the sky. If\nanything directly aboveyou,",
+            "parsed_effects": null
+          },
+          "two_handed_firearms": {
+            "raw_text": "take 10 (10'% activity) and you\nagain.\nCoops. Forgot to prime.\nthere is the pan and you can try",
+            "parsed_effects": null
+          },
+          "muzzle_loaders": {
+            "raw_text": "can try\nPrime Round goes off normally,\nagain. splits the casing . Next\naction will take an extra",
+            "parsed_effects": null
+          },
+          "full_automatics": {
+            "raw_text": "you wanted this round\ndamage and one less\nseverity) . Clearthe chamber\n(10% activity) before\nbut Split round in the middle\nreload firing burst . You get half\n30% effect you wanted this",
+            "parsed_effects": null
+          },
+          "semi_automatics": {
+            "raw_text": "(halt must manually clear the\ncritical chamber (10l activity) before\nfiring again .\nfiring .\nof the Weapon fires, but casing splits\nthe Take 50% activity to clearthe\nround round before fire",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "11-15",
+        "cells": {
+          "revolvers": {
+            "raw_text": "11-15\nGet your eyes checked .\nMomentary double vision",
+            "parsed_effects": null
+          },
+          "one_handed_firearms": {
+            "raw_text": "you may make an attack\nYou empy a round into\nground . You are stunned",
+            "parsed_effects": null
+          },
+          "two_handed_firearms": {
+            "raw_text": "on it.\nthe Powder notproperly\nfor down . Shot goes offas",
+            "parsed_effects": null
+          },
+          "muzzle_loaders": {
+            "raw_text": "activity .\ntamped Poor powder quality\nnormal, underpowered shot down",
+            "parsed_effects": null
+          },
+          "full_automatics": {
+            "raw_text": "(halt damage and one\ncritical severity) . It will\n50% activity to clearthe\nchamber .\nsends an Bad ammo cost you a full\neffect. You get only half",
+            "parsed_effects": null
+          },
+          "semi_automatics": {
+            "raw_text": "you may\nless again.\ntake a\nPoorly made round inflicts only\nthe half damage this round (and",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "16-20",
+        "cells": {
+          "revolvers": {
+            "raw_text": "16-20 covinces you that it\nwait out the rest of this\nYou are at -50 for the\nthe round .\nFor a moment you think\nopponent is your old",
+            "parsed_effects": null
+          },
+          "one_handed_firearms": {
+            "raw_text": "would to one round (and quite\nround. surprised).\nrest of\nyour The gun is suddenly\nfriend. heavy! The barrel dips",
+            "parsed_effects": null
+          },
+          "two_handed_firearms": {
+            "raw_text": "butdoes half damage\nless critical severity.\nquite Pulled the arm back too\ntoo low You grimace as you hear",
+            "parsed_effects": null
+          },
+          "muzzle_loaders": {
+            "raw_text": "and one range . Half concussion\nand one less critical\nhard . You cocked the hammer\nthe fast and snapped the",
+            "parsed_effects": null
+          },
+          "full_automatics": {
+            "raw_text": "damage effect you wanted out of\nseverity. burst (half damage and\nless critical severity)\ntoo Opperating action is\nmain This",
+            "parsed_effects": null
+          },
+          "semi_automatics": {
+            "raw_text": "this one less critical severity)\none\ndefective. Recoil spring is defective. You",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "21-30",
+        "cells": {
+          "revolvers": {
+            "raw_text": "21-30\nYou lower your weapon\nof firing,\nYour spastic shooting",
+            "parsed_effects": null
+          },
+          "one_handed_firearms": {
+            "raw_text": "instead to fire this round.\nhits 3 Slight sprain to your",
+            "parsed_effects": null
+          },
+          "two_handed_firearms": {
+            "raw_text": "lock spring snap . Gun\nfire until repaired .\nnon- Sear breaks. Gun will no",
+            "parsed_effects": null
+          },
+          "muzzle_loaders": {
+            "raw_text": "will not spring. Gun will not fire\nrepaired.\nlonger Sear snaps off. Gun cannot",
+            "parsed_effects": null
+          },
+          "full_automatics": {
+            "raw_text": "gun may now only\nuntil in semi-automatic mode\n10% activity must be\ncyle the rounds manually.\nbe Sear damaged beyond",
+            "parsed_effects": null
+          },
+          "semi_automatics": {
+            "raw_text": "be fired must spend 10% activity\nand betweeneach shot to cycle the\nspent to rounds manually,\nrepair. Sear breaks off . Gun will now",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "31-40",
+        "cells": {
+          "revolvers": {
+            "raw_text": "31-40 yards short of the target.\nare at -30 forthe next\nwhile you recover.\nChose wrong target.",
+            "parsed_effects": null
+          },
+          "one_handed_firearms": {
+            "raw_text": "You weapon wrist causes all\nround 2-handed attacksto be\nTake 5 hits from thejolting\nReroll the Shot goes wide . Reroll",
+            "parsed_effects": null
+          },
+          "two_handed_firearms": {
+            "raw_text": "further lock thehammer . Gun\nat-20. be fired, butwith a\nthe Lock's springs were",
+            "parsed_effects": null
+          },
+          "muzzle_loaders": {
+            "raw_text": "may still fired in a double-action\n-20penalty . Hammers must be held\nmanually (-20 to OB).\nloose. Cylinder pin breaks,",
+            "parsed_effects": null
+          },
+          "full_automatics": {
+            "raw_text": "mode . Gun may only be fired in\nback auto mode until repaired\ndropping it Clip release brokes and",
+            "parsed_effects": null
+          },
+          "semi_automatics": {
+            "raw_text": "full- actas an auto weapon (full-\n. auto only) .\ndrops Clip snaps offand is now lost .",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "41-50",
+        "cells": {
+          "revolvers": {
+            "raw_text": "41-50 attack against a target\nfoe) closest to the person\nthoughtyou were attacking.\nApparently, you were",
+            "parsed_effects": null
+          },
+          "one_handed_firearms": {
+            "raw_text": "(friend or attack againstatarget\nyou nearestto the person\nthoughtyou were attacking\naming at You didn't even seethat",
+            "parsed_effects": null
+          },
+          "two_handed_firearms": {
+            "raw_text": "who is Mechanism spills out\nyou ground. Gun will not fire\n. you find the pieces and\nrabbit Too much powder sends",
+            "parsed_effects": null
+          },
+          "muzzle_loaders": {
+            "raw_text": "onto the at your feet. Gun will\nuntil untilyou get it repaired .\nrepair\nan Round had too much",
+            "parsed_effects": null
+          },
+          "full_automatics": {
+            "raw_text": "notfire on the ground . Rounds\nreloaded manually . Gun\nonly fire in single shot\npower. Recoil is almost too much",
+            "parsed_effects": null
+          },
+          "semi_automatics": {
+            "raw_text": "may be Rounds may be manually\nwill loaded (taking 50% activity).\nmode.\nfor Round had too much power.",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "51-60",
+        "cells": {
+          "revolvers": {
+            "raw_text": "51-60\na bird, notyour target.\nsurvive, you have dinner\nShot goes straight down,",
+            "parsed_effects": null
+          },
+          "one_handed_firearms": {
+            "raw_text": "If you before he jumped in\n. your bullet to save your\nfrom certain death .\nbarly Shot goes wide, ricochetts",
+            "parsed_effects": null
+          },
+          "two_handed_firearms": {
+            "raw_text": "front of extra thickcloud of smoke\ntarget through the touch hole.\nsquint your eyes in pain\nhits and are stunnedfor\nrounds.\noff a Heavy recoil causes no",
+            "parsed_effects": null
+          },
+          "muzzle_loaders": {
+            "raw_text": "Youwince in pain. Take\nYou and are stunned for 1\n. Take 3\n2\ndamage Sight is out of alignment.",
+            "parsed_effects": null
+          },
+          "full_automatics": {
+            "raw_text": "5 hits you. You might consider\nround. with a smaller caliber .\nhits and are stunned for\nrounds.\n-25 to Sight is shaken cutof",
+            "parsed_effects": null
+          },
+          "semi_automatics": {
+            "raw_text": "going You wince in pain . Take 5 hits\nTake 10 and are stunned for 1 round.\n3\nHow did your sightget out of",
+            "parsed_effects": {
+              "stun_rounds": 1
+            }
+          }
+        }
+      },
+      {
+        "row_band": "61-65",
+        "cells": {
+          "revolvers": {
+            "raw_text": "61-65 missing your foot . Don't\nme, you rolled this result\nYou artfully spin the\nyour hand and deal a",
+            "parsed_effects": null
+          },
+          "one_handed_firearms": {
+            "raw_text": "blame tree and barely misses\n. closest ally. He is not\nweapon in Poor gip sends weapon\npoint- crashing back into your",
+            "parsed_effects": null
+          },
+          "two_handed_firearms": {
+            "raw_text": "your to you, butwrenches the\nhappy. out of alingment. Gun is\nto all shots until repaired\nHeavy recoil sends gun\nThere is a 50% chance",
+            "parsed_effects": null
+          },
+          "muzzle_loaders": {
+            "raw_text": "barrel OB until it is replaced or\nat-25 ajusted.\n.\nflying . You didn't expect that.\nit hits a severe recoil sends the",
+            "parsed_effects": {
+              "ob_penalty": -25
+            }
+          },
+          "full_automatics": {
+            "raw_text": "re- alignment . -10 to all shots\nyou can repair it.\nThe Gun is out of control! It\ngun back and flies out of your",
+            "parsed_effects": null
+          },
+          "semi_automatics": {
+            "raw_text": "until whack. -25 to all shots untilyou\ngetit fixed .\nrecoils Heavy recoil sends gun flying.\ngrip. There is a 50% chance it hits a",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "66",
+        "cells": {
+          "revolvers": {
+            "raw_text": "66\nblank attack on yourself\n+0 OB). Say\"Goodnight,\nGracey .\"\nPoke yourself in the eye",
+            "parsed_effects": null
+          },
+          "one_handed_firearms": {
+            "raw_text": "(with sholder. Take an attack\nFall/Crush Table with a\nwhile Break afinger . Take 8",
+            "parsed_effects": null
+          },
+          "two_handed_firearms": {
+            "raw_text": "on the nearby friend for 15 hits\n+40OB . 'A' Krush critical .\nhits . All Stock is split by the recoil",
+            "parsed_effects": null
+          },
+          "muzzle_loaders": {
+            "raw_text": "and an flying . There is a 50%chance\nthat it hits a nearby friend\n10 hits and an 'A' Krush\n. If it That custom grip is split",
+            "parsed_effects": null
+          },
+          "full_automatics": {
+            "raw_text": "There is a50% chance it\nfor nearby ally for 15 hits and\ncritical. Krush critical .\nby the Severe recoil splits the",
+            "parsed_effects": null
+          },
+          "semi_automatics": {
+            "raw_text": "hits a nearby friend for 15 hits and an\na 'C' 'A' Krush critical .\ngrip . Grip is split by the recoil . All",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "67-70",
+        "cells": {
+          "revolvers": {
+            "raw_text": "67-70\ntrying to get fancy. Take\nand arestunned for 2\nYou weren't supposed\nthe weapon . Foe dodges",
+            "parsed_effects": null
+          },
+          "one_handed_firearms": {
+            "raw_text": "8 hits weapon attacks with that\nrounds . suffer a -35 penalty.\nto throw I see your master plan\neasily . throwthe weapon at",
+            "parsed_effects": null
+          },
+          "two_handed_firearms": {
+            "raw_text": "hand was a pistol, it now fires\nto all shots. Rifles or\nsuffer a -40 penalty .\nnow, Stock splits in two from\nyour recoil and tearsyour arm",
+            "parsed_effects": null
+          },
+          "muzzle_loaders": {
+            "raw_text": "at-30 recoil . This gun now has\nmuskets to all shots .\nthe Those revolver are a little\n. Take to get a grip on. You",
+            "parsed_effects": null
+          },
+          "full_automatics": {
+            "raw_text": "a -15 Now this gun has a special\npenaltyof -25 to all shots.\ntough You fumble with your\ngracefully and send it spinning end",
+            "parsed_effects": null
+          },
+          "semi_automatics": {
+            "raw_text": "shots suffer a penalty of -15.\nweapon I didn't know you could juggle!\nover Coops. Gun hits you in the",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "71-80",
+        "cells": {
+          "revolvers": {
+            "raw_text": "71-80\nCheck to see if your\nbroke .\nFingers mysteriously\nin weapon cause you",
+            "parsed_effects": null
+          },
+          "one_handed_firearms": {
+            "raw_text": "weapon opponent's feet and then\nhim while he is suprised.\nWhat? No?\nentangled Whirling around for no\nsome apparent reason, you",
+            "parsed_effects": null
+          },
+          "two_handed_firearms": {
+            "raw_text": "hit a 'C' Slash critical .\nBullet deforms in gun\nbash your immense fouling .",
+            "parsed_effects": null
+          },
+          "muzzle_loaders": {
+            "raw_text": "drop the thing and it\ngood 2 yards. Roll for\nbreakage.\ncausing Bullet deforms in gun\nTheweapon damage to the barrel . The",
+            "parsed_effects": null
+          },
+          "full_automatics": {
+            "raw_text": "bounces a end a good 5 yards. Add\nbreakage number and\nbreakage.\ncausing Bullet deforms in gun\nthe barrel . All shots suffer",
+            "parsed_effects": null
+          },
+          "semi_automatics": {
+            "raw_text": "4 to its head . Take an 'C' Krush critical .\ncheck for\ndefacing Bullet deforms in gun. You\na -30 suffer a -30 penalty to all shots",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "81-85",
+        "cells": {
+          "revolvers": {
+            "raw_text": "81-85\nconsternation. You are\nfor 3 rounds while you\nout .\nYou spin to take aim at",
+            "parsed_effects": null
+          },
+          "one_handed_firearms": {
+            "raw_text": "stunned weapon against a\nfigure it surface. Roll for breakage\nyour Shot mysteriously goes",
+            "parsed_effects": null
+          },
+          "two_handed_firearms": {
+            "raw_text": "nonagressive is at -30 until cleaned .\n.\nwide . Over pressure blows off",
+            "parsed_effects": null
+          },
+          "muzzle_loaders": {
+            "raw_text": "weapon is at -20 until\ntip of Bad round blows the end",
+            "parsed_effects": null
+          },
+          "full_automatics": {
+            "raw_text": "cleaned . until the weapon is cleaned\noff of Gun barrel gets too hot",
+            "parsed_effects": null
+          },
+          "semi_automatics": {
+            "raw_text": ". until the gun is cleaned.\nand Over pressure blows off tip of",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "86-90",
+        "cells": {
+          "revolvers": {
+            "raw_text": "86-90 target, and trip over your\ntwofeet. You are down\nstunned for one round.\nWhile daydreaming, you\nyour hand in front of the",
+            "parsed_effects": null
+          },
+          "one_handed_firearms": {
+            "raw_text": "own You eye your gun\nand for one round while you\nstunned.\nput As you raised the- weapon\nbarrel. fire, you managed to",
+            "parsed_effects": null
+          },
+          "two_handed_firearms": {
+            "raw_text": "suspiciously gun. The weapon is at-30\nare has 3 added to its breakage\nnumber.\nto Over pressure blows\ncrack barrel . Take a 'B' Slash",
+            "parsed_effects": null
+          },
+          "muzzle_loaders": {
+            "raw_text": "and the barrel . The weapon\nand has 3 addedto its\nnumber.\noutside of The side of the gun\ncritical . Take a 'B' Slash critical.",
+            "parsed_effects": null
+          },
+          "full_automatics": {
+            "raw_text": "is at -30 deforms. The weapon\nbreakage at -30 and has 3 added\nbreakage number.\nexplodes! The gun explodes! Take\nHeat critical and a 'C'",
+            "parsed_effects": null
+          },
+          "semi_automatics": {
+            "raw_text": "now fires gun . The weapon fires at -30\nto its and has its reliabilitylowered\nby 15 .\na 'B' Jam causes gun to blow out the\nShrapnel side of the barrel . Take a 'B'",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "91-95",
+        "cells": {
+          "revolvers": {
+            "raw_text": "91-95 Lose a finger . Take 10\nyou are stunned for 3\nYou are bleeding 5 hits\nround as well .\nYou didn't really need",
+            "parsed_effects": null
+          },
+          "one_handed_firearms": {
+            "raw_text": "hits and yourself in the jaw. Take\nrounds. and arestunned for2\nper (and unable to parry\nthat You had your hand too",
+            "parsed_effects": null
+          },
+          "two_handed_firearms": {
+            "raw_text": "15 hits\nrounds\nforone) .\nfar Barrel explodes near lock",
+            "parsed_effects": null
+          },
+          "muzzle_loaders": {
+            "raw_text": ". Take Barrel explodes! Take 'C'",
+            "parsed_effects": null
+          },
+          "full_automatics": {
+            "raw_text": "critical .\nHeat Forsame unknown reason,",
+            "parsed_effects": null
+          },
+          "semi_automatics": {
+            "raw_text": "Slash critical .\nthe Why me! The gun explodes .",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "96-99",
+        "cells": {
+          "revolvers": {
+            "raw_text": "96-99 kneecap anyway .Take\n5 rounds of stun, and a\nround bleeder. You fall\nBullet richochetts off a\nand comes right back",
+            "parsed_effects": null
+          },
+          "one_handed_firearms": {
+            "raw_text": "20 hits, forward and burn yourself\n3 per the hot barrel . Take 9\ndown . are stunned for 2 rounds\nrock, You pull the triggerfire\nat you. weapon inot your own",
+            "parsed_effects": {
+              "stun_rounds": 2
+            }
+          },
+          "two_handed_firearms": {
+            "raw_text": "on 'C' Heat and Slash criticals\nhits and\n.\nthe Barrel explodes shattering\nfoot . stock and your hand .",
+            "parsed_effects": null
+          },
+          "muzzle_loaders": {
+            "raw_text": ". and Slash criticals.\nWhole gun explodes in\nTake 'D' hands. Take 'D' Heat and",
+            "parsed_effects": null
+          },
+          "full_automatics": {
+            "raw_text": "barrel explodes. Take an\nHeat and Shrapnel criticals.\nyour Thewholeweapon flies\nSlash small pieces in an explosion.",
+            "parsed_effects": null
+          },
+          "semi_automatics": {
+            "raw_text": "'E' Take 'C' Heat and Slash\ncriticals .\ninto The stock shatters in your\nhand .",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "100",
+        "cells": {
+          "revolvers": {
+            "raw_text": "100\nMake a newroll (with a\nOB) against yourself,\n80",
+            "parsed_effects": null
+          },
+          "one_handed_firearms": {
+            "raw_text": "+50 Take 20 hits, 3 rounds\nand an 8 per round",
+            "parsed_effects": null
+          },
+          "two_handed_firearms": {
+            "raw_text": "of stun, heat and slash criticals\nbleeder. have lost 1 d5 fingers.",
+            "parsed_effects": null
+          },
+          "muzzle_loaders": {
+            "raw_text": ".You criticals. You have lost\nfingers .",
+            "parsed_effects": null
+          },
+          "full_automatics": {
+            "raw_text": "1d5 Take 'E' Heat, Slash, and\nShrapnel criticals. Say\nto your hand .",
+            "parsed_effects": null
+          },
+          "semi_automatics": {
+            "raw_text": "Take 'D' Heat and Slash\ncriticals . You have lost 1 d5\ngood-by fingers.",
+            "parsed_effects": null
+          }
+        }
+      }
+    ],
+    "provenance": {
+      "input_file": "fumble_tables.json",
+      "batch": "fumbles",
+      "legacy_id": "tmwtd-firearm-fumble",
+      "notes": []
+    }
+  },
+  {
+    "id": "fumble-comp1-martial-arts-striking-fumbles",
+    "name": "Martial Arts Striking Fumbles",
+    "source": {
+      "primary_pdf": "Rolemaster Classic (RM2) - Companion 1 - ICE #1500.pdf",
+      "primary_pages": [
+        70
+      ]
+    },
+    "structure_type": "single_column_roll_table",
+    "entries": [
+      {
+        "row_band": "01-25",
+        "raw_text": "Lose track of target and lose the opportunity to strike.",
+        "parsed_effects": null
+      },
+      {
+        "row_band": "26-30",
+        "raw_text": "Stumble on your own feet and take 1 round to regain balance.",
+        "parsed_effects": null
+      },
+      {
+        "row_band": "31-40",
+        "raw_text": "Misremember move. Hesitate 1 round to refresh your memory.",
+        "parsed_effects": null
+      },
+      {
+        "row_band": "41-50",
+        "raw_text": "Overextend yourself. Spend either 2 rounds full parry or 1 round no parry to recover.",
+        "parsed_effects": null
+      },
+      {
+        "row_band": "51-60",
+        "raw_text": "The heat of combat has made you forget how or where to attack. Maximum attack is 3 ranks below norm or if below rank 1 must parry for 2 rounds.",
+        "parsed_effects": null
+      },
+      {
+        "row_band": "61-70",
+        "raw_text": "Mistake in attack causes awkward position and slight muscle spasms. Parry quickly for 2 rounds if you wish to recover.",
+        "parsed_effects": null
+      },
+      {
+        "row_band": "71-80",
+        "raw_text": "Attempt at advanced technique causes confusion for one round. Parry is well done though in wrong direction. 42 Stinger Tiny Fall/Crush Trample 86 80 82 77 80 80 83 79 54 67",
+        "parsed_effects": null
+      },
+      {
+        "row_band": "81-85",
+        "raw_text": "Knee strikes opponent's bone causing interesting sensation. Contemplate this for 3 rounds. 42 51 -42 45 -27 48 54 48 51",
+        "parsed_effects": null
+      },
+      {
+        "row_band": "86-90",
+        "raw_text": "You \"know\" your strike was amazing. Foe's lucky but intuitive block leaves you stunned for 2 rounds.",
+        "parsed_effects": {
+          "stun_rounds": 2
+        }
+      },
+      {
+        "row_band": "91-95",
+        "raw_text": "Miserable landing while attempting to regain balance you manage to stun yourself.",
+        "parsed_effects": null
+      },
+      {
+        "row_band": "96-99",
+        "raw_text": "In the excitement your 2 feet try to be in 3 places at once. The fall leaves you stunned for 3 rounds, and not able to parry for 2.",
+        "parsed_effects": {
+          "stun_rounds": 3
+        }
+      },
+      {
+        "row_band": "100",
+        "raw_text": "You forget even the most basic moves. You smash yourself clumsily against your opponent giving yourself a B crit (crushing).",
+        "parsed_effects": null
+      }
+    ],
+    "provenance": {
+      "input_file": "fumble_tables.json",
+      "batch": "fumbles",
+      "legacy_id": "comp1-ma-striking-fumble",
+      "notes": [
+        "Single-column prose table preserved as extracted; not forced into a row-band matrix."
+      ]
+    }
+  },
+  {
+    "id": "fumble-tmwtd-melee-and-missile-fumble-table",
+    "name": "Melee & Missile Fumble Table",
+    "source": {
+      "primary_pdf": "3E - 5705 - 10 Million Ways to Die.pdf",
+      "primary_pages": [
+        80
+      ]
+    },
+    "structure_type": "row_band_matrix",
+    "column_labels": [
+      "one_handed_arms",
+      "two_handed_arms",
+      "polearms_and_spears",
+      "mounted_arms",
+      "thrown_arms",
+      "missile_weapons"
+    ],
+    "entries": [
+      {
+        "row_band": "01-25",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "Your palm is sweaty\n01-25\nMaybe you will\nKlutzy. Drop your",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": ". My that weapon is\nimprove . You lose the opportunity\ntake a swing .\nweapon. Your weapon flies .",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "heavy! You snag your own\nto and lose the opportunity\ntake a swing,\nTake Fumble your delivery",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "clothes Your mount's tack tangles\nto your weapon . You lose\nopportunity to take a strike\nand Can't find the right angle",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "Your grip is weak. You elect\nthe not to attack because of\n. control .\n. You fumble your delivery\nattack but hang onto your",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "Sweat trickles into your\neye . You elect not to attack .\nGood choice .\nYour ten thumbs just\ncannot handle loading . You",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "26-30",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "26-30 Spend two rounds\nrecovering it; or\none next round .\nYour feet get tangled",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "four rounds to recover\ndraw a new draw a new one next\n. You Your mind is wandering",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "it; or your weapon is out of\nround. position . You lose the\noption to attack .\n. You just look clumsy.",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "You lose 2 rounds of\n(but can still parry) .\nYour You slip in the saddle.",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "weapon . You have -10 to\nyour next attack.\nYou Your feet are really tangled",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "must reload your weapon .\n-\nYour ammunition slips",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "31-40",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "31-40\nmiss the opportunity\nin that vital blow .\nYou are over-extended",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "to get Spend the rest of the\nclearing your head .\nand Stumble over an",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "round feet are sliding . You are\nstunned for one round\nimaginary Your weapon is spinning\nYou",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "lose 2 rounds of attack\n. can still parry) .\nYour mount dodges an\ncan still unseen foe . You are",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "(but up . You lose 2 rounds of\nattack, but can still parry .\nYou begin juggling your\nweapon because of a bad",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "away . You must reload.\nYou notice that your\nammunition is faulty. After",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "41-50",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "41-50 strain a muscle .\nhits .\nYou try to impress\nopponent with a",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "Take 1d5 dead turtle . You lose\nrounds of attack, but\ncan still parry .\nyour Your combination of\nspin acrobatics and attacks",
+            "parsed_effects": {
+              "dead": true
+            }
+          },
+          "polearms_and_spears": {
+            "raw_text": "2 for two rounds.\nyou parry at -10.\nYou stagger into a\nis fixed object . You are",
+            "parsed_effects": {
+              "parry_penalty": -10
+            }
+          },
+          "mounted_arms": {
+            "raw_text": "stunned for 2 rounds .\nnearby You lose your grip on\nweapon . Luckily, it is",
+            "parsed_effects": {
+              "stun_rounds": 2
+            }
+          },
+          "thrown_arms": {
+            "raw_text": "grip . Your lack of control\nstuns you for 3 rounds.\nyour Poor release . Weapon\ntravels 2410 feet to the left",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "removing it you discover\nyou were wrong . Reload it.\nYour ammunition keeps\njumping off of your",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "51-60",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "51-60\nmanuever . Too bad\ntwo rounds while\nrecover.\nYou snag your\nyour weapon, causing",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": ". Lose unimpressive . Lose\nyou rounds of attacks, but\ncan still parry.\nclothes with Your weapon flies\nit to your hands, but you",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "two stunned and unable to\nyou parry for two rounds .\nfrom Your shaft tangles in\nare legs . You almost fall",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "tangled in your mount's\ntack. Your lack of grace\nstuns you for three rounds\nyour Your poor mount stumbles.\ndown You are stunned for two",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "of the target .\n.\nVery poor release sends\nyour weapon straight up!",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "weapon! Try melee next\ntime.\nYour weapon slips from\nyour hands. Spend two",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "61-65",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "61-65\nslip from your hand\ntwo rounds juggling\nYou execute a perfect\nattack-against",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": ". Spend able to catch it before\nit. flies totally away.\nrounds of attack.\nAcrobatic manuever\nclosest ally you flat on your back.",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "it in an impressive feat\nLose two entangling . Your next\nattack is at -20.\nleaves Your weapon must\nTake for breakage as you",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "of rounds .\ncheck Your swing slices the\nslam it of your mount. You and",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "You duck for cover while\nyour weapon checks for\nbreakage .\ntack Your ferocious scream is\nfollowed by silence as you",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "rounds recovering it; or\ndraw a new weapon.\nTake an 'A' Krush critical\nfrom the sudden release .",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "66",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "66\n(yourself if no one\naround) . Ally takes\nhits and a 'B' critical\nYou trip over that\nsurface. Spend two",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "else is 2d10 hits and an 'E'\n1d10 critical.\n.\nuneven You gracefully drop\nrounds weapon to the ground",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "Krush into the ground! You\nstunned for six rounds\nbecause of the impact\nyour Your weapon seems\n. You ! have a mind of it's own!",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "are your saddle take your\nof the poor beast. Take\n. 'A' Krush critical .\nto Your tack has loosened!\nYou suddenly slip",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "leave hit yourself. Take a 'D'\nan Krush critical .\nYou cannot control your\naim-your weapon flies",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "Your weapon snaps cleanly\ninto two pieces .\nYour grip fails you and\nyour weapon flies from",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "67-70",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "67-70\nstaggering . You\nparry .\nYou are distracted\npixie in the corner",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "can still are able to kick it\nyour hand, but you\ntwo rounds while\nby that You strain your\n. You lose in a mighty swing",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "back into Your next attack is at\nlose your try and get it under\ndoing it . control .\nshoulders Your ineptitude is\n(that to all . You lose 3 rounds",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "-50 as sideways . You are stunned\nfor two rounds .\nobvious Your weapon goes straight\nof into the ground (check",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "2d10 feet to the right of\nintended target .\nJust as you are about to\nfor release, you step into an",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "the your hands . Spend two\nrounds recovering it; or\ndraw a new weapon .\nYour bowstring breaks!\nDraw a new weapon or put",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "71-80",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "71-80\n2 rounds of attacks.\nYou are suddenly\nwinded. Take two",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "misses) . You are\nfor two rounds .\nvery You lose your grip\nrounds begin your swing .",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "stunned attacks and are stunned\n2 rounds .\nas you Clumsy move narrowly\nYour misses your own head",
+            "parsed_effects": {
+              "stun_rounds": 2
+            }
+          },
+          "mounted_arms": {
+            "raw_text": "for breakage) .\nYour weapon flies out of\n. You your hand! Draw a new",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "imaginary hole in the\nground. Lose 3 rounds\ngetting up from the ground\nYour weapon drops to the\nground as you begin to",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "a new string on this one .\n.\nYour weapon bites back\naim, when you fire. Your shot\nyou",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "81-85",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "81-85 to relax .\nHopefully, you will\nthat dancing is not",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "weapon is trying to\naway . Spend three\ngaining control . You\nstill parry.\nlearn You pulled something\nthat last swing and",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "slip are stunned and unable\nrounds parry for three rounds\ncan a bow next time) .\non There it goes! Your\nnow it skitters away. Take six",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "to one .\n(try\nweapon Your weapon must check\nfor breakage as it hits",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "Take four rounds to\nrecover this one ; or draw\nnew one .\nYour poor and weak\nthe release sends the weapon\n. . immediately",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "misses everything, but\na are stunned and unable to\nparry for three rounds .\nYou release too soon! Your\narrow falls 3410 feet short\nof the target. In addition,",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "86-90",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "86-90 appropriate in\nare stunned for two\nby your lack of\nYou fall down as\nswing goes wide.",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "combat. Your begins to hurt! You\nrounds stunned for three\nability. while you recover.\nyour You fall and narrowly\nYou are gutting yourself! You",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "are rounds to recover it ;\nrounds draw a new one.\nmiss You fall and smack\nare head on the ground.",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "or hardest part of your foe\nYou take 2d10 hits from\nblast.\nyour Your mount bucks\nYou are unexpectedly just as you",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "up two feet It\nthe comes down and hits you\nYou take no damage, but\nare stunned for six rounds.\nYour weapon flies behind\nyou, travelling 4d10 feet",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": ". you spend two rounds\ntrying to finds more\nammunition .\nYour shot goes astray as\nyou slip and fall during your",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "91-95",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "91-95 stunned for three\nThe excitement is\nmuch! Your",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "rounds. stunned for four\njust too You trip and fall . You\nmomentary down for four rounds",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "rounds . down for four rounds\nstunned for three.\nare Your shoulder doesn't\nand bend that way! You",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "and were about to swing . You\nfind yourself stunned\nunable to parry for three\nrounds .\nYour mount jumps wildly\nare You take 4410 hits from",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "before landing .\nand\n. You trip as you release.\nthe Your shot goes off wildly",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "release . You are stunned\nfor six rounds and unable\nto parry for two rounds .\nYour weapon shatters (as\nyou don't realize your own",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "96-99",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "96-99\nfrenzy leaves you\nand unable to parry\nthree rounds .\nYou attempt to\nyourself. Take a",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "stunned unable to parry for\nfor\nmaim Worst move seen in\n'D' critical . You are out for 2",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "three. stunned and unable to\nparry for three rounds.\nnow fight at -25 .\nages! Your weapon breaks\ndays with one end hits you in the",
+            "parsed_effects": {
+              "parry_penalty": -25
+            }
+          },
+          "mounted_arms": {
+            "raw_text": "impact and are stunned\nYou unable to parry for six\nrounds .\nand You can't stay on your\nmount! You fall and take",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "and and you are stunned for\ntwelve rounds .\nYou accidently hit yourself\na in the delivery . Take a 'D'",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "strength)! You are stunned\nfor 4 rounds .\nPoor execution . You take 5\nhits as the weapon hits you .",
+            "parsed_effects": {
+              "stun_rounds": 4
+            }
+          }
+        }
+      },
+      {
+        "row_band": "100",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "100",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "a groin injury. There\n50% chance your\nbe out for 3 rounds,\nlaughing .",
+            "parsed_effects": {
+              "unconscious_rounds": 3
+            }
+          },
+          "polearms_and_spears": {
+            "raw_text": "is a head . You are stunned\nfoes will unable to parry for six\nrounds.",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "and 'D' crush critical .",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "Krush critical .",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "You are permanently\nmaimed and are bleeding 2\nhits per round .\n79",
+            "parsed_effects": {
+              "bleed_per_round": 2
+            }
+          }
+        }
+      }
+    ],
+    "provenance": {
+      "input_file": "fumble_tables.json",
+      "batch": "fumbles",
+      "legacy_id": "tmwtd-melee-missile-fumble",
+      "notes": []
+    }
+  },
+  {
+    "id": "fumble-al2003-non-weapon-fumble-table",
+    "name": "Non-Weapon Fumble Table",
+    "source": {
+      "primary_pdf": "4E - 5810 - Arms Law (2003).pdf",
+      "primary_pages": [
+        78
+      ],
+      "witness_pdf": "ICE 5520 - RMSS Arms Law [1994].pdf",
+      "witness_pages": [
+        109
+      ]
+    },
+    "structure_type": "row_band_matrix",
+    "column_labels": [
+      "ma_strikes",
+      "ma_sweeps",
+      "brawling",
+      "animal"
+    ],
+    "entries": [
+      {
+        "row_band": "01-25",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "He moves so fast that he’s\nalmost a blur. You lose the\nopportunity to attack.\nFootwork is the key to combat,",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "You have him in your grasp but\nnot firmly enough to sweep him.\nTry again next turn.\nYour attack is weak and puny.",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "You stop to take some deep\nbreaths. You’ll feel better able\nto fight next round if you’re\nstill conscious.\nThe sight of an attractive",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "Your foe is most formidable,\nbut you can attack again next\nround. Sooner or later you will\nfind an opening.\nWhoa! He’s quicker than you",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "26-30",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "but you tangle yours.\nTake rest of round to recover\nyour balance.\nMaybe you don’t really know",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "Off-balance too. Spend the\nremainder of the round\nrecovering.\nYour sweeping foot strikes the",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "onlooker breaks your combat\nfocus. You lose your attack.\nYou deserve a “dope slap.”\nThat object you are using so",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "thought. You lose your attack\nopportunity. Step up the pace.\nYour hasty attack tears some",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "31-40",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "how to do that move. Take the\nrest of the round to consider\nwhat went wrong.\nMissing your target you",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "“ground” instead of your foe.\nSpend the remainder of this\nround stunned.\nYou almost “swept” yourself",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "“unfairly” shatters. Serves you\nright. You are stunned for the\nrest of the round.\nYou duck under his attack. Nice",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "cloth away but only that. You\nare stunned for the rest of the\nrd. Smooth is faster.\nThis one is just too much for",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "41-50",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "overextend and must spend the\nnext round parrying and\nregaining your stance.\nYou freeze trying to select just",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "that time. You must parry for\n2 rounds while you regain\nyour balance.\n“Tripping” the ground just will",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "move. Parry during the next\nround and look for an opening.\nWhere is that blunt object you",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "you. Attack a different foe next\nround if there is one.\nThinking quickly you forget",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "51-60",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "the right move to make. May\nonly make Strike 1 attacks for\ntwo rounds.\nYou lurch badly and tangle",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "not work. Your sweep stuns\nyourself for 2 rounds.\nYour sweep “whooshes”",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "were using? Make only Small\nattacks for the next two rounds.\nYou miss your foe so badly that",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "that foe for now and shift to\nanother next rd. Make only\nSmall attacks for 2 rounds.\nOverwhelming confusion. All",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "61-65",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "up your own arms. You must\nparry for the next two rounds.\nOw! You hit the nearest solid",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "through the air but misses\nyour target. You must parry\nfor 2 rounds.\nYour flashy, but clumsy, aerial",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "you barely stay on your feet.\nParry for two rounds as you\nrecover your balance.\nNot fair! Someone blindsides",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "attacks for the next 3 rds. are\nat half offense while you try\nto sort things out.\nThe smell of nearby food",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "66",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "object that is not your opponent.\nTake an ‘A’ Krush critical.\nClumsy footwork leaves you in",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "attack leaves you flat on your\nback. Take an ‘A’ Krush critical.\nYou wonder if you are out of",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "you as you ready your attack.\nSuffer an ‘A’ Brawling critical.\nIt’s getting wild. You catch the",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "overwhelms you. You go in\nsearch of food that doesn’t\nfight back.\nYou should bathe more often.",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "67-70",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "an awkward position.\nParry for the next 2 rounds.\nYou stun yourself while trying",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "your league. Parry for 2 rounds\nas you desperately try to think\nof a good move.\nYour sweep misses him but",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "flying chair but can only parry\nfor the next two rounds as you\ntoss it aside.\nCan you laugh at yourself? You",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "The flies circling you distract\nyou. You have half attack ability\nfor 2 rounds.\nYou always liked shiny things.",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "71-80",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "a flashy move. You are stunned\nfor remainder of this round\nand the next.\nYou miss his soft tissue and",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "“stuns” you. You cannot parry\nfor 1 round. He is an agile\nopponent.\nYou may know too many good",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "punch a wall as your foe ducks\nunder your attack.\nHey, it happens.\nYou are in a nasty crowd scene",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "One keeps distracting you.\nYou are at –50 for the next\n2 rounds.\nYou are –50 for three rounds",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "81-85",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "bruise your knee on his solid\nbone. Stunned for 1 round and\nunable to parry for 2.\nYou just can’t believe he",
+            "parsed_effects": {
+              "stun_rounds": 1
+            }
+          },
+          "ma_sweeps": {
+            "raw_text": "moves. Spend three rounds\nsorting them out and picking\none to use.\nExperiencing a moment",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "and lose 3 rounds of action\ngetting free from all the gawkers.\nSomething stuns you for 2",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "because you think your hear\nyour children crying.\nThis isn’t worth it. You can’t",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "86-90",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "blocked your best move!\nStunned for 2 rounds as you\nconsider the impossible.\nGasp! Trying to recover your",
+            "parsed_effects": {
+              "stun_rounds": 2
+            }
+          },
+          "ma_sweeps": {
+            "raw_text": "of enlightenment you are\nstunned for 2 rounds in\namazement and wonder.\nSweep him not yourself.",
+            "parsed_effects": {
+              "stun_rounds": 2
+            }
+          },
+          "brawling": {
+            "raw_text": "rounds as it flies over your head.\nWas that a person or a flying…?\nYou should sue someone. You",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "afford to be injured. You are\n–50 for 2 rds. as you try to\ndisengage and move away.\nPerhaps that surprise, leaping",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "91-95",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "balance you twist your ankle,\nfall and are stunned.\nYou can’t figure out what you",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "You fall but regain your feet\nquickly. Stunned for 2 rounds.\nDon’t do this again.\nYour mind is your primary",
+            "parsed_effects": {
+              "stun_rounds": 2
+            }
+          },
+          "brawling": {
+            "raw_text": "slip on a wet spot on the floor.\nYou are down and stunned for\n2 rounds.\nYou did duck the blow but",
+            "parsed_effects": {
+              "stun_rounds": 2
+            }
+          },
+          "animal": {
+            "raw_text": "attack was too instinctual.\nYou land badly and take an\n‘A’ Krush crit.\nYou evade your foe’s attack",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "96-99",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "did but you did fall and stun\nyourself for 3 rounds.\nUnable to parry for 2 rounds.\nYour body may be a deadly",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "weapon but yours tries to\nexecute two moves at once.\nStunned for 2 rounds.\nYour sweep spins you to the",
+            "parsed_effects": {
+              "stun_rounds": 2
+            }
+          },
+          "brawling": {
+            "raw_text": "fall doing it. Stunned for\n3 rounds and unable to parry\nfor 2 rounds.\nChaos! Someone slams into",
+            "parsed_effects": {
+              "stun_rounds": 3
+            }
+          },
+          "animal": {
+            "raw_text": "but get tangled up in your\nenvironment. –50 to all\nactions for three rounds.\nYour instincts tell you that",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "100",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "weapon but just throwing\nyourself at him gives you a\n‘B’ Krush critical.",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "ground and onto your head. You\nare stunned and unable to parry\nfor 6 rounds.",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "your back. Your head hits a\ntable. You are stunned and\ncannot parry for 6 rounds.",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "it’s time to run away now.\nYour foe gets an attack at\nyour back as you flee.",
+            "parsed_effects": null
+          }
+        }
+      }
+    ],
+    "provenance": {
+      "input_file": "fumble_tables.json",
+      "batch": "fumbles",
+      "legacy_id": "al2003-nonweapon-fumble",
+      "notes": [
+        "Name collision intentionally retained; content differs by source family and remains separate via stable id and provenance."
+      ]
+    }
+  },
+  {
+    "id": "fumble-tmwtd-non-weapon-fumble-table",
+    "name": "Non-Weapon Fumble Table",
+    "source": {
+      "primary_pdf": "3E - 5705 - 10 Million Ways to Die.pdf",
+      "primary_pages": [
+        82
+      ]
+    },
+    "structure_type": "row_band_matrix",
+    "column_labels": [
+      "ma_strikes",
+      "ma_sweeps",
+      "brawling",
+      "animal"
+    ],
+    "entries": [
+      {
+        "row_band": "01-25",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "Target is VERY fast . Lose the\n01-25 attack.\nopportunity to\nStumble on your own two feet",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "Your grip on foe's arm is tenuous\nbest . Try again next round .\n. Take Your attack is weak and off-balanced",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "at You stop for a breather. Try again\nnext round .\n. You are distracted by that rather",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "Your foe's defenses seem more\nformidable . Try again next round .\nHis sudden movement surprised you .",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "26-30",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "26-30 the rest of the round to regain\nbalance.\nYou thought you knew what\nremainder",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "Spend the remainder of the round\nrecovering .\nyou were You stub your toe during delivery.\nof the You fail to connect and spend the",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "attractive person over there . Lose your\nopportunity to attack.\nThe object you were holding is\nsuddenly shattered! You are stunned",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "You lose the opportunity to attack .\nYou attack too quickly, coming away\nwith only cloth . You are stunned the",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "31-40",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "31-40 doing . Spend the\nround remembering how to\nmove .\nOverextend yourself. Spend",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "do that remainder of this round stunned .\nnext You lose your balance during the",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "for the remainder of this round .\nYou duck just in time! Spend the next",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "remainder of the round.\nYou realize that this foe may be too",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "41-50",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "41-50 round parrying while your\nrecover .\nIn the flurry, you have forgotten\n-60 best moves . May only make",
+            "parsed_effects": {
+              "parry_penalty": -60
+            }
+          },
+          "ma_sweeps": {
+            "raw_text": "muscles throw. You must parry for two\nwhile you recover .\nyour III-timed sweep results in your\nStrike I attempt to trip the ground . This",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "rounds round parrying while you find a new\nopening .\nThere was a chair here a minute ago!\nstuns You may only make Small attacks for",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "much . You must attack a different foe\nnext round .\nYou must change opponents next\nround . In addition, you can only make",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "51-60",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "51\nattacks for two rounds .\nMistake in attack causes",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "you for two rounds .\nawkward Foe's deft move leaves you trying\nspasms. throw the air . You must parry for",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "the next two rounds.\nto Your attack misses widely . You nearly\ntwo trip yourself and stagger. You must",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "Small attacks for two rounds.\nYou are confused . All attacks forthe\nnext three rounds are at half offense",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "61-65",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "61-65 position and slight muscle\nYou must parry for two rounds.\nWhat were you thinking! You\nsolid object that",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "rounds while looking forthe right\nopening .\nstrike Acrobatic move leaves you flat on\nisn't your your back! Take an 'A' Krush critical",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "parry for two rounds while you\nrecover.\nSomeone blindsides you just as you\n. were about to strike! Take an 'A'",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "while you orient.\nThe wind changes and you smell\nfood! You must disengage and seek",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "66",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "66 the nearest\nopponent . Give yourself an\ncritical .\nBad positioning . You must",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "'A' Krush\nparry for Foe is just too powerful! You",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "Brawling critical .\nYou catch a chair that someone",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "out an easier source of food!\nYou are distracted by a fly that keeps",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "67-70",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "67-70 two rounds while you recover\nAttempt at an advanced",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": ". contemplate your last last lesson\nparrying forthe next two rounds.\ntechnique Foe easily avoids your clumsy",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "while threw . You can only parryfor two\nrounds while you get unentangled\nfrom the furniture .\nsweep . Your pugilistic attempts are",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "buzzing your head . You can only use\nhalf your normal attack ability for two\nrounds.\nThat shiney piece of metal keeps\nfor",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "71-80",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "71-80 stuns you for the remainder\nround and next round .\nYour knee connects with foe's\nbone, causing an interesting",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "ofthe You are out of position and are\nstunned and unable to parry for\nround .\nsolid You've suddenly forgotten the\nthough move on that throw . You",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "humorous . You are stunned for two\none rounds as you punch that post when\nyour foe ducks.\nfollow The crowd pushes you into the wall.\nlose You lose three rounds of action as",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "distracting you . You suffer a -50\ntwo rounds .\nWas that your babies crying? Suffer a\n-50 for three rounds before you you",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "81-85",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "81-85 . You are stunned\nsensation\nround and unable to parry for\nrounds .\nYou \"know\" that your strike\namazing . However, foe is",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "for one three rounds of action while trying\ntwo remember it .\nwas You suddenly understand what\nlucky to teacher has been telling you all",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "to you seek to get free of the crowd .\nyour Was that someone flying overhead?\nthose You are stunned fortwo rounds as a",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "discover it was that mocking bird\nagain .\nYou are intimidated by foe's sudden\nsurge of strength . Perhaps this was a",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "86-90",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "86-90\nhave blocked it. You are\ntwo rounds by his intuition .\nYou twist your ankle in a\nto stun",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "stunned for years! You are stunned for two\nrounds . Go ahead ; reminisce.\nrecovery . Your \"graceful\" sweep results in\nyourself own fall . You are stunned fortwo",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "large object just passed over your\nhead .\nyour You slip on a wet spot on the floor.\nYou go down hard . You are",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "bad idea. Suffera -50 for two rounds\nwhile you seek a way to disengage .\nYour unexected jump surprised not\nonly your foe, but also yourself. You",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "91-95",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "91-95 You fall and manage\nin the process .\nIn the excitement, you try to\nyour two feet be in three",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "rounds, though you quickly jump\nyour feet .\nmake Your indecision causes you to\nplaces at attempt two different throws at",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "to stunned fortwo rounds while you\ncrawl for cover.\nAs you duck a blow, you lose your\nonce . footing . You fall down, stunned for",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "land wrong . Take an 'A' Krush critical\nYou duck to one side to avoid foe's\nattack. Unfortunately, you get tangled",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "96-99",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "96-99 stunning\nonce . You fall,\nthree rounds . You are unable\nfor two rounds .\nYou forget even the most\nmoves . You throw yourself",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "yourself for You are stunned and unable to\nto parry for three rounds . Quick thinking!\nbasic of Awkward sweep results in you\nat your down and slamming your head .",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "parry three rounds and unable to parry for\ntwo.\ngoing Someone unexpectedly slams into\nYou your back. You hit your head on a",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "up in the underbrush . You suffer a -50\nto all actions for three rounds.\nRun away! You must turn tail and run\nSurvival instincts say its time to leave",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "100",
+        "cells": {
+          "ma_strikes": {
+            "raw_text": "100\nopponent, giving yourself a\ncritical .",
+            "parsed_effects": null
+          },
+          "ma_sweeps": {
+            "raw_text": "'B' Krush are stunned and unable to parry\n6 rounds.",
+            "parsed_effects": null
+          },
+          "brawling": {
+            "raw_text": "for table as you fall . You are stunned and\nunable to parry for 6 rounds .",
+            "parsed_effects": null
+          },
+          "animal": {
+            "raw_text": "the scene . Foe gets an attack at your\nback as you leave .\n8 1",
+            "parsed_effects": null
+          }
+        }
+      }
+    ],
+    "provenance": {
+      "input_file": "fumble_tables.json",
+      "batch": "fumbles",
+      "legacy_id": "tmwtd-nonweapon-fumble",
+      "notes": [
+        "Name collision intentionally retained; content differs by source family and remains separate via stable id and provenance."
+      ]
+    }
+  },
+  {
+    "id": "fumble-comp1-sweeps-and-throws-fumble-table",
+    "name": "Sweeps and Throws Fumble Table",
+    "source": {
+      "primary_pdf": "Rolemaster Classic (RM2) - Companion 1 - ICE #1500.pdf",
+      "primary_pages": [
+        70
+      ]
+    },
+    "structure_type": "single_column_roll_table",
+    "entries": [
+      {
+        "row_band": "01-25",
+        "raw_text": "Your grip on the foe's arm is tenuous at best. Forget the attempt and try again next round.",
+        "parsed_effects": null
+      },
+      {
+        "row_band": "26-30",
+        "raw_text": "Your attack was weak and off balanced, not affecting your foe at all. You however, need one round to recover.",
+        "parsed_effects": null
+      },
+      {
+        "row_band": "31-40",
+        "raw_text": "Stub your toe during delivery. Abort your action and take one round to recover.",
+        "parsed_effects": null
+      },
+      {
+        "row_band": "41-50",
+        "raw_text": "Loss of balance during throw leaves you confused. Parry for two rounds to recover.",
+        "parsed_effects": null
+      },
+      {
+        "row_band": "51-60",
+        "raw_text": "Ill-timed sweep results in you attempting to trip the ground. Contemplate timing for 2 rounds.",
+        "parsed_effects": null
+      },
+      {
+        "row_band": "61-70",
+        "raw_text": "Foes deft move leaves you trying to throw air. Take two rounds to reorient and rebuild confidence.",
+        "parsed_effects": null
+      },
+      {
+        "row_band": "71-80",
+        "raw_text": "Foe jumps/steps over your sweep, leaving you in awkward position. Take 1 round (no parry) to recover.",
+        "parsed_effects": null
+      },
+      {
+        "row_band": "81-85",
+        "raw_text": "You've suddenly forgotten the joint manipulation needed for the throw to work. Spend next 3 rounds remembering.",
+        "parsed_effects": null
+      },
+      {
+        "row_band": "86-90",
+        "raw_text": "You've suddenly understood one of your teacher's criticisms regarding your fighting style. Stunned 2 rounds. Go ahead and reminisce.",
+        "parsed_effects": {
+          "stun_rounds": 2
+        }
+      },
+      {
+        "row_band": "91-95",
+        "raw_text": "Attempt to sweep yourself. Stunned for 2 rounds.",
+        "parsed_effects": {
+          "stun_rounds": 2
+        }
+      },
+      {
+        "row_band": "96-99",
+        "raw_text": "Your indecision regarding whether to sweep or throw causes you to attempt both. Stunned no parry for 3 rounds.",
+        "parsed_effects": null
+      },
+      {
+        "row_band": "100",
+        "raw_text": "Awkward sweep results in you going down and bumping head. Stunned and unable to parry for 6 rounds.",
+        "parsed_effects": null
+      }
+    ],
+    "provenance": {
+      "input_file": "fumble_tables.json",
+      "batch": "fumbles",
+      "legacy_id": "comp1-sweeps-throws-fumble",
+      "notes": [
+        "Single-column prose table preserved as extracted; not forced into a row-band matrix."
+      ]
+    }
+  },
+  {
+    "id": "fumble-al2003-weapon-fumble-table",
+    "name": "Weapon Fumble Table",
+    "source": {
+      "primary_pdf": "4E - 5810 - Arms Law (2003).pdf",
+      "primary_pages": [
+        77
+      ],
+      "witness_pdf": "ICE 5520 - RMSS Arms Law [1994].pdf",
+      "witness_pages": [
+        108
+      ]
+    },
+    "structure_type": "row_band_matrix",
+    "column_labels": [
+      "one_handed_arms",
+      "two_handed_arms",
+      "polearms_and_spears",
+      "mounted_arms",
+      "thrown_arms",
+      "missile_weapons"
+    ],
+    "entries": [
+      {
+        "row_band": "01-25",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "Get a grip! Wipe\nyour sweating palms\ndry and try to hold\nonto it.\nWhy did you drop",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "Do a double-take\ntrying to heft your\nweapon. Lose your\nswing this turn.\nNice throw! Take",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "You lose your strike\nuntangling your\nweapon from the\nhorse’s harness.\nMount is skittish.",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "You give up your\nattack as you get a\nnew grip on your\nweapon.\nYou still have hold",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "Lose your attack as\nyou wipe “sweat”\nfrom your eyes.\nHey, it’s hot.\nClumsy reload fails.",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "Lose your swing as\nyou get tangled in\nyour own clothes\nand harness.\nYou end round with",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "26-30",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "that weapon? Draw\nanother or pick it up\nin two rounds.\nYou miss your attack",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "4 rounds to recover\nweapon or draw\nanother next round.\nSpend the round",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "You lose 2 rounds\nof attack but can\nstill parry.\nYou’re loose in your",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "of your weapon but\nare –10 for your\nnext attack.\nAlmost trip over",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "Start over again.\nAt least you didn’t\ndrop it.\nThis time you",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "weapon out of\nposition. Lose your\noption to attack.\nWatch that slippery",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "31-40",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "as your feet tangle.\nHow did you do\nthat?\nYour overly",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "concentrating.\nDo or don’t do.\nThere is no try!\nStumble over an imag-",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "saddle. Lose 2 rds of\nattack but you can\nstill parry.\nYour mount dodges",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "your own feet. You\ncan parry but you\nlose 2 attack rounds.\nDon’t juggle your",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "actually do drop your\nammo. Reload again.\nDismal.\nSure, blame your",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "footing there. Lose 1\nround stunned. Stuff\nhappens.\nSpin your weapon",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "41-50",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "enthusiastic attack\nstrains your muscles.\n1d5 hits.\nLose 2 rounds after",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "inary dead turtle. You\nlose 2 rounds of attack,\nbut can still parry.\nVery flashy moves!",
+            "parsed_effects": {
+              "dead": true
+            }
+          },
+          "mounted_arms": {
+            "raw_text": "phantom foe only it\nsees. You are stunned\nfor 2 rounds.\nYou are stunned for",
+            "parsed_effects": {
+              "stun_rounds": 2
+            }
+          },
+          "thrown_arms": {
+            "raw_text": "weapon like that!\nYou are stunned for\n3 rounds.\nYou held it too long.",
+            "parsed_effects": {
+              "stun_rounds": 3
+            }
+          },
+          "missile_weapons": {
+            "raw_text": "ammo. Check it.\nIt’s ok. Reload.\nIt’s all in the aim.\nYour “ammo” comes",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "uselessly for 2\nrounds. You can\nstill parry at –10.\nYou stagger into an",
+            "parsed_effects": {
+              "parry_penalty": -10
+            }
+          }
+        }
+      },
+      {
+        "row_band": "51-60",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "your spinning attack\nstops spinning.\nDizzy?\nTry to catch your",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "You can parry but\nyou lose 2 attack rds.\nKeep it simple.\nYou do regain your",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "3 rds untangling\nyour weapon from\nmount’s harness.\nYour mount",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "Weapon lands\n2d10 feet to left\nof the target.\nYou threw that",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "loose from your\nweapon. Secure it.\nWeapon slips away",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "immoveable object.\nStunned and unable\nto parry for 2 rds.\nYour next attack is",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "61-65",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "weapon after it goes\nairborne. Don’t grab\nit by the edge.\nNice strike, but you",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "weapon from mid-\nair, but you lose two\nattack rounds.\nFlat on your back.",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "stumbles and stuns\nyou for 2 rounds.\nBad animal!\nYou tear your saddle",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "one straight up!\nDuck and roll for\nweapon breakage.\nYou scream and",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "from you. Take 2\nrounds to recover it\nor draw a new one.\nYour weapon snaps",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "–20 as you untangle\nyour legs, but don’t\nfall down.\nCheck for weapon",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "66",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "hit nearest ally or\nyourself. 1d10 hits\nand a ‘B’ critical.\nTripping over the",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "Feet in the air.\nTake 2d10 hits and\n‘E’ Krush critical.\nLose 2 rounds",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "and yourself from\nyour mount.\n‘A’ Krush crit.\nYou and your saddle",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "swear as you give\nyourself a ‘D’ critical.\nWild throw goes",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "into two parts giving\nyou an ‘A’ Krush\ncritical.\nWeapon is now",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "breakage as you hit\nthe ground. You are\nstunned for 6 rounds.\nIs your weapon",
+            "parsed_effects": {
+              "stun_rounds": 6
+            }
+          }
+        }
+      },
+      {
+        "row_band": "67-70",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "uneven surface you\nare staggering, but\ncan still parry.\nSomething moving",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "getting a grip on\nyour weapon. Nice\nkick-save!\nExtremely wild",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "almost slip from\nmount. Stunned for\n2 rounds.\nYou drive your",
+            "parsed_effects": {
+              "stun_rounds": 2
+            }
+          },
+          "thrown_arms": {
+            "raw_text": "2d10 feet to right of\nyour target.\nStepping into",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "2 rounds away from\nyou, or you can draw\na new one.\nThe “bow string”",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "possessed? Next\nattack is –50 as you\nregain control of it.\nIt’s painful to watch",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "71-80",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "to one side distracts\nyou unduly. Lose\n2 rounds of attacks.\nTake two rounds to",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "swing leaves you\nstunned for\n2 rounds.\nYou can parry but",
+            "parsed_effects": {
+              "stun_rounds": 2
+            }
+          },
+          "mounted_arms": {
+            "raw_text": "weapon into the\nground. Check for\nbreakage.\nThat weapon is",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "“gopher” hole you\ntake 3 rounds to\nextricate yourself.\nYou drop your",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "breaks. Restring or\ndraw a new weapon.\nDo it soon.\nWeapon “bites back”",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "you in action. Lose\n3 rds of attack and\nstunned for 2 rds.\nYou nearly take your",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "81-85",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "get your wind back.\nBreathe deeply to\nfight the stress.\nDid you learn to",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "just holding onto\nyour loose weapon\ntakes 3 rounds.\nYou actually pull a",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "up and away. Draw\na new one if you\nhave one.\nCheck for weapon",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "weapon. Take\n4 rounds to recover\nor draw new one.\nYou fail to release the",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "stunning you for 3\nrounds; you can’t\nparry either.\nAim short by 3d10",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "own head off!\nStunned and unable\nto parry for 3 rds.\nYou can still see your",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "86-90",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "fight or to dance?\nStunned for 2 rds\nthinking about it.\nWhoa! Your wide",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "muscle trying too\nhard! Take 3 rounds\nof stun. Doh!\nYou almost gut",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "breakage and take\n2d10 hits from the\nrecoil from blow.\nRearing mount stuns",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "weapon. Hitting your-\nself you are stunned\nfor 6 rounds.\nWhere did your",
+            "parsed_effects": {
+              "stun_rounds": 6
+            }
+          },
+          "missile_weapons": {
+            "raw_text": "feet. You even take\n2 rounds just trying\nto find your ammo.\nYou miss, slip and",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "weapon but it’s six\nrounds away, or draw\na new one.\nDown for 4 rds and",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "91-95",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "swing throws you to\nthe ground. Stunned\nfor 3 rds.\nPace yourself!",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "yourself as you fall.\nSpend 4 rounds\nstunned. Close!\nTripping and falling",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "you for 3 rounds\nleaving you unable\nto parry.\nBucking mount does",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "weapon fly to?\nBehind you 4d10 feet\nis where.\nTrip and make a wild",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "fall stunning youself\nfor 6 rounds. Can’t\nparry for 2 rounds.\nYou “overdraw”",
+            "parsed_effects": null
+          },
+          "polearms_and_spears": {
+            "raw_text": "stunned for 3. Your\nhead bounced off\nground pretty well.\nBodies can’t bend the",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "96-99",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "Stunned and unable\nto parry for 3 rds.\nYou tried too hard.\nThat looked like a",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "you are down for 4\nrds and unable to\nparry for 3 rds.\nThat hurt to watch;",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "4d10 hits to you.\nStunned and no\nparry for 6 rounds.\nBad mount. Bad!",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "throw that stuns you\nfor 12 rounds!\nYou finally hit",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "your weapon and\nshatter it. Stunned\nfor 4 rounds.\nYou’ve finally hit and",
+            "parsed_effects": {
+              "stun_rounds": 4
+            }
+          },
+          "polearms_and_spears": {
+            "raw_text": "way you tried. Stunned\n& unable to parry for\n3 rds. Fight at –25 now.\nYour weapon breaks",
+            "parsed_effects": null
+          }
+        }
+      },
+      {
+        "row_band": "100",
+        "cells": {
+          "one_handed_arms": {
+            "raw_text": "suicide attempt of\nsome kind. Take a\n‘D’ critical.",
+            "parsed_effects": null
+          },
+          "two_handed_arms": {
+            "raw_text": "50% foe laughs for 3\nrounds. Take 2 days\nnursing groin pull.",
+            "parsed_effects": null
+          },
+          "mounted_arms": {
+            "raw_text": "You fall and take a\n‘D’ Krush critical.\nNot your fault!",
+            "parsed_effects": null
+          },
+          "thrown_arms": {
+            "raw_text": "yourself that time.\nTake a ‘D’ Krush\ncritical.",
+            "parsed_effects": null
+          },
+          "missile_weapons": {
+            "raw_text": "maimed yourself.\nBleed 2 hits/round.\n+5 hits.",
+            "parsed_effects": {
+              "bonus_hits": 5
+            }
+          },
+          "polearms_and_spears": {
+            "raw_text": "and stuns you for six\nrounds. Can’t parry\neither.",
+            "parsed_effects": null
+          }
+        }
+      }
+    ],
+    "source_column_labels": [
+      "one_handed_arms",
+      "two_handed_arms",
+      "polearms_and_spear",
+      "mounted_arms",
+      "thrown_arms",
+      "missile_weapons"
+    ],
+    "provenance": {
+      "input_file": "fumble_tables.json",
+      "batch": "fumbles",
+      "legacy_id": "al2003-weapon-fumble",
+      "notes": []
+    }
+  }
+]

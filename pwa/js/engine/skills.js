@@ -274,6 +274,148 @@ export function isSpecializableSkill(globalIndex) {
   return SPECIALIZABLE_INDICES.has(globalIndex);
 }
 
+/**
+ * Suggested specialization examples per skill global index (FR).
+ * Used as hint text in the specialization input prompt.
+ */
+const SPECIALIZATION_SUGGESTIONS_FR = {
+  // Academic
+  0:   'guilde, armée, temple, commerce',       // Administration
+  1:   'potions, métaux, explosifs',             // Alchimie
+  2:   'elfes, nains, humains, orques',          // Anthropologie
+  3:   'fortifications, ponts, temples',         // Architecture
+  4:   'étoiles, planètes, comètes',             // Astronomie
+  5:   'plantes, poisons, animaux',              // Biochimie
+  8:   'Iluvatar, Seigneur des Ténèbres, Tolaris', // Doctrine Philosophique/Religieuse
+  9:   'fer, or, gemmes',                        // Exploitation Minière
+  10:  'royaume de Gondor, maison Atreide',      // Héraldique
+  11:  'elfes, nains, humains',                  // Histoire de la race
+  12:  'hydraulique, militaire, civile',         // Ingénieurie
+  13:  'algèbre, géométrie, calcul',             // Maths Avancées
+  15:  'horlogerie, hydraulique, trébuchet',     // Mécanique
+  17:  'fluviale, côtière, hauturière',          // Navigation
+  18:  'infanterie, cavalerie, marine',          // Organisation Militaire
+  19:  'mécanique, thermique, optique',          // Physique
+  20:  'galère, voilier, barque',                // Pilote de Bateau
+  35:  'catapulte, bélier, tour de siège',       // Sièges
+  36:  'navale, siège, infanterie, cavalerie',   // Tactique
+  // Animal
+  38:  'chevaux, faucons, chiens de guerre',     // Animalerie
+  40:  'chariot, traîneau, charrette',           // Conduite
+  41:  'ours, loups, félins',                    // Contrôle Animalier
+  42:  'chevaux, faucons, chiens',               // Dressage
+  43:  'chevaux, destriers, griffons',           // Equitation
+  // Athletic
+  49:  'danse, pantomime, acrobatie',            // Expression Corporelle
+  56:  'natation, lutte, course, escalade',      // Sport
+  // Combat
+  60:  'catapulte, baliste, trébuchet',          // Artillerie
+  61:  'kara-jitsu, hrop-quen, ke-tso-fu',      // Arts Martiaux
+  91:  'épée, dague, hache',                     // Mouvement Adrénal Dégainer
+  // General
+  101: 'bijoux, animaux, marchandises',          // Estimation
+  102: 'épées, arcs, haches',                   // Evaluation des Armes
+  103: 'plates, mailles, cuir',                 // Evaluation des Armures
+  104: 'or, argent, fer, mithril',              // Evaluation des Métaux
+  105: 'rubis, émeraudes, diamants',            // Evaluation des Pierres
+  // Gymnastic / Crafts
+  106: 'pâtisserie, brasserie, cuisine exotique', // Alimentation
+  107: 'poterie, broderie, joaillerie',          // Artisanat
+  108: 'maçonnerie, sculpture, taille',         // Artisanat de la Pierre
+  109: 'menuiserie, sculpture, ébénisterie',    // Artisanat du Bois
+  112: 'épées, armures, outils',                // Forge
+  113: 'légumes, fleurs, herbes médicinales',   // Horticulture
+  114: 'luth, flûte, harpe, tambour, violon',   // Instrument
+  115: 'échecs, stratégo, go',                  // Jeux Tactiques
+  121: 'selles, armures, ceintures',            // Travail du Cuir
+  // Medical / Magical
+  146: 'tarot, cristal, os',                    // Divination
+  152: 'invocation, purification, protection',  // Rituel Magique
+  160: 'amputation, trépanation, suture',       // Chirurgie
+  161: 'maladies, blessures, poisons',          // Diagnostique
+  163: 'blessures, brûlures, fractures',        // Premiers Soins
+  // Perception / Social
+  170: 'humains, animaux, monstres',            // Lecture des Traces
+  180: 'commerce, traités, alliances',          // Diplomatie
+  182: 'dés, cartes, dames, osselets',          // Jeu
+  // Subterfuge / Survival
+  193: 'documents, sceaux, pièces de monnaie', // Falsification
+  200: 'marchands, guerriers, mages',           // Contacts
+  201: 'Arctique, Désertique, Marécages, Montagne, Jungle', // Environnement Hostile
+  202: 'blessures, empoisonnement, maladies',  // Récupération
+  203: 'Gondor, Rohan, Harad, Terre du Milieu', // Savoir Régional
+  205: 'Forêt, Montagne, Désert, Toundra, Jungle', // Survie dans la Nature
+};
+
+const SPECIALIZATION_SUGGESTIONS_EN = {
+  0:   'guild, army, temple, commerce',
+  1:   'potions, metals, explosives',
+  2:   'elves, dwarves, humans, orcs',
+  3:   'fortifications, bridges, temples',
+  4:   'stars, planets, comets',
+  5:   'plants, poisons, animals',
+  8:   'Iluvatar, Lord of Darkness, Tolaris',
+  9:   'iron, gold, gems',
+  10:  'kingdom of Gondor, House Atreide',
+  11:  'elves, dwarves, humans',
+  12:  'hydraulic, military, civil',
+  13:  'algebra, geometry, calculus',
+  15:  'clockwork, hydraulics, trebuchet',
+  17:  'river, coastal, ocean',
+  18:  'infantry, cavalry, navy',
+  19:  'mechanics, thermics, optics',
+  20:  'galley, sailboat, rowboat',
+  35:  'catapult, ram, siege tower',
+  36:  'naval, siege, infantry, cavalry',
+  38:  'horses, falcons, war dogs',
+  40:  'cart, sled, wagon',
+  41:  'bears, wolves, felines',
+  42:  'horses, falcons, dogs',
+  43:  'horses, destriers, griffins',
+  49:  'dance, pantomime, acrobatics',
+  56:  'swimming, wrestling, running, climbing',
+  60:  'catapult, ballista, trebuchet',
+  61:  'kara-jitsu, hrop-quen, ke-tso-fu',
+  91:  'sword, dagger, axe',
+  101: 'jewels, animals, goods',
+  102: 'swords, bows, axes',
+  103: 'plate, mail, leather',
+  104: 'gold, silver, iron, mithril',
+  105: 'rubies, emeralds, diamonds',
+  106: 'pastry, brewing, exotic cooking',
+  107: 'pottery, embroidery, jewellery',
+  108: 'masonry, sculpture, cutting',
+  109: 'carpentry, sculpture, cabinetmaking',
+  112: 'swords, armors, tools',
+  113: 'vegetables, flowers, medicinal herbs',
+  114: 'lute, flute, harp, drum, violin',
+  115: 'chess, stratego, go',
+  121: 'saddles, armors, belts',
+  146: 'tarot, crystal, bones',
+  152: 'invocation, purification, protection',
+  160: 'amputation, trepanation, suture',
+  161: 'diseases, wounds, poisons',
+  163: 'wounds, burns, fractures',
+  170: 'humans, animals, monsters',
+  180: 'trade, treaties, alliances',
+  182: 'dice, cards, checkers, knucklebones',
+  193: 'documents, seals, coins',
+  200: 'merchants, warriors, mages',
+  201: 'Arctic, Desert, Swamp, Mountain, Jungle',
+  202: 'wounds, poisoning, disease',
+  203: 'Gondor, Rohan, Harad, Middle Earth',
+  205: 'Forest, Mountain, Desert, Tundra, Jungle',
+};
+
+/**
+ * Get suggested specialization examples for a skill index.
+ * Returns a string like "Arctique, Désertique, Marécages" or null.
+ */
+export function getSpecializationSuggestion(globalIndex, lang = 'fr') {
+  const map = lang === 'en' ? SPECIALIZATION_SUGGESTIONS_EN : SPECIALIZATION_SUGGESTIONS_FR;
+  return map[globalIndex] || null;
+}
+
 // Global index of the "Weapon Skill" parent skill
 export const WEAPON_SKILL_GLOBAL_INDEX = 63;
 

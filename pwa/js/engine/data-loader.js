@@ -16,6 +16,9 @@ const FILES_MAP = {
   'monde': 'monde',
   'background_options_merged': 'background_options_v3_patched',
   'skill_similarity_pairs': 'skill_similarity_pairs',
+  'attack_tables': 'attack_tables',
+  'critical_tables': 'critical_tables',
+  'fumble_tables': 'fumble_tables',
 };
 
 let gameData = null;
