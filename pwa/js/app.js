@@ -9,6 +9,10 @@ import { getAllClasses, getClassName } from './engine/classes.js';
 import { generateNPC } from './engine/npc-generator.js';
 import { compareBuilds } from './engine/build-compare.js';
 import { rollOpenEndedD100, getAvailableWeapons, resolveFullAttack } from './engine/combat.js';
+import { calculateDB, getTotalRanks, getTotalStatBonus } from './engine/character.js';
+import { getRankBonus } from './engine/stats.js';
+import { getBackgroundBonuses } from './engine/background-effects.js';
+import { getAllCategories, getSkillStatIndices, getLevelBonus } from './engine/skills.js';
 import { resolveStaticManeuver, resolveResistanceRoll, DIFFICULTIES, DIFFICULTY_LABELS } from './engine/maneuvers.js';
 import frLabels from './i18n/fr.js';
 import enLabels from './i18n/en.js';
@@ -498,17 +502,34 @@ function initSessionToolbox() {
         <!-- Maneuver -->
         <section class="rm-tool-pane" data-pane="maneuver">
           <article class="rm-tool-card">
-            <h4>${lang === 'en' ? 'Static Maneuver' : 'Manœuvre statique'}</h4>
+            <h4>${lang === 'en' ? 'Maneuver' : 'Manœuvre'}</h4>
+            <div style="display:flex;gap:1.2rem;margin-bottom:0.5rem;font-size:0.85rem;color:#7a5c30">
+              <label style="display:flex;align-items:center;gap:0.3rem;cursor:pointer">
+                <input type="radio" name="mnvr-type" value="static" checked>
+                ${lang === 'en' ? 'Static' : 'Statique'}
+              </label>
+              <label style="display:flex;align-items:center;gap:0.3rem;cursor:pointer">
+                <input type="radio" name="mnvr-type" value="moving">
+                ${lang === 'en' ? 'Moving' : 'En mouvement'}
+              </label>
+            </div>
             <div class="rm-tool-inline" style="margin-bottom:0.65rem">
               <div class="rm-field-group">
-                <label class="rm-field-label">${lang === 'en' ? 'Difficulty' : 'Difficulté'}</label>
-                <select class="rm-field" id="man-difficulty">${diffOptions}</select>
+                <label class="rm-field-label" for="man-difficulty">${lang === 'en' ? 'Difficulty' : 'Difficulté'}</label>
+                <select class="rm-field" id="man-difficulty" name="man-difficulty">${diffOptions}</select>
               </div>
               <div class="rm-field-group">
-                <label class="rm-field-label">${lang === 'en' ? 'Bonus' : 'Bonus'}</label>
-                <input class="rm-field rm-inline-input" type="number" id="man-bonus" value="0" inputmode="numeric">
+                <label class="rm-field-label" for="man-skill">${lang === 'en' ? 'Skill' : 'Compétence'}</label>
+                <select class="rm-field" id="man-skill" name="man-skill">
+                  <option value="">— ${lang === 'en' ? 'Manual' : 'Manuel'} —</option>
+                </select>
+              </div>
+              <div class="rm-field-group">
+                <label class="rm-field-label" for="man-bonus">${lang === 'en' ? 'Bonus' : 'Bonus'}</label>
+                <input class="rm-field rm-inline-input" type="number" id="man-bonus" name="man-bonus" value="0" inputmode="numeric">
               </div>
             </div>
+            <div id="man-armor-info" style="display:none;font-size:0.8rem;color:#b87030;margin-bottom:0.4rem"></div>
             <button class="rm-action-btn" type="button" id="btn-resolve-maneuver">
               <img src="assets/ui/icons/session_maneuver_scroll.webp" alt="" style="width:1.1rem;height:1.1rem;object-fit:contain" onerror="this.style.display='none'">
               ${lang === 'en' ? 'Resolve' : 'Résoudre'}
@@ -522,20 +543,20 @@ function initSessionToolbox() {
             <h4>${lang === 'en' ? 'Attack Resolution' : 'Résolution d\'attaque'}</h4>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:0.65rem">
               <div class="rm-field-group" style="grid-column:1/-1">
-                <label class="rm-field-label">${lang === 'en' ? 'Weapon' : 'Arme'}</label>
-                <select class="rm-field" id="atk-weapon"><option value="">${lang === 'en' ? 'Select weapon…' : 'Choisir une arme…'}</option></select>
+                <label class="rm-field-label" for="atk-weapon">${lang === 'en' ? 'Weapon' : 'Arme'}</label>
+                <select class="rm-field" id="atk-weapon" name="atk-weapon"><option value="">${lang === 'en' ? 'Select weapon…' : 'Choisir une arme…'}</option></select>
               </div>
               <div class="rm-field-group">
-                <label class="rm-field-label">OB</label>
-                <input class="rm-field rm-inline-input" type="number" id="atk-ob" value="0" inputmode="numeric">
+                <label class="rm-field-label" for="atk-ob">OB</label>
+                <input class="rm-field rm-inline-input" type="number" id="atk-ob" name="atk-ob" value="0" inputmode="numeric">
               </div>
               <div class="rm-field-group">
-                <label class="rm-field-label">DB</label>
-                <input class="rm-field rm-inline-input" type="number" id="atk-db" value="0" inputmode="numeric">
+                <label class="rm-field-label" for="atk-db">DB</label>
+                <input class="rm-field rm-inline-input" type="number" id="atk-db" name="atk-db" value="0" inputmode="numeric">
               </div>
               <div class="rm-field-group">
-                <label class="rm-field-label">${lang === 'en' ? 'Armor Type' : 'Type armure'} (1-20)</label>
-                <input class="rm-field rm-inline-input" type="number" id="atk-at" value="1" min="1" max="20" inputmode="numeric">
+                <label class="rm-field-label" for="atk-at">${lang === 'en' ? 'Armor Type' : 'Type armure'} (1-20)</label>
+                <input class="rm-field rm-inline-input" type="number" id="atk-at" name="atk-at" value="1" min="1" max="20" inputmode="numeric">
               </div>
             </div>
             <button class="rm-action-btn" type="button" id="btn-resolve-attack">
@@ -551,8 +572,8 @@ function initSessionToolbox() {
             <h4>${lang === 'en' ? 'Resistance Roll' : 'Jet de résistance'}</h4>
             <div class="rm-tool-inline" style="margin-bottom:0.65rem">
               <div class="rm-field-group">
-                <label class="rm-field-label">${lang === 'en' ? 'Realm' : 'Domaine'}</label>
-                <select class="rm-field" id="rr-realm">
+                <label class="rm-field-label" for="rr-realm">${lang === 'en' ? 'Realm' : 'Domaine'}</label>
+                <select class="rm-field" id="rr-realm" name="rr-realm">
                   <option value="essence">${lang === 'en' ? 'Essence' : 'Essence'}</option>
                   <option value="channeling">${lang === 'en' ? 'Channeling' : 'Canalisation'}</option>
                   <option value="mentalism">${lang === 'en' ? 'Mentalism' : 'Mentalisme'}</option>
@@ -562,16 +583,16 @@ function initSessionToolbox() {
                 </select>
               </div>
               <div class="rm-field-group">
-                <label class="rm-field-label">${lang === 'en' ? 'Stat bonus' : 'Bonus stat'}</label>
-                <input class="rm-field rm-inline-input" type="number" id="rr-statbonus" value="0" inputmode="numeric">
+                <label class="rm-field-label" for="rr-statbonus">${lang === 'en' ? 'Stat bonus' : 'Bonus stat'}</label>
+                <input class="rm-field rm-inline-input" type="number" id="rr-statbonus" name="rr-statbonus" value="0" inputmode="numeric">
               </div>
               <div class="rm-field-group">
-                <label class="rm-field-label">${lang === 'en' ? 'Def. level' : 'Niv. déf.'}</label>
-                <input class="rm-field rm-inline-input" type="number" id="rr-deflevel" value="1" min="1" inputmode="numeric">
+                <label class="rm-field-label" for="rr-deflevel">${lang === 'en' ? 'Def. level' : 'Niv. déf.'}</label>
+                <input class="rm-field rm-inline-input" type="number" id="rr-deflevel" name="rr-deflevel" value="1" min="1" inputmode="numeric">
               </div>
               <div class="rm-field-group">
-                <label class="rm-field-label">${lang === 'en' ? 'Att. level' : 'Niv. att.'}</label>
-                <input class="rm-field rm-inline-input" type="number" id="rr-attlevel" value="1" min="1" inputmode="numeric">
+                <label class="rm-field-label" for="rr-attlevel">${lang === 'en' ? 'Att. level' : 'Niv. att.'}</label>
+                <input class="rm-field rm-inline-input" type="number" id="rr-attlevel" name="rr-attlevel" value="1" min="1" inputmode="numeric">
               </div>
             </div>
             <button class="rm-action-btn" type="button" id="btn-resolve-rr">
@@ -591,7 +612,10 @@ function initSessionToolbox() {
     </aside>`;
   document.body.appendChild(shell);
 
-  // Populate attack weapon list after data loads
+  // Armor maneuver penalties indexed by AT (same as quickeness penalties in RM2)
+  const ARMOR_MANEUVER_PENALTIES = [0,0,0,0,0,0,10,15,15,0,5,15,15,5,10,20,20,10,20,30,40];
+
+  // Populate attack weapon list from combat tables
   try {
     const weapons = getAvailableWeapons();
     const sel = shell.querySelector('#atk-weapon');
@@ -601,12 +625,95 @@ function initSessionToolbox() {
       opt.textContent = lang === 'en' ? (w.name_en || w.id) : (w.name_fr || w.name_en || w.id);
       sel.appendChild(opt);
     });
+    // Auto-fill OB from data-ob attribute when a character weapon is selected
+    sel.addEventListener('change', () => {
+      const ob = sel.options[sel.selectedIndex]?.dataset?.ob;
+      if (ob !== undefined) shell.querySelector('#atk-ob').value = ob;
+    });
   } catch (_) { /* combat data not available */ }
+
+  // Populate maneuver skill dropdown from character's developed skills
+  function populateSkillDropdown(char) {
+    const skillSel = shell.querySelector('#man-skill');
+    while (skillSel.options.length > 1) skillSel.remove(1);
+    if (!char) return;
+    const cats = getAllCategories();
+    const classes = getAllClasses();
+    const cls = char.classIndex >= 0 ? classes[char.classIndex] : null;
+    let gi = 0;
+    for (const cat of cats) {
+      for (const skill of cat.skills) {
+        const ranks = getTotalRanks(char, gi);
+        if (ranks > 0) {
+          const rkB = getRankBonus(ranks);
+          const idxs = getSkillStatIndices(skill);
+          const stB = idxs.length
+            ? Math.floor(idxs.reduce((s, i) => s + getTotalStatBonus(char, i - 1), 0) / idxs.length)
+            : 0;
+          const lvB = getLevelBonus(cls, char.level, cat.name, gi);
+          const total = rkB + stB + lvB;
+          skillSel.add(new Option(`${skill.name_fr || skill.name_en} (+${total})`, String(gi)));
+        }
+        gi++;
+      }
+    }
+    for (let ws = 0; ws < (char.weaponSkills || []).length; ws++) {
+      const wpn = char.weaponSkills[ws];
+      const wRanks = getTotalRanks(char, 'wpn_' + ws);
+      if (wRanks > 0) {
+        skillSel.add(new Option(`${wpn.name} (+${getRankBonus(wRanks)})`, 'wpn_' + ws));
+      }
+    }
+  }
+
+  // Add character's weapon skills as top optgroup in attack dropdown
+  function addCharacterWeapons(char) {
+    const sel = shell.querySelector('#atk-weapon');
+    const existing = sel.querySelector('optgroup[data-char-weapons]');
+    if (existing) existing.remove();
+    if (!char?.weaponSkills?.length) return;
+    const grp = document.createElement('optgroup');
+    grp.label = char.name
+      ? `${char.name} — ${lang === 'en' ? 'weapons' : 'armes'}`
+      : (lang === 'en' ? 'Character weapons' : 'Armes du personnage');
+    grp.setAttribute('data-char-weapons', '');
+    const agBonus = getTotalStatBonus(char, 1); // AG (index 1) — typical weapon stat
+    let allWeapons;
+    try { allWeapons = getAvailableWeapons(); } catch (_) { allWeapons = []; }
+    for (let ws = 0; ws < char.weaponSkills.length; ws++) {
+      const wpn = char.weaponSkills[ws];
+      const ranks = getTotalRanks(char, 'wpn_' + ws);
+      const ob = getRankBonus(ranks) + agBonus;
+      const n = wpn.name.toLowerCase();
+      const match = allWeapons.find(w =>
+        (w.name_en || '').toLowerCase().includes(n) ||
+        (w.name_fr || '').toLowerCase().includes(n) ||
+        n.includes((w.name_en || '').toLowerCase().split(' ')[0])
+      );
+      const opt = new Option(`${wpn.name} (OB +${ob})`, match?.id || '');
+      opt.dataset.ob = ob;
+      grp.appendChild(opt);
+    }
+    sel.prepend(grp);
+  }
+
+  // Pre-fill toolbox fields from the currently loaded character
+  function prefillFromCharacter() {
+    const char = getCharacter();
+    if (!char) return;
+    const dbResult = calculateDB(char);
+    shell.querySelector('#atk-db').value = dbResult.meleeBD || 0;
+    shell.querySelector('#atk-at').value = char.armorType || 1;
+    shell.querySelector('#rr-deflevel').value = char.level || 1;
+    addCharacterWeapons(char);
+    populateSkillDropdown(char);
+  }
 
   // Open / close
   function openToolbox() {
     shell.removeAttribute('hidden');
     requestAnimationFrame(() => shell.classList.add('is-open'));
+    prefillFromCharacter();
   }
   function closeToolbox() {
     shell.classList.remove('is-open');
@@ -676,23 +783,74 @@ function initSessionToolbox() {
     resultHistory.length = 0; renderHistory();
   });
 
-  // Maneuver
+  // Maneuver — skill dropdown auto-fills bonus
+  shell.querySelector('#man-skill').addEventListener('change', () => {
+    const char = getCharacter();
+    const skillKey = shell.querySelector('#man-skill').value;
+    if (!char || !skillKey) return;
+    const bonusInput = shell.querySelector('#man-bonus');
+    if (skillKey.startsWith('wpn_')) {
+      bonusInput.value = getRankBonus(getTotalRanks(char, skillKey));
+      return;
+    }
+    const gi = parseInt(skillKey);
+    const cats = getAllCategories();
+    const classes = getAllClasses();
+    const cls = char.classIndex >= 0 ? classes[char.classIndex] : null;
+    let idx = 0;
+    for (const cat of cats) {
+      for (const skill of cat.skills) {
+        if (idx === gi) {
+          const rkB = getRankBonus(getTotalRanks(char, gi));
+          const idxs = getSkillStatIndices(skill);
+          const stB = idxs.length
+            ? Math.floor(idxs.reduce((s, i) => s + getTotalStatBonus(char, i - 1), 0) / idxs.length)
+            : 0;
+          bonusInput.value = rkB + stB + getLevelBonus(cls, char.level, cat.name, gi);
+          return;
+        }
+        idx++;
+      }
+    }
+  });
+
   shell.querySelector('#btn-resolve-maneuver').addEventListener('click', () => {
     const difficulty = shell.querySelector('#man-difficulty').value;
-    const bonus = parseInt(shell.querySelector('#man-bonus').value) || 0;
+    const manType = shell.querySelector('input[name="mnvr-type"]:checked')?.value || 'static';
+    let bonus = parseInt(shell.querySelector('#man-bonus').value) || 0;
+    let armorPenalty = 0;
+
+    // Moving maneuver: subtract armor maneuver penalty
+    if (manType === 'moving') {
+      const char = getCharacter();
+      const at = char ? (char.armorType || 1) : parseInt(shell.querySelector('#atk-at').value) || 1;
+      armorPenalty = ARMOR_MANEUVER_PENALTIES[at] || 0;
+      bonus -= armorPenalty;
+    }
+
+    // Show/hide armor penalty info
+    const armorInfoEl = shell.querySelector('#man-armor-info');
+    if (armorPenalty > 0) {
+      armorInfoEl.style.display = '';
+      armorInfoEl.textContent = `${lang === 'en' ? 'Armor penalty' : 'Pénalité armure'}: −${armorPenalty}`;
+    } else {
+      armorInfoEl.style.display = 'none';
+    }
+
     const res = resolveStaticManeuver({ difficulty, bonus });
     const stateClass = res.result === 'success' ? 'is-success' : res.result === 'partial' ? 'is-partial' : 'is-failure';
     const stateLabel = res.result === 'success' ? (lang === 'en' ? 'Success' : 'Succès') : res.result === 'partial' ? (lang === 'en' ? 'Partial' : 'Partiel') : (lang === 'en' ? 'Failure' : 'Échec');
+    const typeLabel = manType === 'moving' ? (lang === 'en' ? 'Moving' : 'En mvt') : (lang === 'en' ? 'Static' : 'Statique');
     const html = makeResultCard({
       stateClass, iconSrc: 'assets/ui/icons/session_maneuver_scroll.webp',
-      title: lang === 'en' ? 'Maneuver' : 'Manœuvre',
+      title: `${lang === 'en' ? 'Maneuver' : 'Manœuvre'} — ${typeLabel}`,
       meta: `${res.difficultyLabel?.[lang] || difficulty}`,
       cells: [
         { key: 'Roll', val: res.roll },
-        { key: 'Bonus', val: `+${bonus}` },
+        { key: 'Bonus', val: bonus >= 0 ? `+${bonus}` : String(bonus) },
         { key: 'Total', val: res.total },
       ],
-      details: res.description, stateLabel,
+      details: res.description + (armorPenalty > 0 ? ` (−${armorPenalty} armure)` : ''), stateLabel,
     });
     shell.querySelector('#maneuver-result').innerHTML = html;
     addToHistory({ html });
@@ -707,22 +865,23 @@ function initSessionToolbox() {
     const armorType = parseInt(shell.querySelector('#atk-at').value) || 1;
     try {
       const res = resolveFullAttack({ weaponTable, ob, db, armorType });
-      const isFumble = res.fumble;
-      const isCrit = !isFumble && res.critical;
-      const stateClass = isFumble ? 'is-fumble is-failure' : isCrit ? 'is-critical is-success' : res.hits > 0 ? 'is-partial' : 'is-failure';
-      const stateLabel = isFumble ? (lang === 'en' ? 'Fumble!' : 'Fumble!') : isCrit ? (lang === 'en' ? 'Critical!' : 'Critique!') : res.hits > 0 ? `${res.hits} hits` : (lang === 'en' ? 'Miss' : 'Raté');
-      const details = [
-        isFumble ? (lang === 'en' ? '⚠ Fumble!' : '⚠ Fumble!') : '',
-        res.critical ? `${lang === 'en' ? 'Critical' : 'Critique'}: ${res.critical}` : '',
-        res.critResult?.text ? res.critResult.text : '',
-      ].filter(Boolean).join(' — ');
+      const isFumble = !!res.fumble;
+      const isCrit   = !isFumble && !!res.critical;
+      const hits     = res.totalHits ?? 0;
+      const stateClass = isFumble ? 'is-fumble is-failure' : isCrit ? 'is-critical is-success' : hits > 0 ? 'is-partial' : 'is-failure';
+      const stateLabel = isFumble ? 'Fumble!' : isCrit ? (lang === 'en' ? 'Critical!' : 'Critique!') : hits > 0 ? `${hits} hits` : (lang === 'en' ? 'Miss' : 'Raté');
+      const critText = res.critical
+        ? `${res.critical.severity || ''} ${res.critical.type || ''}: ${res.critical.rawText || ''}`.trim()
+        : '';
+      const fumbleText = res.fumble?.rawText || (lang === 'en' ? '⚠ Fumble!' : '⚠ Fumble!');
+      const details = isFumble ? fumbleText : isCrit ? critText : '';
       const html = makeResultCard({
         stateClass, iconSrc: 'assets/ui/icons/session_attack_crossed_swords.webp',
         title: lang === 'en' ? 'Attack' : 'Attaque', meta: `OB${ob >= 0 ? '+' : ''}${ob} vs DB${db >= 0 ? '+' : ''}${db} AT${armorType}`,
         cells: [
-          { key: 'Roll', val: res.breakdown?.roll ?? '?' },
-          { key: lang === 'en' ? 'Total' : 'Total', val: res.total ?? '?' },
-          { key: 'Hits', val: res.hits ?? 0 },
+          { key: 'Roll', val: res.attack?.breakdown?.roll ?? '?' },
+          { key: lang === 'en' ? 'Total' : 'Total', val: res.attack?.total ?? '?' },
+          { key: 'Hits', val: hits },
         ],
         details, stateLabel,
       });
