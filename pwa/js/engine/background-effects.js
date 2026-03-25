@@ -359,10 +359,17 @@ export function summarizeBackgroundBonuses(bgBonuses, lang = 'fr') {
   const ppParts = [];
   if (bgBonuses.ppBonus) ppParts.push(`+${bgBonuses.ppBonus} PP`);
   if (bgBonuses.ppPerLevel) ppParts.push(`+${bgBonuses.ppPerLevel} PP/niv`);
-  if (bgBonuses.spellAdder) ppParts.push(`+${bgBonuses.spellAdder} Spell Adder`);
   if (bgBonuses.ppMultiplier !== 1) ppParts.push(`×${bgBonuses.ppMultiplier} PP`);
   if (ppParts.length > 0)
     lines.push((lang === 'fr' ? 'Pouvoir: ' : 'Power: ') + ppParts.join(', '));
+
+  // Spell Adder — free spells per day (no PP cost), distinct from PP pool
+  if (bgBonuses.spellAdder) {
+    const saLabel = lang === 'fr'
+      ? `Ajouteur de sorts: ${bgBonuses.spellAdder} sort(s)/jour sans coût en PM`
+      : `Spell Adder: ${bgBonuses.spellAdder} spell(s)/day at no PP cost`;
+    lines.push(saLabel);
+  }
 
   // DB/OB
   if (bgBonuses.dbBonus) lines.push(`DB ${bgBonuses.dbBonus > 0 ? '+' : ''}${bgBonuses.dbBonus}`);

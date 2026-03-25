@@ -53,6 +53,9 @@ export const logHpRoll = (name, data) =>
   logEvent(name, 'hp_roll', data,
     `PdC rang ${data.rank}: D${data.dieType}=${data.dieRoll}`);
 
+export const logStatGain = (name, data) =>
+  logEvent(name, 'stat_gain', data, `Niv.${data.level} gains: ${data.summary}`);
+
 export const logNote = (name, text) =>
   logEvent(name, 'note', { text }, text);
 

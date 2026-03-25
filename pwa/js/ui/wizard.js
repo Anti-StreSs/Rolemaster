@@ -10,15 +10,16 @@ import { getAllRealms, getSpellListCost, getSpellRankCost, getSpellBlockSize, ge
 import { downloadCharacter, saveToLocalStorage } from '../engine/export.js';
 import { generateCharacterPDF } from '../engine/pdf-export.js';
 import { logStatRoll, logStatValidate, logSkillDevelop, logSpellSGR,
-         logPhaseValidate, logLevelUp, logBgOption, logHpRoll,
+         logPhaseValidate, logLevelUp, logBgOption, logHpRoll, logStatGain,
          getCharacterHistory } from '../engine/event-log.js';
-import { processLevelUpStatGains } from '../engine/stat_gain.js';
+import { processLevelUpStatGains, statGainLookup } from '../engine/stat_gain.js';
 import { generateBackground, getRacialLanguages } from '../engine/background.js';
 import { getData } from '../engine/data-loader.js';
 import { getBackgroundBonuses, getSkillBackgroundBonus, resolveBackgroundChoice, resolveStatIncrease, summarizeBackgroundBonuses, generateWealthText } from '../engine/background-effects.js';
 import { showPrintPreview } from './print-sheet.js';
 import { projectProgression } from '../engine/build-compare.js';
 import { getOptionalRules, setOptionalRule, resetOptionalRules } from '../engine/optional-rules.js';
+import { getWeaponPriorityOrder, WEAPON_TYPE_MAP as WEAPON_TYPE_MAP_ENGINE } from '../engine/npc-generator.js';
 
 // --- Category translations ---
 const CAT_NAMES_FR = {
@@ -224,7 +225,11 @@ function renderEditor(app) {
       <button class="btn-primary text-sm" id="btn-save-json">${lang === 'en' ? 'Download JSON' : 'Télécharger JSON'}</button>
       <button class="btn-secondary text-sm" id="btn-save-local">${lang === 'en' ? 'Local Save' : 'Sauvegarde locale'}</button>
       <button class="btn-secondary text-sm" id="btn-print">${lang === 'en' ? 'Print' : 'Imprimer'}</button>
-      <button class="btn-secondary text-sm" id="btn-export-pdf">${lang === 'en' ? 'Export PDF' : 'Export PDF'}</button>
+      <button class="rm-btn-scroll" id="btn-export-pdf" style="font-size:0.8rem;min-height:2.2rem">
+        <img class="rm-btn-icon" src="assets/ui/icons/session_export_scroll.webp" alt="" onerror="this.style.display='none'">
+        <span class="rm-spinner" id="pdf-spinner" style="display:none"></span>
+        ${lang === 'en' ? 'Export PDF' : 'Export PDF'}
+      </button>
     `;
   }
 
@@ -777,6 +782,14 @@ function renderStatLog(lang) {
   }
 
   html += `</div></details>`;
+
+  html += `<div class="mt-3 no-print">
+    <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-size:0.85rem;color:#9ca3af">
+      <input type="checkbox" id="chk-manual-stat-gain" ${character.manualStatGains ? 'checked' : ''}>
+      ${lang === 'en' ? 'Roll stat gains manually at level-up (Table 05-02)' : 'Lancer les gains de caractéristiques manuellement à la montée de niveau (Table 05-02)'}
+    </label>
+  </div>`;
+
   return html;
 }
 
@@ -1036,10 +1049,12 @@ function bindWeaponsEvents(app) {
   const btnAuto = document.getElementById('btn-wpn-auto');
   if (btnAuto) {
     btnAuto.addEventListener('click', () => {
-      const remaining = WEAPON_CATEGORIES.filter(w => !character.weaponPriorities.includes(w.id));
+      const cls = getAllClasses()[character.classIndex];
+      const order = cls ? getWeaponPriorityOrder(cls, character.stats) : WEAPON_CATEGORIES.map(w => w.id);
+      const remaining = order.filter(id => !character.weaponPriorities.includes(id));
       for (let s = 0; s < 6; s++) {
         if (character.weaponPriorities[s] === null && remaining.length > 0) {
-          character.weaponPriorities[s] = remaining.shift().id;
+          character.weaponPriorities[s] = remaining.shift();
         }
       }
       selectedWeaponType = -1;
@@ -1435,7 +1450,9 @@ function renderHistoryTab(lang) {
             }
             if (opt.effects.skill_bonus && typeof opt.effects.skill_bonus === 'object')
               parts.push(Object.entries(opt.effects.skill_bonus).map(([k,v]) => `${BG_SKILL_FR[k]||k} +${v}`).join(', '));
-            if (opt.effects.spell_adder) parts.push(`+${opt.effects.spell_adder} ${lang === 'en' ? 'Spell Adder' : 'Ajouteur de sort'}`);
+            if (opt.effects.spell_adder) parts.push(lang === 'en'
+              ? `Spell Adder: ${opt.effects.spell_adder} spell(s)/day free`
+              : `Ajouteur: ${opt.effects.spell_adder} sort(s)/jour sans PM`);
             if (opt.effects.pp_bonus) parts.push(`+${opt.effects.pp_bonus} ${lang === 'en' ? 'PP' : 'PM'}`);
             if (opt.effects.gold) parts.push(`${opt.effects.gold} po`);
             if (opt.effects.rr_bonus) parts.push(`JR +${opt.effects.rr_bonus}`);
@@ -1555,9 +1572,23 @@ function renderHistoryTab(lang) {
     ${panel(lang === 'en' ? 'Background & Notes' : 'Historique & Notes', `
       <textarea id="f-history" class="field w-full" rows="8" placeholder="Historique du personnage...">${esc(character.history)}</textarea>
     `)}
-    ${panel(lang === 'en' ? 'Event Journal' : 'Journal des événements',
-      '<div id="event-journal-container" style="max-height:300px;overflow-y:auto"><div class="text-xs text-gray-500">Chargement...</div></div>'
-    )}
+    ${panel(lang === 'en' ? 'Event Journal' : 'Journal des événements', `
+      <div class="rm-journal-shell">
+        <div class="rm-journal-toolbar">
+          <p class="rm-sheet-subtitle" style="margin:0">${lang === 'en' ? 'Character milestones and rolls.' : 'Événements et jets du personnage.'}</p>
+          <div class="rm-filter-row" role="group" aria-label="${lang === 'en' ? 'Journal filters' : 'Filtres'}">
+            <button class="rm-filter-chip is-active" type="button" data-filter="all">${lang === 'en' ? 'All' : 'Tous'}</button>
+            <button class="rm-filter-chip" type="button" data-filter="stats">${lang === 'en' ? 'Stats' : 'Stats'}</button>
+            <button class="rm-filter-chip" type="button" data-filter="skills">${lang === 'en' ? 'Skills' : 'Compét.'}</button>
+            <button class="rm-filter-chip" type="button" data-filter="spells">${lang === 'en' ? 'Spells' : 'Sorts'}</button>
+            <button class="rm-filter-chip" type="button" data-filter="notes">${lang === 'en' ? 'Notes' : 'Notes'}</button>
+          </div>
+        </div>
+        <div class="rm-timeline" id="event-journal-container" style="max-height:320px;overflow-y:auto">
+          <div class="text-xs" style="color:#6b5030;padding:0.5rem">${lang === 'en' ? 'Loading…' : 'Chargement…'}</div>
+        </div>
+      </div>
+    `)}
   `;
 }
 
@@ -1982,12 +2013,18 @@ function bindActionEvents() {
       showToast('jsPDF non disponible — vérifier la connexion internet', true);
       return;
     }
+    const spinner = document.getElementById('pdf-spinner');
+    btnExportPdf.setAttribute('aria-busy', 'true');
+    if (spinner) spinner.style.display = '';
     try {
       const lang = character.language || 'fr';
       generateCharacterPDF(character, { lang });
       showToast(lang === 'en' ? 'PDF downloaded!' : 'PDF téléchargé !');
     } catch (e) {
       showToast('Erreur PDF: ' + e.message, true);
+    } finally {
+      btnExportPdf.removeAttribute('aria-busy');
+      if (spinner) spinner.style.display = 'none';
     }
   });
 }
@@ -2035,6 +2072,132 @@ function renderStatGainsResult(lang) {
 }
 
 /**
+ * Show a modal for manually entering D100 stat gain rolls (Table 05-02).
+ * Pre-rolls all stats; player can replace any value with their physical die result.
+ * callback(gains) is called with the final computed gains array.
+ */
+function showStatGainModal(stats, potentials, lang, callback) {
+  const preRolls = stats.map((temp, i) => {
+    const pot = potentials[i] || temp;
+    const diff = pot - temp;
+    if (diff <= 0) return { roll: 0, diff: 0, gain: 0, openEnded: false, newTemp: temp };
+    const r = Math.floor(Math.random() * 100) + 1;
+    const g = statGainLookup(r, diff);
+    const gain = typeof g === 'number' ? g : 1;
+    return { roll: r, diff, gain, openEnded: g === '*', newTemp: Math.min(temp + gain, pot) };
+  });
+
+  const statNames = lang === 'en' ? STAT_NAMES_EN : STAT_NAMES_FR;
+  const rows = stats.map((temp, i) => {
+    const pot = potentials[i] || temp;
+    const diff = pot - temp;
+    const pr = preRolls[i];
+    if (diff <= 0) {
+      return `<tr class="text-gray-600">
+        <td class="font-bold">${STAT_ABBREVS[i]}</td><td class="text-center text-xs">${statNames[i]}</td>
+        <td class="text-center">${temp}</td><td class="text-center">${pot}</td>
+        <td class="text-center">0</td><td class="text-center">—</td>
+        <td class="text-center">0</td><td class="text-center">${temp}</td>
+      </tr>`;
+    }
+    return `<tr>
+      <td class="font-bold text-amber-400">${STAT_ABBREVS[i]}</td>
+      <td class="text-center text-xs" style="color:#9ca3af">${statNames[i]}</td>
+      <td class="text-center">${temp}</td><td class="text-center">${pot}</td>
+      <td class="text-center">${diff}</td>
+      <td class="text-center">
+        <input type="number" class="sg-d100-input" data-stat="${i}" value="${pr.roll}" min="1" max="100"
+          style="width:4rem;background:rgba(0,0,0,0.3);border:1px solid rgba(139,92,20,0.4);
+          border-radius:3px;padding:2px 4px;color:#e5d5b0;text-align:center">
+      </td>
+      <td class="text-center sg-gain" data-stat="${i}"
+        style="color:${pr.gain > 0 ? '#4ade80' : '#9ca3af'};font-weight:${pr.gain > 0 ? 'bold' : 'normal'}">
+        ${pr.gain > 0 ? '+' + pr.gain : '0'}${pr.openEnded ? '*' : ''}
+      </td>
+      <td class="text-center sg-newtemp" data-stat="${i}">${pr.newTemp}</td>
+    </tr>`;
+  }).join('');
+
+  const overlay = document.createElement('div');
+  overlay.className = 'rm-overlay-shell';
+  overlay.innerHTML = `
+    <div class="rm-modal-panel" style="padding:1.5rem;max-width:44rem">
+      <h3 style="font-family:Cinzel,serif;color:#8b6914;margin-bottom:0.5rem">
+        ${lang === 'en' ? 'Stat Gains — Level Up' : 'Gains de caractéristiques — Montée de niveau'}
+      </h3>
+      <p style="font-size:0.75rem;color:#6b5030;margin-bottom:1rem">
+        ${lang === 'en'
+          ? 'Edit D100 values to use your physical dice rolls, then confirm.'
+          : 'Modifiez les D100 avec vos jets réels, puis confirmez.'}
+      </p>
+      <div class="overflow-x-auto">
+        <table class="skill-table" style="width:100%">
+          <thead><tr>
+            <th>Car.</th><th></th>
+            <th class="text-center">Temp</th><th class="text-center">Pot</th>
+            <th class="text-center">Diff</th><th class="text-center">D100</th>
+            <th class="text-center">${lang === 'en' ? 'Gain' : 'Gain'}</th>
+            <th class="text-center">→</th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+      <div style="display:flex;gap:1rem;margin-top:1.25rem;justify-content:flex-end">
+        <button id="sg-reroll-all" class="btn-secondary" style="font-size:0.85rem">
+          🎲 ${lang === 'en' ? 'Reroll all' : 'Tout retirer'}
+        </button>
+        <button id="sg-confirm" class="btn-primary" style="font-size:0.85rem">
+          ${lang === 'en' ? 'Confirm' : 'Confirmer'}
+        </button>
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+
+  overlay.querySelectorAll('.sg-d100-input').forEach(input => {
+    input.addEventListener('input', () => {
+      const si = parseInt(input.dataset.stat);
+      const temp = stats[si];
+      const pot = potentials[si] || temp;
+      const diff = pot - temp;
+      const roll = Math.max(1, Math.min(100, parseInt(input.value) || 1));
+      const g = statGainLookup(roll, diff);
+      const gain = typeof g === 'number' ? g : 1;
+      const openEnded = g === '*';
+      const gainCell = overlay.querySelector(`.sg-gain[data-stat="${si}"]`);
+      const ntCell = overlay.querySelector(`.sg-newtemp[data-stat="${si}"]`);
+      if (gainCell) {
+        gainCell.textContent = (gain > 0 ? '+' + gain : '0') + (openEnded ? '*' : '');
+        gainCell.style.color = gain > 0 ? '#4ade80' : '#9ca3af';
+        gainCell.style.fontWeight = gain > 0 ? 'bold' : 'normal';
+      }
+      if (ntCell) ntCell.textContent = Math.min(temp + gain, pot);
+    });
+  });
+
+  overlay.querySelector('#sg-reroll-all')?.addEventListener('click', () => {
+    overlay.querySelectorAll('.sg-d100-input').forEach(input => {
+      input.value = Math.floor(Math.random() * 100) + 1;
+      input.dispatchEvent(new Event('input'));
+    });
+  });
+
+  overlay.querySelector('#sg-confirm')?.addEventListener('click', () => {
+    const gains = stats.map((temp, i) => {
+      const pot = potentials[i] || temp;
+      const diff = pot - temp;
+      if (diff <= 0) return { statIndex: i, roll: 0, diff: 0, gain: 0, openEnded: false, oldTemp: temp, newTemp: temp };
+      const input = overlay.querySelector(`.sg-d100-input[data-stat="${i}"]`);
+      const roll = input ? Math.max(1, Math.min(100, parseInt(input.value) || 1)) : 0;
+      const g = statGainLookup(roll, diff);
+      const gain = typeof g === 'number' ? g : 1;
+      return { statIndex: i, roll, diff, gain, openEnded: g === '*', oldTemp: temp, newTemp: Math.min(temp + gain, pot) };
+    });
+    document.body.removeChild(overlay);
+    callback(gains);
+  });
+}
+
+/**
  * Process level-up: advance phase/level, roll stat gains, reset DP.
  */
 function performLevelUp(app) {
@@ -2054,32 +2217,45 @@ function performLevelUp(app) {
     character.level++;
   }
 
-  // Roll stat gains (only for level 2+ transitions, not ado→app or app→lvl1)
-  if (character.devPhase === 'level' && character.level >= 2 && character.stats.some(s => s > 0)) {
-    const gains = processLevelUpStatGains(character.stats, character.potentials);
-    character._lastStatGains = gains;
-    for (const g of gains) {
-      character.stats[g.statIndex] = g.newTemp;
-    }
-  } else {
-    character._lastStatGains = null;
-  }
-
-  // Reset for new phase
-  character.phaseValidated = false;
-  setDevPointsSpent(character, 0);
-  // Reset SGR flag for new phase (allow one SGR per phase)
-  if (character.spellStudy) character.spellStudy.sgrDone = false;
-
   const lang = character.language || 'fr';
-  const label = character.devPhase === 'level'
-    ? (lang === 'en' ? `Level ${character.level}!` : `Niveau ${character.level} !`)
-    : (character.devPhase === 'apprenti' ? (lang === 'en' ? 'Apprentice phase!' : 'Phase Apprenti !') : 'Phase Adolescent !');
-  if (character.name && character.devPhase === 'level') logLevelUp(character.name, {
-    oldLevel: character.level - 1, newLevel: character.level,
-  });
-  showToast(label);
-  renderEditor(app);
+  const needsGains = character.devPhase === 'level' && character.level >= 2 && character.stats.some(s => s > 0);
+
+  const applyAndFinish = (gains) => {
+    if (gains) {
+      character._lastStatGains = gains;
+      for (const g of gains) character.stats[g.statIndex] = g.newTemp;
+      if (character.name) {
+        const improved = gains.filter(g => g.gain > 0);
+        const summary = improved.length > 0
+          ? improved.map(g => `${STAT_ABBREVS[g.statIndex]}+${g.gain}`).join(' ')
+          : (lang === 'en' ? 'No gains' : 'Aucun gain');
+        logStatGain(character.name, { level: character.level, gains, summary });
+      }
+    } else {
+      character._lastStatGains = null;
+    }
+
+    character.phaseValidated = false;
+    setDevPointsSpent(character, 0);
+    if (character.spellStudy) character.spellStudy.sgrDone = false;
+
+    const label = character.devPhase === 'level'
+      ? (lang === 'en' ? `Level ${character.level}!` : `Niveau ${character.level} !`)
+      : (character.devPhase === 'apprenti' ? (lang === 'en' ? 'Apprentice phase!' : 'Phase Apprenti !') : 'Phase Adolescent !');
+    if (character.name && character.devPhase === 'level') logLevelUp(character.name, {
+      oldLevel: character.level - 1, newLevel: character.level,
+    });
+    showToast(label);
+    renderEditor(app);
+  };
+
+  if (!needsGains) {
+    applyAndFinish(null);
+  } else if (character.manualStatGains) {
+    showStatGainModal(character.stats, character.potentials, lang, applyAndFinish);
+  } else {
+    applyAndFinish(processLevelUpStatGains(character.stats, character.potentials));
+  }
 }
 
 function bindInfosEvents(app) {
@@ -2429,6 +2605,13 @@ function bindStatsEvents(app) {
       renderEditor(app);
     });
   });
+
+  const chkManual = document.getElementById('chk-manual-stat-gain');
+  if (chkManual) {
+    chkManual.addEventListener('change', () => {
+      character.manualStatGains = chkManual.checked;
+    });
+  }
 }
 
 /**
@@ -2788,6 +2971,128 @@ function bindSpellsEvents(app) {
   }
 }
 
+// --- Background option modal helpers ---
+
+function showSetOptionsModal(entries, lang, callback) {
+  const overlay = document.createElement('div');
+  overlay.className = 'rm-overlay-shell';
+  overlay.innerHTML = `
+    <div class="rm-modal-panel" style="padding:1.5rem;max-width:36rem">
+      <h3 style="font-family:var(--font-title,Cinzel,serif);color:#8b6914;margin-bottom:1rem">
+        ${lang === 'en' ? 'Choose an option' : 'Choisissez une option'}
+      </h3>
+      <div style="display:flex;flex-direction:column;gap:0.5rem">
+        ${entries.map((e, i) => {
+          const name = lang === 'en' ? (e.name_en || e.name_fr || '') : (e.name_fr || e.name_en || '');
+          const desc = (lang === 'en' ? (e.description_en || e.description_fr) : (e.description_fr || e.description_en) || '').slice(0, 120);
+          const optional = e.optional ? `<span style="color:#9a6420;font-size:0.7rem"> (${lang === 'en' ? 'optional' : 'optionnel'})</span>` : '';
+          return `<button class="set-opt-pick" data-set-idx="${i}"
+            style="text-align:left;padding:0.6rem 0.8rem;background:rgba(139,92,20,0.08);
+            border:1px solid rgba(139,92,20,0.2);border-radius:4px;cursor:pointer;
+            color:#4a3520;font-size:0.85rem">
+            <strong>${name}</strong>${optional}
+            ${desc ? `<div style="font-size:0.7rem;color:#6b5030;margin-top:2px">${desc}</div>` : ''}
+          </button>`;
+        }).join('')}
+      </div>
+      <button style="margin-top:1rem;padding:0.4rem 1rem;border:1px solid rgba(139,92,20,0.3);border-radius:4px;cursor:pointer;background:rgba(255,255,255,0.3);color:#4a3520" id="set-opt-cancel">
+        ${lang === 'en' ? 'Cancel' : 'Annuler'}
+      </button>
+    </div>`;
+  document.body.appendChild(overlay);
+  overlay.querySelectorAll('.set-opt-pick').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.body.removeChild(overlay);
+      callback(parseInt(btn.dataset.setIdx));
+    });
+  });
+  overlay.querySelector('#set-opt-cancel').addEventListener('click', () => document.body.removeChild(overlay));
+  overlay.addEventListener('click', e => { if (e.target === overlay) document.body.removeChild(overlay); });
+}
+
+function showStatPickModal(lang, multi, callback) {
+  const STATS = [
+    { key: 'CO', fr: 'Constitution', en: 'Constitution' },
+    { key: 'AG', fr: 'Agilité', en: 'Agility' },
+    { key: 'AD', fr: 'Adresse', en: 'Adroitness' },
+    { key: 'ME', fr: 'Mémoire', en: 'Memory' },
+    { key: 'RS', fr: 'Raison', en: 'Reasoning' },
+    { key: 'FO', fr: 'Force', en: 'Strength' },
+    { key: 'RP', fr: 'Répartie', en: 'Repartee' },
+    { key: 'PR', fr: 'Prestance', en: 'Presence' },
+    { key: 'EM', fr: 'Empathie', en: 'Empathy' },
+    { key: 'IN', fr: 'Intuition', en: 'Intuition' },
+  ];
+  const selected = [];
+  const overlay = document.createElement('div');
+  overlay.className = 'rm-overlay-shell';
+  const title = multi > 1
+    ? (lang === 'en' ? `Choose ${multi} stats (+1 each)` : `Choisissez ${multi} stats (+1 chacune)`)
+    : (lang === 'en' ? 'Choose a stat (+2)' : 'Choisissez une stat (+2)');
+  overlay.innerHTML = `
+    <div class="rm-modal-panel" style="padding:1.5rem;max-width:28rem">
+      <h3 style="font-family:var(--font-title,Cinzel,serif);color:#8b6914;margin-bottom:0.75rem">${title}</h3>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.4rem" id="stat-pick-grid">
+        ${STATS.map(s => `<button class="stat-pick-btn" data-key="${s.key}"
+          style="padding:0.5rem 0.8rem;border:1px solid rgba(139,92,20,0.2);border-radius:4px;
+          cursor:pointer;background:rgba(255,255,255,0.3);color:#4a3520;text-align:left">
+          <strong>${s.key}</strong> — ${lang === 'en' ? s.en : s.fr}
+        </button>`).join('')}
+      </div>
+      <div style="margin-top:0.75rem;font-size:0.8rem;color:#6b5030" id="stat-pick-hint">
+        ${multi > 1 ? (lang === 'en' ? `Selected: 0 / ${multi}` : `Sélectionnées: 0 / ${multi}`) : ''}
+      </div>
+      <div style="display:flex;gap:0.5rem;margin-top:0.75rem">
+        <button id="stat-pick-ok" disabled style="padding:0.4rem 1rem;border:1px solid #946a1e;border-radius:4px;cursor:pointer;background:rgba(139,92,20,0.15);color:#4a3520">OK</button>
+        <button id="stat-pick-cancel" style="padding:0.4rem 1rem;border:1px solid rgba(139,92,20,0.3);border-radius:4px;cursor:pointer;background:rgba(255,255,255,0.3);color:#4a3520">
+          ${lang === 'en' ? 'Cancel' : 'Annuler'}
+        </button>
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+  const okBtn = overlay.querySelector('#stat-pick-ok');
+  const hint = overlay.querySelector('#stat-pick-hint');
+  overlay.querySelectorAll('.stat-pick-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.key;
+      if (multi === 1) { document.body.removeChild(overlay); callback([key]); return; }
+      const idx = selected.indexOf(key);
+      if (idx >= 0) { selected.splice(idx, 1); btn.style.background = 'rgba(255,255,255,0.3)'; }
+      else if (selected.length < multi) { selected.push(key); btn.style.background = 'rgba(139,92,20,0.2)'; }
+      hint.textContent = lang === 'en' ? `Selected: ${selected.length} / ${multi}` : `Sélectionnées: ${selected.length} / ${multi}`;
+      okBtn.disabled = selected.length !== multi;
+    });
+  });
+  okBtn.addEventListener('click', () => { document.body.removeChild(overlay); callback([...selected]); });
+  overlay.querySelector('#stat-pick-cancel').addEventListener('click', () => document.body.removeChild(overlay));
+}
+
+function showTextInputModal(lang, titleText, placeholder, callback) {
+  const overlay = document.createElement('div');
+  overlay.className = 'rm-overlay-shell';
+  overlay.innerHTML = `
+    <div class="rm-modal-panel" style="padding:1.5rem;max-width:26rem">
+      <h3 style="font-family:var(--font-title,Cinzel,serif);color:#8b6914;margin-bottom:0.75rem">${titleText}</h3>
+      <input id="text-modal-input" type="text" placeholder="${placeholder}"
+        style="width:100%;padding:0.5rem 0.7rem;border:1px solid rgba(139,92,20,0.3);border-radius:4px;background:rgba(255,255,255,0.5);color:#2b1806;font:inherit">
+      <div style="display:flex;gap:0.5rem;margin-top:0.75rem">
+        <button id="text-modal-ok" style="padding:0.4rem 1rem;border:1px solid #946a1e;border-radius:4px;cursor:pointer;background:rgba(139,92,20,0.15);color:#4a3520">OK</button>
+        <button id="text-modal-cancel" style="padding:0.4rem 1rem;border:1px solid rgba(139,92,20,0.3);border-radius:4px;cursor:pointer;background:rgba(255,255,255,0.3);color:#4a3520">
+          ${lang === 'en' ? 'Cancel' : 'Annuler'}
+        </button>
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+  const input = overlay.querySelector('#text-modal-input');
+  input.focus();
+  overlay.querySelector('#text-modal-ok').addEventListener('click', () => {
+    const val = input.value.trim();
+    if (val) { document.body.removeChild(overlay); callback(val); }
+  });
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') { const val = input.value.trim(); if (val) { document.body.removeChild(overlay); callback(val); } } });
+  overlay.querySelector('#text-modal-cancel').addEventListener('click', () => document.body.removeChild(overlay));
+}
+
 function bindHistoryEvents(app) {
   const lang = character.language || 'fr';
   // Physical description fields
@@ -2850,27 +3155,26 @@ function bindHistoryEvents(app) {
       const section = cat.source.sections[cat.sectionIdx];
       const entries = section.entries || [];
 
-      if (section.name_en === 'Set Options' || section.name === 'Set Options') {
-        // Direct choice — show popup
-        const names = entries.map(e => e.name_fr || e.name_en || e.name || '?');
-        const choice = prompt((lang === 'en' ? 'Choose:\n' : 'Choisissez :\n') + names.map((n, i) => `${i + 1}. ${n}`).join('\n'));
-        if (!choice) return;
-        const ci = parseInt(choice) - 1;
-        if (ci < 0 || ci >= entries.length) return;
-        const entry = entries[ci];
-        if (!character.backgroundOptions) character.backgroundOptions = { totalOptions: 0, options: [], companionIIITalents: [] };
-        character.backgroundOptions.options[idx] = {
-          index: idx + 1, source: cat.source.id, category: section.name_en || section.name,
-          roll: null, name: entry.name_en || entry.name, name_fr: entry.name_fr || entry.name,
-          description: entry.description_fr || entry.description_en || entry.description || '',
-          type: entry.type || 'mixed', effects: entry.effects || {}, playerNotes: '', timestamp: new Date().toISOString(),
-        };
-        const _bgW1 = generateWealthText(getBackgroundBonuses(character));
-        if (_bgW1) {
-          const _eq1 = character.equipment || '';
-          character.equipment = _eq1.replace(/--- Richesse d'historique ---[\s\S]*?(?=\n---|$)/, '').trim();
-          character.equipment += (character.equipment ? '\n\n' : '') + _bgW1;
-        }
+      if (section.table_id === '06-02' || (section.name_en || '').includes('Set Options')) {
+        // Direct choice — show modal (no D100 roll)
+        showSetOptionsModal(entries, lang, ci => {
+          if (ci < 0 || ci >= entries.length) return;
+          const entry = entries[ci];
+          if (!character.backgroundOptions) character.backgroundOptions = { totalOptions: 0, options: [], companionIIITalents: [] };
+          character.backgroundOptions.options[idx] = {
+            index: idx + 1, source: cat.source.id, category: section.name_en || section.name,
+            roll: null, name: entry.name_en || entry.name, name_fr: entry.name_fr || entry.name,
+            description: entry.description_fr || entry.description_en || entry.description || '',
+            type: entry.type || 'mixed', effects: entry.effects || {}, playerNotes: '', timestamp: new Date().toISOString(),
+          };
+          const _bgW1 = generateWealthText(getBackgroundBonuses(character));
+          if (_bgW1) {
+            const _eq1 = character.equipment || '';
+            character.equipment = _eq1.replace(/--- Richesse d'historique ---[\s\S]*?(?=\n---|$)/, '').trim();
+            character.equipment += (character.equipment ? '\n\n' : '') + _bgW1;
+          }
+          renderEditor(app);
+        });
       } else {
         // D100 roll
         const roll = Math.floor(Math.random() * 100) + 1;
@@ -2900,8 +3204,8 @@ function bindHistoryEvents(app) {
           d100: roll, resultName: entry ? (entry.name_fr || entry.name_en || entry.name || `Roll ${roll}`) : `Roll ${roll}`,
           effects: entry?.effects || {}, level: character.level,
         });
+        renderEditor(app);
       }
-      renderEditor(app);
     });
   });
 
@@ -2930,32 +3234,59 @@ function bindHistoryEvents(app) {
       if (!opt) return;
       const choiceType = opt.choice_type;
       if (choiceType === 'skill') {
-        const skillName = prompt(lang === 'en'
-          ? `Choose a ${opt.effects.skill_type || ''} skill for the +${opt.effects.skill_bonus} bonus:`
-          : `Choisissez une compétence ${opt.effects.skill_type === 'secondary' ? 'secondaire' : 'primaire'} pour le bonus de +${opt.effects.skill_bonus}:`);
-        if (skillName) { resolveBackgroundChoice(character, idx, { skill_choice: skillName }); renderEditor(app); }
+        const skillType = opt.effects.skill_type === 'secondary' ? (lang === 'en' ? 'secondary' : 'secondaire') : (lang === 'en' ? 'primary' : 'primaire');
+        const title = lang === 'en'
+          ? `Choose a ${skillType} skill for the +${opt.effects.skill_bonus} bonus`
+          : `Choisissez une compétence ${skillType} pour le bonus de +${opt.effects.skill_bonus}`;
+        showTextInputModal(lang, title, lang === 'en' ? 'Skill name…' : 'Nom de la compétence…', skillName => {
+          resolveBackgroundChoice(character, idx, { skill_choice: skillName }); renderEditor(app);
+        });
       } else if (choiceType === 'stat') {
-        const STAT_ABBREVS = ['CO','AG','AD','Mé','RS','FO','RP','PR','EM','IN'];
-        const statKeys = ['CO','AG','AD','ME','RS','FO','RP','PR','EM','IN'];
-        const choice = prompt((lang === 'en' ? 'Choose stat: ' : 'Choisissez la stat: ') + STAT_ABBREVS.join(', '));
-        if (choice && statKeys.includes(choice.toUpperCase())) { resolveBackgroundChoice(character, idx, { stat_choice: choice.toUpperCase() }); renderEditor(app); }
+        showStatPickModal(lang, 1, keys => {
+          resolveBackgroundChoice(character, idx, { stat_choice: keys[0] }); renderEditor(app);
+        });
       } else if (choiceType === 'language') {
-        const langName = prompt(lang === 'en' ? 'Language name:' : 'Nom de la langue:');
-        if (langName) { resolveBackgroundChoice(character, idx, { language_name: langName }); renderEditor(app); }
+        showTextInputModal(lang, lang === 'en' ? 'Language name' : 'Nom de la langue', lang === 'en' ? 'e.g. Elvish…' : 'ex. Elfique…', langName => {
+          resolveBackgroundChoice(character, idx, { language_name: langName }); renderEditor(app);
+        });
       } else if (choiceType === 'stat_increase') {
-        const mode = prompt(lang === 'en'
-          ? 'Mode: type "2" for +2 to one stat, or "3" for +1 to three stats'
-          : 'Mode: tapez "2" pour +2 à une stat, ou "3" pour +1 à trois stats');
-        if (mode === '2') {
-          const stat = prompt('Quelle stat? (CO,AG,AD,ME,RS,FO,RP,PR,EM,IN)');
-          const si = ['CO','AG','AD','ME','RS','FO','RP','PR','EM','IN'].indexOf(stat?.toUpperCase());
-          if (si >= 0) { resolveStatIncrease(character, idx, '2', [si]); renderEditor(app); }
-        } else if (mode === '3') {
-          const s1 = prompt('Stat 1?'), s2 = prompt('Stat 2?'), s3 = prompt('Stat 3?');
-          const keys = ['CO','AG','AD','ME','RS','FO','RP','PR','EM','IN'];
-          const indices = [s1,s2,s3].map(s => keys.indexOf(s?.toUpperCase())).filter(i => i >= 0);
-          if (indices.length === 3) { resolveStatIncrease(character, idx, '1x3', indices); renderEditor(app); }
-        }
+        // First pick mode: +2 one stat or +1 three stats
+        const modeOverlay = document.createElement('div');
+        modeOverlay.className = 'rm-overlay-shell';
+        modeOverlay.innerHTML = `
+          <div class="rm-modal-panel" style="padding:1.5rem;max-width:24rem">
+            <h3 style="font-family:var(--font-title,Cinzel,serif);color:#8b6914;margin-bottom:1rem">
+              ${lang === 'en' ? 'Stat increase — choose mode' : 'Augmentation de stat — choisissez le mode'}
+            </h3>
+            <div style="display:flex;flex-direction:column;gap:0.5rem">
+              <button id="mode-2" style="padding:0.6rem 0.8rem;border:1px solid rgba(139,92,20,0.2);border-radius:4px;cursor:pointer;background:rgba(139,92,20,0.08);color:#4a3520;text-align:left">
+                <strong>${lang === 'en' ? '+2 to one stat' : '+2 à une stat'}</strong>
+              </button>
+              <button id="mode-3" style="padding:0.6rem 0.8rem;border:1px solid rgba(139,92,20,0.2);border-radius:4px;cursor:pointer;background:rgba(139,92,20,0.08);color:#4a3520;text-align:left">
+                <strong>${lang === 'en' ? '+1 to three stats' : '+1 à trois stats'}</strong>
+              </button>
+              <button id="mode-cancel" style="margin-top:0.25rem;padding:0.4rem 1rem;border:1px solid rgba(139,92,20,0.3);border-radius:4px;cursor:pointer;background:rgba(255,255,255,0.3);color:#4a3520">
+                ${lang === 'en' ? 'Cancel' : 'Annuler'}
+              </button>
+            </div>
+          </div>`;
+        document.body.appendChild(modeOverlay);
+        modeOverlay.querySelector('#mode-2').addEventListener('click', () => {
+          document.body.removeChild(modeOverlay);
+          showStatPickModal(lang, 1, keys => {
+            const si = ['CO','AG','AD','ME','RS','FO','RP','PR','EM','IN'].indexOf(keys[0]);
+            if (si >= 0) { resolveStatIncrease(character, idx, '2', [si]); renderEditor(app); }
+          });
+        });
+        modeOverlay.querySelector('#mode-3').addEventListener('click', () => {
+          document.body.removeChild(modeOverlay);
+          showStatPickModal(lang, 3, keys => {
+            const allKeys = ['CO','AG','AD','ME','RS','FO','RP','PR','EM','IN'];
+            const indices = keys.map(k => allKeys.indexOf(k)).filter(i => i >= 0);
+            if (indices.length === 3) { resolveStatIncrease(character, idx, '1x3', indices); renderEditor(app); }
+          });
+        });
+        modeOverlay.querySelector('#mode-cancel').addEventListener('click', () => document.body.removeChild(modeOverlay));
       }
     });
   });
@@ -2978,29 +3309,65 @@ function bindHistoryEvents(app) {
     });
   });
 
-  // Load event journal async and inject into container
+  // Load event journal async and inject as timeline
   if (character.name) {
     getCharacterHistory(character.name, { limit: 50 }).then(history => {
       const container = document.getElementById('event-journal-container');
-      if (!container || history.length === 0) {
-        if (container) container.innerHTML = `<div class="text-xs text-gray-500">${lang === 'en' ? 'No events yet.' : 'Aucun événement.'}</div>`;
+      if (!container) return;
+      if (history.length === 0) {
+        container.innerHTML = `<div style="color:#6b5030;font-size:0.82rem;padding:0.75rem">${lang === 'en' ? 'No events yet.' : 'Aucun événement.'}</div>`;
         return;
       }
-      const EVENT_ICONS = {
-        'stat_roll': '🎲', 'stat_validate': '✅', 'skill_develop': '📚',
-        'spell_sgr': '🔮', 'phase_validate': '🏁', 'level_up': '⬆️',
-        'bg_option_roll': '🎰', 'hp_roll': '❤️', 'note': '📝', 'save': '💾',
+      const EVENT_TYPE_MAP = {
+        'stat_roll': 'stats', 'stat_validate': 'stats', 'hp_roll': 'stats', 'level_up': 'stats', 'phase_validate': 'stats',
+        'skill_develop': 'skills',
+        'spell_sgr': 'spells',
+        'bg_option_roll': 'notes', 'note': 'notes', 'save': 'notes',
       };
-      const rows = [...history].reverse().map(e => {
+      const EVENT_LABELS = {
+        stat_roll: { fr: 'Jet de stat', en: 'Stat roll' },
+        stat_validate: { fr: 'Stats validées', en: 'Stats validated' },
+        skill_develop: { fr: 'Compétence développée', en: 'Skill developed' },
+        spell_sgr: { fr: 'Jet SGR', en: 'SGR roll' },
+        phase_validate: { fr: 'Phase validée', en: 'Phase validated' },
+        level_up: { fr: 'Passage de niveau', en: 'Level up' },
+        bg_option_roll: { fr: 'Option d\'historique', en: 'Background option' },
+        hp_roll: { fr: 'Jet PdC', en: 'HP roll' },
+        note: { fr: 'Note', en: 'Note' },
+        save: { fr: 'Sauvegarde', en: 'Save' },
+      };
+      const allItems = [...history].reverse().map(e => {
+        const type = EVENT_TYPE_MAP[e.type] || 'notes';
         const d = new Date(e.timestamp);
-        const time = d.toLocaleDateString('fr') + ' ' +
-          d.toLocaleTimeString('fr', { hour: '2-digit', minute: '2-digit' });
-        const icon = EVENT_ICONS[e.type] || '•';
-        return `<div class="text-xs" style="margin-bottom:2px;opacity:0.85">
-          <span class="text-gray-500">${time}</span> ${icon} ${e.summary || e.type}
-        </div>`;
-      }).join('');
-      container.innerHTML = rows;
+        const time = d.toLocaleDateString(lang === 'en' ? 'en' : 'fr') + ' · ' +
+          d.toLocaleTimeString(lang === 'en' ? 'en' : 'fr', { hour: '2-digit', minute: '2-digit' });
+        const title = EVENT_LABELS[e.type]?.[lang] || e.type;
+        const tag = { stats: lang === 'en' ? 'Stats' : 'Stats', skills: lang === 'en' ? 'Skills' : 'Compét.', spells: lang === 'en' ? 'Spells' : 'Sorts', notes: lang === 'en' ? 'Notes' : 'Notes' }[type] || type;
+        return `<article class="rm-timeline-item" data-type="${type}">
+          <div class="rm-timeline-head">
+            <div>
+              <h4 class="rm-timeline-title">${title}</h4>
+              <p class="rm-timeline-meta">${time}</p>
+            </div>
+            <span class="rm-timeline-tag">${tag}</span>
+          </div>
+          ${e.summary ? `<div class="rm-timeline-body" style="font-size:0.82rem;margin-top:0.4rem">${e.summary}</div>` : ''}
+        </article>`;
+      });
+      container.innerHTML = allItems.join('') || `<div style="color:#6b5030;font-size:0.82rem;padding:0.75rem">${lang === 'en' ? 'No events yet.' : 'Aucun événement.'}</div>`;
+
+      // Wire filter chips
+      const filterChips = document.querySelectorAll('.rm-filter-chip[data-filter]');
+      filterChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          filterChips.forEach(c => c.classList.remove('is-active'));
+          chip.classList.add('is-active');
+          const filter = chip.dataset.filter;
+          container.querySelectorAll('.rm-timeline-item').forEach(item => {
+            item.style.display = (filter === 'all' || item.dataset.type === filter) ? '' : 'none';
+          });
+        });
+      });
     }).catch(() => {});
   }
 }

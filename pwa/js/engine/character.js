@@ -370,7 +370,7 @@ export function calcPowerPoints(character) {
   let pp = base;
   pp += bgBonuses.ppBonus;
   pp += bgBonuses.ppPerLevel * character.level;
-  pp += bgBonuses.spellAdder;
+  // spellAdder is NOT added to PP — it grants free-casting allowance (spells/day at no PP cost)
   if (bgBonuses.ppMultiplier !== 1) pp = Math.ceil(pp * bgBonuses.ppMultiplier);
   return pp + (character.manualBonuses?.ppBonus || 0);
 }

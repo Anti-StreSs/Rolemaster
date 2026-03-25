@@ -1,10 +1,11 @@
-const CACHE_NAME = 'rolemaster-v34';
+const CACHE_NAME = 'rolemaster-v35';
 const ASSETS = [
   './',
   './index.html',
   './css/styles.css',
   './css/theme.css',
   './css/print.css',
+  './css/rolemaster-ui-additions.css',
   './js/app.js',
   './js/engine/data-loader.js',
   './js/engine/character.js',
@@ -46,7 +47,20 @@ const ASSETS = [
   './data/simil.json',
   './data/options.json',
   './data/monde.json',
-  './manifest.json'
+  './manifest.json',
+  './assets/ui/icons/session_attack_crossed_swords.webp',
+  './assets/ui/icons/session_comparator_scales.webp',
+  './assets/ui/icons/session_critical_starburst.webp',
+  './assets/ui/icons/session_export_scroll.webp',
+  './assets/ui/icons/session_fumble_broken_die.webp',
+  './assets/ui/icons/session_maneuver_scroll.webp',
+  './assets/ui/icons/session_projection_chart.webp',
+  './assets/ui/icons/session_quick_d100.webp',
+  './assets/ui/icons/session_rr_shield_rune.webp',
+  './assets/ui/icons/session_state_failure.webp',
+  './assets/ui/icons/session_state_partial.webp',
+  './assets/ui/icons/session_state_success.webp',
+  './assets/ui/icons/session_toolbox_satchel.webp'
 ];
 
 self.addEventListener('install', event => {
