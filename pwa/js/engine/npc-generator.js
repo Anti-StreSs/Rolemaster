@@ -25,6 +25,64 @@ const ARCHETYPE_BASE_ORDERS = {
   other:         ['edged_1h', 'blunt_1h', 'two_handed', 'ranged', 'thrown', 'polearm'],
 };
 
+const WEAPON_TYPE_REVERSE = { 1: 'edged_1h', 2: 'blunt_1h', 3: 'two_handed', 4: 'polearm', 5: 'ranged', 6: 'thrown' };
+
+const ARCHETYPE_WEAPON_PICKS = {
+  heavy_fighter: [
+    { type: 3, preferred: ['Épée à deux mains', 'Claymore', 'Épée bâtarde'] },
+    { type: 1, preferred: ['Épée large', 'Épée longue'] },
+  ],
+  cavalry: [
+    { type: 4, preferred: ['Lance'] },
+    { type: 1, preferred: ['Épée longue', 'Épée large'] },
+  ],
+  rogue: [
+    { type: 1, preferred: ['Dague', 'Épée courte', 'Rapière'] },
+    { type: 5, preferred: ['Arc court'] },
+  ],
+  ranger: [
+    { type: 5, preferred: ['Arc long', 'Arc composite'] },
+    { type: 1, preferred: ['Épée large', 'Épée longue'] },
+  ],
+  duelist: [
+    { type: 1, preferred: ['Rapière', 'Fleuret'] },
+    { type: 1, preferred: ['Dague', 'Main Gauche'] },
+  ],
+  monk: [
+    { type: 2, preferred: ['Bâton', 'Bâton de combat'] },
+    { type: 1, preferred: ['Dague'] },
+  ],
+  semi_fighter: [
+    { type: 1, preferred: ['Épée large', 'Cimeterre'] },
+    { type: 5, preferred: ['Arc court', 'Arc composite'] },
+  ],
+  caster_staff: [
+    { type: 3, preferred: ['Bâton', 'Bâton de combat'] },
+    { type: 1, preferred: ['Dague'] },
+  ],
+  caster: [
+    { type: 2, preferred: ['Bâton', 'Masse'] },
+    { type: 1, preferred: ['Dague'] },
+  ],
+  other: [
+    { type: 1, preferred: ['Épée large'] },
+    { type: 2, preferred: ['Masse'] },
+  ],
+};
+
+const ARCHETYPE_SKILL_PRIORITIES = {
+  heavy_fighter: ['Développement Corporel', 'Perception Générale', 'Premiers Soins', 'Course', 'Escalade', 'Natation'],
+  cavalry:       ['Développement Corporel', 'Équitation', 'Perception Générale', 'Premiers Soins', 'Course'],
+  rogue:         ['Développement Corporel', 'Crochetage', 'Désamorçage', 'Dissimulation', 'Pistage', 'Acrobatie', 'Perception Générale', 'Pickpocket'],
+  ranger:        ['Développement Corporel', 'Pistage', 'Perception Générale', 'Dissimulation', 'Escalade', 'Course', 'Natation', 'Lecture des Traces', 'Premiers Soins'],
+  duelist:       ['Développement Corporel', 'Acrobatie', 'Esquive', 'Perception Générale', 'Premiers Soins'],
+  monk:          ['Développement Corporel', 'Acrobatie', 'Méditation', 'Perception Générale', 'Contrôle Corporel'],
+  semi_fighter:  ['Développement Corporel', 'Perception Générale', 'Premiers Soins', 'Escalade', 'Course'],
+  caster_staff:  ['Développement Corporel', 'Lecture des Runes', 'Méditation', 'Perception Générale', 'Premiers Soins'],
+  caster:        ['Développement Corporel', 'Lecture des Runes', 'Méditation', 'Perception Générale', 'Premiers Soins'],
+  other:         ['Développement Corporel', 'Perception Générale', 'Premiers Soins', 'Escalade', 'Course'],
+};
+
 export function getClassArchetype(cls) {
   const name = (cls.name_fr || '').toLowerCase();
   if (/cavalier/.test(name)) return 'cavalry';
@@ -143,49 +201,42 @@ function autoAssignWeaponPriorities(char, cls) {
   while (char.weaponPriorities.length < 6) char.weaponPriorities.push(null);
 }
 
-function autoAddWeaponSkills(char, data, n = 2) {
+function autoAddWeaponSkills(char, data, n = 2, archetype = 'other') {
   const monde = data.monde;
   if (!monde || !monde.weapon_categories) return;
-  const priorities = char.weaponPriorities || [];
+  const picks = ARCHETYPE_WEAPON_PICKS[archetype] || ARCHETYPE_WEAPON_PICKS.other;
   let added = 0;
-  for (let s = 0; s < priorities.length && added < n; s++) {
-    const typeId = priorities[s];
+
+  for (let p = 0; p < picks.length && added < n; p++) {
+    const pick = picks[p];
+    const typeId = WEAPON_TYPE_REVERSE[pick.type];
     if (!typeId) continue;
-    const typeNum = WEAPON_TYPE_MAP[typeId];
-    const subcats = monde.weapon_categories.filter(wc => wc.type === typeNum);
-    if (subcats.length === 0) continue;
-    const subcat = subcats[Math.floor(Math.random() * subcats.length)];
-    const weapons = subcat.weapons || [];
-    if (weapons.length === 0) continue;
     const existingNames = (char.weaponSkills || []).map(w => w.name);
-    const available = weapons.filter(w => !existingNames.includes(w));
-    if (available.length === 0) continue;
-    const weaponName = available[Math.floor(Math.random() * available.length)];
-    const cost = getWeaponSkillCost(char.classIndex, typeNum, char.weaponPriorities);
+    const allWeapons = monde.weapon_categories
+      .filter(wc => wc.type === pick.type)
+      .flatMap(wc => wc.weapons || [])
+      .filter(w => !existingNames.includes(w));
+    if (allWeapons.length === 0) continue;
+
+    const preferred = allWeapons.filter(w =>
+      pick.preferred.some(p2 => w.toLowerCase().includes(p2.toLowerCase()))
+    );
+    const weaponName = preferred.length > 0
+      ? preferred[Math.floor(Math.random() * preferred.length)]
+      : allWeapons[Math.floor(Math.random() * allWeapons.length)];
+
+    const cost = getWeaponSkillCost(char.classIndex, typeId, char.weaponPriorities);
     if (!char.weaponSkills) char.weaponSkills = [];
-    char.weaponSkills.push({ name: weaponName, weaponType: typeNum, weaponTypeId: typeId, cost });
+    char.weaponSkills.push({ name: weaponName, weaponType: pick.type, weaponTypeId: typeId, cost });
     added++;
   }
 }
 import { getSkillDevCost, getAllSkillsFlat, getWeaponSkillCost } from './skills.js';
+import { getClassBaseSpellLists } from './spells.js';
 import { generateBackground } from './background.js';
 import { saveCharacter } from './db.js';
 import { getData } from './data-loader.js';
 
-// NPC strategy: which skills to auto-invest in (by name_fr fragments)
-// These are common skills that make sense for any NPC.
-const COMMON_SKILL_KEYWORDS = [
-  'Développement Corporel', // always first priority
-  'Premiers Soins',
-  'Perception Générale',
-  'Lecture des Traces',
-  'Escalade',
-  'Natation',
-  'Course',
-  'Saut',
-  'Dissimulation',
-  'Pistage',
-];
 
 /**
  * Spend available DP optimally on skills.
@@ -195,7 +246,7 @@ const COMMON_SKILL_KEYWORDS = [
  * @param {number} dpBudget - total DP available for this phase
  * @param {number} maxBodyDevRanks - max body dev ranks for this phase (1 or 2)
  */
-function autoSpendDP(char, ranksStore, dpBudget, maxBodyDevRanks) {
+function autoSpendDP(char, ranksStore, dpBudget, maxBodyDevRanks, archetype = 'other') {
   let dpLeft = dpBudget;
   const bodyDevIdx = getBodyDevSkillIndex();
 
@@ -229,7 +280,8 @@ function autoSpendDP(char, ranksStore, dpBudget, maxBodyDevRanks) {
   const prioritized = [];
   const rest = [];
   for (const sk of affordable) {
-    const isCommon = COMMON_SKILL_KEYWORDS.some(kw => sk.name.includes(kw));
+    const keywords = ARCHETYPE_SKILL_PRIORITIES[archetype] || ARCHETYPE_SKILL_PRIORITIES.other;
+    const isCommon = keywords.some(kw => sk.name.includes(kw));
     if (isCommon) prioritized.push(sk);
     else rest.push(sk);
   }
@@ -300,35 +352,37 @@ export async function generateNPC(params) {
   const race = races[resolvedRaceIndex];
   if (race) applyRace(char, race);
 
-  // 4. Roll and assign stats
+  // 4. Roll and assign stats — match wizard.js autoAssignRolls: best rolls → dev stats, worst → prime
   const cls = classes[resolvedClassIndex];
   const primeStatIndices = cls ? getClassPrimeStats(cls) : [0, 5];
   const primeSet = new Set(primeStatIndices);
+  char.primeStats = primeStatIndices; // Bug 3 fix: was never assigned
+
+  const devStatIndices = [0, 1, 2, 3, 4]; // CO, AG, AD, ME, RE → maximize DP
+  const realmKey = cls ? (getRealmInfo(cls).key || 'none') : 'none';
+  const realmStatMap = { essence: 8, channeling: 9, mentalism: 7 };
+  const realmStat = realmStatMap[realmKey];
+
+  const tierA = [], tierB = [], tierC = [], tierD = [];
+  for (let i = 0; i < 10; i++) {
+    if (primeSet.has(i))                    tierD.push(i); // worst → prime boost compensates
+    else if (devStatIndices.includes(i))    tierA.push(i); // best → maximize DP
+    else if (realmStat === i)               tierB.push(i); // good → maximize PP
+    else                                    tierC.push(i);
+  }
+  const statPriority = [...tierA, ...tierB, ...tierC, ...tierD];
 
   const rolls = generateStatRolls();
-  // Sort rolls by tempRoll descending so best rolls go to prime stats
-  const sortedRolls = [...rolls].sort((a, b) => b.tempRoll - a.tempRoll);
-
-  // Assign: prime stats indices get the highest rolls
-  const assignment = new Array(10).fill(null);
-  let rollIdx = 0;
-  for (const statIdx of primeStatIndices) {
-    assignment[statIdx] = rollIdx++;
-  }
-  for (let i = 0; i < 10; i++) {
-    if (assignment[i] === null) assignment[i] = rollIdx++;
+  const sortedRolls = [...rolls].sort((a, b) => b.tempRoll - a.tempRoll); // best first
+  for (let i = 0; i < statPriority.length; i++) {
+    const { temp, pot } = getStatValues(sortedRolls[i], primeSet.has(statPriority[i]));
+    char.stats[statPriority[i]] = temp;
+    char.potentials[statPriority[i]] = pot;
   }
 
-  for (let i = 0; i < 10; i++) {
-    const roll = sortedRolls[assignment[i]];
-    const { temp, pot } = getStatValues(roll, primeSet.has(i));
-    char.stats[i] = temp;
-    char.potentials[i] = pot;
-  }
-
-  // Set PP stat indices
+  // Set realm and PP stat indices
   if (cls) {
-    char.realm = getRealmInfo(cls).key || 'none';
+    char.realm = realmKey;
     char._ppStatIndices = getPPStatIndices(cls);
   }
 
@@ -338,19 +392,18 @@ export async function generateNPC(params) {
   Object.assign(char, bg);
 
   // Assign weapon categories and weapon skills
+  const archetype = cls ? getClassArchetype(cls) : 'other';
   if (cls) {
     autoAssignWeaponPriorities(char, cls);
-    autoAddWeaponSkills(char, data, 2);
+    autoAddWeaponSkills(char, data, 2, archetype);
   }
-
-  const archetype = cls ? getClassArchetype(cls) : 'other';
 
   // 6. Adolescent phase
   char.devPhase = 'adolescent';
   {
     const dpAdolescent = getDevPointsTotal(char);
     const wpnDp = spendWeaponSkillDP(char, char.skillRanksAdolescent, dpAdolescent, archetype);
-    autoSpendDP(char, char.skillRanksAdolescent, dpAdolescent - wpnDp, 1);
+    autoSpendDP(char, char.skillRanksAdolescent, dpAdolescent - wpnDp, 1, archetype);
   }
 
   // 7. Apprenti phase
@@ -358,7 +411,7 @@ export async function generateNPC(params) {
   {
     const dpApprenti = getDevPointsTotal(char);
     const wpnDp = spendWeaponSkillDP(char, char.skillRanksApprenti, dpApprenti, archetype);
-    autoSpendDP(char, char.skillRanksApprenti, dpApprenti - wpnDp, 2);
+    autoSpendDP(char, char.skillRanksApprenti, dpApprenti - wpnDp, 2, archetype);
   }
 
   // 8. Level 1 development
@@ -366,7 +419,7 @@ export async function generateNPC(params) {
   {
     const dpLevel = getDevPointsTotal(char);
     const wpnDp = spendWeaponSkillDP(char, char.skillRanksLevel, dpLevel, archetype);
-    autoSpendDP(char, char.skillRanksLevel, dpLevel - wpnDp, 2);
+    autoSpendDP(char, char.skillRanksLevel, dpLevel - wpnDp, 2, archetype);
   }
 
   // 9. Level up to target (level 2 → target)
@@ -378,10 +431,10 @@ export async function generateNPC(params) {
     char.level = l;
     const dp = getDevPointsTotal(char);
     const wpnDp = spendWeaponSkillDP(char, char.skillRanksLevel, dp, archetype);
-    autoSpendDP(char, char.skillRanksLevel, dp - wpnDp, 2);
+    autoSpendDP(char, char.skillRanksLevel, dp - wpnDp, 2, archetype);
   }
 
-  // 9. Roll body development hit points
+  // 10. Roll body development hit points
   const bodyDevIdx = getBodyDevSkillIndex();
   if (bodyDevIdx >= 0) {
     const totalBodyDevRanks = getTotalRanks(char, bodyDevIdx);
@@ -394,11 +447,20 @@ export async function generateNPC(params) {
     }
   }
 
-  // 10. Calculated derived values
+  // 11. Auto-assign base spell lists for caster archetypes
+  if (['caster', 'caster_staff', 'semi_fighter'].includes(archetype)) {
+    const baseLists = getClassBaseSpellLists(resolvedClassIndex);
+    if (baseLists.length > 0) {
+      const maxSpellLevel = level <= 3 ? 5 : level <= 7 ? 10 : Math.min(20, level * 2);
+      char.spellLists = baseLists.map(listIdx => ({ listIndex: listIdx, maxLevel: maxSpellLevel }));
+    }
+  }
+
+  // 12. Calculated derived values
   char.hp = calcHitPoints(char);
   char.pp = calcPowerPoints(char);
 
-  // 11. Save if requested
+  // 13. Save if requested
   if (save) await saveCharacter(char);
 
   return char;
