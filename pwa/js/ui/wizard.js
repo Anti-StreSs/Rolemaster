@@ -4097,8 +4097,8 @@ function openPrintConfigPopup() {
       showStats: true,
       showCosts: false,
       historyInline: true,
-      skillsPerPage1: 40,
-      skillsPerPageN: 70,
+      skillsPerPage1: 43,
+      skillsPerPageN: 68,
     };
   }
   const pc = character.printConfig;
@@ -4172,8 +4172,8 @@ function openPrintConfigPopup() {
     pc.showStats = document.getElementById('pc-stats').checked;
     pc.showCosts = document.getElementById('pc-costs').checked;
     pc.historyInline = document.getElementById('pc-history').checked;
-    pc.skillsPerPage1 = parseInt(document.getElementById('pc-spp1').value) || 60;
-    pc.skillsPerPageN = parseInt(document.getElementById('pc-sppn').value) || 85;
+    pc.skillsPerPage1 = parseInt(document.getElementById('pc-spp1').value) || 43;
+    pc.skillsPerPageN = parseInt(document.getElementById('pc-sppn').value) || 68;
 
     // Apply print font
     document.documentElement.style.setProperty('--print-font-family', pc.font);

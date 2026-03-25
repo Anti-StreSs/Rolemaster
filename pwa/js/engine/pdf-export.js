@@ -4,26 +4,44 @@
 import { getStatBonus, getRankBonus } from './stats.js';
 import { calcHitPoints, calcPowerPoints, calculateDB, getTotalRanks,
          getTotalStatBonus } from './character.js';
-import { getSkillName, getSkillDevCost, getSkillStatIndices, getLevelBonus,
-         getAllCategories, getAllSkillsFlat } from './skills.js';
+import { getSkillStatIndices, getLevelBonus, getAllCategories } from './skills.js';
 import { getBackgroundBonuses, getSkillBackgroundBonus,
          summarizeBackgroundBonuses } from './background-effects.js';
 import { getClassName, getRealmLabel, getAllClasses } from './classes.js';
 
-// Column headers
 const STAT_ABBREVS_FR = ['CO', 'AG', 'AD', 'Mé', 'RS', 'FO', 'RP', 'PR', 'EM', 'IN'];
 const STAT_ABBREVS_EN = ['CO', 'AG', 'SD', 'Me', 'Re', 'St', 'Qu', 'Pr', 'Em', 'In'];
 
-// --- Helpers ---
+// Per-skill text color → jsPDF RGB
+const TEXT_COLORS = {
+  red:    [200,  50,  50],
+  green:  [ 30, 140,  30],
+  blue:   [ 30,  80, 180],
+  purple: [120,  30, 160],
+  gold:   [180, 130,   0],
+  orange: [200, 100,   0],
+  gray:   [110, 110, 110],
+  teal:   [  0, 130, 130],
+};
+
+// Per-skill highlight row background → jsPDF RGB
+const HIGHLIGHT_FILLS = {
+  yellow: [255, 248, 185],
+  green:  [200, 240, 200],
+  blue:   [200, 220, 255],
+  red:    [255, 200, 200],
+  purple: [230, 208, 255],
+  orange: [255, 225, 190],
+};
+
+// --- Skill data ---
 
 function calcSkillStatBonusPDF(skill, character, bgBonuses) {
   const statIndices = getSkillStatIndices(skill);
   if (statIndices.length === 0) return 0;
   let sum = 0;
   for (const idx of statIndices) {
-    const base = getStatBonus(character.stats[idx - 1] || 0);
-    const bg = bgBonuses.statBonusMods[idx - 1] || 0;
-    sum += base + bg;
+    sum += getStatBonus(character.stats[idx - 1] || 0) + (bgBonuses.statBonusMods[idx - 1] || 0);
   }
   return Math.floor(sum / statIndices.length);
 }
@@ -34,64 +52,231 @@ function getDevelopedSkills(character) {
   const cls = character.classIndex >= 0 ? classes[character.classIndex] : null;
   const bgBonuses = getBackgroundBonuses(character);
   const result = [];
-  let globalIndex = 0;
+  let gi = 0;
 
   for (const cat of categories) {
     let catPushed = false;
     for (const skill of cat.skills) {
-      const totalRanks = getTotalRanks(character, globalIndex);
-      const rankBonus = getRankBonus(totalRanks);
-      const statBonus = calcSkillStatBonusPDF(skill, character, bgBonuses);
-      const lvlBonus = getLevelBonus(cls, character.level, cat.name, globalIndex);
-      const miscBonus = character.skillMiscBonuses[globalIndex] || 0;
-      const bgBonus = getSkillBackgroundBonus(bgBonuses, skill.name_fr, skill.name_en);
-      const total = rankBonus + statBonus + lvlBonus + miscBonus + bgBonus;
+      const totalRanks = getTotalRanks(character, gi);
+      const rankBonus  = getRankBonus(totalRanks);
+      const statBonus  = calcSkillStatBonusPDF(skill, character, bgBonuses);
+      const lvlBonus   = getLevelBonus(cls, character.level, cat.name, gi);
+      const miscBonus  = character.skillMiscBonuses[gi] || 0;
+      const bgBonus    = getSkillBackgroundBonus(bgBonuses, skill.name_fr, skill.name_en);
+      const total      = rankBonus + statBonus + lvlBonus + miscBonus + bgBonus;
 
       if (totalRanks > 0 || total > 0) {
-        if (!catPushed) {
-          result.push({ isCategory: true, name: cat.name });
-          catPushed = true;
-        }
+        if (!catPushed) { result.push({ isCategory: true, name: cat.name }); catPushed = true; }
         result.push({
           name: skill.name_fr || skill.name_en,
           totalRanks, rankBonus, statBonus, lvlBonus, miscBonus, bgBonus, total,
+          bold:      !!(character.skillBold        || {})[gi],
+          textColor:  (character.skillTextColors   || {})[gi] || null,
+          highlight:  (character.skillHighlights   || {})[gi] || null,
         });
       }
 
-      // Weapon sub-skills
-      if (globalIndex === 63) {
+      // Weapon sub-skills (after weapon parent index 63)
+      if (gi === 63) {
         for (let ws = 0; ws < (character.weaponSkills || []).length; ws++) {
-          const wpn = character.weaponSkills[ws];
+          const wpn   = character.weaponSkills[ws];
           const wsKey = 'wpn_' + ws;
           const wRanks = getTotalRanks(character, wsKey);
           const wTotal = getRankBonus(wRanks);
           if (wRanks > 0 || wTotal > 0) {
-            result.push({ name: '  ' + wpn.name, totalRanks: wRanks, rankBonus: wTotal,
-              statBonus: 0, lvlBonus: 0, miscBonus: 0, bgBonus: 0, total: wTotal });
+            result.push({
+              name: '  ' + wpn.name, totalRanks: wRanks, rankBonus: wTotal,
+              statBonus: 0, lvlBonus: 0, miscBonus: 0, bgBonus: 0, total: wTotal,
+              bold:      !!(character.skillBold        || {})[wsKey],
+              textColor:  (character.skillTextColors   || {})[wsKey] || null,
+              highlight:  (character.skillHighlights   || {})[wsKey] || null,
+            });
           }
         }
       }
 
       // Generic sub-skills
-      const parentSubs = (character.subSkills || []).filter(s => s.parentIndex === globalIndex);
-      for (let si = 0; si < parentSubs.length; si++) {
-        const sub = parentSubs[si];
-        const subKey = 'sub_' + globalIndex + '_' + si;
+      for (let si = 0; si < (character.subSkills || []).filter(s => s.parentIndex === gi).length; si++) {
+        const sub    = (character.subSkills || []).filter(s => s.parentIndex === gi)[si];
+        const subKey = 'sub_' + gi + '_' + si;
         const sRanks = getTotalRanks(character, subKey);
         const sTotal = getRankBonus(sRanks);
         if (sRanks > 0 || sTotal > 0) {
-          result.push({ name: '  ' + sub.name, totalRanks: sRanks, rankBonus: sTotal,
-            statBonus: 0, lvlBonus: 0, miscBonus: 0, bgBonus: 0, total: sTotal });
+          result.push({
+            name: '  ' + sub.name, totalRanks: sRanks, rankBonus: sTotal,
+            statBonus: 0, lvlBonus: 0, miscBonus: 0, bgBonus: 0, total: sTotal,
+            bold:      !!(character.skillBold        || {})[subKey],
+            textColor:  (character.skillTextColors   || {})[subKey] || null,
+            highlight:  (character.skillHighlights   || {})[subKey] || null,
+          });
         }
       }
 
-      globalIndex++;
+      gi++;
     }
   }
   return result;
 }
 
-// --- Main export function ---
+// --- Drawing primitives ---
+
+// DM rank boxes: filled squares for acquired ranks, empty for blank slots (max 9 shown)
+function drawDMBoxes(doc, x, y, totalRanks) {
+  const SZ = 1.85, GAP = 0.22, MAX = 9;
+  for (let b = 0; b < MAX; b++) {
+    const bx = x + b * (SZ + GAP);
+    const by = y - SZ + 0.2;
+    if (b < totalRanks) {
+      doc.setFillColor(75, 50, 10);
+      doc.rect(bx, by, SZ, SZ, 'F');
+    } else {
+      doc.setDrawColor(170, 145, 95);
+      doc.setLineWidth(0.15);
+      doc.rect(bx, by, SZ, SZ);
+    }
+  }
+  if (totalRanks > MAX) {
+    doc.setFontSize(5.5);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(75, 50, 10);
+    doc.text('+' + (totalRanks - MAX), x + MAX * (SZ + GAP) + 0.3, y);
+    doc.setTextColor(0, 0, 0);
+  }
+  doc.setDrawColor(100, 100, 100);
+  doc.setLineWidth(0.2);
+}
+
+// Two-column layout offsets within one 92mm column:
+// 0: name(40) | 40: DM boxes(19) | 60: Rk(8) | 68: St(8) | 76: Lv(7) | 83: Tot(9)
+function drawSkillRow(doc, sk, x, y) {
+  const ROW_H = 4.5;
+
+  // Highlight background
+  if (sk.highlight && HIGHLIGHT_FILLS[sk.highlight]) {
+    const [r, g, b] = HIGHLIGHT_FILLS[sk.highlight];
+    doc.setFillColor(r, g, b);
+    doc.rect(x, y - ROW_H + 1, 92, ROW_H - 0.3, 'F');
+  }
+
+  // Text color
+  if (sk.textColor && TEXT_COLORS[sk.textColor]) {
+    const [r, g, b] = TEXT_COLORS[sk.textColor];
+    doc.setTextColor(r, g, b);
+  }
+
+  const isSub   = sk.name.startsWith('  ');
+  const fStyle  = sk.bold ? 'bold' : (isSub ? 'italic' : 'normal');
+  doc.setFont('helvetica', fStyle);
+  doc.setFontSize(7.5);
+
+  let name = sk.name.trim();
+  const maxNameW = isSub ? 34 : 38;
+  while (name.length > 0 && doc.getTextWidth(name) > maxNameW) name = name.slice(0, -1);
+  doc.text((isSub ? '↳ ' : '') + name, x + (isSub ? 2 : 0), y);
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFont('helvetica', 'normal');
+
+  // DM boxes
+  drawDMBoxes(doc, x + 40, y, sk.totalRanks);
+
+  // Numeric columns
+  const sign = n => n >= 0 ? '+' + n : String(n);
+  doc.setFontSize(7.5);
+  doc.text(sign(sk.rankBonus), x + 60, y);
+  doc.text(sign(sk.statBonus), x + 68, y);
+  if (sk.lvlBonus !== 0) doc.text(sign(sk.lvlBonus), x + 76, y);
+
+  // Total (bold)
+  doc.setFont('helvetica', 'bold');
+  doc.text(sign(sk.total), x + 83, y);
+  doc.setFont('helvetica', 'normal');
+}
+
+function drawSkillCategoryHeader(doc, name, x, y) {
+  doc.setFontSize(7.5);
+  doc.setFont('helvetica', 'bolditalic');
+  doc.setTextColor(120, 80, 10);
+  doc.text(name.toUpperCase(), x, y);
+  doc.setLineWidth(0.25);
+  doc.setDrawColor(180, 130, 20);
+  doc.line(x, y + 0.9, x + 92, y + 0.9);
+  doc.setTextColor(0, 0, 0);
+  doc.setFont('helvetica', 'normal');
+  doc.setDrawColor(100, 100, 100);
+  doc.setLineWidth(0.2);
+}
+
+function drawSkillColHeaders(doc, x, y, lang) {
+  doc.setFontSize(7);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(50, 50, 50);
+  doc.text(lang === 'en' ? 'Skill' : 'Compétence', x, y);
+  doc.text('DM',  x + 41, y);
+  doc.text('Rg',  x + 60, y);
+  doc.text('St',  x + 68, y);
+  doc.text('Nv',  x + 76, y);
+  doc.text('Tot', x + 83, y);
+  doc.setTextColor(0, 0, 0);
+  doc.setFont('helvetica', 'normal');
+  doc.setLineWidth(0.3);
+  doc.setDrawColor(120, 90, 20);
+  doc.line(x, y + 1, x + 92, y + 1);
+  doc.setDrawColor(100, 100, 100);
+  doc.setLineWidth(0.2);
+}
+
+// --- Two-column, multi-page skills renderer ---
+// Returns { y, col } — caller advances page if col===1 to avoid side-by-side continuation.
+function renderSkillsSection(doc, skills, lang, startY, pageH, mT, mB, mL) {
+  const RIGHT_X   = mL + 98; // 92mm col + 6mm gutter
+  const ROW_H     = 4.5;
+  const CAT_H     = 5.5;
+  const HEADER_H  = 5.5;
+
+  function drawHeaders(atY) {
+    drawSkillColHeaders(doc, mL,      atY, lang);
+    drawSkillColHeaders(doc, RIGHT_X, atY, lang);
+    return atY + HEADER_H;
+  }
+
+  let col      = 0;
+  let y        = drawHeaders(startY);
+  let colTopY  = y;
+
+  for (const sk of skills) {
+    const rowH = sk.isCategory ? CAT_H : ROW_H;
+
+    if (y + rowH > pageH - mB) {
+      if (col === 0) {
+        // Move to right column, reset y to column top
+        col = 1;
+        y   = colTopY;
+      } else {
+        // Both columns full — new page
+        doc.addPage();
+        y       = mT;
+        y       = drawHeaders(y);
+        colTopY = y;
+        col     = 0;
+      }
+    }
+
+    const colX = col === 0 ? mL : RIGHT_X;
+
+    if (sk.isCategory) {
+      drawSkillCategoryHeader(doc, sk.name, colX, y);
+      y += CAT_H;
+    } else {
+      drawSkillRow(doc, sk, colX, y);
+      y += ROW_H;
+    }
+  }
+
+  return { y, col };
+}
+
+// --- Main export ---
 
 export function generateCharacterPDF(character, options = {}) {
   const { jsPDF } = window.jspdf;
@@ -115,7 +300,7 @@ export function generateCharacterPDF(character, options = {}) {
     doc.text(title.toUpperCase(), mL, y);
     y += 1.5;
     doc.setDrawColor(180, 130, 20);
-    doc.setLineWidth(0.4);
+    doc.setLineWidth(0.5);
     doc.line(mL, y, mL + usableW, y);
     y += 4;
     doc.setFont('helvetica', 'normal');
@@ -124,21 +309,9 @@ export function generateCharacterPDF(character, options = {}) {
     doc.setDrawColor(100, 100, 100);
   }
 
-  function textLine(label, value, indent = 0) {
-    checkPage(5);
-    doc.setFontSize(9);
-    doc.setFont('helvetica', 'bold');
-    doc.text(label + ':', mL + indent, y);
-    doc.setFont('helvetica', 'normal');
-    doc.text(String(value ?? ''), mL + indent + doc.getTextWidth(label + ': '), y);
-    y += 4.5;
-  }
-
   // ==============================
-  // PAGE 1: Title + Identity + Stats + Combat
+  // Title + subtitle
   // ==============================
-
-  // Title
   doc.setFontSize(18);
   doc.setFont('helvetica', 'bold');
   doc.text(character.name || (lang === 'en' ? 'Unnamed' : 'Sans nom'), pageW / 2, y, { align: 'center' });
@@ -146,10 +319,10 @@ export function generateCharacterPDF(character, options = {}) {
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(100, 80, 20);
-  const classes = getAllClasses();
-  const cls = character.classIndex >= 0 ? classes[character.classIndex] : null;
+  const classes    = getAllClasses();
+  const cls        = character.classIndex >= 0 ? classes[character.classIndex] : null;
   const realmLabel = cls ? getRealmLabel(cls, lang) : '';
-  const subtitle = [
+  const subtitle   = [
     cls ? getClassName(cls, lang) : '',
     character.raceName,
     (lang === 'en' ? 'Lvl ' : 'Niv. ') + (character.level || 1),
@@ -158,18 +331,20 @@ export function generateCharacterPDF(character, options = {}) {
   doc.setTextColor(0, 0, 0);
   y += 8;
 
-  // Identity block (two columns)
+  // ==============================
+  // Identity (two equal columns)
+  // ==============================
   sectionHeader(lang === 'en' ? 'Identity' : 'Identité');
   const col1x = mL, col2x = mL + usableW / 2;
   const idFields = [
-    [lang === 'en' ? 'Race' : 'Race', character.raceName],
-    [lang === 'en' ? 'Realm' : 'Royaume', realmLabel],
-    ['Âge', character.age],
-    [lang === 'en' ? 'Height' : 'Taille', character.height],
-    [lang === 'en' ? 'Weight' : 'Poids', character.weight],
-    [lang === 'en' ? 'Sex' : 'Sexe', character.sex],
-    [lang === 'en' ? 'Hair' : 'Cheveux', character.hair],
-    [lang === 'en' ? 'Eyes' : 'Yeux', character.eyes],
+    [lang === 'en' ? 'Race' : 'Race',       character.raceName],
+    [lang === 'en' ? 'Realm' : 'Royaume',   realmLabel],
+    ['Âge',                                  character.age],
+    [lang === 'en' ? 'Height' : 'Taille',   character.height],
+    [lang === 'en' ? 'Weight' : 'Poids',    character.weight],
+    [lang === 'en' ? 'Sex' : 'Sexe',        character.sex],
+    [lang === 'en' ? 'Hair' : 'Cheveux',    character.hair],
+    [lang === 'en' ? 'Eyes' : 'Yeux',       character.eyes],
   ].filter(([, v]) => v);
   doc.setFontSize(9);
   for (let i = 0; i < idFields.length; i++) {
@@ -185,54 +360,69 @@ export function generateCharacterPDF(character, options = {}) {
   }
   y += 2;
 
-  // Stats table
+  // ==============================
+  // Stats table — uneven columns (name wider, numerics narrower)
+  // ==============================
   sectionHeader(lang === 'en' ? 'Statistics' : 'Caractéristiques');
   const bgBonuses = getBackgroundBonuses(character);
 
-  // Header row
-  const sColX = [mL, mL + 18, mL + 30, mL + 42, mL + 56, mL + 70, mL + 84, mL + 100];
-  const sHeaders = ['Stat', 'Temp', 'Pot', 'Race', 'Bonus', 'BG', 'Spéc', 'Total'];
+  // Column x positions: stat abbrev(16) | temp(11) | pot(11) | race(14) | bonus(14) | bg(14) | spec(14) | total(14)
+  const sColX = [mL, mL+16, mL+27, mL+38, mL+52, mL+65, mL+78, mL+91];
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(8);
-  sHeaders.forEach((h, i) => doc.text(h, sColX[i], y));
+  ['Stat','Temp','Pot','Race','Bonus','BG','Spéc','Total'].forEach((h, i) => doc.text(h, sColX[i], y));
   y += 1.5;
-  doc.line(mL, y, mL + 115, y);
-  y += 3;
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(9);
+  doc.setLineWidth(0.3); doc.setDrawColor(120, 90, 20);
+  doc.line(mL, y, mL + 105, y);
+  y += 3.5;
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+  doc.setDrawColor(100, 100, 100); doc.setLineWidth(0.2);
 
   for (let i = 0; i < 10; i++) {
     checkPage(5);
-    const temp = character.stats[i] || 0;
-    const pot = character.potentials[i] || temp;
-    const race = character.raceBonuses[i] || 0;
+    const temp  = character.stats[i] || 0;
+    const pot   = character.potentials[i] || temp;
+    const race  = character.raceBonuses[i] || 0;
     const bonus = getStatBonus(temp);
-    const bg = bgBonuses.statBonusMods[i] || 0;
-    const spec = character.specialBonuses[i] || 0;
+    const bg    = bgBonuses.statBonusMods[i] || 0;
+    const spec  = character.specialBonuses[i] || 0;
     const total = bonus + bg + spec;
-    doc.text(STAT_ABBREVS[i], sColX[0], y);
-    doc.text(String(temp), sColX[1], y);
-    doc.text(String(pot), sColX[2], y);
-    doc.text(race !== 0 ? (race > 0 ? '+' + race : String(race)) : '—', sColX[3], y);
-    doc.text(bonus >= 0 ? '+' + bonus : String(bonus), sColX[4], y);
-    doc.text(bg !== 0 ? (bg > 0 ? '+' + bg : String(bg)) : '—', sColX[5], y);
-    doc.text(spec !== 0 ? (spec > 0 ? '+' + spec : String(spec)) : '—', sColX[6], y);
+
+    // Alternating row tint
+    if (i % 2 === 0) {
+      doc.setFillColor(248, 244, 234);
+      doc.rect(mL, y - 3.2, 105, 4, 'F');
+    }
+
     doc.setFont('helvetica', 'bold');
+    doc.text(STAT_ABBREVS[i], sColX[0], y);
+    doc.setFont('helvetica', 'normal');
+    doc.text(String(temp), sColX[1], y);
+    doc.text(String(pot),  sColX[2], y);
+    doc.text(race !== 0 ? (race > 0 ? '+' + race : String(race)) : '—', sColX[3], y);
+    doc.text(bonus >= 0  ? '+' + bonus  : String(bonus),  sColX[4], y);
+    doc.text(bg !== 0    ? (bg > 0 ? '+' + bg : String(bg)) : '—', sColX[5], y);
+    doc.text(spec !== 0  ? (spec > 0 ? '+' + spec : String(spec)) : '—', sColX[6], y);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(total >= 0 ? 30 : 160, total >= 0 ? 90 : 30, 20);
     doc.text(total >= 0 ? '+' + total : String(total), sColX[7], y);
+    doc.setTextColor(0, 0, 0);
     doc.setFont('helvetica', 'normal');
     y += 4;
   }
   y += 3;
 
-  // Combat block
+  // ==============================
+  // Combat (two columns)
+  // ==============================
   sectionHeader(lang === 'en' ? 'Combat' : 'Combat');
   const hp = calcHitPoints(character);
   const pp = calcPowerPoints(character);
   const db = calculateDB(character);
   const combatFields = [
-    [lang === 'en' ? 'Hit Points' : 'PdC', hp],
-    ['PP', pp],
-    ['DB / BD', db],
+    [lang === 'en' ? 'Hit Points' : 'PdC',            `${hp.base} / ${hp.cap}`],
+    ['PP',                                              pp],
+    ['DB / BD',                                         db.printDisplay],
     [lang === 'en' ? 'Armor Type' : 'Type Armure (AT)', character.armorType],
   ];
   doc.setFontSize(9);
@@ -247,61 +437,29 @@ export function generateCharacterPDF(character, options = {}) {
     doc.text(String(value ?? '0'), x + doc.getTextWidth(label + ': '), y);
     if (isRight || i === combatFields.length - 1) y += 4.5;
   }
-  y += 3;
+  y += 4;
 
   // ==============================
-  // SKILLS — compact table, multi-page
+  // Skills — two-column, multi-page, with bold/color/highlight/DM boxes
   // ==============================
   const developedSkills = getDevelopedSkills(character);
 
   if (developedSkills.length > 0) {
     sectionHeader(lang === 'en' ? 'Skills' : 'Compétences');
-
-    // Column layout: Name | Rangs | RkB | StB | LvB | BG | Total
-    const skX = [mL, mL + 82, mL + 95, mL + 108, mL + 121, mL + 134, mL + 147];
-    const skHeaders = [lang === 'en' ? 'Skill' : 'Compétence', 'Rgs', 'RkB', 'StB', 'LvB', 'BG', 'Total'];
-    doc.setFontSize(8);
-    doc.setFont('helvetica', 'bold');
-    skHeaders.forEach((h, i) => doc.text(h, skX[i], y));
-    y += 1.5;
-    doc.line(mL, y, mL + 162, y);
-    y += 3;
-
-    for (const sk of developedSkills) {
-      if (sk.isCategory) {
-        checkPage(10);
-        doc.setFontSize(8);
-        doc.setFont('helvetica', 'bolditalic');
-        doc.setTextColor(120, 80, 10);
-        doc.text(sk.name.toUpperCase(), mL, y);
-        doc.setTextColor(0, 0, 0);
-        y += 3.5;
-      } else {
-        checkPage(5);
-        doc.setFontSize(8);
-        doc.setFont('helvetica', sk.name.startsWith('  ') ? 'italic' : 'normal');
-        // Truncate long names
-        let name = sk.name;
-        while (name.length > 0 && doc.getTextWidth(name) > 78) name = name.slice(0, -1);
-        doc.text(name, skX[0], y);
-        doc.setFont('helvetica', 'normal');
-        doc.text(String(sk.totalRanks || 0), skX[1], y);
-        doc.text(sk.rankBonus >= 0 ? '+' + sk.rankBonus : String(sk.rankBonus), skX[2], y);
-        doc.text(sk.statBonus >= 0 ? '+' + sk.statBonus : String(sk.statBonus), skX[3], y);
-        doc.text(sk.lvlBonus > 0 ? '+' + sk.lvlBonus : (sk.lvlBonus < 0 ? String(sk.lvlBonus) : '—'), skX[4], y);
-        doc.text(sk.bgBonus !== 0 ? (sk.bgBonus > 0 ? '+' + sk.bgBonus : String(sk.bgBonus)) : '—', skX[5], y);
-        doc.setFont('helvetica', 'bold');
-        const tot = sk.total;
-        doc.text(tot >= 0 ? '+' + tot : String(tot), skX[6], y);
-        doc.setFont('helvetica', 'normal');
-        y += 4;
-      }
+    const { y: skillsY, col: skillsCol } = renderSkillsSection(
+      doc, developedSkills, lang, y, pageH, mT, mB, mL
+    );
+    // If we ended in right column, start subsequent sections on a fresh page
+    if (skillsCol === 1) {
+      doc.addPage();
+      y = mT;
+    } else {
+      y = skillsY + 4;
     }
-    y += 3;
   }
 
   // ==============================
-  // SPELL LISTS
+  // Spell lists
   // ==============================
   const spellLists = character.spellLists || [];
   if (spellLists.length > 0) {
@@ -309,27 +467,29 @@ export function generateCharacterPDF(character, options = {}) {
     sectionHeader(lang === 'en' ? 'Spell Lists' : 'Listes de Sorts');
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
-    doc.text(lang === 'en' ? 'List' : 'Liste', mL, y);
-    doc.text(lang === 'en' ? 'Max Lvl' : 'Niv. Max', mL + 100, y);
-    doc.text(lang === 'en' ? 'Type' : 'Type', mL + 120, y);
+    doc.text(lang === 'en' ? 'List' : 'Liste',    mL,        y);
+    doc.text(lang === 'en' ? 'Max Lvl' : 'Niv.',  mL + 100,  y);
+    doc.text('Type',                               mL + 120,  y);
     y += 1.5;
+    doc.setLineWidth(0.3); doc.setDrawColor(120, 90, 20);
     doc.line(mL, y, mL + 140, y);
     y += 3;
     doc.setFont('helvetica', 'normal');
+    doc.setDrawColor(100, 100, 100); doc.setLineWidth(0.2);
     for (const sl of spellLists) {
       checkPage(5);
       let name = sl.name || '?';
       while (name.length > 0 && doc.getTextWidth(name) > 92) name = name.slice(0, -1);
-      doc.text(name, mL, y);
+      doc.text(name,                      mL,       y);
       doc.text(String(sl.maxLevel || '?'), mL + 100, y);
-      doc.text(sl.type || '', mL + 120, y);
+      doc.text(sl.type || '',              mL + 120, y);
       y += 4;
     }
     y += 3;
   }
 
   // ==============================
-  // BACKGROUND BONUSES SUMMARY
+  // Background bonuses
   // ==============================
   const bgSummary = summarizeBackgroundBonuses(bgBonuses, lang);
   if (bgSummary && bgSummary.length > 0) {
@@ -339,9 +499,7 @@ export function generateCharacterPDF(character, options = {}) {
     doc.setFont('helvetica', 'normal');
     for (const line of bgSummary) {
       checkPage(5);
-      // Wrap long lines
-      const wrapped = doc.splitTextToSize(line, usableW);
-      for (const wl of wrapped) {
+      for (const wl of doc.splitTextToSize(line, usableW)) {
         checkPage(4);
         doc.text(wl, mL, y);
         y += 4;
@@ -351,14 +509,13 @@ export function generateCharacterPDF(character, options = {}) {
   }
 
   // ==============================
-  // EQUIPMENT + NOTES
+  // Equipment + History
   // ==============================
   if (character.equipment) {
     checkPage(15);
     sectionHeader(lang === 'en' ? 'Equipment' : 'Équipement');
     doc.setFontSize(8);
-    const equipLines = doc.splitTextToSize(character.equipment, usableW);
-    for (const line of equipLines) {
+    for (const line of doc.splitTextToSize(character.equipment, usableW)) {
       checkPage(4);
       doc.text(line, mL, y);
       y += 4;
@@ -370,22 +527,26 @@ export function generateCharacterPDF(character, options = {}) {
     checkPage(15);
     sectionHeader(lang === 'en' ? 'Notes' : 'Historique');
     doc.setFontSize(8);
-    const histLines = doc.splitTextToSize(character.history, usableW);
-    for (const line of histLines.slice(0, 20)) { // cap at 20 lines
+    for (const line of doc.splitTextToSize(character.history, usableW).slice(0, 20)) {
       checkPage(4);
       doc.text(line, mL, y);
       y += 4;
     }
   }
 
+  // ==============================
   // Footer on all pages
+  // ==============================
   const pageCount = doc.getNumberOfPages();
   for (let p = 1; p <= pageCount; p++) {
     doc.setPage(p);
     doc.setFontSize(7);
     doc.setFont('helvetica', 'italic');
     doc.setTextColor(150, 150, 150);
-    doc.text(`Rolemaster — ${character.name || ''} — p.${p}/${pageCount}`, pageW / 2, pageH - 5, { align: 'center' });
+    doc.text(
+      `Rolemaster — ${character.name || ''} — p.${p}/${pageCount}`,
+      pageW / 2, pageH - 5, { align: 'center' }
+    );
     doc.setTextColor(0, 0, 0);
   }
 

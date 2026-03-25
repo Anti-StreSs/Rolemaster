@@ -235,7 +235,7 @@ function generatePage1(character, config, lang) {
   const pp = calcPowerPoints(character);
 
   const skills = getFilteredSkills(character, config);
-  const page1Skills = skills.slice(0, config.skillsPerPage1 || 60);
+  const page1Skills = skills.slice(0, config.skillsPerPage1 || 43);
 
   const db = calculateDB(character);
   const portrait = character.portraitUrl || '';
@@ -340,7 +340,7 @@ function generateSkillPage(skills, config) {
  * Generate the complete print sheet (multi-page HTML).
  */
 export function generatePrintSheet(character, config, lang) {
-  if (!config) config = { skillFilter: 'both', showStats: true, showCosts: false, skillsPerPage1: 60, skillsPerPageN: 85, lang };
+  if (!config) config = { skillFilter: 'both', showStats: true, showCosts: false, skillsPerPage1: 43, skillsPerPageN: 68, lang };
   config.lang = lang;
 
   const skills = getFilteredSkills(character, config);
@@ -350,8 +350,8 @@ export function generatePrintSheet(character, config, lang) {
   pages.push(generatePage1(character, config, lang));
 
   // Remaining skills pages
-  const remainingSkills = skills.slice(config.skillsPerPage1 || 60);
-  const perPage = config.skillsPerPageN || 85;
+  const remainingSkills = skills.slice(config.skillsPerPage1 || 43);
+  const perPage = config.skillsPerPageN || 68;
   for (let i = 0; i < remainingSkills.length; i += perPage) {
     const pageSkills = remainingSkills.slice(i, i + perPage);
     pages.push(generateSkillPage(pageSkills, config));
