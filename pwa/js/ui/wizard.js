@@ -711,9 +711,10 @@ function renderStatsTab(lang) {
     logHtml = renderStatLog(lang);
   }
 
+  const projHtml = renderProjectionSection(lang);
   return panel(
     lang === 'en' ? 'Characteristics — Temp / Pot / Bonuses' : 'Caractéristiques — Temp / Pot / Bonus',
-    methodHtml + rollHtml + table + logHtml
+    methodHtml + rollHtml + table + logHtml + projHtml
   );
 }
 
@@ -791,6 +792,112 @@ function renderStatLog(lang) {
   </div>`;
 
   return html;
+}
+
+// === Progression projection helpers ===
+
+/**
+ * Compute projected HP/PP/DB curves from level 1 to targetLevel.
+ * HP uses actual bodyDevRolls for current levels, average rolls for future.
+ * PP scales linearly via calcPowerPoints with level override.
+ * DB is flat (QU-bonus based, not level-based).
+ */
+function buildProjectionCurves(targetLevel) {
+  if (!character.stats || character.stats[0] <= 0) return null;
+  const dieStr = character.raceHitDie || '1-10';
+  const match = dieStr.match(/1-(\d+)/);
+  const dieMax = match ? parseInt(match[1]) : 10;
+  const avgRoll = (dieMax + 1) / 2;
+  const currentLevel = character.level || 1;
+  const currentRolls = character.bodyDevRolls || [];
+  const dbResult = calculateDB(character);
+  const flatDB = dbResult.meleeBD || 0;
+
+  const hpPoints = [], ppPoints = [], dbPoints = [];
+  for (let L = 1; L <= targetLevel; L++) {
+    // Simulate body dev rolls: actual for past/current levels, avg for future
+    let projectedRolls;
+    if (L <= currentLevel) {
+      // Keep only a proportional slice of current rolls for earlier levels
+      const fraction = Math.floor(currentRolls.length * L / currentLevel);
+      projectedRolls = currentRolls.slice(0, fraction);
+    } else {
+      projectedRolls = [...currentRolls, ...Array(L - currentLevel).fill(avgRoll)];
+    }
+    const projChar = { ...character, level: L, bodyDevRolls: projectedRolls };
+    hpPoints.push(calcHitPoints(projChar).base);
+    ppPoints.push(calcPowerPoints(projChar));
+    dbPoints.push(flatDB);
+  }
+  return { hpPoints, ppPoints, dbPoints };
+}
+
+/** Build SVG polyline content for the sparkline card. */
+function buildSparklineSVG(curves) {
+  const W = 480, H = 120, PAD = 6;
+  const maxVal = Math.max(...curves.hpPoints, ...curves.ppPoints, 10);
+  const n = curves.hpPoints.length;
+  function toPoints(arr) {
+    return arr.map((v, i) => {
+      const x = n <= 1 ? W / 2 : (i / (n - 1)) * W;
+      const y = H - PAD - Math.max(0, v / maxVal) * (H - PAD * 2);
+      return `${x.toFixed(1)},${y.toFixed(1)}`;
+    }).join(' ');
+  }
+  let svg = `<polyline class="rm-line-hp" points="${toPoints(curves.hpPoints)}"/>`;
+  if (curves.ppPoints.some(v => v > 0)) {
+    svg += `<polyline class="rm-line-pp" points="${toPoints(curves.ppPoints)}"/>`;
+  }
+  if (curves.dbPoints[0] > 0) {
+    svg += `<polyline class="rm-line-db" points="${toPoints(curves.dbPoints)}"/>`;
+  }
+  return svg;
+}
+
+/** Render the projection section for the Stats tab (no-print). */
+function renderProjectionSection(lang) {
+  const hasStats = character.stats && character.stats[0] > 0;
+  if (!hasStats) {
+    return `<section class="rm-projection-box mt-4 no-print">
+      <p style="color:#9ca3af;font-size:0.8rem">${lang === 'en' ? 'Roll and validate stats to see projections.' : 'Lancez et validez les caractéristiques pour voir les projections.'}</p>
+    </section>`;
+  }
+  const currentLvl = character.level || 1;
+  const defaultTarget = Math.min(Math.max(currentLvl + 10, 15), 50);
+  const curves = buildProjectionCurves(defaultTarget);
+  const svgContent = buildSparklineSVG(curves);
+  const hp = curves.hpPoints[curves.hpPoints.length - 1].toFixed(0);
+  const pp = curves.ppPoints[curves.ppPoints.length - 1].toFixed(0);
+  const db = curves.dbPoints[curves.dbPoints.length - 1];
+  const hasRealm = character.realm && character.realm !== 'none';
+
+  return `
+    <section class="rm-projection-box mt-4 no-print" id="projection-section">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem">
+        <div>
+          <h3 class="rm-sheet-title" style="font-size:0.95rem">${lang === 'en' ? 'Progression Projection' : 'Projection de progression'}</h3>
+          <p style="color:#6b5030;font-size:0.72rem;margin:0">${lang === 'en' ? 'Estimated values — simulation only.' : 'Valeurs estimées — simulation uniquement.'}</p>
+        </div>
+        <span class="rm-sim-badge">${lang === 'en' ? 'Simulation' : 'Simulation'}</span>
+      </div>
+      <div class="rm-projection-controls">
+        <div style="display:flex;flex-direction:column;gap:0.2rem">
+          <label class="rm-field-label" for="projection-level" style="font-size:0.72rem">${lang === 'en' ? 'Target level' : 'Niveau cible'}</label>
+          <input id="projection-level" type="range" min="${currentLvl}" max="50" value="${defaultTarget}" style="width:100%;accent-color:#8b6914">
+        </div>
+        <output id="projection-level-out" style="font-family:'Cinzel',serif;font-weight:700;color:#4f3113;font-size:0.9rem;white-space:nowrap">${lang === 'en' ? 'Lv.' : 'Niv.'} ${defaultTarget}</output>
+      </div>
+      <div class="rm-sparkline-card">
+        <svg class="rm-sparkline" viewBox="0 0 480 120" role="img" id="projection-svg" aria-label="${lang === 'en' ? 'HP, PP and DB progression' : 'Progression PdC, PM et DB'}">
+          ${svgContent}
+        </svg>
+        <div style="display:flex;gap:1.25rem;margin-top:0.5rem;font-size:0.75rem;flex-wrap:wrap">
+          <span style="color:#8b2500">&#9679; ${lang === 'en' ? 'HP' : 'PdC'}: <strong id="proj-hp">${hp}</strong></span>
+          ${hasRealm ? `<span style="color:#5b3aa6">&#9679; ${lang === 'en' ? 'PP' : 'PM'}: <strong id="proj-pp">${pp}</strong></span>` : ''}
+          <span style="color:#355f23">&#9679; DB: <strong id="proj-db">${db}</strong></span>
+        </div>
+      </div>
+    </section>`;
 }
 
 // === Tab: Race ===
@@ -2610,6 +2717,27 @@ function bindStatsEvents(app) {
   if (chkManual) {
     chkManual.addEventListener('change', () => {
       character.manualStatGains = chkManual.checked;
+    });
+  }
+
+  // Projection slider — update sparkline without full re-render
+  const slider = document.getElementById('projection-level');
+  if (slider) {
+    slider.addEventListener('input', () => {
+      const target = parseInt(slider.value);
+      const out = document.getElementById('projection-level-out');
+      if (out) out.textContent = `${app.lang === 'en' ? 'Lv.' : 'Niv.'} ${target}`;
+      const curves = buildProjectionCurves(target);
+      if (!curves) return;
+      const svg = document.getElementById('projection-svg');
+      if (svg) svg.innerHTML = buildSparklineSVG(curves);
+      const last = curves.hpPoints.length - 1;
+      const hpEl = document.getElementById('proj-hp');
+      if (hpEl) hpEl.textContent = curves.hpPoints[last].toFixed(0);
+      const ppEl = document.getElementById('proj-pp');
+      if (ppEl) ppEl.textContent = curves.ppPoints[last].toFixed(0);
+      const dbEl = document.getElementById('proj-db');
+      if (dbEl) dbEl.textContent = curves.dbPoints[last];
     });
   }
 }
