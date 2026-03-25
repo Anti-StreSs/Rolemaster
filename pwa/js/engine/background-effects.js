@@ -371,14 +371,17 @@ export function summarizeBackgroundBonuses(bgBonuses, lang = 'fr') {
     lines.push(saLabel);
   }
 
-  // DB/OB
-  if (bgBonuses.dbBonus) lines.push(`DB ${bgBonuses.dbBonus > 0 ? '+' : ''}${bgBonuses.dbBonus}`);
-  if (bgBonuses.obBonus) lines.push(`OB ${bgBonuses.obBonus > 0 ? '+' : ''}${bgBonuses.obBonus}`);
-  if (bgBonuses.obPenalty) lines.push(`OB ${bgBonuses.obPenalty}`);
+  // BD/BO
+  const _db = lang === 'fr' ? 'BD' : 'DB';
+  const _ob = lang === 'fr' ? 'BO' : 'OB';
+  const _rr = lang === 'fr' ? 'JR' : 'RR';
+  if (bgBonuses.dbBonus) lines.push(`${_db} ${bgBonuses.dbBonus > 0 ? '+' : ''}${bgBonuses.dbBonus}`);
+  if (bgBonuses.obBonus) lines.push(`${_ob} ${bgBonuses.obBonus > 0 ? '+' : ''}${bgBonuses.obBonus}`);
+  if (bgBonuses.obPenalty) lines.push(`${_ob} ${bgBonuses.obPenalty}`);
 
-  // RR
-  if (bgBonuses.rrBonus) lines.push(`RR +${bgBonuses.rrBonus}`);
-  if (bgBonuses.rrBonusVsMind) lines.push(`RR vs Mental +${bgBonuses.rrBonusVsMind}`);
+  // JR/RR
+  if (bgBonuses.rrBonus) lines.push(`${_rr} +${bgBonuses.rrBonus}`);
+  if (bgBonuses.rrBonusVsMind) lines.push(`${_rr} vs Mental +${bgBonuses.rrBonusVsMind}`);
 
   // Initiative
   if (bgBonuses.initiativeBonus) lines.push(`Initiative +${bgBonuses.initiativeBonus}`);

@@ -423,7 +423,7 @@ export function generateCharacterPDF(character, options = {}) {
     [lang === 'en' ? 'Hit Points' : 'PdC',            `${hp.base} / ${hp.cap}`],
     ['PP',                                              pp],
     ['DB / BD',                                         db.printDisplay],
-    [lang === 'en' ? 'Armor Type' : 'Type Armure (AT)', character.armorType],
+    [lang === 'en' ? 'Armor Type' : 'Type d\'Armure (TA)', character.armorType],
   ];
   doc.setFontSize(9);
   for (let i = 0; i < combatFields.length; i++) {

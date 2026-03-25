@@ -479,7 +479,7 @@ function initSessionToolbox() {
         <button class="rm-tabbed-chip is-active" type="button" data-tool="quick">${lang === 'en' ? 'Quick D100' : 'D100'}</button>
         <button class="rm-tabbed-chip" type="button" data-tool="maneuver">${lang === 'en' ? 'Maneuver' : 'Manœuvre'}</button>
         <button class="rm-tabbed-chip" type="button" data-tool="attack">${lang === 'en' ? 'Attack' : 'Attaque'}</button>
-        <button class="rm-tabbed-chip" type="button" data-tool="rr">RR</button>
+        <button class="rm-tabbed-chip" type="button" data-tool="rr">${lang === 'en' ? 'RR' : 'JR'}</button>
         <button class="rm-tabbed-chip" type="button" data-tool="history">${lang === 'en' ? 'History' : 'Historique'}</button>
       </nav>
       <div class="rm-session-content">
@@ -547,15 +547,15 @@ function initSessionToolbox() {
                 <select class="rm-field" id="atk-weapon" name="atk-weapon"><option value="">${lang === 'en' ? 'Select weapon…' : 'Choisir une arme…'}</option></select>
               </div>
               <div class="rm-field-group">
-                <label class="rm-field-label" for="atk-ob">OB</label>
+                <label class="rm-field-label" for="atk-ob">${lang === 'en' ? 'OB' : 'BO'}</label>
                 <input class="rm-field rm-inline-input" type="number" id="atk-ob" name="atk-ob" value="0" inputmode="numeric">
               </div>
               <div class="rm-field-group">
-                <label class="rm-field-label" for="atk-db">DB</label>
+                <label class="rm-field-label" for="atk-db">${lang === 'en' ? 'DB' : 'BD'}</label>
                 <input class="rm-field rm-inline-input" type="number" id="atk-db" name="atk-db" value="0" inputmode="numeric">
               </div>
               <div class="rm-field-group">
-                <label class="rm-field-label" for="atk-at">${lang === 'en' ? 'Armor Type' : 'Type armure'} (1-20)</label>
+                <label class="rm-field-label" for="atk-at">${lang === 'en' ? 'Armor Type' : 'Type d\'Armure (TA)'}</label>
                 <input class="rm-field rm-inline-input" type="number" id="atk-at" name="atk-at" value="1" min="1" max="20" inputmode="numeric">
               </div>
             </div>
@@ -575,7 +575,7 @@ function initSessionToolbox() {
                 <label class="rm-field-label" for="rr-realm">${lang === 'en' ? 'Realm' : 'Domaine'}</label>
                 <select class="rm-field" id="rr-realm" name="rr-realm">
                   <option value="essence">${lang === 'en' ? 'Essence' : 'Essence'}</option>
-                  <option value="channeling">${lang === 'en' ? 'Channeling' : 'Canalisation'}</option>
+                  <option value="channeling">${lang === 'en' ? 'Channeling' : 'Théurgie'}</option>
                   <option value="mentalism">${lang === 'en' ? 'Mentalism' : 'Mentalisme'}</option>
                   <option value="poison">${lang === 'en' ? 'Poison' : 'Poison'}</option>
                   <option value="disease">${lang === 'en' ? 'Disease' : 'Maladie'}</option>
@@ -597,7 +597,7 @@ function initSessionToolbox() {
             </div>
             <button class="rm-action-btn" type="button" id="btn-resolve-rr">
               <img src="assets/ui/icons/session_rr_shield_rune.webp" alt="" style="width:1.1rem;height:1.1rem;object-fit:contain" onerror="this.style.display='none'">
-              ${lang === 'en' ? 'Resolve RR' : 'Résoudre RR'}
+              ${lang === 'en' ? 'Resolve RR' : 'Résoudre JR'}
             </button>
             <div id="rr-result" style="margin-top:0.75rem"></div>
           </article>
@@ -690,7 +690,7 @@ function initSessionToolbox() {
         (w.name_fr || '').toLowerCase().includes(n) ||
         n.includes((w.name_en || '').toLowerCase().split(' ')[0])
       );
-      const opt = new Option(`${wpn.name} (OB +${ob})`, match?.id || '');
+      const opt = new Option(`${wpn.name} (${lang === 'en' ? 'OB' : 'BO'} +${ob})`, match?.id || '');
       opt.dataset.ob = ob;
       grp.appendChild(opt);
     }
@@ -846,7 +846,7 @@ function initSessionToolbox() {
       title: `${lang === 'en' ? 'Maneuver' : 'Manœuvre'} — ${typeLabel}`,
       meta: `${res.difficultyLabel?.[lang] || difficulty}`,
       cells: [
-        { key: 'Roll', val: res.roll },
+        { key: lang === 'en' ? 'Roll' : 'Jet', val: res.roll },
         { key: 'Bonus', val: bonus >= 0 ? `+${bonus}` : String(bonus) },
         { key: 'Total', val: res.total },
       ],
@@ -868,20 +868,50 @@ function initSessionToolbox() {
       const isFumble = !!res.fumble;
       const isCrit   = !isFumble && !!res.critical;
       const hits     = res.totalHits ?? 0;
+      const CRIT_TYPE_FR = {
+        slash: { name: 'Taille', abbrev: 'T' },
+        krush: { name: 'Contusion', abbrev: 'K' },
+        puncture: { name: 'Perforation', abbrev: 'P' },
+        unbalancing: { name: 'Déséquilibre', abbrev: 'D' },
+        heat: { name: 'Chaleur', abbrev: 'Ch' },
+        cold: { name: 'Froid', abbrev: 'Fr' },
+        electricity: { name: 'Électricité', abbrev: 'El' },
+        grapple: { name: 'Saisie', abbrev: 'Sa' },
+        subdual: { name: 'Maîtrise', abbrev: 'Ma' },
+        brawling: { name: 'Bagarre', abbrev: 'Ba' },
+        acid: { name: 'Acide', abbrev: 'Ac' },
+        large_creature: { name: 'Gde Créature', abbrev: 'GC' },
+        super_large_creature: { name: 'T.Gde Créature', abbrev: 'TGC' },
+        martial_arts_strikes: { name: 'AM Frappe', abbrev: 'AMF' },
+        martial_arts_sweeps: { name: 'AM Balayage', abbrev: 'AMB' },
+        tiny_animal: { name: 'Petit Animal', abbrev: 'PA' },
+      };
+      const rawCritType = res.critical?.type || '';
+      const critFr = CRIT_TYPE_FR[rawCritType];
+      const critTypeDisplay = lang === 'en' ? rawCritType : (critFr?.name || rawCritType);
+      const critTypeAbbrev = lang === 'en' ? rawCritType : (critFr?.abbrev || rawCritType);
+      const sev = res.critical?.severity || '';
       const stateClass = isFumble ? 'is-fumble is-failure' : isCrit ? 'is-critical is-success' : hits > 0 ? 'is-partial' : 'is-failure';
-      const stateLabel = isFumble ? 'Fumble!' : isCrit ? (lang === 'en' ? 'Critical!' : 'Critique!') : hits > 0 ? `${hits} hits` : (lang === 'en' ? 'Miss' : 'Raté');
+      const stateLabel = isFumble ? 'Fumble!'
+        : isCrit ? (lang === 'en' ? `Critical! ${sev}` : `${hits}${sev}${critTypeAbbrev}`)
+        : hits > 0 ? (lang === 'en' ? `${hits} hits` : `${hits} PdC`)
+        : (lang === 'en' ? 'Miss' : 'Raté');
       const critText = res.critical
-        ? `${res.critical.severity || ''} ${res.critical.type || ''}: ${res.critical.rawText || ''}`.trim()
+        ? `${sev} ${critTypeDisplay}: ${res.critical.rawText || ''}`.trim()
         : '';
-      const fumbleText = res.fumble?.rawText || (lang === 'en' ? '⚠ Fumble!' : '⚠ Fumble!');
+      const fumbleText = res.fumble?.rawText || '⚠ Fumble!';
       const details = isFumble ? fumbleText : isCrit ? critText : '';
+      const obLabel = lang === 'en' ? 'OB' : 'BO';
+      const dbLabel = lang === 'en' ? 'DB' : 'BD';
+      const taLabel = lang === 'en' ? 'AT' : 'TA';
       const html = makeResultCard({
         stateClass, iconSrc: 'assets/ui/icons/session_attack_crossed_swords.webp',
-        title: lang === 'en' ? 'Attack' : 'Attaque', meta: `OB${ob >= 0 ? '+' : ''}${ob} vs DB${db >= 0 ? '+' : ''}${db} AT${armorType}`,
+        title: lang === 'en' ? 'Attack' : 'Attaque',
+        meta: `${obLabel}${ob >= 0 ? '+' : ''}${ob} vs ${dbLabel}${db >= 0 ? '+' : ''}${db} ${taLabel}${armorType}`,
         cells: [
-          { key: 'Roll', val: res.attack?.breakdown?.roll ?? '?' },
-          { key: lang === 'en' ? 'Total' : 'Total', val: res.attack?.total ?? '?' },
-          { key: 'Hits', val: hits },
+          { key: lang === 'en' ? 'Roll' : 'Jet', val: res.attack?.breakdown?.roll ?? '?' },
+          { key: 'Total', val: res.attack?.total ?? '?' },
+          { key: lang === 'en' ? 'Hits' : 'PdC', val: hits },
         ],
         details, stateLabel,
       });
@@ -903,10 +933,10 @@ function initSessionToolbox() {
     const stateLabel = res.success ? (lang === 'en' ? 'Resisted' : 'Résisté') : (lang === 'en' ? 'Failed' : 'Échec');
     const html = makeResultCard({
       stateClass, iconSrc: 'assets/ui/icons/session_rr_shield_rune.webp',
-      title: `RR — ${realm}`,
+      title: `${lang === 'en' ? 'RR' : 'JR'} — ${realm}`,
       meta: `${lang === 'en' ? 'Def' : 'Déf'} ${defenderLevel} vs ${lang === 'en' ? 'Att' : 'Att'} ${attackerLevel}`,
       cells: [
-        { key: 'Roll', val: res.roll },
+        { key: lang === 'en' ? 'Roll' : 'Jet', val: res.roll },
         { key: 'Total', val: res.total },
         { key: lang === 'en' ? 'Margin' : 'Marge', val: (res.margin >= 0 ? '+' : '') + res.margin },
       ],

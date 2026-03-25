@@ -521,11 +521,11 @@ function renderInfosTab(lang) {
           ['obItem', lang === 'en' ? 'OB (items)' : 'BO (objets)'],
           ['ppBonus', lang === 'en' ? 'PP bonus' : 'PP (bonus)'],
           ['hpBonus', lang === 'en' ? 'HP bonus' : 'PdC (bonus)'],
-          ['rrEssence', 'RR Essence'],
-          ['rrChanneling', lang === 'en' ? 'RR Channeling' : 'RR Théurgie'],
-          ['rrMentalism', lang === 'en' ? 'RR Mentalism' : 'RR Mentalisme'],
-          ['rrPoison', 'RR Poison'],
-          ['rrDisease', lang === 'en' ? 'RR Disease' : 'RR Maladie'],
+          ['rrEssence', lang === 'en' ? 'RR Essence' : 'JR Essence'],
+          ['rrChanneling', lang === 'en' ? 'RR Channeling' : 'JR Théurgie'],
+          ['rrMentalism', lang === 'en' ? 'RR Mentalism' : 'JR Mentalisme'],
+          ['rrPoison', lang === 'en' ? 'RR Poison' : 'JR Poison'],
+          ['rrDisease', lang === 'en' ? 'RR Disease' : 'JR Maladie'],
         ];
         let grid = '<div style="display:grid;grid-template-columns:repeat(2,auto 4rem);gap:0.3rem 0.75rem;align-items:center">';
         for (const [key, label] of fields) {
@@ -1316,15 +1316,15 @@ function renderSpellsTab(lang) {
     'Essence (Open)': 'Essence (Libres)',
     'Essence (Closed)': 'Essence (Réservées)',
     'Essence (Evil)': 'Essence (Maléfiques)',
-    'Channeling (Open)': 'Théisme (Libres)',
-    'Channeling (Closed)': 'Théisme (Réservées)',
-    'Channeling (Evil)': 'Théisme (Maléfiques)',
+    'Channeling (Open)': 'Théurgie (Libres)',
+    'Channeling (Closed)': 'Théurgie (Réservées)',
+    'Channeling (Evil)': 'Théurgie (Maléfiques)',
     'Arcane/Other': 'Arcanes / Autres',
   };
   const REALM_GROUPS = [
     { key: 'Mentalism', label_fr: 'Mentalisme', label_en: 'Mentalism' },
     { key: 'Essence', label_fr: 'Essence', label_en: 'Essence' },
-    { key: 'Channeling', label_fr: 'Théisme', label_en: 'Channeling' },
+    { key: 'Channeling', label_fr: 'Théurgie', label_en: 'Channeling' },
     { key: 'Arcane', label_fr: 'Arcanes', label_en: 'Arcane' },
   ];
   const realms = getAllRealms();

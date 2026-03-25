@@ -14,15 +14,15 @@ export const CASTER_TYPES = {
 // Determines which magical realm the class uses
 export const REALM_MAP = {
   1: { key: 'none', label_fr: 'Aucun', label_en: 'None', hasSpells: false },
-  2: { key: 'channeling_partial', label_fr: 'Théisme (partiel)', label_en: 'Channeling (partial)', hasSpells: false, baseRealm: 'channeling' },
-  3: { key: 'channeling', label_fr: 'Théisme', label_en: 'Channeling', hasSpells: true, baseRealm: 'channeling' },
+  2: { key: 'channeling_partial', label_fr: 'Théurgie (partiel)', label_en: 'Channeling (partial)', hasSpells: false, baseRealm: 'channeling' },
+  3: { key: 'channeling', label_fr: 'Théurgie', label_en: 'Channeling', hasSpells: true, baseRealm: 'channeling' },
   4: { key: 'essence_partial', label_fr: 'Essence (partiel)', label_en: 'Essence (partial)', hasSpells: false, baseRealm: 'essence' },
   5: { key: 'essence', label_fr: 'Essence', label_en: 'Essence', hasSpells: true, baseRealm: 'essence' },
   6: { key: 'arms', label_fr: 'Armes', label_en: 'Arms', hasSpells: false },
   7: { key: 'mentalism_essence', label_fr: 'Mentalisme/Essence', label_en: 'Mentalism/Essence', hasSpells: true, baseRealm: 'mentalism' },
   8: { key: 'mentalism', label_fr: 'Mentalisme', label_en: 'Mentalism', hasSpells: true, baseRealm: 'mentalism' },
   9: { key: 'essence', label_fr: 'Essence', label_en: 'Essence', hasSpells: true, baseRealm: 'essence' },
-  10: { key: 'channeling', label_fr: 'Théisme', label_en: 'Channeling', hasSpells: true, baseRealm: 'channeling' },
+  10: { key: 'channeling', label_fr: 'Théurgie', label_en: 'Channeling', hasSpells: true, baseRealm: 'channeling' },
   11: { key: 'variable', label_fr: 'Variable', label_en: 'Variable', hasSpells: false },
 };
 
