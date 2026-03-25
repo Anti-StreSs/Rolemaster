@@ -29,19 +29,27 @@ Session 2026-03-25 (Phase 4j — Bug fixes + PDF parity) addresses correctness a
 - In RM2, racial bonuses apply to rolls/OB at resolution time — NOT to temp or pot stats
 - Stats now come from pure dice rolls, matching CPR093 original behaviour
 
-### NPC Generator — Coherent race/class selection
+### NPC Generator — Coherent race/class selection (ATTEMPTED — NOT VERIFIED IN BROWSER)
 - `getClassArchetype(cls)` → 10 archetypes: `heavy_fighter`, `cavalry`, `rogue`, `ranger`, `duelist`, `monk`, `semi_fighter`, `caster_staff`, `caster`, `other`
 - `getRaceClassAffinity(race, cls)` → continuous 1-100 score (racial stat bonuses vs. archetype weights)
 - `pickCoherentRace(classes, races, classIdx)` / `pickCoherentClass(classes, races, raceIdx)` with weighted-random
 - `pickWeightedRandom(items, scores)` — score-proportional selection, always allows all options
 - `generateNPC` accepts `-1` sentinel for coherent-random race or class; `app.js` passes `-1` instead of random index
+- **STATUS: User confirmed NPC generation still broken after these changes.**
 
-### NPC Generator — Smart weapon assignment
+### NPC Generator — Smart weapon assignment (ATTEMPTED — CONTAINS CONFIRMED BUG)
 - `getWeaponPriorityOrder(cls, stats)` returns weapon type order by archetype + stat bonus tiebreak
 - `autoAssignWeaponPriorities(character, cls)` fills all 6 priority slots using archetype order
-- `autoAddWeaponSkills(character, cls)` adds 1-2 weapon skills from top-2 priority categories
-- `spendWeaponSkillDP(character, cls, dpBudget)` develops weapon skills first, returns remaining DP to `autoSpendDP`
-- `WEAPON_TYPE_MAP` exported for use in wizard.js auto-assign button
+- `autoAddWeaponSkills(char, data, n)` adds 1-2 weapon skills from top-2 priority categories
+- `spendWeaponSkillDP(char, ranksStore, dpBudget, archetype)` meant to develop weapon skills first
+- **BUG FOUND (code review)**: `autoAddWeaponSkills` calls `getWeaponSkillCost(char.classIndex, typeNum, char.weaponPriorities)` where `typeNum` is a number (e.g. `1`) but `char.weaponPriorities` contains string IDs (`['edged_1h', ...]`). `weaponPriorities.indexOf(1)` always returns -1 → `cost = null` → `spendWeaponSkillDP` skips every weapon → **0 DP spent on weapon skills**.
+- Fix: change `typeNum` to `typeId` (string) in the `getWeaponSkillCost` call at `autoAddWeaponSkills` line 164.
+
+### NPC Generator — Stat assignment inverted (CONFIRMED BUG)
+- `generateNPC` sorts rolls descending (`b.tempRoll - a.tempRoll`) then assigns rollIdx=0 (best roll) to prime stats.
+- This is **backwards** vs. `wizard.js autoAssignRolls` which explicitly gives prime stats the LOWEST rolls (prime boost compensates) and best rolls to dev stats (CO, AG, etc.) to maximise DP.
+- Net effect: NPCs have huge prime stats that don't benefit from the boost, and low CO/AG → less DP than expected.
+- `char.primeStats` array is also never set on the generated character object (computed locally as `primeStatIndices` but never assigned to `char.primeStats`), so prime stat highlighting is wrong when the NPC is loaded in the editor.
 
 ### Stat gain modal + event logging
 - `logStatGain` helper added to `event-log.js`
@@ -83,6 +91,11 @@ Session 2026-03-25 (Phase 4j — Bug fixes + PDF parity) addresses correctness a
 
 ## Still TODO
 
+### NPC Generator — 3 confirmed bugs to fix
+- [ ] **BUG**: `autoAddWeaponSkills` passes `typeNum` (int) to `getWeaponSkillCost` which expects string ID → cost=null → 0 DP on weapon skills. Fix: replace `typeNum` with `typeId` at `npc-generator.js` line 164.
+- [ ] **BUG**: Stat assignment inverted — prime stats get best rolls, should be worst. Fix: reverse sort order so prime stat indices get highest rollIdx (worst rolls). Match the logic in `wizard.js autoAssignRolls`.
+- [ ] **BUG**: `char.primeStats` never set in `generateNPC`. Add `char.primeStats = primeStatIndices;` after line 305.
+
 ### Gameplay
 - [ ] Double-mode skills (two stat sets, two bonuses)
 - [ ] Stat gain undo/redo (batch 8 menu items)
@@ -90,7 +103,6 @@ Session 2026-03-25 (Phase 4j — Bug fixes + PDF parity) addresses correctness a
 
 ### Polish
 - [ ] Blank character sheet print option
-- [ ] Progression sparklines (Batch 29 P4f spec — not yet implemented)
 - [ ] More responsive testing on various devices
 
 ## Key Files
@@ -112,11 +124,12 @@ Session 2026-03-25 (Phase 4j — Bug fixes + PDF parity) addresses correctness a
 
 ## Next Session Entry Point
 
-1. **Test PDF export** in browser: Impression tab → Export PDF → verify two-column skills, DM boxes, bold/color rows all render correctly
-2. **Test NPC coherence**: home screen → Générer un PNJ → leave race/class blank several times → verify hobbits appear as rogues/thieves more often than barbarians
-3. **Test stat gain modal**: create character level 1 → check "Lancer manuellement" → validate phase → verify modal appears with editable D100s
-4. **Progression sparklines** (Batch 29 P4f): small inline SVG spark charts on the character sheet showing stat/skill progression over levels — next unimplemented feature
-5. **Blank sheet print option**: print config → checkbox "Feuille vierge" → omits actual values, leaves pencil blanks only
+1. **Fix NPC generator bugs** (3 confirmed, see TODO above):
+   - `npc-generator.js` line 164: `typeNum` → `typeId`
+   - Reverse stat assignment so prime stats get worst rolls
+   - Add `char.primeStats = primeStatIndices` after computing prime stats
+2. **Test NPC generation** after fix: home → Générer PNJ → blank race+class → verify weapons have non-null costs, stats assigned correctly
+3. **Blank sheet print option**: print config → checkbox "Feuille vierge" → omits actual values, leaves pencil blanks only
 
 ---
 *Phase 1: 2025-01-19 | Phase 2: 2026-03-11 | Phase 3: 2026-03-11 | Phase 4a: 2026-03-12 | Phase 4b: 2026-03-20 | Phase 4c: 2026-03-20 | Phase 4d: 2026-03-21 | Phase 4e-4f: 2026-03-22 | Phase 4g: 2026-03-23 | Phase 4h-4i: 2026-03-24 | Phase 4j: 2026-03-25*
