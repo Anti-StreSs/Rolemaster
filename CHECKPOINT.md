@@ -1,6 +1,6 @@
 # Checkpoint — CPR093 Reverse Engineering
 
-*Updated: 2026-03-26 (Batch 34)*
+*Updated: 2026-03-27 (Batch 36)*
 
 ## Summary
 
@@ -99,6 +99,28 @@ Session 2026-03-26 (Phase 4k — NPC overhaul + French terminology) completed th
 ### Commits
 - `644f960` — Batch 34 similarity overhaul
 - `db92038` — Responsive fixes
+
+## Phase 4n Changes — Batches 35-36 (2026-03-27)
+
+### Batch 35 — Portrait, spell 2-col, simil fixes, DP guard (`0bf555a`)
+- **PDF portrait**: `pdf-export.js` — portrait image rendered in identity section (right 44mm column via `doc.addImage()`)
+- **Spell 2-col**: auto-split into 2 columns when >10 active lists (print + PDF); threshold `activeLists.length > 10`, halved at `Math.ceil`
+- **Print modal**: portrait-fit option moved to pre-print config modal (hidden when no portrait)
+- **Similarity fix**: `finalizeSimRanks` changed from `+=` to `=` (no accumulation across phase validations)
+- **Similarity cap removed**: `Math.min(1, ...)` removed from `calcSimilarityRanks` — MAX across sources already prevents cumulation; RM2 formula now applies correctly
+- **Weapon simil immediate**: applied at weapon-add time, not only at phase validation
+- **`getTotalRanks`**: includes `skillRanksSimil` for string keys (weapon slots `wpn_N`)
+- **DP budget guard**: `btn-validate-phase` blocks with alert if `dpSpent > dpTotal` (prevents negative-DP validation from "comme au niveau précédent" + spell spend)
+
+### Batch 36 — Racial HP cap, print armor penalty, history appendix (`d528f74`)
+- **Projections racial cap** (`wizard.js`): `buildProjectionCurves` now uses `.cap` (not `.base`) — racial `max_pc` and CO stat bonus properly enforced; `maxRacial` exposed in sparkline legend
+- **build-compare HP fix** (`build-compare.js`): snapshot `hp` was storing full `calcHitPoints()` object (rendered as `[object Object]`); fixed to `.cap`
+- **Print armor penalty** (`print-sheet.js`): `armorPenalty` carried through skill data; rendered as `⛨-N` in misc column for movement skills — matches live editor display
+- **History appendix** (`print-sheet.js`): `generateHistoryPage()` appended when `historyInline` checked — renders Équipement + Historique & Notes + Options d'Historique with section headers; skipped if all three are empty
+
+### Commits
+- `0bf555a` — Batch 35
+- `d528f74` — Batch 36
 
 ## Still TODO
 
