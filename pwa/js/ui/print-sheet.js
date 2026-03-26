@@ -70,6 +70,7 @@ function getFilteredSkills(character, config) {
           statBonus,
           lvlBonus,
           miscBonus: miscBonus || '',
+          similBonus: similBonus || '',
           total,
           costStr: cost ? (cost.second > 0 ? `${cost.first}/${cost.second}` : `${cost.first}`) : '—',
           highlight,
@@ -178,7 +179,7 @@ function generateStatsBlock(character) {
 function generateSkillTable(skills, config) {
   let rows = '';
   let currentCategory = null;
-  const colSpan = config.showCosts ? 9 : 8;
+  const colSpan = 8 + (config.showCosts ? 1 : 0) + (config.showSimil ? 1 : 0);
 
   for (const sk of skills) {
     if (sk.categoryName && sk.categoryName !== currentCategory) {
@@ -207,6 +208,7 @@ function generateSkillTable(skills, config) {
       <td class="tc ps-bonus">${sk.statBonus >= 0 ? '+' + sk.statBonus : sk.statBonus}</td>
       <td class="tc">${sk.lvlBonus > 0 ? '+' + sk.lvlBonus : ''}</td>
       <td class="tc">${sk.miscBonus || ''}</td>
+      ${config.showSimil ? `<td class="tc">${sk.similBonus ? (sk.similBonus > 0 ? '+' + sk.similBonus : sk.similBonus) : ''}</td>` : ''}
       <td class="tc ps-bonus-total"><b>${sk.total >= 0 ? '+' + sk.total : sk.total}</b></td>
     </tr>`;
   }
@@ -222,6 +224,7 @@ function generateSkillTable(skills, config) {
           <th class="tc">Carac</th>
           <th class="tc">Niv</th>
           <th class="tc">Div</th>
+          ${config.showSimil ? '<th class="tc">Simil</th>' : ''}
           <th class="tc">Total</th>
         </tr>
       </thead>
@@ -347,7 +350,7 @@ function generateSkillPage(skills, config) {
  * Generate the complete print sheet (multi-page HTML).
  */
 export function generatePrintSheet(character, config, lang) {
-  if (!config) config = { skillFilter: 'both', showStats: true, showCosts: false, skillsPerPage1: 43, skillsPerPageN: 68, lang };
+  if (!config) config = { skillFilter: 'both', showStats: true, showCosts: false, showSimil: false, skillsPerPage1: 43, skillsPerPageN: 68, lang };
   config.lang = lang;
 
   const skills = getFilteredSkills(character, config);

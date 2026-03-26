@@ -4291,6 +4291,7 @@ function openPrintConfigPopup() {
         <div class="flex flex-col gap-1">
           <label class="text-xs cursor-pointer"><input type="checkbox" id="pc-stats" ${pc.showStats ? 'checked' : ''}> ${lang === 'en' ? 'Show characteristics' : 'Caractéristiques'}</label>
           <label class="text-xs cursor-pointer"><input type="checkbox" id="pc-costs" ${pc.showCosts ? 'checked' : ''}> ${lang === 'en' ? 'Show dev costs' : 'Coûts de développement'}</label>
+          <label class="text-xs cursor-pointer"><input type="checkbox" id="pc-simil" ${pc.showSimil ? 'checked' : ''}> ${lang === 'en' ? 'Show similarity bonus' : 'Bonus compétences similaires'}</label>
           <label class="text-xs cursor-pointer"><input type="checkbox" id="pc-history" ${pc.historyInline ? 'checked' : ''}> ${lang === 'en' ? 'Print history inline' : 'Historique à la suite'}</label>
         </div>
 
@@ -4326,6 +4327,7 @@ function openPrintConfigPopup() {
     pc.spellFilter = document.querySelector('input[name="pc-spell-filter"]:checked')?.value || 'all';
     pc.showStats = document.getElementById('pc-stats').checked;
     pc.showCosts = document.getElementById('pc-costs').checked;
+    pc.showSimil = document.getElementById('pc-simil').checked;
     pc.historyInline = document.getElementById('pc-history').checked;
     pc.skillsPerPage1 = parseInt(document.getElementById('pc-spp1').value) || 43;
     pc.skillsPerPageN = parseInt(document.getElementById('pc-sppn').value) || 68;
