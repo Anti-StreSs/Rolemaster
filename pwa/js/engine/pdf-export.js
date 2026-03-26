@@ -377,10 +377,13 @@ export function generateCharacterPDF(character, options = {}) {
   y = 20; // compact — saves space
 
   // ==============================
-  // Identity (two equal columns)
+  // Identity (two columns) + portrait on right if present
   // ==============================
+  const identityStartY = y;
   sectionHeader(lang === 'en' ? 'Identity' : 'Identité');
-  const col1x = mL, col2x = mL + usableW / 2;
+  const portraitW = character.portraitUrl ? 44 : 0;
+  const idW = usableW - portraitW - (portraitW ? 3 : 0);
+  const col1x = mL, col2x = mL + idW / 2;
   const idFields = [
     [lang === 'en' ? 'Race' : 'Race',       character.raceName],
     [lang === 'en' ? 'Realm' : 'Royaume',   realmLabel],
@@ -404,6 +407,16 @@ export function generateCharacterPDF(character, options = {}) {
     if (isRight || i === idFields.length - 1) y += 4.5;
   }
   y += 2;
+
+  // Portrait image (right column, same row as identity)
+  if (character.portraitUrl) {
+    const pX = mL + usableW - portraitW;
+    const pH = y - identityStartY;
+    const fmt = character.portraitUrl.startsWith('data:image/png') ? 'PNG' : 'JPEG';
+    try {
+      doc.addImage(character.portraitUrl, fmt, pX, identityStartY, portraitW, pH, undefined, 'FAST');
+    } catch (_e) { /* skip if format unsupported */ }
+  }
 
   // ==============================
   // Stats table — uneven columns (name wider, numerics narrower)
@@ -506,29 +519,67 @@ export function generateCharacterPDF(character, options = {}) {
   // ==============================
   // Spell lists
   // ==============================
-  const spellLists = character.spellLists || [];
+  const spellLists = (character.spellLists || []).filter(sl => sl.maxLevel > 0);
   if (spellLists.length > 0) {
     checkPage(20);
     sectionHeader(lang === 'en' ? 'Spell Lists' : 'Listes de Sorts');
     doc.setFontSize(8);
-    doc.setFont('helvetica', 'bold');
-    doc.text(lang === 'en' ? 'List' : 'Liste',    mL,        y);
-    doc.text(lang === 'en' ? 'Max Lvl' : 'Niv.',  mL + 100,  y);
-    doc.text('Type',                               mL + 120,  y);
-    y += 1.5;
-    doc.setLineWidth(0.3); doc.setDrawColor(120, 90, 20);
-    doc.line(mL, y, mL + 140, y);
-    y += 3;
     doc.setFont('helvetica', 'normal');
     doc.setDrawColor(100, 100, 100); doc.setLineWidth(0.2);
-    for (const sl of spellLists) {
-      checkPage(5);
-      let name = sl.name || '?';
-      while (name.length > 0 && doc.getTextWidth(name) > 92) name = name.slice(0, -1);
-      doc.text(name,                      mL,       y);
-      doc.text(String(sl.maxLevel || '?'), mL + 100, y);
-      doc.text(sl.type || '',              mL + 120, y);
-      y += 4;
+
+    if (spellLists.length > 10) {
+      // Two-column layout
+      const half = Math.ceil(spellLists.length / 2);
+      const colW = (usableW - 6) / 2; // each column width
+      const c2x = mL + colW + 6;      // second column x offset
+
+      // Column headers
+      doc.setFont('helvetica', 'bold');
+      doc.text(lang === 'en' ? 'List' : 'Liste', mL,          y);
+      doc.text('Niv',                              mL + colW - 8, y);
+      doc.text(lang === 'en' ? 'List' : 'Liste', c2x,         y);
+      doc.text('Niv',                              c2x + colW - 8, y);
+      y += 1.5;
+      doc.setLineWidth(0.3); doc.setDrawColor(120, 90, 20);
+      doc.line(mL, y, mL + usableW, y);
+      y += 3;
+      doc.setFont('helvetica', 'normal');
+      doc.setDrawColor(100, 100, 100); doc.setLineWidth(0.2);
+
+      const startY = y;
+      const maxNameW = colW - 12;
+      for (let i = 0; i < spellLists.length; i++) {
+        const sl = spellLists[i];
+        const isRight = i >= half;
+        const row = isRight ? i - half : i;
+        const cx = isRight ? c2x : mL;
+        let name = sl.name || '?';
+        while (name.length > 0 && doc.getTextWidth(name) > maxNameW) name = name.slice(0, -1);
+        doc.text(name, cx, startY + row * 4);
+        doc.text(String(sl.maxLevel || '?'), cx + colW - 8, startY + row * 4);
+      }
+      y = startY + half * 4;
+    } else {
+      // Single-column layout
+      doc.setFont('helvetica', 'bold');
+      doc.text(lang === 'en' ? 'List' : 'Liste',   mL,       y);
+      doc.text(lang === 'en' ? 'Max Lvl' : 'Niv.', mL + 100, y);
+      doc.text('Type',                              mL + 120, y);
+      y += 1.5;
+      doc.setLineWidth(0.3); doc.setDrawColor(120, 90, 20);
+      doc.line(mL, y, mL + 140, y);
+      y += 3;
+      doc.setFont('helvetica', 'normal');
+      doc.setDrawColor(100, 100, 100); doc.setLineWidth(0.2);
+      for (const sl of spellLists) {
+        checkPage(5);
+        let name = sl.name || '?';
+        while (name.length > 0 && doc.getTextWidth(name) > 92) name = name.slice(0, -1);
+        doc.text(name,                       mL,       y);
+        doc.text(String(sl.maxLevel || '?'), mL + 100, y);
+        doc.text(sl.type || '',              mL + 120, y);
+        y += 4;
+      }
     }
     y += 3;
   }

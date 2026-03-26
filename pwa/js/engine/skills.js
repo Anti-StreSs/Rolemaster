@@ -531,7 +531,7 @@ export function getOwnDevelopedRanks(globalIndex, character) {
  * coeff 8 = most similar → half ranks (RM2 standard)
  * coeff 4 = quarter ranks, coeff 2 = eighth, etc.
  *
- * Returns only the EXTRA ranks above own dev (0 if own ranks already win).
+ * Returns only the EXTRA ranks above own dev (MAX across sources, not cumulative sum).
  */
 export function calcSimilarityRanks(globalIndex, character) {
   const similData = getData().skill_similarity_pairs;
@@ -551,6 +551,37 @@ export function calcSimilarityRanks(globalIndex, character) {
   }
 
   return Math.max(0, bestAutoRanks - ownRanks);
+}
+
+/**
+ * Calculate auto-granted ranks for a weapon skill from similar weapons
+ * (same weaponTypeId = same category group).
+ * Rule: floor(best similar weapon's own ranks / 2), capped to not exceed own dev.
+ * Non-cumulative: takes the single best source, not the sum.
+ */
+export function calcWeaponSimilarityRanks(wsIndex, character) {
+  const weapons = character.weaponSkills || [];
+  if (!weapons[wsIndex]) return 0;
+  const thisWeapon = weapons[wsIndex];
+
+  const ownRanks = (character.skillRanksAdolescent?.['wpn_' + wsIndex] || 0)
+                 + (character.skillRanksApprenti?.['wpn_' + wsIndex] || 0)
+                 + (character.skillRanksPrior?.['wpn_' + wsIndex] || 0)
+                 + (character.skillRanksLevel?.['wpn_' + wsIndex] || 0);
+
+  let bestSourceRanks = 0;
+  for (let i = 0; i < weapons.length; i++) {
+    if (i === wsIndex) continue;
+    if (weapons[i].weaponTypeId !== thisWeapon.weaponTypeId) continue;
+    const srcRanks = (character.skillRanksAdolescent?.['wpn_' + i] || 0)
+                   + (character.skillRanksApprenti?.['wpn_' + i] || 0)
+                   + (character.skillRanksPrior?.['wpn_' + i] || 0)
+                   + (character.skillRanksLevel?.['wpn_' + i] || 0);
+    if (srcRanks > bestSourceRanks) bestSourceRanks = srcRanks;
+  }
+
+  if (bestSourceRanks === 0) return 0;
+  return Math.max(0, Math.floor(bestSourceRanks / 2) - ownRanks);
 }
 
 // === Level Bonus (Table 09-07, RM2 Option) ===

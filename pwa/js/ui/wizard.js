@@ -5,7 +5,7 @@ import { panel, showToast } from './components.js';
 import { createCharacter, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, applyRace, DEV_PHASES, getTotalRanks, getCurrentPhaseRanks, getCurrentPhaseRanksObj, getDevPointsSpent, setDevPointsSpent, getDevPointsTotal, getSpellPointsSpent, setSpellPointsSpent, getSpellPointsTotal, SHIELD_TYPES, calculateDB, setAdrenalDefenseIndex, rollBodyDevHitDie, getBodyDevSkillIndex, getDeathThreshold, ARMOR_MANEUVER_PENALTIES, isMovingSkill } from '../engine/character.js';
 import { generateStatRolls, getStatValues, statPotentialLookup, generateStatRollsHybrid, generateStatRollsAntiLose, getStatValuesHybrid, rollStatPairsRMSS, getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
 import { getAllClasses, getClassName, getRealmInfo, getRealmKey, getRealmLabel, isSpellUser, getClassPrimeStats, getPPStatIndices } from '../engine/classes.js';
-import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts, isParentSkill, isSpecializableSkill, getWeaponSubcategories, getWeaponSkillCost, getParentSubSkillOptions, WEAPON_SKILL_GLOBAL_INDEX, getAllSkillsFlat, getLevelBonus, calcSimilarityRanks, getSpecializationSuggestion } from '../engine/skills.js';
+import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts, isParentSkill, isSpecializableSkill, getWeaponSubcategories, getWeaponSkillCost, getParentSubSkillOptions, WEAPON_SKILL_GLOBAL_INDEX, getAllSkillsFlat, getLevelBonus, calcSimilarityRanks, calcWeaponSimilarityRanks, getSpecializationSuggestion } from '../engine/skills.js';
 import { getAllRealms, getSpellListCost, getSpellRankCost, getSpellBlockSize, getListTypeKey, isPureCaster, getClassBaseSpellLists } from '../engine/spells.js';
 import { downloadCharacter, saveToLocalStorage } from '../engine/export.js';
 import { generateCharacterPDF } from '../engine/pdf-export.js';
@@ -2536,6 +2536,7 @@ function bindInfosEvents(app) {
     });
   }
 
+
   // Projection simulate
   const btnProject = document.getElementById('btn-project');
   if (btnProject) {
@@ -3540,20 +3541,24 @@ function bindHistoryEvents(app) {
 
 /**
  * Commit similarity auto-ranks to skillRanksSimil at fin de phase.
- * These become normal DM in getTotalRanks; the Sim column keeps the trace.
+ * Always SETs (never accumulates) so recalculating phases doesn't stack values.
+ * Also recalculates weapon similarity for all current weapon skills.
  */
 function finalizeSimRanks(character) {
   if (!character.skillRanksSimil) character.skillRanksSimil = {};
+  // Regular skills — SET (not +=), handles zeroing out stale values
   const categories = getAllCategories();
   let gi = 0;
   for (const cat of categories) {
     for (const _skill of cat.skills) {
-      const simRanks = calcSimilarityRanks(gi, character);
-      if (simRanks > 0) {
-        character.skillRanksSimil[gi] = (character.skillRanksSimil[gi] || 0) + simRanks;
-      }
+      character.skillRanksSimil[gi] = calcSimilarityRanks(gi, character);
       gi++;
     }
+  }
+  // Weapon skills — recalculate all (handles case where source weapon gained ranks)
+  const weapons = character.weaponSkills || [];
+  for (let wi = 0; wi < weapons.length; wi++) {
+    character.skillRanksSimil['wpn_' + wi] = calcWeaponSimilarityRanks(wi, character);
   }
 }
 
@@ -3564,6 +3569,17 @@ function bindSkillsEvents(app) {
     btnValidatePhase.addEventListener('click', () => {
       const lang = character.language || 'fr';
       const phaseLabel = character.devPhase === 'adolescent' ? 'Adolescent' : character.devPhase === 'apprenti' ? 'Apprenti' : `Niveau ${character.level}`;
+
+      // Block validation if DP budget is exceeded (can happen with "comme au niveau précédent" + spell spend)
+      const dpTotal = getDevPointsTotal(character);
+      const dpSpent = getDevPointsSpent(character);
+      if (dpSpent > dpTotal) {
+        alert(lang === 'en'
+          ? `Cannot validate: you have spent ${dpSpent} DP but only have ${dpTotal} available.\nPlease correct your skill or spell assignments before validating.`
+          : `Impossible de valider : vous avez dépensé ${dpSpent} PD mais n'en disposez que de ${dpTotal}.\nVeuillez corriger vos attributions pour ne plus dépasser le total de développement.`);
+        return;
+      }
+
       const msg = lang === 'en'
         ? `End the ${phaseLabel} development phase?\nUnspent DP will be lost. This action is irreversible.`
         : `Valider la phase de développement ${phaseLabel} ?\nLes PD non dépensés seront perdus. Cette action est irréversible.`;
@@ -3994,6 +4010,10 @@ function openWeaponSkillSelector(app) {
         weaponTypeId: typeId,
         cost: { first: cost.first, second: cost.second },
       });
+      // Apply weapon similarity immediately for the new weapon
+      if (!character.skillRanksSimil) character.skillRanksSimil = {};
+      const newWpnIdx = character.weaponSkills.length - 1;
+      character.skillRanksSimil['wpn_' + newWpnIdx] = calcWeaponSimilarityRanks(newWpnIdx, character);
 
       document.getElementById('wpn-selector-overlay').remove();
       renderEditor(app);
@@ -4285,6 +4305,7 @@ function openPrintConfigPopup() {
       showStats: true,
       showCosts: false,
       historyInline: true,
+      portraitFit: false,
       skillsPerPage1: 43,
       skillsPerPageN: 68,
     };
@@ -4326,6 +4347,7 @@ function openPrintConfigPopup() {
           <label class="text-xs cursor-pointer"><input type="checkbox" id="pc-costs" ${pc.showCosts ? 'checked' : ''}> ${lang === 'en' ? 'Show dev costs' : 'Coûts de développement'}</label>
           <label class="text-xs cursor-pointer"><input type="checkbox" id="pc-simil" ${pc.showSimil ? 'checked' : ''}> ${lang === 'en' ? 'Show similarity bonus' : 'Bonus compétences similaires'}</label>
           <label class="text-xs cursor-pointer"><input type="checkbox" id="pc-history" ${pc.historyInline ? 'checked' : ''}> ${lang === 'en' ? 'Print history inline' : 'Historique à la suite'}</label>
+          ${character.portraitUrl ? `<label class="text-xs cursor-pointer"><input type="checkbox" id="pc-portrait-fit" ${pc.portraitFit ? 'checked' : ''}> ${lang === 'en' ? 'Fixed-size portrait zone' : 'Case portrait de taille fixe'}</label>` : ''}
         </div>
 
         <label class="text-gray-400">${lang === 'en' ? 'Skills/page' : 'Comp/page'}</label>
@@ -4362,6 +4384,8 @@ function openPrintConfigPopup() {
     pc.showCosts = document.getElementById('pc-costs').checked;
     pc.showSimil = document.getElementById('pc-simil').checked;
     pc.historyInline = document.getElementById('pc-history').checked;
+    const pcPortraitFitEl = document.getElementById('pc-portrait-fit');
+    if (pcPortraitFitEl) pc.portraitFit = pcPortraitFitEl.checked;
     pc.skillsPerPage1 = parseInt(document.getElementById('pc-spp1').value) || 43;
     pc.skillsPerPageN = parseInt(document.getElementById('pc-sppn').value) || 68;
 

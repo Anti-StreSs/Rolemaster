@@ -297,9 +297,11 @@ function generatePage1(character, config, lang) {
         </table>
       </div>
 
-      <div class="ps-portrait-zone">
+      <div class="ps-portrait-zone" style="${portrait && config.portraitFit ? 'padding:0;overflow:hidden;position:relative' : ''}">
         ${portrait
-          ? `<img src="${portrait}" alt="Portrait" style="max-width:100%;max-height:100%;object-fit:contain">`
+          ? (config.portraitFit
+              ? `<img src="${portrait}" alt="Portrait" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain">`
+              : `<img src="${portrait}" alt="Portrait" style="max-width:100%;max-height:100%;object-fit:contain">`)
           : `<div style="text-align:center;color:#ccc;font-size:7pt;padding-top:30pt">Portrait</div>`
         }
       </div>
@@ -334,14 +336,26 @@ function generatePage1(character, config, lang) {
       })()}
 
       <div class="ps-spells-col">
-        <table class="ps-table-mini">
-          <thead><tr><th>LISTES DE SORTS</th><th>Niv</th></tr></thead>
-          <tbody>
-            ${(character.spellLists || []).filter(sl => sl.maxLevel > 0).map((sl, i) =>
+        ${(() => {
+          const activeLists = (character.spellLists || []).filter(sl => sl.maxLevel > 0);
+          if (activeLists.length > 10) {
+            const half = Math.ceil(activeLists.length / 2);
+            const makeTable = (rows, startIndex) =>
+              `<table class="ps-table-mini" style="flex:1;min-width:0">
+                <thead><tr><th>LISTES DE SORTS</th><th>Niv</th></tr></thead>
+                <tbody>${rows.map((sl, i) =>
+                  `<tr><td>${startIndex + i + 1} ${esc(sl.name)}</td><td class="tc">${sl.maxLevel || 0}</td></tr>`
+                ).join('')}</tbody>
+              </table>`;
+            return `<div style="display:flex;gap:1mm">${makeTable(activeLists.slice(0, half), 0)}${makeTable(activeLists.slice(half), half)}</div>`;
+          }
+          return `<table class="ps-table-mini">
+            <thead><tr><th>LISTES DE SORTS</th><th>Niv</th></tr></thead>
+            <tbody>${activeLists.map((sl, i) =>
               `<tr><td>${i + 1} ${esc(sl.name)}</td><td class="tc">${sl.maxLevel || 0}</td></tr>`
-            ).join('')}
-          </tbody>
-        </table>
+            ).join('')}</tbody>
+          </table>`;
+        })()}
         <div class="ps-magic-effects">
           <div style="font-size:7pt;font-weight:bold">Effets magiques:</div>
           <div class="ps-blank-lines">

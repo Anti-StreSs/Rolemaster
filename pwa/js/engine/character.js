@@ -185,7 +185,7 @@ export function getTotalRanks(character, skillIndex) {
        + (character.skillRanksApprenti[skillIndex] || 0)
        + (character.skillRanksPrior[skillIndex] || 0)
        + (character.skillRanksLevel[skillIndex] || 0)
-       + (typeof skillIndex === 'number' ? (character.skillRanksSimil?.[skillIndex] || 0) : 0);
+       + (character.skillRanksSimil?.[skillIndex] || 0);
 }
 
 /**
