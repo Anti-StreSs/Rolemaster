@@ -414,13 +414,47 @@ export function getDeathThreshold(character) {
 /**
  * Armor Maneuver Penalties by AT (1-20) for moving skills.
  * Source: RM2 Character Law Table 15-8 / Arms Law armor chart.
- * These apply to Athletic, Gymnastic, and other movement-based skills.
  * Indexed 0-based: ARMOR_MANEUVER_PENALTIES[armorType - 1]
  */
 export const ARMOR_MANEUVER_PENALTIES = [
 //  AT1  AT2  AT3  AT4  AT5  AT6  AT7  AT8  AT9 AT10 AT11 AT12 AT13 AT14 AT15 AT16 AT17 AT18 AT19 AT20
       0,   0,   0,   0,  -5, -10, -15, -20,  -5, -10, -15, -20, -10, -15, -25, -30, -15, -25, -35, -50
 ];
+
+/**
+ * Determine if a skill is a movement skill that receives armor maneuver penalties.
+ * Uses keyword matching only — the data category names are misleading
+ * ("Gymnastic" = crafts, "Athletic" includes Body Dev).
+ */
+const _MOVING_KW = [
+  'natation', 'swimming', 'escalade', 'climbing', 'rappel', 'rappelling',
+  'course', 'running', 'sprint', 'glisse', 'skiing', 'patinage', 'skating',
+  'surf', 'surfing', 'saut', 'jumping', 'culbute', 'tumbl', 'funambule', 'tightrope',
+  'équitation', 'riding', 'esquive', 'evasion', 'adrenal', 'adrén',
+];
+export function isMovingSkill(skill) {
+  const name = ((skill.name_fr || skill.name_en || skill.name || '')).toLowerCase();
+  return _MOVING_KW.some(kw => name.includes(kw));
+}
+
+/**
+ * Normalize a loaded character to fill in defaults for any fields missing
+ * in older save formats. Call this on every import/load.
+ */
+export function normalizeCharacter(data) {
+  const defaults = createCharacter();
+  for (const key of Object.keys(defaults)) {
+    if (data[key] === undefined) data[key] = defaults[key];
+  }
+  // Shallow-merge nested objects so sub-keys added later are backfilled
+  if (data.manualBonuses && typeof data.manualBonuses === 'object')
+    data.manualBonuses = { ...defaults.manualBonuses, ...data.manualBonuses };
+  if (data.backgroundOptions && typeof data.backgroundOptions === 'object')
+    data.backgroundOptions = { ...defaults.backgroundOptions, ...data.backgroundOptions };
+  if (data.statLog && typeof data.statLog === 'object')
+    data.statLog = { ...defaults.statLog, ...data.statLog };
+  return data;
+}
 
 // Shield types (RM2/Classic)
 export const SHIELD_TYPES = [

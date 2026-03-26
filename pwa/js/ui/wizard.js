@@ -2,7 +2,7 @@
 // Profession chosen first, then stats (temp/pot pairs), then everything else
 
 import { panel, showToast } from './components.js';
-import { createCharacter, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, applyRace, DEV_PHASES, getTotalRanks, getCurrentPhaseRanks, getCurrentPhaseRanksObj, getDevPointsSpent, setDevPointsSpent, getDevPointsTotal, getSpellPointsSpent, setSpellPointsSpent, getSpellPointsTotal, SHIELD_TYPES, calculateDB, setAdrenalDefenseIndex, rollBodyDevHitDie, getBodyDevSkillIndex, getDeathThreshold, ARMOR_MANEUVER_PENALTIES } from '../engine/character.js';
+import { createCharacter, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, applyRace, DEV_PHASES, getTotalRanks, getCurrentPhaseRanks, getCurrentPhaseRanksObj, getDevPointsSpent, setDevPointsSpent, getDevPointsTotal, getSpellPointsSpent, setSpellPointsSpent, getSpellPointsTotal, SHIELD_TYPES, calculateDB, setAdrenalDefenseIndex, rollBodyDevHitDie, getBodyDevSkillIndex, getDeathThreshold, ARMOR_MANEUVER_PENALTIES, isMovingSkill } from '../engine/character.js';
 import { generateStatRolls, getStatValues, statPotentialLookup, generateStatRollsHybrid, generateStatRollsAntiLose, getStatValuesHybrid, rollStatPairsRMSS, getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
 import { getAllClasses, getClassName, getRealmInfo, getRealmKey, getRealmLabel, isSpellUser, getClassPrimeStats, getPPStatIndices } from '../engine/classes.js';
 import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts, isParentSkill, isSpecializableSkill, getWeaponSubcategories, getWeaponSkillCost, getParentSubSkillOptions, WEAPON_SKILL_GLOBAL_INDEX, getAllSkillsFlat, getLevelBonus, calcSimilarityBonus, getSpecializationSuggestion } from '../engine/skills.js';
@@ -1710,18 +1710,7 @@ function renderHistoryTab(lang) {
   `;
 }
 
-// Moving skill detection for armor maneuver penalty (RM2 Table 15-8)
-const MOVING_SKILL_CATEGORIES = ['Athletic', 'Gymnastic'];
-const MOVING_SKILL_KEYWORDS = [
-  'natation', 'swimming', 'escalade', 'climbing', 'course', 'running',
-  'saut', 'jumping', 'acrobat', 'équitation', 'riding',
-  'esquive', 'adrenal', 'adrén',
-];
-function isMovingSkill(skill, catName) {
-  if (MOVING_SKILL_CATEGORIES.some(c => catName && catName.toLowerCase().includes(c.toLowerCase()))) return true;
-  const name = ((skill.name_fr || skill.name_en || skill.name || '')).toLowerCase();
-  return MOVING_SKILL_KEYWORDS.some(kw => name.includes(kw));
-}
+// isMovingSkill imported from character.js
 
 // === Tab: Skills ===
 function renderSkillsTab(lang) {
@@ -1965,7 +1954,7 @@ function renderSkillsTab(lang) {
         const armorMM = ARMOR_MANEUVER_PENALTIES[(character.armorType || 1) - 1] || 0;
         const armorMagic = character.armorMagicBonus || 0;
         const effectiveArmorPenalty = Math.min(0, armorMM + armorMagic);
-        const isMoving = isMovingSkill(skill, cat.name);
+        const isMoving = isMovingSkill(skill);
         const armorPenalty = isMoving ? effectiveArmorPenalty : 0;
         const total = rankBonus + statTotalBonus + lvlBonus + similBonus + miscBonus + armorPenalty;
         let rankBoxes = renderRankBoxes(totalRanks, phaseRanks);

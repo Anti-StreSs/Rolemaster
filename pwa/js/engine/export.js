@@ -2,6 +2,7 @@
 
 import { saveCharacter, loadCharacter, deleteCharacter,
          getAllCharacters, migrateFromLocalStorage } from './db.js';
+import { normalizeCharacter } from './character.js';
 
 // Re-export DB functions under legacy names for backwards compatibility
 export { saveCharacter as saveToLocalStorage };
@@ -35,7 +36,7 @@ export function characterFromJSON(jsonStr) {
   if (!data.version || !data.name) {
     throw new Error('Invalid character file');
   }
-  return data;
+  return normalizeCharacter(data);
 }
 
 /**

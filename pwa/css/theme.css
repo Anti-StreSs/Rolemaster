@@ -374,7 +374,6 @@ body.rm-theme {
   gap: 24px;
   align-items: center;
   justify-content: center;
-  opacity: 0.6;
   padding: 8px 0;
 }
 .rm-footer-deco img { height: 64px; width: auto; }

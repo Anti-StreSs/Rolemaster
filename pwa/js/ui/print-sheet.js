@@ -2,9 +2,9 @@
 // Reproduces CPR093 layout: identity, stats, combat, skills with DM boxes
 
 import { getAllClasses, getClassName, getRealmKey, getRealmLabel } from '../engine/classes.js';
-import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getLevelBonus } from '../engine/skills.js';
+import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getLevelBonus, calcSimilarityBonus } from '../engine/skills.js';
 import { getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
-import { getTotalRanks, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, calculateDB, getDeathThreshold, ARMOR_MANEUVER_PENALTIES } from '../engine/character.js';
+import { getTotalRanks, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, calculateDB, getDeathThreshold, ARMOR_MANEUVER_PENALTIES, isMovingSkill } from '../engine/character.js';
 
 const STAT_NAMES_FR = ['Constitution', 'Agilité', 'Auto-discipline', 'Mémoire', 'Raisonnement', 'Force', 'Rapidité', 'Présence', 'Empathie', 'Intuition'];
 const STAT_ABBREVS = ['Co', 'Ag', 'AD', 'Mé', 'Ra', 'Fo', 'Rp', 'Pr', 'Em', 'In'];
@@ -24,13 +24,6 @@ function calcSkillStatBonus(skill, character) {
   return Math.floor(sum / statIndices.length);
 }
 
-const _MOVING_CATS_PS = ['Athletic', 'Gymnastic'];
-const _MOVING_KW_PS = ['natation', 'swimming', 'escalade', 'climbing', 'course', 'running', 'saut', 'jumping', 'acrobat', 'équitation', 'riding', 'esquive', 'adrenal', 'adrén'];
-function isMovingSkillPS(skill, catName) {
-  if (_MOVING_CATS_PS.some(c => catName && catName.toLowerCase().includes(c.toLowerCase()))) return true;
-  const name = ((skill.name_fr || skill.name_en || '')).toLowerCase();
-  return _MOVING_KW_PS.some(kw => name.includes(kw));
-}
 
 /**
  * Get filtered and formatted skills for printing.
@@ -52,8 +45,9 @@ function getFilteredSkills(character, config) {
       const lvlBonus = getLevelBonus(cls, character.level, cat.name, globalIndex);
       const miscBonus = character.skillMiscBonuses[globalIndex] || 0;
       const armorMM = ARMOR_MANEUVER_PENALTIES[(character.armorType || 1) - 1] || 0;
-      const armorPenalty = isMovingSkillPS(skill, cat.name) ? Math.min(0, armorMM + (character.armorMagicBonus || 0)) : 0;
-      const total = rankBonus + statBonus + lvlBonus + miscBonus + armorPenalty;
+      const armorPenalty = isMovingSkill(skill) ? Math.min(0, armorMM + (character.armorMagicBonus || 0)) : 0;
+      const similBonus = calcSimilarityBonus(globalIndex, character);
+      const total = rankBonus + statBonus + lvlBonus + miscBonus + similBonus + armorPenalty;
       const highlight = (character.skillHighlights || {})[globalIndex] || null;
 
       let include = false;
@@ -199,7 +193,7 @@ function generateSkillTable(skills, config) {
     for (let b = 0; b < displayBoxes; b++) {
       dmBoxes += b < totalRanks ? '■' : '□';
     }
-    if (totalRanks > 20) dmBoxes += `+${totalRanks - 20}`;
+    if (totalRanks > 0) dmBoxes += `<span style="font-size:5pt;color:#666;margin-left:1pt">${totalRanks}</span>`;
 
     const hlClass = sk.highlight ? `ps-hl-${sk.highlight}` : '';
     const textClass = sk.textColor ? `ps-text-${sk.textColor}` : '';

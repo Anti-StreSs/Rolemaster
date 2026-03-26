@@ -3,8 +3,8 @@
 
 import { getStatBonus, getRankBonus } from './stats.js';
 import { calcHitPoints, calcPowerPoints, calculateDB, getTotalRanks,
-         getTotalStatBonus, getDeathThreshold, ARMOR_MANEUVER_PENALTIES } from './character.js';
-import { getSkillStatIndices, getLevelBonus, getAllCategories } from './skills.js';
+         getTotalStatBonus, getDeathThreshold, ARMOR_MANEUVER_PENALTIES, isMovingSkill } from './character.js';
+import { getSkillStatIndices, getLevelBonus, getAllCategories, calcSimilarityBonus } from './skills.js';
 import { getBackgroundBonuses, getSkillBackgroundBonus,
          summarizeBackgroundBonuses } from './background-effects.js';
 import { getClassName, getRealmLabel, getAllClasses } from './classes.js';
@@ -37,17 +37,24 @@ const HIGHLIGHT_FILLS = {
 
 // --- Skill data ---
 
-// Moving skill detection for armor maneuver penalty (PDF mirror of wizard.js logic)
-const MOVING_SKILL_CATEGORIES_PDF = ['Athletic', 'Gymnastic'];
-const MOVING_SKILL_KEYWORDS_PDF = [
-  'natation', 'swimming', 'escalade', 'climbing', 'course', 'running',
-  'saut', 'jumping', 'acrobat', 'équitation', 'riding', 'esquive', 'adrenal', 'adrén',
-];
-function isMovingSkillPDF(skill, catName) {
-  if (MOVING_SKILL_CATEGORIES_PDF.some(c => catName && catName.toLowerCase().includes(c.toLowerCase()))) return true;
-  const name = ((skill.name_fr || skill.name_en || '')).toLowerCase();
-  return MOVING_SKILL_KEYWORDS_PDF.some(kw => name.includes(kw));
-}
+const CAT_NAMES_FR = {
+  'Academic':      'Académique',
+  'Artistic':      'Artistique',
+  'Athletic':      'Athlétique',
+  'Awareness':     'Perception',
+  'Combat':        'Combat',
+  'Communication': 'Communication',
+  'Crafts':        'Artisanat',
+  'Deadly':        'Arts Mortels',
+  'Directed':      'Sorts Dirigés',
+  'Gymnastic':     'Gymnique',
+  'Lore':          'Connaissance',
+  'Outdoor':       'Plein Air',
+  'Resistance':    'Résistance',
+  'Subterfuge':    'Subterfuge',
+  'Technical':     'Technique',
+  'Weapon':        'Armes',
+};
 
 function calcSkillStatBonusPDF(skill, character, bgBonuses) {
   const statIndices = getSkillStatIndices(skill);
@@ -59,7 +66,7 @@ function calcSkillStatBonusPDF(skill, character, bgBonuses) {
   return Math.floor(sum / statIndices.length);
 }
 
-function getDevelopedSkills(character) {
+function getDevelopedSkills(character, lang) {
   const categories = getAllCategories();
   const classes = getAllClasses();
   const cls = character.classIndex >= 0 ? classes[character.classIndex] : null;
@@ -76,13 +83,15 @@ function getDevelopedSkills(character) {
       const lvlBonus   = getLevelBonus(cls, character.level, cat.name, gi);
       const miscBonus  = character.skillMiscBonuses[gi] || 0;
       const bgBonus    = getSkillBackgroundBonus(bgBonuses, skill.name_fr, skill.name_en);
+      const similBonus = calcSimilarityBonus(gi, character);
       const armorMM    = ARMOR_MANEUVER_PENALTIES[(character.armorType || 1) - 1] || 0;
       const armorMagic = character.armorMagicBonus || 0;
-      const armorPenalty = isMovingSkillPDF(skill, cat.name) ? Math.min(0, armorMM + armorMagic) : 0;
-      const total      = rankBonus + statBonus + lvlBonus + miscBonus + bgBonus + armorPenalty;
+      const armorPenalty = isMovingSkill(skill) ? Math.min(0, armorMM + armorMagic) : 0;
+      const total      = rankBonus + statBonus + lvlBonus + miscBonus + bgBonus + similBonus + armorPenalty;
 
       if (totalRanks > 0 || total > 0) {
-        if (!catPushed) { result.push({ isCategory: true, name: cat.name }); catPushed = true; }
+        const catLabel = lang === 'fr' ? (CAT_NAMES_FR[cat.name] || cat.name) : cat.name;
+        if (!catPushed) { result.push({ isCategory: true, name: catLabel }); catPushed = true; }
         result.push({
           name: skill.name_fr || skill.name_en,
           totalRanks, rankBonus, statBonus, lvlBonus, miscBonus, bgBonus, total,
@@ -151,11 +160,12 @@ function drawDMBoxes(doc, x, y, totalRanks) {
       doc.rect(bx, by, SZ, SZ);
     }
   }
-  if (totalRanks > MAX) {
+  if (totalRanks > 0) {
     doc.setFontSize(5.5);
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(75, 50, 10);
-    doc.text('+' + (totalRanks - MAX), x + MAX * (SZ + GAP) + 0.3, y);
+    const label = totalRanks > MAX ? '+' + (totalRanks - MAX) : String(totalRanks);
+    doc.text(label, x + MAX * (SZ + GAP) + 0.3, y);
     doc.setTextColor(0, 0, 0);
   }
   doc.setDrawColor(100, 100, 100);
@@ -478,7 +488,7 @@ export function generateCharacterPDF(character, options = {}) {
   // ==============================
   // Skills — two-column, multi-page, with bold/color/highlight/DM boxes
   // ==============================
-  const developedSkills = getDevelopedSkills(character);
+  const developedSkills = getDevelopedSkills(character, lang);
 
   if (developedSkills.length > 0) {
     sectionHeader(lang === 'en' ? 'Skills' : 'Compétences');
