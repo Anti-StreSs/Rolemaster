@@ -1,6 +1,6 @@
 # Checkpoint — CPR093 Reverse Engineering
 
-*Updated: 2026-03-26 (Batch 33)*
+*Updated: 2026-03-26 (Batch 34)*
 
 ## Summary
 
@@ -78,6 +78,27 @@ Session 2026-03-26 (Phase 4k — NPC overhaul + French terminology) completed th
 - `193f276` — Batch 33 principal (armor, migration, PDF fixes)
 - `fbd8b96` — Footer hover + tooltip
 - `2f0583b` — Colonne Simil optionnelle à l'impression
+
+## Phase 4m Changes — Batch 34 + Responsive (2026-03-26)
+
+### Batch 34 — Similarity system overhaul (`644f960`)
+- **`calcSimilarityRanks(gi, char)`** remplace `calcSimilarityBonus` dans `skills.js` — diviseur 16, formule `floor(src × coeff / 16)` (coeff 8 = demi-rangs, RM2 14.1.5)
+- **`getOwnDevelopedRanks(gi, char)`** helper sans simil (évite la dépendance circulaire)
+- **`skillRanksSimil: {}`** 5e store dans le modèle character; `getTotalRanks` l'inclut
+- **`finalizeSimRanks(char)`** dans `wizard.js` : écrit les rangs auto dans `skillRanksSimil` au clic "Valider la phase"
+- Pendant le dev : cases rouges `.rank-box.sim-rank` + colonne Sim `N*` en rouge (preview)
+- Après validation : cases normales, Sim column affiche trace en orange
+- `tools-api.js`, `pdf-export.js`, `print-sheet.js` nettoyés (ancien `calcSimilarityBonus` supprimé partout)
+
+### Responsive fixes (`db92038`)
+- **Tableau compétences** : `scroll-container` gagne `overflow-x:auto` → scrollable sur mobile
+- **Colonnes Niv/Sim** masquées à ≤640px via `.col-lvl`/`.col-sim` pour tenir dans 375px
+- **Modale impression** : contrainte à `min(100%,32rem)` + `p-3` overlay + `overflow-y:auto`
+- **sticky-col** : tronquée à 7rem + `text-overflow:ellipsis` sur mobile
+
+### Commits
+- `644f960` — Batch 34 similarity overhaul
+- `db92038` — Responsive fixes
 
 ## Still TODO
 
