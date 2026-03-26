@@ -1769,8 +1769,8 @@ function renderSkillsTab(lang) {
           <th class="text-center w-10"></th>
           <th class="text-center w-14">${lang === 'en' ? 'Rank' : 'Rang'}</th>
           <th class="text-center w-14">${lang === 'en' ? 'Stat' : 'Carac'}</th>
-          <th class="text-center w-10">${lang === 'en' ? 'Lvl' : 'Niv'}</th>
-          <th class="text-center w-10">${lang === 'en' ? 'Sim' : 'Sim'}</th>
+          <th class="text-center w-10 col-lvl">${lang === 'en' ? 'Lvl' : 'Niv'}</th>
+          <th class="text-center w-10 col-sim">${lang === 'en' ? 'Sim' : 'Sim'}</th>
           <th class="text-center w-14" title="${lang === 'en' ? 'Misc: manual + background + armor penalties for moving skills' : 'Div: manuels + historique + malus armure pour compétences de mouvement'}">${lang === 'en' ? 'Misc' : 'Div'}</th>
           <th class="text-center w-16 font-bold">Total</th>
         </tr>
@@ -1983,8 +1983,8 @@ function renderSkillsTab(lang) {
             <td class="text-center">${plusMinus}</td>
             <td class="text-center stat-bonus ${rankBonus >= 0 ? 'positive' : 'negative'}">${rankBonus >= 0 ? '+' + rankBonus : rankBonus}</td>
             <td class="text-center stat-bonus ${statTotalBonus >= 0 ? 'positive' : 'negative'}">${statTotalBonus >= 0 ? '+' + statTotalBonus : statTotalBonus}</td>
-            <td class="text-center text-xs">${lvlBonus > 0 ? '+' + lvlBonus : ''}</td>
-            <td class="text-center text-xs">${
+            <td class="text-center text-xs col-lvl">${lvlBonus > 0 ? '+' + lvlBonus : ''}</td>
+            <td class="text-center text-xs col-sim">${
               isValidated && (character.skillRanksSimil?.[globalIndex] || 0) > 0
                 ? `<span class="text-orange-400" title="${lang === 'en' ? 'Auto ranks from similar skills' : 'DM auto (compétences similaires)'}">${character.skillRanksSimil[globalIndex]}</span>`
                 : simPreview > 0
@@ -4291,11 +4291,11 @@ function openPrintConfigPopup() {
   }
   const pc = character.printConfig;
 
-  const html = `<div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center" id="print-config-overlay">
-    <div class="bg-gray-800 rounded-lg p-4" style="display:flex;flex-direction:column">
+  const html = `<div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-3" id="print-config-overlay">
+    <div class="bg-gray-800 rounded-lg p-4 overflow-y-auto" style="display:flex;flex-direction:column;width:min(100%,32rem);max-height:90vh">
       <h3 class="text-amber-300 font-bold mb-3">${lang === 'en' ? 'Print Configuration' : 'Configuration d\'impression'}</h3>
 
-      <div class="grid gap-3 text-sm" style="grid-template-columns: auto 1fr">
+      <div class="grid gap-3 text-sm" style="grid-template-columns: minmax(auto,max-content) 1fr">
         <label class="text-gray-400">${lang === 'en' ? 'Font' : 'Police'}</label>
         <select id="pc-font" class="field field-sm">
           ${['Arial', 'Times New Roman', 'Courier New', 'Georgia', 'Verdana'].map(f => `<option value="${f}" ${pc.font === f ? 'selected' : ''}>${f}</option>`).join('')}
