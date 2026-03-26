@@ -915,6 +915,7 @@ function initSessionToolbox() {
           { key: lang === 'en' ? 'Roll' : 'Jet', val: res.attack?.breakdown?.roll ?? '?' },
           { key: 'Total', val: res.attack?.total ?? '?' },
           { key: lang === 'en' ? 'Hits' : 'PdC', val: hits },
+          ...(isCrit ? [{ key: lang === 'en' ? 'Crit roll' : 'Jet crit.', val: res.critical.roll ?? '?' }] : []),
         ],
         details, stateLabel,
       });

@@ -40,8 +40,10 @@ function getFilteredSkills(character, config) {
   const lang = config.lang || 'fr';
   const result = [];
   let globalIndex = 0;
+  let currentCatName = '';
 
   for (const cat of categories) {
+    currentCatName = cat.name;
     for (const skill of cat.skills) {
       const totalRanks = getTotalRanks(character, globalIndex);
       const rankBonus = getRankBonus(totalRanks);
@@ -93,7 +95,7 @@ function getFilteredSkills(character, config) {
           const wTotal = wRankB + wMisc;
           if (wRanks > 0 || wTotal > 0) {
             result.push({
-              name: '  ↳ ' + wpn.name, categoryName: '', totalRanks: wRanks, rankBonus: wRankB,
+              name: '  ↳ ' + wpn.name, categoryName: currentCatName, totalRanks: wRanks, rankBonus: wRankB,
               statBonus: 0, lvlBonus: 0, miscBonus: wMisc || '', total: wTotal,
               costStr: wpn.cost ? `${wpn.cost.first}/${wpn.cost.second}` : '—',
               highlight: (character.skillHighlights || {})[wsKey] || null,
@@ -115,7 +117,7 @@ function getFilteredSkills(character, config) {
         const sTotal = sRankB + sMisc;
         if (sRanks > 0 || sTotal > 0) {
           result.push({
-            name: '  ↳ ' + sub.name, categoryName: '', totalRanks: sRanks, rankBonus: sRankB,
+            name: '  ↳ ' + sub.name, categoryName: currentCatName, totalRanks: sRanks, rankBonus: sRankB,
             statBonus: 0, lvlBonus: 0, miscBonus: sMisc || '', total: sTotal,
             costStr: sub.cost ? `${sub.cost.first}/${sub.cost.second || ''}` : '—',
             highlight: (character.skillHighlights || {})[subKey] || null,

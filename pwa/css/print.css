@@ -48,6 +48,8 @@
     padding: 6mm 4mm 14mm 4mm !important;
     page-break-after: always !important;
     break-after: page !important;
+    page-break-inside: auto !important;
+    break-inside: auto !important;
   }
   .print-preview-content .print-page:last-child {
     page-break-after: avoid !important;

@@ -28,10 +28,11 @@ const TEXT_COLORS = {
 const HIGHLIGHT_FILLS = {
   yellow: [255, 248, 185],
   green:  [200, 240, 200],
+  pink:   [255, 200, 215],
   blue:   [200, 220, 255],
+  orange: [255, 225, 190],
   red:    [255, 200, 200],
   purple: [230, 208, 255],
-  orange: [255, 225, 190],
 };
 
 // --- Skill data ---
@@ -255,9 +256,10 @@ function renderSkillsSection(doc, skills, lang, startY, pageH, mT, mB, mL) {
     return atY + HEADER_H;
   }
 
-  let col      = 0;
-  let y        = drawHeaders(startY);
-  let colTopY  = y;
+  let col         = 0;
+  let y           = drawHeaders(startY);
+  let colTopY     = y;
+  let lastCatName = '';
 
   for (const sk of skills) {
     const rowH = sk.isCategory ? CAT_H : ROW_H;
@@ -267,6 +269,11 @@ function renderSkillsSection(doc, skills, lang, startY, pageH, mT, mB, mL) {
         // Move to right column, reset y to column top
         col = 1;
         y   = colTopY;
+        // Re-emit category continuation header if next item is a skill
+        if (!sk.isCategory && lastCatName) {
+          drawSkillCategoryHeader(doc, lastCatName, RIGHT_X, y);
+          y += CAT_H;
+        }
       } else {
         // Both columns full — new page
         doc.addPage();
@@ -274,12 +281,18 @@ function renderSkillsSection(doc, skills, lang, startY, pageH, mT, mB, mL) {
         y       = drawHeaders(y);
         colTopY = y;
         col     = 0;
+        // Re-emit category continuation header if next item is a skill
+        if (!sk.isCategory && lastCatName) {
+          drawSkillCategoryHeader(doc, lastCatName, mL, y);
+          y += CAT_H;
+        }
       }
     }
 
     const colX = col === 0 ? mL : RIGHT_X;
 
     if (sk.isCategory) {
+      lastCatName = sk.name;
       drawSkillCategoryHeader(doc, sk.name, colX, y);
       y += CAT_H;
     } else {
