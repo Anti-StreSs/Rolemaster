@@ -380,6 +380,92 @@ export function generatePrintSheet(character, config, lang) {
   `).join('');
 }
 
+// ─── Auto-fit helpers ────────────────────────────────────────────────────────
+
+/**
+ * Returns true if the skills table bottom exceeds the print-footer top
+ * (or a fallback bottom margin). Uses absolute screen coords from
+ * getBoundingClientRect() so it works regardless of page scroll.
+ */
+function _isTableOverflowing(table, page) {
+  const tableRect = table.getBoundingClientRect();
+  const footer = page.querySelector('.print-footer');
+  const limit = footer
+    ? footer.getBoundingClientRect().top
+    : page.getBoundingClientRect().bottom - 15;
+  return tableRect.bottom > limit - 2; // 2px tolerance
+}
+
+/**
+ * For each .print-page in the overlay:
+ * 1. Zoom out the skills table (1.0 → 0.70, step 0.02) until it fits.
+ * 2. If still overflowing at zoom 0.70, trim tbody rows from the bottom.
+ * Returns an array of { page, trimmed } for pages that needed row trimming.
+ */
+function _autoFitSkillTables(overlay) {
+  const pages = overlay.querySelectorAll('.print-page');
+  const warnings = [];
+
+  for (let pi = 0; pi < pages.length; pi++) {
+    const page = pages[pi];
+    const table = page.querySelector('.ps-skills-table');
+    if (!table || !_isTableOverflowing(table, page)) continue;
+
+    // Step 1: zoom out until it fits
+    let zoom = 0.98;
+    while (zoom >= 0.70) {
+      table.style.zoom = zoom.toFixed(2);
+      if (!_isTableOverflowing(table, page)) break;
+      zoom -= 0.02;
+    }
+
+    // Step 2: if still overflowing at minimum zoom, trim rows
+    if (_isTableOverflowing(table, page)) {
+      const tbody = table.querySelector('tbody');
+      let trimmed = 0;
+      while (_isTableOverflowing(table, page) && tbody && tbody.rows.length > 0) {
+        const lastRow = tbody.rows[tbody.rows.length - 1];
+        if (!lastRow.classList.contains('ps-cat-row')) trimmed++;
+        tbody.removeChild(lastRow);
+      }
+      if (trimmed > 0) warnings.push({ page: pi + 1, trimmed });
+    }
+  }
+
+  return warnings;
+}
+
+/**
+ * Show a non-blocking modal warning when rows were trimmed to fit.
+ */
+function _showFitWarning(warnings, lang) {
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center';
+  const lines = warnings.map(w =>
+    lang === 'en'
+      ? `Page ${w.page}: ${w.trimmed} skill(s) removed to fit the page`
+      : `Page ${w.page}\u00a0: ${w.trimmed}\u00a0compétence(s) supprimée(s) pour tenir dans la page`
+  ).join('<br>');
+  modal.innerHTML = `
+    <div style="background:#fff;color:#222;border-radius:8px;padding:1.5rem 2rem;max-width:380px;font-family:Arial,sans-serif;font-size:13px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.4)">
+      <div style="font-size:15px;font-weight:bold;color:#8b2500;margin-bottom:0.75rem">
+        &#9888; ${lang === 'en' ? 'Print layout adjusted' : 'Mise en page ajustée'}
+      </div>
+      <div style="margin-bottom:0.75rem;line-height:1.7">${lines}</div>
+      <div style="font-size:11px;color:#666;margin-bottom:1rem">
+        ${lang === 'en'
+          ? 'Decrease skills-per-page in print settings to avoid this.'
+          : 'Réduisez le nombre de compétences par page dans les paramètres d\'impression.'}
+      </div>
+      <button style="padding:6px 24px;background:#8b2500;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:13px">OK</button>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  modal.querySelector('button').addEventListener('click', () => modal.remove());
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 /**
  * Open print preview overlay.
  */
@@ -405,6 +491,10 @@ export function showPrintPreview(character, config, lang) {
 
   document.body.appendChild(overlay);
   document.body.classList.add('printing');
+
+  // Auto-fit: zoom out tables that overflow, trim + warn if still overflowing
+  const fitWarnings = _autoFitSkillTables(overlay);
+  if (fitWarnings.length) _showFitWarning(fitWarnings, lang);
 
   document.getElementById('pp-print').addEventListener('click', () => window.print());
   document.getElementById('pp-close').addEventListener('click', () => {
