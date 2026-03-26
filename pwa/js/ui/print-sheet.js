@@ -10,6 +10,25 @@ const STAT_NAMES_FR = ['Constitution', 'Agilité', 'Auto-discipline', 'Mémoire'
 const STAT_ABBREVS = ['Co', 'Ag', 'AD', 'Mé', 'Ra', 'Fo', 'Rp', 'Pr', 'Em', 'In'];
 const DEV_STATS = [0, 1, 2, 3, 4];
 
+const CAT_NAMES_FR = {
+  'Academic':    'Savoir',
+  'Animal':      'Animaux',
+  'Athletic':    'Athlétique',
+  'Combat':      'Combat',
+  'Deadly':      'Contrôle de Soi',
+  'Evaluation':  'Attaques Spéciales',
+  'General':     'Évaluation',
+  'Gymnastic':   'Artisanat',
+  'Linguistic':  'Gymnastique',
+  'Magical':     'Communication',
+  'Medical':     'Magie',
+  'Perception':  'Médecine',
+  'Social':      'Perception',
+  'Subterfuge':  'Influence',
+  'Survival':    'Subterfuge',
+  'Category_15': 'Survie/Extérieur',
+};
+
 function esc(str) {
   if (!str) return '';
   return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -63,7 +82,7 @@ function getFilteredSkills(character, config) {
         const cost = getSkillDevCost(character.classIndex, globalIndex);
         result.push({
           name: getSkillName(skill, lang),
-          categoryName: lang === 'en' ? cat.name : cat.name,
+          categoryName: lang === 'en' ? cat.name : (CAT_NAMES_FR[cat.name] || cat.name),
           totalRanks,
           rankBonus,
           statBonus,

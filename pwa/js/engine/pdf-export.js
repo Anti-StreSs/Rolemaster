@@ -38,22 +38,22 @@ const HIGHLIGHT_FILLS = {
 // --- Skill data ---
 
 const CAT_NAMES_FR = {
-  'Academic':      'Académique',
-  'Artistic':      'Artistique',
-  'Athletic':      'Athlétique',
-  'Awareness':     'Perception',
-  'Combat':        'Combat',
-  'Communication': 'Communication',
-  'Crafts':        'Artisanat',
-  'Deadly':        'Arts Mortels',
-  'Directed':      'Sorts Dirigés',
-  'Gymnastic':     'Gymnique',
-  'Lore':          'Connaissance',
-  'Outdoor':       'Plein Air',
-  'Resistance':    'Résistance',
-  'Subterfuge':    'Subterfuge',
-  'Technical':     'Technique',
-  'Weapon':        'Armes',
+  'Academic':    'Savoir',
+  'Animal':      'Animaux',
+  'Athletic':    'Athlétique',
+  'Combat':      'Combat',
+  'Deadly':      'Contrôle de Soi',
+  'Evaluation':  'Attaques Spéciales',
+  'General':     'Évaluation',
+  'Gymnastic':   'Artisanat',
+  'Linguistic':  'Gymnastique',
+  'Magical':     'Communication',
+  'Medical':     'Magie',
+  'Perception':  'Médecine',
+  'Social':      'Perception',
+  'Subterfuge':  'Influence',
+  'Survival':    'Subterfuge',
+  'Category_15': 'Survie/Extérieur',
 };
 
 function calcSkillStatBonusPDF(skill, character, bgBonuses) {
