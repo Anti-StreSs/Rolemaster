@@ -836,11 +836,11 @@ function buildProjectionCurves(targetLevel) {
       projectedRolls = [...currentRolls, ...Array(L - currentLevel).fill(avgRoll)];
     }
     const projChar = { ...character, level: L, bodyDevRolls: projectedRolls };
-    hpPoints.push(calcHitPoints(projChar).base);
+    hpPoints.push(calcHitPoints(projChar).cap);
     ppPoints.push(calcPowerPoints(projChar));
     dbPoints.push(flatDB);
   }
-  return { hpPoints, ppPoints, dbPoints };
+  return { hpPoints, ppPoints, dbPoints, maxRacial: character.raceMaxPC || 150 };
 }
 
 /** Build SVG polyline content for the sparkline card. */
@@ -880,6 +880,7 @@ function renderProjectionSection(lang) {
   const hp = curves.hpPoints[curves.hpPoints.length - 1].toFixed(0);
   const pp = curves.ppPoints[curves.ppPoints.length - 1].toFixed(0);
   const db = curves.dbPoints[curves.dbPoints.length - 1];
+  const maxRacial = curves.maxRacial;
   const hasRealm = character.realm && character.realm !== 'none';
 
   return `
@@ -906,6 +907,7 @@ function renderProjectionSection(lang) {
           <span style="color:#8b2500">&#9679; ${lang === 'en' ? 'HP' : 'PdC'}: <strong id="proj-hp">${hp}</strong></span>
           ${hasRealm ? `<span style="color:#5b3aa6">&#9679; ${lang === 'en' ? 'PP' : 'PM'}: <strong id="proj-pp">${pp}</strong></span>` : ''}
           <span style="color:#355f23">&#9679; DB: <strong id="proj-db">${db}</strong></span>
+          <span style="color:#7a6030">&#9632; ${lang === 'en' ? 'Race max HP' : 'Max PdC racial'}: <strong>${maxRacial}</strong></span>
         </div>
       </div>
     </section>`;

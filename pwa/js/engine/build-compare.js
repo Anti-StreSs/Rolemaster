@@ -174,7 +174,7 @@ export async function projectProgression(name, targetLevel) {
     snapshots.push({
       level: lvl,
       dp,
-      hp: calcHitPoints(sim),
+      hp: calcHitPoints(sim).cap,
       pp: calcPowerPoints(sim),
       db: calculateDB(sim),
       topSkills: topSkills.slice(0, 5),

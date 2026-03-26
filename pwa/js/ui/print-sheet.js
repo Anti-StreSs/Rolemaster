@@ -88,6 +88,7 @@ function getFilteredSkills(character, config) {
           statBonus,
           lvlBonus,
           miscBonus: miscBonus || '',
+          armorPenalty,
           similRanks: (character.skillRanksSimil?.[globalIndex] || 0) || '',
           total,
           costStr: cost ? (cost.second > 0 ? `${cost.first}/${cost.second}` : `${cost.first}`) : '—',
@@ -225,7 +226,7 @@ function generateSkillTable(skills, config) {
       <td class="tc ps-bonus">${sk.rankBonus >= 0 ? '+' + sk.rankBonus : sk.rankBonus}</td>
       <td class="tc ps-bonus">${sk.statBonus >= 0 ? '+' + sk.statBonus : sk.statBonus}</td>
       <td class="tc">${sk.lvlBonus > 0 ? '+' + sk.lvlBonus : ''}</td>
-      <td class="tc">${sk.miscBonus || ''}</td>
+      <td class="tc">${sk.miscBonus || ''}${sk.armorPenalty < 0 ? `<span style="color:#c05010;font-size:5pt;margin-left:1pt">⛨${sk.armorPenalty}</span>` : ''}</td>
       ${config.showSimil ? `<td class="tc">${sk.similRanks || ''}</td>` : ''}
       <td class="tc ps-bonus-total"><b>${sk.total >= 0 ? '+' + sk.total : sk.total}</b></td>
     </tr>`;
@@ -379,6 +380,59 @@ function generateSkillPage(skills, config) {
 }
 
 /**
+ * Generate appendix page: Équipement + Historique & Notes + Options d'Historique.
+ * Rendered when config.historyInline is true.
+ */
+function generateHistoryPage(character, lang) {
+  const bgOpts = character.backgroundOptions || {};
+  const filledOpts = (bgOpts.options || []).filter(Boolean);
+
+  const equipSection = character.equipment ? `
+    <div style="margin-bottom:8pt">
+      <div style="font-weight:bold;font-size:9pt;border-bottom:1pt solid #8b6914;margin-bottom:4pt;padding-bottom:2pt">
+        ${lang === 'en' ? 'Equipment' : 'Équipement'}
+      </div>
+      <div style="font-size:8pt;white-space:pre-wrap">${esc(character.equipment)}</div>
+    </div>` : '';
+
+  const histSection = character.history ? `
+    <div style="margin-bottom:8pt">
+      <div style="font-weight:bold;font-size:9pt;border-bottom:1pt solid #8b6914;margin-bottom:4pt;padding-bottom:2pt">
+        ${lang === 'en' ? 'Background & Notes' : 'Historique & Notes'}
+      </div>
+      <div style="font-size:8pt;white-space:pre-wrap">${esc(character.history)}</div>
+    </div>` : '';
+
+  const bgOptRows = filledOpts.map((opt, i) => `
+    <tr>
+      <td style="padding:1.5pt 3pt;font-size:7.5pt;font-weight:bold;white-space:nowrap">${i + 1}. ${esc(lang === 'en' ? opt.name : (opt.name_fr || opt.name))}</td>
+      <td style="padding:1.5pt 3pt;font-size:7.5pt">${esc(opt.description || '')}</td>
+    </tr>`).join('');
+
+  const bgOptSection = filledOpts.length > 0 ? `
+    <div style="margin-bottom:8pt">
+      <div style="font-weight:bold;font-size:9pt;border-bottom:1pt solid #8b6914;margin-bottom:4pt;padding-bottom:2pt">
+        ${lang === 'en' ? 'Background Options' : 'Options d\'Historique'} (${filledOpts.length}/${bgOpts.totalOptions || filledOpts.length})
+      </div>
+      <table style="width:100%;border-collapse:collapse">
+        <tbody>${bgOptRows}</tbody>
+      </table>
+    </div>` : '';
+
+  if (!equipSection && !histSection && !bgOptSection) return null;
+
+  return `
+    <div style="padding:8pt 10pt;font-family:Arial,sans-serif;color:#222">
+      <div style="font-size:11pt;font-weight:bold;margin-bottom:8pt;border-bottom:2pt solid #8b6914;padding-bottom:3pt">
+        ${esc(character.name || '')} — ${lang === 'en' ? 'Appendix' : 'Annexe'}
+      </div>
+      ${equipSection}
+      ${histSection}
+      ${bgOptSection}
+    </div>`;
+}
+
+/**
  * Generate the complete print sheet (multi-page HTML).
  */
 export function generatePrintSheet(character, config, lang) {
@@ -397,6 +451,12 @@ export function generatePrintSheet(character, config, lang) {
   for (let i = 0; i < remainingSkills.length; i += perPage) {
     const pageSkills = remainingSkills.slice(i, i + perPage);
     pages.push(generateSkillPage(pageSkills, config));
+  }
+
+  // Appendix page: equipment + history + background options
+  if (config.historyInline) {
+    const histPage = generateHistoryPage(character, lang);
+    if (histPage) pages.push(histPage);
   }
 
   return pages.map((p, i) => `
