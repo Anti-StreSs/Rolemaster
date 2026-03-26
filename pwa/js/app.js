@@ -559,11 +559,24 @@ function initSessionToolbox() {
                 <label class="rm-field-label" for="atk-at">${lang === 'en' ? 'Armor Type' : 'Type d\'Armure (TA)'}</label>
                 <input class="rm-field rm-inline-input" type="number" id="atk-at" name="atk-at" value="1" min="1" max="20" inputmode="numeric">
               </div>
+              <div class="rm-field-group">
+                <label class="rm-field-label" for="atk-roll" title="${lang === 'en' ? 'Leave blank for auto-roll' : 'Laisser vide pour jet auto'}">${lang === 'en' ? 'Attack roll' : 'Jet attaque'}</label>
+                <input class="rm-field rm-inline-input" type="number" id="atk-roll" name="atk-roll" min="1" max="150" placeholder="${lang === 'en' ? 'auto' : 'auto'}" inputmode="numeric" style="width:3.5rem">
+              </div>
+              <div class="rm-field-group">
+                <label class="rm-field-label" for="atk-crit-roll" title="${lang === 'en' ? 'Leave blank for auto-roll' : 'Laisser vide pour jet auto'}">${lang === 'en' ? 'Crit roll' : 'Jet crit.'}</label>
+                <input class="rm-field rm-inline-input" type="number" id="atk-crit-roll" name="atk-crit-roll" min="1" max="100" placeholder="${lang === 'en' ? 'auto' : 'auto'}" inputmode="numeric" style="width:3.5rem">
+              </div>
             </div>
-            <button class="rm-action-btn" type="button" id="btn-resolve-attack">
-              <img src="assets/ui/icons/session_attack_crossed_swords.webp" alt="" style="width:1.1rem;height:1.1rem;object-fit:contain" onerror="this.style.display='none'">
-              ${lang === 'en' ? 'Roll & Resolve' : 'Lancer & Résoudre'}
-            </button>
+            <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+              <button class="rm-action-btn" type="button" id="btn-resolve-attack">
+                <img src="assets/ui/icons/session_attack_crossed_swords.webp" alt="" style="width:1.1rem;height:1.1rem;object-fit:contain" onerror="this.style.display='none'">
+                ${lang === 'en' ? 'Roll & Resolve' : 'Lancer & Résoudre'}
+              </button>
+              <button class="rm-action-btn" type="button" id="btn-resolve-manual" style="background:var(--color-wood-dark,#2a1a08)" title="${lang === 'en' ? 'Resolve with manually entered rolls' : 'Résoudre avec les jets saisis'}">
+                ${lang === 'en' ? 'Resolve' : 'Résoudre'}
+              </button>
+            </div>
             <div id="attack-result" style="margin-top:0.75rem"></div>
           </article>
         </section>
@@ -857,15 +870,22 @@ function initSessionToolbox() {
     addToHistory({ html });
   });
 
-  // Attack
-  shell.querySelector('#btn-resolve-attack').addEventListener('click', () => {
+  // Attack — shared resolution logic
+  function runAttackResolution(manualAttackRoll, manualCritRoll) {
     const weaponTable = shell.querySelector('#atk-weapon').value;
     if (!weaponTable) { showToast(lang === 'en' ? 'Select a weapon first' : 'Choisissez une arme', true); return; }
     const ob = parseInt(shell.querySelector('#atk-ob').value) || 0;
     const db = parseInt(shell.querySelector('#atk-db').value) || 0;
     const armorType = parseInt(shell.querySelector('#atk-at').value) || 1;
     try {
-      const res = resolveFullAttack({ weaponTable, ob, db, armorType });
+      const res = resolveFullAttack({
+        weaponTable, ob, db, armorType,
+        ...(manualAttackRoll ? { attackRoll: manualAttackRoll } : {}),
+        ...(manualCritRoll   ? { critRoll:   manualCritRoll   } : {}),
+      });
+      // Fill the roll inputs with actual values used (useful after auto-roll)
+      if (res.attack?.breakdown?.roll != null) shell.querySelector('#atk-roll').value = res.attack.breakdown.roll;
+      if (res.critical?.roll != null) shell.querySelector('#atk-crit-roll').value = res.critical.roll;
       const isFumble = !!res.fumble;
       const isCrit   = !isFumble && !!res.critical;
       const hits     = res.totalHits ?? 0;
@@ -924,6 +944,19 @@ function initSessionToolbox() {
     } catch (e) {
       shell.querySelector('#attack-result').textContent = 'Erreur: ' + e.message;
     }
+  }
+
+  shell.querySelector('#btn-resolve-attack').addEventListener('click', () => {
+    // Clear manual roll inputs before auto-rolling so they show the generated values
+    shell.querySelector('#atk-roll').value = '';
+    shell.querySelector('#atk-crit-roll').value = '';
+    runAttackResolution(undefined, undefined);
+  });
+
+  shell.querySelector('#btn-resolve-manual').addEventListener('click', () => {
+    const manualRoll = parseInt(shell.querySelector('#atk-roll').value) || undefined;
+    const manualCrit = parseInt(shell.querySelector('#atk-crit-roll').value) || undefined;
+    runAttackResolution(manualRoll, manualCrit);
   });
 
   // RR
