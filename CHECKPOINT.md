@@ -1,6 +1,6 @@
 # Checkpoint — CPR093 Reverse Engineering
 
-*Updated: 2026-03-26*
+*Updated: 2026-03-26 (Batch 33)*
 
 ## Summary
 
@@ -57,6 +57,27 @@ Session 2026-03-26 (Phase 4k — NPC overhaul + French terminology) completed th
   - Attack stateLabel: `N hits` → `N PdC` (FR); crit label: `{hits}{sévérité}{typeAbbrev}` compact notation
   - `CRIT_TYPE_FR` map: slash=T, krush=K, puncture=P, unbalancing=D, heat=Ch, cold=Fr, electricity=El, grapple=Sa, subdual=Ma, brawling=Ba, acid=Ac, large_creature=GC, etc.
   - RR/JR result: title `RR →JR` (FR), `Roll`→`Jet`
+
+## Phase 4l Changes — Batch 33 (2026-03-26)
+
+### Bug fixes
+- **Armor penalty bug fixed** (`character.js`): `isMovingSkill(skill)` centralisé — matching par mots-clés uniquement, sans catégorie. Élimine les faux positifs sur Artisanat/Dev Corporel et les faux négatifs sur Culbutes/Adrénal. Partagé par `wizard.js`, `print-sheet.js`, `pdf-export.js`.
+- **Migration vieilles sauvegardes** (`character.js` + `export.js`): `normalizeCharacter(data)` remplit les champs manquants (armorMagicBonus, primeStats, skillHighlights, skillBold, skillTextColors, manualBonuses.*, backgroundOptions.*) lors de l'import/chargement.
+
+### Impression & PDF
+- **Bonus similaires dans les totaux** (`print-sheet.js`, `pdf-export.js`): `calcSimilarityBonus` inclus dans le total de chaque compétence — les deux étaient manquants.
+- **Colonne Simil optionnelle** (`print-sheet.js` + `wizard.js`): case à cocher "Bonus compétences similaires" dans la modale pré-impression ; colonne `Simil` insérée avant `Total`, `colSpan` dynamique.
+- **Noms de catégories en FR** (`pdf-export.js`): `CAT_NAMES_FR` map — Academic→Académique, Athletic→Athlétique, Gymnastic→Gymnique, Deadly→Arts Mortels, etc.
+- **Compteur de rangs DM** (`pdf-export.js`): nombre de rangs toujours affiché à droite des cases (pas seulement quand > 9).
+
+### UI
+- **Icônes footer visibles** (`theme.css`): suppression `opacity: 0.6` sur `.rm-footer-deco`.
+- **Effet survol footer** (`theme.css` + `index.html`): chaque icône monte + lueur dorée au survol; tooltip "Bientôt…" apparaît en bulles médiévales. Prêt pour devenir des liens de navigation.
+
+### Commits
+- `193f276` — Batch 33 principal (armor, migration, PDF fixes)
+- `fbd8b96` — Footer hover + tooltip
+- `2f0583b` — Colonne Simil optionnelle à l'impression
 
 ## Still TODO
 
