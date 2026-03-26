@@ -33,6 +33,19 @@
     </div>
   </header>
 
+  <!-- Hero video (Sora) — shown only if hero-sora.mp4 exists -->
+  <div class="rm-hero-video" id="hero-video-container" style="display:none">
+    <video autoplay muted loop playsinline poster="assets/hero-poster.webp"
+      id="hero-video"
+      onerror="document.getElementById('hero-video-container').style.display='none'"
+      oncanplay="document.getElementById('hero-video-container').style.display=''">
+      <source src="assets/hero-sora.mp4" type="video/mp4">
+    </video>
+    <div class="rm-hero-overlay">
+      <h1 class="rm-hero-title">Rolemaster Reborn</h1>
+    </div>
+  </div>
+
   <!-- Main layout -->
   <div class="rm-layout">
     <!-- Tab navigation -->

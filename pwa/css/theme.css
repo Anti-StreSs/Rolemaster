@@ -10,12 +10,14 @@
   --font-data: 'Segoe UI', system-ui, sans-serif;
 
   --frame-corner: 48px;
-  --color-parchment-text: #2a1a08;
-  --color-parchment-dim: #6b5030;
+  --color-parchment-text: #1e1408;
+  --color-parchment-dim: #5a4228;
   --color-parchment-accent: #8b2500;
-  --color-gold: #d4a017;
-  --color-gold-bright: #f0c040;
+  --color-gold: #c99a2e;
+  --color-gold-bright: #f5c842;
   --color-wood-dark: #2a1a08;
+  --color-accent-cool: #2a4a5a;
+  --color-accent-deep: #4a1a3a;
 }
 
 /* === BODY & BACKDROP === */
@@ -194,7 +196,7 @@ body.rm-theme {
 }
 
 .rm-parchment {
-  background: #f5efe0 url('../assets/ui/backgrounds/parchment_texture_1024.webp') center center repeat;
+  background: #f8f2e4 url('../assets/ui/backgrounds/parchment_texture_1024.webp') center center repeat;
   background-blend-mode: overlay;
   color: var(--color-parchment-text);
   padding: 20px 24px;

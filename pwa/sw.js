@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rolemaster-v35';
+const CACHE_NAME = 'rolemaster-v36';
 const ASSETS = [
   './',
   './index.html',
@@ -28,6 +28,7 @@ const ASSETS = [
   './js/engine/optional-rules.js',
   './js/engine/maneuvers.js',
   './js/engine/combat.js',
+  './js/engine/text-format.js',
   './data/attack_tables.json',
   './data/critical_tables.json',
   './data/fumble_tables.json',

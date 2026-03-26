@@ -4,7 +4,7 @@
 import { getAllClasses, getClassName, getRealmKey, getRealmLabel } from '../engine/classes.js';
 import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getLevelBonus } from '../engine/skills.js';
 import { getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
-import { getTotalRanks, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, calculateDB } from '../engine/character.js';
+import { getTotalRanks, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, calculateDB, getDeathThreshold, ARMOR_MANEUVER_PENALTIES } from '../engine/character.js';
 
 const STAT_NAMES_FR = ['Constitution', 'Agilité', 'Auto-discipline', 'Mémoire', 'Raisonnement', 'Force', 'Rapidité', 'Présence', 'Empathie', 'Intuition'];
 const STAT_ABBREVS = ['Co', 'Ag', 'AD', 'Mé', 'Ra', 'Fo', 'Rp', 'Pr', 'Em', 'In'];
@@ -24,6 +24,14 @@ function calcSkillStatBonus(skill, character) {
   return Math.floor(sum / statIndices.length);
 }
 
+const _MOVING_CATS_PS = ['Athletic', 'Gymnastic'];
+const _MOVING_KW_PS = ['natation', 'swimming', 'escalade', 'climbing', 'course', 'running', 'saut', 'jumping', 'acrobat', 'équitation', 'riding', 'esquive', 'adrenal', 'adrén'];
+function isMovingSkillPS(skill, catName) {
+  if (_MOVING_CATS_PS.some(c => catName && catName.toLowerCase().includes(c.toLowerCase()))) return true;
+  const name = ((skill.name_fr || skill.name_en || '')).toLowerCase();
+  return _MOVING_KW_PS.some(kw => name.includes(kw));
+}
+
 /**
  * Get filtered and formatted skills for printing.
  */
@@ -41,7 +49,9 @@ function getFilteredSkills(character, config) {
       const cls = character.classIndex >= 0 ? getAllClasses()[character.classIndex] : null;
       const lvlBonus = getLevelBonus(cls, character.level, cat.name, globalIndex);
       const miscBonus = character.skillMiscBonuses[globalIndex] || 0;
-      const total = rankBonus + statBonus + lvlBonus + miscBonus;
+      const armorMM = ARMOR_MANEUVER_PENALTIES[(character.armorType || 1) - 1] || 0;
+      const armorPenalty = isMovingSkillPS(skill, cat.name) ? Math.min(0, armorMM + (character.armorMagicBonus || 0)) : 0;
+      const total = rankBonus + statBonus + lvlBonus + miscBonus + armorPenalty;
       const highlight = (character.skillHighlights || {})[globalIndex] || null;
 
       let include = false;
@@ -294,8 +304,9 @@ function generatePage1(character, config, lang) {
         if (mb.rrDisease) rrParts.push('Mal:' + mb.rrDisease);
         const rrStr = rrParts.length ? `<div class="ps-field" style="font-size:6pt"><b>RR:</b> ${rrParts.join(' ')}</div>` : '';
         return `<div class="ps-combat-col">
-          <div class="ps-field" style="font-size:7pt"><b>PdeC Base:</b> <span class="ps-pencil-space">____</span> / ${hp.base || '—'}</div>
-          <div class="ps-field" style="font-size:7pt"><b>Cap PdeC:</b> <span class="ps-pencil-space">____</span> / ${hp.cap || '—'}</div>
+          <div class="ps-field" style="font-size:7pt"><b>PdC Base:</b> ${hp.base || '—'}</div>
+          <div class="ps-field" style="font-size:7pt"><b>PdC Max:</b> ${hp.cap || '—'} &nbsp; <b>Actuels:</b> <span class="ps-pencil-space">____</span></div>
+          <div class="ps-field" style="font-size:7pt"><b>Mort à:</b> <span style="color:#b91c1c">${getDeathThreshold(character)}</span></div>
           <div class="ps-field" style="font-size:7pt"><b>Royaume:</b> ${realmLabel || '—'}</div>
           <div class="ps-field" style="font-size:7pt"><b>Pts Pouvoir:</b> <span class="ps-pencil-space">____</span> / ${pp || '—'}</div>
           <div class="ps-field" style="font-size:7pt"><b>Type Armure:</b> ${character.armorType || 1}</div>

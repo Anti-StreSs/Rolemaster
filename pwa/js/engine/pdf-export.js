@@ -3,7 +3,7 @@
 
 import { getStatBonus, getRankBonus } from './stats.js';
 import { calcHitPoints, calcPowerPoints, calculateDB, getTotalRanks,
-         getTotalStatBonus } from './character.js';
+         getTotalStatBonus, getDeathThreshold, ARMOR_MANEUVER_PENALTIES } from './character.js';
 import { getSkillStatIndices, getLevelBonus, getAllCategories } from './skills.js';
 import { getBackgroundBonuses, getSkillBackgroundBonus,
          summarizeBackgroundBonuses } from './background-effects.js';
@@ -36,6 +36,18 @@ const HIGHLIGHT_FILLS = {
 
 // --- Skill data ---
 
+// Moving skill detection for armor maneuver penalty (PDF mirror of wizard.js logic)
+const MOVING_SKILL_CATEGORIES_PDF = ['Athletic', 'Gymnastic'];
+const MOVING_SKILL_KEYWORDS_PDF = [
+  'natation', 'swimming', 'escalade', 'climbing', 'course', 'running',
+  'saut', 'jumping', 'acrobat', 'équitation', 'riding', 'esquive', 'adrenal', 'adrén',
+];
+function isMovingSkillPDF(skill, catName) {
+  if (MOVING_SKILL_CATEGORIES_PDF.some(c => catName && catName.toLowerCase().includes(c.toLowerCase()))) return true;
+  const name = ((skill.name_fr || skill.name_en || '')).toLowerCase();
+  return MOVING_SKILL_KEYWORDS_PDF.some(kw => name.includes(kw));
+}
+
 function calcSkillStatBonusPDF(skill, character, bgBonuses) {
   const statIndices = getSkillStatIndices(skill);
   if (statIndices.length === 0) return 0;
@@ -63,7 +75,10 @@ function getDevelopedSkills(character) {
       const lvlBonus   = getLevelBonus(cls, character.level, cat.name, gi);
       const miscBonus  = character.skillMiscBonuses[gi] || 0;
       const bgBonus    = getSkillBackgroundBonus(bgBonuses, skill.name_fr, skill.name_en);
-      const total      = rankBonus + statBonus + lvlBonus + miscBonus + bgBonus;
+      const armorMM    = ARMOR_MANEUVER_PENALTIES[(character.armorType || 1) - 1] || 0;
+      const armorMagic = character.armorMagicBonus || 0;
+      const armorPenalty = isMovingSkillPDF(skill, cat.name) ? Math.min(0, armorMM + armorMagic) : 0;
+      const total      = rankBonus + statBonus + lvlBonus + miscBonus + bgBonus + armorPenalty;
 
       if (totalRanks > 0 || total > 0) {
         if (!catPushed) { result.push({ isCategory: true, name: cat.name }); catPushed = true; }
@@ -295,11 +310,13 @@ export function generateCharacterPDF(character, options = {}) {
 
   function sectionHeader(title) {
     checkPage(14);
-    doc.setFontSize(11);
+    doc.setFontSize(10);
     doc.setFont('helvetica', 'bold');
+    doc.setTextColor(42, 26, 8); // dark brown, prints clearly
     doc.text(title.toUpperCase(), mL, y);
+    doc.setTextColor(0, 0, 0);
     y += 1.5;
-    doc.setDrawColor(180, 130, 20);
+    doc.setDrawColor(201, 154, 46);
     doc.setLineWidth(0.5);
     doc.line(mL, y, mL + usableW, y);
     y += 4;
@@ -310,26 +327,32 @@ export function generateCharacterPDF(character, options = {}) {
   }
 
   // ==============================
-  // Title + subtitle
+  // C2 — Header (print-friendly: text only, no fill)
   // ==============================
-  doc.setFontSize(18);
-  doc.setFont('helvetica', 'bold');
-  doc.text(character.name || (lang === 'en' ? 'Unnamed' : 'Sans nom'), pageW / 2, y, { align: 'center' });
-  y += 4;
-  doc.setFontSize(10);
-  doc.setFont('helvetica', 'normal');
-  doc.setTextColor(100, 80, 20);
   const classes    = getAllClasses();
   const cls        = character.classIndex >= 0 ? classes[character.classIndex] : null;
   const realmLabel = cls ? getRealmLabel(cls, lang) : '';
   const subtitle   = [
+    character.name || (lang === 'en' ? 'Unnamed' : 'Sans nom'),
     cls ? getClassName(cls, lang) : '',
     character.raceName,
     (lang === 'en' ? 'Lvl ' : 'Niv. ') + (character.level || 1),
   ].filter(Boolean).join(' — ');
-  doc.text(subtitle, pageW / 2, y, { align: 'center' });
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(42, 26, 8);
+  doc.text('ROLEMASTER', pageW / 2, 8, { align: 'center' });
+  doc.setFontSize(8);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(60, 40, 15);
+  doc.text(subtitle, pageW / 2, 13, { align: 'center' });
+  doc.setDrawColor(80, 55, 20);
+  doc.setLineWidth(0.5);
+  doc.line(mL, 16, mL + usableW, 16);
   doc.setTextColor(0, 0, 0);
-  y += 8;
+  doc.setLineWidth(0.2);
+  doc.setDrawColor(100, 100, 100);
+  y = 20; // compact — saves space
 
   // ==============================
   // Identity (two equal columns)
@@ -394,8 +417,9 @@ export function generateCharacterPDF(character, options = {}) {
       doc.rect(mL, y - 3.2, 105, 4, 'F');
     }
 
-    doc.setFont('helvetica', 'bold');
-    doc.text(STAT_ABBREVS[i], sColX[0], y);
+    const isPrime = (character.primeStats || []).includes(i);
+    doc.setFont('helvetica', isPrime ? 'bolditalic' : 'bold');
+    doc.text(STAT_ABBREVS[i] + (isPrime ? ' *' : ''), sColX[0], y);
     doc.setFont('helvetica', 'normal');
     doc.text(String(temp), sColX[1], y);
     doc.text(String(pot),  sColX[2], y);
@@ -404,9 +428,7 @@ export function generateCharacterPDF(character, options = {}) {
     doc.text(bg !== 0    ? (bg > 0 ? '+' + bg : String(bg)) : '—', sColX[5], y);
     doc.text(spec !== 0  ? (spec > 0 ? '+' + spec : String(spec)) : '—', sColX[6], y);
     doc.setFont('helvetica', 'bold');
-    doc.setTextColor(total >= 0 ? 30 : 160, total >= 0 ? 90 : 30, 20);
     doc.text(total >= 0 ? '+' + total : String(total), sColX[7], y);
-    doc.setTextColor(0, 0, 0);
     doc.setFont('helvetica', 'normal');
     y += 4;
   }
@@ -420,9 +442,10 @@ export function generateCharacterPDF(character, options = {}) {
   const pp = calcPowerPoints(character);
   const db = calculateDB(character);
   const combatFields = [
-    [lang === 'en' ? 'Hit Points' : 'PdC',            `${hp.base} / ${hp.cap}`],
-    ['PP',                                              pp],
-    ['DB / BD',                                         db.printDisplay],
+    [lang === 'en' ? 'HP Base / Max' : 'PdC Base / Max',  `${hp.base} / ${hp.cap}`],
+    [lang === 'en' ? 'Death at' : 'Mort à',               getDeathThreshold(character)],
+    ['PP',                                                  pp],
+    ['DB / BD',                                             db.printDisplay],
     [lang === 'en' ? 'Armor Type' : 'Type d\'Armure (TA)', character.armorType],
   ];
   doc.setFontSize(9);
@@ -535,18 +558,21 @@ export function generateCharacterPDF(character, options = {}) {
   }
 
   // ==============================
-  // Footer on all pages
+  // C6 — Footer on all pages (gold line + character name + date + page)
   // ==============================
   const pageCount = doc.getNumberOfPages();
+  const footerDate = new Date().toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US');
   for (let p = 1; p <= pageCount; p++) {
     doc.setPage(p);
-    doc.setFontSize(7);
-    doc.setFont('helvetica', 'italic');
-    doc.setTextColor(150, 150, 150);
-    doc.text(
-      `Rolemaster — ${character.name || ''} — p.${p}/${pageCount}`,
-      pageW / 2, pageH - 5, { align: 'center' }
-    );
+    doc.setDrawColor(201, 154, 46);
+    doc.setLineWidth(0.3);
+    doc.line(mL, pageH - 9, pageW - mR, pageH - 9);
+    doc.setFontSize(6);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(140, 110, 60);
+    doc.text(character.name || '', mL, pageH - 5.5);
+    doc.text(`Rolemaster Reborn — ${footerDate}`, pageW / 2, pageH - 5.5, { align: 'center' });
+    doc.text(`${p}/${pageCount}`, pageW - mR, pageH - 5.5, { align: 'right' });
     doc.setTextColor(0, 0, 0);
   }
 

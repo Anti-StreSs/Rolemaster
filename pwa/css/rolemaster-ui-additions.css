@@ -1117,6 +1117,74 @@
   }
 }
 
+/* ============================================
+   A5 — Hero video container (Sora)
+   ============================================ */
+
+.rm-hero-video {
+  position: relative;
+  width: 100%;
+  max-height: 320px;
+  overflow: hidden;
+  background: #0a0806;
+}
+.rm-hero-video video {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  display: block;
+}
+.rm-hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
+}
+.rm-hero-title {
+  font-family: var(--font-title, 'Cinzel', serif);
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  color: #f5c842;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+
+/* ============================================
+   A2 — Visual effects (A1 palette upgrade)
+   ============================================ */
+
+/* Subtle grain overlay on parchment panels */
+.rm-parchment::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  border-radius: inherit;
+}
+
+/* Gold divider between stacked panels */
+.panel + .panel {
+  border-top: 1px solid rgba(201, 154, 46, 0.2);
+}
+
+/* Hover glow on tab icons */
+.rm-tab-icon:hover img {
+  filter: drop-shadow(0 0 6px rgba(240, 192, 64, 0.5));
+  transition: filter 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rm-tab-icon:hover img {
+    filter: none;
+    transition: none;
+  }
+}
+
 @media (max-width: 640px) {
   .rm-session-top,
   .rm-tool-tabs,

@@ -2,7 +2,7 @@
 // Profession chosen first, then stats (temp/pot pairs), then everything else
 
 import { panel, showToast } from './components.js';
-import { createCharacter, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, applyRace, DEV_PHASES, getTotalRanks, getCurrentPhaseRanks, getCurrentPhaseRanksObj, getDevPointsSpent, setDevPointsSpent, getDevPointsTotal, getSpellPointsSpent, setSpellPointsSpent, getSpellPointsTotal, SHIELD_TYPES, calculateDB, setAdrenalDefenseIndex, rollBodyDevHitDie, getBodyDevSkillIndex } from '../engine/character.js';
+import { createCharacter, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, applyRace, DEV_PHASES, getTotalRanks, getCurrentPhaseRanks, getCurrentPhaseRanksObj, getDevPointsSpent, setDevPointsSpent, getDevPointsTotal, getSpellPointsSpent, setSpellPointsSpent, getSpellPointsTotal, SHIELD_TYPES, calculateDB, setAdrenalDefenseIndex, rollBodyDevHitDie, getBodyDevSkillIndex, getDeathThreshold, ARMOR_MANEUVER_PENALTIES } from '../engine/character.js';
 import { generateStatRolls, getStatValues, statPotentialLookup, generateStatRollsHybrid, generateStatRollsAntiLose, getStatValuesHybrid, rollStatPairsRMSS, getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
 import { getAllClasses, getClassName, getRealmInfo, getRealmKey, getRealmLabel, isSpellUser, getClassPrimeStats, getPPStatIndices } from '../engine/classes.js';
 import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts, isParentSkill, isSpecializableSkill, getWeaponSubcategories, getWeaponSkillCost, getParentSubSkillOptions, WEAPON_SKILL_GLOBAL_INDEX, getAllSkillsFlat, getLevelBonus, calcSimilarityBonus, getSpecializationSuggestion } from '../engine/skills.js';
@@ -443,19 +443,27 @@ function renderInfosTab(lang) {
           <span class="text-amber-400 font-bold self-center">${primeDisplay}</span>
         </div>
 
-        <div class="mt-4 flex gap-6 text-center">
+        <div class="mt-4 flex gap-6 text-center flex-wrap">
           <div>
             <div class="text-2xl font-bold text-red-400">${hp.base}</div>
-            <div class="text-xs text-gray-500">PdeC Base</div>
+            <div class="text-xs text-gray-500">${lang === 'en' ? 'HP Base' : 'PdC Base'}</div>
           </div>
           <div>
             <div class="text-2xl font-bold text-red-400">${hp.cap}</div>
-            <div class="text-xs text-gray-500">Cap PdeC</div>
+            <div class="text-xs text-gray-500">${lang === 'en' ? 'HP Max' : 'PdC Max'}</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-gray-500" style="border-bottom:1px solid #8b6914;min-width:3rem">___</div>
+            <div class="text-xs text-gray-500">${lang === 'en' ? 'Current HP' : 'PdC Actuels'}</div>
+          </div>
+          <div title="${lang === 'en' ? 'RM2: character dies at negative HP equal to CO temp' : 'RM2 : le personnage meurt quand ses PdC atteignent ce seuil négatif'}">
+            <div class="text-2xl font-bold text-red-700">${getDeathThreshold(character)}</div>
+            <div class="text-xs text-gray-500">${lang === 'en' ? 'Death at' : 'Mort à'}</div>
           </div>
           ${character.realm !== 'none' ? `
           <div>
             <div class="text-2xl font-bold text-blue-400">${pp}</div>
-            <div class="text-xs text-gray-500">Pts de Pouvoir</div>
+            <div class="text-xs text-gray-500">${lang === 'en' ? 'Power Points' : 'Pts de Pouvoir'}</div>
           </div>` : ''}
         </div>
 
@@ -492,6 +500,9 @@ function renderInfosTab(lang) {
 
             <label>${lang === 'en' ? 'Item DB bonus' : 'BD objets'}</label>
             <input type="number" id="f-db-item-bonus" value="${character.dbItemBonus || 0}" class="field field-sm" title="${lang === 'en' ? 'DB bonus from magical items' : 'Bonus BD objets magiques'}">
+
+            <label title="${lang === 'en' ? 'Reduces armor maneuver penalties on moving skills (positive = better)' : 'Réduit les malus de manœuvre armure sur les compétences de mouvement (positif = meilleur)'}">${lang === 'en' ? 'Armor magic bonus' : 'Bonus magique armure'}</label>
+            <input type="number" id="f-armor-magic" value="${character.armorMagicBonus || 0}" class="field field-sm" title="${lang === 'en' ? 'Reduces armor maneuver penalties on moving skills' : 'Réduit les malus armure sur compétences de mouvement'}">
 
             <label>${lang === 'en' ? 'DB Melee' : 'BD Mélée'}</label>
             <span class="text-sm"><b>${db.meleeBD}</b> <span class="text-xs text-gray-500">(RP:${db.rpBonus}${db.shieldMelee ? ' +Bcl:' + db.shieldMelee : ''}${db.adrenalMelee ? ' +Adr:' + db.adrenalMelee : ''}${db.itemBonus ? ' +Obj:' + db.itemBonus : ''})</span></span>
@@ -1699,6 +1710,19 @@ function renderHistoryTab(lang) {
   `;
 }
 
+// Moving skill detection for armor maneuver penalty (RM2 Table 15-8)
+const MOVING_SKILL_CATEGORIES = ['Athletic', 'Gymnastic'];
+const MOVING_SKILL_KEYWORDS = [
+  'natation', 'swimming', 'escalade', 'climbing', 'course', 'running',
+  'saut', 'jumping', 'acrobat', 'équitation', 'riding',
+  'esquive', 'adrenal', 'adrén',
+];
+function isMovingSkill(skill, catName) {
+  if (MOVING_SKILL_CATEGORIES.some(c => catName && catName.toLowerCase().includes(c.toLowerCase()))) return true;
+  const name = ((skill.name_fr || skill.name_en || skill.name || '')).toLowerCase();
+  return MOVING_SKILL_KEYWORDS.some(kw => name.includes(kw));
+}
+
 // === Tab: Skills ===
 function renderSkillsTab(lang) {
   const categories = getAllCategories();
@@ -1758,7 +1782,7 @@ function renderSkillsTab(lang) {
           <th class="text-center w-14">${lang === 'en' ? 'Stat' : 'Carac'}</th>
           <th class="text-center w-10">${lang === 'en' ? 'Lvl' : 'Niv'}</th>
           <th class="text-center w-10">${lang === 'en' ? 'Sim' : 'Sim'}</th>
-          <th class="text-center w-14">${lang === 'en' ? 'Misc' : 'Div'}</th>
+          <th class="text-center w-14" title="${lang === 'en' ? 'Misc: manual + background + armor penalties for moving skills' : 'Div: manuels + historique + malus armure pour compétences de mouvement'}">${lang === 'en' ? 'Misc' : 'Div'}</th>
           <th class="text-center w-16 font-bold">Total</th>
         </tr>
       </thead>
@@ -1938,7 +1962,12 @@ function renderSkillsTab(lang) {
         const similBonus = calcSimilarityBonus(globalIndex, character);
         const bgSkillBonus = getSkillBackgroundBonus(bgBonuses, skill.name, skill.name_en);
         const miscBonus = (character.skillMiscBonuses[globalIndex] || 0) + bgSkillBonus;
-        const total = rankBonus + statTotalBonus + lvlBonus + similBonus + miscBonus;
+        const armorMM = ARMOR_MANEUVER_PENALTIES[(character.armorType || 1) - 1] || 0;
+        const armorMagic = character.armorMagicBonus || 0;
+        const effectiveArmorPenalty = Math.min(0, armorMM + armorMagic);
+        const isMoving = isMovingSkill(skill, cat.name);
+        const armorPenalty = isMoving ? effectiveArmorPenalty : 0;
+        const total = rankBonus + statTotalBonus + lvlBonus + similBonus + miscBonus + armorPenalty;
         let rankBoxes = renderRankBoxes(totalRanks, phaseRanks);
         const addDisabled = !canAdd || !canAfford ? 'disabled' : '';
         const removeDisabled = !canRemove ? 'disabled' : '';
@@ -1966,7 +1995,10 @@ function renderSkillsTab(lang) {
             <td class="text-center stat-bonus ${statTotalBonus >= 0 ? 'positive' : 'negative'}">${statTotalBonus >= 0 ? '+' + statTotalBonus : statTotalBonus}</td>
             <td class="text-center text-xs">${lvlBonus > 0 ? '+' + lvlBonus : ''}</td>
             <td class="text-center text-xs">${similBonus > 0 ? '+' + similBonus : ''}</td>
-            <td class="text-center"><input type="number" class="field-inline skill-misc-input" data-skill="${globalIndex}" value="${miscBonus || ''}" style="width:2.5rem" title="Bonus divers"></td>
+            <td class="text-center">
+              <input type="number" class="field-inline skill-misc-input" data-skill="${globalIndex}" value="${miscBonus || ''}" style="width:2.5rem" title="Bonus divers">
+              ${armorPenalty < 0 ? `<span title="${lang === 'en' ? 'Armor penalty: ' + armorPenalty : 'Malus armure: ' + armorPenalty}" style="color:#f97316;font-size:0.65rem">⛨${armorPenalty}</span>` : ''}
+            </td>
             <td class="text-center font-bold stat-bonus ${total >= 0 ? 'positive' : 'negative'}">${total >= 0 ? '+' + total : total}</td>
           </tr>
         `;
@@ -2424,6 +2456,12 @@ function bindInfosEvents(app) {
   const armorEl = document.getElementById('f-armor');
   if (armorEl) armorEl.addEventListener('change', () => {
     character.armorType = parseInt(armorEl.value);
+  });
+
+  // Armor magic bonus (reduces maneuver penalty)
+  const armorMagicEl = document.getElementById('f-armor-magic');
+  if (armorMagicEl) armorMagicEl.addEventListener('change', () => {
+    character.armorMagicBonus = parseInt(armorMagicEl.value) || 0;
   });
 
   // Shield selector

@@ -402,6 +402,26 @@ export function cloneCharacter(character) {
   return JSON.parse(JSON.stringify(character));
 }
 
+/**
+ * Get the death threshold (negative HP at which the character dies).
+ * RM2 rule: unconscious at 0 HP, dead at -CO temp.
+ * @returns {number} negative value (e.g. CO=78 → -78)
+ */
+export function getDeathThreshold(character) {
+  return -(character.stats[0] || 0);
+}
+
+/**
+ * Armor Maneuver Penalties by AT (1-20) for moving skills.
+ * Source: RM2 Character Law Table 15-8 / Arms Law armor chart.
+ * These apply to Athletic, Gymnastic, and other movement-based skills.
+ * Indexed 0-based: ARMOR_MANEUVER_PENALTIES[armorType - 1]
+ */
+export const ARMOR_MANEUVER_PENALTIES = [
+//  AT1  AT2  AT3  AT4  AT5  AT6  AT7  AT8  AT9 AT10 AT11 AT12 AT13 AT14 AT15 AT16 AT17 AT18 AT19 AT20
+      0,   0,   0,   0,  -5, -10, -15, -20,  -5, -10, -15, -20, -10, -15, -25, -30, -15, -25, -35, -50
+];
+
 // Shield types (RM2/Classic)
 export const SHIELD_TYPES = [
   { id: 0, key: 'none',    fr: 'Sans',               en: 'None',          dbMelee: 0,  dbMissile: 0  },

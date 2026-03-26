@@ -14,6 +14,7 @@ import { getRankBonus } from './engine/stats.js';
 import { getBackgroundBonuses } from './engine/background-effects.js';
 import { getAllCategories, getSkillStatIndices, getLevelBonus } from './engine/skills.js';
 import { resolveStaticManeuver, resolveResistanceRoll, DIFFICULTIES, DIFFICULTY_LABELS } from './engine/maneuvers.js';
+import { formatCriticalText } from './engine/text-format.js';
 import frLabels from './i18n/fr.js';
 import enLabels from './i18n/en.js';
 
@@ -890,16 +891,18 @@ function initSessionToolbox() {
       const critFr = CRIT_TYPE_FR[rawCritType];
       const critTypeDisplay = lang === 'en' ? rawCritType : (critFr?.name || rawCritType);
       const critTypeAbbrev = lang === 'en' ? rawCritType : (critFr?.abbrev || rawCritType);
-      const sev = res.critical?.severity || '';
+      const SEVERITY_FR = { A: 'Critique A (mineur)', B: 'Critique B', C: 'Critique C (sérieux)', D: 'Critique D (grave)', E: 'Critique E (mortel)' };
+      const rawSev = res.critical?.severity || '';
+      const sev = lang === 'fr' ? (SEVERITY_FR[rawSev] || rawSev) : rawSev;
       const stateClass = isFumble ? 'is-fumble is-failure' : isCrit ? 'is-critical is-success' : hits > 0 ? 'is-partial' : 'is-failure';
       const stateLabel = isFumble ? 'Fumble!'
         : isCrit ? (lang === 'en' ? `Critical! ${sev}` : `${hits}${sev}${critTypeAbbrev}`)
         : hits > 0 ? (lang === 'en' ? `${hits} hits` : `${hits} PdC`)
         : (lang === 'en' ? 'Miss' : 'Raté');
       const critText = res.critical
-        ? `${sev} ${critTypeDisplay}: ${res.critical.rawText || ''}`.trim()
+        ? `${sev} ${critTypeDisplay}: ${formatCriticalText(res.critical.rawText, res.critical.parsedEffects, lang)}`.trim()
         : '';
-      const fumbleText = res.fumble?.rawText || '⚠ Fumble!';
+      const fumbleText = formatCriticalText(res.fumble?.rawText, res.fumble?.parsedEffects, lang) || '⚠ Fumble!';
       const details = isFumble ? fumbleText : isCrit ? critText : '';
       const obLabel = lang === 'en' ? 'OB' : 'BO';
       const dbLabel = lang === 'en' ? 'DB' : 'BD';

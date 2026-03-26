@@ -1,0 +1,741 @@
+# BATCH 32 — Final Polish: UI Visual Upgrade, Translations, PDF Overhaul
+
+## Overview
+The CPR093 rebuild is feature-complete. This batch focuses on visual excellence:
+cosmetic polish, critical table translations, symbol cleanup, and PDF quality.
+
+## Files to modify
+
+| File | Action |
+|------|--------|
+| `pwa/css/theme.css` | **MODIFY** — soften brown palette, improve contrasts |
+| `pwa/css/rolemaster-ui-additions.css` | **MODIFY** — add effects, fix unused assets |
+| `pwa/js/app.js` | **MODIFY** — translate toolbox results, replace symbols |
+| `pwa/js/engine/pdf-export.js` | **REWRITE visual layer** — parchment bg, headers, medieval style |
+| `pwa/index.html` | **MODIFY** — add video element for Sora hero |
+| `pwa/sw.js` | **MODIFY** — cache version + new assets |
+
+---
+
+## PART A — UI Visual Upgrade
+
+### A1. Soften the brown palette (theme.css)
+
+Current palette is too uniformly brown/sepia. Introduce more contrast:
+
+```css
+/* Replace or supplement these values: */
+--color-parchment-text: #1e1408;      /* darker ink for readability (was #2a1a08) */
+--color-parchment-dim: #5a4228;       /* slightly cooler brown (was #6b5030) */
+--color-gold: #c99a2e;                /* warmer gold, less muddy (was #d4a017) */
+--color-gold-bright: #f5c842;         /* brighter gold highlights */
+--color-accent-cool: #2a4a5a;         /* NEW: steel blue for variety */
+--color-accent-deep: #4a1a3a;         /* NEW: burgundy for headers */
+
+/* Add these for better contrast on parchment: */
+.rm-parchment { background-color: #f8f2e4; }  /* lighter parchment base (was #f5efe0) */
+.rm-parchment h2, .rm-parchment .panel-title {
+  color: #1a0e04;                      /* near-black for headers */
+  text-shadow: 0 1px 0 rgba(255,255,255,0.3); /* subtle emboss */
+}
+```
+
+### A2. Visual effects to add (rolemaster-ui-additions.css)
+
+```css
+/* Subtle paper grain overlay on parchment panels */
+.rm-parchment::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: url('data:image/svg+xml,...') repeat; /* fine noise SVG */
+  opacity: 0.04; pointer-events: none; mix-blend-mode: multiply;
+}
+
+/* Gold divider lines between sections */
+.panel + .panel { border-top: 1px solid rgba(201,154,46,0.25); }
+
+/* Hover glow on interactive elements */
+.rm-tab-icon:hover img {
+  filter: drop-shadow(0 0 6px rgba(240,192,64,0.5));
+  transition: filter 0.2s ease;
+}
+
+/* Result card entrance animation */
+@keyframes rm-card-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rm-result-card { animation: rm-card-enter 0.28s ease-out; }
+
+/* Critical flash */
+@keyframes rm-crit-flash {
+  0%, 100% { box-shadow: 0 0 0 rgba(201,154,46,0); }
+  50% { box-shadow: 0 0 24px rgba(240,192,64,0.6); }
+}
+.rm-result-card.is-critical { animation: rm-card-enter 0.28s, rm-crit-flash 0.42s 0.28s; }
+
+/* Fumble shake */
+@keyframes rm-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+.rm-result-card.is-fumble { animation: rm-card-enter 0.28s, rm-shake 0.32s 0.28s; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .rm-result-card, .rm-result-card.is-critical, .rm-result-card.is-fumble {
+    animation: none;
+  }
+}
+```
+
+### A3. Unused assets audit
+
+14 session icons were added by GPT in `assets/ui/icons/session_*.webp`.
+Verify that ALL of these are referenced somewhere in the app:
+- `session_toolbox_satchel.webp` → toolbox toggle button
+- `session_quick_d100.webp` → D100 roller section
+- `session_attack_crossed_swords.webp` → attack result card icon
+- `session_rr_shield_rune.webp` → RR result card icon
+- `session_maneuver_scroll.webp` → maneuver result card icon
+- `session_critical_starburst.webp` → critical result badge
+- `session_fumble_broken_die.webp` → fumble result badge
+- `session_comparator_scales.webp` → comparator overlay header
+- `session_export_scroll.webp` → PDF export button
+- `session_projection_chart.webp` → projection panel icon
+- `session_state_success/partial/failure.webp` → result card state icons
+
+If any are NOT used in app.js or wizard.js, add them to the appropriate template.
+
+### A4. Icon transparency
+Some GPT-generated icons may have opaque white/brown backgrounds.
+If so, they need transparency. CC: check each `session_*.webp` — if it has
+an opaque rectangular background, note it. We'll have GPT regenerate with
+transparent backgrounds, or the user can fix them in Photoshop.
+
+### A5. Sora video on home page
+Add an optional video hero section at the top of the home page:
+```html
+<div class="rm-hero-video" id="hero-video-container">
+  <video autoplay muted loop playsinline poster="assets/hero-poster.webp">
+    <source src="assets/hero-sora.mp4" type="video/mp4">
+  </video>
+  <div class="rm-hero-overlay">
+    <h1 class="rm-hero-title">Rolemaster Reborn</h1>
+  </div>
+</div>
+```
+The video file will be provided by the user (generated by Sora).
+For now, just create the HTML/CSS container. Use `poster` for fallback.
+If no video exists, the container should gracefully hide itself.
+
+
+---
+
+## PART B — Critical/Fumble Text Translation & Symbol Cleanup
+
+### B1. Symbol replacement map
+
+The critical tables contain OCR artifacts and shorthand symbols from Arms Law.
+These MUST be replaced with readable French text in the UI display.
+
+Create a `formatCriticalText(rawText, lang)` utility function in app.js or
+a new `pwa/js/engine/text-format.js`:
+
+```javascript
+const CRIT_SYMBOL_MAP = {
+  '∑': ' sonné ',       // stun
+  '∏': ' (pas de parade) ', // no parry
+  '∫': ' saignement/',  // bleed per round
+  'π': ' (doit parer) ',    // must parry
+  '+H': ' PdC sup.',    // bonus hits
+  'rnd': ' round',
+  'rnds': ' rounds',
+  'foe': 'adversaire',
+  'Foe': 'Adversaire',
+};
+
+/**
+ * Format a critical raw_text for display.
+ * Replaces symbols, translates common terms, expands abbreviations.
+ */
+export function formatCriticalText(rawText, parsedEffects, lang) {
+  if (!rawText) return '';
+  let text = rawText;
+
+  // Replace OCR symbols with readable text
+  for (const [sym, replacement] of Object.entries(CRIT_SYMBOL_MAP)) {
+    text = text.replaceAll(sym, lang === 'fr' ? replacement : sym);
+  }
+
+  // Build a structured effect summary from parsedEffects
+  const parts = [];
+  if (parsedEffects) {
+    if (parsedEffects.bonus_hits)
+      parts.push(lang === 'fr' ? `+${parsedEffects.bonus_hits} PdC` : `+${parsedEffects.bonus_hits} hits`);
+    if (parsedEffects.stun_rounds)
+      parts.push(lang === 'fr' ? `Sonné ${parsedEffects.stun_rounds} rounds` : `Stunned ${parsedEffects.stun_rounds} rnds`);
+    if (parsedEffects.bleed_per_round)
+      parts.push(lang === 'fr' ? `Saigne ${parsedEffects.bleed_per_round}/round` : `Bleed ${parsedEffects.bleed_per_round}/rnd`);
+    if (parsedEffects.dead)
+      parts.push(lang === 'fr' ? '☠ MORT' : '☠ DEAD');
+    if (parsedEffects.unconscious)
+      parts.push(lang === 'fr' ? 'Inconscient' : 'Unconscious');
+    if (parsedEffects.notes)
+      parts.push(parsedEffects.notes.join(', '));
+  }
+
+  // Return: cleaned raw text + structured effects on a new line
+  const effectLine = parts.length > 0 ? `\n→ ${parts.join(' | ')}` : '';
+  return text.trim() + effectLine;
+}
+```
+
+### B2. Apply formatCriticalText in app.js attack handler
+
+In the attack result display (~line 900):
+```javascript
+// OLD:
+`${sev} ${critTypeDisplay}: ${res.critical.rawText || ''}`
+
+// NEW: import formatCriticalText, use it:
+const critFormatted = formatCriticalText(
+  res.critical.rawText,
+  res.critical.parsedEffects,
+  lang
+);
+`${sev} ${critTypeDisplay}: ${critFormatted}`
+```
+
+### B3. Translate toolbox labels
+
+In app.js session toolbox, replace hardcoded English labels:
+```javascript
+// Critical type names
+const CRIT_TYPE_FR = {
+  slash: 'Taille', puncture: 'Perforation', krush: 'Écrasement',
+  unbalancing: 'Déséquilibre', grapple: 'Lutte', heat: 'Chaleur',
+  cold: 'Froid', electricity: 'Électricité', impact: 'Impact',
+  brawling: 'Bagarre', subdual: 'Soumission', acid: 'Acide',
+};
+
+// Maneuver result labels
+const RESULT_LABELS = {
+  success:             { fr: 'Succès',  en: 'Success' },
+  partial:             { fr: 'Partiel', en: 'Partial' },
+  failure:             { fr: 'Échec',   en: 'Failure' },
+  spectacular_failure: { fr: 'Échec spectaculaire', en: 'Spectacular failure' },
+};
+```
+
+
+---
+
+## PART C — PDF Export Visual Overhaul
+
+The current PDF is functional but plain (Helvetica on white, no decoration).
+The print sheet is beautiful. The PDF should match its medieval aesthetic.
+
+### C1. Parchment background
+Add a parchment-colored fill as page background:
+```javascript
+// On each new page:
+doc.setFillColor(248, 242, 228); // warm parchment
+doc.rect(0, 0, 210, 297, 'F');
+```
+
+### C2. Header banner
+On page 1, add a decorative header area:
+```javascript
+doc.setFillColor(42, 26, 8);       // dark wood
+doc.rect(0, 0, 210, 22, 'F');      // dark header bar
+doc.setFontSize(18);
+doc.setTextColor(212, 160, 23);    // gold
+doc.setFont('helvetica', 'bold');
+doc.text('ROLEMASTER', 105, 12, { align: 'center' });
+doc.setFontSize(10);
+doc.text(character.name || 'Unnamed', 105, 18, { align: 'center' });
+doc.setTextColor(42, 26, 8);       // restore ink
+```
+
+### C3. Section headers with gold line
+```javascript
+function pdfSectionHeader(doc, text, y) {
+  doc.setDrawColor(201, 154, 46);   // gold
+  doc.setLineWidth(0.5);
+  doc.line(10, y, 200, y);          // gold rule
+  doc.setFontSize(11);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(139, 105, 20);   // dark gold
+  doc.text(text, 10, y + 5);
+  doc.setTextColor(42, 26, 8);
+  return y + 8;
+}
+```
+
+### C4. Stat block with alternating tints and bordered cells
+
+Replace plain text layout with a real table look:
+```javascript
+function pdfStatBlock(doc, character, y) {
+  const STAT_ABBREVS = ['CO','AG','AD','Mé','RS','FO','RP','PR','EM','IN'];
+  const colWidths = [22, 14, 14, 14, 14, 14, 14]; // Name, Temp, Pot, Norm, Race, Spec, Total
+  const headers = ['Carac.', 'Temp', 'Pot', 'Dév', 'Norm', 'Race', 'Total'];
+  const startX = 10;
+
+  // Header row
+  doc.setFillColor(42, 26, 8);    // dark wood
+  doc.rect(startX, y, 106, 6, 'F');
+  doc.setFontSize(7);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(212, 160, 23);  // gold text on dark
+  let x = startX;
+  for (let c = 0; c < headers.length; c++) {
+    doc.text(headers[c], x + colWidths[c] / 2, y + 4, { align: 'center' });
+    x += colWidths[c];
+  }
+
+  y += 6;
+  doc.setTextColor(42, 26, 8);
+
+  for (let i = 0; i < 10; i++) {
+    // Alternating row tint
+    if (i % 2 === 0) {
+      doc.setFillColor(248, 244, 234);
+      doc.rect(startX, y, 106, 5, 'F');
+    }
+
+    doc.setFontSize(7);
+    x = startX;
+    const temp = character.stats[i] || 0;
+    const pot = character.potentials[i] || temp;
+    const norm = getStatBonus(temp);
+    const race = character.raceBonuses[i] || 0;
+    const total = norm + race + (character.specialBonuses[i] || 0);
+
+    const isPrime = (character.primeStats || []).includes(i);
+
+    // Stat name — bold if prime
+    doc.setFont('helvetica', isPrime ? 'bold' : 'normal');
+    doc.text(STAT_ABBREVS[i], x + 2, y + 3.5);
+    x += colWidths[0];
+
+    // Values
+    doc.setFont('helvetica', 'normal');
+    const vals = [temp, pot, getStatDev(character, i)?.toFixed(1) || '—', norm, race, total];
+    for (let c = 0; c < vals.length; c++) {
+      const val = vals[c];
+      // Color-code total
+      if (c === 5) {
+        doc.setTextColor(val > 0 ? 26 : val < 0 ? 139 : 42, val > 0 ? 107 : val < 0 ? 37 : 26, val > 0 ? 48 : val < 0 ? 0 : 8);
+      }
+      const str = typeof val === 'number' ? (val >= 0 && c >= 3 ? '+' + val : String(val)) : val;
+      doc.text(str, x + colWidths[c + 1] / 2, y + 3.5, { align: 'center' });
+      x += colWidths[c + 1];
+    }
+    doc.setTextColor(42, 26, 8); // reset
+    y += 5;
+  }
+
+  // Bottom border
+  doc.setDrawColor(201, 154, 46);
+  doc.setLineWidth(0.3);
+  doc.line(startX, y, startX + 106, y);
+  return y + 2;
+}
+```
+
+
+### C5. Skills section — match print sheet style
+
+The print sheet has a gorgeous medieval table with:
+- Category headers with dark background
+- Rank boxes (■□) rendered as small squares
+- Bold/color/highlight per skill (from character data)
+
+In PDF, replicate this:
+```javascript
+function pdfSkillRow(doc, skill, y, x, colWidth) {
+  // Row highlight background
+  if (skill.highlight) {
+    const hlColors = {
+      gold: [255,248,220], green: [220,245,220], blue: [220,230,248],
+      red: [248,220,220], purple: [235,220,248], gray: [235,235,235],
+    };
+    const c = hlColors[skill.highlight] || hlColors.gray;
+    doc.setFillColor(c[0], c[1], c[2]);
+    doc.rect(x, y, colWidth, 4, 'F');
+  }
+
+  // Skill name
+  const isBold = skill.bold;
+  doc.setFont('helvetica', isBold ? 'bold' : 'normal');
+  doc.setFontSize(5.5);
+
+  // Text color
+  const textColors = {
+    red: [180,30,30], green: [30,120,50], blue: [30,60,160],
+    purple: [100,40,160], gold: [160,120,20], orange: [180,90,20],
+  };
+  if (skill.textColor && textColors[skill.textColor]) {
+    const tc = textColors[skill.textColor];
+    doc.setTextColor(tc[0], tc[1], tc[2]);
+  }
+
+  doc.text(skill.name, x + 1, y + 3);
+
+  // Rank boxes (small 1.5mm squares)
+  const boxX = x + 32;
+  const boxSize = 1.5;
+  for (let r = 0; r < Math.min(skill.totalRanks + 2, 9); r++) {
+    if (r < skill.totalRanks) {
+      doc.setFillColor(42, 26, 8); // filled
+      doc.rect(boxX + r * 2, y + 0.8, boxSize, boxSize, 'F');
+    } else {
+      doc.setDrawColor(140, 120, 90); // empty
+      doc.rect(boxX + r * 2, y + 0.8, boxSize, boxSize);
+    }
+  }
+
+  // Numeric columns: Rank bonus, Stat, Lvl, Sim, Misc, Total
+  const numX = x + 52;
+  const numW = 7;
+  const nums = [skill.rankBonus, skill.statBonus, skill.lvlBonus, skill.simBonus, skill.miscBonus, skill.total];
+  doc.setFont('helvetica', 'normal');
+  for (let n = 0; n < nums.length; n++) {
+    const val = nums[n];
+    if (n === 5) doc.setFont('helvetica', 'bold'); // total is bold
+    if (val !== 0) {
+      const str = val > 0 ? '+' + val : String(val);
+      doc.text(str, numX + n * numW + numW / 2, y + 3, { align: 'center' });
+    }
+  }
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(42, 26, 8); // reset
+  return y + 4;
+}
+```
+
+
+### C6. Page footer with character name and page number
+
+```javascript
+function pdfPageFooter(doc, character, pageNum, totalPages) {
+  doc.setDrawColor(201, 154, 46);
+  doc.setLineWidth(0.3);
+  doc.line(10, 285, 200, 285);
+  doc.setFontSize(6);
+  doc.setTextColor(140, 120, 90);
+  doc.text(character.name || '', 10, 290);
+  doc.text(`Rolemaster Reborn — ${new Date().toLocaleDateString()}`, 105, 290, { align: 'center' });
+  doc.text(`${pageNum}/${totalPages}`, 200, 290, { align: 'right' });
+}
+```
+
+### C7. Combat/derived stats block
+
+On page 1, after stats, add a compact combat summary:
+```javascript
+function pdfCombatBlock(doc, character, y) {
+  const hp = calcHitPoints(character);
+  const pp = calcPowerPoints(character);
+  const db = calculateDB(character);
+
+  // Three boxes side by side
+  const boxes = [
+    { label: 'PdC', value: `${hp.base} / ${hp.cap}`, color: [220,50,50] },
+    { label: 'PP', value: String(pp), color: [60,100,220] },
+    { label: 'BD', value: db.printDisplay || String(db.meleeBD), color: [50,160,50] },
+  ];
+
+  let x = 120; // Right side of page
+  for (const box of boxes) {
+    doc.setFillColor(248, 244, 234);
+    doc.rect(x, y, 25, 12, 'FD');
+    doc.setFontSize(6);
+    doc.setTextColor(140, 120, 90);
+    doc.text(box.label, x + 12.5, y + 3, { align: 'center' });
+    doc.setFontSize(10);
+    doc.setTextColor(box.color[0], box.color[1], box.color[2]);
+    doc.setFont('helvetica', 'bold');
+    doc.text(box.value, x + 12.5, y + 9, { align: 'center' });
+    doc.setFont('helvetica', 'normal');
+    x += 27;
+  }
+  doc.setTextColor(42, 26, 8);
+  return y + 14;
+}
+```
+
+
+---
+
+## PART D — Remaining Fixes & Missing Pieces
+
+### D1. Toolbox form accessibility (from Lighthouse)
+
+The Chrome screenshot shows 9 inputs without id/name, 34 labels not associated.
+In the session toolbox HTML in app.js, add proper ids and for-attributes:
+
+```
+All <input> elements must have: id="unique-id" name="same-as-id"
+All <label> elements must have: for="matching-input-id"
+```
+
+Specifically in the session toolbox:
+- `#atk-weapon`, `#atk-ob`, `#atk-db`, `#atk-at` (attack)
+- `#mnvr-diff`, `#mnvr-bonus`, `#mnvr-skill` (maneuver)
+- `#rr-def-level`, `#rr-atk-level`, `#rr-stat`, `#rr-realm` (RR)
+- `#d100-result` (quick roller)
+
+### D2. Toolbox — Critical type display name translation
+
+In the attack result card, the critical type is shown raw (e.g. "slash").
+Use the CRIT_TYPE_FR map from Part B3 to translate:
+```javascript
+const critTypeDisplay = lang === 'fr'
+  ? (CRIT_TYPE_FR[res.critical.type] || res.critical.type)
+  : res.critical.type;
+```
+
+### D3. Severity labels in French
+
+```javascript
+const SEVERITY_FR = {
+  A: 'Critique A (mineur)',
+  B: 'Critique B',
+  C: 'Critique C (sérieux)',
+  D: 'Critique D (grave)',
+  E: 'Critique E (mortel)',
+};
+```
+
+### D4. Service Worker update
+
+Increment cache version. Add ALL new assets to ASSETS array:
+- `css/rolemaster-ui-additions.css` (if not already)
+- All `session_*.webp` icons (if not already)
+- `assets/hero-poster.webp` (when provided)
+- `assets/hero-sora.mp4` (when provided)
+
+---
+
+## Priority order
+
+| # | Part | Task | Difficulty |
+|---|------|------|-----------|
+| **P0** | B1-B2 | `formatCriticalText()` + symbol replacement | Medium |
+| **P0** | B3 | Translate toolbox labels (crit types, maneuver results) | Easy |
+| **P0** | D1 | Form accessibility (ids/labels) | Easy |
+| **P1** | C1-C2 | PDF parchment bg + header banner | Medium |
+| **P1** | C3-C4 | PDF section headers + stat block | Medium |
+| **P1** | C5-C7 | PDF skill rows + combat block + footer | Hard |
+| **P2** | A1 | Soften brown palette | Easy |
+| **P2** | A2 | CSS effects (animations, grain, glow) | Medium |
+| **P3** | A3-A4 | Asset audit + transparency check | Manual check |
+| **P3** | A5 | Sora video container | Easy (HTML/CSS only) |
+| **P3** | D2-D3 | Critical type + severity FR labels | Easy |
+
+## Tests
+
+### Critical text
+1. Session Toolbox → Attack → Broadsword OB+80 vs DB+0 AT 1 → should get a critical
+2. Critical text should show: "B Taille: [texte lisible en français]"
+   NOT: "B slash: +5H – 2∑∏ – 3∫"
+   BUT: "B Taille: +5 PdC | Sonné 2 rounds | Saigne 3/round"
+3. Fumble text should be readable, no raw symbols
+
+### PDF
+4. Export PDF → page 1 has dark header with gold "ROLEMASTER" title
+5. Stat block has alternating row tints, gold borders, color-coded totals
+6. Skills section has rank boxes (■□), bold/color/highlight matching the print sheet
+7. Each page has parchment background color, gold footer line, page numbers
+8. Visual quality approaches the native print sheet
+
+### UI
+9. Tab icon hover → subtle gold glow
+10. Result cards have entrance animation (rise + fade)
+11. Critical results flash gold
+12. Fumble results shake
+13. Parchment has subtle grain texture
+14. Colors less uniformly brown — steel blue and burgundy accents visible
+
+### Sora video
+15. If hero-sora.mp4 exists → video plays with overlay title
+16. If no video → container hidden, no error
+
+### Accessibility
+17. Lighthouse → form warnings reduced (all inputs have id + name)
+18. All labels have for attribute matching input id
+
+---
+
+## PART E — Game Mechanics Corrections (NEW)
+
+### E1. Death threshold: display "PdC négatifs avant la mort"
+
+In RM2, a character falls unconscious at 0 HP, but does NOT die until they reach
+**negative HP equal to their Constitution temp stat**. This is a critical survival
+calculation that should be visible on the character sheet.
+
+**Formula**: `deathThreshold = -character.stats[0]` (negative of CO temp)
+
+Example: CO = 78 → character dies at -78 HP.
+
+#### E1a. Add to character.js
+```javascript
+export function getDeathThreshold(character) {
+  return -(character.stats[0] || 0);
+}
+```
+
+#### E1b. Display in wizard.js HP section (Infos tab)
+In the HP display block, replace the current "PdeC Base" / "Cap" display:
+```javascript
+// OLD: just Base and Cap
+// NEW: Base (no blank space), Cap (with blank space), and Death threshold
+<div class="mt-4 flex gap-6 text-center">
+  <div>
+    <div class="text-2xl font-bold text-red-400">${hp.base}</div>
+    <div class="text-xs text-gray-500">PdC Base</div>
+  </div>
+  <div>
+    <div class="text-2xl font-bold text-red-400">${hp.cap}</div>
+    <div class="text-xs text-gray-500">PdC Max</div>
+  </div>
+  <div>
+    <div class="text-2xl font-bold text-gray-500" style="border-bottom:1px solid #8b6914;min-width:3rem">__</div>
+    <div class="text-xs text-gray-500">PdC Actuels</div>
+  </div>
+  <div>
+    <div class="text-2xl font-bold text-red-700">${getDeathThreshold(character)}</div>
+    <div class="text-xs text-gray-500">${lang==='en' ? 'Death at' : 'Mort à'}</div>
+  </div>
+</div>
+```
+NOTE: "PdC Base" should NOT have a blank writing space — it's a fixed calculated value.
+"PdC Actuels" gets a blank underline for handwritten tracking during play.
+"Mort à" shows the negative HP death threshold.
+
+#### E1c. Add to print-sheet.js and pdf-export.js
+Same layout: Base | Max | Actuels [___] | Mort à -XX
+
+### E2. Armor Maneuver Penalties on Moving Skills
+
+In RM2, armor imposes penalties to **all moving maneuver skills** (Athletics, Gymnastics,
+Combat maneuvers, Swimming, Climbing when moving, etc.). This penalty appears as a
+negative modifier in the Misc (Div) column of the skill table.
+
+The CPR093 original applied these penalties. The standard RM2 table is:
+
+```javascript
+// Armor Maneuver Penalties by AT (1-20)
+// Source: RM2 Character Law Table 15-8 / Arms Law armor chart
+// These are MINIMUM penalties — actual may be higher with heavy armor
+const ARMOR_MANEUVER_PENALTIES = {
+//  AT:  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20
+  mm: [ 0,  0,  0,  0, -5,-10,-15,-20, -5,-10,-15,-20,-10,-15,-25,-30,-15,-25,-35,-50],
+};
+```
+
+#### E2a. Add bonus field in Armor & Defense panel
+
+In the Infos tab, "Armure & Défense" panel, add:
+```html
+<label>${lang==='en' ? 'Armor magic bonus' : 'Bonus magique armure'}</label>
+<input type="number" id="f-armor-magic" value="${character.armorMagicBonus || 0}"
+  class="field field-sm"
+  title="${lang==='en'
+    ? 'Magical armor bonus: reduces maneuver penalties (positive = better)'
+    : 'Bonus magique armure: réduit les malus de manœuvre (positif = meilleur)'}">
+```
+Store as `character.armorMagicBonus`.
+
+#### E2b. Apply penalty to moving skills in skill table
+
+In `wizard.js` `renderSkillsTab()`, for each skill that is a "moving" skill,
+apply the armor penalty to the Misc column:
+
+```javascript
+// Determine if skill is a "moving maneuver" skill
+// Moving skills: categories Athletic, Gymnastic, Combat (for movement maneuvers),
+// and specific skills: Swimming, Climbing (when moving), Riding, Acrobatic, etc.
+const MOVING_SKILL_CATEGORIES = ['Athletic', 'Gymnastic'];
+const MOVING_SKILL_KEYWORDS = [
+  'Natation', 'Swimming', 'Escalade', 'Climbing', 'Course', 'Running',
+  'Saut', 'Jumping/Landing', 'Acrobat', 'Équitation', 'Riding',
+  'Esquive', 'Adrenal', 'Adrén',
+];
+
+function isMovingSkill(skill, catName) {
+  if (MOVING_SKILL_CATEGORIES.includes(catName)) return true;
+  const name = (skill.name_fr || skill.name_en || '').toLowerCase();
+  return MOVING_SKILL_KEYWORDS.some(kw => name.toLowerCase().includes(kw.toLowerCase()));
+}
+
+// In the skill row rendering:
+const armorMM = ARMOR_MANEUVER_PENALTIES.mm[character.armorType - 1] || 0;
+const magicOffset = character.armorMagicBonus || 0;
+const effectiveArmorPenalty = Math.min(0, armorMM + magicOffset); // can't go positive from magic
+const isMoving = isMovingSkill(skill, cat.name);
+const armorPenaltyForSkill = isMoving ? effectiveArmorPenalty : 0;
+const miscBonus = (character.skillMiscBonuses[globalIndex] || 0) + bgSkillBonus + armorPenaltyForSkill;
+```
+
+#### E2c. Visual indicator in skill table
+
+When a skill has armor penalty applied, show it visually:
+- The Misc (Div) column value should be split: show the manual misc bonus AND
+  the armor penalty separately
+- Or simply show the combined value in a distinctive color (e.g. orange if armor penalty active)
+- Add a small shield icon or "⛨" next to skills affected by armor
+
+In the column header, add a tooltip:
+```html
+<th class="text-center w-14" title="${lang==='en'
+  ? 'Misc: manual + background + armor penalties for moving skills'
+  : 'Div: manuels + historique + malus armure pour compétences de mouvement'
+}">${lang === 'en' ? 'Misc' : 'Div'}</th>
+```
+
+#### E2d. Apply to print-sheet.js and pdf-export.js
+
+Same armor penalty logic in both print and PDF output.
+Show the penalty as part of the Misc column.
+In PDF, if skill has armor penalty, add a small "⛨" marker.
+
+### E3. PDF layout optimization (NO background)
+
+Do NOT add a parchment background fill to the PDF — user explicitly said no background.
+But DO optimize:
+- **Column widths**: stat name wider, numeric cols tighter
+- **Vertical spacing**: reduce gaps between sections to fit more on page 1
+- **Two-column skills**: already implemented, verify alignment
+- **Combat block**: compact, next to stats instead of separate section
+- **Footer**: character name + date + page number, positioned low
+
+The goal: PDF layout should be as close to the print sheet as possible,
+using the same organization and proportions, minus the visual textures.
+
+
+---
+
+## UPDATED Priority order (with Part E)
+
+| # | Part | Task | Difficulty |
+|---|------|------|-----------|
+| **P0** | E1 | Death threshold calculation + display (HP section) | Easy |
+| **P0** | E2 | Armor maneuver penalties on moving skills | Medium |
+| **P0** | E3 | PDF: NO background, optimize layout to match print | Medium |
+| **P0** | B1-B2 | `formatCriticalText()` + symbol replacement | Medium |
+| **P0** | B3 | Translate toolbox labels (crit types, maneuver results) | Easy |
+| **P1** | D1 | Form accessibility (ids/labels) | Easy |
+| **P1** | C2-C4 | PDF header banner + stat block + skill rows | Medium |
+| **P1** | C5-C7 | PDF combat block + footer | Medium |
+| **P2** | A1 | Soften brown palette | Easy |
+| **P2** | A2 | CSS effects (animations, grain, glow) | Medium |
+| **P3** | A3-A4 | Asset audit + transparency check | Manual check |
+| **P3** | A5 | Sora video container | Easy (HTML/CSS only) |
+| **P3** | D2-D3 | Critical type + severity FR labels | Easy |
+| **P3** | E2a | Armor magic bonus field | Easy |
