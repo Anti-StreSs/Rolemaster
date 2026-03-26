@@ -515,28 +515,42 @@ export function findSkillIndex(nameEn) {
 }
 
 /**
- * Calculate similarity bonus for a skill.
- * Formula: floor(sum(coeff × ranks_of_similar_skill) / 4)
+ * Get own developed ranks for a skill (all phases, NO similarity).
+ * Used internally to avoid circular dependency in calcSimilarityRanks.
  */
-export function calcSimilarityBonus(globalIndex, character) {
+export function getOwnDevelopedRanks(globalIndex, character) {
+  return (character.skillRanksAdolescent?.[globalIndex] || 0)
+       + (character.skillRanksApprenti?.[globalIndex] || 0)
+       + (character.skillRanksPrior?.[globalIndex] || 0)
+       + (character.skillRanksLevel?.[globalIndex] || 0);
+}
+
+/**
+ * Calculate auto-granted ranks from similar skills (RM2 rule 14.1.5).
+ * CPR093 graduated formula: autoRanks = floor(sourceRanks × coeff / 16)
+ * coeff 8 = most similar → half ranks (RM2 standard)
+ * coeff 4 = quarter ranks, coeff 2 = eighth, etc.
+ *
+ * Returns only the EXTRA ranks above own dev (0 if own ranks already win).
+ */
+export function calcSimilarityRanks(globalIndex, character) {
   const similData = getData().skill_similarity_pairs;
   if (!similData || !similData.pairs) return 0;
 
-  // Find all pairs where this skill is the target (from_global)
   const pairs = similData.pairs.filter(p => p.from_global === globalIndex);
   if (pairs.length === 0) return 0;
 
-  let sum = 0;
+  const ownRanks = getOwnDevelopedRanks(globalIndex, character);
+  let bestAutoRanks = 0;
+
   for (const pair of pairs) {
-    const ranks = (character.skillRanksAdolescent?.[pair.to_global] || 0)
-                + (character.skillRanksApprenti?.[pair.to_global] || 0)
-                + (character.skillRanksPrior?.[pair.to_global] || 0)
-                + (character.skillRanksLevel?.[pair.to_global] || 0);
-    if (ranks > 0) {
-      sum += pair.coefficient * ranks;
-    }
+    const sourceRanks = getOwnDevelopedRanks(pair.to_global, character);
+    if (sourceRanks <= 0) continue;
+    const autoRanks = Math.floor(sourceRanks * pair.coefficient / 16);
+    if (autoRanks > bestAutoRanks) bestAutoRanks = autoRanks;
   }
-  return Math.floor(sum / 4);
+
+  return Math.max(0, bestAutoRanks - ownRanks);
 }
 
 // === Level Bonus (Table 09-07, RM2 Option) ===

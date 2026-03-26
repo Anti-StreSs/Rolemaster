@@ -5,7 +5,7 @@ import { loadCharacter, saveCharacter, getAllCharacters } from './db.js';
 import { calcHitPoints, calcPowerPoints, calculateDB, getTotalRanks } from './character.js';
 import { getStatBonus, getRankBonus, generateStatRolls } from './stats.js';
 import { getSkillName, getSkillDevCost, getSkillStatIndices,
-         getLevelBonus, calcSimilarityBonus, getAllSkillsFlat,
+         getLevelBonus, getAllSkillsFlat,
          getAllCategories, calcSkillStatBonus } from './skills.js';
 import { getBackgroundBonuses, getSkillBackgroundBonus } from './background-effects.js';
 import { getAllClasses, getClassName } from './classes.js';
@@ -135,11 +135,11 @@ registerTool('get_skill_total',
     const classes = getAllClasses();
     const cls = c.classIndex >= 0 ? classes[c.classIndex] : null;
     const lvlBonus = getLevelBonus(cls, c.level, skill.categoryName, skillIndex);
-    const simBonus = calcSimilarityBonus(skillIndex, c);
     const bgBonus = getSkillBackgroundBonus(bg, skill.name_fr, skill.name_en);
     const miscBonus = (c.miscBonuses && c.miscBonuses[skillIndex]) || 0;
-    const total = rankBonus + statBonus + lvlBonus + simBonus + bgBonus + miscBonus;
-    return { skillName: skill.name_fr, ranks, rankBonus, statBonus, lvlBonus, simBonus, bgBonus, miscBonus, total };
+    const simRanks = c.skillRanksSimil?.[skillIndex] || 0;
+    const total = rankBonus + statBonus + lvlBonus + bgBonus + miscBonus;
+    return { skillName: skill.name_fr, ranks, rankBonus, statBonus, lvlBonus, simRanks, bgBonus, miscBonus, total };
   }
 );
 
@@ -162,14 +162,13 @@ registerTool('get_all_skills',
       const rankBonus = getRankBonus(ranks);
       const statBonus = calcSkillStatBonus(skill, statValues);
       const lvlBonus = getLevelBonus(cls, c.level, skill.categoryName, idx);
-      const simBonus = calcSimilarityBonus(idx, c);
       const bgBonus = getSkillBackgroundBonus(bg, skill.name_fr, skill.name_en);
-      const total = rankBonus + statBonus + lvlBonus + simBonus + bgBonus;
+      const total = rankBonus + statBonus + lvlBonus + bgBonus;
       if (filter === 'developed' && ranks === 0) continue;
       if (filter === 'positive' && total <= 0) continue;
       result.push({
         index: idx, name_fr: skill.name_fr, name_en: skill.name_en,
-        ranks, rankBonus, statBonus, lvlBonus, simBonus, bgBonus, total,
+        ranks, rankBonus, statBonus, lvlBonus, bgBonus, total,
       });
     }
     return result;

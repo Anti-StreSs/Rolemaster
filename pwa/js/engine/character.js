@@ -128,6 +128,9 @@ export function createCharacter() {
     // Accumulated ranks from all prior levels (for level 2+)
     skillRanksPrior: {},
 
+    // Auto-granted ranks from similar skills (committed at fin de phase)
+    skillRanksSimil: {},
+
     // DP tracking per phase
     devPointsSpentAdolescent: 0,
     devPointsSpentApprenti: 0,
@@ -181,7 +184,8 @@ export function getTotalRanks(character, skillIndex) {
   return (character.skillRanksAdolescent[skillIndex] || 0)
        + (character.skillRanksApprenti[skillIndex] || 0)
        + (character.skillRanksPrior[skillIndex] || 0)
-       + (character.skillRanksLevel[skillIndex] || 0);
+       + (character.skillRanksLevel[skillIndex] || 0)
+       + (typeof skillIndex === 'number' ? (character.skillRanksSimil?.[skillIndex] || 0) : 0);
 }
 
 /**

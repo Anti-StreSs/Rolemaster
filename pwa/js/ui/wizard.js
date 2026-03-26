@@ -5,7 +5,7 @@ import { panel, showToast } from './components.js';
 import { createCharacter, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, applyRace, DEV_PHASES, getTotalRanks, getCurrentPhaseRanks, getCurrentPhaseRanksObj, getDevPointsSpent, setDevPointsSpent, getDevPointsTotal, getSpellPointsSpent, setSpellPointsSpent, getSpellPointsTotal, SHIELD_TYPES, calculateDB, setAdrenalDefenseIndex, rollBodyDevHitDie, getBodyDevSkillIndex, getDeathThreshold, ARMOR_MANEUVER_PENALTIES, isMovingSkill } from '../engine/character.js';
 import { generateStatRolls, getStatValues, statPotentialLookup, generateStatRollsHybrid, generateStatRollsAntiLose, getStatValuesHybrid, rollStatPairsRMSS, getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
 import { getAllClasses, getClassName, getRealmInfo, getRealmKey, getRealmLabel, isSpellUser, getClassPrimeStats, getPPStatIndices } from '../engine/classes.js';
-import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts, isParentSkill, isSpecializableSkill, getWeaponSubcategories, getWeaponSkillCost, getParentSubSkillOptions, WEAPON_SKILL_GLOBAL_INDEX, getAllSkillsFlat, getLevelBonus, calcSimilarityBonus, getSpecializationSuggestion } from '../engine/skills.js';
+import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts, isParentSkill, isSpecializableSkill, getWeaponSubcategories, getWeaponSkillCost, getParentSubSkillOptions, WEAPON_SKILL_GLOBAL_INDEX, getAllSkillsFlat, getLevelBonus, calcSimilarityRanks, getSpecializationSuggestion } from '../engine/skills.js';
 import { getAllRealms, getSpellListCost, getSpellRankCost, getSpellBlockSize, getListTypeKey, isPureCaster, getClassBaseSpellLists } from '../engine/spells.js';
 import { downloadCharacter, saveToLocalStorage } from '../engine/export.js';
 import { generateCharacterPDF } from '../engine/pdf-export.js';
@@ -1948,7 +1948,8 @@ function renderSkillsTab(lang) {
         const statTotalBonus = statTotalBonusBase + bgStatBonus;
         const cls = character.classIndex >= 0 ? getAllClasses()[character.classIndex] : null;
         const lvlBonus = getLevelBonus(cls, character.level, cat.name, globalIndex);
-        const similBonus = calcSimilarityBonus(globalIndex, character);
+        // Preview: dynamic sim ranks for current phase (committed at fin de phase)
+        const simPreview = calcSimilarityRanks(globalIndex, character);
         const bgSkillBonus = getSkillBackgroundBonus(bgBonuses, skill.name, skill.name_en);
         const miscBonus = (character.skillMiscBonuses[globalIndex] || 0) + bgSkillBonus;
         const armorMM = ARMOR_MANEUVER_PENALTIES[(character.armorType || 1) - 1] || 0;
@@ -1956,8 +1957,8 @@ function renderSkillsTab(lang) {
         const effectiveArmorPenalty = Math.min(0, armorMM + armorMagic);
         const isMoving = isMovingSkill(skill);
         const armorPenalty = isMoving ? effectiveArmorPenalty : 0;
-        const total = rankBonus + statTotalBonus + lvlBonus + similBonus + miscBonus + armorPenalty;
-        let rankBoxes = renderRankBoxes(totalRanks, phaseRanks);
+        const total = rankBonus + statTotalBonus + lvlBonus + miscBonus + armorPenalty;
+        let rankBoxes = renderRankBoxes(totalRanks, phaseRanks, isValidated ? 0 : simPreview);
         const addDisabled = !canAdd || !canAfford ? 'disabled' : '';
         const removeDisabled = !canRemove ? 'disabled' : '';
         const plusMinus = cost ? `
@@ -1983,7 +1984,13 @@ function renderSkillsTab(lang) {
             <td class="text-center stat-bonus ${rankBonus >= 0 ? 'positive' : 'negative'}">${rankBonus >= 0 ? '+' + rankBonus : rankBonus}</td>
             <td class="text-center stat-bonus ${statTotalBonus >= 0 ? 'positive' : 'negative'}">${statTotalBonus >= 0 ? '+' + statTotalBonus : statTotalBonus}</td>
             <td class="text-center text-xs">${lvlBonus > 0 ? '+' + lvlBonus : ''}</td>
-            <td class="text-center text-xs">${similBonus > 0 ? '+' + similBonus : ''}</td>
+            <td class="text-center text-xs">${
+              isValidated && (character.skillRanksSimil?.[globalIndex] || 0) > 0
+                ? `<span class="text-orange-400" title="${lang === 'en' ? 'Auto ranks from similar skills' : 'DM auto (compétences similaires)'}">${character.skillRanksSimil[globalIndex]}</span>`
+                : simPreview > 0
+                  ? `<span class="text-red-400 font-bold" title="${lang === 'en' ? simPreview + ' auto ranks (pending validation)' : simPreview + ' DM auto (en attente de validation)'}">${simPreview}*</span>`
+                  : ''
+            }</td>
             <td class="text-center">
               <input type="number" class="field-inline skill-misc-input" data-skill="${globalIndex}" value="${miscBonus || ''}" style="width:2.5rem" title="Bonus divers">
               ${armorPenalty < 0 ? `<span title="${lang === 'en' ? 'Armor penalty: ' + armorPenalty : 'Malus armure: ' + armorPenalty}" style="color:#f97316;font-size:0.65rem">⛨${armorPenalty}</span>` : ''}
@@ -2037,18 +2044,22 @@ function renderSkillsTab(lang) {
  * Render rank boxes ■□ style (iconic RM character sheet look).
  * Shows up to 10 boxes for the first tier, condensed display after that.
  */
-function renderRankBoxes(totalRanks, phaseRanks) {
-  const maxDisplay = Math.max(totalRanks + 2, 5);
+function renderRankBoxes(totalRanks, phaseRanks, simPreview = 0) {
+  const previewTotal = totalRanks + simPreview;
+  const maxDisplay = Math.max(previewTotal + 2, 5);
   const capped = Math.min(maxDisplay, 10);
   let html = '<span class="rank-boxes">';
   for (let r = 0; r < capped; r++) {
-    const isFilled = r < totalRanks;
-    const isNewThisPhase = r >= (totalRanks - phaseRanks) && r < totalRanks;
-    const cls = isFilled ? (isNewThisPhase ? 'filled new-rank' : 'filled') : '';
+    const isFilled = r < previewTotal;
+    const isSimPreview = isFilled && r >= totalRanks; // beyond own ranks = preview
+    const isNewThisPhase = !isSimPreview && r >= (totalRanks - phaseRanks) && r < totalRanks;
+    const cls = isFilled
+      ? (isSimPreview ? 'filled sim-rank' : (isNewThisPhase ? 'filled new-rank' : 'filled'))
+      : '';
     html += `<span class="rank-box ${cls}">${isFilled ? '■' : '□'}</span>`;
   }
-  if (totalRanks > 10) {
-    html += `<span class="text-xs text-gray-500">+${totalRanks - 10}</span>`;
+  if (previewTotal > 10) {
+    html += `<span class="text-xs text-gray-500">+${previewTotal - 10}</span>`;
   }
   html += '</span>';
   return html;
@@ -3527,6 +3538,25 @@ function bindHistoryEvents(app) {
   }
 }
 
+/**
+ * Commit similarity auto-ranks to skillRanksSimil at fin de phase.
+ * These become normal DM in getTotalRanks; the Sim column keeps the trace.
+ */
+function finalizeSimRanks(character) {
+  if (!character.skillRanksSimil) character.skillRanksSimil = {};
+  const categories = getAllCategories();
+  let gi = 0;
+  for (const cat of categories) {
+    for (const _skill of cat.skills) {
+      const simRanks = calcSimilarityRanks(gi, character);
+      if (simRanks > 0) {
+        character.skillRanksSimil[gi] = (character.skillRanksSimil[gi] || 0) + simRanks;
+      }
+      gi++;
+    }
+  }
+}
+
 function bindSkillsEvents(app) {
   // Phase validation: end current development phase (irréversible)
   const btnValidatePhase = document.getElementById('btn-validate-phase');
@@ -3538,6 +3568,9 @@ function bindSkillsEvents(app) {
         ? `End the ${phaseLabel} development phase?\nUnspent DP will be lost. This action is irreversible.`
         : `Valider la phase de développement ${phaseLabel} ?\nLes PD non dépensés seront perdus. Cette action est irréversible.`;
       if (!confirm(msg)) return;
+
+      // Commit similarity auto-ranks before snapshotting
+      finalizeSimRanks(character);
 
       // Snapshot current phase
       if (!character.phases) character.phases = [];

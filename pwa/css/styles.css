@@ -444,6 +444,12 @@
   cursor: default;
 }
 
+/* Similarity auto-ranks preview (pending fin de phase) */
+.rank-box.sim-rank {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.18);
+}
+
 /* New ranks highlight (added in current phase) */
 .rank-box.new-rank {
   color: #34d399;

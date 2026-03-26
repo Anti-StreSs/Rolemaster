@@ -4,7 +4,7 @@
 import { getStatBonus, getRankBonus } from './stats.js';
 import { calcHitPoints, calcPowerPoints, calculateDB, getTotalRanks,
          getTotalStatBonus, getDeathThreshold, ARMOR_MANEUVER_PENALTIES, isMovingSkill } from './character.js';
-import { getSkillStatIndices, getLevelBonus, getAllCategories, calcSimilarityBonus } from './skills.js';
+import { getSkillStatIndices, getLevelBonus, getAllCategories } from './skills.js';
 import { getBackgroundBonuses, getSkillBackgroundBonus,
          summarizeBackgroundBonuses } from './background-effects.js';
 import { getClassName, getRealmLabel, getAllClasses } from './classes.js';
@@ -83,11 +83,10 @@ function getDevelopedSkills(character, lang) {
       const lvlBonus   = getLevelBonus(cls, character.level, cat.name, gi);
       const miscBonus  = character.skillMiscBonuses[gi] || 0;
       const bgBonus    = getSkillBackgroundBonus(bgBonuses, skill.name_fr, skill.name_en);
-      const similBonus = calcSimilarityBonus(gi, character);
       const armorMM    = ARMOR_MANEUVER_PENALTIES[(character.armorType || 1) - 1] || 0;
       const armorMagic = character.armorMagicBonus || 0;
       const armorPenalty = isMovingSkill(skill) ? Math.min(0, armorMM + armorMagic) : 0;
-      const total      = rankBonus + statBonus + lvlBonus + miscBonus + bgBonus + similBonus + armorPenalty;
+      const total      = rankBonus + statBonus + lvlBonus + miscBonus + bgBonus + armorPenalty;
 
       if (totalRanks > 0 || total > 0) {
         const catLabel = lang === 'fr' ? (CAT_NAMES_FR[cat.name] || cat.name) : cat.name;

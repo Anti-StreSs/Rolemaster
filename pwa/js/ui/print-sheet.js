@@ -2,7 +2,7 @@
 // Reproduces CPR093 layout: identity, stats, combat, skills with DM boxes
 
 import { getAllClasses, getClassName, getRealmKey, getRealmLabel } from '../engine/classes.js';
-import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getLevelBonus, calcSimilarityBonus } from '../engine/skills.js';
+import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getLevelBonus } from '../engine/skills.js';
 import { getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
 import { getTotalRanks, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, calculateDB, getDeathThreshold, ARMOR_MANEUVER_PENALTIES, isMovingSkill } from '../engine/character.js';
 
@@ -46,8 +46,7 @@ function getFilteredSkills(character, config) {
       const miscBonus = character.skillMiscBonuses[globalIndex] || 0;
       const armorMM = ARMOR_MANEUVER_PENALTIES[(character.armorType || 1) - 1] || 0;
       const armorPenalty = isMovingSkill(skill) ? Math.min(0, armorMM + (character.armorMagicBonus || 0)) : 0;
-      const similBonus = calcSimilarityBonus(globalIndex, character);
-      const total = rankBonus + statBonus + lvlBonus + miscBonus + similBonus + armorPenalty;
+      const total = rankBonus + statBonus + lvlBonus + miscBonus + armorPenalty;
       const highlight = (character.skillHighlights || {})[globalIndex] || null;
 
       let include = false;
@@ -70,7 +69,7 @@ function getFilteredSkills(character, config) {
           statBonus,
           lvlBonus,
           miscBonus: miscBonus || '',
-          similBonus: similBonus || '',
+          similRanks: (character.skillRanksSimil?.[globalIndex] || 0) || '',
           total,
           costStr: cost ? (cost.second > 0 ? `${cost.first}/${cost.second}` : `${cost.first}`) : '—',
           highlight,
@@ -208,7 +207,7 @@ function generateSkillTable(skills, config) {
       <td class="tc ps-bonus">${sk.statBonus >= 0 ? '+' + sk.statBonus : sk.statBonus}</td>
       <td class="tc">${sk.lvlBonus > 0 ? '+' + sk.lvlBonus : ''}</td>
       <td class="tc">${sk.miscBonus || ''}</td>
-      ${config.showSimil ? `<td class="tc">${sk.similBonus ? (sk.similBonus > 0 ? '+' + sk.similBonus : sk.similBonus) : ''}</td>` : ''}
+      ${config.showSimil ? `<td class="tc">${sk.similRanks || ''}</td>` : ''}
       <td class="tc ps-bonus-total"><b>${sk.total >= 0 ? '+' + sk.total : sk.total}</b></td>
     </tr>`;
   }
