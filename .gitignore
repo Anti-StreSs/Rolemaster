@@ -1,9 +1,35 @@
-﻿Thumbs.db
+﻿# OS files
+Thumbs.db
 .DS_Store
 desktop.ini
+
+# IDE
 .vscode/
 .idea/
+
+# Logs & temp
 *.log
 *.lock
 *.tmp
+
+# Node
 node_modules/
+
+# Backup files (keep locally, not in repo)
+*.bak
+*.backup*
+*.old
+
+# Intermediate data files
+data/parsed/
+data/*_corrections.json
+data/*_comp*.json
+data/*_ct*.json
+data/creatures_for_translation.json
+data/missing_translations.txt
+data/translate_list.txt
+data/combat_tables_final_report.md
+
+# Large archives
+assets/assets.zip
+assets/ui/assets_preview.png
