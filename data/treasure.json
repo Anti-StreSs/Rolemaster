@@ -1,0 +1,2288 @@
+{
+  "_metadata": {
+    "source": "tresor2.xlsm",
+    "source_book": "Rolemaster RM2 FR (adaptation)",
+    "version": "1.0"
+  },
+  "treasure_types": [
+    {
+      "id": "type-A",
+      "code": "A",
+      "label_fr": "Type A",
+      "wealth_level": 1,
+      "wealth_label_fr": "Très pauvre",
+      "num_item_rolls": 1
+    },
+    {
+      "id": "type-B",
+      "code": "B",
+      "label_fr": "Type B",
+      "wealth_level": 2,
+      "wealth_label_fr": "Pauvre",
+      "num_item_rolls": 1
+    },
+    {
+      "id": "type-C",
+      "code": "C",
+      "label_fr": "Type C",
+      "wealth_level": 3,
+      "wealth_label_fr": "Normal",
+      "num_item_rolls": 1
+    },
+    {
+      "id": "type-D",
+      "code": "D",
+      "label_fr": "Type D",
+      "wealth_level": 4,
+      "wealth_label_fr": "Riche",
+      "num_item_rolls": 1
+    },
+    {
+      "id": "type-E",
+      "code": "E",
+      "label_fr": "Type E",
+      "wealth_level": 5,
+      "wealth_label_fr": "Très riche",
+      "num_item_rolls": 1
+    },
+    {
+      "id": "type-F",
+      "code": "F",
+      "label_fr": "Type F",
+      "wealth_level": 1,
+      "wealth_label_fr": "Très pauvre",
+      "num_item_rolls": 2
+    },
+    {
+      "id": "type-G",
+      "code": "G",
+      "label_fr": "Type G",
+      "wealth_level": 2,
+      "wealth_label_fr": "Pauvre",
+      "num_item_rolls": 2
+    },
+    {
+      "id": "type-H",
+      "code": "H",
+      "label_fr": "Type H",
+      "wealth_level": 3,
+      "wealth_label_fr": "Normal",
+      "num_item_rolls": 2
+    },
+    {
+      "id": "type-I",
+      "code": "I",
+      "label_fr": "Type I",
+      "wealth_level": 4,
+      "wealth_label_fr": "Riche",
+      "num_item_rolls": 2
+    },
+    {
+      "id": "type-J",
+      "code": "J",
+      "label_fr": "Type J",
+      "wealth_level": 5,
+      "wealth_label_fr": "Très riche",
+      "num_item_rolls": 2
+    },
+    {
+      "id": "type-K",
+      "code": "K",
+      "label_fr": "Type K",
+      "wealth_level": 1,
+      "wealth_label_fr": "Très pauvre",
+      "num_item_rolls": 3
+    },
+    {
+      "id": "type-L",
+      "code": "L",
+      "label_fr": "Type L",
+      "wealth_level": 2,
+      "wealth_label_fr": "Pauvre",
+      "num_item_rolls": 3
+    },
+    {
+      "id": "type-M",
+      "code": "M",
+      "label_fr": "Type M",
+      "wealth_level": 3,
+      "wealth_label_fr": "Normal",
+      "num_item_rolls": 3
+    },
+    {
+      "id": "type-N",
+      "code": "N",
+      "label_fr": "Type N",
+      "wealth_level": 4,
+      "wealth_label_fr": "Riche",
+      "num_item_rolls": 3
+    },
+    {
+      "id": "type-O",
+      "code": "O",
+      "label_fr": "Type O",
+      "wealth_level": 5,
+      "wealth_label_fr": "Très riche",
+      "num_item_rolls": 3
+    },
+    {
+      "id": "type-P",
+      "code": "P",
+      "label_fr": "Type P",
+      "wealth_level": 1,
+      "wealth_label_fr": "Très pauvre",
+      "num_item_rolls": 4
+    },
+    {
+      "id": "type-Q",
+      "code": "Q",
+      "label_fr": "Type Q",
+      "wealth_level": 2,
+      "wealth_label_fr": "Pauvre",
+      "num_item_rolls": 4
+    },
+    {
+      "id": "type-R",
+      "code": "R",
+      "label_fr": "Type R",
+      "wealth_level": 3,
+      "wealth_label_fr": "Normal",
+      "num_item_rolls": 4
+    },
+    {
+      "id": "type-S",
+      "code": "S",
+      "label_fr": "Type S",
+      "wealth_level": 4,
+      "wealth_label_fr": "Riche",
+      "num_item_rolls": 4
+    },
+    {
+      "id": "type-T",
+      "code": "T",
+      "label_fr": "Type T",
+      "wealth_level": 5,
+      "wealth_label_fr": "Très riche",
+      "num_item_rolls": 4
+    },
+    {
+      "id": "type-U",
+      "code": "U",
+      "label_fr": "Type U",
+      "wealth_level": 1,
+      "wealth_label_fr": "Très pauvre",
+      "num_item_rolls": 5
+    },
+    {
+      "id": "type-V",
+      "code": "V",
+      "label_fr": "Type V",
+      "wealth_level": 2,
+      "wealth_label_fr": "Pauvre",
+      "num_item_rolls": 5
+    },
+    {
+      "id": "type-W",
+      "code": "W",
+      "label_fr": "Type W",
+      "wealth_level": 3,
+      "wealth_label_fr": "Normal",
+      "num_item_rolls": 5
+    },
+    {
+      "id": "type-X",
+      "code": "X",
+      "label_fr": "Type X",
+      "wealth_level": 4,
+      "wealth_label_fr": "Riche",
+      "num_item_rolls": 5
+    },
+    {
+      "id": "type-Y",
+      "code": "Y",
+      "label_fr": "Type Y",
+      "wealth_level": 5,
+      "wealth_label_fr": "Très riche",
+      "num_item_rolls": 5
+    },
+    {
+      "id": "type-Z",
+      "code": "Z",
+      "label_fr": "Type Z",
+      "wealth_level": 5,
+      "wealth_label_fr": "Très riche",
+      "num_item_rolls": 5
+    }
+  ],
+  "item_categories": [
+    {
+      "id": 1,
+      "label_fr": "Objet Normal",
+      "weights": [
+        2,
+        3,
+        1
+      ]
+    },
+    {
+      "id": 2,
+      "label_fr": "Objet Léger",
+      "weights": [
+        2,
+        3,
+        2
+      ]
+    },
+    {
+      "id": 3,
+      "label_fr": "Carte",
+      "weights": [
+        3,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "label_fr": "Objet à bonus",
+      "weights": [
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "label_fr": "Objet avec sort",
+      "weights": [
+        2,
+        6,
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "label_fr": "Objet bonus sort",
+      "weights": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "label_fr": "Objet Modeste",
+      "weights": [
+        4,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 8,
+      "label_fr": "Objet Puissant",
+      "weights": [
+        5,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 9,
+      "label_fr": "Objet très puissant",
+      "weights": [
+        6,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 10,
+      "label_fr": "Grimoire",
+      "weights": [
+        7,
+        5,
+        1
+      ]
+    },
+    {
+      "id": 11,
+      "label_fr": "Artefact",
+      "weights": [
+        8,
+        1,
+        1
+      ]
+    }
+  ],
+  "wealth_rolls_table": {
+    "description_fr": "d100 → nombre de tirages de richesse par niveau (1-5)",
+    "rows": [
+      {
+        "min": 1,
+        "max": 20,
+        "nb": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "min": 21,
+        "max": 40,
+        "nb": [
+          0,
+          0,
+          0,
+          1,
+          1
+        ]
+      },
+      {
+        "min": 41,
+        "max": 55,
+        "nb": [
+          0,
+          0,
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "min": 56,
+        "max": 70,
+        "nb": [
+          0,
+          1,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "min": 71,
+        "max": 80,
+        "nb": [
+          0,
+          1,
+          2,
+          2,
+          4
+        ]
+      },
+      {
+        "min": 81,
+        "max": 90,
+        "nb": [
+          1,
+          1,
+          2,
+          3,
+          5
+        ]
+      },
+      {
+        "min": 91,
+        "max": 94,
+        "nb": [
+          1,
+          2,
+          3,
+          3,
+          6
+        ]
+      },
+      {
+        "min": 95,
+        "max": 97,
+        "nb": [
+          2,
+          3,
+          4,
+          4,
+          7
+        ]
+      },
+      {
+        "min": 98,
+        "max": 99,
+        "nb": [
+          3,
+          4,
+          5,
+          6,
+          8
+        ]
+      },
+      {
+        "min": 100,
+        "max": 100,
+        "nb": [
+          4,
+          5,
+          6,
+          8,
+          10
+        ]
+      }
+    ]
+  },
+  "wealth_amounts_table": {
+    "description_fr": "d100 → libellé de la richesse par niveau (1-5)",
+    "rows": [
+      {
+        "min": 1,
+        "max": 10,
+        "amounts": [
+          "50 p d'étain",
+          "500 p d'étain",
+          "1000 p d'étain",
+          "5000 p d'étain",
+          "10000 p d'étain"
+        ]
+      },
+      {
+        "min": 11,
+        "max": 20,
+        "amounts": [
+          "100 p d'étain",
+          "1500 p d'étain",
+          "3000 p d'étain",
+          "7500 p d'étain",
+          "5000 p de cuivre"
+        ]
+      },
+      {
+        "min": 21,
+        "max": 30,
+        "amounts": [
+          "500 p d'étain",
+          "2500 p d'étain",
+          "5000 p d'étain",
+          "1000 p de cuivre",
+          "10000 p de cuivre"
+        ]
+      },
+      {
+        "min": 31,
+        "max": 35,
+        "amounts": [
+          "1000 p d'étain",
+          "500 p de cuivre",
+          "1000 p de cuivre",
+          "1750 p de cuivre",
+          "1500 p de bronze"
+        ]
+      },
+      {
+        "min": 36,
+        "max": 40,
+        "amounts": [
+          "2000 p d'étain",
+          "750 p de cuivre",
+          "1500 p de cuivre",
+          "2500 p de cuivre",
+          "2000 p de bronze"
+        ]
+      },
+      {
+        "min": 41,
+        "max": 45,
+        "amounts": [
+          "300 p de cuivre",
+          "1000 p de cuivre",
+          "2000 p de cuivre",
+          "400 p de bronze",
+          "250 p d'argent"
+        ]
+      },
+      {
+        "min": 46,
+        "max": 50,
+        "amounts": [
+          "400 p de cuivre",
+          "1250 p de cuivre",
+          "250 p de bronze",
+          "500 p de bronze",
+          "300 p d'argent"
+        ]
+      },
+      {
+        "min": 51,
+        "max": 55,
+        "amounts": [
+          "500 p de cuivre",
+          "150 p de bronze",
+          "300 p de bronze",
+          "600 p de bronze",
+          "400 p d'argent"
+        ]
+      },
+      {
+        "min": 56,
+        "max": 60,
+        "amounts": [
+          "600 p de cuivre",
+          "200 p de bronze",
+          "350 p de bronze",
+          "70 p d'argent",
+          "60 p d'or"
+        ]
+      },
+      {
+        "min": 61,
+        "max": 65,
+        "amounts": [
+          "70 p de bronze",
+          "250 p de bronze",
+          "40 p d'argent",
+          "90 p d'argent",
+          "80 p d'or"
+        ]
+      },
+      {
+        "min": 66,
+        "max": 70,
+        "amounts": [
+          "80 p de bronze",
+          "30 p d'argent",
+          "50 p d'argent",
+          "110 p d'argent",
+          "100 p d'or"
+        ]
+      },
+      {
+        "min": 71,
+        "max": 75,
+        "amounts": [
+          "90 p de bronze",
+          "35 p d'argent",
+          "60 p d'argent",
+          "15 p d'or",
+          "125 p d'or"
+        ]
+      },
+      {
+        "min": 76,
+        "max": 80,
+        "amounts": [
+          "100 p de bronze",
+          "40 p d'argent",
+          "70 p d'argent",
+          "25 p d'or",
+          "150 p d'or"
+        ]
+      },
+      {
+        "min": 81,
+        "max": 85,
+        "amounts": [
+          "12 p d'argent",
+          "50 p d'argent",
+          "8 p d'or",
+          "35 p d'or",
+          "2 p de mithril"
+        ]
+      },
+      {
+        "min": 86,
+        "max": 90,
+        "amounts": [
+          "15 p d'argent",
+          "60 p d'argent",
+          "10 p d'or",
+          "45 p d'or",
+          "Gem (30-300)"
+        ]
+      },
+      {
+        "min": 91,
+        "max": 94,
+        "amounts": [
+          "20 p d'argent",
+          "7 p d'or",
+          "15 p d'or",
+          "Gem (1-100)",
+          "Gem (50-500)"
+        ]
+      },
+      {
+        "min": 95,
+        "max": 97,
+        "amounts": [
+          "3 p d'or",
+          "8 p d'or",
+          "Gem (2-20)",
+          "Gem (10-100)",
+          "Joyau (10-1000)"
+        ]
+      },
+      {
+        "min": 98,
+        "max": 99,
+        "amounts": [
+          "5 p d'or",
+          "Gem (1-10)",
+          "Gem (1-100)",
+          "1 p de mithril",
+          "Joyau (100-1000)"
+        ]
+      },
+      {
+        "min": 100,
+        "max": 100,
+        "amounts": [
+          "Gem (1-10)",
+          "Joyau (3-30)",
+          "Joyau (10-100)",
+          "Joyau (10-1000)",
+          "Joyau (100-10000)"
+        ]
+      }
+    ]
+  },
+  "item_rolls_table": {
+    "description_fr": "d100 → nombre de tirages d'objets par niveau (1-5)",
+    "rows": [
+      {
+        "min": 1,
+        "max": 5,
+        "nb": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "min": 6,
+        "max": 10,
+        "nb": [
+          1,
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "min": 11,
+        "max": 20,
+        "nb": [
+          1,
+          1,
+          2,
+          2,
+          3
+        ]
+      },
+      {
+        "min": 21,
+        "max": 30,
+        "nb": [
+          1,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "min": 31,
+        "max": 40,
+        "nb": [
+          1,
+          2,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "min": 41,
+        "max": 50,
+        "nb": [
+          1,
+          2,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "min": 51,
+        "max": 60,
+        "nb": [
+          2,
+          2,
+          4,
+          4,
+          5
+        ]
+      },
+      {
+        "min": 61,
+        "max": 65,
+        "nb": [
+          2,
+          3,
+          4,
+          5,
+          5
+        ]
+      },
+      {
+        "min": 66,
+        "max": 70,
+        "nb": [
+          3,
+          3,
+          4,
+          5,
+          5
+        ]
+      },
+      {
+        "min": 71,
+        "max": 75,
+        "nb": [
+          3,
+          4,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "min": 76,
+        "max": 85,
+        "nb": [
+          4,
+          4,
+          5,
+          6,
+          6
+        ]
+      },
+      {
+        "min": 86,
+        "max": 90,
+        "nb": [
+          4,
+          5,
+          6,
+          6,
+          7
+        ]
+      },
+      {
+        "min": 91,
+        "max": 94,
+        "nb": [
+          5,
+          6,
+          6,
+          7,
+          10
+        ]
+      },
+      {
+        "min": 95,
+        "max": 97,
+        "nb": [
+          6,
+          6,
+          7,
+          10,
+          8
+        ]
+      },
+      {
+        "min": 98,
+        "max": 99,
+        "nb": [
+          7,
+          7,
+          10,
+          8,
+          9
+        ]
+      },
+      {
+        "min": 100,
+        "max": 100,
+        "nb": [
+          8,
+          8,
+          8,
+          9,
+          11
+        ]
+      }
+    ]
+  },
+  "spell_lists_for_items": [
+    {
+      "id": 1,
+      "range_start": 1,
+      "range_end": 1,
+      "name_fr": "Sorts de défense",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 2,
+      "range_start": 76,
+      "range_end": 76,
+      "name_fr": "Voies des barrages",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 3,
+      "range_start": 151,
+      "range_end": 151,
+      "name_fr": "Détections transcendantales",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 4,
+      "range_start": 226,
+      "range_end": 226,
+      "name_fr": "Connexions supérieures",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 5,
+      "range_start": 301,
+      "range_end": 301,
+      "name_fr": "Lois du temps",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 6,
+      "range_start": 376,
+      "range_end": 376,
+      "name_fr": "Lois des sons",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 7,
+      "range_start": 451,
+      "range_end": 451,
+      "name_fr": "Voies de la lumière",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 8,
+      "range_start": 526,
+      "range_end": 526,
+      "name_fr": "Purifications",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 9,
+      "range_start": 601,
+      "range_end": 601,
+      "name_fr": "Soins superficiels",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 10,
+      "range_start": 676,
+      "range_end": 676,
+      "name_fr": "Voies de la nature",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 11,
+      "range_start": 751,
+      "range_end": 751,
+      "name_fr": "Voies du sang",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 12,
+      "range_start": 826,
+      "range_end": 826,
+      "name_fr": "Voies des organes",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 13,
+      "range_start": 901,
+      "range_end": 901,
+      "name_fr": "Créations",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 14,
+      "range_start": 976,
+      "range_end": 976,
+      "name_fr": "Préscience",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 15,
+      "range_start": 1051,
+      "range_end": 1051,
+      "name_fr": "Voies des nerfs",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 16,
+      "range_start": 1126,
+      "range_end": 1126,
+      "name_fr": "Voies des os",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 17,
+      "range_start": 1201,
+      "range_end": 1201,
+      "name_fr": "Lois des localisations",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 18,
+      "range_start": 1276,
+      "range_end": 1276,
+      "name_fr": "Lois des symboles",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 19,
+      "range_start": 1351,
+      "range_end": 1351,
+      "name_fr": "Voies des muscles",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 20,
+      "range_start": 1426,
+      "range_end": 1426,
+      "name_fr": "Apaisements des esprits",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 21,
+      "range_start": 1501,
+      "range_end": 1501,
+      "name_fr": "Répulsions",
+      "composition": 50,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 22,
+      "range_start": 1551,
+      "range_end": 1551,
+      "name_fr": "Appels",
+      "composition": 50,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 23,
+      "range_start": 1601,
+      "range_end": 1601,
+      "name_fr": "Protections",
+      "composition": 50,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 24,
+      "range_start": 1651,
+      "range_end": 1651,
+      "name_fr": "Lois de la communication",
+      "composition": 50,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 25,
+      "range_start": 1701,
+      "range_end": 1701,
+      "name_fr": "Transferts",
+      "composition": 50,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 26,
+      "range_start": 1751,
+      "range_end": 1751,
+      "name_fr": "Maitrise de la vie",
+      "composition": 50,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 27,
+      "range_start": 1801,
+      "range_end": 1801,
+      "name_fr": "Lois des muscles",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 28,
+      "range_start": 1826,
+      "range_end": 1826,
+      "name_fr": "Lois du sang",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 29,
+      "range_start": 1851,
+      "range_end": 1851,
+      "name_fr": "Lois des organes",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 30,
+      "range_start": 1876,
+      "range_end": 1876,
+      "name_fr": "Lois des os",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 31,
+      "range_start": 1901,
+      "range_end": 1901,
+      "name_fr": "Guérisons superficielles",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 32,
+      "range_start": 1926,
+      "range_end": 1926,
+      "name_fr": "Déplacement dans la nature",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 33,
+      "range_start": 1951,
+      "range_end": 1951,
+      "name_fr": "Maitrise en herbes",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 34,
+      "range_start": 1976,
+      "range_end": 1976,
+      "name_fr": "Maitrise des plantes",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 35,
+      "range_start": 2001,
+      "range_end": 2001,
+      "name_fr": "Protection de la nature",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 36,
+      "range_start": 2026,
+      "range_end": 2026,
+      "name_fr": "Maitrise animaliere",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 37,
+      "range_start": 2051,
+      "range_end": 2051,
+      "name_fr": "Connaissance de la nature",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 38,
+      "range_start": 2076,
+      "range_end": 2076,
+      "name_fr": "Lois du déplacement",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 39,
+      "range_start": 2106,
+      "range_end": 2106,
+      "name_fr": "Révélations des chemins",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 40,
+      "range_start": 2136,
+      "range_end": 2136,
+      "name_fr": "Barrières",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 41,
+      "range_start": 2166,
+      "range_end": 2166,
+      "name_fr": "Aspects de la nature",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 42,
+      "range_start": 2196,
+      "range_end": 2196,
+      "name_fr": "Lois de la nature",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 43,
+      "range_start": 2226,
+      "range_end": 2226,
+      "name_fr": "Maladies",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 44,
+      "range_start": 2256,
+      "range_end": 2256,
+      "name_fr": "Transferts maléfiques",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 45,
+      "range_start": 2286,
+      "range_end": 2286,
+      "name_fr": "Malédictions",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 46,
+      "range_start": 2316,
+      "range_end": 2316,
+      "name_fr": "Connaissances maléfiques",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 47,
+      "range_start": 2346,
+      "range_end": 2346,
+      "name_fr": "Nécromancie",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 48,
+      "range_start": 2376,
+      "range_end": 2376,
+      "name_fr": "Lois de la voix",
+      "composition": 10,
+      "type": "Hybride",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 49,
+      "range_start": 2386,
+      "range_end": 2386,
+      "name_fr": "Sens stellaires",
+      "composition": 10,
+      "type": "Hybride",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 50,
+      "range_start": 2396,
+      "range_end": 2396,
+      "name_fr": "Vision bénite",
+      "composition": 10,
+      "type": "Hybride",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 51,
+      "range_start": 2406,
+      "range_end": 2406,
+      "name_fr": "Liaisons temporelles",
+      "composition": 10,
+      "type": "Hybride",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 52,
+      "range_start": 2416,
+      "range_end": 2416,
+      "name_fr": "Voix à distance",
+      "composition": 10,
+      "type": "Hybride",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 53,
+      "range_start": 2426,
+      "range_end": 2426,
+      "name_fr": "Lumières stellaires",
+      "composition": 10,
+      "type": "Hybride",
+      "realm": "Théurgie"
+    },
+    {
+      "id": 54,
+      "range_start": 2436,
+      "range_end": 2436,
+      "name_fr": "Mains essentielles",
+      "composition": 150,
+      "type": "Libre",
+      "realm": "Essence"
+    },
+    {
+      "id": 55,
+      "range_start": 2586,
+      "range_end": 2586,
+      "name_fr": "Barrages",
+      "composition": 150,
+      "type": "Libre",
+      "realm": "Essence"
+    },
+    {
+      "id": 56,
+      "range_start": 2736,
+      "range_end": 2736,
+      "name_fr": "Lois de l'ouverture",
+      "composition": 150,
+      "type": "Libre",
+      "realm": "Essence"
+    },
+    {
+      "id": 57,
+      "range_start": 2886,
+      "range_end": 2886,
+      "name_fr": "Boucliers élémentaux",
+      "composition": 150,
+      "type": "Libre",
+      "realm": "Essence"
+    },
+    {
+      "id": 58,
+      "range_start": 3036,
+      "range_end": 3036,
+      "name_fr": "Perceptions essentielles",
+      "composition": 150,
+      "type": "Libre",
+      "realm": "Essence"
+    },
+    {
+      "id": 59,
+      "range_start": 3186,
+      "range_end": 3186,
+      "name_fr": "Illusions mineures",
+      "composition": 150,
+      "type": "Libre",
+      "realm": "Essence"
+    },
+    {
+      "id": 60,
+      "range_start": 3336,
+      "range_end": 3336,
+      "name_fr": "Surpuissance physique",
+      "composition": 150,
+      "type": "Libre",
+      "realm": "Essence"
+    },
+    {
+      "id": 61,
+      "range_start": 3486,
+      "range_end": 3486,
+      "name_fr": "Lois de l'analyse",
+      "composition": 150,
+      "type": "Libre",
+      "realm": "Essence"
+    },
+    {
+      "id": 62,
+      "range_start": 3636,
+      "range_end": 3636,
+      "name_fr": "Maitrise des runes",
+      "composition": 150,
+      "type": "Libre",
+      "realm": "Essence"
+    },
+    {
+      "id": 63,
+      "range_start": 3786,
+      "range_end": 3786,
+      "name_fr": "Lois des détections",
+      "composition": 150,
+      "type": "Libre",
+      "realm": "Essence"
+    },
+    {
+      "id": 64,
+      "range_start": 3936,
+      "range_end": 3936,
+      "name_fr": "Lois de l'invisibilté",
+      "composition": 150,
+      "type": "Réservé",
+      "realm": "Essence"
+    },
+    {
+      "id": 65,
+      "range_start": 4086,
+      "range_end": 4086,
+      "name_fr": "Controles des sorts",
+      "composition": 150,
+      "type": "Réservé",
+      "realm": "Essence"
+    },
+    {
+      "id": 66,
+      "range_start": 4236,
+      "range_end": 4236,
+      "name_fr": "Maitrise des appels",
+      "composition": 150,
+      "type": "Réservé",
+      "realm": "Essence"
+    },
+    {
+      "id": 67,
+      "range_start": 4386,
+      "range_end": 4386,
+      "name_fr": "Lois de la célérité",
+      "composition": 150,
+      "type": "Réservé",
+      "realm": "Essence"
+    },
+    {
+      "id": 68,
+      "range_start": 4536,
+      "range_end": 4536,
+      "name_fr": "Altération de la vie",
+      "composition": 150,
+      "type": "Réservé",
+      "realm": "Essence"
+    },
+    {
+      "id": 69,
+      "range_start": 4686,
+      "range_end": 4686,
+      "name_fr": "Liaisons supérieures",
+      "composition": 150,
+      "type": "Réservé",
+      "realm": "Essence"
+    },
+    {
+      "id": 70,
+      "range_start": 4836,
+      "range_end": 4836,
+      "name_fr": "Lois des dissipations",
+      "composition": 150,
+      "type": "Réservé",
+      "realm": "Essence"
+    },
+    {
+      "id": 71,
+      "range_start": 4986,
+      "range_end": 4986,
+      "name_fr": "Maitrise des boucliers",
+      "composition": 150,
+      "type": "Réservé",
+      "realm": "Essence"
+    },
+    {
+      "id": 72,
+      "range_start": 5136,
+      "range_end": 5136,
+      "name_fr": "Maitrise des esprits",
+      "composition": 150,
+      "type": "Réservé",
+      "realm": "Essence"
+    },
+    {
+      "id": 73,
+      "range_start": 5286,
+      "range_end": 5286,
+      "name_fr": "Renforcements de sorts",
+      "composition": 150,
+      "type": "Réservé",
+      "realm": "Essence"
+    },
+    {
+      "id": 74,
+      "range_start": 5436,
+      "range_end": 5436,
+      "name_fr": "Voies du feu",
+      "composition": 150,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 75,
+      "range_start": 5586,
+      "range_end": 5586,
+      "name_fr": "Lois de la lumière",
+      "composition": 150,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 76,
+      "range_start": 5736,
+      "range_end": 5736,
+      "name_fr": "Voies de la terre",
+      "composition": 150,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 77,
+      "range_start": 5886,
+      "range_end": 5886,
+      "name_fr": "Voies de l'eau",
+      "composition": 150,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 78,
+      "range_start": 6036,
+      "range_end": 6036,
+      "name_fr": "Voies du froid",
+      "composition": 150,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 79,
+      "range_start": 6186,
+      "range_end": 6186,
+      "name_fr": "Voies du vent",
+      "composition": 150,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 80,
+      "range_start": 6336,
+      "range_end": 6336,
+      "name_fr": "Déguisement",
+      "composition": 50,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 81,
+      "range_start": 6386,
+      "range_end": 6386,
+      "name_fr": "Impressions lumineuses",
+      "composition": 50,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 82,
+      "range_start": 6436,
+      "range_end": 6436,
+      "name_fr": "Impressions mentales",
+      "composition": 50,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 83,
+      "range_start": 6486,
+      "range_end": 6486,
+      "name_fr": "Impressions sonores",
+      "composition": 50,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 84,
+      "range_start": 6536,
+      "range_end": 6536,
+      "name_fr": "Maitrise des illusions",
+      "composition": 50,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 85,
+      "range_start": 6586,
+      "range_end": 6586,
+      "name_fr": "Sensations",
+      "composition": 50,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 86,
+      "range_start": 6636,
+      "range_end": 6636,
+      "name_fr": "Lois des enchantements",
+      "composition": 50,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 87,
+      "range_start": 6686,
+      "range_end": 6686,
+      "name_fr": "Compétences liquides/gazeux",
+      "composition": 50,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 88,
+      "range_start": 6736,
+      "range_end": 6736,
+      "name_fr": "Compétences organniques",
+      "composition": 50,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 89,
+      "range_start": 6786,
+      "range_end": 6786,
+      "name_fr": "Stockage essentielles",
+      "composition": 50,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 90,
+      "range_start": 6836,
+      "range_end": 6836,
+      "name_fr": "Compétences inorganiques",
+      "composition": 50,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 91,
+      "range_start": 6886,
+      "range_end": 6886,
+      "name_fr": "Stockage mentalisme / théurgie",
+      "composition": 50,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 92,
+      "range_start": 6936,
+      "range_end": 6936,
+      "name_fr": "Evitement",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 93,
+      "range_start": 6966,
+      "range_end": 6966,
+      "name_fr": "Régénérescence corporelle",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 94,
+      "range_start": 6996,
+      "range_end": 6996,
+      "name_fr": "Sens monacaux",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 95,
+      "range_start": 7026,
+      "range_end": 7026,
+      "name_fr": "Liaisons monacales",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 96,
+      "range_start": 7056,
+      "range_end": 7056,
+      "name_fr": "Guides corporels",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 97,
+      "range_start": 7086,
+      "range_end": 7086,
+      "name_fr": "Dislocations de la matière",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 98,
+      "range_start": 7116,
+      "range_end": 7116,
+      "name_fr": "Erosion physique",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 99,
+      "range_start": 7146,
+      "range_end": 7146,
+      "name_fr": "Ténébres",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 100,
+      "range_start": 7176,
+      "range_end": 7176,
+      "name_fr": "Appels maléfiques",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 101,
+      "range_start": 7206,
+      "range_end": 7206,
+      "name_fr": "Communications maléfiques",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Essence"
+    },
+    {
+      "id": 102,
+      "range_start": 7236,
+      "range_end": 7236,
+      "name_fr": "Destruction de l'ame",
+      "composition": 30,
+      "type": "Hybride",
+      "realm": "Essence"
+    },
+    {
+      "id": 103,
+      "range_start": 7266,
+      "range_end": 7266,
+      "name_fr": "Destruction de l'esprit",
+      "composition": 30,
+      "type": "Hybride",
+      "realm": "Essence"
+    },
+    {
+      "id": 104,
+      "range_start": 7296,
+      "range_end": 7296,
+      "name_fr": "Destruction des fluides",
+      "composition": 30,
+      "type": "Hybride",
+      "realm": "Essence"
+    },
+    {
+      "id": 105,
+      "range_start": 7326,
+      "range_end": 7326,
+      "name_fr": "Destruction de la chair",
+      "composition": 30,
+      "type": "Hybride",
+      "realm": "Essence"
+    },
+    {
+      "id": 106,
+      "range_start": 7356,
+      "range_end": 7356,
+      "name_fr": "Destruction des solides",
+      "composition": 30,
+      "type": "Hybride",
+      "realm": "Essence"
+    },
+    {
+      "id": 107,
+      "range_start": 7386,
+      "range_end": 7386,
+      "name_fr": "Destruction des gaz",
+      "composition": 30,
+      "type": "Hybride",
+      "realm": "Essence"
+    },
+    {
+      "id": 108,
+      "range_start": 7416,
+      "range_end": 7416,
+      "name_fr": "Recherches",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 109,
+      "range_start": 7491,
+      "range_end": 7491,
+      "name_fr": "Brillance",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 110,
+      "range_start": 7566,
+      "range_end": 7566,
+      "name_fr": "Detections",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 111,
+      "range_start": 7641,
+      "range_end": 7641,
+      "name_fr": "Soins personnels",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 112,
+      "range_start": 7716,
+      "range_end": 7716,
+      "name_fr": "Résistances aux degats",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 113,
+      "range_start": 7791,
+      "range_end": 7791,
+      "name_fr": "Anticipations",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 114,
+      "range_start": 7866,
+      "range_end": 7866,
+      "name_fr": "Illusions",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 115,
+      "range_start": 7941,
+      "range_end": 7941,
+      "name_fr": "Résistances aux sorts",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 116,
+      "range_start": 8016,
+      "range_end": 8016,
+      "name_fr": "Camouflages",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 117,
+      "range_start": 8091,
+      "range_end": 8091,
+      "name_fr": "Evitement des attaques",
+      "composition": 75,
+      "type": "Libre",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 118,
+      "range_start": 8166,
+      "range_end": 8166,
+      "name_fr": "Maitrise mentale",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 119,
+      "range_start": 8241,
+      "range_end": 8241,
+      "name_fr": "Manipulation des liquides",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 120,
+      "range_start": 8316,
+      "range_end": 8316,
+      "name_fr": "Télékinésie",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 121,
+      "range_start": 8391,
+      "range_end": 8391,
+      "name_fr": "Transport psychique",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 122,
+      "range_start": 8466,
+      "range_end": 8466,
+      "name_fr": "Maitrise des sens",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 123,
+      "range_start": 8541,
+      "range_end": 8541,
+      "name_fr": "Manipulation des gaz",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 124,
+      "range_start": 8616,
+      "range_end": 8616,
+      "name_fr": "Déplacement",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 125,
+      "range_start": 8691,
+      "range_end": 8691,
+      "name_fr": "Vitesse",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 126,
+      "range_start": 8766,
+      "range_end": 8766,
+      "name_fr": "Manipulation des solides",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 127,
+      "range_start": 8841,
+      "range_end": 8841,
+      "name_fr": "Métamorphose",
+      "composition": 75,
+      "type": "Réservé",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 128,
+      "range_start": 8916,
+      "range_end": 8916,
+      "name_fr": "Contrôle spirituel",
+      "composition": 75,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 129,
+      "range_start": 8991,
+      "range_end": 8991,
+      "name_fr": "Présence",
+      "composition": 75,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 130,
+      "range_start": 9066,
+      "range_end": 9066,
+      "name_fr": "Contrôle des sens",
+      "composition": 75,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 131,
+      "range_start": 9141,
+      "range_end": 9141,
+      "name_fr": "Parler spirituel",
+      "composition": 75,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 132,
+      "range_start": 9216,
+      "range_end": 9216,
+      "name_fr": "Attaque spirituelle",
+      "composition": 75,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 133,
+      "range_start": 9291,
+      "range_end": 9291,
+      "name_fr": "Fusion spirituelle",
+      "composition": 75,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 134,
+      "range_start": 9366,
+      "range_end": 9366,
+      "name_fr": "Vue réelle",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 135,
+      "range_start": 9391,
+      "range_end": 9391,
+      "name_fr": "Perception d'autrui",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 136,
+      "range_start": 9416,
+      "range_end": 9416,
+      "name_fr": "Perceptions vraies",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 137,
+      "range_start": 9441,
+      "range_end": 9441,
+      "name_fr": "Visions du passé",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 138,
+      "range_start": 9466,
+      "range_end": 9466,
+      "name_fr": "Visions spirituelles",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 139,
+      "range_start": 9491,
+      "range_end": 9491,
+      "name_fr": "Visions du futur",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 140,
+      "range_start": 9516,
+      "range_end": 9516,
+      "name_fr": "Maitrise du sang",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 141,
+      "range_start": 9541,
+      "range_end": 9541,
+      "name_fr": "Maitrise des points de coup",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 142,
+      "range_start": 9566,
+      "range_end": 9566,
+      "name_fr": "Maitrise des muscles",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 143,
+      "range_start": 9591,
+      "range_end": 9591,
+      "name_fr": "Maitrise des nerfs et des organes",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 144,
+      "range_start": 9616,
+      "range_end": 9616,
+      "name_fr": "Maitrise des os",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 145,
+      "range_start": 9641,
+      "range_end": 9641,
+      "name_fr": "Prothèses",
+      "composition": 25,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 146,
+      "range_start": 9666,
+      "range_end": 9666,
+      "name_fr": "Puissance des chants",
+      "composition": 10,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 147,
+      "range_start": 9676,
+      "range_end": 9676,
+      "name_fr": "Connaissance",
+      "composition": 10,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 148,
+      "range_start": 9686,
+      "range_end": 9686,
+      "name_fr": "Contrôle des sons",
+      "composition": 10,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 149,
+      "range_start": 9696,
+      "range_end": 9696,
+      "name_fr": "Connaissances des objets",
+      "composition": 10,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 150,
+      "range_start": 9706,
+      "range_end": 9706,
+      "name_fr": "Projections des sons",
+      "composition": 10,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 151,
+      "range_start": 9716,
+      "range_end": 9716,
+      "name_fr": "Subversion spirituelle",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 152,
+      "range_start": 9746,
+      "range_end": 9746,
+      "name_fr": "Mort spirituelle",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 153,
+      "range_start": 9776,
+      "range_end": 9776,
+      "name_fr": "Domination spirituelle",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 154,
+      "range_start": 9806,
+      "range_end": 9806,
+      "name_fr": "Maladies spirituelles",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 155,
+      "range_start": 9836,
+      "range_end": 9836,
+      "name_fr": "Erosion spirituelle",
+      "composition": 30,
+      "type": "Base",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 156,
+      "range_start": 9866,
+      "range_end": 9866,
+      "name_fr": "Lois de la confusion",
+      "composition": 10,
+      "type": "Hybride",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 157,
+      "range_start": 9876,
+      "range_end": 9876,
+      "name_fr": "Altération des liquides",
+      "composition": 10,
+      "type": "Hybride",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 158,
+      "range_start": 9886,
+      "range_end": 9886,
+      "name_fr": "Dissimulation",
+      "composition": 10,
+      "type": "Hybride",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 159,
+      "range_start": 9896,
+      "range_end": 9896,
+      "name_fr": "Altération des solides",
+      "composition": 10,
+      "type": "Hybride",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 160,
+      "range_start": 9906,
+      "range_end": 9906,
+      "name_fr": "Changement mystique",
+      "composition": 10,
+      "type": "Hybride",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 161,
+      "range_start": 9916,
+      "range_end": 9916,
+      "name_fr": "Altération des gaz",
+      "composition": 10,
+      "type": "Hybride",
+      "realm": "Mentalisme"
+    },
+    {
+      "id": 162,
+      "range_start": 9926,
+      "range_end": 9926,
+      "name_fr": "Objet maudit",
+      "composition": 100,
+      "type": "Maudit",
+      "realm": "Maudit"
+    }
+  ]
+}

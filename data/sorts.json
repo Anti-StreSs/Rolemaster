@@ -1,0 +1,695 @@
+{
+  "total_spell_lists": 136,
+  "total_realms": 13,
+  "realms": [
+    {
+      "index": 0,
+      "name": "Mentalism (Open)",
+      "groups": [
+        [
+          {
+            "name_fr": "Recherches",
+            "name_en": "Delving"
+          },
+          {
+            "name_fr": "Brilliance",
+            "name_en": "Brilliance"
+          },
+          {
+            "name_fr": "Détections",
+            "name_en": "Detections"
+          },
+          {
+            "name_fr": "Soins Personnels",
+            "name_en": "Self Healing"
+          },
+          {
+            "name_fr": "Résistance aux dégâts",
+            "name_en": "Damage Resistance"
+          },
+          {
+            "name_fr": "Anticipations",
+            "name_en": "Anticipations"
+          },
+          {
+            "name_fr": "Illusions",
+            "name_en": "Illusions"
+          },
+          {
+            "name_fr": "Résistance aux Sorts",
+            "name_en": "Spell Resistence"
+          },
+          {
+            "name_fr": "Camouflages",
+            "name_en": "Cloaking"
+          },
+          {
+            "name_fr": "Evitement des Attaques",
+            "name_en": "Attack Avoidance"
+          }
+        ],
+        [
+          {
+            "name_fr": "Lois des Rets",
+            "name_en": "Warding Ways"
+          }
+        ],
+        [],
+        [],
+        [
+          {
+            "name_fr": "Plaisirs",
+            "name_en": "Pleasures"
+          },
+          {
+            "name_fr": "Poigne Spirituelle",
+            "name_en": "Mind's Grip"
+          }
+        ]
+      ]
+    },
+    {
+      "index": 1,
+      "name": "Mentalism (Closed)",
+      "groups": [
+        [
+          {
+            "name_fr": "Maîtrise Mentale",
+            "name_en": "Mind Mastery"
+          },
+          {
+            "name_fr": "Manipulation des Liquides",
+            "name_en": "Liquid Manipulation"
+          },
+          {
+            "name_fr": "Télékinésie",
+            "name_en": "Telekinesis"
+          },
+          {
+            "name_fr": "Transport Psychique",
+            "name_en": "Mind's Door"
+          },
+          {
+            "name_fr": "Maîtrise des sens",
+            "name_en": "Sense Mastery"
+          },
+          {
+            "name_fr": "Manipulation des Gaz",
+            "name_en": "Gas Manipulation"
+          },
+          {
+            "name_fr": "Déplacement",
+            "name_en": "Movement"
+          },
+          {
+            "name_fr": "Vitesse",
+            "name_en": "Speed"
+          },
+          {
+            "name_fr": "Manipulation des Solides",
+            "name_en": "Solid Manipulation"
+          },
+          {
+            "name_fr": "Métamorphose",
+            "name_en": "Shifting"
+          }
+        ]
+      ]
+    },
+    {
+      "index": 2,
+      "name": "Mentalism (Evil)",
+      "groups": [
+        [
+          {
+            "name_fr": "Subversion Spirituelle",
+            "name_en": "Mind Subversion"
+          },
+          {
+            "name_fr": "Mort Spirituelle",
+            "name_en": "Mind Death"
+          },
+          {
+            "name_fr": "Domination Spirituelle",
+            "name_en": "Mind Domination"
+          },
+          {
+            "name_fr": "Maladie Spirituelle",
+            "name_en": "Mind Disease"
+          },
+          {
+            "name_fr": "Erosion Spirituelle",
+            "name_en": "Mind Erosion"
+          }
+        ]
+      ]
+    },
+    {
+      "index": 3,
+      "name": "Essence (Open)",
+      "groups": [
+        [
+          {
+            "name_fr": "Main Essentielle",
+            "name_en": "Essence Hand"
+          },
+          {
+            "name_fr": "Barrage",
+            "name_en": "Spell Wall"
+          },
+          {
+            "name_fr": "Lois de l'Ouverture",
+            "name_en": "Unbarring Ways"
+          },
+          {
+            "name_fr": "Boucliers Elementaux",
+            "name_en": "Elemental Shields"
+          },
+          {
+            "name_fr": "Perceptions Essentielles",
+            "name_en": "Essence Perceptions"
+          },
+          {
+            "name_fr": "Illusions Mineures",
+            "name_en": "Lesser Illusions"
+          },
+          {
+            "name_fr": "Surpuissance Physique",
+            "name_en": "Physical Enhancement"
+          },
+          {
+            "name_fr": "Lois de l'Analyse",
+            "name_en": "Delving Ways"
+          },
+          {
+            "name_fr": "Maîtrise des Runes",
+            "name_en": "Rune Mastery"
+          },
+          {
+            "name_fr": "Lois des Détections",
+            "name_en": "Detecting Ways"
+          }
+        ],
+        [],
+        [],
+        [],
+        [
+          {
+            "name_fr": "Plaisirs",
+            "name_en": "Pleasures"
+          },
+          {
+            "name_fr": "Altération des Armes",
+            "name_en": "Weapon Alterations"
+          }
+        ]
+      ]
+    },
+    {
+      "index": 4,
+      "name": "Essence (Closed)",
+      "groups": [
+        [
+          {
+            "name_fr": "Lois de l'invisibilité",
+            "name_en": "Invisible Ways"
+          },
+          {
+            "name_fr": "Contrôle des Sorts",
+            "name_en": "Spell Enhancement"
+          },
+          {
+            "name_fr": "Maîtrise des Appels",
+            "name_en": "Gate Mastery"
+          },
+          {
+            "name_fr": "Lois de la Célérité",
+            "name_en": "Rapid Ways"
+          },
+          {
+            "name_fr": "Altération de la Vie",
+            "name_en": "Living Change"
+          },
+          {
+            "name_fr": "Liaisons Supérieures",
+            "name_en": "Lofty Bridge"
+          },
+          {
+            "name_fr": "Lois des Dissipations",
+            "name_en": "Dispelling Ways"
+          },
+          {
+            "name_fr": "Maîtrise des Boucliers",
+            "name_en": "Shield Mastery"
+          },
+          {
+            "name_fr": "Maîtrise des Esprit",
+            "name_en": "Spirit Mastery"
+          },
+          {
+            "name_fr": "Renforcement de Sorts",
+            "name_en": "Spell Reins"
+          }
+        ],
+        [
+          {
+            "name_fr": "Voies des Familiers",
+            "name_en": "Familiars Law"
+          }
+        ],
+        [],
+        [],
+        [
+          {
+            "name_fr": "Contre-Sorts",
+            "name_en": "Counterspells"
+          }
+        ]
+      ]
+    },
+    {
+      "index": 5,
+      "name": "Essence (Evil)",
+      "groups": [
+        [
+          {
+            "name_fr": "Dislocation de la Matière",
+            "name_en": "Matter Disruption"
+          },
+          {
+            "name_fr": "Erosion Physique",
+            "name_en": "Physical Erosion"
+          },
+          {
+            "name_fr": "Ténèbres",
+            "name_en": "Darkness"
+          },
+          {
+            "name_fr": "Appels Maléfiques",
+            "name_en": "Dark Summon"
+          },
+          {
+            "name_fr": "Communications Maléfiques",
+            "name_en": "Dark Contacts"
+          }
+        ],
+        [],
+        [],
+        [],
+        [
+          {
+            "name_fr": "Araignomancie",
+            "name_en": "Arachnemancy"
+          },
+          {
+            "name_fr": "Transformations Maudites I",
+            "name_en": "Foul Changes I"
+          },
+          {
+            "name_fr": "Transformations Maudites II",
+            "name_en": "Foul Changes II"
+          }
+        ]
+      ]
+    },
+    {
+      "index": 6,
+      "name": "Channeling (Open)",
+      "groups": [
+        [
+          {
+            "name_fr": "Voies des Barrages",
+            "name_en": "Barrier Law"
+          },
+          {
+            "name_fr": "Purifications",
+            "name_en": "Purifications"
+          },
+          {
+            "name_fr": "Lois de la Lumière",
+            "name_en": "Light's Way"
+          },
+          {
+            "name_fr": "Voies de la Nature",
+            "name_en": "Nature's Law"
+          },
+          {
+            "name_fr": "Détections Transcendentales",
+            "name_en": "Detection Mastery"
+          },
+          {
+            "name_fr": "Sorts de Défense",
+            "name_en": "Spell Defense"
+          },
+          {
+            "name_fr": "Lois des Sons",
+            "name_en": "Sound's Way"
+          },
+          {
+            "name_fr": "Soins Superficiels",
+            "name_en": "Concussion's Ways"
+          },
+          {
+            "name_fr": "Lois du Temps",
+            "name_en": "Weather Ways"
+          },
+          {
+            "name_fr": "Connexions Supérieures",
+            "name_en": "Lofty Movement"
+          }
+        ],
+        [],
+        [],
+        [],
+        [
+          {
+            "name_fr": "Plaisirs",
+            "name_en": "Pleasures"
+          }
+        ]
+      ]
+    },
+    {
+      "index": 7,
+      "name": "Channeling (Closed)",
+      "groups": [
+        [
+          {
+            "name_fr": "Voies du sang",
+            "name_en": "Blood Law"
+          },
+          {
+            "name_fr": "Voies des organes",
+            "name_en": "Organ Law"
+          },
+          {
+            "name_fr": "Voies des Nerfs",
+            "name_en": "Nerve Law"
+          },
+          {
+            "name_fr": "Voies des Os",
+            "name_en": "Bone Law"
+          },
+          {
+            "name_fr": "Voies des Muscles",
+            "name_en": "Muscle Law"
+          },
+          {
+            "name_fr": "Création",
+            "name_en": "Creations"
+          },
+          {
+            "name_fr": "Préscience",
+            "name_en": "Lore"
+          },
+          {
+            "name_fr": "Lois des Localisations",
+            "name_en": "Locating Way"
+          },
+          {
+            "name_fr": "Lois des Symboles",
+            "name_en": "Symbolic Ways"
+          },
+          {
+            "name_fr": "Apaisements des Esprits",
+            "name_en": "Calm Spirits"
+          }
+        ],
+        [
+          {
+            "name_fr": "Cérémonies",
+            "name_en": "Ceremonies"
+          },
+          {
+            "name_fr": "Accouchements",
+            "name_en": "Midwifery"
+          }
+        ]
+      ]
+    },
+    {
+      "index": 8,
+      "name": "Channeling (Evil)",
+      "groups": [
+        [
+          {
+            "name_fr": "Maladies",
+            "name_en": "Disease"
+          },
+          {
+            "name_fr": "Transferts Maléfiques",
+            "name_en": "Dark Channels"
+          },
+          {
+            "name_fr": "Malédictions",
+            "name_en": "Curses"
+          },
+          {
+            "name_fr": "Connaissance Maléfiques",
+            "name_en": "Dark Lore"
+          },
+          {
+            "name_fr": "Nécromancie",
+            "name_en": "Necromancy"
+          }
+        ]
+      ]
+    },
+    {
+      "index": 9,
+      "name": "Arcane/Other",
+      "groups": [
+        [],
+        [
+          {
+            "name_fr": "Coordination des Sorts",
+            "name_en": "Spell Coordination"
+          },
+          {
+            "name_fr": "Feux Mana",
+            "name_en": "Mana Fires"
+          },
+          {
+            "name_fr": "Lois des Transformations",
+            "name_en": "Shapechanging Ways"
+          },
+          {
+            "name_fr": "Lois du Sang de la Terre",
+            "name_en": "Earthblood's Ways"
+          },
+          {
+            "name_fr": "Maîtrise de l'Ether",
+            "name_en": "Ethereal Mastery"
+          },
+          {
+            "name_fr": "Maîtrise des Entités",
+            "name_en": "Entity Mastery"
+          },
+          {
+            "name_fr": "Runes-Lames",
+            "name_en": "Bladerunes"
+          }
+        ],
+        [
+          {
+            "name_fr": "Connaissance des Métaux",
+            "name_en": "Metal Lore"
+          },
+          {
+            "name_fr": "Connaissance des Pierres",
+            "name_en": "Stone Lore"
+          },
+          {
+            "name_fr": "Déclenchement des Sorts",
+            "name_en": "Spell Triggers"
+          },
+          {
+            "name_fr": "Structuration du Bois",
+            "name_en": "Wood Shaping"
+          }
+        ],
+        [
+          {
+            "name_fr": "Maîtrise du Néther",
+            "name_en": "Nether Mastery"
+          },
+          {
+            "name_fr": "Maîtrise du Plasma",
+            "name_en": "Plasma Mastery"
+          },
+          {
+            "name_fr": "Lois des Navigateurs",
+            "name_en": "Way of the Navigator"
+          },
+          {
+            "name_fr": "Attraits",
+            "name_en": "Allurement"
+          },
+          {
+            "name_fr": "Lois des Réparations",
+            "name_en": "Mending Ways"
+          },
+          {
+            "name_fr": "Magie Domestique",
+            "name_en": "Household Magic"
+          },
+          {
+            "name_fr": "Connaissance des Mixtures",
+            "name_en": "Brewing Lore"
+          },
+          {
+            "name_fr": "Magie de la Cire",
+            "name_en": "Wax Magic"
+          },
+          {
+            "name_fr": "Magie du Foyer",
+            "name_en": "Hearth Magic"
+          },
+          {
+            "name_fr": "Lois des Obstacles",
+            "name_en": "Barrier Ways"
+          }
+        ],
+        [
+          {
+            "name_fr": "Voies des Acides",
+            "name_en": "Acid Law"
+          },
+          {
+            "name_fr": "Voies des Sons",
+            "name_en": "Sonic Law"
+          },
+          {
+            "name_fr": "Soins d'Arcanes",
+            "name_en": "Arcane Healing"
+          }
+        ]
+      ]
+    },
+    {
+      "index": 10,
+      "name": "Channeling (Base — RMC3)",
+      "groups": [
+        [
+          {
+            "name_fr": "Armures Nobles",
+            "name_en": "Noble Armor"
+          },
+          {
+            "name_fr": "Armes Nobles",
+            "name_en": "Noble Weapons"
+          }
+        ]
+      ]
+    },
+    {
+      "index": 11,
+      "name": "Mentalism (Base — RMC3)",
+      "groups": [
+        [
+          {
+            "name_fr": "Sens du Limier",
+            "name_en": "Sleuth's Senses"
+          },
+          {
+            "name_fr": "Analyses",
+            "name_en": "Analyses"
+          },
+          {
+            "name_fr": "Lois de la LibÃ©ration",
+            "name_en": "Escaping Ways"
+          },
+          {
+            "name_fr": "Sens Temporels",
+            "name_en": "Time's Sense"
+          },
+          {
+            "name_fr": "Verrous Oniriques",
+            "name_en": "Dream Guard"
+          },
+          {
+            "name_fr": "Voies des RÃªves",
+            "name_en": "Dream Law"
+          },
+          {
+            "name_fr": "Connaissance des RÃªves",
+            "name_en": "Dream Lore"
+          },
+          {
+            "name_fr": "Ãtat Onirique",
+            "name_en": "Dream State"
+          }
+        ]
+      ]
+    },
+    {
+      "index": 12,
+      "name": "Essence (Base — RMC3)",
+      "groups": [
+        [
+          {
+            "name_fr": "Mots de Puissance",
+            "name_en": "Power Words"
+          },
+          {
+            "name_fr": "Runes et Symboles",
+            "name_en": "Runes & Symbols"
+          },
+          {
+            "name_fr": "Signes de Pouvoir",
+            "name_en": "Signs of Power"
+          },
+          {
+            "name_fr": "Langage",
+            "name_en": "Linguistics"
+          },
+          {
+            "name_fr": "Mots de Commandement",
+            "name_en": "Command Words"
+          },
+          {
+            "name_fr": "Runes-Esprits",
+            "name_en": "Spirit Runes"
+          },
+          {
+            "name_fr": "Pouvoir des Cristaux",
+            "name_en": "Crystal Power"
+          },
+          {
+            "name_fr": "Soins par la Profonde Terre",
+            "name_en": "Deep Earth Healing"
+          },
+          {
+            "name_fr": "Magie des Cristaux",
+            "name_en": "Crystal Magic"
+          },
+          {
+            "name_fr": "Communion avec la Profonde Terre",
+            "name_en": "Deep Earth Commune"
+          },
+          {
+            "name_fr": "MaÃ®trise des Cristaux",
+            "name_en": "Crystal Mastery"
+          },
+          {
+            "name_fr": "Lois des Brasiers",
+            "name_en": "Fiery Ways"
+          },
+          {
+            "name_fr": "LuminositÃ© Magique",
+            "name_en": "Brilliance Magic"
+          },
+          {
+            "name_fr": "Cristal Runique",
+            "name_en": "Crystal Runestone"
+          }
+        ]
+      ]
+    }
+  ],
+  "_metadata": {
+    "structure": "Each realm has groups: [Base Lists, Open Lists, Closed Lists, Evil Lists]. * separates groups, & separates realms.",
+    "pair_format": "Each spell list has FR name (odd line) and EN name (even line).",
+    "source": "SORTS.DAT"
+  }
+}

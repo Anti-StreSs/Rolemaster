@@ -1,0 +1,286 @@
+/* === BESTIARY BROWSER === */
+
+/* Loading */
+.bestiary-loading-sigil {
+  width: 48px; height: 48px; margin: 0 auto;
+  border: 3px solid rgba(100,50,30,0.2);
+  border-top-color: #a32d2d;
+  border-radius: 50%;
+  animation: beast-spin 0.8s linear infinite;
+}
+@keyframes beast-spin { to { transform: rotate(360deg); } }
+
+/* Header */
+.beast-header { margin-bottom: 1.25rem; }
+.beast-title-row { display: flex; align-items: center; gap: 12px; margin-bottom: 0.75rem; }
+.beast-title {
+  font-family: var(--font-title); font-size: 1.6rem; color: #c49a20; margin: 0;
+  text-shadow: 1px 1px 0 #1a0e04, -1px -1px 0 #1a0e04, 1px -1px 0 #1a0e04, -1px 1px 0 #1a0e04;
+}
+.beast-subtitle { font-size: 0.8rem; color: #6b5030; margin: 2px 0 0; }
+
+/* Search + filters */
+.beast-search-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 0.6rem; }
+.beast-search {
+  flex: 1; min-width: 180px; padding: 6px 10px; font-size: 0.85rem;
+  border: 1px solid rgba(139,92,20,0.3); border-radius: 6px;
+  background: rgba(255,250,240,0.6); color: #3a1a08; font-family: inherit;
+}
+.beast-search:focus { outline: none; border-color: #c49a20; box-shadow: 0 0 0 2px rgba(196,154,32,0.2); }
+
+.beast-filter-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 0.5rem; }
+
+/* Category chips */
+.beast-cat-chip {
+  padding: 3px 10px; font-size: 0.75rem; border: 1px solid rgba(139,92,20,0.3);
+  border-radius: 20px; cursor: pointer; background: transparent; color: #4a3520;
+  font-family: inherit; transition: all 0.15s ease;
+}
+.beast-cat-chip:hover { filter: brightness(0.95); transform: translateY(-1px); }
+.beast-cat-chip.is-active { font-weight: bold; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+.beast-cat-chip-animals.is-active  { background: rgba(59,109,17,0.12); border-color: #3b6d11; color: #173404; }
+.beast-cat-chip-monsters.is-active { background: rgba(163,45,45,0.12); border-color: #a32d2d; color: #501313; }
+.beast-cat-chip-races.is-active    { background: rgba(24,95,165,0.12); border-color: #185fa5; color: #042c53; }
+
+/* Subcategory select + level inputs */
+.beast-subcat-select, .beast-level-input {
+  font-size: 0.75rem; padding: 4px 6px;
+  border: 1px solid rgba(139,92,20,0.3); border-radius: 5px;
+  background: rgba(255,250,240,0.6); color: #3a1a08; font-family: inherit;
+}
+.beast-subcat-select { max-width: 220px; }
+.beast-level-input { width: 46px; text-align: center; }
+.beast-level-sep { font-size: 0.75rem; color: #8b6914; }
+
+/* Results count */
+.beast-results-count { font-size: 0.75rem; color: #8b6914; margin-bottom: 0.5rem; }
+
+/* Sort controls */
+.beast-sort-row { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 0.6rem; }
+.beast-sort-btn {
+  font-size: 0.7rem; padding: 2px 8px;
+  border: 1px solid rgba(139,92,20,0.25); border-radius: 4px;
+  background: transparent; color: #6b5030; cursor: pointer; font-family: inherit;
+  transition: all 0.15s;
+}
+.beast-sort-btn:hover { background: rgba(196,154,32,0.1); }
+.beast-sort-btn.is-active { background: rgba(196,154,32,0.18); border-color: #c49a20; color: #3a1a08; font-weight: bold; }
+
+/* Card grid */
+.beast-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+/* Creature card */
+.beast-card {
+  display: block; text-align: left; width: 100%; cursor: pointer;
+  padding: 8px 10px; border: 1px solid rgba(139,92,20,0.15);
+  border-left: 3px solid; border-radius: 6px;
+  background: rgba(255,250,240,0.45); font-family: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.beast-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+  background: rgba(255,250,240,0.85);
+}
+.beast-card-animals  { border-left-color: #3b6d11; }
+.beast-card-monsters { border-left-color: #a32d2d; }
+.beast-card-races    { border-left-color: #185fa5; }
+
+/* Card top row */
+.beast-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+.beast-card-badges { display: flex; align-items: center; gap: 4px; }
+
+/* Level badge */
+.beast-level-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 50%;
+  font-size: 0.7rem; font-weight: bold; border: 1px solid;
+  flex-shrink: 0;
+}
+.beast-level-safe   { background: rgba(22,163,74,0.15);   color: #16a34a; border-color: rgba(22,163,74,0.35);   }
+.beast-level-danger { background: rgba(234,179,8,0.15);   color: #a16207; border-color: rgba(234,179,8,0.4);    }
+.beast-level-deadly { background: rgba(220,38,38,0.15);   color: #dc2626; border-color: rgba(220,38,38,0.35);   }
+
+/* Size badge */
+.beast-size-badge {
+  display: inline-block; font-size: 0.6rem; font-weight: bold;
+  padding: 1px 5px; border-radius: 8px;
+  background: rgba(100,100,100,0.12); color: #6b5030;
+  border: 1px solid rgba(100,100,100,0.2);
+}
+
+/* Category icon */
+.beast-cat-icon { font-size: 0.85rem; }
+
+/* Card name + meta */
+.beast-card-name { font-size: 0.85rem; font-weight: bold; color: #3a1a08; line-height: 1.3; margin-bottom: 2px; }
+.beast-card-subcat { font-size: 0.65rem; color: #8b6914; font-style: italic; margin-bottom: 4px; }
+.beast-card-stats { font-size: 0.72rem; color: #4a3520; margin-bottom: 2px; }
+.beast-card-atk { font-size: 0.7rem; color: #6b5030; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* === DETAIL VIEW === */
+.beast-detail-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+.beast-back-btn, .beast-print-btn {
+  font-size: 0.8rem; padding: 4px 12px; border: 1px solid rgba(139,92,20,0.3);
+  border-radius: 6px; cursor: pointer; font-family: inherit;
+  background: rgba(255,250,240,0.5); color: #3a1a08; transition: all 0.15s;
+}
+.beast-back-btn:hover, .beast-print-btn:hover { background: rgba(196,154,32,0.15); }
+
+.beast-detail-header {
+  border-left: 4px solid; padding-left: 12px; margin-bottom: 1rem;
+}
+.beast-detail-header-animals  { border-left-color: #3b6d11; }
+.beast-detail-header-monsters { border-left-color: #a32d2d; }
+.beast-detail-header-races    { border-left-color: #185fa5; }
+
+.beast-detail-title { font-family: var(--font-title); font-size: 1.35rem; color: #c49a20; margin: 0; }
+.beast-detail-badges { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 6px; }
+.beast-detail-subcat { font-size: 0.75rem; color: #6b5030; font-style: italic; }
+
+/* Stat block card */
+.beast-statblock {
+  border: 1px solid rgba(139,92,20,0.2); border-radius: 8px; overflow: hidden;
+  margin-bottom: 1rem; background: rgba(255,250,240,0.3);
+}
+.beast-sb-section {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid rgba(139,92,20,0.12);
+}
+.beast-sb-section:last-child { border-bottom: none; }
+.beast-sb-title {
+  font-size: 0.65rem; font-weight: bold; letter-spacing: 0.06em;
+  color: #8b6914; text-transform: uppercase; margin-bottom: 4px;
+}
+.beast-sb-row { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 0.8rem; color: #4a3520; }
+.beast-sb-kv { display: flex; gap: 4px; align-items: baseline; }
+.beast-sb-key { font-size: 0.7rem; color: #8b6914; }
+.beast-sb-val { font-weight: bold; color: #3a1a08; }
+
+/* Attack lines in detail */
+.beast-atk-list { margin-top: 4px; }
+.beast-atk-line {
+  display: flex; align-items: baseline; gap: 6px;
+  font-size: 0.78rem; padding: 2px 0;
+  border-bottom: 1px solid rgba(139,92,20,0.08);
+  color: #4a3520;
+}
+.beast-atk-line:last-child { border-bottom: none; }
+.beast-atk-ob { font-weight: bold; color: #3a1a08; min-width: 28px; }
+.beast-atk-type { flex: 1; }
+.beast-atk-pct { font-size: 0.7rem; color: #8b6914; }
+.beast-atk-raw { font-size: 0.72rem; color: #6b5030; font-family: var(--font-data); }
+
+/* Raw data collapsible */
+.beast-raw-details {
+  margin-top: 0.5rem;
+  border: 1px solid rgba(139,92,20,0.15); border-radius: 6px; overflow: hidden;
+}
+.beast-raw-details summary {
+  padding: 4px 8px; font-size: 0.72rem; color: #8b6914;
+  cursor: pointer; user-select: none; background: rgba(139,92,20,0.04);
+}
+.beast-raw-body {
+  padding: 6px 10px;
+  font-family: var(--font-data); font-size: 0.72rem;
+  color: #6b5030;
+}
+.beast-raw-line { padding: 1px 0; }
+.beast-raw-key { color: #8b6914; }
+
+/* Source ref */
+.beast-source { font-size: 0.7rem; color: #8b6914; font-style: italic; margin-top: 0.4rem; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .beast-card-grid { grid-template-columns: 1fr; }
+  .beast-title { font-size: 1.2rem; }
+  .beast-card-atk { display: none; }
+  .beast-subcat-select { max-width: 160px; }
+}
+
+/* ─── Lore sliding panel ──────────────────────────────────────────────────── */
+.beast-lore-panel {
+  position: fixed; top: 0; right: 0; bottom: 0; width: 420px; max-width: 90vw;
+  background: rgba(255,250,240,0.98); border-left: 3px solid rgba(139,92,20,0.3);
+  box-shadow: -4px 0 16px rgba(0,0,0,0.15);
+  z-index: 200; overflow-y: auto;
+  transform: translateX(100%); transition: transform 0.28s ease;
+  padding: 16px 20px;
+  font-size: 0.85rem; color: #3a1a08;
+}
+.beast-lore-panel.is-open { transform: translateX(0); }
+
+.beast-panel-close {
+  position: absolute; top: 10px; right: 12px;
+  background: none; border: none; font-size: 1.2rem; cursor: pointer; color: #6b5030;
+}
+.beast-panel-close:hover { color: #a32d2d; }
+
+.beast-panel-header { margin: 0 28px 12px 0; }
+.beast-panel-title {
+  font-family: var(--font-title); font-size: 1.2rem; color: #c49a20;
+  margin: 0 0 4px; line-height: 1.2;
+}
+.beast-panel-subtitle { font-size: 0.75rem; color: #6b5030; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+
+.beast-panel-stats {
+  background: rgba(139,92,20,0.06); border: 1px solid rgba(139,92,20,0.15);
+  border-radius: 6px; padding: 8px 10px; margin-bottom: 12px; font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.beast-panel-section {
+  margin-bottom: 10px; padding-bottom: 8px;
+  border-bottom: 0.5px solid rgba(139,92,20,0.1);
+}
+.beast-panel-section:last-of-type { border-bottom: none; }
+.beast-panel-section-title {
+  font-size: 0.68rem; font-weight: bold; color: #8b6914;
+  text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;
+}
+.beast-panel-section p { margin: 0; line-height: 1.5; font-size: 0.8rem; }
+
+.beast-panel-source { font-size: 0.65rem; color: #8b6914; font-style: italic; margin-top: 8px; }
+.beast-panel-actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+
+/* Lore badge on cards */
+.beast-card-lore-badge { font-size: 0.75rem; opacity: 0.7; }
+
+/* Subcategory section headers with lore */
+.beast-card-grid > .beast-section-lore { grid-column: 1 / -1; }
+.beast-section-lore { margin-bottom: 20px; }
+.beast-section-lore > summary {
+  list-style: none; cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 0; border-bottom: 1.5px solid rgba(139,92,20,0.25);
+  font-family: var(--font-title, serif); font-size: 0.95rem;
+  color: #8b6914; user-select: none;
+}
+.beast-section-lore > summary::-webkit-details-marker { display: none; }
+.beast-section-lore > summary::before {
+  content: '▶'; font-size: 0.6rem; transition: transform 0.15s; color: #c49a20;
+}
+.beast-section-lore[open] > summary::before { transform: rotate(90deg); }
+.beast-section-count { font-size: 0.75rem; color: #9ca3af; font-family: sans-serif; }
+.beast-section-desc {
+  margin: 6px 0 10px; font-size: 0.78rem; color: #5a3a1a;
+  line-height: 1.55; font-style: italic;
+  padding: 6px 10px; border-left: 2px solid rgba(196,154,32,0.3);
+  background: rgba(196,154,32,0.04); border-radius: 0 4px 4px 0;
+}
+.beast-section-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px; padding-top: 8px;
+}
+
+@media (max-width: 640px) {
+  .beast-lore-panel { width: 100%; max-width: 100%; }
+  .beast-section-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+}

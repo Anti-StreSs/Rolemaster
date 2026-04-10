@@ -1,0 +1,2016 @@
+{
+  "version": 1,
+  "description": "Skill similarity matrix — fully decoded from SIMIL.DAT",
+  "formula": "similarity_bonus_for_skill_A = floor(sum_over_all_similar_skills_B(coeff_AB * ranks_B) / 4)",
+  "note": "Coefficients are in quarter-ranks: 4 = per rank of the similar skill, you get +1 to the bonus of this skill",
+  "pairs": [
+    {
+      "from_global": 0,
+      "from_name": "Administration",
+      "to_global": 2,
+      "to_name": "Anthropologie",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 0,
+      "from_name": "Administration",
+      "to_global": 3,
+      "to_name": "Architecture",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 0,
+      "from_name": "Administration",
+      "to_global": 4,
+      "to_name": "Astronomie",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 0,
+      "from_name": "Administration",
+      "to_global": 5,
+      "to_name": "Biochimie",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 0,
+      "from_name": "Administration",
+      "to_global": 6,
+      "to_name": "Cartographie",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 1,
+      "from_name": "Alchimie",
+      "to_global": 0,
+      "to_name": "Administration",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 1,
+      "from_name": "Alchimie",
+      "to_global": 2,
+      "to_name": "Anthropologie",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 1,
+      "from_name": "Alchimie",
+      "to_global": 6,
+      "to_name": "Cartographie",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 2,
+      "from_name": "Anthropologie",
+      "to_global": 0,
+      "to_name": "Administration",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 2,
+      "from_name": "Anthropologie",
+      "to_global": 1,
+      "to_name": "Alchimie",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 2,
+      "from_name": "Anthropologie",
+      "to_global": 5,
+      "to_name": "Biochimie",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 2,
+      "from_name": "Anthropologie",
+      "to_global": 6,
+      "to_name": "Cartographie",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 3,
+      "from_name": "Architecture",
+      "to_global": 0,
+      "to_name": "Administration",
+      "coefficient": 1.333333,
+      "category": "Academic"
+    },
+    {
+      "from_global": 3,
+      "from_name": "Architecture",
+      "to_global": 4,
+      "to_name": "Astronomie",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 3,
+      "from_name": "Architecture",
+      "to_global": 6,
+      "to_name": "Cartographie",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 4,
+      "from_name": "Astronomie",
+      "to_global": 0,
+      "to_name": "Administration",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 4,
+      "from_name": "Astronomie",
+      "to_global": 2,
+      "to_name": "Anthropologie",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 4,
+      "from_name": "Astronomie",
+      "to_global": 3,
+      "to_name": "Architecture",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 4,
+      "from_name": "Astronomie",
+      "to_global": 6,
+      "to_name": "Cartographie",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 5,
+      "from_name": "Biochimie",
+      "to_global": 0,
+      "to_name": "Administration",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 5,
+      "from_name": "Biochimie",
+      "to_global": 1,
+      "to_name": "Alchimie",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 5,
+      "from_name": "Biochimie",
+      "to_global": 2,
+      "to_name": "Anthropologie",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 5,
+      "from_name": "Biochimie",
+      "to_global": 3,
+      "to_name": "Architecture",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 6,
+      "from_name": "Cartographie",
+      "to_global": 0,
+      "to_name": "Administration",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 6,
+      "from_name": "Cartographie",
+      "to_global": 3,
+      "to_name": "Architecture",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 7,
+      "from_name": "Dessin",
+      "to_global": 14,
+      "to_name": "Maths de base",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 8,
+      "from_name": "Doctrine Philosophique / Religieuse",
+      "to_global": 9,
+      "to_name": "Exploitation Minière",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 8,
+      "from_name": "Doctrine Philosophique / Religieuse",
+      "to_global": 14,
+      "to_name": "Maths de base",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 8,
+      "from_name": "Doctrine Philosophique / Religieuse",
+      "to_global": 18,
+      "to_name": "Organisation Militaire",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 8,
+      "from_name": "Doctrine Philosophique / Religieuse",
+      "to_global": 19,
+      "to_name": "Physique",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 9,
+      "from_name": "Exploitation Minière",
+      "to_global": 11,
+      "to_name": "Histoire de la race",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 9,
+      "from_name": "Exploitation Minière",
+      "to_global": 15,
+      "to_name": "Mécanique",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 9,
+      "from_name": "Exploitation Minière",
+      "to_global": 19,
+      "to_name": "Physique",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 10,
+      "from_name": "Héraldique",
+      "to_global": 9,
+      "to_name": "Exploitation Minière",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 10,
+      "from_name": "Héraldique",
+      "to_global": 17,
+      "to_name": "Navigation",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 11,
+      "from_name": "Histoire de la race",
+      "to_global": 16,
+      "to_name": "Météo",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 11,
+      "from_name": "Histoire de la race",
+      "to_global": 20,
+      "to_name": "Pilote de Bateau",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 11,
+      "from_name": "Histoire de la race",
+      "to_global": 21,
+      "to_name": "Planétologie",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 12,
+      "from_name": "Ingénieurie",
+      "to_global": 9,
+      "to_name": "Exploitation Minière",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 12,
+      "from_name": "Ingénieurie",
+      "to_global": 18,
+      "to_name": "Organisation Militaire",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 12,
+      "from_name": "Ingénieurie",
+      "to_global": 20,
+      "to_name": "Pilote de Bateau",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 13,
+      "from_name": "Maths Avancées",
+      "to_global": 15,
+      "to_name": "Mécanique",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 14,
+      "from_name": "Maths de base",
+      "to_global": 7,
+      "to_name": "Dessin",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 14,
+      "from_name": "Maths de base",
+      "to_global": 8,
+      "to_name": "Doctrine Philosophique / Religieuse",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 14,
+      "from_name": "Maths de base",
+      "to_global": 9,
+      "to_name": "Exploitation Minière",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 14,
+      "from_name": "Maths de base",
+      "to_global": 18,
+      "to_name": "Organisation Militaire",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 14,
+      "from_name": "Maths de base",
+      "to_global": 19,
+      "to_name": "Physique",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 14,
+      "from_name": "Maths de base",
+      "to_global": 20,
+      "to_name": "Pilote de Bateau",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 15,
+      "from_name": "Mécanique",
+      "to_global": 9,
+      "to_name": "Exploitation Minière",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 15,
+      "from_name": "Mécanique",
+      "to_global": 10,
+      "to_name": "Héraldique",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 15,
+      "from_name": "Mécanique",
+      "to_global": 13,
+      "to_name": "Maths Avancées",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 15,
+      "from_name": "Mécanique",
+      "to_global": 14,
+      "to_name": "Maths de base",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 15,
+      "from_name": "Mécanique",
+      "to_global": 18,
+      "to_name": "Organisation Militaire",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 16,
+      "from_name": "Météo",
+      "to_global": 9,
+      "to_name": "Exploitation Minière",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 16,
+      "from_name": "Météo",
+      "to_global": 11,
+      "to_name": "Histoire de la race",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 16,
+      "from_name": "Météo",
+      "to_global": 18,
+      "to_name": "Organisation Militaire",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 17,
+      "from_name": "Navigation",
+      "to_global": 21,
+      "to_name": "Planétologie",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 18,
+      "from_name": "Organisation Militaire",
+      "to_global": 9,
+      "to_name": "Exploitation Minière",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 18,
+      "from_name": "Organisation Militaire",
+      "to_global": 11,
+      "to_name": "Histoire de la race",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 18,
+      "from_name": "Organisation Militaire",
+      "to_global": 19,
+      "to_name": "Physique",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 19,
+      "from_name": "Physique",
+      "to_global": 8,
+      "to_name": "Doctrine Philosophique / Religieuse",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 19,
+      "from_name": "Physique",
+      "to_global": 9,
+      "to_name": "Exploitation Minière",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 19,
+      "from_name": "Physique",
+      "to_global": 12,
+      "to_name": "Ingénieurie",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 19,
+      "from_name": "Physique",
+      "to_global": 18,
+      "to_name": "Organisation Militaire",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 20,
+      "from_name": "Pilote de Bateau",
+      "to_global": 9,
+      "to_name": "Exploitation Minière",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 20,
+      "from_name": "Pilote de Bateau",
+      "to_global": 14,
+      "to_name": "Maths de base",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 20,
+      "from_name": "Pilote de Bateau",
+      "to_global": 17,
+      "to_name": "Navigation",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 20,
+      "from_name": "Pilote de Bateau",
+      "to_global": 19,
+      "to_name": "Physique",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 21,
+      "from_name": "Planétologie",
+      "to_global": 8,
+      "to_name": "Doctrine Philosophique / Religieuse",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 21,
+      "from_name": "Planétologie",
+      "to_global": 9,
+      "to_name": "Exploitation Minière",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 21,
+      "from_name": "Planétologie",
+      "to_global": 12,
+      "to_name": "Ingénieurie",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 21,
+      "from_name": "Planétologie",
+      "to_global": 17,
+      "to_name": "Navigation",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 23,
+      "from_name": "Savoir en Commerce",
+      "to_global": 24,
+      "to_name": "Savoir en Démons/Diables",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 23,
+      "from_name": "Savoir en Commerce",
+      "to_global": 32,
+      "to_name": "Savoir en Pierres",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 24,
+      "from_name": "Savoir en Démons/Diables",
+      "to_global": 23,
+      "to_name": "Savoir en Commerce",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 24,
+      "from_name": "Savoir en Démons/Diables",
+      "to_global": 37,
+      "to_name": "Xéno-Savoir",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 25,
+      "from_name": "Savoir en Dragons",
+      "to_global": 27,
+      "to_name": "Savoir en Féerie",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 27,
+      "from_name": "Savoir en Féerie",
+      "to_global": 29,
+      "to_name": "Savoir en Herbes",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 33,
+      "from_name": "Savoir en Poison",
+      "to_global": 34,
+      "to_name": "Savoir en Serrures",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 33,
+      "from_name": "Savoir en Poison",
+      "to_global": 35,
+      "to_name": "Sièges",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 34,
+      "from_name": "Savoir en Serrures",
+      "to_global": 33,
+      "to_name": "Savoir en Poison",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 34,
+      "from_name": "Savoir en Serrures",
+      "to_global": 35,
+      "to_name": "Sièges",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 34,
+      "from_name": "Savoir en Serrures",
+      "to_global": 36,
+      "to_name": "Tactique",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 35,
+      "from_name": "Sièges",
+      "to_global": 33,
+      "to_name": "Savoir en Poison",
+      "coefficient": 4,
+      "category": "Academic"
+    },
+    {
+      "from_global": 35,
+      "from_name": "Sièges",
+      "to_global": 34,
+      "to_name": "Savoir en Serrures",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 35,
+      "from_name": "Sièges",
+      "to_global": 36,
+      "to_name": "Tactique",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 36,
+      "from_name": "Tactique",
+      "to_global": 33,
+      "to_name": "Savoir en Poison",
+      "coefficient": 8,
+      "category": "Academic"
+    },
+    {
+      "from_global": 36,
+      "from_name": "Tactique",
+      "to_global": 34,
+      "to_name": "Savoir en Serrures",
+      "coefficient": 2,
+      "category": "Academic"
+    },
+    {
+      "from_global": 41,
+      "from_name": "Controle Animalier",
+      "to_global": 42,
+      "to_name": "Dressage",
+      "coefficient": 4,
+      "category": "Animal"
+    },
+    {
+      "from_global": 41,
+      "from_name": "Controle Animalier",
+      "to_global": 43,
+      "to_name": "Equitation",
+      "coefficient": 8,
+      "category": "Animal"
+    },
+    {
+      "from_global": 43,
+      "from_name": "Equitation",
+      "to_global": 41,
+      "to_name": "Controle Animalier",
+      "coefficient": 8,
+      "category": "Animal"
+    },
+    {
+      "from_global": 44,
+      "from_name": "Troupeaux",
+      "to_global": 40,
+      "to_name": "Conduite",
+      "coefficient": 4,
+      "category": "Animal"
+    },
+    {
+      "from_global": 58,
+      "from_name": "Surf",
+      "to_global": 57,
+      "to_name": "Sprint",
+      "coefficient": 2,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 45,
+      "from_name": "Chutes",
+      "to_global": 48,
+      "to_name": "Escalade",
+      "coefficient": 8,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 45,
+      "from_name": "Chutes",
+      "to_global": 49,
+      "to_name": "Expression Corporelle",
+      "coefficient": 4,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 45,
+      "from_name": "Chutes",
+      "to_global": 51,
+      "to_name": "Marine",
+      "coefficient": 4,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 45,
+      "from_name": "Chutes",
+      "to_global": 52,
+      "to_name": "Natation",
+      "coefficient": 8,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 45,
+      "from_name": "Chutes",
+      "to_global": 53,
+      "to_name": "Navigation à la Rame",
+      "coefficient": 4,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 45,
+      "from_name": "Chutes",
+      "to_global": 54,
+      "to_name": "Patinage",
+      "coefficient": 4,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 45,
+      "from_name": "Chutes",
+      "to_global": 56,
+      "to_name": "Sport",
+      "coefficient": 4,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 46,
+      "from_name": "Course de Fond",
+      "to_global": 45,
+      "to_name": "Chutes",
+      "coefficient": 4,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 46,
+      "from_name": "Course de Fond",
+      "to_global": 49,
+      "to_name": "Expression Corporelle",
+      "coefficient": 2,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 46,
+      "from_name": "Course de Fond",
+      "to_global": 50,
+      "to_name": "Glisse",
+      "coefficient": 4,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 46,
+      "from_name": "Course de Fond",
+      "to_global": 52,
+      "to_name": "Natation",
+      "coefficient": 4,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 46,
+      "from_name": "Course de Fond",
+      "to_global": 53,
+      "to_name": "Navigation à la Rame",
+      "coefficient": 4,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 46,
+      "from_name": "Course de Fond",
+      "to_global": 54,
+      "to_name": "Patinage",
+      "coefficient": 4,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 47,
+      "from_name": "Développement Corporel",
+      "to_global": 49,
+      "to_name": "Expression Corporelle",
+      "coefficient": 8,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 47,
+      "from_name": "Développement Corporel",
+      "to_global": 50,
+      "to_name": "Glisse",
+      "coefficient": 8,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 47,
+      "from_name": "Développement Corporel",
+      "to_global": 51,
+      "to_name": "Marine",
+      "coefficient": 8,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 47,
+      "from_name": "Développement Corporel",
+      "to_global": 53,
+      "to_name": "Navigation à la Rame",
+      "coefficient": 2,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 47,
+      "from_name": "Développement Corporel",
+      "to_global": 54,
+      "to_name": "Patinage",
+      "coefficient": 4,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 48,
+      "from_name": "Escalade",
+      "to_global": 49,
+      "to_name": "Expression Corporelle",
+      "coefficient": 2,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 48,
+      "from_name": "Escalade",
+      "to_global": 50,
+      "to_name": "Glisse",
+      "coefficient": 4,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 48,
+      "from_name": "Escalade",
+      "to_global": 52,
+      "to_name": "Natation",
+      "coefficient": 4,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 48,
+      "from_name": "Escalade",
+      "to_global": 54,
+      "to_name": "Patinage",
+      "coefficient": 4,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 49,
+      "from_name": "Expression Corporelle",
+      "to_global": 45,
+      "to_name": "Chutes",
+      "coefficient": 2,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 49,
+      "from_name": "Expression Corporelle",
+      "to_global": 47,
+      "to_name": "Développement Corporel",
+      "coefficient": 8,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 49,
+      "from_name": "Expression Corporelle",
+      "to_global": 48,
+      "to_name": "Escalade",
+      "coefficient": 4,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 49,
+      "from_name": "Expression Corporelle",
+      "to_global": 50,
+      "to_name": "Glisse",
+      "coefficient": 4,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 49,
+      "from_name": "Expression Corporelle",
+      "to_global": 51,
+      "to_name": "Marine",
+      "coefficient": 2,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 49,
+      "from_name": "Expression Corporelle",
+      "to_global": 52,
+      "to_name": "Natation",
+      "coefficient": 2,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 49,
+      "from_name": "Expression Corporelle",
+      "to_global": 53,
+      "to_name": "Navigation à la Rame",
+      "coefficient": 4,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 49,
+      "from_name": "Expression Corporelle",
+      "to_global": 55,
+      "to_name": "Rappel",
+      "coefficient": 4,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 52,
+      "from_name": "Natation",
+      "to_global": 56,
+      "to_name": "Sport",
+      "coefficient": 8,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 53,
+      "from_name": "Navigation à la Rame",
+      "to_global": 45,
+      "to_name": "Chutes",
+      "coefficient": 4,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 54,
+      "from_name": "Patinage",
+      "to_global": 56,
+      "to_name": "Sport",
+      "coefficient": 8,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 55,
+      "from_name": "Rappel",
+      "to_global": 56,
+      "to_name": "Sport",
+      "coefficient": 8,
+      "category": "Athletic"
+    },
+    {
+      "from_global": 61,
+      "from_name": "Arts Martiaux",
+      "to_global": 60,
+      "to_name": "Artillerie",
+      "coefficient": 4,
+      "category": "Combat"
+    },
+    {
+      "from_global": 62,
+      "from_name": "Bagarre",
+      "to_global": 63,
+      "to_name": "Compétence aux armes",
+      "coefficient": 8,
+      "category": "Combat"
+    },
+    {
+      "from_global": 62,
+      "from_name": "Bagarre",
+      "to_global": 64,
+      "to_name": "Culbutes d'Attaque",
+      "coefficient": 4,
+      "category": "Combat"
+    },
+    {
+      "from_global": 62,
+      "from_name": "Bagarre",
+      "to_global": 65,
+      "to_name": "Culbutes d'Esquive",
+      "coefficient": 4,
+      "category": "Combat"
+    },
+    {
+      "from_global": 62,
+      "from_name": "Bagarre",
+      "to_global": 66,
+      "to_name": "Désarmement avec Arme",
+      "coefficient": 4,
+      "category": "Combat"
+    },
+    {
+      "from_global": 63,
+      "from_name": "Compétence aux armes",
+      "to_global": 64,
+      "to_name": "Culbutes d'Attaque",
+      "coefficient": 4,
+      "category": "Combat"
+    },
+    {
+      "from_global": 63,
+      "from_name": "Compétence aux armes",
+      "to_global": 65,
+      "to_name": "Culbutes d'Esquive",
+      "coefficient": 4,
+      "category": "Combat"
+    },
+    {
+      "from_global": 64,
+      "from_name": "Culbutes d'Attaque",
+      "to_global": 63,
+      "to_name": "Compétence aux armes",
+      "coefficient": 4,
+      "category": "Combat"
+    },
+    {
+      "from_global": 64,
+      "from_name": "Culbutes d'Attaque",
+      "to_global": 65,
+      "to_name": "Culbutes d'Esquive",
+      "coefficient": 4,
+      "category": "Combat"
+    },
+    {
+      "from_global": 65,
+      "from_name": "Culbutes d'Esquive",
+      "to_global": 62,
+      "to_name": "Bagarre",
+      "coefficient": 4,
+      "category": "Combat"
+    },
+    {
+      "from_global": 65,
+      "from_name": "Culbutes d'Esquive",
+      "to_global": 63,
+      "to_name": "Compétence aux armes",
+      "coefficient": 4,
+      "category": "Combat"
+    },
+    {
+      "from_global": 65,
+      "from_name": "Culbutes d'Esquive",
+      "to_global": 64,
+      "to_name": "Culbutes d'Attaque",
+      "coefficient": 4,
+      "category": "Combat"
+    },
+    {
+      "from_global": 66,
+      "from_name": "Désarmement avec Arme",
+      "to_global": 62,
+      "to_name": "Bagarre",
+      "coefficient": 4,
+      "category": "Combat"
+    },
+    {
+      "from_global": 67,
+      "from_name": "Désarmement sans Arme",
+      "to_global": 73,
+      "to_name": "Cuir Rigide",
+      "coefficient": 8,
+      "category": "Combat"
+    },
+    {
+      "from_global": 68,
+      "from_name": "Grappin",
+      "to_global": 70,
+      "to_name": "Inconscience",
+      "coefficient": 8,
+      "category": "Combat"
+    },
+    {
+      "from_global": 69,
+      "from_name": "Iai",
+      "to_global": 70,
+      "to_name": "Inconscience",
+      "coefficient": 8,
+      "category": "Combat"
+    },
+    {
+      "from_global": 70,
+      "from_name": "Inconscience",
+      "to_global": 69,
+      "to_name": "Iai",
+      "coefficient": 8,
+      "category": "Combat"
+    },
+    {
+      "from_global": 70,
+      "from_name": "Inconscience",
+      "to_global": 72,
+      "to_name": "Cuir Souple",
+      "coefficient": 2,
+      "category": "Combat"
+    },
+    {
+      "from_global": 72,
+      "from_name": "Cuir Souple",
+      "to_global": 69,
+      "to_name": "Iai",
+      "coefficient": 8,
+      "category": "Combat"
+    },
+    {
+      "from_global": 74,
+      "from_name": "Cotte de Mailles",
+      "to_global": 67,
+      "to_name": "Désarmement sans Arme",
+      "coefficient": 8,
+      "category": "Combat"
+    },
+    {
+      "from_global": 83,
+      "from_name": "Méditation Guérison",
+      "to_global": 84,
+      "to_name": "Méditation Ki",
+      "coefficient": 4,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 83,
+      "from_name": "Méditation Guérison",
+      "to_global": 85,
+      "to_name": "Méditation Purification",
+      "coefficient": 4,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 83,
+      "from_name": "Méditation Guérison",
+      "to_global": 90,
+      "to_name": "Mouvement Adrénal Bond",
+      "coefficient": 4,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 85,
+      "from_name": "Méditation Purification",
+      "to_global": 83,
+      "to_name": "Méditation Guérison",
+      "coefficient": 4,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 86,
+      "from_name": "Méditation Sommeil",
+      "to_global": 85,
+      "to_name": "Méditation Purification",
+      "coefficient": 8,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 86,
+      "from_name": "Méditation Sommeil",
+      "to_global": 87,
+      "to_name": "Méditation Suicide",
+      "coefficient": 4,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 86,
+      "from_name": "Méditation Sommeil",
+      "to_global": 89,
+      "to_name": "Mnémonique",
+      "coefficient": 8,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 87,
+      "from_name": "Méditation Suicide",
+      "to_global": 86,
+      "to_name": "Méditation Sommeil",
+      "coefficient": 4,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 89,
+      "from_name": "Mnémonique",
+      "to_global": 85,
+      "to_name": "Méditation Purification",
+      "coefficient": 8,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 89,
+      "from_name": "Mnémonique",
+      "to_global": 86,
+      "to_name": "Méditation Sommeil",
+      "coefficient": 8,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 90,
+      "from_name": "Mouvement Adrénal Bond",
+      "to_global": 83,
+      "to_name": "Méditation Guérison",
+      "coefficient": 4,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 90,
+      "from_name": "Mouvement Adrénal Bond",
+      "to_global": 85,
+      "to_name": "Méditation Purification",
+      "coefficient": 4,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 91,
+      "from_name": "Mouvement Adrénal Dégainer",
+      "to_global": 94,
+      "to_name": "Mouvement Adrénal Réception",
+      "coefficient": 4,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 91,
+      "from_name": "Mouvement Adrénal Dégainer",
+      "to_global": 95,
+      "to_name": "Mouvement Adrénal Vitesse",
+      "coefficient": 4,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 92,
+      "from_name": "Mouvement Adrénal Equilibre",
+      "to_global": 94,
+      "to_name": "Mouvement Adrénal Réception",
+      "coefficient": 4,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 94,
+      "from_name": "Mouvement Adrénal Réception",
+      "to_global": 91,
+      "to_name": "Mouvement Adrénal Dégainer",
+      "coefficient": 8,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 94,
+      "from_name": "Mouvement Adrénal Réception",
+      "to_global": 95,
+      "to_name": "Mouvement Adrénal Vitesse",
+      "coefficient": 2,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 95,
+      "from_name": "Mouvement Adrénal Vitesse",
+      "to_global": 94,
+      "to_name": "Mouvement Adrénal Réception",
+      "coefficient": 2,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 96,
+      "from_name": "Sourcier",
+      "to_global": 93,
+      "to_name": "Mouvement Adrénal Force",
+      "coefficient": 8,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 97,
+      "from_name": "Stabilisation Corporelle",
+      "to_global": 94,
+      "to_name": "Mouvement Adrénal Réception",
+      "coefficient": 4,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 97,
+      "from_name": "Stabilisation Corporelle",
+      "to_global": 95,
+      "to_name": "Mouvement Adrénal Vitesse",
+      "coefficient": 4,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 81,
+      "from_name": "Frénésie",
+      "to_global": 82,
+      "to_name": "Localisation Spatiale",
+      "coefficient": 8,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 82,
+      "from_name": "Localisation Spatiale",
+      "to_global": 80,
+      "to_name": "Défense Adrénale",
+      "coefficient": 4,
+      "category": "Deadly"
+    },
+    {
+      "from_global": 100,
+      "from_name": "Mort Silencieuse",
+      "to_global": 98,
+      "to_name": "Embuscade",
+      "coefficient": 4,
+      "category": "Evaluation"
+    },
+    {
+      "from_global": 100,
+      "from_name": "Mort Silencieuse",
+      "to_global": 99,
+      "to_name": "Manipulation des Poisons",
+      "coefficient": 8,
+      "category": "Evaluation"
+    },
+    {
+      "from_global": 105,
+      "from_name": "Evaluation des Pierres",
+      "to_global": 104,
+      "to_name": "Evaluation des Métaux",
+      "coefficient": 4,
+      "category": "General"
+    },
+    {
+      "from_global": 106,
+      "from_name": "Alimentation",
+      "to_global": 115,
+      "to_name": "Jeux Tactiques",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 108,
+      "from_name": "Artisanat de la Pierre",
+      "to_global": 116,
+      "to_name": "Maitrise de la Corde",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 109,
+      "from_name": "Artisanat du Bois",
+      "to_global": 114,
+      "to_name": "Instrument",
+      "coefficient": 8,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 109,
+      "from_name": "Artisanat du Bois",
+      "to_global": 115,
+      "to_name": "Jeux Tactiques",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 110,
+      "from_name": "Croquis",
+      "to_global": 115,
+      "to_name": "Jeux Tactiques",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 111,
+      "from_name": "Flècherie",
+      "to_global": 108,
+      "to_name": "Artisanat de la Pierre",
+      "coefficient": 8,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 111,
+      "from_name": "Flècherie",
+      "to_global": 113,
+      "to_name": "Horticulture",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 111,
+      "from_name": "Flècherie",
+      "to_global": 115,
+      "to_name": "Jeux Tactiques",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 112,
+      "from_name": "Forge",
+      "to_global": 109,
+      "to_name": "Artisanat du Bois",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 112,
+      "from_name": "Forge",
+      "to_global": 114,
+      "to_name": "Instrument",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 112,
+      "from_name": "Forge",
+      "to_global": 116,
+      "to_name": "Maitrise de la Corde",
+      "coefficient": 8,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 113,
+      "from_name": "Horticulture",
+      "to_global": 114,
+      "to_name": "Instrument",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 113,
+      "from_name": "Horticulture",
+      "to_global": 115,
+      "to_name": "Jeux Tactiques",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 113,
+      "from_name": "Horticulture",
+      "to_global": 117,
+      "to_name": "Peaux",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 114,
+      "from_name": "Instrument",
+      "to_global": 107,
+      "to_name": "Artisanat",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 114,
+      "from_name": "Instrument",
+      "to_global": 113,
+      "to_name": "Horticulture",
+      "coefficient": 8,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 114,
+      "from_name": "Instrument",
+      "to_global": 118,
+      "to_name": "Peinture",
+      "coefficient": 8,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 114,
+      "from_name": "Instrument",
+      "to_global": 119,
+      "to_name": "Publicité",
+      "coefficient": 8,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 115,
+      "from_name": "Jeux Tactiques",
+      "to_global": 116,
+      "to_name": "Maitrise de la Corde",
+      "coefficient": 8,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 115,
+      "from_name": "Jeux Tactiques",
+      "to_global": 117,
+      "to_name": "Peaux",
+      "coefficient": 8,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 115,
+      "from_name": "Jeux Tactiques",
+      "to_global": 119,
+      "to_name": "Publicité",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 116,
+      "from_name": "Maitrise de la Corde",
+      "to_global": 110,
+      "to_name": "Croquis",
+      "coefficient": 8,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 116,
+      "from_name": "Maitrise de la Corde",
+      "to_global": 117,
+      "to_name": "Peaux",
+      "coefficient": 8,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 116,
+      "from_name": "Maitrise de la Corde",
+      "to_global": 118,
+      "to_name": "Peinture",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 117,
+      "from_name": "Peaux",
+      "to_global": 110,
+      "to_name": "Croquis",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 117,
+      "from_name": "Peaux",
+      "to_global": 116,
+      "to_name": "Maitrise de la Corde",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 117,
+      "from_name": "Peaux",
+      "to_global": 118,
+      "to_name": "Peinture",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 117,
+      "from_name": "Peaux",
+      "to_global": 119,
+      "to_name": "Publicité",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 118,
+      "from_name": "Peinture",
+      "to_global": 114,
+      "to_name": "Instrument",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 118,
+      "from_name": "Peinture",
+      "to_global": 115,
+      "to_name": "Jeux Tactiques",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 119,
+      "from_name": "Publicité",
+      "to_global": 113,
+      "to_name": "Horticulture",
+      "coefficient": 8,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 119,
+      "from_name": "Publicité",
+      "to_global": 114,
+      "to_name": "Instrument",
+      "coefficient": 2,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 119,
+      "from_name": "Publicité",
+      "to_global": 115,
+      "to_name": "Jeux Tactiques",
+      "coefficient": 2,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 119,
+      "from_name": "Publicité",
+      "to_global": 116,
+      "to_name": "Maitrise de la Corde",
+      "coefficient": 4,
+      "category": "Gymnastic"
+    },
+    {
+      "from_global": 122,
+      "from_name": "Acrobaties",
+      "to_global": 123,
+      "to_name": "Contorsionisme",
+      "coefficient": 4,
+      "category": "Linguistic"
+    },
+    {
+      "from_global": 122,
+      "from_name": "Acrobaties",
+      "to_global": 128,
+      "to_name": "Perche",
+      "coefficient": 8,
+      "category": "Linguistic"
+    },
+    {
+      "from_global": 123,
+      "from_name": "Contorsionisme",
+      "to_global": 128,
+      "to_name": "Perche",
+      "coefficient": 8,
+      "category": "Linguistic"
+    },
+    {
+      "from_global": 123,
+      "from_name": "Contorsionisme",
+      "to_global": 129,
+      "to_name": "Saut",
+      "coefficient": 2,
+      "category": "Linguistic"
+    },
+    {
+      "from_global": 124,
+      "from_name": "Culbutes",
+      "to_global": 125,
+      "to_name": "Echasses",
+      "coefficient": 8,
+      "category": "Linguistic"
+    },
+    {
+      "from_global": 124,
+      "from_name": "Culbutes",
+      "to_global": 128,
+      "to_name": "Perche",
+      "coefficient": 8,
+      "category": "Linguistic"
+    },
+    {
+      "from_global": 125,
+      "from_name": "Echasses",
+      "to_global": 128,
+      "to_name": "Perche",
+      "coefficient": 8,
+      "category": "Linguistic"
+    },
+    {
+      "from_global": 126,
+      "from_name": "Funambule",
+      "to_global": 124,
+      "to_name": "Culbutes",
+      "coefficient": 8,
+      "category": "Linguistic"
+    },
+    {
+      "from_global": 126,
+      "from_name": "Funambule",
+      "to_global": 127,
+      "to_name": "Jonglerie",
+      "coefficient": 8,
+      "category": "Linguistic"
+    },
+    {
+      "from_global": 126,
+      "from_name": "Funambule",
+      "to_global": 129,
+      "to_name": "Saut",
+      "coefficient": 8,
+      "category": "Linguistic"
+    },
+    {
+      "from_global": 127,
+      "from_name": "Jonglerie",
+      "to_global": 125,
+      "to_name": "Echasses",
+      "coefficient": 4,
+      "category": "Linguistic"
+    },
+    {
+      "from_global": 127,
+      "from_name": "Jonglerie",
+      "to_global": 128,
+      "to_name": "Perche",
+      "coefficient": 8,
+      "category": "Linguistic"
+    },
+    {
+      "from_global": 128,
+      "from_name": "Perche",
+      "to_global": 124,
+      "to_name": "Culbutes",
+      "coefficient": 4,
+      "category": "Linguistic"
+    },
+    {
+      "from_global": 129,
+      "from_name": "Saut",
+      "to_global": 122,
+      "to_name": "Acrobaties",
+      "coefficient": 8,
+      "category": "Linguistic"
+    },
+    {
+      "from_global": 132,
+      "from_name": "Communication par Signaux",
+      "to_global": 136,
+      "to_name": "Linguistique",
+      "coefficient": 4,
+      "category": "Magical"
+    },
+    {
+      "from_global": 132,
+      "from_name": "Communication par Signaux",
+      "to_global": 137,
+      "to_name": "Lire sur les Lèvres",
+      "coefficient": 4,
+      "category": "Magical"
+    },
+    {
+      "from_global": 133,
+      "from_name": "Conteur",
+      "to_global": 132,
+      "to_name": "Communication par Signaux",
+      "coefficient": 4,
+      "category": "Magical"
+    },
+    {
+      "from_global": 133,
+      "from_name": "Conteur",
+      "to_global": 137,
+      "to_name": "Lire sur les Lèvres",
+      "coefficient": 4,
+      "category": "Magical"
+    },
+    {
+      "from_global": 134,
+      "from_name": "Eloquence en Public",
+      "to_global": 136,
+      "to_name": "Linguistique",
+      "coefficient": 4,
+      "category": "Magical"
+    },
+    {
+      "from_global": 134,
+      "from_name": "Eloquence en Public",
+      "to_global": 137,
+      "to_name": "Lire sur les Lèvres",
+      "coefficient": 8,
+      "category": "Magical"
+    },
+    {
+      "from_global": 136,
+      "from_name": "Linguistique",
+      "to_global": 134,
+      "to_name": "Eloquence en Public",
+      "coefficient": 4,
+      "category": "Magical"
+    },
+    {
+      "from_global": 136,
+      "from_name": "Linguistique",
+      "to_global": 137,
+      "to_name": "Lire sur les Lèvres",
+      "coefficient": 4,
+      "category": "Magical"
+    },
+    {
+      "from_global": 137,
+      "from_name": "Lire sur les Lèvres",
+      "to_global": 133,
+      "to_name": "Conteur",
+      "coefficient": 2,
+      "category": "Magical"
+    },
+    {
+      "from_global": 137,
+      "from_name": "Lire sur les Lèvres",
+      "to_global": 134,
+      "to_name": "Eloquence en Public",
+      "coefficient": 4,
+      "category": "Magical"
+    },
+    {
+      "from_global": 137,
+      "from_name": "Lire sur les Lèvres",
+      "to_global": 136,
+      "to_name": "Linguistique",
+      "coefficient": 4,
+      "category": "Magical"
+    },
+    {
+      "from_global": 138,
+      "from_name": "Musique",
+      "to_global": 139,
+      "to_name": "Poésie",
+      "coefficient": 4,
+      "category": "Magical"
+    },
+    {
+      "from_global": 139,
+      "from_name": "Poésie",
+      "to_global": 138,
+      "to_name": "Musique",
+      "coefficient": 4,
+      "category": "Magical"
+    },
+    {
+      "from_global": 141,
+      "from_name": "Ventriloquie",
+      "to_global": 138,
+      "to_name": "Musique",
+      "coefficient": 8,
+      "category": "Magical"
+    },
+    {
+      "from_global": 153,
+      "from_name": "Runes",
+      "to_global": 155,
+      "to_name": "Savoir en Rets",
+      "coefficient": 2,
+      "category": "Medical"
+    },
+    {
+      "from_global": 153,
+      "from_name": "Runes",
+      "to_global": 157,
+      "to_name": "Transcendance d'Armure",
+      "coefficient": 4,
+      "category": "Medical"
+    },
+    {
+      "from_global": 155,
+      "from_name": "Savoir en Rets",
+      "to_global": 153,
+      "to_name": "Runes",
+      "coefficient": 1.33,
+      "category": "Medical"
+    },
+    {
+      "from_global": 155,
+      "from_name": "Savoir en Rets",
+      "to_global": 156,
+      "to_name": "Savoir en Symboles",
+      "coefficient": 2,
+      "category": "Medical"
+    },
+    {
+      "from_global": 155,
+      "from_name": "Savoir en Rets",
+      "to_global": 158,
+      "to_name": "Transmission",
+      "coefficient": 2,
+      "category": "Medical"
+    },
+    {
+      "from_global": 156,
+      "from_name": "Savoir en Symboles",
+      "to_global": 155,
+      "to_name": "Savoir en Rets",
+      "coefficient": 8,
+      "category": "Medical"
+    },
+    {
+      "from_global": 156,
+      "from_name": "Savoir en Symboles",
+      "to_global": 158,
+      "to_name": "Transmission",
+      "coefficient": 4,
+      "category": "Medical"
+    },
+    {
+      "from_global": 158,
+      "from_name": "Transmission",
+      "to_global": 155,
+      "to_name": "Savoir en Rets",
+      "coefficient": 8,
+      "category": "Medical"
+    },
+    {
+      "from_global": 147,
+      "from_name": "Langages Magiques",
+      "to_global": 142,
+      "to_name": "Liste de Sorts",
+      "coefficient": 8,
+      "category": "Medical"
+    },
+    {
+      "from_global": 147,
+      "from_name": "Langages Magiques",
+      "to_global": 143,
+      "to_name": "Concordance",
+      "coefficient": 4,
+      "category": "Medical"
+    },
+    {
+      "from_global": 148,
+      "from_name": "Maitrise de Sort",
+      "to_global": 144,
+      "to_name": "Développement des PP",
+      "coefficient": 4,
+      "category": "Medical"
+    },
+    {
+      "from_global": 149,
+      "from_name": "Perception du pouvoir",
+      "to_global": 144,
+      "to_name": "Développement des PP",
+      "coefficient": 4,
+      "category": "Medical"
+    },
+    {
+      "from_global": 149,
+      "from_name": "Perception du pouvoir",
+      "to_global": 148,
+      "to_name": "Maitrise de Sort",
+      "coefficient": 8,
+      "category": "Medical"
+    },
+    {
+      "from_global": 149,
+      "from_name": "Perception du pouvoir",
+      "to_global": 152,
+      "to_name": "Rituel Magique",
+      "coefficient": 8,
+      "category": "Medical"
+    },
+    {
+      "from_global": 151,
+      "from_name": "Réajustement",
+      "to_global": 145,
+      "to_name": "Direction de Sorts",
+      "coefficient": 4,
+      "category": "Medical"
+    },
+    {
+      "from_global": 151,
+      "from_name": "Réajustement",
+      "to_global": 149,
+      "to_name": "Perception du pouvoir",
+      "coefficient": 2,
+      "category": "Medical"
+    }
+  ]
+}

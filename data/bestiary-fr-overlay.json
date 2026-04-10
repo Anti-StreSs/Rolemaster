@@ -1,0 +1,3156 @@
+{
+  "_metadata": {
+    "source_base": "bestiary.json",
+    "translation_source": "chapter 2 collation against 84820098-Role-Master-Creatures-Et-Tresors.pdf plus conservative manual equivalents for entries not clearly recoverable from the older FR edition",
+    "notes": [
+      "Overlay is non-destructive: only FR-facing fields and helper labels are added.",
+      "name_fr is filled conservatively; proper names are preserved when no standard FR exonym was preferable.",
+      "description_fr remains null in this pass unless it already existed in the base file."
+    ]
+  },
+  "creatures": [
+    {
+      "id": "ct-001",
+      "name_en": "Antelope-like Animal (Small)",
+      "name_fr": "Animal de type antilope (petit)",
+      "subcategory_fr": "Herbivores et autres animaux normalement paisibles",
+      "table_parent_group_fr": "Animaux de type antilope"
+    },
+    {
+      "id": "ct-002",
+      "name_en": "Antelope-like Animal (Large)",
+      "name_fr": "Animal de type antilope (gros)",
+      "subcategory_fr": "Herbivores et autres animaux normalement paisibles",
+      "table_parent_group_fr": "Animaux de type antilope"
+    },
+    {
+      "id": "ct-003",
+      "name_en": "Rodent (Small)",
+      "name_fr": "Rongeur (petit)",
+      "subcategory_fr": "Herbivores et autres animaux normalement paisibles",
+      "table_parent_group_fr": "Rongeurs"
+    },
+    {
+      "id": "ct-004",
+      "name_en": "Rodent (Large)",
+      "name_fr": "Rongeur (gros)",
+      "subcategory_fr": "Herbivores et autres animaux normalement paisibles",
+      "table_parent_group_fr": "Rongeurs"
+    },
+    {
+      "id": "ct-005",
+      "name_en": "Buffalo/Bull",
+      "name_fr": "Bœuf/Buffle",
+      "subcategory_fr": "Herbivores et autres animaux normalement paisibles",
+      "table_parent_group_fr": "Rongeurs"
+    },
+    {
+      "id": "ct-006",
+      "name_en": "Moose",
+      "name_fr": "Élan",
+      "subcategory_fr": "Herbivores et autres animaux normalement paisibles",
+      "table_parent_group_fr": "Rongeurs"
+    },
+    {
+      "id": "ct-007",
+      "name_en": "Sheep",
+      "name_fr": "Mouton",
+      "subcategory_fr": "Herbivores et autres animaux normalement paisibles",
+      "table_parent_group_fr": "Rongeurs"
+    },
+    {
+      "id": "ct-008",
+      "name_en": "Bactrian Camel",
+      "name_fr": "Chameau de Bactriane",
+      "subcategory_fr": "Animaux de monte et de bât",
+      "table_parent_group_fr": "Chameaux/Lamas/Alpagas"
+    },
+    {
+      "id": "ct-009",
+      "name_en": "Dromedary Camel (Racer)",
+      "name_fr": "Dromadaire (Racer)",
+      "subcategory_fr": "Animaux de monte et de bât",
+      "table_parent_group_fr": "Dromadaire"
+    },
+    {
+      "id": "ct-010",
+      "name_en": "Dromedary Camel (Draft)",
+      "name_fr": "Dromadaire (Draft)",
+      "subcategory_fr": "Animaux de monte et de bât",
+      "table_parent_group_fr": "Dromadaire"
+    },
+    {
+      "id": "ct-011",
+      "name_en": "Alpaca",
+      "name_fr": "Alpaga",
+      "subcategory_fr": "Animaux de monte et de bât",
+      "table_parent_group_fr": "Dromadaire"
+    },
+    {
+      "id": "ct-012",
+      "name_en": "Llama",
+      "name_fr": "Lama",
+      "subcategory_fr": "Animaux de monte et de bât",
+      "table_parent_group_fr": "Dromadaire"
+    },
+    {
+      "id": "ct-013",
+      "name_en": "Elephants",
+      "name_fr": "Éléphants",
+      "subcategory_fr": "Animaux de monte et de bât",
+      "table_parent_group_fr": "Dromadaire"
+    },
+    {
+      "id": "ct-014",
+      "name_en": "Donkey",
+      "name_fr": "Âne",
+      "subcategory_fr": "Animaux de monte et de bât",
+      "table_parent_group_fr": "Chevaux/Ânes/Mules"
+    },
+    {
+      "id": "ct-015",
+      "name_en": "Mule",
+      "name_fr": "Mule",
+      "subcategory_fr": "Animaux de monte et de bât",
+      "table_parent_group_fr": "Chevaux/Ânes/Mules"
+    },
+    {
+      "id": "ct-016",
+      "name_en": "Mustang",
+      "name_fr": "Mustang",
+      "subcategory_fr": "Animaux de monte et de bât",
+      "table_parent_group_fr": "Chevaux/Ânes/Mules"
+    },
+    {
+      "id": "ct-017",
+      "name_en": "Plow Horse",
+      "name_fr": "Cheval de labour",
+      "subcategory_fr": "Animaux de monte et de bât",
+      "table_parent_group_fr": "Chevaux/Ânes/Mules"
+    },
+    {
+      "id": "ct-018",
+      "name_en": "Pony",
+      "name_fr": "Poney",
+      "subcategory_fr": "Animaux de monte et de bât",
+      "table_parent_group_fr": "Chevaux/Ânes/Mules"
+    },
+    {
+      "id": "ct-019",
+      "name_en": "Quarter Horse",
+      "name_fr": "Quarter horse",
+      "subcategory_fr": "Animaux de monte et de bât",
+      "table_parent_group_fr": "Chevaux/Ânes/Mules"
+    },
+    {
+      "id": "ct-020",
+      "name_en": "Thoroughbred",
+      "name_fr": "Pur-sang",
+      "subcategory_fr": "Animaux de monte et de bât",
+      "table_parent_group_fr": "Chevaux/Ânes/Mules"
+    },
+    {
+      "id": "ct-021",
+      "name_en": "Warhorse, Lesser",
+      "name_fr": "Cheval de guerre, inférieur",
+      "subcategory_fr": "Animaux de monte et de bât",
+      "table_parent_group_fr": "Chevaux/Ânes/Mules"
+    },
+    {
+      "id": "ct-022",
+      "name_en": "Warhorse, Greater",
+      "name_fr": "Cheval de guerre, supérieur",
+      "subcategory_fr": "Animaux de monte et de bât",
+      "table_parent_group_fr": "Chevaux/Ânes/Mules"
+    },
+    {
+      "id": "ct-023",
+      "name_en": "Oxen",
+      "name_fr": "Bœufs",
+      "subcategory_fr": "Animaux de monte et de bât",
+      "table_parent_group_fr": "Chevaux/Ânes/Mules"
+    },
+    {
+      "id": "ct-024",
+      "name_en": "Water Buffalo",
+      "name_fr": "Buffle d'eau",
+      "subcategory_fr": "Animaux de monte et de bât",
+      "table_parent_group_fr": "Chevaux/Ânes/Mules"
+    },
+    {
+      "id": "ct-025",
+      "name_en": "Reindeer/Caribou",
+      "name_fr": "Renne/Caribou",
+      "subcategory_fr": "Animaux de monte et de bât",
+      "table_parent_group_fr": "Chevaux/Ânes/Mules"
+    },
+    {
+      "id": "ct-026",
+      "name_en": "Dolphin",
+      "name_fr": "Dauphin",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Dauphins/Marsouins"
+    },
+    {
+      "id": "ct-027",
+      "name_en": "Orca/Killer Whale",
+      "name_fr": "Baleine tueuse",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Dauphins/Marsouins"
+    },
+    {
+      "id": "ct-028",
+      "name_en": "Porpoise",
+      "name_fr": "Marsouin",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Dauphins/Marsouins"
+    },
+    {
+      "id": "ct-029",
+      "name_en": "River Dolphin",
+      "name_fr": "Dauphin de rivière",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Dauphins/Marsouins"
+    },
+    {
+      "id": "ct-030",
+      "name_en": "Eel (Electric)",
+      "name_fr": "Anguille (Electric)",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Anguilles"
+    },
+    {
+      "id": "ct-031",
+      "name_en": "Eel (Moray)",
+      "name_fr": "Anguille (Moray)",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Anguilles"
+    },
+    {
+      "id": "ct-032",
+      "name_en": "Fish (Small)",
+      "name_fr": "Poisson (petit)",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Poissons"
+    },
+    {
+      "id": "ct-033",
+      "name_en": "Fish (Medium)",
+      "name_fr": "Poisson (moyen)",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Poissons"
+    },
+    {
+      "id": "ct-034",
+      "name_en": "Fish (Large)",
+      "name_fr": "Poisson (gros)",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Poissons"
+    },
+    {
+      "id": "ct-035",
+      "name_en": "Octopi/Squid (Small)",
+      "name_fr": "Pieuvre/Calmar (petit)",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Pieuvres/Calmars"
+    },
+    {
+      "id": "ct-036",
+      "name_en": "Octopi/Squid (Medium)",
+      "name_fr": "Pieuvre/Calmar (moyen)",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Pieuvres/Calmars"
+    },
+    {
+      "id": "ct-037",
+      "name_en": "Octopi/Squid (Large)",
+      "name_fr": "Pieuvre/Calmar (gros)",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Pieuvres/Calmars"
+    },
+    {
+      "id": "ct-038",
+      "name_en": "Ray (Electric)",
+      "name_fr": "Raie (Electric)",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Raies"
+    },
+    {
+      "id": "ct-039",
+      "name_en": "Ray (Manta)",
+      "name_fr": "Raie (Manta)",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Raies"
+    },
+    {
+      "id": "ct-040",
+      "name_en": "Shark (Small)",
+      "name_fr": "Requin (petit)",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Requins"
+    },
+    {
+      "id": "ct-041",
+      "name_en": "Shark (Large)",
+      "name_fr": "Requin (gros)",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Requins"
+    },
+    {
+      "id": "ct-042",
+      "name_en": "Whale (Baleen)",
+      "name_fr": "Baleine (Baleen)",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Baleines"
+    },
+    {
+      "id": "ct-043",
+      "name_en": "Whale (Beaked)",
+      "name_fr": "Baleine (Beaked)",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Baleines"
+    },
+    {
+      "id": "ct-044",
+      "name_en": "Whale (Narwhal)",
+      "name_fr": "Baleine (Narwhal)",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Baleines"
+    },
+    {
+      "id": "ct-045",
+      "name_en": "Whale (Toothed (Small))",
+      "name_fr": "Baleine à dents (petite)",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Baleines"
+    },
+    {
+      "id": "ct-046",
+      "name_en": "Whale (Toothed (Large))",
+      "name_fr": "Baleine à dents (grosse)",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Baleines"
+    },
+    {
+      "id": "ct-047",
+      "name_en": "Jellyfish",
+      "name_fr": "Méduse",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Baleines"
+    },
+    {
+      "id": "ct-048",
+      "name_en": "Lamprey",
+      "name_fr": "Lamproie",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Baleines"
+    },
+    {
+      "id": "ct-049",
+      "name_en": "Piranha",
+      "name_fr": "Piranha",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Baleines"
+    },
+    {
+      "id": "ct-050",
+      "name_en": "Port.Man-o-war",
+      "name_fr": "Physalie",
+      "subcategory_fr": "Poissons et autres créatures aquatiques",
+      "table_parent_group_fr": "Baleines"
+    },
+    {
+      "id": "ct-051",
+      "name_en": "Ants*",
+      "name_fr": "Fourmis*",
+      "subcategory_fr": "Insectes, arachnides et crustacés",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-052",
+      "name_en": "Crabs*",
+      "name_fr": "Crabes*",
+      "subcategory_fr": "Insectes, arachnides et crustacés",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-053",
+      "name_en": "Lobsters*",
+      "name_fr": "Homards*",
+      "subcategory_fr": "Insectes, arachnides et crustacés",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-054",
+      "name_en": "Scorpions",
+      "name_fr": "Scorpions",
+      "subcategory_fr": "Insectes, arachnides et crustacés",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-055",
+      "name_en": "Spider (Poisonous)",
+      "name_fr": "Araignée (Poisonous)",
+      "subcategory_fr": "Insectes, arachnides et crustacés",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-056",
+      "name_en": "Spider (Non-Poisonous)",
+      "name_fr": "Araignée (Non-Poisonous)",
+      "subcategory_fr": "Insectes, arachnides et crustacés",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-057",
+      "name_en": "Alligator/Crocodile/Caiman (Small, water)",
+      "name_fr": "Alligator/Crocodile/Caïman (Petit, eau)",
+      "subcategory_fr": "Reptiles et amphibiens",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-058",
+      "name_en": "Alligator/Crocodile/Caiman (Small, land)",
+      "name_fr": "Alligator/Crocodile/Caïman (Petit, terre)",
+      "subcategory_fr": "Reptiles et amphibiens",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-059",
+      "name_en": "Alligator/Crocodile/Caiman (Large, water)",
+      "name_fr": "Alligator/Crocodile/Caïman (Gros, eau)",
+      "subcategory_fr": "Reptiles et amphibiens",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-060",
+      "name_en": "Alligator/Crocodile/Caiman (Large, land)",
+      "name_fr": "Alligator/Crocodile/Caïman (Gros, terre)",
+      "subcategory_fr": "Reptiles et amphibiens",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-061",
+      "name_en": "Lizard (Small)",
+      "name_fr": "Lézard (petit)",
+      "subcategory_fr": "Reptiles et amphibiens",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-062",
+      "name_en": "Lizard (Large)",
+      "name_fr": "Lézard (gros)",
+      "subcategory_fr": "Reptiles et amphibiens",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-063",
+      "name_en": "Boa/Python",
+      "name_fr": "Boa/Python",
+      "subcategory_fr": "Reptiles et amphibiens",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-064",
+      "name_en": "Cobra",
+      "name_fr": "Cobra",
+      "subcategory_fr": "Reptiles et amphibiens",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-065",
+      "name_en": "Snake (Non-Poisonous)",
+      "name_fr": "Serpent (Non-Poisonous)",
+      "subcategory_fr": "Reptiles et amphibiens",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-066",
+      "name_en": "Pit Viper",
+      "name_fr": "Vipère à fossette",
+      "subcategory_fr": "Reptiles et amphibiens",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-067",
+      "name_en": "Sea Snake (water)",
+      "name_fr": "Serpent marin (eau)",
+      "subcategory_fr": "Reptiles et amphibiens",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-068",
+      "name_en": "Viper",
+      "name_fr": "Vipère",
+      "subcategory_fr": "Reptiles et amphibiens",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-069",
+      "name_en": "Small, water",
+      "name_fr": "Petit, eau",
+      "subcategory_fr": "Reptiles et amphibiens",
+      "table_parent_group_fr": "Tortues aquatiques/terrestres"
+    },
+    {
+      "id": "ct-070",
+      "name_en": "Small, land",
+      "name_fr": "Petit, terre",
+      "subcategory_fr": "Reptiles et amphibiens",
+      "table_parent_group_fr": "Tortues aquatiques/terrestres"
+    },
+    {
+      "id": "ct-071",
+      "name_en": "Large, water",
+      "name_fr": "Gros, eau",
+      "subcategory_fr": "Reptiles et amphibiens",
+      "table_parent_group_fr": "Tortues aquatiques/terrestres"
+    },
+    {
+      "id": "ct-072",
+      "name_en": "land Large,",
+      "name_fr": "Gros, terre",
+      "subcategory_fr": "Reptiles et amphibiens",
+      "table_parent_group_fr": "Tortues aquatiques/terrestres"
+    },
+    {
+      "id": "ct-073",
+      "name_en": "Gila Monster",
+      "name_fr": "Monstre de Gila",
+      "subcategory_fr": "Reptiles et amphibiens",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-074",
+      "name_en": "Komodo Dragon",
+      "name_fr": "Dragon de Komodo",
+      "subcategory_fr": "Reptiles et amphibiens",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-075",
+      "name_en": "Nile Monitor",
+      "name_fr": "Varan du Nil",
+      "subcategory_fr": "Reptiles et amphibiens",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-076",
+      "name_en": "Bear (Small)",
+      "name_fr": "Ours (petit)",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-077",
+      "name_en": "Bear (Large)",
+      "name_fr": "Ours (gros)",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-078",
+      "name_en": "Cat (Small)",
+      "name_fr": "Chat (petit)",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-079",
+      "name_en": "Cat (Large)",
+      "name_fr": "Chat (gros)",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-080",
+      "name_en": "Dog (Small)",
+      "name_fr": "Canidé (petit)",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-081",
+      "name_en": "Dog (Large)",
+      "name_fr": "Canidé (gros)",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-082",
+      "name_en": "Mustelid/Civet (Small)",
+      "name_fr": "Mustélidé/Civette (petit)",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-083",
+      "name_en": "Mustelid/Civet (Large)",
+      "name_fr": "Mustélidé/Civette (gros)",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-084",
+      "name_en": "Cheetah",
+      "name_fr": "Guépard",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-085",
+      "name_en": "Ferret (\"Swink\")",
+      "name_fr": "Furet (\"Swink\")",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-086",
+      "name_en": "Housecat",
+      "name_fr": "Chat domestique",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-087",
+      "name_en": "Fishing Cat (Water)",
+      "name_fr": "Chat pêcheur (eau)",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-088",
+      "name_en": "Fishing Cat (Land)",
+      "name_fr": "Chat pêcheur (terre)",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-089",
+      "name_en": "Lion",
+      "name_fr": "Lion",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-090",
+      "name_en": "Mongoose",
+      "name_fr": "Mangouste",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-091",
+      "name_en": "Otter (Water)",
+      "name_fr": "Loutre (eau)",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-092",
+      "name_en": "Otter (Land)",
+      "name_fr": "Loutre (terre)",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-093",
+      "name_en": "Skunk",
+      "name_fr": "Mouffette",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-094",
+      "name_en": "Tiger",
+      "name_fr": "Tigre",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-095",
+      "name_en": "Wolf",
+      "name_fr": "Loup",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-096",
+      "name_en": "Wolverine",
+      "name_fr": "Glouton",
+      "subcategory_fr": "Mammifères carnivores",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-097",
+      "name_en": "Bird (Small)",
+      "name_fr": "Oiseau (petit)",
+      "subcategory_fr": "Oiseaux et autres animaux volants/planants",
+      "table_parent_group_fr": "Oiseaux"
+    },
+    {
+      "id": "ct-098",
+      "name_en": "Bird (Large)",
+      "name_fr": "Oiseau (gros)",
+      "subcategory_fr": "Oiseaux et autres animaux volants/planants",
+      "table_parent_group_fr": "Oiseaux"
+    },
+    {
+      "id": "ct-099",
+      "name_en": "Bat (Small)",
+      "name_fr": "Chauve-souris (petit)",
+      "subcategory_fr": "Oiseaux et autres animaux volants/planants",
+      "table_parent_group_fr": "Chauves-souris"
+    },
+    {
+      "id": "ct-100",
+      "name_en": "Bat (Large)",
+      "name_fr": "Chauve-souris (gros)",
+      "subcategory_fr": "Oiseaux et autres animaux volants/planants",
+      "table_parent_group_fr": "Chauves-souris"
+    },
+    {
+      "id": "ct-101",
+      "name_en": "Condor",
+      "name_fr": "Condor",
+      "subcategory_fr": "Oiseaux et autres animaux volants/planants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-102",
+      "name_en": "Eagle",
+      "name_fr": "Aigle",
+      "subcategory_fr": "Oiseaux et autres animaux volants/planants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-103",
+      "name_en": "Falcon, Peregrine",
+      "name_fr": "Faucon pèlerin",
+      "subcategory_fr": "Oiseaux et autres animaux volants/planants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-104",
+      "name_en": "Hawk",
+      "name_fr": "Épervier",
+      "subcategory_fr": "Oiseaux et autres animaux volants/planants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-105",
+      "name_en": "Owl",
+      "name_fr": "Hibou",
+      "subcategory_fr": "Oiseaux et autres animaux volants/planants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-106",
+      "name_en": "Vulture",
+      "name_fr": "Vautour",
+      "subcategory_fr": "Oiseaux et autres animaux volants/planants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-107",
+      "name_en": "Bee/Wasp",
+      "name_fr": "Guêpe/Abeille",
+      "subcategory_fr": "Oiseaux et autres animaux volants/planants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-108",
+      "name_en": "Elephants (African) (Male)",
+      "name_fr": "Éléphant africain (mâle)",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Éléphants (africains)"
+    },
+    {
+      "id": "ct-109",
+      "name_en": "Elephants (African) (Female)",
+      "name_fr": "Éléphant africain (femelle)",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Éléphants (africains)"
+    },
+    {
+      "id": "ct-110",
+      "name_en": "Elephants (Indian) (Male)",
+      "name_fr": "Éléphant indien (mâle)",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Éléphants (indiens)"
+    },
+    {
+      "id": "ct-111",
+      "name_en": "Elephants (Indian) (Female)",
+      "name_fr": "Éléphant indien (femelle)",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Éléphants (indiens)"
+    },
+    {
+      "id": "ct-112",
+      "name_en": "Primate (Lesser Primate)",
+      "name_fr": "Primate (primate inférieur)",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Primates"
+    },
+    {
+      "id": "ct-113",
+      "name_en": "Great Apes",
+      "name_fr": "Grands singes",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Primates"
+    },
+    {
+      "id": "ct-114",
+      "name_en": "Kangaroo/Wallaby (Small)",
+      "name_fr": "Kangourou/Wallaby (petit)",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Kangourous/Wallabies"
+    },
+    {
+      "id": "ct-115",
+      "name_en": "Kangaroo/Wallaby (Large)",
+      "name_fr": "Kangourou/Wallaby (gros)",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Kangourous/Wallabies"
+    },
+    {
+      "id": "ct-116",
+      "name_en": "Boar",
+      "name_fr": "Sanglier",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Kangourous/Wallabies"
+    },
+    {
+      "id": "ct-117",
+      "name_en": "Gorilla",
+      "name_fr": "Gorille",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Kangourous/Wallabies"
+    },
+    {
+      "id": "ct-118",
+      "name_en": "Hippopotamu (Water)",
+      "name_fr": "Hippopotame (eau)",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Hippopotames"
+    },
+    {
+      "id": "ct-119",
+      "name_en": "Hippopotamu (Land)",
+      "name_fr": "Hippopotame (terre)",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Hippopotames"
+    },
+    {
+      "id": "ct-120",
+      "name_en": "Porcupine",
+      "name_fr": "Porc-épic",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Hippopotames"
+    },
+    {
+      "id": "ct-121",
+      "name_en": "Rat",
+      "name_fr": "Rat",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Hippopotames"
+    },
+    {
+      "id": "ct-122",
+      "name_en": "Rhinoceros",
+      "name_fr": "Rhinocéros",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Hippopotames"
+    },
+    {
+      "id": "ct-123",
+      "name_en": "Seal (Water)",
+      "name_fr": "Phoque (eau)",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Phoques"
+    },
+    {
+      "id": "ct-124",
+      "name_en": "Seal (Land)",
+      "name_fr": "Phoque (terre)",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Phoques"
+    },
+    {
+      "id": "ct-125",
+      "name_en": "Sea Lion (Water)",
+      "name_fr": "Otarie (eau)",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Otaries"
+    },
+    {
+      "id": "ct-126",
+      "name_en": "Sea Lion (Land)",
+      "name_fr": "Otarie (terre)",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Otaries"
+    },
+    {
+      "id": "ct-127",
+      "name_en": "Tasmanian Devil",
+      "name_fr": "Diable de Tasmanie",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Otaries"
+    },
+    {
+      "id": "ct-128",
+      "name_en": "Walru (Water)",
+      "name_fr": "Morse (eau)",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Morses"
+    },
+    {
+      "id": "ct-129",
+      "name_en": "Walru (Land)",
+      "name_fr": "Morse (terre)",
+      "subcategory_fr": "Autres créatures potentiellement dangereuses",
+      "table_parent_group_fr": "Morses"
+    },
+    {
+      "id": "ct-130",
+      "name_en": "Great Spider (Lesser)",
+      "name_fr": "Grande araignée (inférieur)",
+      "subcategory_fr": "Bêtes aquatiques, reptiles et autres créatures dangereuses",
+      "table_parent_group_fr": "Grandes araignées"
+    },
+    {
+      "id": "ct-131",
+      "name_en": "Great Spider (Greater)",
+      "name_fr": "Grande araignée (supérieur)",
+      "subcategory_fr": "Bêtes aquatiques, reptiles et autres créatures dangereuses",
+      "table_parent_group_fr": "Grandes araignées"
+    },
+    {
+      "id": "ct-132",
+      "name_en": "Great Spider (Major)",
+      "name_fr": "Grande araignée (majeur)",
+      "subcategory_fr": "Bêtes aquatiques, reptiles et autres créatures dangereuses",
+      "table_parent_group_fr": "Grandes araignées"
+    },
+    {
+      "id": "ct-133",
+      "name_en": "Horse Viper",
+      "name_fr": "Vipère chevaline",
+      "subcategory_fr": "Bêtes aquatiques, reptiles et autres créatures dangereuses",
+      "table_parent_group_fr": "Grands serpents"
+    },
+    {
+      "id": "ct-134",
+      "name_en": "Horned Snake",
+      "name_fr": "Serpent cornu",
+      "subcategory_fr": "Bêtes aquatiques, reptiles et autres créatures dangereuses",
+      "table_parent_group_fr": "Grands serpents"
+    },
+    {
+      "id": "ct-135",
+      "name_en": "Tatzelwurm",
+      "name_fr": "Tatzelwurm",
+      "subcategory_fr": "Bêtes aquatiques, reptiles et autres créatures dangereuses",
+      "table_parent_group_fr": "Grands serpents"
+    },
+    {
+      "id": "ct-136",
+      "name_en": "Gemsting",
+      "name_fr": "Scorpion-joyau",
+      "subcategory_fr": "Bêtes aquatiques, reptiles et autres créatures dangereuses",
+      "table_parent_group_fr": "Arthropodes particuliers"
+    },
+    {
+      "id": "ct-137",
+      "name_en": "Jadeback",
+      "name_fr": "Dosjade",
+      "subcategory_fr": "Bêtes aquatiques, reptiles et autres créatures dangereuses",
+      "table_parent_group_fr": "Arthropodes particuliers"
+    },
+    {
+      "id": "ct-138",
+      "name_en": "Capricon",
+      "name_fr": "Capricon",
+      "subcategory_fr": "Bêtes aquatiques, reptiles et autres créatures dangereuses",
+      "table_parent_group_fr": "Bêtes aquatiques"
+    },
+    {
+      "id": "ct-139",
+      "name_en": "Demon Whale",
+      "name_fr": "Baleine démoniaque",
+      "subcategory_fr": "Bêtes aquatiques, reptiles et autres créatures dangereuses",
+      "table_parent_group_fr": "Bêtes aquatiques"
+    },
+    {
+      "id": "ct-140",
+      "name_en": "Giant Hellbender",
+      "name_fr": "Cryptobranche géant",
+      "subcategory_fr": "Bêtes aquatiques, reptiles et autres créatures dangereuses",
+      "table_parent_group_fr": "Bêtes aquatiques"
+    },
+    {
+      "id": "ct-141",
+      "name_en": "Hippocampus",
+      "name_fr": "Hippocampe",
+      "subcategory_fr": "Bêtes aquatiques, reptiles et autres créatures dangereuses",
+      "table_parent_group_fr": "Bêtes aquatiques"
+    },
+    {
+      "id": "ct-142",
+      "name_en": "Nator",
+      "name_fr": "Nator",
+      "subcategory_fr": "Bêtes aquatiques, reptiles et autres créatures dangereuses",
+      "table_parent_group_fr": "Bêtes aquatiques"
+    },
+    {
+      "id": "ct-143",
+      "name_en": "Nucklelavee",
+      "name_fr": "Nucklelavee",
+      "subcategory_fr": "Bêtes aquatiques, reptiles et autres créatures dangereuses",
+      "table_parent_group_fr": "Bêtes aquatiques"
+    },
+    {
+      "id": "ct-144",
+      "name_en": "Rath",
+      "name_fr": "Rath",
+      "subcategory_fr": "Bêtes aquatiques, reptiles et autres créatures dangereuses",
+      "table_parent_group_fr": "Bêtes aquatiques"
+    },
+    {
+      "id": "ct-145",
+      "name_en": "Red Jaw",
+      "name_fr": "Mâchoire rouge",
+      "subcategory_fr": "Bêtes aquatiques, reptiles et autres créatures dangereuses",
+      "table_parent_group_fr": "Bêtes aquatiques"
+    },
+    {
+      "id": "ct-146",
+      "name_en": "Spineshark",
+      "name_fr": "Requin épineux",
+      "subcategory_fr": "Bêtes aquatiques, reptiles et autres créatures dangereuses",
+      "table_parent_group_fr": "Bêtes aquatiques"
+    },
+    {
+      "id": "ct-147",
+      "name_en": "Cold Drake (land, 15%**) (Young)",
+      "name_fr": "Drake de froid (terre, 15%**) (jeune)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-148",
+      "name_en": "Cold Drake (land, 15%**) (Mature)",
+      "name_fr": "Drake de froid (terre, 15%**) (mature)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-149",
+      "name_en": "Cold Drake (land, 15%**) (Old)",
+      "name_fr": "Drake de froid (terre, 15%**) (ancien)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-150",
+      "name_en": "Light Drake (air, 80%**) (Young)",
+      "name_fr": "Drake de lumière (air, 80%**) (jeune)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-151",
+      "name_en": "Light Drake (air, 80%**) (Mature)",
+      "name_fr": "Drake de lumière (air, 80%**) (mature)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-152",
+      "name_en": "Light Drake (air, 80%**) (Old)",
+      "name_fr": "Drake de lumière (air, 80%**) (ancien)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-153",
+      "name_en": "Fire Drake (air, 60%**) (Young)",
+      "name_fr": "Drake de feu (air, 60%**) (jeune)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-154",
+      "name_en": "Fire Drake (air, 60%**) (Mature)",
+      "name_fr": "Drake de feu (air, 60%**) (mature)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-155",
+      "name_en": "Fire Drake (air, 60%**) (Old)",
+      "name_fr": "Drake de feu (air, 60%**) (ancien)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-156",
+      "name_en": "Gas Drake (land, 20%**) (Young)",
+      "name_fr": "Drake de gaz (terre, 20%**) (jeune)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-157",
+      "name_en": "Gas Drake (land, 20%**) (Mature)",
+      "name_fr": "Drake de gaz (terre, 20%**) (mature)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-158",
+      "name_en": "Gas Drake (land, 20%**) (Old)",
+      "name_fr": "Drake de gaz (terre, 20%**) (ancien)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-159",
+      "name_en": "Sea Drake (water, 2%**) (Young)",
+      "name_fr": "Drake marin (eau, 2%**) (jeune)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-160",
+      "name_en": "Sea Drake (water, 2%**) (Mature)",
+      "name_fr": "Drake marin (eau, 2%**) (mature)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-161",
+      "name_en": "Sea Drake (water, 2%**) (Old)",
+      "name_fr": "Drake marin (eau, 2%**) (ancien)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-162",
+      "name_en": "Air Drake (air, 100%**) (Young)",
+      "name_fr": "Drake d'air (air, 100%**) (jeune)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-163",
+      "name_en": "Air Drake (air, 100%**) (Mature)",
+      "name_fr": "Drake d'air (air, 100%**) (mature)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-164",
+      "name_en": "Air Drake (air, 100%**) (Old)",
+      "name_fr": "Drake d'air (air, 100%**) (ancien)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-165",
+      "name_en": "Land Drake (land, 0%**) (Young)",
+      "name_fr": "Drake terrestre (terre, 0%**) (jeune)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-166",
+      "name_en": "Land Drake (land, 0%**) (Mature)",
+      "name_fr": "Drake terrestre (terre, 0%**) (mature)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-167",
+      "name_en": "Land Drake (land, 0%**) (Old)",
+      "name_fr": "Drake terrestre (terre, 0%**) (ancien)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-168",
+      "name_en": "Cave Drake (land, 0%**) (Young)",
+      "name_fr": "Drake des cavernes (terre, 0%**) (jeune)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-169",
+      "name_en": "Cave Drake (land, 0%**) (Mature)",
+      "name_fr": "Drake des cavernes (terre, 0%**) (mature)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-170",
+      "name_en": "Cave Drake (land, 0%**) (Old)",
+      "name_fr": "Drake des cavernes (terre, 0%**) (ancien)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-171",
+      "name_en": "Water Drake (water, 0%**) (Young)",
+      "name_fr": "Drake d'eau (eau, 0%**) (jeune)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-172",
+      "name_en": "Water Drake (water, 0%**) (Mature)",
+      "name_fr": "Drake d'eau (eau, 0%**) (mature)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-173",
+      "name_en": "Water Drake (water, 0%**) (Old)",
+      "name_fr": "Drake d'eau (eau, 0%**) (ancien)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-174",
+      "name_en": "Wyverns (Minor Drakes) (Winged (fly))",
+      "name_fr": "Wyverns (mineur Drakes) (ailé (vol))",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-175",
+      "name_en": "Wyverns (Minor Drakes) (Land)",
+      "name_fr": "Wyvernes (mineur Drakes) (terre)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-176",
+      "name_en": "Wyverns (Minor Drakes) (Water (swim))",
+      "name_fr": "Wyverns (mineur Drakes) (eau (nage))",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-177",
+      "name_en": "Basilisk (fly)",
+      "name_fr": "Basilic (vol)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-178",
+      "name_en": "Wyverns (Minor Drakes) (Cave Worm)",
+      "name_fr": "Wyvernes (mineur Drakes) (Cave Worm)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-179",
+      "name_en": "Cockatrice (fly)",
+      "name_fr": "Cocatris (vol)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-180",
+      "name_en": "Dragon Salamander",
+      "name_fr": "Salamandre draconique",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-181",
+      "name_en": "Dragon Turtle",
+      "name_fr": "Tortue-dragon",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-182",
+      "name_en": "Fell Beast (fly)",
+      "name_fr": "Bête déchue (vol)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-183",
+      "name_en": "Hydra",
+      "name_fr": "Hydre",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-184",
+      "name_en": "Oriental Dragon (land***) (Young)",
+      "name_fr": "Dragon oriental (terre***) (jeune)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-185",
+      "name_en": "Oriental Dragon (land***) (Mature)",
+      "name_fr": "Dragon oriental (terre***) (mature)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-186",
+      "name_en": "Oriental Dragon (land***) (Old)",
+      "name_fr": "Dragon oriental (terre***) (ancien)",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-187",
+      "name_en": "Oriental Dragon (land***) (Sea Serpent (swim))",
+      "name_fr": "Oriental Dragon (terre***) (serpent de mer (nage))",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-188",
+      "name_en": "Sirrush",
+      "name_fr": "Sirrush",
+      "subcategory_fr": "Dragons et autres créatures déchues",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-189",
+      "name_en": "Abraxas",
+      "name_fr": "Abraxas",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-190",
+      "name_en": "Al-mi'raj",
+      "name_fr": "Al-mi'raj",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-191",
+      "name_en": "Caustic Slime",
+      "name_fr": "Gelée caustique",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-192",
+      "name_en": "Cerebus",
+      "name_fr": "Cerbère",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-193",
+      "name_en": "Chameleon Amoeba",
+      "name_fr": "Amibe caméléon",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-194",
+      "name_en": "Chimera",
+      "name_fr": "Chimère",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-195",
+      "name_en": "Echidna (Lamiae)",
+      "name_fr": "Échidna (Lamiae)",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-196",
+      "name_en": "Euryale",
+      "name_fr": "Euryale",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-197",
+      "name_en": "Gorgon (Medusa)",
+      "name_fr": "Gorgone (Medusa)",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-198",
+      "name_en": "Great Porcupine",
+      "name_fr": "Grand porc-épic",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-199",
+      "name_en": "Gulo",
+      "name_fr": "Gulo",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-200",
+      "name_en": "Guyascutus",
+      "name_fr": "Guyascutus",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-201",
+      "name_en": "Jackalope",
+      "name_fr": "Jackalope",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-202",
+      "name_en": "Ki-lin",
+      "name_fr": "Ki-rin",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-203",
+      "name_en": "Killer Rabbit",
+      "name_fr": "Lapin tueur",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-204",
+      "name_en": "Manticore",
+      "name_fr": "Manticore",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-205",
+      "name_en": "Minotaur",
+      "name_fr": "Minotaure",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-206",
+      "name_en": "Rumtifusel",
+      "name_fr": "Rumtifusel",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-207",
+      "name_en": "Sasquatch/Yeti",
+      "name_fr": "Sasquatch/Yéti",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-208",
+      "name_en": "Scylla",
+      "name_fr": "Scylla",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-209",
+      "name_en": "Seftuau",
+      "name_fr": "Seftuau",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-210",
+      "name_en": "Su",
+      "name_fr": "Su",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-211",
+      "name_en": "3-tailed Bavolorus",
+      "name_fr": "Bavolorus à trois queues",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-212",
+      "name_en": "Tove",
+      "name_fr": "Tove",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-213",
+      "name_en": "Unicorn",
+      "name_fr": "Licorne",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-214",
+      "name_en": "Willofthe Wisp",
+      "name_fr": "Feu follet",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-215",
+      "name_en": "Zephyr Hound (Fire Hound)",
+      "name_fr": "Chien zéphyr (feu Hound)",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": "Chiens zéphyr"
+    },
+    {
+      "id": "ct-216",
+      "name_en": "Ice Hound",
+      "name_fr": "Chien de glace",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": "Chiens zéphyr"
+    },
+    {
+      "id": "ct-217",
+      "name_en": "Night Hound",
+      "name_fr": "Chien nocturne",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": "Chiens zéphyr"
+    },
+    {
+      "id": "ct-218",
+      "name_en": "Zephyr Hound (Storm Hound)",
+      "name_fr": "Chien zéphyr (tempête Hound)",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": "Chiens zéphyr"
+    },
+    {
+      "id": "ct-219",
+      "name_en": "Vapor Hound",
+      "name_fr": "Chien de vapeur",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": "Chiens zéphyr"
+    },
+    {
+      "id": "ct-220",
+      "name_en": "Zephyr Hound (Water Hound)",
+      "name_fr": "Chien zéphyr (eau Hound)",
+      "subcategory_fr": "Monstres composites",
+      "table_parent_group_fr": "Chiens zéphyr"
+    },
+    {
+      "id": "ct-221",
+      "name_en": "Construct (Minor)",
+      "name_fr": "Construction (mineur)",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Constructions"
+    },
+    {
+      "id": "ct-222",
+      "name_en": "Construct (Lesser)",
+      "name_fr": "Construction (inférieur)",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Constructions"
+    },
+    {
+      "id": "ct-223",
+      "name_en": "Construct (Greater)",
+      "name_fr": "Construction (supérieur)",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Constructions"
+    },
+    {
+      "id": "ct-224",
+      "name_en": "Air, Weak",
+      "name_fr": "Élémentaire d'air, faible",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Élémentaux"
+    },
+    {
+      "id": "ct-225",
+      "name_en": "Air, Strong",
+      "name_fr": "Élémentaire d'air, puissant",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Élémentaux"
+    },
+    {
+      "id": "ct-226",
+      "name_en": "Cold, Weak",
+      "name_fr": "Élémentaire de froid, faible",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Élémentaux"
+    },
+    {
+      "id": "ct-227",
+      "name_en": "Cold, Strong",
+      "name_fr": "Élémentaire de froid, puissant",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Élémentaux"
+    },
+    {
+      "id": "ct-228",
+      "name_en": "Earth, Weak",
+      "name_fr": "Élémentaire de terre, faible",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Élémentaux"
+    },
+    {
+      "id": "ct-229",
+      "name_en": "Earth, Strong",
+      "name_fr": "Élémentaire de terre, puissant",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Élémentaux"
+    },
+    {
+      "id": "ct-230",
+      "name_en": "Fire, Weak",
+      "name_fr": "Élémentaire de feu, faible",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Élémentaux"
+    },
+    {
+      "id": "ct-231",
+      "name_en": "Fire, Strong",
+      "name_fr": "Élémentaire de feu, puissant",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Élémentaux"
+    },
+    {
+      "id": "ct-232",
+      "name_en": "Light, Weak",
+      "name_fr": "Élémentaire de lumière, faible",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Élémentaux"
+    },
+    {
+      "id": "ct-233",
+      "name_en": "Light, Strong",
+      "name_fr": "Élémentaire de lumière, puissant",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Élémentaux"
+    },
+    {
+      "id": "ct-234",
+      "name_en": "Water, Weak",
+      "name_fr": "Élémentaire d'eau, faible",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Élémentaux"
+    },
+    {
+      "id": "ct-235",
+      "name_en": "Water, Strong",
+      "name_fr": "Élémentaire d'eau, puissant",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Élémentaux"
+    },
+    {
+      "id": "ct-236",
+      "name_en": "Flesh",
+      "name_fr": "Chair",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Golems"
+    },
+    {
+      "id": "ct-237",
+      "name_en": "Clay",
+      "name_fr": "Argile",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Golems"
+    },
+    {
+      "id": "ct-238",
+      "name_en": "Tar",
+      "name_fr": "Goudron",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Golems"
+    },
+    {
+      "id": "ct-239",
+      "name_en": "Brass",
+      "name_fr": "Laiton",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Golems"
+    },
+    {
+      "id": "ct-240",
+      "name_en": "Golem (Stone)",
+      "name_fr": "Golem (pierre)",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Golems"
+    },
+    {
+      "id": "ct-241",
+      "name_en": "Iron",
+      "name_fr": "Fer",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Golems"
+    },
+    {
+      "id": "ct-242",
+      "name_en": "Steel",
+      "name_fr": "Acier",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Golems"
+    },
+    {
+      "id": "ct-243",
+      "name_en": "Mithril",
+      "name_fr": "Mithril",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Golems"
+    },
+    {
+      "id": "ct-244",
+      "name_en": "Eog",
+      "name_fr": "Eog",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Golems"
+    },
+    {
+      "id": "ct-245",
+      "name_en": "Shard (Lesser)",
+      "name_fr": "Éclat (inférieur)",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Éclats"
+    },
+    {
+      "id": "ct-246",
+      "name_en": "Shard (Greater)",
+      "name_fr": "Éclat (supérieur)",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Éclats"
+    },
+    {
+      "id": "ct-247",
+      "name_en": "Warder (Lesser)",
+      "name_fr": "Gardien (inférieur)",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Gardiens"
+    },
+    {
+      "id": "ct-248",
+      "name_en": "Warder (Greater)",
+      "name_fr": "Gardien (supérieur)",
+      "subcategory_fr": "Élémentaux et êtres artificiels",
+      "table_parent_group_fr": "Gardiens"
+    },
+    {
+      "id": "ct-249",
+      "name_en": "Demonsofthe Pale (Pale I)",
+      "name_fr": "Démons du Pâle (Pale I)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Démons du Pâle"
+    },
+    {
+      "id": "ct-250",
+      "name_en": "Demonsofthe Pale (Pale II)",
+      "name_fr": "Démons du Pâle (Pale II)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Démons du Pâle"
+    },
+    {
+      "id": "ct-251",
+      "name_en": "Demonsofthe Pale (Pale III (fly))",
+      "name_fr": "Demonsofthe Pâle (Pâle III (vol))",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Démons du Pâle"
+    },
+    {
+      "id": "ct-252",
+      "name_en": "Demonsofthe Pale (Pale IV)",
+      "name_fr": "Démons du Pâle (Pale IV)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Démons du Pâle"
+    },
+    {
+      "id": "ct-253",
+      "name_en": "Demonsofthe Pale (Pale V)",
+      "name_fr": "Démons du Pâle (Pale V)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Démons du Pâle"
+    },
+    {
+      "id": "ct-254",
+      "name_en": "Demonsofthe Pale (Pale VI)",
+      "name_fr": "Démons du Pâle (Pale VI)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Démons du Pâle"
+    },
+    {
+      "id": "ct-255",
+      "name_en": "Beyondthe Pale",
+      "name_fr": "Au-delà du Pâle",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Démons du Pâle"
+    },
+    {
+      "id": "ct-256",
+      "name_en": "Daedhel (I)",
+      "name_fr": "Daedhel (I)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Démons elfes"
+    },
+    {
+      "id": "ct-257",
+      "name_en": "Culraug (II)",
+      "name_fr": "Culraug (II)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Démons elfes"
+    },
+    {
+      "id": "ct-258",
+      "name_en": "Hodhedhel (III)",
+      "name_fr": "Hodhedhel (III)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Démons elfes"
+    },
+    {
+      "id": "ct-259",
+      "name_en": "Thauredhel (IV)",
+      "name_fr": "Thauredhel (IV)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Démons elfes"
+    },
+    {
+      "id": "ct-260",
+      "name_en": "Celebdel (V)",
+      "name_fr": "Celebdel (V)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Démons elfes"
+    },
+    {
+      "id": "ct-261",
+      "name_en": "Hothrog (I)",
+      "name_fr": "Hothrog (I)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Démons humains"
+    },
+    {
+      "id": "ct-262",
+      "name_en": "Daerauk (II)",
+      "name_fr": "Daerauk (II)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Démons humains"
+    },
+    {
+      "id": "ct-263",
+      "name_en": "Gogonaur (III)",
+      "name_fr": "Gogonaur (III)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Démons humains"
+    },
+    {
+      "id": "ct-264",
+      "name_en": "Narauk (IV)",
+      "name_fr": "Narauk (IV)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Démons humains"
+    },
+    {
+      "id": "ct-265",
+      "name_en": "Noble Gogonaur (V)",
+      "name_fr": "Gogonaur noble (V)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Démons de puissance"
+    },
+    {
+      "id": "ct-266",
+      "name_en": "Ordainer Raukamar (VI)",
+      "name_fr": "Ordonnateur Raukamar (VI)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Démons de puissance"
+    },
+    {
+      "id": "ct-267",
+      "name_en": "Moloch (VI+) Ordainer",
+      "name_fr": "Moloch (VI+) Ordainer",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Démons de puissance"
+    },
+    {
+      "id": "ct-268",
+      "name_en": "Jann (I)",
+      "name_fr": "Jann (I)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Génies (djinns)"
+    },
+    {
+      "id": "ct-269",
+      "name_en": "Jinn (II)",
+      "name_fr": "Djinn (II)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Génies (djinns)"
+    },
+    {
+      "id": "ct-270",
+      "name_en": "Shaitan (III)",
+      "name_fr": "Shaitan (III)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Génies (djinns)"
+    },
+    {
+      "id": "ct-271",
+      "name_en": "Ifrit (IV)",
+      "name_fr": "Ifrit (IV)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Génies (djinns)"
+    },
+    {
+      "id": "ct-272",
+      "name_en": "Marid (V)",
+      "name_fr": "Marid (V)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Génies (djinns)"
+    },
+    {
+      "id": "ct-273",
+      "name_en": "Black Stalker (VI)",
+      "name_fr": "Traqueur noir (VI)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Génies (djinns)"
+    },
+    {
+      "id": "ct-274",
+      "name_en": "Demon Dog (II)",
+      "name_fr": "Chien démoniaque (II)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Génies (djinns)"
+    },
+    {
+      "id": "ct-275",
+      "name_en": "Demon Horse (III)",
+      "name_fr": "Cheval démoniaque (III)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Génies (djinns)"
+    },
+    {
+      "id": "ct-276",
+      "name_en": "Neng (IV)",
+      "name_fr": "Neng (IV)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Génies (djinns)"
+    },
+    {
+      "id": "ct-277",
+      "name_en": "Succubus/Incubus (IV)",
+      "name_fr": "Succube/Incube (IV)",
+      "subcategory_fr": "Entités des autres plans",
+      "table_parent_group_fr": "Génies (djinns)"
+    },
+    {
+      "id": "ct-278",
+      "name_en": "Standard Created Undead (Class I)",
+      "name_fr": "Mort-vivant créé standard (Classe I)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Morts-vivants créés standards"
+    },
+    {
+      "id": "ct-279",
+      "name_en": "Standard Created Undead (Class II)",
+      "name_fr": "Mort-vivant créé standard (Classe II)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Morts-vivants créés standards"
+    },
+    {
+      "id": "ct-280",
+      "name_en": "Standard Created Undead (Class III)",
+      "name_fr": "Mort-vivant créé standard (Classe III)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Morts-vivants créés standards"
+    },
+    {
+      "id": "ct-281",
+      "name_en": "Standard Created Undead (Class IV)",
+      "name_fr": "Mort-vivant créé standard (Classe IV)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Morts-vivants créés standards"
+    },
+    {
+      "id": "ct-282",
+      "name_en": "Standard Created Undead (Class V)",
+      "name_fr": "Mort-vivant créé standard (Classe V)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Morts-vivants créés standards"
+    },
+    {
+      "id": "ct-283",
+      "name_en": "Standard Created Undead (Class VI)",
+      "name_fr": "Mort-vivant créé standard (Classe VI)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Morts-vivants créés standards"
+    },
+    {
+      "id": "ct-284",
+      "name_en": "Apparition (III)",
+      "name_fr": "Apparition (III)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Morts-vivants créés standards"
+    },
+    {
+      "id": "ct-285",
+      "name_en": "Barrow-Wight (V)",
+      "name_fr": "Wight de tertre (V)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Morts-vivants créés standards"
+    },
+    {
+      "id": "ct-286",
+      "name_en": "Corpse Candle (III)",
+      "name_fr": "Bougie de cadavre (III)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Morts-vivants créés standards"
+    },
+    {
+      "id": "ct-287",
+      "name_en": "Corpse Lantern (IV)",
+      "name_fr": "Lanterne de cadavre (IV)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Morts-vivants créés standards"
+    },
+    {
+      "id": "ct-288",
+      "name_en": "Standard Created Undead (Fire Phantom (III))",
+      "name_fr": "Standard Created Undead (feu Phantom (III))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Morts-vivants créés standards"
+    },
+    {
+      "id": "ct-289",
+      "name_en": "Ghost (Minor (II))",
+      "name_fr": "Ghost (mineur (II))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Fantômes"
+    },
+    {
+      "id": "ct-290",
+      "name_en": "Ghost (Lesser (III))",
+      "name_fr": "Ghost (inférieur (III))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Fantômes"
+    },
+    {
+      "id": "ct-291",
+      "name_en": "Ghost (Greater (V))",
+      "name_fr": "Ghost (supérieur (V))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Fantômes"
+    },
+    {
+      "id": "ct-292",
+      "name_en": "Ghost Wolf (IV)",
+      "name_fr": "Loup fantôme (IV)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Fantômes"
+    },
+    {
+      "id": "ct-293",
+      "name_en": "Ghoul (Lesser (I))",
+      "name_fr": "Ghoul (inférieur (I))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Goules"
+    },
+    {
+      "id": "ct-294",
+      "name_en": "Ghoul (Greater (II))",
+      "name_fr": "Ghoul (supérieur (II))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Goules"
+    },
+    {
+      "id": "ct-295",
+      "name_en": "Headless Ghost (III)",
+      "name_fr": "Fantôme sans tête (III)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Goules"
+    },
+    {
+      "id": "ct-296",
+      "name_en": "Ice Skeleton (II)",
+      "name_fr": "Squelette de glace (II)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Goules"
+    },
+    {
+      "id": "ct-297",
+      "name_en": "Lich (VI)",
+      "name_fr": "Liche (VI)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Goules"
+    },
+    {
+      "id": "ct-298",
+      "name_en": "Mara (II)",
+      "name_fr": "Mara (II)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Goules"
+    },
+    {
+      "id": "ct-299",
+      "name_en": "Mummy (Lesser (III))",
+      "name_fr": "Mummy (inférieur (III))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Momies"
+    },
+    {
+      "id": "ct-300",
+      "name_en": "Mummy (Greater (IV))",
+      "name_fr": "Mummy (supérieur (IV))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Momies"
+    },
+    {
+      "id": "ct-301",
+      "name_en": "Phantom (I)",
+      "name_fr": "Fantôme (I)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Momies"
+    },
+    {
+      "id": "ct-302",
+      "name_en": "Revenant (II)",
+      "name_fr": "Revenant (II)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Momies"
+    },
+    {
+      "id": "ct-303",
+      "name_en": "Shadow (Lesser (II))",
+      "name_fr": "Shadow (inférieur (II))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Ombres"
+    },
+    {
+      "id": "ct-304",
+      "name_en": "Shadow (Greater (IV))",
+      "name_fr": "Shadow (supérieur (IV))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Ombres"
+    },
+    {
+      "id": "ct-305",
+      "name_en": "Skeleton (Minor (I))",
+      "name_fr": "Skeleton (mineur (I))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Squelettes"
+    },
+    {
+      "id": "ct-306",
+      "name_en": "Skeleton (Lesser (II))",
+      "name_fr": "Skeleton (inférieur (II))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Squelettes"
+    },
+    {
+      "id": "ct-307",
+      "name_en": "Skeleton (Greater (IIl))",
+      "name_fr": "Skeleton (supérieur (IIl))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Squelettes"
+    },
+    {
+      "id": "ct-308",
+      "name_en": "Joker (III)",
+      "name_fr": "Bouffon (III)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Squelettes"
+    },
+    {
+      "id": "ct-309",
+      "name_en": "Lord (IV)",
+      "name_fr": "Seigneur (IV)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Squelettes"
+    },
+    {
+      "id": "ct-310",
+      "name_en": "Sovereign (IV)",
+      "name_fr": "Souverain (IV)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Squelettes"
+    },
+    {
+      "id": "ct-311",
+      "name_en": "Red (VI)",
+      "name_fr": "Rouge (VI)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Squelettes"
+    },
+    {
+      "id": "ct-312",
+      "name_en": "Specter (Minor (II))",
+      "name_fr": "Specter (mineur (II))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Spectres"
+    },
+    {
+      "id": "ct-313",
+      "name_en": "Specter (Lesser (III))",
+      "name_fr": "Specter (inférieur (III))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Spectres"
+    },
+    {
+      "id": "ct-314",
+      "name_en": "Specter (Major (V))",
+      "name_fr": "Specter (majeur (V))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Spectres"
+    },
+    {
+      "id": "ct-315",
+      "name_en": "Swamp Star (IV)",
+      "name_fr": "Étoile des marais (IV)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Spectres"
+    },
+    {
+      "id": "ct-316",
+      "name_en": "Vampire (Minor (IV))",
+      "name_fr": "Vampire (mineur (IV))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Vampires"
+    },
+    {
+      "id": "ct-317",
+      "name_en": "Vampire (Lesser (V))",
+      "name_fr": "Vampire (inférieur (V))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Vampires"
+    },
+    {
+      "id": "ct-318",
+      "name_en": "Vampire (Greater (VI))",
+      "name_fr": "Vampire (supérieur (VI))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Vampires"
+    },
+    {
+      "id": "ct-319",
+      "name_en": "Bunny (III)",
+      "name_fr": "Bunny (III)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Vampires"
+    },
+    {
+      "id": "ct-320",
+      "name_en": "Wight (Minor (IV))",
+      "name_fr": "Wight (mineur (IV))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Wights"
+    },
+    {
+      "id": "ct-321",
+      "name_en": "Wight (Lesser (V))",
+      "name_fr": "Wight (inférieur (V))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Wights"
+    },
+    {
+      "id": "ct-322",
+      "name_en": "Wight (Major (VI))",
+      "name_fr": "Wight (majeur (VI))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Wights"
+    },
+    {
+      "id": "ct-323",
+      "name_en": "Wraith (Lesser (IV))",
+      "name_fr": "Wraith (inférieur (IV))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Wraiths"
+    },
+    {
+      "id": "ct-324",
+      "name_en": "Wraith (Greater (V))",
+      "name_fr": "Wraith (supérieur (V))",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Wraiths"
+    },
+    {
+      "id": "ct-325",
+      "name_en": "Wild Hunt Hound (I)",
+      "name_fr": "Chien de la Chasse sauvage (I)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Wraiths"
+    },
+    {
+      "id": "ct-326",
+      "name_en": "Zombie (I)",
+      "name_fr": "Zombie (I)",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": "Wraiths"
+    },
+    {
+      "id": "ct-327",
+      "name_en": "Androsphinx",
+      "name_fr": "Androsphinx",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-328",
+      "name_en": "Banshee",
+      "name_fr": "Banshee",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-329",
+      "name_en": "Gargoyle",
+      "name_fr": "Gargouille",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-330",
+      "name_en": "Geryon",
+      "name_fr": "Géryon",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-331",
+      "name_en": "Gorcrow**",
+      "name_fr": "Corbeau-gor**",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-332",
+      "name_en": "Minor**",
+      "name_fr": "Mineur**",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-333",
+      "name_en": "Lesser**",
+      "name_fr": "Inférieur**",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-334",
+      "name_en": "Greater**",
+      "name_fr": "Supérieur**",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-335",
+      "name_en": "Great Falcon**",
+      "name_fr": "Grand faucon**",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-336",
+      "name_en": "Great Wasp",
+      "name_fr": "Grande guêpe",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-337",
+      "name_en": "Griffin/Gryphon",
+      "name_fr": "Griffon",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-338",
+      "name_en": "Harpy**",
+      "name_fr": "Harpy**",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-339",
+      "name_en": "Hippogriff",
+      "name_fr": "Hippogriffe",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-340",
+      "name_en": "Homunculous",
+      "name_fr": "Homoncule",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-341",
+      "name_en": "Ki-rin",
+      "name_fr": "Ki-rin",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-342",
+      "name_en": "Lammasu",
+      "name_fr": "Lammasu",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-343",
+      "name_en": "Pegasus",
+      "name_fr": "Pégase",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-344",
+      "name_en": "Phoenix**",
+      "name_fr": "Phoenix**",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-345",
+      "name_en": "Roc**",
+      "name_fr": "Roc**",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-346",
+      "name_en": "Siren**",
+      "name_fr": "Siren**",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-347",
+      "name_en": "Sphinx",
+      "name_fr": "Sphinx",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-348",
+      "name_en": "Steardan",
+      "name_fr": "Steardan",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-349",
+      "name_en": "Thyfur**",
+      "name_fr": "Thyfur**",
+      "subcategory_fr": "Monstres volants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-350",
+      "name_en": "Werebear",
+      "name_fr": "Ours-garou",
+      "subcategory_fr": "Changeurs de forme",
+      "table_parent_group_fr": "Lycanthropes"
+    },
+    {
+      "id": "ct-351",
+      "name_en": "Wereboar",
+      "name_fr": "Sanglier-garou",
+      "subcategory_fr": "Changeurs de forme",
+      "table_parent_group_fr": "Lycanthropes"
+    },
+    {
+      "id": "ct-352",
+      "name_en": "Werejackal",
+      "name_fr": "Chacal-garou",
+      "subcategory_fr": "Changeurs de forme",
+      "table_parent_group_fr": "Lycanthropes"
+    },
+    {
+      "id": "ct-353",
+      "name_en": "Wererat",
+      "name_fr": "Rat-garou",
+      "subcategory_fr": "Changeurs de forme",
+      "table_parent_group_fr": "Lycanthropes"
+    },
+    {
+      "id": "ct-354",
+      "name_en": "Weretiger",
+      "name_fr": "Tigre-garou",
+      "subcategory_fr": "Changeurs de forme",
+      "table_parent_group_fr": "Lycanthropes"
+    },
+    {
+      "id": "ct-355",
+      "name_en": "Werewolf",
+      "name_fr": "Loup-garou",
+      "subcategory_fr": "Changeurs de forme",
+      "table_parent_group_fr": "Lycanthropes"
+    },
+    {
+      "id": "ct-356",
+      "name_en": "Changeling",
+      "name_fr": "Changelin",
+      "subcategory_fr": "Changeurs de forme",
+      "table_parent_group_fr": "Lycanthropes"
+    },
+    {
+      "id": "ct-357",
+      "name_en": "Doppelganger",
+      "name_fr": "Doppelgänger",
+      "subcategory_fr": "Changeurs de forme",
+      "table_parent_group_fr": "Lycanthropes"
+    },
+    {
+      "id": "ct-358",
+      "name_en": "Empusa",
+      "name_fr": "Empusa",
+      "subcategory_fr": "Changeurs de forme",
+      "table_parent_group_fr": "Lycanthropes"
+    },
+    {
+      "id": "ct-359",
+      "name_en": "Naga (Snakeform)",
+      "name_fr": "Naga (forme serpent)",
+      "subcategory_fr": "Changeurs de forme",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-360",
+      "name_en": "Naga (Humanform)",
+      "name_fr": "Naga (forme humaine)",
+      "subcategory_fr": "Changeurs de forme",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-361",
+      "name_en": "Naga (Human/Snakeform)",
+      "name_fr": "Naga (forme humaine/serpent)",
+      "subcategory_fr": "Changeurs de forme",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-362",
+      "name_en": "Plon",
+      "name_fr": "Plon",
+      "subcategory_fr": "Changeurs de forme",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-363",
+      "name_en": "Pooka",
+      "name_fr": "Pooka",
+      "subcategory_fr": "Changeurs de forme",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-364",
+      "name_en": "Silverscale (Humanform)",
+      "name_fr": "Écaille-d'argent (forme humaine)",
+      "subcategory_fr": "Changeurs de forme",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-365",
+      "name_en": "Dragonform",
+      "name_fr": "Forme draconique",
+      "subcategory_fr": "Changeurs de forme",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-366",
+      "name_en": "Strige",
+      "name_fr": "Strige",
+      "subcategory_fr": "Changeurs de forme",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-367",
+      "name_en": "Vargamor",
+      "name_fr": "Vargamor",
+      "subcategory_fr": "Changeurs de forme",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-368",
+      "name_en": "Vestice",
+      "name_fr": "Vestice",
+      "subcategory_fr": "Changeurs de forme",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-369",
+      "name_en": "Anklosaur",
+      "name_fr": "Ankylosaure",
+      "subcategory_fr": "Animaux préhistoriques",
+      "table_parent_group_fr": "Dinosaures"
+    },
+    {
+      "id": "ct-370",
+      "name_en": "Brontosaur",
+      "name_fr": "Brontosaure",
+      "subcategory_fr": "Animaux préhistoriques",
+      "table_parent_group_fr": "Dinosaures"
+    },
+    {
+      "id": "ct-371",
+      "name_en": "Triceratops",
+      "name_fr": "Tricératops",
+      "subcategory_fr": "Animaux préhistoriques",
+      "table_parent_group_fr": "Dinosaures"
+    },
+    {
+      "id": "ct-372",
+      "name_en": "Tyrannosaur",
+      "name_fr": "Tyrannosaure",
+      "subcategory_fr": "Animaux préhistoriques",
+      "table_parent_group_fr": "Dinosaures"
+    },
+    {
+      "id": "ct-373",
+      "name_en": "Stegosaur",
+      "name_fr": "Stégosaure",
+      "subcategory_fr": "Animaux préhistoriques",
+      "table_parent_group_fr": "Dinosaures"
+    },
+    {
+      "id": "ct-374",
+      "name_en": "Pterosaurs (fly) (Small)",
+      "name_fr": "Ptérosaure (vol) (petit)",
+      "subcategory_fr": "Animaux préhistoriques",
+      "table_parent_group_fr": "Ptérosaures (vol)"
+    },
+    {
+      "id": "ct-375",
+      "name_en": "Pterosaurs (fly) (Large)",
+      "name_fr": "Ptérosaure (vol) (gros)",
+      "subcategory_fr": "Animaux préhistoriques",
+      "table_parent_group_fr": "Ptérosaures (vol)"
+    },
+    {
+      "id": "ct-376",
+      "name_en": "Elothere (G.Boar)",
+      "name_fr": "Élothère (grand sanglier)",
+      "subcategory_fr": "Animaux préhistoriques",
+      "table_parent_group_fr": "Ptérosaures (vol)"
+    },
+    {
+      "id": "ct-377",
+      "name_en": "Megalodon (G.Shark)",
+      "name_fr": "Mégalodon (G.Shark)",
+      "subcategory_fr": "Animaux préhistoriques",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-378",
+      "name_en": "Sabertooth Tiger",
+      "name_fr": "Tigre à dents de sabre",
+      "subcategory_fr": "Animaux préhistoriques",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-379",
+      "name_en": "Lambtree",
+      "name_fr": "Arbre à moutons",
+      "subcategory_fr": "Plantes dangereuses",
+      "table_parent_group_fr": "Arbres animaux"
+    },
+    {
+      "id": "ct-380",
+      "name_en": "Tigertree",
+      "name_fr": "Arbre-tigre",
+      "subcategory_fr": "Plantes dangereuses",
+      "table_parent_group_fr": "Arbres animaux"
+    },
+    {
+      "id": "ct-381",
+      "name_en": "Emitter Plants",
+      "name_fr": "Plantes émettrices",
+      "subcategory_fr": "Plantes dangereuses",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-382",
+      "name_en": "Awakened Tree",
+      "name_fr": "Arbre éveillé",
+      "subcategory_fr": "Plantes dangereuses",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-383",
+      "name_en": "Slowroot",
+      "name_fr": "Lenteracine",
+      "subcategory_fr": "Plantes dangereuses",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-384",
+      "name_en": "Treeherd",
+      "name_fr": "Pasteur des arbres",
+      "subcategory_fr": "Plantes dangereuses",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-385",
+      "name_en": "Trapping Plants",
+      "name_fr": "Plantes piégeuses",
+      "subcategory_fr": "Plantes dangereuses",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-386",
+      "name_en": "Cyclops",
+      "name_fr": "Cyclope",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-387",
+      "name_en": "Giant (Minor)",
+      "name_fr": "Géant (mineur)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-388",
+      "name_en": "Giant (Normal)",
+      "name_fr": "Géant (Normal)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-389",
+      "name_en": "Giant (Major)",
+      "name_fr": "Géant (majeur)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-390",
+      "name_en": "Giants, Greater (intelligentraces) (Cloud)",
+      "name_fr": "Grand géant (race intelligente) (nuage)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": "Grands géants (races intelligentes)"
+    },
+    {
+      "id": "ct-391",
+      "name_en": "Giants, Greater (intelligentraces) (Fire)",
+      "name_fr": "Grand géant (race intelligente) (feu)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": "Grands géants (races intelligentes)"
+    },
+    {
+      "id": "ct-392",
+      "name_en": "Giants, Greater (intelligentraces) (Forest)",
+      "name_fr": "Grand géant (race intelligente) (forêt)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": "Grands géants (races intelligentes)"
+    },
+    {
+      "id": "ct-393",
+      "name_en": "Giants, Greater (intelligentraces) (Frost)",
+      "name_fr": "Grand géant (race intelligente) (givre)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": "Grands géants (races intelligentes)"
+    },
+    {
+      "id": "ct-394",
+      "name_en": "Giants, Greater (intelligentraces) (Hill)",
+      "name_fr": "Grand géant (race intelligente) (colline)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": "Grands géants (races intelligentes)"
+    },
+    {
+      "id": "ct-395",
+      "name_en": "Giants, Greater (intelligentraces) (Mountain)",
+      "name_fr": "Grand géant (race intelligente) (montagne)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": "Grands géants (races intelligentes)"
+    },
+    {
+      "id": "ct-396",
+      "name_en": "Giants, Greater (intelligentraces) (Stone)",
+      "name_fr": "Grand géant (race intelligente) (pierre)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": "Grands géants (races intelligentes)"
+    },
+    {
+      "id": "ct-397",
+      "name_en": "Giants, Greater (intelligentraces) (Storm)",
+      "name_fr": "Grand géant (race intelligente) (tempête)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": "Grands géants (races intelligentes)"
+    },
+    {
+      "id": "ct-398",
+      "name_en": "Giants, Greater (intelligentraces) (Water)",
+      "name_fr": "Grand géant (race intelligente) (eau)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": "Grands géants (races intelligentes)"
+    },
+    {
+      "id": "ct-399",
+      "name_en": "Troll (Cave)",
+      "name_fr": "Troll (Cave)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": "Trolls"
+    },
+    {
+      "id": "ct-400",
+      "name_en": "Troll (Forest)",
+      "name_fr": "Troll (forêt)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": "Trolls"
+    },
+    {
+      "id": "ct-401",
+      "name_en": "Troll (Hill)",
+      "name_fr": "Troll (colline)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": "Trolls"
+    },
+    {
+      "id": "ct-402",
+      "name_en": "Troll (Mountain)",
+      "name_fr": "Troll (montagne)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": "Trolls"
+    },
+    {
+      "id": "ct-403",
+      "name_en": "Troll (Snow)",
+      "name_fr": "Troll (Snow)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": "Trolls"
+    },
+    {
+      "id": "ct-404",
+      "name_en": "Troll (Stone)",
+      "name_fr": "Troll (pierre)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": "Trolls"
+    },
+    {
+      "id": "ct-405",
+      "name_en": "War",
+      "name_fr": "Guerre",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": "Trolls"
+    },
+    {
+      "id": "ct-406",
+      "name_en": "Ogre (Small)",
+      "name_fr": "Ogre (petit)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": "Ogres"
+    },
+    {
+      "id": "ct-407",
+      "name_en": "Ogre (Large)",
+      "name_fr": "Ogre (gros)",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": "Ogres"
+    },
+    {
+      "id": "ct-408",
+      "name_en": "Titans",
+      "name_fr": "Titans",
+      "subcategory_fr": "Races géantes",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-409",
+      "name_en": "Dwarves",
+      "name_fr": "Nains",
+      "subcategory_fr": "Races souterraines",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-410",
+      "name_en": "Gnolls",
+      "name_fr": "Gnolls",
+      "subcategory_fr": "Races souterraines",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-411",
+      "name_en": "Gnomes",
+      "name_fr": "Gnomes",
+      "subcategory_fr": "Races souterraines",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-412",
+      "name_en": "Goblins",
+      "name_fr": "Gobelins",
+      "subcategory_fr": "Races souterraines",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-413",
+      "name_en": "Halflings",
+      "name_fr": "Halfelins",
+      "subcategory_fr": "Races souterraines",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-414",
+      "name_en": "Hobgoblins",
+      "name_fr": "Hobgobelins",
+      "subcategory_fr": "Races souterraines",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-415",
+      "name_en": "Kobolds",
+      "name_fr": "Kobolds",
+      "subcategory_fr": "Races souterraines",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-416",
+      "name_en": "Orc (Lesser)",
+      "name_fr": "Orque (inférieur)",
+      "subcategory_fr": "Races souterraines",
+      "table_parent_group_fr": "Orques"
+    },
+    {
+      "id": "ct-417",
+      "name_en": "Orc (Greater)",
+      "name_fr": "Orque (supérieur)",
+      "subcategory_fr": "Races souterraines",
+      "table_parent_group_fr": "Orques"
+    },
+    {
+      "id": "ct-418",
+      "name_en": "Troglodyte",
+      "name_fr": "Troglodyte",
+      "subcategory_fr": "Races souterraines",
+      "table_parent_group_fr": "Orques"
+    },
+    {
+      "id": "ct-419",
+      "name_en": "Elf (Wood)",
+      "name_fr": "Elfe (des bois)",
+      "subcategory_fr": "Races féeriques",
+      "table_parent_group_fr": "Elfes"
+    },
+    {
+      "id": "ct-420",
+      "name_en": "Elf (High)",
+      "name_fr": "Elfe (haut)",
+      "subcategory_fr": "Races féeriques",
+      "table_parent_group_fr": "Elfes"
+    },
+    {
+      "id": "ct-421",
+      "name_en": "Elf (Fair)",
+      "name_fr": "Elfe (noble)",
+      "subcategory_fr": "Races féeriques",
+      "table_parent_group_fr": "Elfes"
+    },
+    {
+      "id": "ct-422",
+      "name_en": "Dwelfs",
+      "name_fr": "Dwelfs",
+      "subcategory_fr": "Races féeriques",
+      "table_parent_group_fr": "Peuple féerique"
+    },
+    {
+      "id": "ct-423",
+      "name_en": "Gremlins",
+      "name_fr": "Gremlins",
+      "subcategory_fr": "Races féeriques",
+      "table_parent_group_fr": "Peuple féerique"
+    },
+    {
+      "id": "ct-424",
+      "name_en": "Nixies",
+      "name_fr": "Nixies",
+      "subcategory_fr": "Races féeriques",
+      "table_parent_group_fr": "Peuple féerique"
+    },
+    {
+      "id": "ct-425",
+      "name_en": "Pysk",
+      "name_fr": "Pysk",
+      "subcategory_fr": "Races féeriques",
+      "table_parent_group_fr": "Peuple féerique"
+    },
+    {
+      "id": "ct-426",
+      "name_en": "Sylphs (flys)",
+      "name_fr": "Sylphes (vols)",
+      "subcategory_fr": "Races féeriques",
+      "table_parent_group_fr": "Peuple féerique"
+    },
+    {
+      "id": "ct-427",
+      "name_en": "Tylweth",
+      "name_fr": "Tylweth",
+      "subcategory_fr": "Races féeriques",
+      "table_parent_group_fr": "Peuple féerique"
+    },
+    {
+      "id": "ct-428",
+      "name_en": "House Spirits",
+      "name_fr": "Esprits domestiques",
+      "subcategory_fr": "Races féeriques",
+      "table_parent_group_fr": "Peuple féerique"
+    },
+    {
+      "id": "ct-429",
+      "name_en": "Leprechaun",
+      "name_fr": "Leprechaun",
+      "subcategory_fr": "Races féeriques",
+      "table_parent_group_fr": "Esprits spécialisés"
+    },
+    {
+      "id": "ct-430",
+      "name_en": "Pech",
+      "name_fr": "Pech",
+      "subcategory_fr": "Races féeriques",
+      "table_parent_group_fr": "Esprits spécialisés"
+    },
+    {
+      "id": "ct-431",
+      "name_en": "Fosse-Grim",
+      "name_fr": "Fosse-Grim",
+      "subcategory_fr": "Races féeriques",
+      "table_parent_group_fr": "Esprits champêtres"
+    },
+    {
+      "id": "ct-432",
+      "name_en": "Nymphs",
+      "name_fr": "Nymphes",
+      "subcategory_fr": "Races féeriques",
+      "table_parent_group_fr": "Esprits champêtres"
+    },
+    {
+      "id": "ct-433",
+      "name_en": "Satyrs",
+      "name_fr": "Satyres",
+      "subcategory_fr": "Races féeriques",
+      "table_parent_group_fr": "Esprits champêtres"
+    },
+    {
+      "id": "ct-434",
+      "name_en": "Undines",
+      "name_fr": "Ondines",
+      "subcategory_fr": "Races féeriques",
+      "table_parent_group_fr": "Esprits champêtres"
+    },
+    {
+      "id": "ct-435",
+      "name_en": "Yaai",
+      "name_fr": "Yaai",
+      "subcategory_fr": "Races féeriques",
+      "table_parent_group_fr": "Esprits champêtres"
+    },
+    {
+      "id": "ct-436",
+      "name_en": "Centaurs",
+      "name_fr": "Centaures",
+      "subcategory_fr": "Races inhabituelles",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-437",
+      "name_en": "Garks",
+      "name_fr": "Garks",
+      "subcategory_fr": "Races inhabituelles",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-438",
+      "name_en": "Hira'razhir (Avians)",
+      "name_fr": "Hira'razhir (aviaires)",
+      "subcategory_fr": "Races inhabituelles",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-439",
+      "name_en": "Idiyva (Felines)",
+      "name_fr": "Idiyva (félins)",
+      "subcategory_fr": "Races inhabituelles",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "ct-440",
+      "name_en": "Warriors",
+      "name_fr": "Guerriers",
+      "subcategory_fr": "Races inhabituelles",
+      "table_parent_group_fr": "Maazhat (insectes)"
+    },
+    {
+      "id": "ct-441",
+      "name_en": "Maazhat (Insects) (Workers/Drones)",
+      "name_fr": "Maazhat (insectes) (ouvrières/drones)",
+      "subcategory_fr": "Races inhabituelles",
+      "table_parent_group_fr": "Maazhat (insectes)"
+    },
+    {
+      "id": "ct-442",
+      "name_en": "Maazhat (Insects) (Lieutenants)",
+      "name_fr": "Maazhat (insectes) (lieutenants)",
+      "subcategory_fr": "Races inhabituelles",
+      "table_parent_group_fr": "Maazhat (insectes)"
+    },
+    {
+      "id": "ct-443",
+      "name_en": "Maazhat (Insects) (Queen)",
+      "name_fr": "Maazhat (insectes) (reine)",
+      "subcategory_fr": "Races inhabituelles",
+      "table_parent_group_fr": "Maazhat (insectes)"
+    },
+    {
+      "id": "ct-444",
+      "name_en": "Mermen",
+      "name_fr": "Hommes-poissons",
+      "subcategory_fr": "Races inhabituelles",
+      "table_parent_group_fr": "Maazhat (insectes)"
+    },
+    {
+      "id": "ct-445",
+      "name_en": "Neanderthals",
+      "name_fr": "Néandertaliens",
+      "subcategory_fr": "Races inhabituelles",
+      "table_parent_group_fr": "Maazhat (insectes)"
+    },
+    {
+      "id": "ct-446",
+      "name_en": "Sea-Krals",
+      "name_fr": "Sea-Krals",
+      "subcategory_fr": "Races inhabituelles",
+      "table_parent_group_fr": "Maazhat (insectes)"
+    },
+    {
+      "id": "ct-447",
+      "name_en": "Sohleugir (Lizardmen)",
+      "name_fr": "Sohleugir (hommes-lézards)",
+      "subcategory_fr": "Races inhabituelles",
+      "table_parent_group_fr": "Maazhat (insectes)"
+    },
+    {
+      "id": "ct-448",
+      "name_en": "Sstoi'isslythi (Reptiles)",
+      "name_fr": "Sstoi'isslythi (Reptiles)",
+      "subcategory_fr": "Races inhabituelles",
+      "table_parent_group_fr": "Maazhat (insectes)"
+    },
+    {
+      "id": "ct-449",
+      "name_en": "Vulfen (Wolfmen)",
+      "name_fr": "Vulfen (hommes-loups)",
+      "subcategory_fr": "Races inhabituelles",
+      "table_parent_group_fr": "Maazhat (insectes)"
+    }
+  ]
+}

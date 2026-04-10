@@ -1,0 +1,159 @@
+/* === SPELL COMPENDIUM === */
+
+/* Loading sigil animation */
+.compendium-loading-sigil {
+  width: 48px; height: 48px; margin: 0 auto;
+  border: 3px solid rgba(139,92,20,0.2);
+  border-top-color: #c49a20;
+  border-radius: 50%;
+  animation: comp-spin 0.8s linear infinite;
+}
+@keyframes comp-spin { to { transform: rotate(360deg); } }
+
+/* Header */
+.comp-header { margin-bottom: 1.5rem; }
+.comp-title-row { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+.comp-title-icon { filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3)); }
+.comp-title {
+  font-family: var(--font-title); font-size: 1.6rem; color: #c49a20; margin: 0;
+  text-shadow: 1px 1px 0 #1a0e04, -1px -1px 0 #1a0e04, 1px -1px 0 #1a0e04, -1px 1px 0 #1a0e04;
+}
+.comp-subtitle { font-size: 0.8rem; color: #6b5030; margin: 2px 0 0; }
+
+/* Search */
+.comp-search-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 0.75rem; }
+.comp-search {
+  flex: 1; min-width: 180px; padding: 6px 10px; font-size: 0.85rem;
+  border: 1px solid rgba(139,92,20,0.3); border-radius: 6px;
+  background: rgba(255,250,240,0.6); color: #3a1a08; font-family: inherit;
+}
+.comp-search:focus { outline: none; border-color: #c49a20; box-shadow: 0 0 0 2px rgba(196,154,32,0.2); }
+.comp-char-toggle {
+  display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: #4a3520;
+  cursor: pointer; white-space: nowrap; user-select: none;
+}
+.comp-char-toggle input { accent-color: #c49a20; }
+
+/* Filter chips */
+.comp-filters { display: flex; flex-direction: column; gap: 6px; }
+.comp-chip-row { display: flex; flex-wrap: wrap; gap: 4px; }
+.comp-realm-chip, .comp-type-chip {
+  padding: 3px 10px; font-size: 0.75rem; border: 1px solid rgba(139,92,20,0.3);
+  border-radius: 20px; cursor: pointer; background: transparent; color: #4a3520;
+  font-family: inherit; transition: all 0.15s ease;
+}
+.comp-realm-chip:hover, .comp-type-chip:hover { filter: brightness(0.95); transform: translateY(-1px); }
+.comp-realm-chip.is-active, .comp-type-chip.is-active { font-weight: bold; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+.comp-type-chip.is-active { background: rgba(196,154,32,0.15); border-color: #c49a20; color: #3a1a08; }
+
+/* Realm sections */
+.comp-realm-section { margin-bottom: 1.5rem; }
+.comp-realm-header {
+  font-family: var(--font-title); font-size: 1.1rem; margin: 0 0 0.6rem;
+  padding-bottom: 4px; border-bottom: 2px solid;
+}
+.comp-realm-count { font-weight: normal; font-size: 0.8rem; opacity: 0.7; }
+
+/* List card grid */
+.comp-list-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
+}
+.comp-list-card {
+  display: block; text-align: left; width: 100%; cursor: pointer;
+  padding: 8px 10px; border: 1px solid rgba(139,92,20,0.15);
+  border-left: 3px solid; border-radius: 6px;
+  background: rgba(255,250,240,0.4); font-family: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.comp-list-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  background: rgba(255,250,240,0.8);
+  filter: drop-shadow(0 0 4px rgba(196,154,32,0.3));
+}
+.comp-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.comp-badge {
+  font-size: 0.65rem; padding: 1px 6px; border-radius: 10px;
+  border: 1px solid; font-weight: bold; letter-spacing: 0.02em;
+}
+.comp-spell-count { font-size: 0.7rem; color: #8b6914; }
+.comp-badge-en {
+  font-size: 0.6rem; padding: 1px 5px; border-radius: 8px;
+  background: rgba(100,100,100,0.12); color: #7a7060;
+  border: 1px solid rgba(100,100,100,0.25); font-weight: bold;
+  letter-spacing: 0.04em; font-style: normal; cursor: default;
+}
+.comp-card-name { font-size: 0.85rem; font-weight: bold; color: #3a1a08; line-height: 1.3; }
+.comp-card-sub { font-size: 0.7rem; color: #6b5030; margin-top: 1px; }
+.comp-card-class { font-size: 0.65rem; color: #8b6914; margin-top: 2px; font-style: italic; }
+
+/* Detail view */
+.comp-detail-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+.comp-back-btn, .comp-print-btn {
+  font-size: 0.8rem; padding: 4px 12px; border: 1px solid rgba(139,92,20,0.3);
+  border-radius: 6px; cursor: pointer; font-family: inherit;
+  background: rgba(255,250,240,0.5); color: #3a1a08; transition: all 0.15s;
+}
+.comp-back-btn:hover, .comp-print-btn:hover { background: rgba(196,154,32,0.15); }
+.comp-detail-header {
+  border-left: 4px solid; padding-left: 12px; margin-bottom: 1rem;
+}
+.comp-detail-title { font-family: var(--font-title); font-size: 1.4rem; color: #c49a20; margin: 0; }
+.comp-detail-alt { font-size: 0.8rem; color: #6b5030; margin: 2px 0 0; font-style: italic; }
+.comp-detail-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 6px; }
+.comp-badge-type { font-size: 0.7rem; color: #4a3520; padding: 1px 6px; background: rgba(139,92,20,0.1); border-radius: 10px; }
+.comp-detail-class { font-size: 0.75rem; color: #6b5030; font-style: italic; }
+.comp-detail-count { font-size: 0.75rem; color: #8b6914; }
+.comp-detail-char { font-size: 0.75rem; color: #16a34a; font-weight: bold; }
+
+/* Spell table */
+.comp-table-wrap { overflow-x: auto; }
+.comp-spell-table {
+  width: 100%; border-collapse: collapse; font-size: 0.8rem;
+}
+.comp-spell-table th {
+  text-align: left; padding: 4px 6px; font-size: 0.7rem;
+  background: rgba(139,92,20,0.08); color: #4a3520;
+  border-bottom: 1.5px solid rgba(139,92,20,0.3); font-weight: bold;
+  position: sticky; top: 0; z-index: 1;
+}
+.comp-spell-table td { padding: 3px 6px; border-bottom: 0.5px solid rgba(139,92,20,0.1); }
+.comp-spell-table tr:hover { background: rgba(196,154,32,0.06); }
+.comp-td-lvl { width: 30px; text-align: center; font-weight: bold; color: #8b6914; }
+.comp-td-name { font-weight: 500; color: #3a1a08; min-width: 120px; }
+.comp-td-aoe, .comp-td-dur, .comp-td-rng { color: #6b5030; font-size: 0.75rem; white-space: nowrap; }
+.comp-td-type { font-size: 0.7rem; color: #8b6914; font-style: italic; }
+.comp-spell-table tr:nth-child(5n) td { border-bottom: 1px solid rgba(139,92,20,0.25); }
+
+/* Known / dim states */
+.comp-spell-known { background: rgba(22,163,74,0.06); }
+.comp-spell-known .comp-td-name { color: #16a34a; }
+.comp-spell-dim { opacity: 0.4; }
+
+/* Print booklet bar */
+.comp-print-booklet-bar {
+  display: flex; align-items: center; gap: 12px;
+  padding: 8px 12px; margin-bottom: 1rem;
+  background: rgba(22,163,74,0.06); border: 1px solid rgba(22,163,74,0.2);
+  border-radius: 8px;
+}
+.comp-print-booklet-btn {
+  padding: 6px 16px; font-size: 0.85rem; font-weight: bold;
+  background: rgba(196,154,32,0.15); border: 1px solid #c49a20;
+  border-radius: 6px; cursor: pointer; font-family: inherit; color: #3a1a08;
+  transition: all 0.15s;
+}
+.comp-print-booklet-btn:hover { background: rgba(196,154,32,0.3); }
+.comp-print-booklet-info { font-size: 0.8rem; color: #16a34a; }
+
+/* Source references */
+.comp-detail-source { font-size: 0.7rem; color: #8b6914; font-style: italic; display: block; margin-top: 4px; }
+.comp-card-source { font-size: 0.6rem; color: #8b6914; font-style: italic; margin-top: 2px; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .comp-list-grid { grid-template-columns: 1fr; }
+  .comp-td-aoe, .comp-td-dur { display: none; }
+  .comp-title { font-size: 1.2rem; }
+}

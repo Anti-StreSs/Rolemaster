@@ -1,0 +1,1450 @@
+Total missing description_fr: 695
+  have description_en: 374
+  no description_en: 321
+
+=== NO description_en - need invented descriptions ===
+Antelope-like Animal (Small) | Animal de type antilope (petit) | Herbivores and Other Normally Non-Aggressive Animals | Lv1 | sz=M | OB:20SHo80/00STs20
+Rodent (Small) | Rongeur (petit) | Herbivores and Other Normally Non-Aggressive Animals | Lv0 | sz=S | OB:20TBI100/20SBi(6)
+Buffalo/Bull | Bœuf/Buffle | Herbivores and Other Normally Non-Aggressive Animals | Lv4 | sz=L | OB:50MHo50/60LBa50/70LTs
+Moose | Élan | Herbivores and Other Normally Non-Aggressive Animals | Lv3 | sz=L | OB:55LBa100/60LTs !
+Sheep | Mouton | Herbivores and Other Normally Non-Aggressive Animals | Lv2 | sz=M | OB:60MBa100/50MTs ✓
+Bactrian Camel | Chameau de Bactriane | Riding and Draft Animals | Lv3 | sz=L | OB:40MBi100* / 30MBa100/40LTs !
+Dromedary Camel (Racer) | Dromadaire (Racer) | Riding and Draft Animals | Lv4 | sz=L | OB:30MBi100* / 40MBa100/40MTs !
+Dromedary Camel (Draft) | Dromadaire (Draft) | Riding and Draft Animals | Lv3 | sz=L | OB:40MBi100* / 30MBa100/50MTs !
+Alpaca | Alpaga | Riding and Draft Animals | Lv3 | sz=M | OB:20SBi100* / 20MBa100/40MTs !
+Elephants | Éléphants | Riding and Draft Animals | Lv7 | sz=H | OB:75HHo70/60LGr3030/90MCr / *✓ / 75HBa100/75HTs !
+Mustang | Mustang | Riding and Draft Animals | Lv4 | sz=L | OB:40MCr80/30MTs ✓ / /40MBi20* / 30MBa100/30MT !s
+Plow Horse | Cheval de labour | Riding and Draft Animals | Lv2 | sz=L | OB:10MCr30/30LTs ✓ / /10MBi70* / 20MBa100/30LTs !
+Pony | Poney | Riding and Draft Animals | Lv2 | sz=M | OB:30SCr40/20MTs ✓ / /20SBi60* / 10MBa100/20MTs !
+Quarter Horse | Quarter horse | Riding and Draft Animals | Lv3 | sz=L | OB:30MCr70/40MTs ✓ / /30MBi30* / 30MBa100/40MTs !
+Warhorse, Lesser | Cheval de guerre, inférieur | Riding and Draft Animals | Lv5 | sz=L | OB:50MCr50/50MTs ✓ / /40MBi50* / 40LBa100/50MTs !
+Oxen | Bœufs | Riding and Draft Animals | Lv3 | sz=L | OB:50MHo100/50LTs* / 40MBa100/50MTs !
+Water Buffalo | Buffle d'eau | Riding and Draft Animals | Lv3 | sz=L | OB:50MHo100/50LTs* / 40MBa100/50MTs !
+Reindeer/Caribou | Renne/Caribou | Riding and Draft Animals | Lv2 | sz=M | OB:40MHo50/40MBa50/40LTs / *✓ / 30MBa100/40MTs !
+Fish (Small) | Poisson (petit) | Fish and Other Water Creatures | Lv0 | sz=S | OB:0TPi100/10SPi(6)
+Fish (Medium) | Poisson (moyen) | Fish and Other Water Creatures | Lv1 | sz=M | OB:30SPi100/40MPi(3)
+Octopi/Squid (Small) | Pieuvre/Calmar (petit) | Fish and Other Water Creatures | Lv1 | sz=S | OB:40SGr100/30TPi !
+Octopi/Squid (Medium) | Pieuvre/Calmar (moyen) | Fish and Other Water Creatures | Lv3 | sz=M | OB:60MGr100/40SPi !
+Shark (Small) | Requin (petit) | Fish and Other Water Creatures | Lv2 | sz=M | OB:60MBi100
+Port.Man-o-war | Physalie | Fish and Other Water Creatures | Lv3 | sz=L | OB:50LGr100/Poison Special* /!
+Ants* | Fourmis* | Insects, Arachnids, and Crustaceans | Lv0 | sz=T | OB:[]
+Crabs* | Crabes* | Insects, Arachnids, and Crustaceans | Lv0 | sz=T | OB:[]
+Alligator/Crocodile/Caiman (Small, water) | Alligator/Crocodile/Caïman (Petit, eau) | Reptiles and Amphibians | Lv1 | sz=M | OB:[]
+Alligator/Crocodile/Caiman (Small, land) | Alligator/Crocodile/Caïman (Petit, terre) | Reptiles and Amphibians | Lv1 | sz=M | OB:[]
+Alligator/Crocodile/Caiman (Large, water) | Alligator/Crocodile/Caïman (Gros, eau) | Reptiles and Amphibians | Lv3 | sz=L | OB:[]
+Alligator/Crocodile/Caiman (Large, land) | Alligator/Crocodile/Caïman (Gros, terre) | Reptiles and Amphibians | Lv3 | sz=L | OB:[]
+Lizard (Small) | Lézard (petit) | Reptiles and Amphibians | Lv0 | sz=T | OB:[]
+Boa/Python | Boa/Python | Reptiles and Amphibians | Lv3 | sz=L | OB:[]
+Sea Snake (water) | Serpent marin (eau) | Reptiles and Amphibians | Lv1 | sz=S | OB:30TSt100/Poison
+Small, water | Petit, eau | Reptiles and Amphibians | Lv0 | sz=S | OB:20SPi90/30TBa10
+Small, land | Petit, terre | Reptiles and Amphibians | Lv0 | sz=S | OB:0SBi100
+Large, water | Gros, eau | Reptiles and Amphibians | Lv2 | sz=M | OB:50MPi70/60SBa30
+land Large, | Gros, terre | Reptiles and Amphibians | Lv3 | sz=M | OB:20MBi100
+Bear (Small) | Ours (petit) | Carnivorous Mammals | Lv5 | sz=L | OB:/50MBi 60LGr60/50LCI ! ✓/70MBa40
+Cat (Small) | Chat (petit) | Carnivorous Mammals | Lv3 | sz=S | OB:30MCl30/20SBi30/Both40
+Dog (Small) | Canidé (petit) | Carnivorous Mammals | Lv2 | sz=S | OB:20SBi100
+Mustelid/Civet (Small) | Mustélidé/Civette (petit) | Carnivorous Mammals | Lv1 | sz=S | OB:50SBi100/40TCl !
+Ferret ("Swink") | Furet ("Swink") | Carnivorous Mammals | Lv2 | sz=S | OB:40SBi100/40TCl !
+Bird (Small) | Oiseau (petit) | Birds and Other Flying/Gliding Animals | Lv0 | sz=T | OB:0TPi50/0TCl50/0SCl(6)
+Bat (Small) | Chauve-souris (petit) | Birds and Other Flying/Gliding Animals | Lv0 | sz=T | OB:10TBi100/20SBi(6)
+Falcon, Peregrine | Faucon pèlerin | Birds and Other Flying/Gliding Animals | Lv2 | sz=S | OB:45SCl100/20SPi
+Elephants (African) (Male) | Éléphant africain (mâle) | Other Potentially Dangerous Animals | Lv7 | sz=H | OB:90HHo70/80HBa30/75HTs ✓
+Elephants (African) (Female) | Éléphant africain (femelle) | Other Potentially Dangerous Animals | Lv7 | sz=H | OB:75HHo50/75HBa50/75HTs ✓
+Elephants (Indian) (Male) | Éléphant indien (mâle) | Other Potentially Dangerous Animals | Lv7 | sz=H | OB:90HHo70/80HBa30/75HTs ✓
+Elephants (Indian) (Female) | Éléphant indien (femelle) | Other Potentially Dangerous Animals | Lv7 | sz=H | OB:75HHo50/75HBa50/75HTs ✓
+Primate (Lesser Primate) | Primate (primate inférieur) | Other Potentially Dangerous Animals | Lv2 | sz=S | OB:30SBi50/40SGr50/60SBi ✓
+Kangaroo/Wallaby (Small) | Kangourou/Wallaby (petit) | Other Potentially Dangerous Animals | Lv2 | sz=S | OB:40SCl100/40SBa !
+Gemsting | Scorpion-joyau | Giant Arthropods, Great Serpents, and Water Beasts | Lv4 | sz=M | OB:60LPi(2x)/80LSt/poison !
+Jadeback | Dosjade | Giant Arthropods, Great Serpents, and Water Beasts | Lv2 | sz=M | OB:70MPi/poison !
+Capricon | Capricon | Giant Arthropods, Great Serpents, and Water Beasts | Lv10 | sz=M | OB:100MHo/80MBa/60MTs*/90We*/Spells
+Rath | Rath | Giant Arthropods, Great Serpents, and Water Beasts | Lv4 | sz=L | OB:50LBa/60LBi
+Cold Drake (land, 15%**) (Young) | Drake de froid (terre, 15%**) (jeune) | Dragons and Other Fell Creatures | Lv10 | sz=H | OB:80HBi/100HCl/90HBa/60HHo/50CBr/60IBr*
+Cold Drake (land, 15%**) (Mature) | Drake de froid (terre, 15%**) (mature) | Dragons and Other Fell Creatures | Lv30 | sz=H | OB:120HBi/120HCl/120HBa/80HHo/60CBr/80IBr*
+Cold Drake (land, 15%**) (Old) | Drake de froid (terre, 15%**) (ancien) | Dragons and Other Fell Creatures | Lv50 | sz=H | OB:150HBi/130HCl/150HBa/90HHo/75CBr/100IBr*
+Light Drake (air, 80%**) (Young) | Drake de lumière (air, 80%**) (jeune) | Dragons and Other Fell Creatures | Lv10 | sz=H | OB:60HBi/80HCl/60HBa/90HHo/100LBr*
+Light Drake (air, 80%**) (Mature) | Drake de lumière (air, 80%**) (mature) | Dragons and Other Fell Creatures | Lv34 | sz=H | OB:80HBi/100HCl/70HBa/100HHo/120LBr*
+Light Drake (air, 80%**) (Old) | Drake de lumière (air, 80%**) (ancien) | Dragons and Other Fell Creatures | Lv60 | sz=H | OB:90HBi/110HCl/80HBa/110HHo/140LBr*
+Fire Drake (air, 60%**) (Young) | Drake de feu (air, 60%**) (jeune) | Dragons and Other Fell Creatures | Lv10 | sz=H | OB:70HBi/120HCl/80HBa/50HHo/80FBr*
+Fire Drake (air, 60%**) (Mature) | Drake de feu (air, 60%**) (mature) | Dragons and Other Fell Creatures | Lv38 | sz=H | OB:100HBi/140HCl/110HBa/70HHo/100FBr*
+Fire Drake (air, 60%**) (Old) | Drake de feu (air, 60%**) (ancien) | Dragons and Other Fell Creatures | Lv66 | sz=H | OB:125HBi/150HCl/130HBa/90HHo/120FBr*
+Gas Drake (land, 20%**) (Young) | Drake de gaz (terre, 20%**) (jeune) | Dragons and Other Fell Creatures | Lv10 | sz=H | OB:80HBi/80HCl/80HBa/70HHo/GBr*
+Gas Drake (land, 20%**) (Mature) | Drake de gaz (terre, 20%**) (mature) | Dragons and Other Fell Creatures | Lv20 | sz=H | OB:100HBi/100HCl/100HBa/80HHo/GBr*
+Gas Drake (land, 20%**) (Old) | Drake de gaz (terre, 20%**) (ancien) | Dragons and Other Fell Creatures | Lv30 | sz=H | OB:120HBi/120HCl/120HBa/90HHo/GBr*
+Sea Drake (water, 2%**) (Young) | Drake marin (eau, 2%**) (jeune) | Dragons and Other Fell Creatures | Lv10 | sz=H | OB:100HBi/60HCl/120HBa/40HHo/90WBr*
+Sea Drake (water, 2%**) (Mature) | Drake marin (eau, 2%**) (mature) | Dragons and Other Fell Creatures | Lv25 | sz=H | OB:110HBi/80HCl/150HBa/60HHo/120WBr*
+Sea Drake (water, 2%**) (Old) | Drake marin (eau, 2%**) (ancien) | Dragons and Other Fell Creatures | Lv40 | sz=H | OB:130HBi/90HCl/180HBa/80HHo/150WBr*
+Air Drake (air, 100%**) (Young) | Drake d'air (air, 100%**) (jeune) | Dragons and Other Fell Creatures | Lv6 | sz=H | OB:50LBi/90HCl/50LBa/70LHo
+Air Drake (air, 100%**) (Mature) | Drake d'air (air, 100%**) (mature) | Dragons and Other Fell Creatures | Lv15 | sz=H | OB:60HBi/110HCl/60HBa/70HHo
+Air Drake (air, 100%**) (Old) | Drake d'air (air, 100%**) (ancien) | Dragons and Other Fell Creatures | Lv25 | sz=H | OB:80HBi/120HCl/70HBa/80HHo
+Land Drake (land, 0%**) (Young) | Drake terrestre (terre, 0%**) (jeune) | Dragons and Other Fell Creatures | Lv6 | sz=H | OB:80LBi[Heat]*/90LCl/90HBa/60LHo
+Land Drake (land, 0%**) (Mature) | Drake terrestre (terre, 0%**) (mature) | Dragons and Other Fell Creatures | Lv18 | sz=H | OB:100HBi[Heat]*/100HCl/100HBa/70HHo
+Land Drake (land, 0%**) (Old) | Drake terrestre (terre, 0%**) (ancien) | Dragons and Other Fell Creatures | Lv30 | sz=H | OB:110HBi[Heat]*/110HCl/120HBa/90HHo
+Cave Drake (land, 0%**) (Young) | Drake des cavernes (terre, 0%**) (jeune) | Dragons and Other Fell Creatures | Lv6 | sz=H | OB:80LBi/50LCl/50LBa/70LHo
+Cave Drake (land, 0%**) (Mature) | Drake des cavernes (terre, 0%**) (mature) | Dragons and Other Fell Creatures | Lv13 | sz=H | OB:90HBi/50HCl/50HBa/80HHo
+Cave Drake (land, 0%**) (Old) | Drake des cavernes (terre, 0%**) (ancien) | Dragons and Other Fell Creatures | Lv20 | sz=H | OB:100HBi/60HCl/50HBa/90HHo
+Water Drake (water, 0%**) (Young) | Drake d'eau (eau, 0%**) (jeune) | Dragons and Other Fell Creatures | Lv6 | sz=H | OB:100LBi/50LCl/90HBa/50LHo
+Water Drake (water, 0%**) (Mature) | Drake d'eau (eau, 0%**) (mature) | Dragons and Other Fell Creatures | Lv15 | sz=H | OB:110HBi/50HCl/100HBa/50HHo
+Water Drake (water, 0%**) (Old) | Drake d'eau (eau, 0%**) (ancien) | Dragons and Other Fell Creatures | Lv25 | sz=H | OB:120HBi/50HCl/110HBa/60HHo
+Wyverns (Minor Drakes) (Winged (fly)) | Wyverns (mineur Drakes) (ailé (vol)) | Dragons and Other Fell Creatures | Lv10 | sz=H | OB:50LCl(2x)/90HSt/poison !
+Wyverns (Minor Drakes) (Water (swim)) | Wyverns (mineur Drakes) (eau (nage)) | Dragons and Other Fell Creatures | Lv6 | sz=H | OB:90LBa/60LCl/100HHo/poison !
+Basilisk (fly) | Basilic (vol) | Dragons and Other Fell Creatures | Lv6 | sz=L | OB:60LPi/50LCl/Spells/Special
+Cockatrice (fly) | Cocatris (vol) | Dragons and Other Fell Creatures | Lv5 | sz=M | OB:/50SCl20 50MPi80/Special !
+Fell Beast (fly) | Bête déchue (vol) | Dragons and Other Fell Creatures | Lv12 | sz=H | OB:80HCl/60LBa/90LBi
+Oriental Dragon (land***) (Young) | Dragon oriental (terre***) (jeune) | Dragons and Other Fell Creatures | Lv10 | sz=H | OB:80LBi/60LCl/70HBa/100SBr/Spells
+Oriental Dragon (land***) (Mature) | Dragon oriental (terre***) (mature) | Dragons and Other Fell Creatures | Lv30 | sz=H | OB:100HBi/80HCl/90HBa/125SBr/Spells
+Oriental Dragon (land***) (Old) | Dragon oriental (terre***) (ancien) | Dragons and Other Fell Creatures | Lv50 | sz=H | OB:120HBi/90HCl/100HBa/150SBr/Spells
+Oriental Dragon (land***) (Sea Serpent (swim)) | Oriental Dragon (terre***) (serpent de mer (nage)) | Dragons and Other Fell Creatures | Lv15 | sz=H | OB:90HGr/150HCr /80HBi/90StBr* !
+Al-mi'raj | Al-mi'raj | Composite Monsters | Lv5 | sz=M | OB:70MHo/Spells
+Cerebus | Cerbère | Composite Monsters | Lv6 | sz=L | OB:80LBi(3x)/60MSt(6x)/poison !
+Chameleon Amoeba | Amibe caméléon | Composite Monsters | Lv8 | sz=M | OB:/100HGr 60MGr/80LGr ! ✓/Special ✓
+3-tailed Bavolorus | Bavolorus à trois queues | Composite Monsters | Lv4 | sz=L | OB:80LHo/60MHo&50MBa
+Unicorn | Licorne | Composite Monsters | Lv10 | sz=L | OB:/110MTs 140LHo/70MBa ! !/Spells
+Willofthe Wisp | Feu follet | Composite Monsters | Lv6 | sz=M | OB:Bodyactsasa50CBaIl
+Air, Weak | Élémentaire d'air, faible | Elementals and Artificial Beings | Lv10 | sz=M | OB:* ! 30LBa(3x)/50LGr/[ImpactB]
+Air, Strong | Élémentaire d'air, puissant | Elementals and Artificial Beings | Lv20 | sz=L | OB:* ! 40LBa(3x)/70LGr/[ImpactD]
+Cold, Weak | Élémentaire de froid, faible | Elementals and Artificial Beings | Lv10 | sz=M | OB:30MBa(2x)/60MGr/[ColdB] * !
+Cold, Strong | Élémentaire de froid, puissant | Elementals and Artificial Beings | Lv20 | sz=L | OB:* ! 40MBa(2x)/80MGr/[ColdD]
+Earth, Weak | Élémentaire de terre, faible | Elementals and Artificial Beings | Lv10 | sz=M | OB:90LBa/40LGr/[ImpactB] * !
+Earth, Strong | Élémentaire de terre, puissant | Elementals and Artificial Beings | Lv20 | sz=L | OB:* ! 120HBa/60HGr/[ImpactD]
+Fire, Weak | Élémentaire de feu, faible | Elementals and Artificial Beings | Lv10 | sz=M | OB:40MBa(2x)/70MGr/[HeatB] * !
+Fire, Strong | Élémentaire de feu, puissant | Elementals and Artificial Beings | Lv20 | sz=L | OB:* ! 50MBa(2x)/90MGr/[HeatD]
+Light, Weak | Élémentaire de lumière, faible | Elementals and Artificial Beings | Lv10 | sz=M | OB:20SBa(4x)/60MGr/[Elect.B] * !
+Light, Strong | Élémentaire de lumière, puissant | Elementals and Artificial Beings | Lv20 | sz=L | OB:* ! 30MBa(4x)/80MGr/[Elect.D]
+Water, Weak | Élémentaire d'eau, faible | Elementals and Artificial Beings | Lv10 | sz=M | OB:60LBa/60LGr/[ImpactB] * !
+Water, Strong | Élémentaire d'eau, puissant | Elementals and Artificial Beings | Lv20 | sz=L | OB:* ! 100HBa/75HGr/[ImpactC]
+Brass | Laiton | Elementals and Artificial Beings | Lv10 | sz=M | OB:150MBa/50MGr/150LCr * !
+Mithril | Mithril | Elementals and Artificial Beings | Lv25 | sz=M | OB:* ✓ 200HBa/90LGr/200HCr
+Demonsofthe Pale (Pale I) | Démons du Pâle (Pale I) | Entities from Other Planes | Lv1 | sz=M | OB:40MCl(2x)/30MBa/60MCr ✓/50cl(2D)
+Demonsofthe Pale (Pale II) | Démons du Pâle (Pale II) | Entities from Other Planes | Lv4 | sz=M | OB:/70bs(2D) 50MCl(2x)/40LBa/80LCr ✓
+Demonsofthe Pale (Pale III (fly)) | Demonsofthe Pâle (Pâle III (vol)) | Entities from Other Planes | Lv8 | sz=L | OB:/90th 60MCl(2x)/70LBa/105LCr ✓
+Demonsofthe Pale (Pale IV) | Démons du Pâle (Pale IV) | Entities from Other Planes | Lv13 | sz=L | OB:60wp(2D)/70LBa/130LCr ✓/Spells/90We
+Demonsofthe Pale (Pale V) | Démons du Pâle (Pale V) | Entities from Other Planes | Lv18 | sz=L | OB:150HBa/200HCr /Spells/140We(2D) ✓
+Demonsofthe Pale (Pale VI) | Démons du Pâle (Pale VI) | Entities from Other Planes | Lv27 | sz=M | OB:/150LCr 180LCl(2x)/130LBa/100MBi !
+Beyondthe Pale | Au-delà du Pâle | Entities from Other Planes | Lv50 | sz=L | OB:200HBa/250HCr ✓/240We(2D)and/or180We
+Daedhel (I) | Daedhel (I) | Entities from Other Planes | Lv2 | sz=M | OB:50We/Spells
+Culraug (II) | Culraug (II) | Entities from Other Planes | Lv4 | sz=M | OB:70We/Spells
+Hodhedhel (III) | Hodhedhel (III) | Entities from Other Planes | Lv7 | sz=M | OB:130We/120We
+Thauredhel (IV) | Thauredhel (IV) | Entities from Other Planes | Lv12 | sz=M | OB:140We/Spells
+Celebdel (V) | Celebdel (V) | Entities from Other Planes | Lv20 | sz=M | OB:175We/Spells/SpeciaI
+Hothrog (I) | Hothrog (I) | Entities from Other Planes | Lv2 | sz=M | OB:50MCl(2x)/50MBa/100MBi ✓
+Daerauk (II) | Daerauk (II) | Entities from Other Planes | Lv4 | sz=M | OB:60We/Spells
+Gogonaur (III) | Gogonaur (III) | Entities from Other Planes | Lv6 | sz=L | OB:100We[Heat]/60LBa/Spells
+Narauk (IV) | Narauk (IV) | Entities from Other Planes | Lv11 | sz=L | OB:110LCl(2x)[Heat]/30FBr/Special
+Noble Gogonaur (V) | Gogonaur noble (V) | Entities from Other Planes | Lv17 | sz=L | OB:160We(3D)[Heat]/Spells/Special
+Ordainer Raukamar (VI) | Ordonnateur Raukamar (VI) | Entities from Other Planes | Lv30 | sz=L | OB:200We(3D)[Heat]/Spells/Special
+Moloch (VI+) Ordainer | Moloch (VI+) Ordainer | Entities from Other Planes | Lv35 | sz=H | OB:250We(2x)(3D)[Heat]/Spells/Special
+Jann (I) | Jann (I) | Entities from Other Planes | Lv2 | sz=M | OB:70Msw(rank2)/Special
+Jinn (II) | Djinn (II) | Entities from Other Planes | Lv5 | sz=M | OB:90Msw(Rank3)/Special
+Shaitan (III) | Shaitan (III) | Entities from Other Planes | Lv10 | sz=M | OB:110Msw(Rank4)/Special
+Ifrit (IV) | Ifrit (IV) | Entities from Other Planes | Lv15 | sz=M | OB:130Msw&Mst(Rank4)/Spells/Special
+Marid (V) | Marid (V) | Entities from Other Planes | Lv20 | sz=M | OB:150Msw&Mst(Rank4)/Spells/Special
+Black Stalker (VI) | Traqueur noir (VI) | Entities from Other Planes | Lv15 | sz=M | OB:180bs(Slayingfortarget)/Special
+Demon Dog (II) | Chien démoniaque (II) | Entities from Other Planes | Lv4 | sz=M | OB:50MBi/60MBa/90LBi /60FBr* ✓
+Demon Horse (III) | Cheval démoniaque (III) | Entities from Other Planes | Lv7 | sz=L | OB:/90MBi50* 100MCr50/90MTs ✓
+Neng (IV) | Neng (IV) | Entities from Other Planes | Lv8 | sz=M | OB:110We/Special/40AcidBolt*
+Succubus/Incubus (IV) | Succube/Incube (IV) | Entities from Other Planes | Lv12 | sz=M | OB:100We/Spells/Special
+Standard Created Undead (Class I) | Mort-vivant créé standard (Classe I) | The Undead | Lv1 | sz=M | OB:25SBa90/15We10
+Standard Created Undead (Class II) | Mort-vivant créé standard (Classe II) | The Undead | Lv3 | sz=M | OB:40MBa60/45We40
+Standard Created Undead (Class III) | Mort-vivant créé standard (Classe III) | The Undead | Lv6 | sz=M | OB:60MBa50/50We50
+Standard Created Undead (Class IV) | Mort-vivant créé standard (Classe IV) | The Undead | Lv9 | sz=M | OB:70LBa40/95We60
+Standard Created Undead (Class V) | Mort-vivant créé standard (Classe V) | The Undead | Lv13 | sz=M | OB:90LBa30/110We70
+Standard Created Undead (Class VI) | Mort-vivant créé standard (Classe VI) | The Undead | Lv16 | sz=M | OB:90LBa20/180We80
+Apparition (III) | Apparition (III) | The Undead | Lv6 | sz=M | OB:50MBa[Elect]/Spells
+Barrow-Wight (V) | Wight de tertre (V) | The Undead | Lv15 | sz=M | OB:110We[Cold]/90LBa(Cold)/Spells
+Corpse Candle (III) | Bougie de cadavre (III) | The Undead | Lv7 | sz=M | OB:Spells/Special(4Conpt/rnd)
+Corpse Lantern (IV) | Lanterne de cadavre (IV) | The Undead | Lv10 | sz=M | OB:Spells/Special(5Conpt/rnd)
+Standard Created Undead (Fire Phantom (III)) | Standard Created Undead (feu Phantom (III)) | The Undead | Lv5 | sz=M | OB:50FBall(itsbody)/Special
+Ghost (Minor (II)) | Ghost (mineur (II)) | The Undead | Lv3 | sz=M | OB:40MCl/Special(3Conpt/rnd)
+Ghost (Lesser (III)) | Ghost (inférieur (III)) | The Undead | Lv7 | sz=M | OB:60MBa/50We/Special(4Conpt/rnd)
+Ghost (Greater (V)) | Ghost (supérieur (V)) | The Undead | Lv15 | sz=M | OB:110We/90LBa/Special(5Conpt/rnd)
+Ghost Wolf (IV) | Loup fantôme (IV) | The Undead | Lv10 | sz=L | OB:100LBi50/75MCl50/Special
+Ghoul (Lesser (I)) | Ghoul (inférieur (I)) | The Undead | Lv1 | sz=M | OB:/10SBi 25SBa100/30SCl ! !
+Ghoul (Greater (II)) | Ghoul (supérieur (II)) | The Undead | Lv3 | sz=M | OB:40MBa/50SCl /45We/Special !
+Headless Ghost (III) | Fantôme sans tête (III) | The Undead | Lv6 | sz=M | OB:60We/50MBa/Special(3Conpt/rnd)
+Ice Skeleton (II) | Squelette de glace (II) | The Undead | Lv3 | sz=M | OB:45MBa100[Cold]/Special
+Lich (VI) | Liche (VI) | The Undead | Lv20 | sz=M | OB:70We[Cold]/Spells/Special
+Mara (II) | Mara (II) | The Undead | Lv2 | sz=M | OB:Spells/Special(2Conpt/rnd)
+Mummy (Lesser (III)) | Mummy (inférieur (III)) | The Undead | Lv6 | sz=M | OB:70LBa100/120LGr ✓
+Mummy (Greater (IV)) | Mummy (supérieur (IV)) | The Undead | Lv10 | sz=M | OB:/Spells 110LBa/150LGr ✓
+Phantom (I) | Fantôme (I) | The Undead | Lv2 | sz=M | OB:30SBolt/Special(1Conpt/rnd)
+Revenant (II) | Revenant (II) | The Undead | Lv3 | sz=M | OB:40We[Cold]/Spells/Special
+Shadow (Lesser (II)) | Shadow (inférieur (II)) | The Undead | Lv4 | sz=M | OB:/Special Special/75MBi ! ✓
+Shadow (Greater (IV)) | Shadow (supérieur (IV)) | The Undead | Lv8 | sz=M | OB:Special/110MBi /Special ! ✓
+Skeleton (Minor (I)) | Skeleton (mineur (I)) | The Undead | Lv1 | sz=M | OB:25We50/40MBa50
+Skeleton (Lesser (II)) | Skeleton (inférieur (II)) | The Undead | Lv3 | sz=M | OB:40We50/50MBa50/Special
+Skeleton (Greater (IIl)) | Skeleton (supérieur (IIl)) | The Undead | Lv5 | sz=M | OB:50We50/60MBa50/Special
+Joker (III) | Bouffon (III) | The Undead | Lv5 | sz=M | OB:Spells/Special
+Lord (IV) | Seigneur (IV) | The Undead | Lv8 | sz=M | OB:95We50/70LBa50[Cold]/Spells/Special
+Sovereign (IV) | Souverain (IV) | The Undead | Lv10 | sz=M | OB:90We[Cold]/Spells/Special
+Red (VI) | Rouge (VI) | The Undead | Lv20 | sz=M | OB:300Joke35/350Pun35/250Pie30
+Specter (Minor (II)) | Specter (mineur (II)) | The Undead | Lv5 | sz=L | OB:40SBolt100
+Specter (Lesser (III)) | Specter (inférieur (III)) | The Undead | Lv10 | sz=L | OB:50LBolt100
+Specter (Major (V)) | Specter (majeur (V)) | The Undead | Lv15 | sz=L | OB:70MBa[Cold]/Spells/Special
+Swamp Star (IV) | Étoile des marais (IV) | The Undead | Lv9 | sz=S | OB:Spell/Special(6Conpt/rnd)
+Vampire (Minor (IV)) | Vampire (mineur (IV)) | The Undead | Lv10 | sz=M | OB:/Spells 90We[Cold]/70MBi/Special ✓
+Vampire (Lesser (V)) | Vampire (inférieur (V)) | The Undead | Lv15 | sz=M | OB:110We[Cold]/90MBi/Special /Spells ✓
+Vampire (Greater (VI)) | Vampire (supérieur (VI)) | The Undead | Lv20 | sz=M | OB:/Spells 150We[Cold]/120MBi/Special ✓
+Bunny (III) | Bunny (III) | The Undead | Lv5 | sz=S | OB:80TBa/80SBi /Special§ !
+Wight (Minor (IV)) | Wight (mineur (IV)) | The Undead | Lv10 | sz=L | OB:90We[Cold]/80LBa/Special/Spells
+Wight (Lesser (V)) | Wight (inférieur (V)) | The Undead | Lv15 | sz=L | OB:110We[Cold]/80LBa/Special/Spells
+Wight (Major (VI)) | Wight (majeur (VI)) | The Undead | Lv20 | sz=L | OB:150We[Cold]/80LBa/Special/Spells
+Wraith (Lesser (IV)) | Wraith (inférieur (IV)) | The Undead | Lv10 | sz=M | OB:80We[Cold]/70LBa/Special/Spells
+Wraith (Greater (V)) | Wraith (supérieur (V)) | The Undead | Lv15 | sz=M | OB:100We[Cold]/90LBa/Special/Spells
+Wild Hunt Hound (I) | Chien de la Chasse sauvage (I) | The Undead | Lv1 | sz=M | OB:Special(touch:1Conpt/rnd)
+Zombie (I) | Zombie (I) | The Undead | Lv2 | sz=M | OB:30MBa100/Special
+Griffin/Gryphon | Griffon | Flying Monsters | Lv8 | sz=L | OB:90LCl/60LBa/100MPi !/Both100
+Harpy** | Harpy** | Flying Monsters | Lv4 | sz=M | OB:30MCl(2x)/50We
+Homunculous | Homoncule | Flying Monsters | Lv2 | sz=S | OB:30SCl/50SSt/Poison !
+Werebear | Ours-garou | Shapechangers | Lv8 | sz=L | OB:/80MBi 110MBa/90LGr/75LCl ! ✓
+Wereboar | Sanglier-garou | Shapechangers | Lv6 | sz=M | OB:/60STs 70MHo/70MBa ! !
+Werejackal | Chacal-garou | Shapechangers | Lv5 | sz=M | OB:60MBi
+Wererat | Rat-garou | Shapechangers | Lv3 | sz=M | OB:Both-40MBi/30SCl(2x)
+Weretiger | Tigre-garou | Shapechangers | Lv10 | sz=L | OB:95LCl/110MBa/130LBi
+Werewolf | Loup-garou | Shapechangers | Lv7 | sz=M | OB:Both-70MBi/60SCl
+Changeling | Changelin | Shapechangers | Lv3 | sz=M | OB:60We/40We
+Brontosaur | Brontosaure | Prehistoric Animals | Lv4 | sz=H | OB:60HBa30/60LBa20/Both50
+Tyrannosaur | Tyrannosaure | Prehistoric Animals | Lv8 | sz=H | OB:200HBi100
+Pterosaurs (fly) (Small) | Ptérosaure (vol) (petit) | Prehistoric Animals | Lv3 | sz=M | OB:50MPi80/40MCl20
+Elothere (G.Boar) | Élothère (grand sanglier) | Prehistoric Animals | Lv5 | sz=L | OB:/60MTs 80LHo100/70LBa !
+Megalodon (G.Shark) | Mégalodon (G.Shark) | Prehistoric Animals | Lv8 | sz=H | OB:[]
+Sabertooth Tiger | Tigre à dents de sabre | Prehistoric Animals | Lv7 | sz=L | OB:[]
+Lambtree | Arbre à moutons | Dangerous Plants | Lv1 | sz=M | OB:10SBa(1attack/lamb)
+Tigertree | Arbre-tigre | Dangerous Plants | Lv5 | sz=L | OB:asTiger(1attack/tiger)
+Emitter Plants | Plantes émettrices | Dangerous Plants | Lv3 | sz=M | OB:[]
+Awakened Tree | Arbre éveillé | Dangerous Plants | Lv5 | sz=L | OB:[]
+Slowroot | Lenteracine | Dangerous Plants | Lv10 | sz=L | OB:[]
+Treeherd | Pasteur des arbres | Dangerous Plants | Lv20 | sz=H | OB:[]
+Trapping Plants | Plantes piégeuses | Dangerous Plants | Lv2 | sz=M | OB:[]
+Giant (Normal) | Géant (Normal) | Giant Races | Lv12 | sz=H | OB:/70ro(150') 80We(3D)/70LGr/100HCr
+Ogre (Small) | Ogre (petit) | Giant Races | Lv4 | sz=M | OB:40We/75MBa/50MCl !
+Goblins | Gobelins | Underground Races | Lv2 | sz=M | OB:40Melee/20Missile
+Kobolds | Kobolds | Underground Races | Lv1 | sz=M | OB:20Melee/40Missile
+Troglodyte | Troglodyte | Underground Races | Lv2 | sz=M | OB:50Melee/10Missile
+Elf (Wood) | Elfe (des bois) | Fairy Races | Lv4 | sz=M | OB:50Melee/60Missile
+Elf (High) | Elfe (haut) | Fairy Races | Lv5 | sz=M | OB:80Melee/100Missile/Spells
+Elf (Fair) | Elfe (noble) | Fairy Races | Lv6 | sz=M | OB:100Melee/100Missile/Spells
+Pysk | Pysk | Fairy Races | Lv3 | sz=T | OB:5Melee/20Missile/Spells
+Sylphs (flys) | Sylphes (vols) | Fairy Races | Lv3 | sz=T | OB:5Melee/20Missile/Spells
+Tylweth | Tylweth | Fairy Races | Lv4 | sz=S | OB:40Melee/50Missile/Spells
+House Spirits | Esprits domestiques | Fairy Races | Lv2 | sz=T | OB:5Melee/20Missile/Spells
+Fosse-Grim | Fosse-Grim | Fairy Races | Lv5 | sz=M | OB:50Melee/50Missile/Spells
+Nymphs | Nymphes | Fairy Races | Lv3 | sz=M | OB:10Melee/30Missile/Spells
+Satyrs | Satyres | Fairy Races | Lv3 | sz=M | OB:50Melee/50Missile/60SHo
+Undines | Ondines | Fairy Races | Lv3 | sz=M | OB:15Melee/20Missile/Spells
+Yaai | Yaai | Fairy Races | Lv3 | sz=M | OB:40Melee/40Missile/Spells
+Hira'razhir (Avians) | Hira'razhir (aviaires) | Unusual Races | Lv3 | sz=M | OB:20Melee/50Missile/Spells
+Warriors | Guerriers | Unusual Races | Lv3 | sz=M | OB:70Melee/50Missile/50MGr/100LPi@
+Maazhat (Insects) (Workers/Drones) | Maazhat (insectes) (ouvrières/drones) | Unusual Races | Lv1 | sz=M | OB:10Melee/20MGr/50MPi@
+Maazhat (Insects) (Lieutenants) | Maazhat (insectes) (lieutenants) | Unusual Races | Lv3 | sz=M | OB:50Melee/40Missile/30MGr/50MPi@
+Maazhat (Insects) (Queen) | Maazhat (insectes) (reine) | Unusual Races | Lv10 | sz=M | OB:80Melee/50Missile/Spells
+Sstoi'isslythi (Reptiles) | Sstoi'isslythi (Reptiles) | Unusual Races | Lv3 | sz=M | OB:20Melee&Missile/40SSt/poison@/Spells
+Vulfen (Wolfmen) | Vulfen (hommes-loups) | Unusual Races | Lv3 | sz=M | OB:60Melee/40Missile/50MCl(2x)
+Electric Wasp | Guêpe électrique | Exotic Animals | Lv1 | sz=T | OB:20TSt[A Elec]
+Giant Furred Snake | Serpent géant à fourrure | Exotic Animals | Lv5 | sz=S | OB:70MBi/Poison«/60lcb
+Ihl Wolf | Loup Ihl | Exotic Animals | Lv4 | sz=M | OB:70MBi
+Giant Slug - Carnivorous | géant Slug - carnivore | Exotic Animals | Lv7 | sz=L | OB:80LBi
+Giant Slug - Spined | géant Slug - épineux | Exotic Animals | Lv6 | sz=L | OB:60LHo(l -3x)
+Suggram | Suggram | Exotic Animals | Lv5 | sz=L | OB:10MBa
+Strider Bird | Strider Bird | Exotic Animals | Lv4 | sz=L | OB:50MPi/40SCl
+Plasma Drake - Young | Dracosien de plasma - jeune | Drakes and Dragons | Lv10 | sz=H | OB:60HBi/75HCl/60HBa/90HHo/100PBr
+Plasma Drake - Mature | Dracosien de plasma - adulte | Drakes and Dragons | Lv34 | sz=H | OB:80HBi/100HCl/70HBa/100HHo/110PBr
+Plasma Drake - Old | Dracosien de plasma - ancien | Drakes and Dragons | Lv62 | sz=H | OB:90HBi/110HCl/80HBa/110HHo/120PBr
+Greater Basilisk | Grand basilic | Drakes and Dragons | Lv20 | sz=L | OB:100LPi/Poison/80LCl/Poison/Special/Spells
+Leviathan | Léviathan | Drakes and Dragons | Lv80 | sz=H | OB:280HBi/300HCl/250HBa/200FBr
+Arachat | Arachat | Composite Monsters | Lv8 | sz=M | OB:80LBi/Special
+Leocom | Leocom | Composite Monsters | Lv7 | sz=M | OB:I
+Leorgon | Leorgon | Composite Monsters | Lv9 | sz=M | OB:110LBi/90MCl/60SBi(1-6x)/Poison/Both/Special
+Mist Monster | Mist Monster | Composite Monsters | Lv9 | sz=L | OB:80MGr[Cold]/75We(1-6x)/Both
+Spiderbat - Small | Spiderbat - petit | Composite Monsters | Lv2 | sz=S | OB:40SBi/Poison«
+Spiderbat - Large | Spiderbat - grand | Composite Monsters | Lv5 | sz=L | OB:75MBi/Poison«/Spells
+Thraxx | Thraxx | Composite Monsters | Lv8 | sz=L | OB:100LCl(2x)/80MBi
+Vorasis | Vorasis | Composite Monsters | Lv6 | sz=M | OB:50SBi(1-4x)/Poison«/60MCl/Both
+Winged Eel - Electric | Anguille ailée - électrique | Composite Monsters | Lv3 | sz=S | OB:40SBi/30SBolt
+Winged Eel - Moray | Anguille ailée - murène | Composite Monsters | Lv4 | sz=M | OB:75MBi
+Pegasus Construct | Pegasus construction | Elementals and Artificial Beings | Lv12 | sz=L | OB:80MBa/60SBi
+Wolf Construct | Wolf construction | Elementals and Artificial Beings | Lv9 | sz=M | OB:90LBi/60MCl/Special
+Air Elemental Savant | Savant élémentaire de l’air | Elementals and Artificial Beings | Lv30 | sz=M | OB:Spells/Special/90LBa[Impact]
+Earth Elemental Savant | Savant élémentaire de la terre | Elementals and Artificial Beings | Lv30 | sz=M | OB:Spells/Special/120LBa[Impact]
+Fire Elemental Savant | Savant élémentaire du feu | Elementals and Artificial Beings | Lv30 | sz=M | OB:Spells/Special/90LBa[Heat]
+Stone Horse | Cheval Stone | Elementals and Artificial Beings | Lv8 | sz=M | OB:80MBa/50MTs
+Colossus | Colossus | Elementals and Artificial Beings | Lv35 | sz=H | OB:250HBa/180HGr/270HCr
+Diamond Golem | Golem Diamond | Elementals and Artificial Beings | Lv30 | sz=M | OB:260HBa/90LGr/260HCr
+Huntaar | Huntaar | Demons | Lv15 | sz=M | OB:150We/100MCl/90LBi/Spells
+Rashtar | Rashtar | Demons | Lv6 | sz=M | OB:90We(4x)/60MBa
+Frzzzm - Normal | Frzzzm - Normal | Demons | Lv1 | sz=S | OB:0TBi/Spells
+Frzzzm - Large | Frzzzm - grand | Demons | Lv5 | sz=S | OB:60SBi/Special«/Spells
+Frzzzm - Giant | Frzzzm - géant | Demons | Lv9 | sz=L | OB:100MBi/Special«/Spells/90We
+Rhodintor | Rhodintor | Demons | Lv25 | sz=M | OB:20We/Spells
+Centaur Champion | champion centaure | Non-Demon Entities | Lv15 | sz=L | OB:170We(2D)/150LBa/150LTs/Spells
+Winged Champion | champion ailé | Non-Demon Entities | Lv10 | sz=H | OB:50LCl(2x)/90HSt/poison«
+Noble Champion | champion noble | Non-Demon Entities | Lv30 | sz=L | OB:250We(3D)/230LBa/Spells/Special
+High Champion | champion supérieur | Non-Demon Entities | Lv40 | sz=L | OB:300HMst(4D)/270HMsw(4D)
+Crystyl | Crystyl | Non-Demon Entities | Lv15 | sz=L | OB:150LBa/120sp
+Oran | Oran | Non-Demon Entities | Lv8 | sz=L | OB:180We(4D)/Special«/90ro(300')
+Sligguth | Sligguth | Non-Demon Entities | Lv12 | sz=L | OB:90LGr[Disrupt)/70We( l-6x)/both
+Traag | Traag | Non-Demon Entities | Lv7 | sz=L | OB:100HBi/Poison«/95LCl/Poison«/Spells
+Vultrim | Vultrim | Non-Demon Entities | Lv9 | sz=M | OB:130We/50LBolt/Spells
+Xaastyl | Xaastyl | Non-Demon Entities | Lv15 | sz=L | OB:110HGr(1-8x)/130HPi √/Spells
+Vampiric Centaur | vampirique Centaur | The Undead | Lv15 | sz=M | OB:120We[Cold](2D)/90MBi/Special/Spells
+Vampiric Troll | vampirique Troll | The Undead | Lv10 | sz=L | OB:90We[Cold](2D)/100LCl/75MBi/Special/Spells
+Dark Apparition | Apparition sombre | The Undead | Lv5 | sz=M | OB:60MCl/45MBi/Special
+Undead Drake | Drake mort-vivant | The Undead | Lv28 | sz=H | OB:100HBi[Cold]/140HCl[Cold]/110HBa[Cold]/110HHo[Cold
+Giant Skeleton - Lesser | Squelette géant - mineur | The Undead | Lv4 | sz=L | OB:70MCl/75MBa/90MBi«
+Giant Skeleton - Greater | Squelette géant - supérieur | The Undead | Lv8 | sz=L | OB:95LCl/95MBa/80LHo √/90LBi«
+Nightgaunt | Nightgaunt | The Undead | Lv9 | sz=M | OB:80MBa/70MCl«l 1-20
+Skullbat - Minor | Chauve-souris crânienne - Minor | The Undead | Lv1 | sz=S | OB:30SBi/Special
+Skullbat - Greater | Chauve-souris crânienne - supérieur | The Undead | Lv7 | sz=L | OB:90LBi/Special
+Skullbat - Major | Chauve-souris crânienne - majeur | The Undead | Lv4 | sz=M | OB:60MBi/Special
+Spajlen-Tier | Spajlen-Tier | The Undead | Lv35 | sz=H | OB:125HBi[Cold]/135HCl[Cold]/150HBa[Cold]/95HHo[Cold]
+Wrath - Minor | Wrath - Minor | The Undead | Lv10 | sz=M | OB:90MCl/Spells/Special
+Wrath - Greater | Wrath - supérieur | The Undead | Lv20 | sz=M | OB:120MCl/120We/Spells/Special
+Wrath - Major | Wrath - majeur | The Undead | Lv15 | sz=M | OB:110MCl/Spells/Special
+Gon Abatha | Gon Abatha | Entities from Deep Space | LvNone | sz=M | OB:L
+Meleth'scor - Small | Meleth'scor - petit | Entities from Deep Space | Lv1 | sz=M | OB:20SHo80/10STs20
+Meleth'scor - Large | Meleth'scor - grand | Entities from Deep Space | Lv2 | sz=M | OB:20MHo90/30MTs10
+Nihashbin Warrior | Nihashbin Warrior | Entities from Deep Space | Lv8 | sz=L | OB:120We/80LBa/70ro
+Cthugan | Cthugan | Entities from Deep Space | Lv15 | sz=M | OB:Spe11s/I 00LGr/120MBi/l?oison«/
+N'abis | N'abis | Entities from Deep Space | LvNone | sz=None | OB:z
+Bull Centaur | Centaure taureau | Races | Lv15 | sz=L | OB:170We(2D)/150LBa/150LTs/Spells
+Deer Centaur | Centaure cerf | Races | Lv2 | sz=M | OB:20MHo90/20MTs10
+Lion Centaur | Centaure lion | Races | Lv5 | sz=L | OB:85LCl100/85LBi«/120LCl √
+Lizard Centaur | Centaure lézard | Races | Lv15 | sz=L | OB:170We(2D)/150LBa/150LTs/Spells
+Scorpion Centaur | Centaure scorpion | Races | Lv15 | sz=L | OB:170We(2D)/150LBa/150LTs/Spells
+Spider Centaur | Centaure araignée | Races | Lv7 | sz=M | OB:70MBi/Poison«/60lcb
+Green Gratar | Green Gratar | Races | Lv0 | sz=S | OB:20TBi100/20SBi(6)
+Yellow Gratar | Yellow Gratar | Races | Lv0 | sz=S | OB:20TBi100/20SBi(6)
+Black Gratar | Black Gratar | Races | Lv0 | sz=S | OB:20TBi100/20SBi(6)
+Grey Gratar | Grey Gratar | Races | Lv0 | sz=S | OB:20TBi100/20SBi(6)
+Red Gratar | Red Gratar | Races | Lv0 | sz=S | OB:20TBi100/20SBi(6)
+Grey Orc | Orque gris | Races | Lv8 | sz=M | OB:Spells/80Melee/50Missile
+Scrug Orc | Orque scrug | Races | Lv4 | sz=L | OB:100Melee/80Missile
+Vard Orc | Orque vard | Races | Lv4 | sz=M | OB:80Melee(1-3x)/80Missile
+Minoths | Minoths | Races | Lv5 | sz=T | OB:Spells/40We(1 pt damage)
+Nycamerith | Nycamerith | Races | Lv2 | sz=M | OB:10Melee/20Missile/Spells
+Rancids | Rancids | Races | Lv4 | sz=M | OB:Spells/60MBa(1-5x)
+Shuikmar | Shuikmar | Races | Lv3 | sz=M | OB:60Melee/40Missile/Spells
+Sea Troll | Troll marin | Races | Lv10 | sz=L | OB:100LCl/75LBi/50We
+
+=== HAS description_en - need translation ===
+--- Antelope-like Animal (Large) ---
+Fish comprise over 20,000 species and are commonly found in all waters. Because of this huge number, the variety in size, coloration, feeding patterns and reproduction is over- whelming. Most are not 
+
+--- Rodent (Large) ---
+Fish comprise over 20,000 species and are commonly found in all waters. Because of this huge number, the variety in size, coloration, feeding patterns and reproduction is over- whelming. Most are not 
+
+--- Llama ---
+Alpacas and llamas are smaller than camels and have no humps. Both are domesticated forms of the guanaco, beasts adapted to high altitudes and arid or semi–arid locales. Rugged, fast, and lively, they
+
+--- Donkey ---
+wild; 5'–7'; 1 offspring
+
+--- Mule ---
+Donkeys are domesticated asses and, like their wild kin, are wonderful climbers. Tough and ornery, they live and travel in loose–knit troops rather than herds. Donkeys are difficult to work with and p
+
+--- Thoroughbred ---
+Domesticated horses come in many varieties. Ponies are exceptionally rugged and often shaggy–haired creatures, well suited to difficult climes. Plow horses are huge breeds that are adapted to heavy wo
+
+--- Warhorse, Greater ---
+Warhorses are bred and trained to take riders into combat. They are generally less shy of fire, smoke, loud noises and blood than other horses, and sometimes are trained to kick, rear–and–strike or bi
+
+--- Dolphin ---
+Innate Abilities: Sonar sense Dolphins are most commonly found in coastal waters. Their markings are variable but all possess a distinctive, long beak. Fast swimmers, they feed on fish, shrimp, mol- l
+
+--- Orca/Killer Whale ---
+1 young Innate Abilities: Sonar sense Orcas are not whales, but rather are the largest species of dolphin, even though they don’t possess the usual beak. With their 40–50 teeth they prey on fish, dolp
+
+--- Porpoise ---
+Innate Abilities: Sonar sense Porpoises are small, beakless whales that range equally through coastal and deep oceanic waters. They feed on squid and fish.
+
+--- River Dolphin ---
+Innate Abilities: Sonar sense River Dolphins are recognized by their prominent foreheads and very long beaks. They feed on small fish and crustaceans.
+
+--- Eel (Electric) ---
+Innate Abilities: Can trigger SBolt when it strikes, is struck, or 5'r (1x/min). Electric eels also live in freshwater but even though they have long, slender bodies they are not true eels. Usually fo
+
+--- Eel (Moray) ---
+Moray eels normally inhabit rocky shores. They possess very large mouths and sharp teeth. Morays prey on fish and squid.
+
+--- Fish (Large) ---
+Fish comprise over 20,000 species and are commonly found in all waters. Because of this huge number, the variety in size, coloration, feeding patterns and reproduction is over- whelming. Most are not 
+
+--- Octopi/Squid (Large) ---
+Fish comprise over 20,000 species and are commonly found in all waters. Because of this huge number, the variety in size, coloration, feeding patterns and reproduction is over- whelming. Most are not 
+
+--- Ray (Electric) ---
+Innate Abilities: Can trigger SBolt when it strikes, is struck, or 5'r (1x/min). Electric eels also live in freshwater but even though they have long, slender bodies they are not true eels. Usually fo
+
+--- Ray (Manta) ---
+Rays’ strange appearance has made them much feared through the ages. A flapping motion of their pectoral fins gives them the illusion of “flying” through the water. The Manta Ray, or Atlantic Manta, i
+
+--- Shark (Large) ---
+Fish comprise over 20,000 species and are commonly found in all waters. Because of this huge number, the variety in size, coloration, feeding patterns and reproduction is over- whelming. Most are not 
+
+--- Whale (Baleen) ---
+Innate Abilities: Sonar sense Baleen whales are those that feed with their baleen, which consists of rows of plates sus- pended from the upper jaw. Fish and plankton are caught on the plates, while th
+
+--- Whale (Beaked) ---
+Innate Abilities: Sonar sense Beaked whales comprise 18 species, all of which have slender bodies, long snouts, and generally only one or two pairs of teeth. They feed on fish, squid, and crustaceans.
+
+--- Whale (Narwhal) ---
+Innate Abilities: Sonar sense Narwhals are well known for their long spiral tusk, which is actually the upper–left incisor. Narwhals feed on fish, shrimp, crabs, and squid.
+
+--- Whale (Toothed (Small)) ---
+Innate Abilities: Sonar sense
+
+--- Whale (Toothed (Large)) ---
+Innate Abilities: Sonar sense Toothed whales are those which aren’t baleen or beaked. Of these, the Sperm whale is the most familiar. Their common characteris- tics are the square forehead and the spe
+
+--- Jellyfish ---
+diameter, tentacles 12"–275' long Innate Abilities: Sting- ing cells at the ends of their tentacles –inject 1st lvl muscle poison (variabil- ity b). Jellyfish have a floating
+
+--- Lamprey ---
+Innate Abilities: If SGr attack gets a critical, it is attached and will drain blood at 1–10 hits/rnd. Lamprey are long, eel–like blood–sucking parasites. They first attach themselves firmly to the ho
+
+--- Piranha ---
+Piranhas are not overly large, but their vast schools form formi- dable hunting groups. They are known for their razor–like teeth and powerful jaws. Piranhas feed primarily on fish, but if they encoun
+
+--- Lobsters* ---
+10,000–75,000 eggs Crabs and lobsters are related crusta- ceans, both known for their aggressive, predatory manner, relatively large size, and proportionately huge pincher claws. These creatures are r
+
+--- Scorpions ---
+Innate Abilities: Stinger injects a 3rd level respiratory poison (variability d). Scorpions are secretive, nocturnal arachnids whose forward appendages are tipped with large pinchers, and whose long r
+
+--- Spider (Poisonous) ---
+Innate Abilities: Bite or spray 1st level reduction poison (variability a).
+
+--- Spider (Non-Poisonous) ---
+Spiders are eight–legged invertebrates, arachnids that are related to scorpions and mites. They are carnivo- rous hunters noted for their pincher–like jaws, groupings of eight primitive eyes, and glan
+
+--- Lizard (Large) ---
+Fish comprise over 20,000 species and are commonly found in all waters. Because of this huge number, the variety in size, coloration, feeding patterns and reproduction is over- whelming. Most are not 
+
+--- Cobra ---
+2–50 eggs
+
+--- Snake (Non-Poisonous) ---
+Spiders are eight–legged invertebrates, arachnids that are related to scorpions and mites. They are carnivo- rous hunters noted for their pincher–like jaws, groupings of eight primitive eyes, and glan
+
+--- Pit Viper ---
+live young, some produce eggs Innate Abilities: Bite injects 2nd lvl muscle poison (variability b). Vipers ambush their prey, striking with their long poisonous fangs in frighteningly quick attacks. T
+
+--- Viper ---
+3–40 eggs Innate Abilities: Bite injects 2nd lvl muscle poison (variability b).
+
+--- Gila Monster ---
+3–5 eggs Innate Abilities: Bite for extra grapple critical 1 less severity and 3rd lvl nerve poison (variability b). A venomous, nocturnal lizard, the gila monster is a formidable foe. Its carnivorous
+
+--- Komodo Dragon ---
+10–15 eggs Innate Abilities: High bacterial loads in their mouth make almost any bite that inflicts a critical become a septic wound; treat as 4th level Muscle poison (variability a) but RR vs. Diseas
+
+--- Nile Monitor ---
+10–60 eggs Versatile, quick, and agile, the nile monitor is an able hunter. This large, powerfully built lizard prefers freshwater environs and is an accomplished swimmer and tree–climber. Strong legs
+
+--- Bear (Large) ---
+Fish comprise over 20,000 species and are commonly found in all waters. Because of this huge number, the variety in size, coloration, feeding patterns and reproduction is over- whelming. Most are not 
+
+--- Cat (Large) ---
+Fish comprise over 20,000 species and are commonly found in all waters. Because of this huge number, the variety in size, coloration, feeding patterns and reproduction is over- whelming. Most are not 
+
+--- Dog (Large) ---
+Fish comprise over 20,000 species and are commonly found in all waters. Because of this huge number, the variety in size, coloration, feeding patterns and reproduction is over- whelming. Most are not 
+
+--- Mustelid/Civet (Large) ---
+Fish comprise over 20,000 species and are commonly found in all waters. Because of this huge number, the variety in size, coloration, feeding patterns and reproduction is over- whelming. Most are not 
+
+--- Cheetah ---
+25–31" tail; 2–4 young Cheetahs are the fastest animals on four legs, being able to move at over 65 mph. The sleek body sits atop long muscular legs; a lengthy tail helps it maintain balance during th
+
+--- Housecat ---
+Housecats are the domesticated versions of the smaller cat species. Even though well–fed and bred to the coziness of the house- hold, housecats adapt quickly if forced to fend for themselves. Like the
+
+--- Fishing Cat (Water) ---
+prehensile tail Innate Abilities: Horn or stinger attack injects nerve poison (poison level is wyvern’s level). Natural Abilities: Vertical leap 35', hori- zontal leap 200' Exclusively aquatic and liv
+
+--- Fishing Cat (Land) ---
+prehensile tail) Innate Abilities: Bite or tail–stinger attack injects muscle poison (poison level is wyvern’s level). Agile climbers that nest in highland caves or huge, hollow trees.
+
+--- Lion ---
+1–6 young Lions are characterized by their broad heads, large mane, and strong thick legs. Surprisingly, most of their time is spent resting. They live in groups, called prides, which are commonly mad
+
+--- Mongoose ---
+1–6 young The widespread nature of the mongoose has caused it to vary its appearance. Most are medium to small in size; their slender, elon- gated bodies and small, drawn out heads sit on top of avera
+
+--- Otter (Water) ---
+prehensile tail Innate Abilities: Horn or stinger attack injects nerve poison (poison level is wyvern’s level). Natural Abilities: Vertical leap 35', hori- zontal leap 200' Exclusively aquatic and liv
+
+--- Otter (Land) ---
+prehensile tail) Innate Abilities: Bite or tail–stinger attack injects muscle poison (poison level is wyvern’s level). Agile climbers that nest in highland caves or huge, hollow trees.
+
+--- Skunk ---
+2–6 young Innate Abilities: Spray as Tear Cloud (Essence “Feel–Taste–Smell”) with 2'r around target (plus the odor of course). Skunks are the most familiar of the Mustelids, being well known for their
+
+--- Tiger ---
+2–3 young Tigers are the biggest cats, possessing very large powerful bodies and muscular legs. They are usually nocturnal creatures, living and hunting alone. Tigers are good climbers, and are well k
+
+--- Wolf ---
+Wolves are easily recognized by their power- ful canine body and thick, bushy tail. They vary in coloring from white to yellowish brown and almost black. Wolves live and hunt in packs, a fact which al
+
+--- Wolverine ---
+2–3 young Wolverines have solid bodies and possess great strength, both of which allow them to bring down animals much larger than themselves. They have keen senses and are good climbers. Their meat e
+
+--- Bird (Large) ---
+Fish comprise over 20,000 species and are commonly found in all waters. Because of this huge number, the variety in size, coloration, feeding patterns and reproduction is over- whelming. Most are not 
+
+--- Bat (Large) ---
+Fish comprise over 20,000 species and are commonly found in all waters. Because of this huge number, the variety in size, coloration, feeding patterns and reproduction is over- whelming. Most are not 
+
+--- Condor ---
+wingspan of 12'; up to 25 lbs; 1 young Natural Abilities: Flight Condors are some of the largest birds in the world. They inhabit the lonely crags of high mountains. They can soar to great heights and
+
+--- Eagle ---
+Natural Abilities: Flight Eagles are formidable predators, soaring for long periods before swooping in to crush their prey in their powerful talons.
+
+--- Hawk ---
+1–5 eggs Natural Abilities: Flight Falcons are known for their incredible swiftness and their ability to catch prey in the air. Hawks include 216 species of diver birds and can be found in most region
+
+--- Owl ---
+Natural Abilities: Flight Owls can be found in most areas of the world. They are best recognized by their large head and enormous eyes set in a circular facial disk. Owls hunt at night, feeding on ins
+
+--- Vulture ---
+Natural Abilities: Flight Vultures range over an extensive portion of the earth, feeding on carrion. They, like condors, are solitary birds, easily recognized by their featherless heads. This feature 
+
+--- Bee/Wasp ---
+Natural Abilities: Flight Wasps live in colonies of thousands. They attack with a quick bite from their powerful mandibles or jaws; the painful sting is used only as a last resort (poison, sting
+
+--- Great Apes ---
+body, no tail; 100–600 lbs.; 1 young The great apes are robust and often huge creatures. Chimpanzees, orangutans, and gorillas fall into this category. These beasts live in small troops of 5–15 and op
+
+--- Kangaroo/Wallaby (Large) ---
+Fish comprise over 20,000 species and are commonly found in all waters. Because of this huge number, the variety in size, coloration, feeding patterns and reproduction is over- whelming. Most are not 
+
+--- Boar ---
+2–10 piglets The ancestor of the domestic pig, the wild boar differs from its tame relatives by virtue of its long, bristly hair and (in males) promi- nent tusk–like canine teeth. These creatures are 
+
+--- Gorilla ---
+4'6"–5'; 1 young See primates for more on gorillas. Gorillas live in both mountain and lowland rainforests, but they are confined to warm climes. Normally gentle and peaceful, they live quietly in gro
+
+--- Hippopotamu (Water) ---
+females 9'3"–12'; 1 young Hippos are huge crea- tures, with a bulky body surmounted by a massive head. Known for their rounded features, they have short ears, a little tail, and relatively small, bulg
+
+--- Hippopotamu (Land) ---
+females 9'3"–12'; 1 young Hippos are huge crea- tures, with a bulky body surmounted by a massive head. Known for their rounded features, they have short ears, a little tail, and relatively small, bulg
+
+--- Porcupine ---
+females 9'3"–12'; 1 young Hippos are huge crea- tures, with a bulky body surmounted by a massive head. Known for their rounded features, they have short ears, a little tail, and relatively small, bulg
+
+--- Rat ---
+females 9'3"–12'; 1 young Hippos are huge crea- tures, with a bulky body surmounted by a massive head. Known for their rounded features, they have short ears, a little tail, and relatively small, bulg
+
+--- Rhinoceros ---
+Aside from elephants, rhinos are the most massive land animals. These mammals have long, huge heads surmounted by one or two horns and a prehensile upper lip. Their short, stout legs and three–toed ho
+
+--- Seal (Water) ---
+1–2 pups
+
+--- Seal (Land) ---
+1–2 pups
+
+--- Sea Lion (Water) ---
+Seals, sea lions, and walruses are aquatic mammals called Pinnepeds. These carnivo- rous creatures have adapted to life in and around the sea by developing flippers in lieu of arms and legs. Superb sw
+
+--- Sea Lion (Land) ---
+Seals, sea lions, and walruses are aquatic mammals called Pinnepeds. These carnivo- rous creatures have adapted to life in and around the sea by developing flippers in lieu of arms and legs. Superb sw
+
+--- Tasmanian Devil ---
+body, 9"–11.75" tail; 2–4 young The tasmanian devil is a marsupial mammal and is distantly related to the kangaroo. They resemble large rodents, but have relatively huge heads and powerful jaws that a
+
+--- Walru (Water) ---
+9'6"; 1–2 young Walruses are the largest pinneped, and are known for their huge downward–Facing tusks and preference for icy waters and shores. Sea lions are their close relatives. The latter are the 
+
+--- Walru (Land) ---
+9'6"; 1–2 young Walruses are the largest pinneped, and are known for their huge downward–Facing tusks and preference for icy waters and shores. Sea lions are their close relatives. The latter are the 
+
+--- Great Spider (Lesser) ---
+Innate Abilities: Bite accompanied by a 2nd level muscle poison (variability b) or a 3rd level reduction poison (variability a).
+
+--- Great Spider (Greater) ---
+Innate Abilities: Bite accompanied by a 4th level muscle poison (variability b) or a 6th level reduction poison (variability a). Giant spiders are huge predatory arach- nids, the largest variety of ve
+
+--- Great Spider (Major) ---
+Innate Abilities: Bite accompanied by a 10th level muscle poison (variability b) or a 20th level reduction poison (variability a). Innate Caster (3xlevel pp “Essence’s Percep- tions,” “Detecting Ways,
+
+--- Horse Viper ---
+Innate Abilities: Bite accompanied by 5th level muscle poison; can spray venom, RR (+ Qu) vs. blinding then 2nd level muscle poison; range 30' no range modifiers. The horse viper and the horned snake 
+
+--- Horned Snake ---
+Innate Abilities: Horned tail strikes accompanied by 6th level conversion poison (variability d). Horned snakes are creatures of the forest. Notable for their sharp, horn–sheathed tails, they do not b
+
+--- Tatzelwurm ---
+The tatzelwurm is a strange–looking lizard–like beast with a short, stubby tail and virtually no neck. Powerful and compact, it has stumpy legs (so short that the beast is often taken for a snake) and
+
+--- Demon Whale ---
+White or gray, the demon whale hides in the roaring breakers near northern sea–lanes, awaiting the incautious seamen who dare trespass into their territory. Diving deep, these denizens hurl straight u
+
+--- Giant Hellbender ---
+The giant hellbender is a slimy, loathsome, four–legged amphibian that spends little or no time on land. Preferring to lurk in stagnant pools or in the mud of freshwater shallows, it awaits opportunit
+
+--- Hippocampus ---
+Sleek, powerful, and noble, the hippocam- pus is the lordliest of the sea–steeds. It re- sembles a horse, but has the hind parts of a sea serpent. Its forelimbs end in great webbed feet, which sport a
+
+--- Nator ---
+Innate Abilities: Breathes air or water Foaming wind–tossed waves, green mirror–Flat inland seas, and the threatening peace of the sunless deeps harbor the scaly nator. A three–horned horse with trans
+
+--- Nucklelavee ---
+Aquatic horse Innate Abilities: GBr (cone length 20'; cone base 20'; 3rd level conversion poison variability b; when inhaled turns bodily fluids into saltwater). Wave spume flecks the hooves of this s
+
+--- Red Jaw ---
+Innate Abilities: Light–producing fin growths illuminate 100' radius. The red jaw is a bottom–dwelling scaven- ger that haunts underground lakes and streams. Voracious, they will eat any meat, live or
+
+--- Spineshark ---
+Innate Abilities: Strong knife–edged dorsal fin Spinesharks are nightmarish creatures. Huge carnivorous fish, they are an abhorrent breed of shark known for their exceptionally hard upper back armor a
+
+--- Wyverns (Minor Drakes) (Land) ---
+prehensile tail) Innate Abilities: Bite or tail–stinger attack injects muscle poison (poison level is wyvern’s level). Agile climbers that nest in highland caves or huge, hollow trees.
+
+--- Wyverns (Minor Drakes) (Cave Worm) ---
+natural daylight Innate Abilities: Critical from bite accom- panied by heat criticals of lesser severity (same roll). Natural Abilities: Moves 25'/round through packed earth, 5'/round through solid ro
+
+--- Dragon Salamander ---
+30' including a 7'–10' tail Innate Abilities: Breathe under water. Breathe Lava, Immolate to deliver a + 75 fireball attack to all within 10'); move equally well on land or in water or lava. Dragon sa
+
+--- Dragon Turtle ---
+neck, 2'–3' prehensile tongue Innate Abilities: FBr; lx/min; 30x/day; bolt range 200'; cone length 100', cone base 50'; 50% have StBr; lx/3 rnds; bolt range 150' Natural Abilities: Base movement 100% 
+
+--- Hydra ---
+7'–15' tail Innate Abilities: 3–9 regenerative heads; Primary head and body defend on super large critical table, other heads use large critical table; each head has FBr; Cone length 40', base 25' 1x/
+
+--- Sirrush ---
+Innate Abilities: Innate Caster (6xlvl PP, all of the “Illusionist” base lists to the creature's level); SBr bolt; 200' range; lx/min, 10x/day. Natural Abilities: Grapples with 5'–10' prehensile tongu
+
+--- Abraxas ---
+Natural Abilities: Snake legs can grasp foes; directs beak at vulnerable areas, eyes, etc. A fowl’s head and snake’s legs merge with the human torso of the abraxas, whose virulent temper matches its a
+
+--- Caustic Slime ---
+Innate Abilities: Touch delivers 6–15 hits/ round; heat or cold elemental attacks deliver double damage.
+
+--- Chimera ---
+Innate Abilities: Snake head FBr (Bolt range 100' 1x/round) Natural Abilities: The two heads and the snake can all attack once per round. A lion possessing an extra head — that of a goat — the voracio
+
+--- Echidna (Lamiae) ---
+2young; 10–15' Innate Abilities: Innate Caster (animist base lists to 10th level) Natural Abilities: Snake tail can grasp foes. The translucent scales of its serpent’s tail blend at the waist into the
+
+--- Euryale ---
+Innate Abilities: GBr: Cone 10'base 10'length acts as level 12 poison; instantly turns to stone those who inhale it (RR): mild, 1–100 minutes (open–ended), moderate, 2–20 hours, serious, 1–100 days (o
+
+--- Gorgon (Medusa) ---
+Innate Abilities: Sight of its face instantly turns victim to stone (RR): for duration see euryale above); the snakes’ venom is 5th level special poison (var. E) which paralyzes victim: mild, 1–5 roun
+
+--- Great Porcupine ---
+3–4'long Innate Abilities: Shoots 1–10 quills at a time, as light crossbow bolts. Larger and more ferocious than its smaller cousin, the great porcupine shoots its sharp- ened quills at enemies standi
+
+--- Gulo ---
+Thick, white fur patterned by black mark- ings protects the gulo from chill during the fiercest of blizzards, while an insatiable appetite provides the energy required by frigid climes. Cat’s head wed
+
+--- Guyascutus ---
+Natural Abilities: Prehensile tail can grasp foes Telescopic legs assure the comfort of this herd beast on even the steepest slopes. A massive, serpentine tail wraps around rocks and other projections
+
+--- Jackalope ---
+A large hare with the antlers of an ante- lope, the Jackalope possesses the timid nature of the rabbit. When threatened it attempts to bolt to the safety of its hole. Only if cornered will it turn to 
+
+--- Ki-lin ---
+Innate Abilities: Innate Caster (“Invisible Ways” and “Lofty Bridge” Essence lists to 20th level). Hints of careless sea–Foam, glacial ice, and serene moonlight illumine the snowy hide of the ki–lin. 
+
+--- Killer Rabbit ---
+Natural Abilities: Bounds for the throat, never for another part of the body. A plump bundle of fluff identical to its harmless cousin, the killer rabbit betrays its true nature after the innocent way
+
+--- Manticore ---
+Innate Abilities: Tail may shoot two iron darts each round (treat as heavy crossbow) that dispense a 3rd level (var. A) Nerve poison. Coarse, slovenly beasts whose favorite prey is man, manticores ree
+
+--- Minotaur ---
+Innate Abilities: Innate Caster (“Monk’s Sense” and “Body Renewal” Monk lists to 20th level). Sylvan mazes and cavernous labyrinths house the rapacious minotaur, whose red eyes gleam from a bull’s hea
+
+--- Rumtifusel ---
+Innate Abilities: Sucking pores deliver 2–20 hits/round; if struck while on a victim, victim receives the same number of concus- sion hits and criticals decrease 2 in severity. A flat, rug–like beast 
+
+--- Sasquatch/Yeti ---
+Innate Abilities: Pelt changes colors and shades to help blend in with surroundings, + 100 to all stalking/hiding rolls. Fond of glaciers and icy wastes where snow never melts, the sasquatch’s furry p
+
+--- Scylla ---
+Innate Abilities: Innate Caster (All illusion- ist base lists to 10th level). Tropical lagoons soothe the tempers of the feisty scylla, creating the illusion of preening mermaids and mermen by hiding 
+
+--- Seftuau ---
+Wild, tangled hair falls from the seftuau’s mannish head to brush the tawny hide of its lion’s body. Brute savagery remains absent from its temperament, but a primitive innocence often moves the seftu
+
+--- Su ---
+River banks and marshes attract the fierce, elegant Su to their reeds and rushes. The dainty greyhound’s body exhibits a squirrel’s tail that curls up and over its back, sheltering the young that ofte
+
+--- Tove ---
+A badger with a lizard’s tail and corkscrewed digging talons, the tove shelters exclusively near or under stone structures and subsists on nuts and dairy products. It prefers sharp, nutty cheeses, but
+
+--- Zephyr Hound (Fire Hound) ---
+Innate Abilities: FBr: Bolt range is 50', cone length is 30' with a 20' base; immune to fire attacks; takes double damage from cold attacks. Glowing red eyes match the smoking flames that roar from a 
+
+--- Ice Hound ---
+Innate Abilities: CBr: cone with 50' length and 30'base; IBr: standard Cone range; immune to cold attacks; takes double damage from fire attacks. Gray fur and fluorescent blue eyes suggest the frigid
+
+--- Night Hound ---
+Innate Abilities: GBr 4th level poison (var. C) which induces comas: mild 1–10 rounds, moderate 1–10 minutes, serious 1–10 hours, extreme 1–10 days; breath is standard cone: 50' length and 30' base; i
+
+--- Zephyr Hound (Storm Hound) ---
+Innate Abilities: SBr: bolt range is 100', cone length is 50' with a 30' base; immune to electricity attacks; takes double damage from water attacks. Static–Filled, yellow fur crackles around the lith
+
+--- Vapor Hound ---
+Innate Abilities: GBr: 3rd level reduction poison (var. B); breath is a cone: 30' length and 20' base; it is immune to its own breath and all reduction poisons. Soft–Footed as the breeze, these hounds
+
+--- Zephyr Hound (Water Hound) ---
+Innate Abilities: WBr: Bolt range of 100'; immune to water attacks; takes double damage from fire attacks; can swim well and can breathe water as well as air. These hounds are as much at home in the w
+
+--- Construct (Minor) ---
+intelligence; often have single mission Innate Abilities: Possess built–in dart–thrower (lcb; lx/round; unusable in melee).
+
+--- Construct (Lesser) ---
+Innate Abilities: Bite accompanied by a 2nd level muscle poison (variability b) or a 3rd level reduction poison (variability a).
+
+--- Construct (Greater) ---
+Innate Abilities: Bite accompanied by a 4th level muscle poison (variability b) or a 6th level reduction poison (variability a). Giant spiders are huge predatory arach- nids, the largest variety of ve
+
+--- Flesh ---
+Innate Abilities: Capable of wearing garb
+
+--- Clay ---
+Innate Abilities: Immune to crush criticals.
+
+--- Tar ---
+Innate Abilities: Immune to crush criticals; if foe delivers hits but no critical their weapon sticks in golem. Golems are formed of solid substances imbued with a spirit. Many are creatures given lif
+
+--- Golem (Stone) ---
+Innate Abilities: Softer weapons must make a RR each time they deliver hits (wood –5; bone –0); non–brittle; moves as clay golem.
+
+--- Iron ---
+Innate Abilities: Softer weapons must make a RR each time they deliver hits (wood –30; bone –10).
+
+--- Steel ---
+Innate Abilities: Softer weapons must make a RR each time they deliver hits (wood –40; bone –20; iron –10).
+
+--- Eog ---
+Innate Abilities: Softer weapons must make a RR each time they deliver hits (wood –60; bone –40; iron –30; steel –10; mithril –10).
+
+--- Shard (Lesser) ---
+Innate Abilities: Bite accompanied by a 2nd level muscle poison (variability b) or a 3rd level reduction poison (variability a).
+
+--- Shard (Greater) ---
+Innate Abilities: Bite accompanied by a 4th level muscle poison (variability b) or a 6th level reduction poison (variability a). Giant spiders are huge predatory arach- nids, the largest variety of ve
+
+--- Warder (Lesser) ---
+Innate Abilities: Bite accompanied by a 2nd level muscle poison (variability b) or a 3rd level reduction poison (variability a).
+
+--- Warder (Greater) ---
+Innate Abilities: Bite accompanied by a 4th level muscle poison (variability b) or a 6th level reduction poison (variability a). Giant spiders are huge predatory arach- nids, the largest variety of ve
+
+--- Androsphinx ---
+35' wingspan Innate Abilities: Innate Caster (“Creations” and all Ranger lists to 10th level) A lion’s mane shot with streaks of pure gold haloes their mannish face with supernal light. Their lithe li
+
+--- Banshee ---
+15' wingspan Innate Abilities: If a RR against banshee’s cry (100'R) is failed by 01–50 victim flees per “Fear”, by 51–100 feelings of hopelessness immobilize victim, by 100+ the victim attempts suici
+
+--- Gargoyle ---
+5–7' wingspan Winged lizards or goblins of stone, gargoyles resemble statuary when still, but rarely display uniformity. Some possess fangs while others have beaks; one is fox–sized, another man–sized
+
+--- Geryon ---
+30'wingspan The upper body of a geryon is human, but its lower body is like a snake’s tail. Frequently coiled around dappled forest ponds, the geryon displays a placid tempera- ment, rarely attacking 
+
+--- Gorcrow** ---
+8' wingspan Uniform black plumage mutes the splen- dor of the gorcrow, grander than the princely raven. gorcrows fly in flocks, wheeling and diving across the sky, observing all movement on the land b
+
+--- Minor** ---
+intelligence; often have single mission Innate Abilities: Possess built–in dart–thrower (lcb; lx/round; unusable in melee).
+
+--- Lesser** ---
+Innate Abilities: Bite accompanied by a 2nd level muscle poison (variability b) or a 3rd level reduction poison (variability a).
+
+--- Greater** ---
+Innate Abilities: Bite accompanied by a 4th level muscle poison (variability b) or a 6th level reduction poison (variability a). Giant spiders are huge predatory arach- nids, the largest variety of ve
+
+--- Great Falcon** ---
+25' wingspan A skillful and acrobatic flyer, the great falcon resembles its lesser cousin, the per- egrine, in its prowess as an aerial killer. A blow from the talons dispatches the prey at the end of
+
+--- Great Wasp ---
+young (many die); 10' wingspan Innate Abilities: Sting delivers special level 3 poison (var. B) — causes paralysis in the part of body struck. Two large, compound eyes and prominent antennae equip the
+
+--- Hippogriff ---
+Wary of men, the hippogriff dwells among the lonely crags of deserted mountains. It shares the eagle–like forequarters and wings of the gryphon, but the hippogriff’s ears and
+
+--- Ki-rin ---
+Innate Abilities: Innate Caster (All Cleric and Healer base lists to 15th level); walk and climb the sky and clouds as if hills or mountains. The cloven hooves of ki–rin tread air, clouds, and wind as
+
+--- Lammasu ---
+35' wingspan Innate Abilities: Innate Caster (Animist lists to 15th level) Desert caves or sun–drenched rocks in the plains harbor the warmth–loving lammasu. A pride of lions bearing eagle–wings, the 
+
+--- Pegasus ---
+Remote alpine valleys secure privacy for the shy pegasus. Meadow grasses and flowers underfoot, winds whistling through the peaks above, and the company of its own kind satisfy the simple desires of t
+
+--- Phoenix** ---
+25'–35' wingspan Innate Abilities: Innate Caster (“Fire Law” to 20th level.); immune to fire damage; takes double damage from cold attacks; treat ice bolts as “slaying”. Red and gold plumage clothes t
+
+--- Roc** ---
+80'–120' wingspan Innate Abilities: Treat claw attacks as “magic” against large or super–large creatures. A survivor from primeval eras, the roc remains one of the largest birds hunting the skies. Its
+
+--- Siren** ---
+Innate Abilities: Innate Caster (20th level charm spell at will to all within earshot who fail RR) Clustered on rocky islands near danger- ous coral reefs, sirens lure mariners to these hazards with m
+
+--- Sphinx ---
+30' wingspan Innate Abilities: Innate Caster (Mentalist base spell lists to 15th level) A solitary creature who lingers along the roads outside of cities, the sphinx delights in annoying travelers. On
+
+--- Steardan ---
+Perfect reflections of the graceful pegasi, steardan mirror their cousins in form alone. A steardan’s intelligence, although remarkable, is suited to a beast. As steeds, steardan display fierce loyalt
+
+--- Thyfur** ---
+More companionable than the great eagles whom they resemble, the thyfur form enduring friendships with men and women, rarely parting from the rider of their choice. Bird and rider shelter in a shared 
+
+--- Doppelganger ---
+Innate Abilities: Shapechanger (Alters form at will to resemble another, 1 change/round); Innate Caster (all spells on the Mystic list, “Mystical Change” to 50th lvl). Mutable flesh enables the doppel
+
+--- Empusa ---
+Innate Abilities: Shapechanger (Assumes any organic form within _x and 2x her mass, but does not obtain any special abilities or spell casting capabilities; 1 round/change). A gaunt, old hag who conce
+
+--- Naga (Snakeform) ---
+Innate Abilities: Shapechanger (May take human form at will.). Natural Abilities: Fangs dispense 5th level nerve poison (var. D). Normally appearing as snakes with constrictive and poisoning abilities
+
+--- Naga (Humanform) ---
+Innate Abilities: Shapechanger (May take human form at will.). Natural Abilities: Fangs dispense 5th level nerve poison (var. D). Normally appearing as snakes with constrictive and poisoning abilities
+
+--- Naga (Human/Snakeform) ---
+Innate Abilities: Shapechanger (May take human form at will.). Natural Abilities: Fangs dispense 5th level nerve poison (var. D). Normally appearing as snakes with constrictive and poisoning abilities
+
+--- Plon ---
+Innate Abilities: Shapechanger (shifts from flaming globe to flaming dragon or serpent at will at 1 change/round.); Can use it’s powers of Suggestion on any within hear- ing (effects as per the “Sugge
+
+--- Pooka ---
+Innate Abilities: Shapechanger (Can take on the form of any small mammal; can enlarge to 3x normal size, for 5 minutes every hour); Invisible at will. Animal spirits who make mischief in the domestic 
+
+--- Silverscale (Humanform) ---
+Innate Abilities: Shapechanger (May assume either human form or dragon form at will, requires 1 round of concentration); Innate Caster (All Bard base lists to 20th level, and “Mind Visions” Seer list 
+
+--- Dragonform ---
+Innate Abilities: Shapechanger (May assume either human form or dragon form at will, requires 1 round of concentration); Innate Caster (All Bard base lists to 20th level, and “Mind Visions” Seer list 
+
+--- Strige ---
+Innate Abilities: Shapechanger (at will from human form to giant raven form, 1 round/ change); Innate Caster (all bard lists to 10th level when human.) Shape shifters whose womanly form changes to tha
+
+--- Vargamor ---
+Innate Abilities: Innate Caster (As maid: All Magician lists to 10th level; as matron: all Cleric and Evil Cleric lists to10th level; as crone, all Mentalist, Seer, Bard, and As- trologer base spell l
+
+--- Vestice ---
+Innate Abilities: Shapechanger (Can assume any animal form within ½x and 2x her mass, 1 round/change); Innate Caster (“Disease” and “Curses” Evil Cleric lists to 20th level.) Wild women who can assume
+
+--- Anklosaur ---
+travel in groups of 3–30; thick armor plates cover its low, wide back; prehensile tail ends in huge bony club; 15'–25' body; back is AT 20, underside is AT 4. Anklosaurs are low–slung vegetarians. The
+
+--- Triceratops ---
+travel in groups of 3–30; armored head sports two 2'6"–4' horns and one 1'–2' nose horn; 18'–27' body; head is AT 20; body is AT 4. The triceratops is an agile, fast–moving herbivore, a rather unique 
+
+--- Stegosaur ---
+stupid; upland herbivore; travel in groups of 2–20; prehensile tail supports four to six 18"–30" spikes; 20'–35' body. The stegosaur is a peaceful herbivore with a low–slung head and tail and an archi
+
+--- Pterosaurs (fly) (Large) ---
+Fish comprise over 20,000 species and are commonly found in all waters. Because of this huge number, the variety in size, coloration, feeding patterns and reproduction is over- whelming. Most are not 
+
+--- Cyclops ---
+One–eyed giants who prefer solitude, cyclops keep tidy, well–provisioned caves full of wax–sealed cheeses, dried meats, jars of honey, and casks of wine. The remains of trespassers are flung out onto 
+
+--- Giant (Minor) ---
+intelligence; often have single mission Innate Abilities: Possess built–in dart–thrower (lcb; lx/round; unusable in melee).
+
+--- Giant (Major) ---
+Innate Abilities: Bite accompanied by a 10th level muscle poison (variability b) or a 20th level reduction poison (variability a). Innate Caster (3xlevel pp “Essence’s Percep- tions,” “Detecting Ways,
+
+--- Giants, Greater (intelligentraces) (Cloud) ---
+Innate Abilities: Innate Caster (4x/lvl PP, “Liquid Alteration”, “Essence Hand”, “Lofty Bridge”, and “Wind Law” lists to the creature's level).
+
+--- Giants, Greater (intelligentraces) (Fire) ---
+capable of casting flamelets. Innate Abilities: Must maintain contact with ground; grappled/enveloped victim takes a ‘D’ (‘B’ for lesser) heat critical (1/ round); “cold” criticals against it are ‘sla
+
+--- Giants, Greater (intelligentraces) (Forest) ---
+Innate Abilities: Innate Caster (3x/lvl PP, “Nature’s Lore” and “Nature’s Protection” lists to the creature's level).
+
+--- Giants, Greater (intelligentraces) (Frost) ---
+Innate Abilities: Innate Caster (3x/lvl PP, “Ice Law” list to the creature's level); immune to cold; double damage from fire.
+
+--- Giants, Greater (intelligentraces) (Hill) ---
+Innate Abilities: Innate Caster (2x/lvl PP, “Solid Alteration” list to the creature's level); excellent diggers.
+
+--- Giants, Greater (intelligentraces) (Mountain) ---
+Innate Abilities: Innate Caster (3x/lvl PP, “Solid Destruction” and “Earth Law” lists to the creature's level).
+
+--- Giants, Greater (intelligentraces) (Stone) ---
+Innate Abilities: Softer weapons must make a RR each time they deliver hits (wood –5; bone –0); non–brittle; moves as clay golem.
+
+--- Giants, Greater (intelligentraces) (Storm) ---
+Innate Abilities: Innate Caster (4x/lvl PP, “Ice Law”, “Water Law”, “Wind Law”, and “Light Law” lists to the creature's level).
+
+--- Giants, Greater (intelligentraces) (Water) ---
+prehensile tail Innate Abilities: Horn or stinger attack injects nerve poison (poison level is wyvern’s level). Natural Abilities: Vertical leap 35', hori- zontal leap 200' Exclusively aquatic and liv
+
+--- Troll (Cave) ---
+Innate Abilities: Crippling Flaw (When outside in the daytime they take 10 hits/ hour); Resistant to heat and cold attacks
+
+--- Troll (Forest) ---
+Innate Abilities: Innate Caster (3x/lvl PP, “Nature’s Lore” and “Nature’s Protection” lists to the creature's level).
+
+--- Troll (Hill) ---
+Innate Abilities: Innate Caster (2x/lvl PP, “Solid Alteration” list to the creature's level); excellent diggers.
+
+--- Troll (Mountain) ---
+Innate Abilities: Innate Caster (3x/lvl PP, “Solid Destruction” and “Earth Law” lists to the creature's level).
+
+--- Troll (Snow) ---
+Innate Abilities: Crippling Flaw (Turns to ice when exposed to direct sunlight, but become normal again when night falls); Resistant to heat and cold attacks
+
+--- Troll (Stone) ---
+Innate Abilities: Softer weapons must make a RR each time they deliver hits (wood –5; bone –0); non–brittle; moves as clay golem.
+
+--- War ---
+diameter, 275' long tentacles Innate Abilities: Tentacles inject a 3rd level muscle poison (variability c). Portuguese Man–of–War are complex groupings
+
+--- Ogre (Large) ---
+Fish comprise over 20,000 species and are commonly found in all waters. Because of this huge number, the variety in size, coloration, feeding patterns and reproduction is over- whelming. Most are not 
+
+--- Titans ---
+Innate Abilities: Innate Caster (5x/lvl PP, all Mentalist base lists to own level) Clean–shaven giants with handsome, nobly proportioned bodies, titans drape their muscu- lar limbs with pleated swathe
+
+--- Dwarves ---
+Natural Abilities: Darkvision Legend and song assert the dwarves to have been born of stone, naming them as sons and daughters of earth. They are a stalwart people, comfortable below ground, where the
+
+--- Gnolls ---
+Natural Abilities: Nightvision; Darkvision; dislike daylight (–25 to all activity). Small, wrinkled men with grey skin and little hair, gnolls inhabit the natural caverns
+
+--- Gnomes ---
+Natural Abilities: Nightvision; Darkvision Bald, wizened men who usually live in shallow caves, long–lived gnomes gather knowledge and lore as a hobby. Ancient tomes and rare scrolls litter their crow
+
+--- Halflings ---
+Shallow burrows dug into hillsides com- prise the majority of residences in halfling villages, although small cottages house a few families and provide taverns or inns for local meeting places. All of
+
+--- Hobgoblins ---
+Natural Abilities: Nightvision; Darkvision, dislike daylight (–25 to all activities if outdoors) Larger, tougher goblins whose skin has a muddy tinge and whose feet feel no pain, hobgoblins often ming
+
+--- Orc (Lesser) ---
+Natural Abilities: Nightvision; Darkvision; Partially blinded by sunlight (–50 to all activity)
+
+--- Orc (Greater) ---
+Natural Abilities: Nightvision; Darkvision; Dislike, but can operate normally in sunlight. Rumor asserts that Orcs possess as ancestors elves whose minds and bodies were twisted by evil. If any truth 
+
+--- Dwelfs ---
+Natural Abilities: Darkvision Fair little trolls, dwelfs dig modest holes in stream banks and hills for their homes. They roam underground mines, generating strange knocking sounds that confuse
+
+--- Gremlins ---
+Natural Abilities: They are ‘stunned’ in direct sunlight; they regularly use poison on their weapons. Withered skin and deformed limbs echo the spite and malice harbored by these wicked fey. Teeth fil
+
+--- Nixies ---
+Innate Abilities: Touch grants “Water Lungs” from Monk “Body Reigns" at will. Natural Abilities: Can breathe water or air Crystal palaces beneath the calm ripples of mountain lakes or the foaming wave
+
+--- Leprechaun ---
+Innate Abilities: +75 to hiding/stalking Small, yet hearty creatures with red cheeks and smiling mouths, Leprechauns are shoe- makers. Always occupied with leather and needle in hand, a leprechaun cre
+
+--- Pech ---
+Innate Abilities: 50% have the alchemist base lists, “Inorganic Skills”, “Channeling Imbed- ding”, and “Enchanting Ways”, to their level. Natural Abilities: Nightvision Expert stonemasons who work by 
+
+--- Centaurs ---
+front hooves to head Nobly proportioned men and women whose torso joins at the waist to the four–legged body of a horse, centaurs rarely mire their aspirations with the greed for material possessions 
+
+--- Garks ---
+Mottled gray fur covers all of the ape–like gark, except the palms and soles of their feet. Long arms hang to their knees, and a powerful, prehensile tail grows from the base of their spine. Most gark
+
+--- Idiyva (Felines) ---
+Natural Abilities: Nightvision Short, gold–tipped coffee fur covers the lithe, well–muscled form of the idiyva (except at the face, the genitals, the palms, and the soles of the feet). Smooth, brown s
+
+--- Mermen ---
+head to fin Innate Ability: A small percentage (5%) are mutations that can shapechange their fish tail into a pair of scaled human legs, this transformation (either way) usually takes 1 minute of conc
+
+--- Neanderthals ---
+5'10"tall Muscular men with sloping foreheads and oversized jaws, Neanderthals have brown hair and eyes, and tan skin. Their intellect is not powerful, but a cooperative, good–tem- pered disposition m
+
+--- Sea-Krals ---
+Natural Abilities: Nightvision Sea–Krals are ape–like creatures with dark grey or blue skin and a pelt of thick, white hair growing on the head, neck, and shoul- ders. Females possess an additional th
+
+--- Sohleugir (Lizardmen) ---
+Textured, jade scales shimmer on the hide of the amphibious sohleugir, interrupted by fin–like ridges rising along the spine. These jagged spikes march from the tip of the 3' tail to the crown of the 
+
+--- Allibat ---
+combat ability. They are prolific breeders, however, so they seem Allibats are essentially flying alligators, as they possess dark to always be abundant.
+
+--- Bone Worm ---
+These creatures are bone-white, eyeless worms with large maws Thi Wolf: (hf)-(10)-5; 3' tall; 2-3 pups. and strong, bone-crushing teeth.
+
+--- Crison ---
+rabbits, gabbits and other rodents. Crison are wooly cattle with two large horns on their snouts to defend themselves.
+
+--- Didex ---
+as if two individuals; carrying cap. 150 lbs.
+
+--- Gabbit ---
+Gulos, Jackalopes, Su, Toves, Gorcrows, Great Wasps, Dinosaurs, A gabbit appears to be a small rabbit with short ears. They come Pterosaurs, Elotheres, Megalodons, and Sabretooth Tigers.
+
+--- Kraeguth ---
+Crison hair is made into yam and critical severity by 1 level. cloth, while its meat and milk are used by many people who Kraeguth are much like large bears, but instead of being mam- domesticate them
+
+--- Regal Stag ---
+Didex are giant two-headed birds, bright orange in color. They This creature is on the highest rung of the social ladder as far as have large beaks with which to attack (and can attack as two deer go.
+
+--- Sera Pren ---
+BJ wasps. They will live with normal wasps, and are never encoun- circulatory poison; each head can attack and operate as an tered on their own.
+
+--- Serpentus ---
+J-2 young; reduce critical severity by 1 level. The carnivorous slug has a huge tooth-filled maw and seeks out Th.is elegant creature has all of the equine features of a warhorse, large prey like deer
+
+--- Swamp Octopus ---
+Large creature critical table. These Large creatures are amphibians, dwelling in marshes, These large beasts appear, for all practical purposes, like their jungles, and places where water sources are 
+
+--- Tentmorse ---
+SPINED SLUG A round body with ten tentacles radiating outwards makes up a tentmorse, They are green, with a large red mouth and two white eyes. They dwell in forests, us.ing their tentacles to maneuve
+
+--- Trivren ---
+~7:/t'-· '\~'. Trivren are three-winged birds.
+
+--- War Snail ---
+Once wild creatures, war snails have become totally domesti- cated, and live only in captivity now. They look somewhat like normal-sized snails, but have extra-large shells.
+
+--- Dark Drake - Young ---
+length 200'; cone base 40' as per lightning bolt with cold These dragons are thought to either be the result of cross- criticals - see Necromancer list, "Dark Law", RMC II) breeding many dragon types 
+
+--- Dark Drake - Mature ---
+length 200'; cone base 40' as per lightning bolt with cold These dragons are thought to either be the result of cross- criticals - see Necromancer list, "Dark Law", RMC II) breeding many dragon types 
+
+--- Dark Drake - Old ---
+length 200'; cone base 40' as per lightning bolt with cold These dragons are thought to either be the result of cross- criticals - see Necromancer list, "Dark Law", RMC II) breeding many dragon types 
+
+--- Behemoth ---
+It is like a behemoth in nature, but is much base 400') 50'-120' body; 90'-200' wingspan; use Super Large bigger. The beating of this creature's wings alone will create winds creature critical table.
+
+--- Dragonette ---
+These tiny drakes are very small to almost medium-sized- but can be dangerous no matter what, for they still wield their larger bretheren's breath weapon (although it is not as potent). Dragon- ettes 
+
+--- Lake Worm ---
+This eyeless, wonn-like monster with a sphincter mouth full of teeth can detect all movement in the water within 200' of it. It dwells in lakes, pools, ocean shallows and underground water sources (it
+
+--- Battlepede ---
+A blacksnake with necromancer base lists will have circulatory (var. B ) poison; eyestalksfire shock bolts (Sbolt; a lair filled with undead, one with evil magician lists will consort JOO' range lx/2 
+
+--- Blacksnake ---
+C) bite; casts spells (3xlvl PP); base 25'; 4th Level (var. C) special poison: RR failure= mild, 1-6 eggs; use Large creature critical table.
+
+--- Bounder ---
+chitinous outer layer. They appear to be giant centipedes, but in These creatures are very much like frog-wolves.
+
+--- Crecadinum ---
+These creatures are in some ways insectoid, yet are actually reptilian. Their body is heavily armored and is like that of a giant armadillo.
+
+--- Darkhunter ---
+Darkbunters are wolves with eagle's beads. Some also have eagle's wings.
+
+--- Dracasus ---
+200 lbs.; riding bonus +JO;
+
+--- Feliss ---
+If the creature it is looking severity by I level. at fails its RR, it will be charmed and will believe that the klugala Feliss (fee-lis, singular and plural) are found in all butthe coldest is not a 
+
+--- Garthis ---
+Have a- 30' wingspan; 1 foal; reduce critical severity by l level. poison bite 5th level nerve poison (var.
+
+--- Horribar ---
+(U),(1)-7; 1 '-2' diameter body. These bizarre creatures fly by using a magical gland within their bodies.
+
+--- Ice Spider ---
+B) circulato,y poison; Immune to cold attacks, heat based attacks do double damage. This giant arachnid dwells in the icy glacial regions of the world.
+
+--- Klugala ---
+This strange composite creature has a hairy goat 's head perched atop its snake-like body. It can attack by butting with its horns or constricting with its body, but before it does, it will sway back 
+
+--- Mercat ---
+size; touch causes cold crits; only magic weapons can harm These amphibious creatures are lions, tigers or panthers from them; fire attacks cause no harm, cold attacks inflict double the midsection up
+
+--- Mergryph ---
+rituals can shorten these durations); snakes have a 5th level These creatures are at home in the air, on land, or in the sea. A circulatory poison (var.£); roar paralyzes foes with/ear for 1 lion's bo
+
+--- Mistraven ---
+R,DHP; 2-4 eggs; l' long, 2' wingspan; kill. They have insectoid wings and bodies, and multifaceted eyes can change to mistform at will.
+
+--- Multi-spider ---
+G) or a 6th.'Jevel reduction
+
+--- Nasti ---
+5' long, 2'-3' wingspan; excellent etc.) greatly fear mist monsters and their mending hunger for heat. nightvision.
+
+--- Panthershark ---
+G); 4'-6' across; reduce critical severity by one land as per the "lofty Bridge" (Ess.) spells, "leaping" and level. "landing"; 1-3 young; reduce critical severity by 1 level.
+
+--- Quetzelquatl ---
+C); gaze charms any poison (var. A); 1 '-2' across, 3'-4' wingspan; 50-60 eggs.
+
+--- Sky Shark ---
+Neither variety spins webs. critical severity by 1 level.
+
+--- Sky Manta ---
+(A),(T)-5; carrying capacity 300 lbs; the pair of thraxx usually fight and one eats the other. If the female riding bonus -10; l 7'-20' long; 22'-25' wide; 40% have a tail wins, the young are born 10 
+
+--- Sky Whale ---
+10% have a single spiraling horn like a na,whale, giving them
+
+--- Tracha ---
+(T)-9; 6'-7' long, 14'-19'wingspan; spits acid (victim makes RR vs 5th level attack or takes a B acid ·critical - see RMC Ill, 6' range) , bite inflicts extra acid crit, SKY MANTA casts spells, 3xlvl 
+
+--- Viperhawk ---
+eggs; bite injects a 4th level muscle poison (var. B).
+
+--- Dragon Construct ---
+; reduce critical severity by intelligent; immune to fire; carrying capacity 3000 lbs; riding 2 levels. • bonus -5; 60'-70' body; J00'-110' wingspan; use Super Large These constructs are similar to th
+
+--- Falcon Construct ---
+They differ in the fineness of their construc- (light cross bow; lx!rnd; unusable in melee); 2'-2.5' long. tion.
+
+--- Horse Construct ---
+Some have been given magically added offensive carrying capacity 800 lbs; riding bonus +30; charging attacks capabilities such as lightning bolts, gaseous breath, etc. Additional -90LBa!l 00HTr« [slas
+
+--- Minotaur Construct ---
+Often these constructs have red, green or blue 7'-8'; reduce c~itical severity by two levels. glowing eyes.
+
+--- Snake Construct ---
+It is useful accompanied by 5th level nerve poison (var. C); built-in dart as a guardian of a valuable treasure or as the mount of a very thrower (light cross bow; lx!rnd); 3'-5' long; reduce critical
+
+--- Spider Construct ---
+e., aerial reconnaissance). From a distance, they are accompanied by 6th lvl muscle poison (var.
+
+--- Wasp Construct - Minor ---
+lightning bolt (LBolt; ix/min 200' range)- minor: 5'-6' Horse constructs are usually made from black iron, sometimes wingspan; reduce crit severity by I level - major: carrying having silver inlaid in
+
+--- Wasp Construct - Major ---
+lightning bolt (LBolt; ix/min 200' range)- minor: 5'-6' Horse constructs are usually made from black iron, sometimes wingspan; reduce crit severity by I level - major: carrying having silver inlaid in
+
+--- Dark Elemental Savant ---
+), and any other spell dealing wuh darkness, 4xlvl PP; 6'-7'; use Large creature critical table.
+
+--- Ice Elemental Savant ---
+Huge, metal bull- substitute ice for crystals) and any other spells dealing with men, these constructs often bave sword blades, hooks or axe-heads cold and ice, 4xlvl PP; 6'-7'; use Large creature cri
+
+--- Light Elemental Savant ---
+Their eyes glow yellow, waiting to unleash electric of light; use of "Light law" (Magician base), "Brilliance" energy on their foes. (open ment.), "Light's Way" (open ohan.), "Brilliance Magic" Perhap
+
+--- Water Elemental Savant ---
+Collectively, they are base), "Liquid Destruction" (Sorcerer base), "liquid Altera- also known as iron serpents and are normally used to guard tion" (Mystic base), and any other spell dealing with liq
+
+--- Iron Bull ---
+they deliver hits (wood -30, bone -JO); 6'-12' long; use Super
+
+--- Mithril Unicorn ---
+-10); 7'-8'; use Super Large creature critical table.
+
+--- Steel Sphinx ---
+rge creature critical table. Super Large creature critical table.
+
+--- Stone Wyvern ---
+each are quick-thinking and quick-tempered. Dark savants have deep time they deliver hits (wood -5); 30% are winged; 20'-40' body, voices and eyes like the void of space; they have dark, gloomy 25'-50
+
+--- Crystal Golem ---
+time they deliver hits (wood -30, bone -10); all energy attacks
+
+--- Demon Golem ---
+from, see other golems of same type); casts evil magician spells, 3xlvl PP; 5'-8'. ~-=--~:::=;:-:--;~~~-- FALCON CONSTRUCT, lcE ELEMENTAL SERVANT.
+
+--- Mite Golem ---
+They are made from a single diamond- a large diamond from , see other go/ems of same type); J'-4'. which must be magically created.
+
+--- Wood Golem ---
+critical severity by two levels. A demon golem can be made from any material that any other A collosus is a giant golem made of iron (other materials are golem is made from.
+
+--- Eye Entity - Minor ---
+) 3xlday, and rituals. Viles were originally made by the rhodintor (see Entities all "Evil Eye" (Warlock base list) spells with gaze, 1 spell!
+
+--- Eye Entity - Lesser ---
+) 3xlday, and rituals. Viles were originally made by the rhodintor (see Entities all "Evil Eye" (Warlock base list) spells with gaze, 1 spell!
+
+--- Eye Entity - Greater ---
+) 3xlday, and rituals. Viles were originally made by the rhodintor (see Entities all "Evil Eye" (Warlock base list) spells with gaze, 1 spell!
+
+--- Eye Entity - Major ---
+) 3xlday, and rituals. Viles were originally made by the rhodintor (see Entities all "Evil Eye" (Warlock base list) spells with gaze, 1 spell!
+
+--- Solaar ---
+. 25H 80, Run/15 MF/VF 200.H 12(50)* lS0LBa(EHeat]/Special M/II@ J - J Domin(Hl) Vile !OD 120 Dash/25 BF/BF MILA@ 200H 4(150) 200)-ICl/lS0LBi !-10 - F Berserk(LO) • - Special.
+
+--- Vile ---
+Viles are either all white or all black. They are humanoids with long hair growing only from the back of their heads.
+
+--- Acarva ---
+It also has long claws to fight with but cruel; bite drains 1-3 Con pts or one life essence level ( see as well. It is encountered on this plane in the places demons RMC ll); 6'-7' tall; lessen crit s
+
+--- Acid Demon ---
+It is completely amphibious, with no secretion; average intelligence; touch causes extra acid crit restrictions as to how long it can be in or out of the water. (RMC II!
+
+--- Corvox ---
+This creature wanders abroad, intelligent but cruel; spells (2xlvl PP); 5'-7' tall; lessen crit without having a permanent lair, looking for prey. severity by I level.
+
+--- Grumoz ---
+It uses these tall; lessen crit severity by I level. tentacles to grapple foes, as well as for casting spells; it knows all Huntarr: (-)-EK§#-7; Type IV; lion-headed humanoid; Evil Mentalist base list
+
+--- Ice Demon ---
+Other entities have been in snow and ice; intelligent but cruel; spells (2xlvl PP); touch provided here to provide diversity. Most come from continuums inflicts extra cold crit; immune to cold; 6'-7' 
+
+--- Plague Demon ---
+gence; touch causes disease; 8'-9' tall; use Large creature crit Note that entities from other planes, like elementals and golems, table. are not effected by poisons or spells meant to hann or effect 
+
+--- Shade Demon ---
+creature crit table.
+
+--- Smoke Demon ---
+1 DEMONS (I time/hour for JO min); intelligent but cruel; 5'-6' tall; reduce A GM has many options when it comes to adding demons to !us crit severity by I level. campaign.
+
+--- Storm Demon ---
+They may also be the souls of the evil dead, twisted form; highly intelligerrt but cruel; spells (4xlvl PP); immune to and malformed into creatures of hatred and spite. Or they can elements; 5'-6' ial
+
+--- Thorned Demon ---
+es; low intelligence; throws spines (lcb 1-4/rnd); in this book require a little work. If they are simply creatures native causes 1-4 "A" puncture crits when it throws body on foe (bash to a plane ali
+
+--- Tlaque ---
+gence; screeching sruns foes for 1 rnd!I 0% RR failure; 6'-7' A GM should work out which demons exist in his campaign, and tall; reduce crit severity by 1 level. which demons come from where.
+
+--- Demon Drake ---
+They can cast spells from the bolt range 400'; cone length 200'; cone base 75'; causes cold "Weather Ways" (open chan.) list, and any other spell having to do and heat crits); casts spells (4xlvl PP);
+
+--- Demonic Protoplasm ---
+"Each spells; can create other demons; use Large creature critical head also breathes a certain type of breath weapon-fire, water or table. ice in bolt or cone forrn (treat a water cones as a cold bal
+
+--- Demon Scourge ---
+fear; 6'-8' tall; use large crit addition to attack (3xlday, if victim fails RR. portion of body hit table.
+
+--- Eraditor ---
+Cleric), and "Darkness" (Evil Magician). Resembling gigantic With three eyeless heads on long snake-like necks and three flies, they are horrible to behold and disgusting to smell muscular legs all sp
+
+--- Terrorite ---
+Note however that they will usual! y attempt (blood drain); spells (3xlvl PP); immtlne to heat and cold; to flee if a fight goes against them.
+
+--- Thonis ---
+e., a critical table. puncture or slash crit, anyone within 5' must make an RR or A thonis is an extremely powerful demon that rarely leaves its take an "A" acid critical); 5.5'-6' tall; reduce crit s
+
+--- Maleskari ---
+fear; spells (6xlvl PP); critical table. strength yields x3 damage; touch kills 3xlday (RR); all within 10' must make an RR or receive a "Major Pain" spell; magic These powerful demons are lieutenants
+
+--- Sith ---
+Jear; all with so· receive a ..C" cold dieties can use "Demonic Gate" spells to summon champions critical; all within 20' must make an RR or lose 112 PP and hits; instead, if it would be appropriate t
+
+--- Yrrigav ---
+E) nerve poison; all within 100' must make an RR vs. fear; strength yields x3 damage; spells (6xlvl PP); immune to cold and heat; 10' tall; use Super La.rge creature critical table.
+
+--- Absorber ---
+Coming through the newly made hole 1s a large crit); slain victims are "absorbed" in one round. If enough .
+
+--- Blacar ---
+magical weapons needed to harm; 1 '-1 .5' diameter; reduce Thought to be related to earth elementals, crystyls are actually critical severity by 1 level. large crystal fonnations, having no uniform st
+
+--- Clostoph ---
+C) being treated as "enemies". All evil beings struck by high cham- nerve poison; magical weapon neeaed to harm; acidic saliva pions are inflicted with holy fire doing both additional holy and adds an
+
+--- Dictic ---
+These insects are from some other plane, obviously where the natural conditions are much harsher than those here. They are unintelligent as are the insects we are familiar with, but they will eat anyt
+
+--- Discord ---
+They are intelligent and icebolt (!Bolt; 1xlrnd; JOO' range; no cold crits); can project powerful in their borne dimension, but in ours their power and very loud sounds in a 20' R, stunning as a "Mind
+
+--- Dreadwing ---
+These horrible beasts are either huge, pitch black or blood-red pterodactyl-like creatures, although they are capable of full flight and not just gliding. They are sometimes called demon mounts, altho
+
+--- Flame Beast ---
+These alien beasts resemble giant rodents enshrouded in flame. The plane they are native to is evidently a fiery one, although there is no known connection between flame beasts andfi.re elementals.
+
+--- Gem Entity ---
+type of djctic. Theory has it that they simply wander into this world Gem entities come from a universe very alien to ours.
+
+--- Hoard ---
+It can also eliminate all as a ''Stunning" spell if RMC lll is not used); ignores slash and sounds within 20' of its body. Note ihat itcan only use these powers puncture crits; 12'; use Large creature
+
+--- Lithaba ---
+Lithaba, also known as Lightning Balls, resemble light servants as they are small balls of intense light, composed entirely of
+
+--- Mrem ---
+All nycorac know the concussion hits from all within 10' R ; 4'-5' in diameter. "LightLaw" list and will use these spells to attack their prey.
+
+--- Nightwing ---
+A board colony can divide itself in half, each half being essence level (see RMC ll); can become non-solid for 10 able to act independently and being half the size of the original with minutes per day
+
+--- Nycorac ---
+When they attack foes, or when they are struck in in all mental stats; non-solid form; invisible at all times; magic combat, they ctischarge large amounts ofenergy. They "die" when weapons needed to h
+
+--- Skeletal Tyrannosaurus ---
+all within JOO' must make an RR vs. fear; all within JO' lose 2 This undead creature is extreme!
+
+--- Spectral Tyrannosaurus ---
+No one knows how the first vampiric drake came to be - within sight must make an RR vs. fear ; all within 20' take "B" whether there was once a vampire powerful enough to slay a cold criticals, touch 
+
+--- Vampiric Drake ---
+Note that not all undead monsters will necessarily cone length 100'; cone base 30': bolt range 200' treat as be as powerful as these examples. coldbreath if RMC ll/ is not used); spells (3xlvl PP); do
+
+--- Vampiric Gorgon ---
+(duration depends on RR failure: mild, 1 -JOO minutes, moder- These spirits°'of the dead were once powerful dinosaurs, but now ate, 2-20 hours, serious, 1 -JOO days, extreme, 1-100 years); roam the ea
+
+--- Vampiric Unicorn ---
+fear at -25; can take whatever frightening form it hits; casts spells (3xlvl PP); touch drains 2-4 Con pts; horn desires; non-solid form; magic weapons needed to harm; attack inflicts additional cold 
+
+--- Vampiric Werewolf ---
+They often protect the casts Mentalist base spells (2xlvl PP); touch drains 1-3 Con living trees from those who would do them harm, or sometimes pts; wounds have a 10% chance of infecting the victim w
+
+--- Bloodbeast - Lesser ---
+This undead entity is created when a victim dies a remarkably bloody death. It appears as an animate corpse that is completely covered in fresh blood.
+
+--- Bloodbeast - Greater ---
+This undead entity is created when a victim dies a remarkably bloody death. It appears as an animate corpse that is completely covered in fresh blood.
+
+--- Bone Golem ---
+lrnd JO' R touch drains 2-5 Con pts; strength yields x2 damage; use Large (RR); 6'-9' tall; reduce critical severity by 2 levels. creature critical table.
+
+--- Deathwoode ---
+wrge creature critical table. Th.e spirits of slain animate trees, these beings are vengeful and
+
+--- Desert Spirit ---
+Minor dirges know the lists to causes sleep to all who fail an RR within JO' R; ignores slash 5th level, lesser to l 0th level, greater to 20th level, and major dirges andpuncture crits; reduce critic
+
+--- Dirge - Minor ---
+30x/day; Bolt range 300'; Cone length 150'; Cone base form -minor: drain 1 Con pt!md 10' Rafter 3 rounds: reduce 60', inflicts cold crits); touch drains 3 Con pts.; spells (3xlvl critical severity by 
+
+--- Dirge - Lesser ---
+30x/day; Bolt range 300'; Cone length 150'; Cone base form -minor: drain 1 Con pt!md 10' Rafter 3 rounds: reduce 60', inflicts cold crits); touch drains 3 Con pts.; spells (3xlvl critical severity by 
+
+--- Dirge - Greater ---
+30x/day; Bolt range 300'; Cone length 150'; Cone base form -minor: drain 1 Con pt!md 10' Rafter 3 rounds: reduce 60', inflicts cold crits); touch drains 3 Con pts.; spells (3xlvl critical severity by 
+
+--- Dirge - Major ---
+30x/day; Bolt range 300'; Cone length 150'; Cone base form -minor: drain 1 Con pt!md 10' Rafter 3 rounds: reduce 60', inflicts cold crits); touch drains 3 Con pts.; spells (3xlvl critical severity by 
+
+--- Disembodied Head ---
+fear; bite drains 1-4 pts. ofCon and 10-20 appearing as a fluid sand sculpture.
+
+--- Giant Skull ---
+The Monks that do so creature critical table. become an e xtreme!y rare undead type known as the monastic lich.
+
+--- Gloombird ---
+5'-3' long; reduce critical severity by] level. depression crits (see RMC Ill); 1.5'-2 .5' wingspan; reduce This horrible creature is the undead resuit ofa man who had died critical severity by 1 leve
+
+--- Ghoulking ---
+infected; reduce critical severity by two levels. These carrion-eating, winged undead fly from their caves in the Extremely powerful ghouls, these undead beings will usually rugged hills to dine on th
+
+--- Iron Skeleton ---
+These monsters are normal animate skeletons that have been coated with molten iron. The iron was magically sealed to their bones so that every part is coated in a protective casing.
+
+--- Living Ghoul ---
+These beings are not really ''undead", but rather are the depraved humans who have decided to give up life in normal society and live in cemeteries, to feed upon the corpses of the newly dead. Their d
+
+--- Monastic Lich ---
+delivers a "C" cold critical; touch drains 5 Con pts; Monk base spells (4xlvl PP); use Large creature critical table.
+
+--- Necros ---
+F) muscle, nerve, or circulatmy poison (equal chance for each);
+
+--- Phantom Steed ---
+Major within 75' (RR); breathes vapors that act as a cold bolt (/Bolt; skullbats have the skulls of large beasts and beings (giants, small 15' range; all criticals are cold); carrying capacity 250 lbs
+
+--- Roaming Hand ---
+It dwells in cemeteries and ruins, fonned from the foul no,t let go of a grappled victim until he dies or the hand is stench ofdeath and the rot ofcorpses. Many undead spirits animate destroyed; reduc
+
+--- Rotting Corpse ---
+A (RR); only magic weapons will harm; regenerates 8 hits/round; skullpack is a group a 4-16 skulls that can magically fly. They can reduce critical severity by 1 level.
+
+--- Shadow Assassin - Lesser ---
+The spirits of dead assassins and nightblades, these entities are often conjured up by foul necromancers and dark priests or magi to slay their enemies. These beings are shadowy in form, some- times h
+
+--- Shadow Assassin - Greater ---
+The spirits of dead assassins and nightblades, these entities are often conjured up by foul necromancers and dark priests or magi to slay their enemies. These beings are shadowy in form, some- times h
+
+--- Shadow Assassin - Major ---
+The spirits of dead assassins and nightblades, these entities are often conjured up by foul necromancers and dark priests or magi to slay their enemies. These beings are shadowy in form, some- times h
+
+--- Skullbeast ---
+The stead's 5-11 skulls that can all bite, up to 3 per opponent; bites act as a breath is composed of foul hellish vapors which chill the living, "Touch of Disruption" (Sorcerer base spell); 8'-9' tal
+
+--- Skullpack ---
+When it encounters )jving beings, it grabs work independently, but all remain a unit; bite drains 2 Con one, disrupting his flesh with its touch, and will not let go until its pts; each skull can fire
+
+--- Spiderskull ---
+C) veritable undead annies at its command. It knows all the Evil conversion poison that turns its victims to spiderskulls 1-3 days Cleric base, Necromancer base, and Evil Mentalist base spell lists.
+
+--- Undead Mass ---
+But rarely, it lingers long enough for a Necromancer to (RR); touch delivers additional cold critical; produces as many attempt to cast a spell which creates an undead. Though it only limbs as needed,
+
+--- Veyrr ---
+fear; breathes nether (NBr; cone length 300'; cone base "Control Undead" spells; commands any other sort of Class 100'; bolt range 500' use coldbreath if RMC fll is not used); 1-V u.ndead; all within 
+
+--- Carac'rin ---
+They came from dark Absolution" (Evil Cleric); use Large creature critical table. worlds, far away in the deep reaches of space.
+
+--- Cresh'urim ---
+Most utilize the principles of arcane magic as rtress critical; stinger injects a 15th level (var. G ) conversion well as a form of mental power that is totally different than poison; spells (Jxlvl PP
+
+--- Dark Rythsisth ---
+sight gives all viewing a "B" shock critical; spells (5xlvl PP); The material plane extension of a dark rythsisth is so foul that all solid matter within JO' must make an RR or have its form anything 
+
+--- Glonn ---
+This true form Bridge" (closed essence) and "Nether law" (RMC Ill); appears to be a huge mass of small grayish worms that writhe and humans viewing true form lose 1-10 Reasoning pts; use Super move. T
+
+--- Pred Yrric ---
+It can wield a weapon in each hand, though it can only sight gives "A" shock criticals; continuous "Mirrormind" make up to four attacks against a single opponent. Despite the (closed ment.
+
+--- Rancor ---
+There is a disease among the natharl'nacna that is akin to lycanthropy among humans. It causes any of these beings to become a rancor, although a rancor can assume its old form and all its abilities a
+
+--- Wren'tac ---
+Very often they wear armor (AT 17) Mastery" (Necromancer base) with 3xlvl PP; 6' tall; use Large that is enruned like their weapons, and made from the same creature critical table. material.
+
+--- Astorith ---
+E) It attacks prey by grappling with these tentacles, which give an muscle poison; bite drains 1-3 (temp) Strength pts; 3.5'-4' additional electric critical due to the powerful charge that runs wingsp
+
+--- Brain Z'him ---
+mental stat/round (temp and pot); 3'-4' long; reduce critical One of the least powerful brood members, a n'abis is a two severity by 1 level. legged creature with a small roundish body that has two la
+
+--- Kraken-Drake ---
+Kraken--drakes are huge unintelligent beasts resembling giant squids with dragon necks and heads where the squid's eyes would be. The entire beast is black in color.
+
+--- Mric'atic ---
+This beastis a sickly grey-green color, although some are black. It has smooth, mannish skin covering its quadrupedal body.
+
+--- Octobat ---
+C) reduction Cthugans: (-)-XU-8; tentacle's touch acts as a "Hold True" poison; 3' long, 4' wingspan; reduce critical severity by 1 level. spell (closed ess.
+
+--- Pic'tarin ---
+E) reduction poison; JO' long (including neck); use Large creature critical SLOG BEAST table. This creature is a giant spider with a long serpent's neck and head.
+
+--- Runi'cruptos ---
+C) paralysis poison (paralyzed 1 rnd/5%/ailure); 3' long. Strictly a subterranean creature, a runi 'cruptos is a small-bodied creature with a snake tail ending in a powerful stinger that injects paral
+
+--- Slog Beast ---
+al acid crits, JOO' range); acidic saliva gives extra acid crit with all bites; 4' long; use Large creature critical table. Slog beasts are large grey-green or blackish-green frog-like beings with two
+
+--- Fungiss ---
+Then they enter the victim's body through its puncture criticals; touch is toxic as per a 10th level (var . A) mouth and take control of all body actions (including speech) by reduction poison plus an
+
+--- Jirlon ---
+F) poison, can be substituted for the acid. All three heads bite, the largest RR failure: mild: paralyzed for 1-10 rounds; moderate: being especially fearsome because of its size (it bas a 3' wide par
+
+--- Avinarc ---
+that link is, no one knows for sure. Once a proud and noble race that once had entire lands to Scrugs are another strain of lesser ores.
+
+--- Cherubim ---
+They generally avoid civilized areas where professional limitations; highly resistant to extremes of natural they would be attacked on sight. The cherubim are their life-long heat and cold; death occu
+
+--- Dragonians ---
+A Minoth will often use his 30xlday; as a "Fire Bolt" with 100' range); 6'-8' tall, 12'-18' mentalist powers to take over the mind of a larger creature and wingspan; no suggested professional limitati
+
+--- Plynos ---
+limitations; average lifespan: 90 years; must totally immerse A regal buck's or lithe doe's head graces a human's body once per day in saltwater, -JO to all activities for each missed making this bein
+
+--- Quishad ---
+They are cruel and merciless to other races, and have the profession: no channeling users; even non-spellcasters kn.ow hunting instincts and senses of a shark. They often use sharks as spell lists 30%
+
+--- Sibbicai ---
+: 70 years. often times in the ruins left by their fonner masters.
+
+--- Scrav ---
+• Found in many areas but prefening dark marshes and deep jungles most, these insectoids make their lairs from a web-like secretion that they produce. They have four small.legs which they use for shor
+
+--- Urloc ---
+Such humans who have survived lifespan: immortal. their teachings are called wizard-priests.
+
+--- Zrax ---
+They most often dwell on the coasts to many poisons and diseases; no suggested professional of mysterious oceans in huge fortress cities. Their magic has limitations: average lifespan: 5 years.
+

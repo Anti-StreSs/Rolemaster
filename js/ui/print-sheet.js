@@ -1,0 +1,507 @@
+// Print Sheet — generates printable character sheet HTML
+// Reproduces CPR093 layout: identity, stats, combat, skills with DM boxes
+
+import { getAllClasses, getClassName, getRealmLabel } from '../engine/classes.js';
+import { getStatBonus, STAT_COUNT } from '../engine/stats.js';
+import { getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, calculateDB, getDeathThreshold } from '../engine/character.js';
+import { getComputedSkills } from '../engine/skill-compute.js';
+
+const STAT_NAMES_FR = ['Constitution', 'Agilité', 'Auto-discipline', 'Mémoire', 'Raisonnement', 'Force', 'Rapidité', 'Présence', 'Empathie', 'Intuition'];
+const STAT_ABBREVS = ['Co', 'Ag', 'AD', 'Mé', 'Ra', 'Fo', 'Rp', 'Pr', 'Em', 'In'];
+const DEV_STATS = [0, 1, 2, 3, 4];
+
+function esc(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+/**
+ * Filter computed skills for print based on config.skillFilter.
+ * Strips isCategory rows (print renderer detects categories via sk.categoryName).
+ * Removes parent skill rows with 0 ranks/total so they don't appear as empty rows.
+ */
+function filterSkillsForPrint(character, config) {
+  const all = getComputedSkills(character, config.lang || 'fr');
+  if (config.blankSheet) return all.filter(s => !s.isCategory);
+  return all.filter(s => {
+    if (s.isCategory) return false; // handled by categoryName in generateSkillTable
+    switch (config.skillFilter) {
+      case 'developed':   return s.totalRanks > 0;
+      case 'positive':    return s.total > 0;
+      case 'both':        return s.totalRanks > 0 || s.total > 0;
+      case 'all':         return true;
+      case 'highlighted': return !!s.highlight;
+      default:            return s.totalRanks > 0 || s.total > 0;
+    }
+  });
+}
+
+/**
+ * Generate stats block HTML.
+ */
+function generateStatsBlock(character, config) {
+  const B = config && config.blankSheet;
+  const bl = (w) => `<span style="display:inline-block;min-width:${w}mm;border-bottom:0.5pt solid #999">&nbsp;</span>`;
+  let rows = '';
+  for (let i = 0; i < STAT_COUNT; i++) {
+    const temp = character.stats[i];
+    const pot = character.potentials[i] || temp;
+    const dev = DEV_STATS.includes(i) ? (getStatDev(character, i) !== null ? getStatDev(character, i).toFixed(1) : '—') : '';
+    const normBonus = getStatBonus(temp);
+    const raceBonus = character.raceBonuses[i] || 0;
+    const specBonus = character.specialBonuses[i] || 0;
+    const total = getTotalStatBonus(character, i);
+
+    rows += `<tr>
+      <td class="ps-stat-name"><b>${STAT_NAMES_FR[i]}</b></td>
+      <td class="tc">${B ? bl(5) : temp}</td>
+      <td class="tc">${B ? bl(5) : pot}</td>
+      <td class="tc">${B ? '' : dev}</td>
+      <td class="tc ps-bonus">${B ? bl(5) : (normBonus >= 0 ? '+' + normBonus : normBonus)}</td>
+      <td class="tc">${B ? '' : (raceBonus ? (raceBonus >= 0 ? '+' + raceBonus : raceBonus) : '')}</td>
+      <td class="tc">${B ? '' : (specBonus ? (specBonus >= 0 ? '+' + specBonus : specBonus) : '')}</td>
+      <td class="tc ps-bonus-total"><b>${B ? bl(6) : (total >= 0 ? '+' + total : total)}</b></td>
+    </tr>`;
+  }
+
+  return `
+    <table class="ps-stats-table">
+      <thead>
+        <tr>
+          <th rowspan="2">CARAC</th>
+          <th colspan="3">Points</th>
+          <th colspan="4">Bonus</th>
+        </tr>
+        <tr>
+          <th>Temp</th><th>Pot</th><th>Dév</th>
+          <th>Norm</th><th>Race</th><th>Spéc</th><th>Total</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `;
+}
+
+/**
+ * Generate skill table HTML with DM boxes.
+ */
+function generateSkillTable(skills, config) {
+  let rows = '';
+  let currentCategory = null;
+  const colSpan = 8 + (config.showCosts ? 1 : 0) + (config.showSimil ? 1 : 0);
+
+  const B = config.blankSheet;
+  const blTotal = `<span style="display:inline-block;min-width:8mm;border-bottom:0.5pt solid #999">&nbsp;</span>`;
+
+  for (const sk of skills) {
+    if (sk.categoryName && sk.categoryName !== currentCategory) {
+      currentCategory = sk.categoryName;
+      rows += `<tr class="ps-cat-row"><td colspan="${colSpan}"><b>${currentCategory}</b></td></tr>`;
+    }
+
+    let dmBoxes;
+    if (B) {
+      dmBoxes = '□'.repeat(20);
+    } else {
+      const totalRanks = sk.totalRanks;
+      const displayBoxes = Math.min(Math.max(totalRanks + 2, 10), 20);
+      dmBoxes = '';
+      for (let b = 0; b < displayBoxes; b++) dmBoxes += b < totalRanks ? '■' : '□';
+      if (totalRanks > 0) dmBoxes += `<span style="font-size:5pt;color:#666;margin-left:1pt">${totalRanks}</span>`;
+    }
+
+    const hlClass = sk.highlight ? `ps-hl-${sk.highlight}` : '';
+    const textClass = sk.textColor ? `ps-text-${sk.textColor}` : '';
+    const boldClass = sk.bold ? 'ps-bold' : '';
+
+    rows += `<tr class="${hlClass} ${textClass} ${boldClass}">
+      <td class="ps-skill-name">${esc(sk.name)}${config.showStats && sk.statLabel ? ` <span class="ps-stat-label">(${sk.statLabel})</span>` : ''}</td>
+      ${config.showCosts ? `<td class="tc ps-cost">${B ? '' : sk.costStr}</td>` : ''}
+      <td class="ps-dm-boxes">${dmBoxes}</td>
+      <td class="tc ps-bonus">${B ? '' : (sk.rankBonus >= 0 ? '+' + sk.rankBonus : sk.rankBonus)}</td>
+      <td class="tc ps-bonus">${B ? '' : (sk.statBonus >= 0 ? '+' + sk.statBonus : sk.statBonus)}</td>
+      <td class="tc">${B ? '' : (sk.lvlBonus > 0 ? '+' + sk.lvlBonus : '')}</td>
+      <td class="tc">${B ? '' : (sk.miscBonus || '') + (sk.armorPenalty < 0 ? `<span style="color:#c05010;font-size:5pt;margin-left:1pt">⛨${sk.armorPenalty}</span>` : '')}</td>
+      ${config.showSimil ? `<td class="tc">${B ? '' : (sk.similRanks || '')}</td>` : ''}
+      <td class="tc ps-bonus-total"><b>${B ? blTotal : (sk.total >= 0 ? '+' + sk.total : sk.total)}</b></td>
+    </tr>`;
+  }
+
+  return `
+    <table class="ps-skills-table">
+      <thead>
+        <tr>
+          <th>Compétence</th>
+          ${config.showCosts ? '<th class="tc">Coût</th>' : ''}
+          <th>DM</th>
+          <th class="tc">Rang</th>
+          <th class="tc">Carac</th>
+          <th class="tc">Niv</th>
+          <th class="tc">Div</th>
+          ${config.showSimil ? '<th class="tc">Simil</th>' : ''}
+          <th class="tc">Total</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `;
+}
+
+/**
+ * Generate page 1: header + stats + combat info + first skills.
+ */
+function generatePage1(character, config, lang) {
+  const B = config.blankSheet;
+  const bl = (w) => `<span style="display:inline-block;min-width:${w}mm;border-bottom:0.5pt solid #999">&nbsp;</span>`;
+  const v = (val, w) => B ? bl(w || 25) : esc(String(val || ''));
+
+  const cls = character.classIndex >= 0 ? getAllClasses()[character.classIndex] : null;
+  const className = cls ? getClassName(cls, lang) : '';
+  const realmLabel = cls ? getRealmLabel(cls, lang) : '';
+  const hp = calcHitPoints(character);
+  const pp = calcPowerPoints(character);
+
+  const skills = filterSkillsForPrint(character, config);
+  const page1Skills = skills.slice(0, config.skillsPerPage1 || 43);
+
+  const db = calculateDB(character);
+  const portrait = character.portraitUrl || '';
+
+  return `
+    <div class="ps-header">
+      <h1 class="ps-title">Feuille de Personnage</h1>
+    </div>
+
+    <div class="ps-top-grid">
+      <div class="ps-identity">
+        <div class="ps-field"><b>Nom:</b> ${v(character.name, 40)}</div>
+        <div class="ps-field"><b>Race:</b> ${v(character.raceName, 30)}</div>
+        <div class="ps-field"><b>Taille:</b> ${v(character.height, 12)} <b>Cheveux:</b> ${v(character.hair, 15)}</div>
+        <div class="ps-field"><b>Poids:</b> ${v(character.weight, 12)} <b>Yeux:</b> ${v(character.eyes, 15)}</div>
+        <div class="ps-field"><b>Age:</b> ${v(character.age, 10)} <b>Sexe:</b> ${v(character.sex, 12)}</div>
+        <div class="ps-field"><b>Apparence:</b> ${v(character.appearance, 35)}</div>
+        <div class="ps-field"><b>Comportement:</b> ${v(character.behavior, 35)}</div>
+        <div class="ps-field"><b>Profession:</b> ${v(className, 30)}</div>
+        <div class="ps-field"><b>Niveau:</b> ${v(character.level, 10)}</div>
+        <div class="ps-field"><b>Pts d'Exp:</b> ${v(character.xp, 15)}</div>
+      </div>
+
+      <div class="ps-languages">
+        <table class="ps-table-mini">
+          <thead><tr><th>LANGAGE</th><th>P</th><th>É</th></tr></thead>
+          <tbody>
+            ${B
+              ? Array.from({length: 5}, (_, i) => `<tr><td>${i + 1} ${bl(22)}</td><td class="tc">${bl(4)}</td><td class="tc">${bl(4)}</td></tr>`).join('')
+              : (character.languages || []).map((l, i) =>
+                  `<tr><td>${i + 1} ${esc(l.name)}</td><td class="tc">${l.spoken || 0}</td><td class="tc">${l.written || 0}</td></tr>`
+                ).join('')
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ps-portrait-zone" style="${portrait && config.portraitFit ? 'padding:0;overflow:hidden;position:relative' : ''}">
+        ${B
+          ? `<div style="text-align:center;color:#ccc;font-size:7pt;padding-top:30pt">Portrait</div>`
+          : (portrait
+              ? (config.portraitFit
+                  ? `<img src="${portrait}" alt="Portrait" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain">`
+                  : `<img src="${portrait}" alt="Portrait" style="max-width:100%;max-height:100%;object-fit:contain">`)
+              : `<div style="text-align:center;color:#ccc;font-size:7pt;padding-top:30pt">Portrait</div>`)
+        }
+      </div>
+    </div>
+
+    <!-- Stats + Combat recap + Spell lists — side by side -->
+    <div class="ps-mid-grid">
+      ${config.showStats ? `<div class="ps-stats-col">${generateStatsBlock(character, config)}</div>` : ''}
+
+      ${(() => {
+        const mb = character.manualBonuses || {};
+        const obStr = !B && mb.obItem ? ` <span style="font-size:6pt">BO:+${mb.obItem}</span>` : '';
+        const notesStr = !B && mb.miscNotes ? `<div class="ps-field" style="font-size:6pt;color:#666"><b>Notes:</b> ${esc(mb.miscNotes)}</div>` : '';
+        const rrParts = [];
+        if (!B) {
+          if (mb.rrEssence) rrParts.push('Ess:' + mb.rrEssence);
+          if (mb.rrChanneling) rrParts.push('Thé:' + mb.rrChanneling);
+          if (mb.rrMentalism) rrParts.push('Men:' + mb.rrMentalism);
+          if (mb.rrPoison) rrParts.push('Poi:' + mb.rrPoison);
+          if (mb.rrDisease) rrParts.push('Mal:' + mb.rrDisease);
+        }
+        const rrStr = rrParts.length ? `<div class="ps-field" style="font-size:6pt"><b>RR:</b> ${rrParts.join(' ')}</div>` : (B ? `<div class="ps-field" style="font-size:6pt"><b>JR:</b> ${bl(30)}</div>` : '');
+        return `<div class="ps-combat-col">
+          <div class="ps-field" style="font-size:7pt"><b>PdC Base:</b> ${B ? bl(10) : (hp.base || '—')}</div>
+          <div class="ps-field" style="font-size:7pt"><b>PdC Max:</b> ${B ? bl(10) : (hp.cap || '—')} &nbsp; <b>Actuels:</b> <span class="ps-pencil-space">____</span></div>
+          <div class="ps-field" style="font-size:7pt"><b>Mort à:</b> ${B ? bl(10) : `<span style="color:#b91c1c">${getDeathThreshold(character)}</span>`}</div>
+          <div class="ps-field" style="font-size:7pt"><b>Royaume:</b> ${B ? bl(18) : (realmLabel || '—')}</div>
+          <div class="ps-field" style="font-size:7pt"><b>Pts Pouvoir:</b> <span class="ps-pencil-space">____</span> / ${B ? bl(10) : (pp || '—')}</div>
+          <div class="ps-field" style="font-size:7pt"><b>Type Armure:</b> ${B ? bl(8) : (character.armorType || 1)}</div>
+          <div class="ps-field" style="font-size:7pt"><b>Bonus Déf:</b> ${B ? bl(12) : (db.printDisplay + obStr)}</div>
+          ${rrStr}
+          ${notesStr}
+        </div>`;
+      })()}
+
+      <div class="ps-spells-col">
+        ${(() => {
+          if (B) {
+            const emptyRows = Array.from({length: 12}, (_, i) =>
+              `<tr><td>${i + 1} ${bl(28)}</td><td class="tc">${bl(5)}</td></tr>`).join('');
+            return `<table class="ps-table-mini">
+              <thead><tr><th>LISTES DE SORTS</th><th>Niv</th></tr></thead>
+              <tbody>${emptyRows}</tbody>
+            </table>`;
+          }
+          const activeLists = (character.spellLists || []).filter(sl => sl.maxLevel > 0);
+          if (activeLists.length > 10) {
+            const half = Math.ceil(activeLists.length / 2);
+            const makeTable = (rows, startIndex) =>
+              `<table class="ps-table-mini" style="flex:1;min-width:0">
+                <thead><tr><th>LISTES DE SORTS</th><th>Niv</th></tr></thead>
+                <tbody>${rows.map((sl, i) =>
+                  `<tr><td>${startIndex + i + 1} ${esc(sl.name)}</td><td class="tc">${sl.maxLevel || 0}</td></tr>`
+                ).join('')}</tbody>
+              </table>`;
+            return `<div style="display:flex;gap:1mm">${makeTable(activeLists.slice(0, half), 0)}${makeTable(activeLists.slice(half), half)}</div>`;
+          }
+          return `<table class="ps-table-mini">
+            <thead><tr><th>LISTES DE SORTS</th><th>Niv</th></tr></thead>
+            <tbody>${activeLists.map((sl, i) =>
+              `<tr><td>${i + 1} ${esc(sl.name)}</td><td class="tc">${sl.maxLevel || 0}</td></tr>`
+            ).join('')}</tbody>
+          </table>`;
+        })()}
+        <div class="ps-magic-effects">
+          <div style="font-size:7pt;font-weight:bold">Effets magiques:</div>
+          <div class="ps-blank-lines">
+            _______________________________________________<br>
+            _______________________________________________<br>
+            _______________________________________________
+          </div>
+        </div>
+      </div>
+    </div>
+
+    ${generateSkillTable(page1Skills, config)}
+  `;
+}
+
+/**
+ * Generate a continuation skills page.
+ */
+function generateSkillPage(skills, config) {
+  return generateSkillTable(skills, config);
+}
+
+/**
+ * Generate appendix page: Équipement + Historique & Notes + Options d'Historique.
+ * Rendered when config.historyInline is true.
+ */
+function generateHistoryPage(character, lang) {
+  const bgOpts = character.backgroundOptions || {};
+  const filledOpts = (bgOpts.options || []).filter(Boolean);
+
+  const equipSection = character.equipment ? `
+    <div style="margin-bottom:8pt">
+      <div style="font-weight:bold;font-size:9pt;border-bottom:1pt solid #8b6914;margin-bottom:4pt;padding-bottom:2pt">
+        ${lang === 'en' ? 'Equipment' : 'Équipement'}
+      </div>
+      <div style="font-size:8pt;white-space:pre-wrap">${esc(character.equipment)}</div>
+    </div>` : '';
+
+  const histSection = character.history ? `
+    <div style="margin-bottom:8pt">
+      <div style="font-weight:bold;font-size:9pt;border-bottom:1pt solid #8b6914;margin-bottom:4pt;padding-bottom:2pt">
+        ${lang === 'en' ? 'Background & Notes' : 'Historique & Notes'}
+      </div>
+      <div style="font-size:8pt;white-space:pre-wrap">${esc(character.history)}</div>
+    </div>` : '';
+
+  const bgOptRows = filledOpts.map((opt, i) => `
+    <tr>
+      <td style="padding:1.5pt 3pt;font-size:7.5pt;font-weight:bold;white-space:nowrap">${i + 1}. ${esc(lang === 'en' ? opt.name : (opt.name_fr || opt.name))}</td>
+      <td style="padding:1.5pt 3pt;font-size:7.5pt">${esc(opt.description || '')}</td>
+    </tr>`).join('');
+
+  const bgOptSection = filledOpts.length > 0 ? `
+    <div style="margin-bottom:8pt">
+      <div style="font-weight:bold;font-size:9pt;border-bottom:1pt solid #8b6914;margin-bottom:4pt;padding-bottom:2pt">
+        ${lang === 'en' ? 'Background Options' : 'Options d\'Historique'} (${filledOpts.length}/${bgOpts.totalOptions || filledOpts.length})
+      </div>
+      <table style="width:100%;border-collapse:collapse">
+        <tbody>${bgOptRows}</tbody>
+      </table>
+    </div>` : '';
+
+  if (!equipSection && !histSection && !bgOptSection) return null;
+
+  return `
+    <div style="padding:8pt 10pt;font-family:Arial,sans-serif;color:#222">
+      <div style="font-size:11pt;font-weight:bold;margin-bottom:8pt;border-bottom:2pt solid #8b6914;padding-bottom:3pt">
+        ${esc(character.name || '')} — ${lang === 'en' ? 'Appendix' : 'Annexe'}
+      </div>
+      ${equipSection}
+      ${histSection}
+      ${bgOptSection}
+    </div>`;
+}
+
+/**
+ * Generate the complete print sheet (multi-page HTML).
+ */
+export function generatePrintSheet(character, config, lang) {
+  if (!config) config = { skillFilter: 'both', showStats: true, showCosts: false, showSimil: false, skillsPerPage1: 43, skillsPerPageN: 68, lang };
+  config.lang = lang;
+
+  const skills = filterSkillsForPrint(character, config);
+  const pages = [];
+
+  // Page 1: header + stats + first skills
+  pages.push(generatePage1(character, config, lang));
+
+  // Remaining skills pages
+  const remainingSkills = skills.slice(config.skillsPerPage1 || 43);
+  const perPage = config.skillsPerPageN || 68;
+  for (let i = 0; i < remainingSkills.length; i += perPage) {
+    const pageSkills = remainingSkills.slice(i, i + perPage);
+    pages.push(generateSkillPage(pageSkills, config));
+  }
+
+  // Appendix page: equipment + history + background options
+  if (config.historyInline) {
+    const histPage = generateHistoryPage(character, lang);
+    if (histPage) pages.push(histPage);
+  }
+
+  return pages.map((p, i) => `
+    <div class="print-page" data-page="${i + 1}">
+      ${p}
+      <div class="print-footer">
+        CPR — Création de Personnage pour Rolemaster ©Eric Lestrade / ©2025 Quentin PARISOT — Page ${i + 1}/${pages.length}
+      </div>
+    </div>
+  `).join('');
+}
+
+// ─── Auto-fit helpers ────────────────────────────────────────────────────────
+
+/**
+ * Returns true if the skills table bottom exceeds the print-footer top
+ * (or a fallback bottom margin). Uses absolute screen coords from
+ * getBoundingClientRect() so it works regardless of page scroll.
+ */
+function _isTableOverflowing(table, page) {
+  const tableRect = table.getBoundingClientRect();
+  const footer = page.querySelector('.print-footer');
+  const limit = footer
+    ? footer.getBoundingClientRect().top
+    : page.getBoundingClientRect().bottom - 15;
+  return tableRect.bottom > limit - 2; // 2px tolerance
+}
+
+/**
+ * For each .print-page in the overlay:
+ * 1. Zoom out the skills table (1.0 → 0.70, step 0.02) until it fits.
+ * 2. If still overflowing at zoom 0.70, trim tbody rows from the bottom.
+ * Returns an array of { page, trimmed } for pages that needed row trimming.
+ */
+function _autoFitSkillTables(overlay) {
+  const pages = overlay.querySelectorAll('.print-page');
+  const warnings = [];
+
+  for (let pi = 0; pi < pages.length; pi++) {
+    const page = pages[pi];
+    const table = page.querySelector('.ps-skills-table');
+    if (!table || !_isTableOverflowing(table, page)) continue;
+
+    // Step 1: zoom out until it fits
+    let zoom = 0.98;
+    while (zoom >= 0.70) {
+      table.style.zoom = zoom.toFixed(2);
+      if (!_isTableOverflowing(table, page)) break;
+      zoom -= 0.02;
+    }
+
+    // Step 2: if still overflowing at minimum zoom, trim rows
+    if (_isTableOverflowing(table, page)) {
+      const tbody = table.querySelector('tbody');
+      let trimmed = 0;
+      while (_isTableOverflowing(table, page) && tbody && tbody.rows.length > 0) {
+        const lastRow = tbody.rows[tbody.rows.length - 1];
+        if (!lastRow.classList.contains('ps-cat-row')) trimmed++;
+        tbody.removeChild(lastRow);
+      }
+      if (trimmed > 0) warnings.push({ page: pi + 1, trimmed });
+    }
+  }
+
+  return warnings;
+}
+
+/**
+ * Show a non-blocking modal warning when rows were trimmed to fit.
+ */
+function _showFitWarning(warnings, lang) {
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center';
+  const lines = warnings.map(w =>
+    lang === 'en'
+      ? `Page ${w.page}: ${w.trimmed} skill(s) removed to fit the page`
+      : `Page ${w.page}\u00a0: ${w.trimmed}\u00a0compétence(s) supprimée(s) pour tenir dans la page`
+  ).join('<br>');
+  modal.innerHTML = `
+    <div style="background:#fff;color:#222;border-radius:8px;padding:1.5rem 2rem;max-width:380px;font-family:Arial,sans-serif;font-size:13px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.4)">
+      <div style="font-size:15px;font-weight:bold;color:#8b2500;margin-bottom:0.75rem">
+        &#9888; ${lang === 'en' ? 'Print layout adjusted' : 'Mise en page ajustée'}
+      </div>
+      <div style="margin-bottom:0.75rem;line-height:1.7">${lines}</div>
+      <div style="font-size:11px;color:#666;margin-bottom:1rem">
+        ${lang === 'en'
+          ? 'Decrease skills-per-page in print settings to avoid this.'
+          : 'Réduisez le nombre de compétences par page dans les paramètres d\'impression.'}
+      </div>
+      <button style="padding:6px 24px;background:#8b2500;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:13px">OK</button>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  modal.querySelector('button').addEventListener('click', () => modal.remove());
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Open print preview overlay.
+ */
+export function showPrintPreview(character, config, lang) {
+  const sheetHtml = generatePrintSheet(character, config, lang);
+
+  const overlay = document.createElement('div');
+  overlay.id = 'print-preview-overlay';
+  overlay.className = 'print-preview-overlay';
+
+  const pageCount = (sheetHtml.match(/class="print-page"/g) || []).length;
+
+  overlay.innerHTML = `
+    <div class="print-preview-toolbar no-print">
+      <button id="pp-print" class="btn-primary" style="padding:6px 20px">Imprimer</button>
+      <button id="pp-close" class="btn-secondary" style="padding:6px 20px">Fermer</button>
+      <span class="pp-info">${lang === 'en' ? 'Preview' : 'Aperçu'} — ${pageCount} page${pageCount > 1 ? 's' : ''}</span>
+    </div>
+    <div class="print-preview-content">
+      ${sheetHtml}
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+  document.body.classList.add('printing');
+
+  // Auto-fit: zoom out tables that overflow, trim + warn if still overflowing
+  const fitWarnings = _autoFitSkillTables(overlay);
+  if (fitWarnings.length) _showFitWarning(fitWarnings, lang);
+
+  document.getElementById('pp-print').addEventListener('click', () => window.print());
+  document.getElementById('pp-close').addEventListener('click', () => {
+    overlay.remove();
+    document.body.classList.remove('printing');
+  });
+}

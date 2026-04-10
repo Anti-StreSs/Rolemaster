@@ -1,0 +1,2731 @@
+{
+  "_metadata": {
+    "extracted": "2026-04-09",
+    "source": "ICE 1500 - RM2 Companion I [1986]",
+    "chapter": "7.0 CREATURES",
+    "total_creatures": 34
+  },
+  "creatures": [
+    {
+      "id": "comp1-001",
+      "name_en": "Winged Wolf",
+      "name_fr": "Loup ailé",
+      "category": "animals",
+      "subcategory": "Flying Creatures",
+      "level": 4,
+      "level_code": "C",
+      "movement": {
+        "base_rate": 130,
+        "base_rate_raw": "130",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 20,
+        "speed_ms": "FA",
+        "speed_aq": "FA",
+        "movement_raw": {
+          "base_rate": "130",
+          "max_pace_mn": "Dash/20",
+          "speed": "FA/FA"
+        }
+      },
+      "size": "M",
+      "critical_size": "-",
+      "hits_base": 110,
+      "constitution_factor": "E",
+      "hits_raw": "110E",
+      "armor_type": 3,
+      "db": 40,
+      "shield_db_included": false,
+      "armor_raw": "3(40)",
+      "attacks_raw": "65MBi/80MCl/60LGr",
+      "attacks": [
+        {
+          "ob": 65,
+          "size": "M",
+          "type": "Bi",
+          "type_en": "Bite",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 80,
+          "size": "M",
+          "type": "Cl",
+          "type_en": "Claw",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 60,
+          "size": "L",
+          "type": "Gr",
+          "type_en": "Grapple",
+          "percent": null,
+          "special": null
+        }
+      ],
+      "encounter": {
+        "number": "2-12",
+        "treasure": "-",
+        "ep_code": "-",
+        "outlook": "Protect/Aggres(AA)"
+      },
+      "description_codes": "(hf)-(IO)-5",
+      "detail_line_raw": null,
+      "physical": "4-6' long",
+      "young": "3-8 pups",
+      "description_en": "The Winged Wolf is a highly intelligent species, having not only large bat- like wings capable of true flight, but also a long and muscular prehensile tail. The wolves are usually only aggressive when protecting their territory or when hungry. They are capable of speech and some are friendly with some humanoids. They are more versatile in attack than normal wolves, being able - especially when attacking from the air - to use their claws as well as their jaws, gripping their opponent with the tail. They are fond of living in trees and their paws are more flexible than other wolves, being suited to that terrain.",
+      "description_fr": "Le Loup Ailé est une espèce très intelligente, n'ayant pas seulement de grandes ailes semblables à celles des chauves-souris capables de voler réellement, mais aussi une longue queue musclée préhensile. Ces loups ne sont en général agressifs que lorsqu'ils protègent leur territoire, ou lorsqu'ils ont faim. lis sont capables de parler et certains sont amicaux envers quelques humanoïdes. Leurs attaques sont plus diversifiées que celles des loups normaux, puisqu'ils sont capables - SUItOut lorsqu'ils attaquent depuis le ciel- d'utiliser leurs grÎffestout autant que leurs mâchoires, tout en agrippant leur adversaire avec leur queue. lis aiment vivre dans les arbres et leurs pattes, adaptées à ce terrain, sont plus flexibles que celles des autres loups. PANTHEREAILEE-",
+      "special": [
+        "flight",
+        "prehensile tail",
+        "speech"
+      ],
+      "source": "Companion I",
+      "page": 76,
+      "table_parent_group": null,
+      "table_name_raw": "Winged Wolf",
+      "subcategory_fr": "Créatures volantes",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-002",
+      "name_en": "Winged Panther",
+      "name_fr": "Panthère ailée",
+      "category": "animals",
+      "subcategory": "Flying Creatures",
+      "level": 4,
+      "level_code": "D",
+      "movement": {
+        "base_rate": 150,
+        "base_rate_raw": "150",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 30,
+        "speed_ms": "VF",
+        "speed_aq": "VF",
+        "movement_raw": {
+          "base_rate": "150",
+          "max_pace_mn": "Dash/30",
+          "speed": "VF/VF"
+        }
+      },
+      "size": "L",
+      "critical_size": "-",
+      "hits_base": 120,
+      "constitution_factor": "F",
+      "hits_raw": "120F",
+      "armor_type": 4,
+      "db": 40,
+      "shield_db_included": false,
+      "armor_raw": "4(40)",
+      "attacks_raw": "70MCl40/75MBa60/90MBi<<",
+      "attacks": [
+        {
+          "ob": 70,
+          "size": "M",
+          "type": "Cl",
+          "type_en": "Claw",
+          "percent": 40,
+          "special": null
+        },
+        {
+          "ob": 75,
+          "size": "M",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": 60,
+          "special": null
+        },
+        {
+          "ob": 90,
+          "size": "M",
+          "type": "Bi",
+          "type_en": "Bite",
+          "percent": null,
+          "special": "follow-up same round after prior success"
+        }
+      ],
+      "encounter": {
+        "number": "1-6",
+        "treasure": "-",
+        "ep_code": "C",
+        "outlook": "Aggres(NO)"
+      },
+      "description_codes": "(f)-(GO)-ARUW-(T)-7",
+      "detail_line_raw": null,
+      "physical": "4-6' long",
+      "young": "1-6 young",
+      "description_en": "Very much like a normal panther except for their powerful wings. They are found in a variety of colors from tan to black. In jungle areas leopard like markings can be found; Winged Panthers sport long white fur in the cold.",
+      "description_fr": "On en trouve une grande variété de couleurs, de marron clairànoir. Dans les zones de jungles, ellespeuventarborer des marques semblables à celles des léopards; elles portent une fourrure épaisse et blanche dans les régions froides.",
+      "special": [
+        "flight"
+      ],
+      "source": "Companion I",
+      "page": 76,
+      "table_parent_group": null,
+      "table_name_raw": "Winged Panther",
+      "subcategory_fr": "Créatures volantes",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-003",
+      "name_en": "Great Winged Panther",
+      "name_fr": "Grande panthère ailée",
+      "category": "animals",
+      "subcategory": "Flying Creatures",
+      "level": 8,
+      "level_code": "F",
+      "movement": {
+        "base_rate": 160,
+        "base_rate_raw": "160",
+        "base_rate_special": false,
+        "max_pace": "Spt",
+        "mn_bonus": 30,
+        "speed_ms": "FA",
+        "speed_aq": "VF",
+        "movement_raw": {
+          "base_rate": "160",
+          "max_pace_mn": "Spt/30",
+          "speed": "FA/VF"
+        }
+      },
+      "size": "L",
+      "critical_size": "LA",
+      "hits_base": 240,
+      "constitution_factor": "G",
+      "hits_raw": "240G",
+      "armor_type": 4,
+      "db": 40,
+      "shield_db_included": false,
+      "armor_raw": "4(40)",
+      "attacks_raw": "100LCl30/100MBa70/100LHo>>/140LBi<<",
+      "attacks": [
+        {
+          "ob": 100,
+          "size": "L",
+          "type": "Cl",
+          "type_en": "Claw",
+          "percent": 30,
+          "special": null
+        },
+        {
+          "ob": 100,
+          "size": "M",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": 70,
+          "special": null
+        },
+        {
+          "ob": 100,
+          "size": "L",
+          "type": "Ho",
+          "type_en": "Horn",
+          "percent": null,
+          "special": "follow-up next round after prior success"
+        },
+        {
+          "ob": 140,
+          "size": "L",
+          "type": "Bi",
+          "type_en": "Bite",
+          "percent": null,
+          "special": "follow-up same round after prior success"
+        }
+      ],
+      "encounter": {
+        "number": "1-6",
+        "treasure": "-",
+        "ep_code": "E",
+        "outlook": "Aggress(LO)"
+      },
+      "description_codes": "(f)-(YSQ)-CDHP-6",
+      "detail_line_raw": null,
+      "physical": "8-11'",
+      "young": "l-4 young",
+      "description_en": "These extremely noble and powerful beasts are larger than normal saber- tooth tigers and smarter than most cats, capable of being trained to perform complex tasks. Some exotic armies have raised and trained them as a fierce aerial arm. When domesticated, they tend to be devoted to a single master who raised them from infancy.",
+      "description_fr": "Ces bêtes extrêmement nobles et puissantes sont plus grandes que les tigres à dents de sabre normaux etplus rusées que la plupart des chats. On peut les entraîner à accomplir des tâches complexes. Certaines armées exotiques les ont élevées et dressées comme arme aérienne féroce. Lorsqu'elles sont domestiquées, elles ont tendance à se vouer à un maître unique, celui qui les a élevées depuis leur enfance. '\\'",
+      "special": [
+        "flight",
+        "trainable war-beast"
+      ],
+      "source": "Companion I",
+      "page": 76,
+      "table_parent_group": null,
+      "table_name_raw": "Great Winged Panther",
+      "subcategory_fr": "Créatures volantes",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-004",
+      "name_en": "Carnivorous Flying Squirrels",
+      "name_fr": "Écureuils volants carnivores",
+      "category": "animals",
+      "subcategory": "Flying Creatures",
+      "level": 0,
+      "level_code": "A",
+      "movement": {
+        "base_rate": 30,
+        "base_rate_raw": "30",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 40,
+        "speed_ms": "FA",
+        "speed_aq": "FA",
+        "movement_raw": {
+          "base_rate": "30",
+          "max_pace_mn": "Dash/40",
+          "speed": "FA/FA"
+        }
+      },
+      "size": "S",
+      "critical_size": "-",
+      "hits_base": 20,
+      "constitution_factor": "A",
+      "hits_raw": "20A",
+      "armor_type": 1,
+      "db": 40,
+      "shield_db_included": false,
+      "armor_raw": "1(40)",
+      "attacks_raw": "20TBa100/10SBi>>/30SBi<<",
+      "attacks": [
+        {
+          "ob": 20,
+          "size": "T",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": 100,
+          "special": null
+        },
+        {
+          "ob": 10,
+          "size": "S",
+          "type": "Bi",
+          "type_en": "Bite",
+          "percent": null,
+          "special": "follow-up next round after prior success"
+        },
+        {
+          "ob": 30,
+          "size": "S",
+          "type": "Bi",
+          "type_en": "Bite",
+          "percent": null,
+          "special": "follow-up same round after prior success"
+        }
+      ],
+      "encounter": {
+        "number": "5-500",
+        "treasure": "-",
+        "ep_code": "-",
+        "outlook": "Bellig(NO)"
+      },
+      "description_codes": "hnwmk-FILMQ-DCHJ-6",
+      "detail_line_raw": null,
+      "physical": "6-24\" long",
+      "young": "1-12 young",
+      "description_en": "These terrible creatures are most often found in huge swarms, living in trees. They are built much like rats (except for a squirrel-like tail), and have a disposition much like piranha. Unwary patrols, parties, and caravans have too often been wiped out by the bloody assault of a swirling cloud of these little monsters.",
+      "description_fr": "These terrible creatures are most often found in huge swarms, living in trees. They are built much like rats (except for a squirrel-like tail), and have a disposition much like piranha. Unwary patrols, parties, and caravans have too often been wiped out by the bloody assault of a swirling cloud of these little monsters.",
+      "special": [
+        "swarm attacks"
+      ],
+      "source": "Companion I",
+      "page": 76,
+      "table_parent_group": null,
+      "table_name_raw": "Carnivorous Flying Squirrels",
+      "subcategory_fr": "Créatures volantes",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-005",
+      "name_en": "Carnivorous Flying Monkeys",
+      "name_fr": "Singes volants carnivores",
+      "category": "animals",
+      "subcategory": "Flying Creatures",
+      "level": 4,
+      "level_code": "C",
+      "movement": {
+        "base_rate": 80,
+        "base_rate_raw": "80",
+        "base_rate_special": false,
+        "max_pace": "FSPT",
+        "mn_bonus": 40,
+        "speed_ms": "VF",
+        "speed_aq": "FA",
+        "movement_raw": {
+          "base_rate": "80",
+          "max_pace_mn": "FSPT/40",
+          "speed": "VF/FA"
+        }
+      },
+      "size": "S/M",
+      "critical_size": "-",
+      "hits_base": 65,
+      "constitution_factor": "D",
+      "hits_raw": "65D",
+      "armor_type": 3,
+      "db": 40,
+      "shield_db_included": false,
+      "armor_raw": "3(40)",
+      "attacks_raw": "70MBa/60MGr/60SBi<<",
+      "attacks": [
+        {
+          "ob": 70,
+          "size": "M",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 60,
+          "size": "M",
+          "type": "Gr",
+          "type_en": "Grapple",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 60,
+          "size": "S",
+          "type": "Bi",
+          "type_en": "Bite",
+          "percent": null,
+          "special": "follow-up same round after prior success"
+        }
+      ],
+      "encounter": {
+        "number": "1-100",
+        "treasure": "-",
+        "ep_code": "A",
+        "outlook": "Normal(lN)"
+      },
+      "description_codes": "(tcf)-(K)-FILQS-CDJP-8",
+      "detail_line_raw": null,
+      "physical": "1-6' tall",
+      "young": "1 young",
+      "description_en": "The CF Monkeys occur infrequently in the wilds. They are unusual among the apes in that they eat meat only. At times when they are hungry their disposi- tion changes radically to a wolfish cast. The CF Monkeys are often found working as agents of spell casters, especially evil ones. As such, they are used for kidnapping, harassment, murder, and destruction. They can be taught to react to quite complex verbal commands.",
+      "description_fr": "30cm-1,8m, 1 petit On rencontre irrégulièrement les Singes Volants Carnivores dans les contréessauvages.lis constituent UDeexception parmi les autres singes, car ils ne mangent que de la viande. Parfois, lorsqu'ils sont affamés, leur caractère change radicalement pour ressembler à celui de loups. On rencontre souvent des Singes Volants Carnivores comme agents de jeteurs de sorts, particulièrement les jeteurs de sorts maléfiques. Dans ce cas, ils sont utilisés pour kidnapper, persécuter, assassiner et détruire. On peut leur apprendre à réagir à des commandes verbales complexes.",
+      "special": [
+        "flight",
+        "agent of spellcasters"
+      ],
+      "source": "Companion I",
+      "page": 76,
+      "table_parent_group": null,
+      "table_name_raw": "Carnivorous Flying Monkeys",
+      "subcategory_fr": "Créatures volantes",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-006",
+      "name_en": "Royal Pegasus",
+      "name_fr": "Pégase royal",
+      "category": "animals",
+      "subcategory": "Flying Creatures",
+      "level": 30,
+      "level_code": "G",
+      "movement": {
+        "base_rate": 170,
+        "base_rate_raw": "170",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 40,
+        "speed_ms": "BF",
+        "speed_aq": "VF",
+        "movement_raw": {
+          "base_rate": "170",
+          "max_pace_mn": "Dash/40",
+          "speed": "BF/VF"
+        }
+      },
+      "size": "L",
+      "critical_size": "II",
+      "hits_base": 280,
+      "constitution_factor": "H",
+      "hits_raw": "280H",
+      "armor_type": 3,
+      "db": 60,
+      "shield_db_included": false,
+      "armor_raw": "3(60)",
+      "attacks_raw": "120LBa/130LTs/100MBi/SpelIs",
+      "attacks": [
+        {
+          "ob": 120,
+          "size": "L",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 130,
+          "size": "L",
+          "type": "Ts",
+          "type_en": "Tusk",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 100,
+          "size": "M",
+          "type": "Bi",
+          "type_en": "Bite",
+          "percent": null,
+          "special": null
+        }
+      ],
+      "encounter": {
+        "number": "1",
+        "treasure": "uu",
+        "ep_code": "I",
+        "outlook": "Protect(VH)"
+      },
+      "description_codes": "Any-9",
+      "detail_line_raw": null,
+      "physical": "40' Wingspan",
+      "young": "1 young",
+      "description_en": "These exquisitely noble protectors of the wilds are good and kind. They look like a grand pegasus with a unicorn's gold spiral horn. They are very willing to cooperate with those of similar persuasion and goals, but they only appear when the need is great. They have been found in a number of colors: purest white, deepest black, and most striking red or purple. They possess most Channeling spell lists to their level and receive 5PP per level. 7.2 BEASTS",
+      "description_fr": "lis ressemblent à un grand pégase doté de la corne dorée et spiralée d'une licorne. lis coopérent très volontiers avec ceux qui partagent les mêmes convictions et buts, mais ils n'apparaissent que quand le besoin est grand. On en a rencontré de nombre de couleurs : blanc le plus pur, noir le plus sombre, rouge ou violet le plus éclatant lis possèdent la plupart des listes de sorts de Théurgie à leur niveau et ils reçoivent S PP par niveau. 7.2 BETES",
+      "special": [
+        "channeling spells",
+        "horn",
+        "noble protector",
+        "SpelIs"
+      ],
+      "source": "Companion I",
+      "page": 76,
+      "table_parent_group": null,
+      "table_name_raw": "Royal Pegasus",
+      "subcategory_fr": "Créatures volantes",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-007",
+      "name_en": "Battle Boar",
+      "name_fr": "Sanglier de bataille",
+      "category": "animals",
+      "subcategory": "Beasts",
+      "level": 4,
+      "level_code": "D",
+      "movement": {
+        "base_rate": 90,
+        "base_rate_raw": "90",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 20,
+        "speed_ms": "MF",
+        "speed_aq": "MF",
+        "movement_raw": {
+          "base_rate": "90",
+          "max_pace_mn": "Dash/20",
+          "speed": "MF/MF"
+        }
+      },
+      "size": "L",
+      "critical_size": "I",
+      "hits_base": 190,
+      "constitution_factor": "G",
+      "hits_raw": "190G",
+      "armor_type": 4,
+      "db": 30,
+      "shield_db_included": false,
+      "armor_raw": "4(30)",
+      "attacks_raw": "80LHo/60LBa<</70LTs<<",
+      "attacks": [
+        {
+          "ob": 80,
+          "size": "L",
+          "type": "Ho",
+          "type_en": "Horn",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 60,
+          "size": "L",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": "follow-up same round after prior success"
+        },
+        {
+          "ob": 70,
+          "size": "L",
+          "type": "Ts",
+          "type_en": "Tusk",
+          "percent": null,
+          "special": "follow-up same round after prior success"
+        }
+      ],
+      "encounter": {
+        "number": "2-20",
+        "treasure": "-",
+        "ep_code": "D",
+        "outlook": "Aggres(NO)"
+      },
+      "description_codes": "(acf)-F",
+      "detail_line_raw": null,
+      "physical": "R",
+      "young": "(T)-6",
+      "description_en": "These nasty creatures are like their smaller brothers except in size, and they can be ridden by some rough cultures willing to train them. They are tough to kill and some fight to the death because their lust for battle is so great.",
+      "description_fr": "Ces vilaines créatures sont comme leurs frères plus petits, sauf par la taille. Ils peuvent être chevauchés par les membres de certaines sociétés rudes, désireuses de les dresser. lis sont durs à tuer, et certains d'entre eux luttent jusqu'à la mort, tant est grande leur soif de combat GRAND SANGLIER",
+      "special": [
+        "rideable",
+        "battle lust"
+      ],
+      "source": "Companion I",
+      "page": 76,
+      "table_parent_group": null,
+      "table_name_raw": "Battle Boar",
+      "subcategory_fr": "Bêtes",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-008",
+      "name_en": "Great Boar",
+      "name_fr": "Grand sanglier",
+      "category": "animals",
+      "subcategory": "Beasts",
+      "level": 7,
+      "level_code": "F",
+      "movement": {
+        "base_rate": 90,
+        "base_rate_raw": "90",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 20,
+        "speed_ms": "MF",
+        "speed_aq": "FA",
+        "movement_raw": {
+          "base_rate": "90",
+          "max_pace_mn": "Dash/20",
+          "speed": "MF/FA"
+        }
+      },
+      "size": "L",
+      "critical_size": "II",
+      "hits_base": 200,
+      "constitution_factor": "G",
+      "hits_raw": "200G",
+      "armor_type": 4,
+      "db": 40,
+      "shield_db_included": false,
+      "armor_raw": "4(40)",
+      "attacks_raw": "150HHo/70LBa<</100LTs<<",
+      "attacks": [
+        {
+          "ob": 150,
+          "size": "H",
+          "type": "Ho",
+          "type_en": "Horn",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 70,
+          "size": "L",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": "follow-up same round after prior success"
+        },
+        {
+          "ob": 100,
+          "size": "L",
+          "type": "Ts",
+          "type_en": "Tusk",
+          "percent": null,
+          "special": "follow-up same round after prior success"
+        }
+      ],
+      "encounter": {
+        "number": "5-30",
+        "treasure": "-",
+        "ep_code": "E",
+        "outlook": "Aggres(NO)"
+      },
+      "description_codes": "(tcf)-(GMO)-RW-CDHP-5",
+      "detail_line_raw": null,
+      "physical": "7-12'",
+      "young": "1 calf",
+      "description_en": "Great Boars are fearless and nasty beasts, called in many areas - \"tuskers\". They are easy to spot, having a very tough hide with very sparse, much like a rhino. Their most distinguishing characteristic is a pair of horns on each side of their heads, at the very back of the upper jaw. The horns are curved forwards with the front ones somewhat shorter than the rear. They are star- tlingly quick and will kill for pleasure. As mentioned earlier, they are entire- ly fearless. Colors are usually in various shades of grey, but there are some notable variations. Great Boars are carnivores with mouths full of impressive sharp teeth.",
+      "description_fr": "Great Boars are fearless and nasty beasts, called in many areas - \"tuskers\". They are easy to spot, having a very tough hide with very sparse, much like a rhino. Their most distinguishing characteristic is a pair of horns on each side of their heads, at the very back of the upper jaw. The horns are curved forwards with the front ones somewhat shorter than the rear. They are star- tlingly quick and will kill for pleasure. As mentioned earlier, they are entire- ly fearless. Colors are usually in various shades of grey, but there are some notable variations. Great Boars are carnivores with mouths full of impressive sharp teeth.",
+      "special": [
+        "fearless",
+        "paired horns",
+        "carnivore"
+      ],
+      "source": "Companion I",
+      "page": 76,
+      "table_parent_group": null,
+      "table_name_raw": "Great Boar",
+      "subcategory_fr": "Bêtes",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-009",
+      "name_en": "Warcat",
+      "name_fr": "Chat de guerre",
+      "category": "animals",
+      "subcategory": "Beasts",
+      "level": 15,
+      "level_code": "G",
+      "movement": {
+        "base_rate": 170,
+        "base_rate_raw": "170",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 40,
+        "speed_ms": "BF",
+        "speed_aq": "VF",
+        "movement_raw": {
+          "base_rate": "170",
+          "max_pace_mn": "Dash/40",
+          "speed": "BF/VF"
+        }
+      },
+      "size": "L",
+      "critical_size": "LA",
+      "hits_base": 280,
+      "constitution_factor": "G",
+      "hits_raw": "280G",
+      "armor_type": 4,
+      "db": 50,
+      "shield_db_included": false,
+      "armor_raw": "4(50)",
+      "attacks_raw": "95LBi/120HCl(2x)/100LBa(2x)<<",
+      "attacks": [
+        {
+          "ob": 95,
+          "size": "L",
+          "type": "Bi",
+          "type_en": "Bite",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 120,
+          "size": "H",
+          "type": "Cl",
+          "type_en": "Claw",
+          "percent": null,
+          "special": "2x"
+        },
+        {
+          "ob": 100,
+          "size": "L",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": "follow-up same round after prior success; 2x"
+        }
+      ],
+      "encounter": {
+        "number": "1-12",
+        "treasure": "-",
+        "ep_code": "H",
+        "outlook": "Aloof(LO)"
+      },
+      "description_codes": "(cf)-(Y)",
+      "detail_line_raw": null,
+      "physical": "(GO)",
+      "young": "(U)-(T)",
+      "description_en": "The warcats are an intentionally developed species, intended for warfare. They are remarkably similar to domestic cats in build, movement, and leap- ing ability. But they are so large that they can dominate a battlefield, almost like elephants. Warcats are normally ridden by high men or the ancient Great Men (see racial description this book). They are nearly fearless in battle and are intelligent enough to be trained for war more thoroughly than a horse. They usually remain loyal to only one master, unless they see him killed, when they might take a new master. They remain quiet and aloof unless very hungry or ordered into battle. Some have escaped into the wilds and are no longer under human control.",
+      "description_fr": "Les chats de guerre sont une espècemise au point exprès,conçue pour la guem. lis ressemblent remarquablementaux chats domestiques dans leur aspect, leurs mouvements et leur capacité à bondir. Mais ils sont si grands qu'ils peuvent dominerun champ de bataille, presque comme les éléphants. Les chats de guerre sont en général chevauchés par des Hommes du Haut ou par les anciensGrands Hommes (voir la description raciale dans ce livre). lis sont quasiment sans peur au combat, et S'lJffi~mmentintelligents pour être entraînés à la guem, plus complètement qu'un cheval. lis restent en général loyaux à un seul maJ.tre,à moins qu'ils ne le voient se fairetuer, auquel cas il arrive qu'ils prennent un nouveau maître. lis restent calmes et distants sauf quand ils sont très affamés ou qu'on leur ordonne d'engager)le combat Certains se sont réfugiés dans les terres sauvages et ne sont plus sous contrôle humain.",
+      "special": [
+        "war mount"
+      ],
+      "source": "Companion I",
+      "page": 77,
+      "table_parent_group": null,
+      "table_name_raw": "Warcat",
+      "subcategory_fr": "Bêtes",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-010",
+      "name_en": "Greater Warcat",
+      "name_fr": "Chat de guerre supérieur",
+      "category": "animals",
+      "subcategory": "Beasts",
+      "level": 25,
+      "level_code": "G",
+      "movement": {
+        "base_rate": 190,
+        "base_rate_raw": "190",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 40,
+        "speed_ms": "BF",
+        "speed_aq": "VF",
+        "movement_raw": {
+          "base_rate": "190",
+          "max_pace_mn": "Dash/40",
+          "speed": "BF/VF"
+        }
+      },
+      "size": "L",
+      "critical_size": "LA",
+      "hits_base": 350,
+      "constitution_factor": "H",
+      "hits_raw": "350H",
+      "armor_type": 4,
+      "db": 60,
+      "shield_db_included": false,
+      "armor_raw": "4(60)",
+      "attacks_raw": "150HBi/180HCl(2x)/120HBa(2x)<<",
+      "attacks": [
+        {
+          "ob": 150,
+          "size": "H",
+          "type": "Bi",
+          "type_en": "Bite",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 180,
+          "size": "H",
+          "type": "Cl",
+          "type_en": "Claw",
+          "percent": null,
+          "special": "2x"
+        },
+        {
+          "ob": 120,
+          "size": "H",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": "follow-up same round after prior success; 2x"
+        }
+      ],
+      "encounter": {
+        "number": "1-3",
+        "treasure": "-",
+        "ep_code": "K",
+        "outlook": "Aloof(AV)"
+      },
+      "description_codes": "(f)-(Y)",
+      "detail_line_raw": null,
+      "physical": "(GO)",
+      "young": "(U)-CDHJPT",
+      "description_en": "The Greater Warcats are similar in almost every respect to the warcats with a few significant differences: they have sabre-fangs, are usually both taller and broader, and have shaggier coats. They are the epitome of battle beasts, being noble, smart, and awesome.",
+      "description_fr": "Ils sont l'incarnation même des bêtes de bataille: nobles, rusés et terrifiants.",
+      "special": [
+        "war mount",
+        "sabre fangs"
+      ],
+      "source": "Companion I",
+      "page": 77,
+      "table_parent_group": null,
+      "table_name_raw": "Greater Warcat",
+      "subcategory_fr": "Bêtes",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-011",
+      "name_en": "Black Baboon",
+      "name_fr": "Babouin noir",
+      "category": "animals",
+      "subcategory": "Beasts",
+      "level": 8,
+      "level_code": "F",
+      "movement": {
+        "base_rate": 50,
+        "base_rate_raw": "SO",
+        "base_rate_special": false,
+        "max_pace": "SPt",
+        "mn_bonus": 30,
+        "speed_ms": "MD",
+        "speed_aq": "FA",
+        "movement_raw": {
+          "base_rate": "SO",
+          "max_pace_mn": "SPt/30",
+          "speed": "MD/FA"
+        }
+      },
+      "size": "L",
+      "critical_size": "II",
+      "hits_base": 170,
+      "constitution_factor": "F",
+      "hits_raw": "170F",
+      "armor_type": 3,
+      "db": 30,
+      "shield_db_included": false,
+      "armor_raw": "3(30)",
+      "attacks_raw": "110LHo/140HBa/150Wpn(2D)",
+      "attacks": [
+        {
+          "ob": 110,
+          "size": "L",
+          "type": "Ho",
+          "type_en": "Horn",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 140,
+          "size": "H",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 150,
+          "size": "L",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "2D; unparsed attack code Wpn"
+        }
+      ],
+      "encounter": {
+        "number": "10-60",
+        "treasure": "c",
+        "ep_code": "F",
+        "outlook": "Protect(IN)"
+      },
+      "description_codes": "hnawms-(GO)-ARW-CDJP-4",
+      "detail_line_raw": null,
+      "physical": "7-11'high",
+      "young": "1-2 young",
+      "description_en": "Black Baboons are an enormous specie of primate. They look much like regular baboons except for horns curved down and to the front, a pair of large fangs jutting up from the lower jaw, and a truly massive build. They are not built for quick and agile maneuvar but their raw strength and en- durance are astonishing. They travel in large tribal bands which the leading males defend with ferocity. Having a natural affinity for combat, some have been captured for use in gladiatorial arenas. The normal weapon of a Black Baboon is a large club wielded with one hand (use War Mattock chart). It should be noted that Black Baboons do not kill (intentionally) unless they feel threatened. They are more intelligent than many other primates.",
+      "description_fr": "Les Babouins Noirs sont une énorme espèce de primates. lis ressemblent beaucoup aux babouins ordinaires,à l'exception de cornes incurvées vers le bas et vers l'avant, d'une paire de grands crocs jaillissant de leur mâchoire inférieure, et d'une carrure vraiment massive. lis ne sontpas faits pour les manœuvres rapides et agiles, maisleur force brute et leur endurance sont stupéfiantes.lis se déplacent en grands groupes tribaux que les mâles dominants défendent avec férocité. Du fait de leur affinité naturelle pour le combat, certains ont été capturés pour être utilisés dans les arènes à gladiateurs L'arme normale d'un Babouin Noir est une grand gourdin brandi d'une seule main (utilisez la Table de la Pioche de Guerre). Il faut remarquer que les Babouins Noirs ne tuent pas (intentionnellement) à moins de se sentir effrayés. lis sont plus intelligents que beaucoup d'autres primates.",
+      "special": [
+        "club use",
+        "tribal bands"
+      ],
+      "source": "Companion I",
+      "page": 77,
+      "table_parent_group": null,
+      "table_name_raw": "Black Baboon",
+      "subcategory_fr": "Bêtes",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-012",
+      "name_en": "Whitesnake",
+      "name_fr": "Blanc-serpent",
+      "category": "animals",
+      "subcategory": "Beasts",
+      "level": 6,
+      "level_code": "E",
+      "movement": {
+        "base_rate": 80,
+        "base_rate_raw": "80",
+        "base_rate_special": false,
+        "max_pace": "FSpt",
+        "mn_bonus": 30,
+        "speed_ms": "MF",
+        "speed_aq": "VF",
+        "movement_raw": {
+          "base_rate": "80",
+          "max_pace_mn": "FSpt/30",
+          "speed": "MF/VF"
+        }
+      },
+      "size": "S",
+      "critical_size": "-",
+      "hits_base": 30,
+      "constitution_factor": "G",
+      "hits_raw": "30G",
+      "armor_type": 4,
+      "db": 50,
+      "shield_db_included": false,
+      "armor_raw": "4(50)",
+      "attacks_raw": "100MBi/poison<<",
+      "attacks": [
+        {
+          "ob": 100,
+          "size": "M",
+          "type": "Bi",
+          "type_en": "Bite",
+          "percent": null,
+          "special": null
+        }
+      ],
+      "encounter": {
+        "number": "1-20",
+        "treasure": "k",
+        "ep_code": "F",
+        "outlook": "Loyal(AA)"
+      },
+      "description_codes": "(hna)-(OZ)-any-7",
+      "detail_line_raw": null,
+      "physical": "18-36\"long(4-6\"dia)",
+      "young": "1-8 eggs",
+      "description_en": "The Whitesnake is a fine pet and ally. It is an unusual looking creature, thicker than a normal snake its length and covered by a coat of long white hair! It is capable of flight, presumably by magic (it has no wings). Its bite inflicts a 12th level flaccid paralysis (victim is conscious). Perhaps its most significant characteristic is the ability to act as a natural familiar (See Lvl: 1 Closed Essence Gate Mastery in Spell Law). The creature usually attunes itself to a particular master moments after hatching (if one is nearby). Therefore, whitesnake eggs can be quite valuable.",
+      "description_fr": "The Whitesnake is a fine pet and ally. It is an unusual looking creature, thicker than a normal snake its length and covered by a coat of long white hair! It is capable of flight, presumably by magic (it has no wings). Its bite inflicts a 12th level flaccid paralysis (victim is conscious). Perhaps its most significant characteristic is the ability to act as a natural familiar (See Lvl: 1 Closed Essence Gate Mastery in Spell Law). The creature usually attunes itself to a particular master moments after hatching (if one is nearby). Therefore, whitesnake eggs can be quite valuable.",
+      "special": [
+        "flight",
+        "12th level flaccid paralysis poison",
+        "natural familiar",
+        "poison"
+      ],
+      "source": "Companion I",
+      "page": 77,
+      "table_parent_group": null,
+      "table_name_raw": "Whitesnake",
+      "subcategory_fr": "Bêtes",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-013",
+      "name_en": "Black Unicorn",
+      "name_fr": "Licorne noire",
+      "category": "animals",
+      "subcategory": "Beasts",
+      "level": 10,
+      "level_code": "G",
+      "movement": {
+        "base_rate": 150,
+        "base_rate_raw": "150",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 40,
+        "speed_ms": "BF",
+        "speed_aq": "VF",
+        "movement_raw": {
+          "base_rate": "150",
+          "max_pace_mn": "Dash/40",
+          "speed": "BF/VF"
+        }
+      },
+      "size": "L",
+      "critical_size": "I",
+      "hits_base": 130,
+      "constitution_factor": "H",
+      "hits_raw": "130H",
+      "armor_type": 4,
+      "db": 50,
+      "shield_db_included": false,
+      "armor_raw": "4(50)",
+      "attacks_raw": "160LHo/90LBa<</140LTs",
+      "attacks": [
+        {
+          "ob": 160,
+          "size": "L",
+          "type": "Ho",
+          "type_en": "Horn",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 90,
+          "size": "L",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": "follow-up same round after prior success"
+        },
+        {
+          "ob": 140,
+          "size": "L",
+          "type": "Ts",
+          "type_en": "Tusk",
+          "percent": null,
+          "special": null
+        }
+      ],
+      "encounter": {
+        "number": "1-6",
+        "treasure": "t",
+        "ep_code": "H",
+        "outlook": "Cruel(AA)"
+      },
+      "description_codes": "mk-CDHP-6",
+      "detail_line_raw": null,
+      "physical": "7.5-8'",
+      "young": "1 young",
+      "description_en": "The Black unicorn is a nasty and evil version of the famous good unicorns. They are uniformly black but their horns have been found in silver, red, and blue (never gold). They are more powerful in purely physical combat, but do not have the nobler unicorn's prowess in magic, nor do their horns have special properties. Naturally, there is a tremendous rivalry between the good and the black unicorns. Also, black unicorns do not seek out noble and vir- tuous young maidens for company; they avail themselves of the company of much more base sorts.",
+      "description_fr": "The Black unicorn is a nasty and evil version of the famous good unicorns. They are uniformly black but their horns have been found in silver, red, and blue (never gold). They are more powerful in purely physical combat, but do not have the nobler unicorn's prowess in magic, nor do their horns have special properties. Naturally, there is a tremendous rivalry between the good and the black unicorns. Also, black unicorns do not seek out noble and vir- tuous young maidens for company; they avail themselves of the company of much more base sorts.",
+      "special": [
+        "evil unicorn"
+      ],
+      "source": "Companion I",
+      "page": 77,
+      "table_parent_group": null,
+      "table_name_raw": "Black Unicorn",
+      "subcategory_fr": "Bêtes",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-014",
+      "name_en": "Red Feeder",
+      "name_fr": "Mangeur rouge",
+      "category": "animals",
+      "subcategory": "Beasts",
+      "level": 9,
+      "level_code": "F",
+      "movement": {
+        "base_rate": 120,
+        "base_rate_raw": "120",
+        "base_rate_special": false,
+        "max_pace": "FSpt",
+        "mn_bonus": 20,
+        "speed_ms": "FA",
+        "speed_aq": "FA",
+        "movement_raw": {
+          "base_rate": "120",
+          "max_pace_mn": "FSpt/20",
+          "speed": "FA/FA"
+        }
+      },
+      "size": "H",
+      "critical_size": "SL",
+      "hits_base": 500,
+      "constitution_factor": "H",
+      "hits_raw": "500H",
+      "armor_type": 12,
+      "db": 40,
+      "shield_db_included": false,
+      "armor_raw": "12(40)",
+      "attacks_raw": "150HBa/150HBi/100HGr*<<",
+      "attacks": [
+        {
+          "ob": 150,
+          "size": "H",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 150,
+          "size": "H",
+          "type": "Bi",
+          "type_en": "Bite",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 100,
+          "size": "H",
+          "type": "Gr",
+          "type_en": "Grapple",
+          "percent": null,
+          "special": "follow-up same round after prior success; see description"
+        }
+      ],
+      "encounter": {
+        "number": "1-6",
+        "treasure": "-",
+        "ep_code": "H",
+        "outlook": "Bellig(NO)"
+      },
+      "description_codes": "(astc)-LMQ-S",
+      "detail_line_raw": null,
+      "physical": "50-80'",
+      "young": "50 eggs",
+      "description_en": "The Red Feeder is the largest of fish, much like a shark in appearance ex- cept that it has scales and a face like a piranha. Scales are reddish and sometimes have darker red patterns on them. Their huge mouths can easily swallow a man whole. Being flatter than most fish and able to maneuver \"on their sides\", they are often found in waters more shallow than they would be expected, sometimes even in as little as 15' of water. It is fortunate that most Red Feeder eggs are destroyed by predators and natural events before hatching, as a single brood (if all lived) could terrorize quite a large area. 7.3 GREATER LYCANTHROPES The bite of a greater werebeast is almost certain to cause Lycanthropy if its victim does not die immediately. None of the Greater Werebeasts can be injured except with silver or magical weapons. Even then, if the beast is not completely killed, it will entirely heal when it returns to human form. All Greater Werebeasts regenerate 3 hits/rd and rapidly heal non-fatal wounds. These beasts are often found in all types of enchanted locations as well as wherever humans may dwell.",
+      "description_fr": "La Licorne Noire est une version vicieuse et maléfique des célèbres bonnes licornes. Elles sont uniformément noires, mais leurs cornes peuvent être argent, rouge et bleu Gamaisor). Elles sont plus puissantes dans un combat purement physique, mais elles ne possèdent pas les talents pour la magie des licornes plus nobles, pas plus que leur corne ne possède de propriétés spéciales. Naturellement il y a une terrible rivalité entre les licornes bonnes et les licornes noires. Les licornes noires ne recherchent pas non plus la compagnie de jeunes vierges nobles et vertueuses; elles ont recours à la compagnie d'espèces bien plus communes.",
+      "special": [
+        "swallow prey",
+        "shallow-water predator"
+      ],
+      "source": "Companion I",
+      "page": 77,
+      "table_parent_group": null,
+      "table_name_raw": "Red Feeder",
+      "subcategory_fr": "Bêtes",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-015",
+      "name_en": "Greater Werewolf",
+      "name_fr": "Loup-garou supérieur",
+      "category": "monsters",
+      "subcategory": "Greater Lycanthropes",
+      "level": 20,
+      "level_code": "G",
+      "movement": {
+        "base_rate": 160,
+        "base_rate_raw": "160",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 30,
+        "speed_ms": "BF",
+        "speed_aq": "VF",
+        "movement_raw": {
+          "base_rate": "160",
+          "max_pace_mn": "Dash/30",
+          "speed": "BF/VF"
+        }
+      },
+      "size": "L",
+      "critical_size": "LA @",
+      "hits_base": 350,
+      "constitution_factor": "H",
+      "hits_raw": "350H",
+      "armor_type": 4,
+      "db": 70,
+      "shield_db_included": false,
+      "armor_raw": "4(70)",
+      "attacks_raw": "140LBi/140LCl/160HBa<<",
+      "attacks": [
+        {
+          "ob": 140,
+          "size": "L",
+          "type": "Bi",
+          "type_en": "Bite",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 140,
+          "size": "L",
+          "type": "Cl",
+          "type_en": "Claw",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 160,
+          "size": "H",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": "follow-up same round after prior success"
+        }
+      ],
+      "encounter": {
+        "number": "1-4",
+        "treasure": "y",
+        "ep_code": "I",
+        "outlook": "Bellig(IN)"
+      },
+      "description_codes": "(hf)-(IO)-6",
+      "detail_line_raw": null,
+      "physical": "7-8'tall",
+      "young": "NA",
+      "description_en": "",
+      "description_fr": "Le Mangeur Rouge est le plus grand des poissons, très proche du requin par son apparence, excepté qu'il a des écailles et une gueule semblables à celles d'un piranha. Ses écailles sont rougeâtres, et il est parfois couverts de motifs d'un rouge plus sombre. Sa gueule gigantesque peut facilement avaler un homme entier. Etant plus plat que la plupart des poissons, et capable de manœuvrer «sur lui-même», on le rencontre souvent dans des eaux moins profondes qu'on ce que l'on pourrait penser, parfois même dans aussi peu d'eau que 4,5 mètres. Il est heureux que la plupart des œufs du Mangeur Rouge soient détruits par les prédateurs et les événements naturels avant d'éclore, car une seule portée (s'ils survivaient tous) pourrait terroriser une région assez étendue. 7.3 LYCANTHROPES SUPERIEURS La morsure d'un animal-garou supérieur provoque presque à coup sûr la Lycanthropie, si la victime ne meurt pas aussitôt On ne peut blesser aucun des Animaux-Garous Supérieurs, hormis avec des armes en argent ou magiques. Même alors, si la bête n'est pas complè~ementtuée, elle sera totalement guérie lorsqu'elle retrouvera sa forme humaine. Tous les Animaux-Garous Supérieurs régénèrent 3 PdClround et ils guérissent rapidement de leurs blessures non mortelles. Ces bêtes se rencontre souvent dans tous les types d'endroits enchantés, ainsi que partout où peuvent vivre des êtres humains.",
+      "special": [
+        "lycanthropy",
+        "regeneration",
+        "silver-or-magic weapon vulnerability"
+      ],
+      "source": "Companion I",
+      "page": 77,
+      "table_parent_group": null,
+      "table_name_raw": "Greater Werewolf",
+      "subcategory_fr": "Lycanthropes supérieurs",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-016",
+      "name_en": "Greater Werebear",
+      "name_fr": "Ours-garou supérieur",
+      "category": "monsters",
+      "subcategory": "Greater Lycanthropes",
+      "level": 30,
+      "level_code": "H",
+      "movement": {
+        "base_rate": 130,
+        "base_rate_raw": "130",
+        "base_rate_special": false,
+        "max_pace": "FSpt",
+        "mn_bonus": 30,
+        "speed_ms": "VF",
+        "speed_aq": "VF",
+        "movement_raw": {
+          "base_rate": "130",
+          "max_pace_mn": "FSpt/30",
+          "speed": "VF/VF"
+        }
+      },
+      "size": "L",
+      "critical_size": "SL @",
+      "hits_base": 475,
+      "constitution_factor": "H",
+      "hits_raw": "475H",
+      "armor_type": 8,
+      "db": 70,
+      "shield_db_included": false,
+      "armor_raw": "8(70)",
+      "attacks_raw": "150LCl(2x)/220HBa<</150LGr/200HCr<<",
+      "attacks": [
+        {
+          "ob": 150,
+          "size": "L",
+          "type": "Cl",
+          "type_en": "Claw",
+          "percent": null,
+          "special": "2x"
+        },
+        {
+          "ob": 220,
+          "size": "H",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": "follow-up same round after prior success"
+        },
+        {
+          "ob": 150,
+          "size": "L",
+          "type": "Gr",
+          "type_en": "Grapple",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 200,
+          "size": "H",
+          "type": "Cr",
+          "type_en": "Crush",
+          "percent": null,
+          "special": "follow-up same round after prior success"
+        }
+      ],
+      "encounter": {
+        "number": "1",
+        "treasure": "yy",
+        "ep_code": "K",
+        "outlook": "Good(SU)"
+      },
+      "description_codes": "(hna)-(IO)-7",
+      "detail_line_raw": null,
+      "physical": "9-13'tall",
+      "young": "NA",
+      "description_en": "The Greater Wearbear is a \"goodly\" ally for those fighting \"evil\" and a whirlwind of destruction in combat. These lycanthropes may voluntarily transform themselves to and from their wereform. Careful beasts, Greater Werebears never confer their \"disease\" on anyone without a \"good\" nature.",
+      "description_fr": "Bêtes prudentes, les Ours-Garous Supérieurs ne transmettent jamais leur «maladie» à quiconque ne posséde pas une nature «bonne». DON-GAROU",
+      "special": [
+        "lycanthropy",
+        "regeneration",
+        "good-aligned"
+      ],
+      "source": "Companion I",
+      "page": 78,
+      "table_parent_group": null,
+      "table_name_raw": "Greater Werebear",
+      "subcategory_fr": "Lycanthropes supérieurs",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-017",
+      "name_en": "Greater Werelion",
+      "name_fr": "Lion-garou supérieur",
+      "category": "monsters",
+      "subcategory": "Greater Lycanthropes",
+      "level": 25,
+      "level_code": "G",
+      "movement": {
+        "base_rate": 140,
+        "base_rate_raw": "140",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 30,
+        "speed_ms": "VF",
+        "speed_aq": "BF",
+        "movement_raw": {
+          "base_rate": "140",
+          "max_pace_mn": "Dash/30",
+          "speed": "VF/BF"
+        }
+      },
+      "size": "L",
+      "critical_size": "LA @",
+      "hits_base": 425,
+      "constitution_factor": "H",
+      "hits_raw": "425H",
+      "armor_type": 4,
+      "db": 80,
+      "shield_db_included": false,
+      "armor_raw": "4(80)",
+      "attacks_raw": "150LBi/160LCl(2x)/200HBa<<",
+      "attacks": [
+        {
+          "ob": 150,
+          "size": "L",
+          "type": "Bi",
+          "type_en": "Bite",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 160,
+          "size": "L",
+          "type": "Cl",
+          "type_en": "Claw",
+          "percent": null,
+          "special": "2x"
+        },
+        {
+          "ob": 200,
+          "size": "H",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": "follow-up same round after prior success"
+        }
+      ],
+      "encounter": {
+        "number": "1",
+        "treasure": "yyz",
+        "ep_code": "J",
+        "outlook": "Domin(AA)"
+      },
+      "description_codes": "(f)-(IO)-8",
+      "detail_line_raw": null,
+      "physical": "7-9' tall",
+      "young": "NA",
+      "description_en": "Sometimes good and sometimes evil, Greater Werelions are almost always the prime leaders on a battlefield on which they participate. They are characterized by great use of force and demand unquestioned loyalty. They rarely pass on their lycanthropy, except perhaps to an heir, for fear of rivalry. They have somewhat less control over their wereform than Greater Werebears, changing involuntarily on occasions of great anger, stress, or pain.",
+      "description_fr": "un grand usage de la force et ils exigentune loyauté sans faille. lis transmettentrarement leur lycanthropie, exceptépeut-être à un héritier, par crainte de rivalité. lis contrôlent un peu moins bien leur forme garou que les Ours-Garous Supérieurs, se transformantinvolontairement dans des occasions de grande colère, de stress ou de souffrance.",
+      "special": [
+        "lycanthropy",
+        "regeneration",
+        "battlefield leader"
+      ],
+      "source": "Companion I",
+      "page": 78,
+      "table_parent_group": null,
+      "table_name_raw": "Greater Werelion",
+      "subcategory_fr": "Lycanthropes supérieurs",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-018",
+      "name_en": "Greater Weretiger",
+      "name_fr": "Tigre-garou supérieur",
+      "category": "monsters",
+      "subcategory": "Greater Lycanthropes",
+      "level": 30,
+      "level_code": "H",
+      "movement": {
+        "base_rate": 140,
+        "base_rate_raw": "140",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 30,
+        "speed_ms": "VF",
+        "speed_aq": "BF",
+        "movement_raw": {
+          "base_rate": "140",
+          "max_pace_mn": "Dash/30",
+          "speed": "VF/BF"
+        }
+      },
+      "size": "L",
+      "critical_size": "LA @",
+      "hits_base": 450,
+      "constitution_factor": "H",
+      "hits_raw": "450H",
+      "armor_type": 4,
+      "db": 70,
+      "shield_db_included": false,
+      "armor_raw": "4(70)",
+      "attacks_raw": "170HCl(2x)/200HBa<</160HBi",
+      "attacks": [
+        {
+          "ob": 170,
+          "size": "H",
+          "type": "Cl",
+          "type_en": "Claw",
+          "percent": null,
+          "special": "2x"
+        },
+        {
+          "ob": 200,
+          "size": "H",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": "follow-up same round after prior success"
+        },
+        {
+          "ob": 160,
+          "size": "H",
+          "type": "Bi",
+          "type_en": "Bite",
+          "percent": null,
+          "special": null
+        }
+      ],
+      "encounter": {
+        "number": "1-2",
+        "treasure": "yy",
+        "ep_code": "J",
+        "outlook": "Aloof(SU)"
+      },
+      "description_codes": "(hf)-(IO)-7",
+      "detail_line_raw": null,
+      "physical": "8-10' tall",
+      "young": "NA",
+      "description_en": "Varying widely in temperament, Greater Weretigers are the least predic- table of the Greater Lycanthropes. If two are found, they will usually be a mated pair. The Greater Weretiger retains his full personality and human- form skills when transformed except those which might be hindered by the transformation itself (e.g. picking locks, etc.) Greater Weretigers have the same sort of control over their disease as Greater Werelions.",
+      "description_fr": "Si on en rencontre deux, ils formeront d'ordinaire un couple. Le Tigre-Garou Supérieurconserve toute sa personnalité et les compétences de sa forme humaine lorsqu'il est transformé, sauf les compéten~ qui pourraient être gênées par la transformation elle-même (p. ex. : crochetage, etc.). Les Tigres-Garous Supérieurs ont le même type de contrôle sur leur maladie que les Lions-Garous Supérieurs.",
+      "special": [
+        "lycanthropy",
+        "regeneration",
+        "unpredictable temperament"
+      ],
+      "source": "Companion I",
+      "page": 78,
+      "table_parent_group": null,
+      "table_name_raw": "Greater Weretiger",
+      "subcategory_fr": "Lycanthropes supérieurs",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-019",
+      "name_en": "Greater Wereshark",
+      "name_fr": "Requin-garou supérieur",
+      "category": "monsters",
+      "subcategory": "Greater Lycanthropes",
+      "level": 25,
+      "level_code": "G",
+      "movement": {
+        "base_rate": 150,
+        "base_rate_raw": "150",
+        "base_rate_special": false,
+        "max_pace": "FSpt",
+        "mn_bonus": 20,
+        "speed_ms": "VF",
+        "speed_aq": "VF",
+        "movement_raw": {
+          "base_rate": "150",
+          "max_pace_mn": "FSpt/20",
+          "speed": "VF/VF"
+        }
+      },
+      "size": "L",
+      "critical_size": "LA @",
+      "hits_base": 360,
+      "constitution_factor": "G",
+      "hits_raw": "360G",
+      "armor_type": 4,
+      "db": 60,
+      "shield_db_included": false,
+      "armor_raw": "4(60)",
+      "attacks_raw": "180HBi/220HGr<<",
+      "attacks": [
+        {
+          "ob": 180,
+          "size": "H",
+          "type": "Bi",
+          "type_en": "Bite",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 220,
+          "size": "H",
+          "type": "Gr",
+          "type_en": "Grapple",
+          "percent": null,
+          "special": "follow-up same round after prior success"
+        }
+      ],
+      "encounter": {
+        "number": "1",
+        "treasure": "yyz",
+        "ep_code": "J",
+        "outlook": "Bellig(LO)"
+      },
+      "description_codes": "(Q-LMOQ-9",
+      "detail_line_raw": null,
+      "physical": "25' long",
+      "young": "NA",
+      "description_en": "Weresharks are the most rare of the Greater Werebeasts. The very problems of the particular form are the greatest obstacles to transmitting the form and staying alive afterwards; i.e., surviving the initial attack long enough to con- tract the disease, and being able to enter the water at transition times are tough problems. Weresharks are neither bright nor discriminating. Control over the form is a learned skill for Weresharks. The greatest temptation to take were- form is hunger. 7.4 DEMONS",
+      "description_fr": "Le fonds du problème de cetteforme particulière est qu'elle rencontre les obstacles les plus grands pour transmettre la forme et rester en vie après cela; c'est-à-dire que survivre suffisamment longtemps à l'attaque initiale pour attraperla maladie, et pouvoir entrer dans l'eau aux moments de transition sont des problèmes ardus. Les Requins-Garous ne sont ni brillants ni avisés.Le contrôle de leur forme est une compétencequ'i1s doivent acquérir. Leur plus grande tentation pour changer de forme est la faim. 7.4 DEMONS",
+      "special": [
+        "lycanthropy",
+        "regeneration",
+        "water-bound transitions"
+      ],
+      "source": "Companion I",
+      "page": 78,
+      "table_parent_group": null,
+      "table_name_raw": "Greater Wereshark",
+      "subcategory_fr": "Lycanthropes supérieurs",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-020",
+      "name_en": "Mortal Demons",
+      "name_fr": "Démons mortels",
+      "category": "monsters",
+      "subcategory": "Demons",
+      "level": 12,
+      "level_code": "H",
+      "movement": {
+        "base_rate": 160,
+        "base_rate_raw": "160",
+        "base_rate_special": false,
+        "max_pace": "FSpt",
+        "mn_bonus": 20,
+        "speed_ms": "BF",
+        "speed_aq": "FA",
+        "movement_raw": {
+          "base_rate": "160",
+          "max_pace_mn": "FSpt/20",
+          "speed": "BF/FA"
+        }
+      },
+      "size": "M",
+      "critical_size": "I",
+      "hits_base": 150,
+      "constitution_factor": "E",
+      "hits_raw": "150E",
+      "armor_type": 4,
+      "db": 60,
+      "shield_db_included": false,
+      "armor_raw": "4(60)",
+      "attacks_raw": "170wp(2D)/150wp(2D)/150LBa",
+      "attacks": [
+        {
+          "ob": 170,
+          "size": "M",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "2D; weapon"
+        },
+        {
+          "ob": 150,
+          "size": "M",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "2D; weapon"
+        },
+        {
+          "ob": 150,
+          "size": "L",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": null
+        }
+      ],
+      "encounter": {
+        "number": "4-48",
+        "treasure": "y",
+        "ep_code": "H",
+        "outlook": "Cruel(AV)"
+      },
+      "description_codes": "any-6",
+      "detail_line_raw": null,
+      "physical": "6-8' tall",
+      "young": "1 young",
+      "description_en": "The result of ancient breeding between fallen spirits and human types, the mortal demons are now more like men than demons except in form. They retain horns, dragon faces, functioning wings, claws, and a powerful natural physique. But they are no longer innately magical, can be wounded or killed with natural weapons, and cannot be influenced by gates, Force Info, or other demonic control spells. They are generally very mean creatures, effective with weapons, and greedy for gain and accomplishment. WARRIOR DEMONS Warrior demons are different from other demons in a few significant ways. They all have an unusual preoccupation with weapons, rather than natural arms or magic. They are usually fairly manlike in appearance and can be encounted in fairly large numbers; i.e., if a spell caster works a summoning for warrior demons, instead of calling 1 of the type specified, he will sum- mon several warrior demons (numbers given in # Enc stats). Warrior demons do not usually know many deep or dark mysteries, but they function as the enforcement arm of many dark masters.",
+      "description_fr": "Résultats d'un ancien croisement entre des esprits déchus et des membres du genre humain, les dêmons mortels sont aujourd'hui plus proches des hommes que des démons, excepté pour leur forme. lis ont conservé les cornes, les gueules de dragon, les ailes et les griffes fonctionnelles, ainsi qu'un physique naturellement puissant Mais ils ne sont plus magiques de façon innée, ils peuvent être blessés ou tués par des armes normales, et ils ne peuvent pas être influencés par les portes, InformationForcée, ou d'autres sorts contrôlant les démons. Ce sont en général des créatures très vicieuses, efficaces avec des armes, âpres au gain et avides de réussite. DEMONS GUERRIERS Les démons guerriers différent des autres démons par quelque! caractéristiquessignificatives. Ils ont tous une préoccupation inhabituelle en ce qui concerne les armes, plutôt que leurs armes naturelles ou la magie. Ils sont en général assez proches des êtres humains dans leul apparence,et on peut les rencontrer en assezgrand nombre ; c'est-à-dire que, si un jeteur de sorts invoque des démons guerriers, au lieu d'appelel un démon d'un type particulier, il invoquera plusieurs démons guerrier: (le nombre en est donné par (,Nb Renc» dans les caractéristiques). w démons guerriers ne connaissent pas, d'ordinaire, beaucoup de mystères profonds ou ténébreux, mais ils servent d'exécuteurs à de nombreW maîtres ténébreux.",
+      "special": [
+        "winged humanoid demon-blooded beings",
+        "not innately magical"
+      ],
+      "source": "Companion I",
+      "page": 78,
+      "table_parent_group": null,
+      "table_name_raw": "Mortal Demons",
+      "subcategory_fr": "Démons",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-021",
+      "name_en": "Clubber",
+      "name_fr": "Assommeur",
+      "category": "monsters",
+      "subcategory": "Demons",
+      "level": 5,
+      "level_code": "H",
+      "movement": {
+        "base_rate": 50,
+        "base_rate_raw": "50",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 10,
+        "speed_ms": "SL",
+        "speed_aq": "MD",
+        "movement_raw": {
+          "base_rate": "50",
+          "max_pace_mn": "Dash/10",
+          "speed": "SL/MD"
+        }
+      },
+      "size": "M",
+      "critical_size": "I#",
+      "hits_base": 150,
+      "constitution_factor": "E",
+      "hits_raw": "150E",
+      "armor_type": 4,
+      "db": 40,
+      "shield_db_included": false,
+      "armor_raw": "4(40)",
+      "attacks_raw": "110club/90club",
+      "attacks": [
+        {
+          "ob": 110,
+          "size": "M",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "club"
+        },
+        {
+          "ob": 90,
+          "size": "M",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "club"
+        }
+      ],
+      "encounter": {
+        "number": "1-20",
+        "treasure": "-",
+        "ep_code": "E",
+        "outlook": "Berserk(IN)"
+      },
+      "description_codes": "any-7",
+      "detail_line_raw": null,
+      "physical": "7 ' tall",
+      "young": "NA",
+      "description_en": "Muscle bound and stupid, Clubbers are the lowest of the Warrior demons. They are great for blocking doorways and halls. They enjoy the use of any blunt wooden, bony, or metallic objects as clubs. Having found a favorite pair of clubs, a Clubber is likely to carry them from plane to plane working his own dumb brand of mayhem. They look like hairless neanderthals with faces like a stone golem.",
+      "description_fr": "lis sont parfaits pour bloquer portes et couloirs. lli aiment utiliser n'importe quels objets contondants en bois, en os ou er méta!, tels que les gourdins. S'étant trouvé une paire de gourdin! favoris, un Assommeur les transportera probablement de plan en plan semant les ravages stupides qui lui sont propres. Ils ressemblent à de1 néanderthalienssans poils, dotés de visages comme ceux des golems d( pierre.",
+      "special": [
+        "warrior demon",
+        "great for blocking passages"
+      ],
+      "source": "Companion I",
+      "page": 78,
+      "table_parent_group": "Warrior Demons",
+      "table_name_raw": "Clubber",
+      "subcategory_fr": "Démons",
+      "table_parent_group_fr": "Démons guerriers"
+    },
+    {
+      "id": "comp1-022",
+      "name_en": "Spear Demon",
+      "name_fr": "Démon-lance",
+      "category": "monsters",
+      "subcategory": "Demons",
+      "level": 10,
+      "level_code": "G",
+      "movement": {
+        "base_rate": 130,
+        "base_rate_raw": "130",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 40,
+        "speed_ms": "VF",
+        "speed_aq": "FA",
+        "movement_raw": {
+          "base_rate": "130",
+          "max_pace_mn": "Dash/40",
+          "speed": "VF/FA"
+        }
+      },
+      "size": "L",
+      "critical_size": "LA#",
+      "hits_base": 135,
+      "constitution_factor": "F",
+      "hits_raw": "135F",
+      "armor_type": 4,
+      "db": 50,
+      "shield_db_included": false,
+      "armor_raw": "4(50)",
+      "attacks_raw": "130sp/120sp",
+      "attacks": [
+        {
+          "ob": 130,
+          "size": "L",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "spear"
+        },
+        {
+          "ob": 120,
+          "size": "L",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "spear"
+        }
+      ],
+      "encounter": {
+        "number": "1-20",
+        "treasure": "-",
+        "ep_code": "F",
+        "outlook": "Cruel(MD)"
+      },
+      "description_codes": "any-7",
+      "detail_line_raw": null,
+      "physical": "8' tall",
+      "young": "NA",
+      "description_en": "Spear demons are the Warriors above the Clubbers. They are shaped like a mix of man and a black maned lion. They walk upright, have hairless limbs, and vestigial wings appearing as webs between arms and legs. They have dragon-like tails. In combat, they scream and roar constantly, making amaz- ing leaps (50' +) and gliding from heights, constantly throwing or stabbing with spears. Their aim is precise and their strength sufficient to throw a spear at 4x its normal ranges. They enjoy cruelty, pinning an opponent's limbs with thrown spears, and then tormenting the hapless victim. They usually carry at least one quiver of 10 spears on their persons. The spears are rarely magical, but they are sometimes poisoned.",
+      "description_fr": "Les Démons-Lances sont les Démons Guerriers immédiatement supérieurs aux Assommeurs. lis ont l'aspect d'un croisement entre un homme et un lion à la crinière noire. lis marchent debout., ont des membres glabres et des ailes vestigielles ressemblant à des toiles d'araignées entre leurs bras et leursjambes. lis ont une queue semblable à celle d'un dragon. En combat ils hurlent et rugissent constamment, faisant des bonds incroyables (15 m et plus) et se laissant planerdepuis les hauteurs, portant des coups de lances quand ils ne les projettent pas. Leur visée est précise et leur force suffisante pour projeter une lance à 4 fois sa portée normale. lis aiment la cruauté, immobilisant les m~bres de leurs adversaires d'un jet de leurs lances, tourmentant ensuite la victime sans défense. lis portent en général au moins un carquois de 10 lances sur eux. Ces lances sont rarement magiques, mais elles sont parfois empoisonnées.",
+      "special": [
+        "warrior demon",
+        "poisoned spears",
+        "great leaps"
+      ],
+      "source": "Companion I",
+      "page": 79,
+      "table_parent_group": "Warrior Demons",
+      "table_name_raw": "Spear Demon",
+      "subcategory_fr": "Démons",
+      "table_parent_group_fr": "Démons guerriers"
+    },
+    {
+      "id": "comp1-023",
+      "name_en": "Sentinel",
+      "name_fr": "Sentinelle",
+      "category": "monsters",
+      "subcategory": "Demons",
+      "level": 15,
+      "level_code": "G",
+      "movement": {
+        "base_rate": 60,
+        "base_rate_raw": "60",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 20,
+        "speed_ms": "MD",
+        "speed_aq": "FA",
+        "movement_raw": {
+          "base_rate": "60",
+          "max_pace_mn": "Dash/20",
+          "speed": "MD/FA"
+        }
+      },
+      "size": "M",
+      "critical_size": "LA#",
+      "hits_base": 175,
+      "constitution_factor": "G",
+      "hits_raw": "175G",
+      "armor_type": 19,
+      "db": 60,
+      "shield_db_included": false,
+      "armor_raw": "19(60)",
+      "attacks_raw": "150wp/130MSt/150LBa",
+      "attacks": [
+        {
+          "ob": 150,
+          "size": "M",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "weapon"
+        },
+        {
+          "ob": 130,
+          "size": "M",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "martial strike"
+        },
+        {
+          "ob": 150,
+          "size": "L",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": null
+        }
+      ],
+      "encounter": {
+        "number": "1",
+        "treasure": "-",
+        "ep_code": "G",
+        "outlook": "Mission(AA)"
+      },
+      "description_codes": "any-5",
+      "detail_line_raw": null,
+      "physical": "7' tall",
+      "young": "NA",
+      "description_en": "By far the most commonly encountered of the Warrior Demons are Sen- tinels. They traditionally arm themselves with 2-handed weapons of all sorts, and wear armor of plate and chain (treat as + 10 armor). Some are armed with an extremely heavy 4-shot crossbow, with 4 separate bows and triggers. The bows are made of very high tensile alloy (+ 15) and a master trigger can permit the firer to fire all remaining bolts at once if desired (same target, of course). Sentinels make up the central core of most demonic armies, and many are used as guards. Impossibly well disciplined, they will maintain the same post unmoving, literally for years.",
+      "description_fr": "Les Sentinelles sont, de loin, les Démons Guerriers que l'on rencontre le plus communémenl lis s'équipent traditionnellement d'armes à 2 mains de toutes sortes, et ils portent des armures de mailles et de plates Catraiter comme des armures +10). Certains sont armés d'une arbalète à 4 coups extrêmementlourde, dotée de 4 détentes et de 4 arcsdistincts. Ces arcs sont faits dans un alliage de très forte tension (+15) et une détente principale permet au tireur d'expédier tous les carreaux restants d'un seul coup s'il le désire(sur la même cible, bien sûr). Les Sentinelles constituent le coeur de la plupart des armées démoniaques, et on en utilise beaucoup comme gardes. Disciplinés à un point incroyable, ils garderont le même poste sans bouger, littéralementpendant des années.",
+      "special": [
+        "warrior demon",
+        "heavy armor",
+        "guardian"
+      ],
+      "source": "Companion I",
+      "page": 79,
+      "table_parent_group": "Warrior Demons",
+      "table_name_raw": "Sentinel",
+      "subcategory_fr": "Démons",
+      "table_parent_group_fr": "Démons guerriers"
+    },
+    {
+      "id": "comp1-024",
+      "name_en": "Sword Demon",
+      "name_fr": "Démon-épée",
+      "category": "monsters",
+      "subcategory": "Demons",
+      "level": 20,
+      "level_code": "G",
+      "movement": {
+        "base_rate": 200,
+        "base_rate_raw": "200",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 40,
+        "speed_ms": "BF",
+        "speed_aq": "BF",
+        "movement_raw": {
+          "base_rate": "200",
+          "max_pace_mn": "Dash/40",
+          "speed": "BF/BF"
+        }
+      },
+      "size": "M",
+      "critical_size": "LA#",
+      "hits_base": 300,
+      "constitution_factor": "H",
+      "hits_raw": "300H",
+      "armor_type": 12,
+      "db": 90,
+      "shield_db_included": false,
+      "armor_raw": "12(90)",
+      "attacks_raw": "210wp(2D)(2x)/220MSw",
+      "attacks": [
+        {
+          "ob": 210,
+          "size": "M",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "2D; 2x; weapon"
+        },
+        {
+          "ob": 220,
+          "size": "M",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "martial sweep"
+        }
+      ],
+      "encounter": {
+        "number": "1",
+        "treasure": "uzz",
+        "ep_code": "J",
+        "outlook": "Playful(VH)"
+      },
+      "description_codes": "any-7",
+      "detail_line_raw": null,
+      "physical": "7.5' tall",
+      "young": "NA",
+      "description_en": "The Sword Demons are an arrogant and dashing breed, confident in their truly overwhelming prowess and blinding speed. They are winged and hairless (except for long mustachios), but otherwise very man-like except for having goat's hooves as feet. They fight most often wearing just a loin cloth. They playfully tease and humiliate their opponents before disarming them and then destroying them with brilliant 2-handed swords (Black Mithril + 20). Sword Demons resent being \"mastered\" and force their masters to constantly keep a firm hold on them or else face certain doom. A Sword Demon can split a 6\" thick oak door in a single strike, and can cut through 1 cu' of stone/rd. They will always accept a challenge to combat with an enemy, should one be so foolish.",
+      "description_fr": "Les Démons-Epées sont une espèce arrogante et fringante, confiante en des prouesses réellement écrasantes et en son aveuglante rapidité. lis sont ailés et glabres (excepté de longues moustaches), mais en dehors de cela très semblablesaux hommes, sauf qu'ils ont des sabots de boucs en guise de pieds. lis combattent le plus souvent en portant juste un pagne. Ilstourmentent et humilient leurs adversaires à loisir avant de les désarmer, puis de les détruire avec de brillantes épées à deux mains (MithrilNoir +20). Les Démons-Epées éprouvent du ressentimentà être «maîtrisés» et ils obligent leur maître à toujours garder une emprise fern:lesur eux ou, en cas contraire, à affronter un destin funeste. Un D6:non-Epée peut éclaterune porte en chêne de 15 cm d'épaisseur d'un seul coup, et peut trancher 2,7 m3 de pierre par round. li acceptera toujours le défi de combattre un ennemi, si celui-ci est assez fou pour le lancer.",
+      "special": [
+        "warrior demon",
+        "blinding speed",
+        "black mithril greatsword"
+      ],
+      "source": "Companion I",
+      "page": 79,
+      "table_parent_group": "Warrior Demons",
+      "table_name_raw": "Sword Demon",
+      "subcategory_fr": "Démons",
+      "table_parent_group_fr": "Démons guerriers"
+    },
+    {
+      "id": "comp1-025",
+      "name_en": "Shadow Demon",
+      "name_fr": "Démon-ombre",
+      "category": "monsters",
+      "subcategory": "Demons",
+      "level": 30,
+      "level_code": "G",
+      "movement": {
+        "base_rate": 150,
+        "base_rate_raw": "150",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 30,
+        "speed_ms": "VF",
+        "speed_aq": "BF",
+        "movement_raw": {
+          "base_rate": "150",
+          "max_pace_mn": "Dash/30",
+          "speed": "VF/BF"
+        }
+      },
+      "size": "M",
+      "critical_size": "SL#",
+      "hits_base": 250,
+      "constitution_factor": "H",
+      "hits_raw": "250H",
+      "armor_type": 20,
+      "db": 50,
+      "shield_db_included": false,
+      "armor_raw": "20(50)",
+      "attacks_raw": "200wp(3D)(2x)/150HBa/spell",
+      "attacks": [
+        {
+          "ob": 200,
+          "size": "M",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "3D; 2x; weapon"
+        },
+        {
+          "ob": 150,
+          "size": "H",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": null
+        }
+      ],
+      "encounter": {
+        "number": "1",
+        "treasure": "uuzz",
+        "ep_code": "K",
+        "outlook": "Cruel(SU)"
+      },
+      "description_codes": "any-8",
+      "detail_line_raw": "Flesh Destruction, 3pp/lvl",
+      "physical": "9' tall",
+      "young": "NA. Flesh Destruction",
+      "description_en": "The Shadow demons strongly resemble Sword Demons except for their lack of mustachios and solid form. They are usually bent on a single mission or purpose, or a guardianship of some sort. They often fight with a whip in one hand (does additional grapple criticals) and a 2- handed weapon in the other. Shadow demons aren't as playful as Sword demons in combat (but neither are they so nasty to those who summon them). Provided, of course, the summoners don't try to push them too hard or too long. Light and elec- tricity based spells do double damage against Shadow Demons. 7.5 UNDEAD",
+      "description_fr": "Destruction de la chair, 3pp/niv Les Démons-Ombres ressemblent fortement aux Démons-Epées, mais il leur manque la moustache et la forme solide. lis sont.,en général, voués à une seule mission ou un seul but, ou à un gardiennage quelconque. lis combattent habituellement avec un fouet dans une main (qui cause des critiques de saisie supplémentaires) et une arme à deux mains dans l'autre. Les Démons-Ombres ne sont pas aussi joueurs que les Démons-Epées au combat (mais ils ne sont pas non plus aussi désagréables avec ceux qui les invoquent). Pourvu, bien sûr, que les invocateursne les bousculent pas trop, ou ne les poussent pas trop loin. Les sorts basés sur la lumière ou l'électricité causent des dommages doubles aux Démons-Ombres. ~ 7.5MORTS- VIVANTS HORREUR",
+      "special": [
+        "warrior demon",
+        "flesh destruction spell access",
+        "double damage from light and electricity",
+        "spells"
+      ],
+      "source": "Companion I",
+      "page": 79,
+      "table_parent_group": "Warrior Demons",
+      "table_name_raw": "Shadow Demon",
+      "subcategory_fr": "Démons",
+      "table_parent_group_fr": "Démons guerriers"
+    },
+    {
+      "id": "comp1-026",
+      "name_en": "Dream Horror",
+      "name_fr": "Horreur des rêves",
+      "category": "monsters",
+      "subcategory": "Undead",
+      "level": 15,
+      "level_code": "H",
+      "movement": {
+        "base_rate": 80,
+        "base_rate_raw": "80",
+        "base_rate_special": false,
+        "max_pace": "FSpt",
+        "mn_bonus": 20,
+        "speed_ms": "MF",
+        "speed_aq": "MF",
+        "movement_raw": {
+          "base_rate": "80",
+          "max_pace_mn": "FSpt/20",
+          "speed": "MF/MF"
+        }
+      },
+      "size": "M",
+      "critical_size": "LA#",
+      "hits_base": 165,
+      "constitution_factor": "E",
+      "hits_raw": "165E",
+      "armor_type": 1,
+      "db": 75,
+      "shield_db_included": false,
+      "armor_raw": "1(75)",
+      "attacks_raw": "120Sc(4x)",
+      "attacks": [
+        {
+          "ob": 120,
+          "size": "M",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "4x; blade-hands"
+        }
+      ],
+      "encounter": {
+        "number": "1",
+        "treasure": "-",
+        "ep_code": "G",
+        "outlook": "Cruel(AV)"
+      },
+      "description_codes": "any-8",
+      "detail_line_raw": null,
+      "physical": "5-7'tall",
+      "young": "NA",
+      "description_en": "The Dream Horror is a particularly nasty form of vengeful spirit. The source of this ghost's power to continue in this world is his thirst for revenge and a particularly unpleasant, perhaps psychotic nature. The Horror appears as a malformed human with long blades in place of his hands (he has four arms). The Horror will move into its target's dream world, filling night after night with nightmares (-5 cumulative each night for being poorly rested), and when the Horror finally corners its victim in the nightmare, any damage done to the target in the ensuing struggle actually occurs in real life. Unfortunately, even if the target is able to kill the Horror in the nightmare (which is possi- ble since the victim will retain all his equipment and abilities in the nightmares as in real life) the Horror will return the very next time the target sleeps. The only way to kill a Dream Horror permanently is to somehow draw him into the waking world (e.g. the target might grapple or trap the Horror just before being awakened). The Dream Horror may kill several targets related in some way to its true and final victim. Any Power Points spent by victims in nightmares are actually spent when the target awakens.",
+      "description_fr": "L'Horreur des Rêves est une forme particulièrement mauvaise d'esprit vengeur. La source du pouvoir qui maintient ces fantômes dans ce monde est leur soif de vengeance et une nature particulièrement désagréable,peut- être psychotique. L'Horreur apparaît comme un humain difforme, doté de longues lames à la place des mains (il a quatre bras). L'Horreur se déplacera dans le monde des rêves de sa cible, emplissant de cauchemars nuit aprèsnuit (-5 cumulatifs chaque nuit pour s'être mal reposé). Lorsque l'Horrew réussit finalement à acculer sa victime dans un cauchemar, tous les dommages infligés à la cible dans la lutte qui s'ensuit, se produisent dans la vie réelle.Malheureusement,même si la cible est capablede tuel l'Horreur dans le cauchemar (ce qui est possible, puisque la victime conserve tout son équipement et ses capacités dans ses cauchemars comme dans la vie réelle), l'Horreur reviendra la prochaine fois que sa cible s'endormira. La seule façon de tuer une Horreur des Rêves de façon permanente est de l'attirer d'une façon ou d'une autre dans le monde éveillé (c'est-à-dire que la cible doit saisir ou piéger l'Horrew juste avant de se réveiller). L'Horreur des Rêves peut tuer plusieun",
+      "special": [
+        "haunts dreams",
+        "real damage in nightmares",
+        "must be drawn into waking world"
+      ],
+      "source": "Companion I",
+      "page": 79,
+      "table_parent_group": null,
+      "table_name_raw": "Dream Horror",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-027",
+      "name_en": "Classic Lich",
+      "name_fr": "Liche classique",
+      "category": "monsters",
+      "subcategory": "Undead",
+      "level": 35,
+      "level_code": "G",
+      "movement": {
+        "base_rate": 40,
+        "base_rate_raw": "40",
+        "base_rate_special": false,
+        "max_pace": "FSpt",
+        "mn_bonus": 20,
+        "speed_ms": "SL",
+        "speed_aq": "VF",
+        "movement_raw": {
+          "base_rate": "40",
+          "max_pace_mn": "FSpt/20",
+          "speed": "SL/VF"
+        }
+      },
+      "size": "M",
+      "critical_size": "SL#",
+      "hits_base": 450,
+      "constitution_factor": "H",
+      "hits_raw": "450H",
+      "armor_type": 18,
+      "db": 75,
+      "shield_db_included": false,
+      "armor_raw": "18(75)",
+      "attacks_raw": "180wpn/200HBa/special/spells",
+      "attacks": [
+        {
+          "ob": 180,
+          "size": "M",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "weapon"
+        },
+        {
+          "ob": 200,
+          "size": "H",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": null
+        }
+      ],
+      "encounter": {
+        "number": "1",
+        "treasure": "yyzzz",
+        "ep_code": "L",
+        "outlook": "Cruel(EX)"
+      },
+      "description_codes": "EKX@§#-8",
+      "detail_line_raw": null,
+      "physical": "5-8'tall",
+      "young": "NA",
+      "description_en": "Mere Presence causes fear (100'rad, 1rd/5% fail), touch delivers cold bolt( + 50); those within 10' lose 5 Con pts/rd(-20RR); a Lich possesses all spells he had while alive. The Lich is a terrible enemy to face. They are very difficult to destroy. During the great ceremony to become a Lich the living magic user dies while crossing the boarder into Undeath (see the Ritual of Black Eternity in the Section 3.6). If the Lich is \"killed\" in combat yet con- tainer with his organs remains hidden (or at least unharmed) the Lich will reform near the container in 1-5 days. The Lich can only be permanently destroyed by destroying the container and his organs. The Lich may travel no more than 100 miles from the location of the container. He may influence some being to transport the container though he may not do so himself.",
+      "description_fr": "La Liche est un ennemitem\"ble à affronter. Elles sont très difficiles à détruire. Au cours de la grande cérémonie qui permet de devenir une Liche, le magicien vivant meurt alors qu'il traverse la frontière de la non-vie (voir le Rituel d'Eternité Noire à la section 3.6). Si la Liche est «tuée» en combat alors que le récipient contenant ses organes reste caché (ou au moins intact), la Liche se reformera auprès de ce récipient en 1-5 jours. La Liche ne peut être détruite de façon permanente qu'en détruisant le récipie'!~~t ses organes. La Liche ne peut se déplacer à plus de 16 kilomètres de l'endroit où est ce récipient Elle peut amener un être àl transporter le récipient, alors qu'elle ne peut pas le faire elle-même. ,.",
+      "special": [
+        "fear aura",
+        "cold touch",
+        "Con drain aura",
+        "phylactery-like organ container",
+        "spells",
+        "special attack",
+        "spells"
+      ],
+      "source": "Companion I",
+      "page": 80,
+      "table_parent_group": null,
+      "table_name_raw": "Classic Lich",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-028",
+      "name_en": "Chaos Warrior",
+      "name_fr": "Guerrier du Chaos",
+      "category": "monsters",
+      "subcategory": "Undead",
+      "level": 7,
+      "level_code": "H",
+      "movement": {
+        "base_rate": 90,
+        "base_rate_raw": "90",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 30,
+        "speed_ms": "VF",
+        "speed_aq": "FA",
+        "movement_raw": {
+          "base_rate": "90",
+          "max_pace_mn": "Dash/30",
+          "speed": "VF/FA"
+        }
+      },
+      "size": "M",
+      "critical_size": "I#",
+      "hits_base": 135,
+      "constitution_factor": "F",
+      "hits_raw": "135F",
+      "armor_type": 18,
+      "db": 50,
+      "shield_db_included": false,
+      "armor_raw": "18(50)",
+      "attacks_raw": "130wpn/120wpn",
+      "attacks": [
+        {
+          "ob": 130,
+          "size": "M",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "weapon"
+        },
+        {
+          "ob": 120,
+          "size": "M",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "weapon"
+        }
+      ],
+      "encounter": {
+        "number": "1-300",
+        "treasure": "tt",
+        "ep_code": "F",
+        "outlook": "Cruel(AV)"
+      },
+      "description_codes": "any-4",
+      "detail_line_raw": null,
+      "physical": "5.5-8'tall",
+      "young": "NA",
+      "description_en": "The Chaos warrior may be spotted by his uniform dark clothing and ar- mor, a tendency towards exotic helmets with horns or wings and eye slits, and weapons often flowery in design. Chaos warriors are the scourge of every decent and peace loving folk and always follow some foul master. Chaos war- riors gain their relatively great prowess by a terrible mass ceremony where the candidates impale themselves on their own weapons. Those \"blessed\" by their deities are healed and transformed. However, should the warrior renege on his vow the deity will release him to the death or maiming incurred dur- ing that ceremony. Chaos warriors are considered as living men in all other respects. The treasure noted is that of the whole company.",
+      "description_fr": "On peut reconnaître un Guerrier du Chaos à sa vêture d'un noir uniforme,son armure noire, une propension aux casques exotiques avec des cornes ou des ailes et des fentes pour les yeux, et à ses armes à l'ornementation souvent «fleurie». Les Guerriers du Chaos sont le fléau de tous les gens décents et amoureux de la paix, et ils suivent toujours un maître immonde. US Guerriers du Chaos acquièrent leurs relativement grandes aptitudes aux prouesses par une terrible cérémonie de masse au cours de laquelle les candidats s'empalent eux-mêmes sur leurs propres armes. Ceux qui sont «bénis» par leur déités sont guéris et transformés.Cependant si jamais le Guerrier venait à renier son v-u, sa déité le renverrait à la mort ou aux infirmités encoUITUesau cours de cette cérémonie. Les Guerriers du Chaos sont considérés comme des êtres humains vivants en tous autres points. Le trésor indiqué est celui de l'ensemble de la compagnie.",
+      "special": [
+        "ritual empowerment",
+        "living servant of evil powers"
+      ],
+      "source": "Companion I",
+      "page": 80,
+      "table_parent_group": null,
+      "table_name_raw": "Chaos Warrior",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-029",
+      "name_en": "Chaos Commander",
+      "name_fr": "Commandant du Chaos",
+      "category": "monsters",
+      "subcategory": "Undead",
+      "level": 20,
+      "level_code": "H",
+      "movement": {
+        "base_rate": 120,
+        "base_rate_raw": "120",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 30,
+        "speed_ms": "VF",
+        "speed_aq": "VF",
+        "movement_raw": {
+          "base_rate": "120",
+          "max_pace_mn": "Dash/30",
+          "speed": "VF/VF"
+        }
+      },
+      "size": "M",
+      "critical_size": "II#",
+      "hits_base": 400,
+      "constitution_factor": "H",
+      "hits_raw": "400H",
+      "armor_type": 19,
+      "db": 75,
+      "shield_db_included": false,
+      "armor_raw": "19(75)",
+      "attacks_raw": "175wpn/160wpn/150MSt/150MSw",
+      "attacks": [
+        {
+          "ob": 175,
+          "size": "M",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "weapon"
+        },
+        {
+          "ob": 160,
+          "size": "M",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "weapon"
+        },
+        {
+          "ob": 150,
+          "size": "M",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "martial strike"
+        },
+        {
+          "ob": 150,
+          "size": "M",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "martial sweep"
+        }
+      ],
+      "encounter": {
+        "number": "1",
+        "treasure": "yz",
+        "ep_code": "H",
+        "outlook": "Cruel(SU)"
+      },
+      "description_codes": "any-8",
+      "detail_line_raw": null,
+      "physical": "6.5-8'tall",
+      "young": "NA",
+      "description_en": "The Chaos Commander is the special individual who leads the bands of Chaos Warriors. Usually he is only out-ranked by the supreme leader, master, or battle-field commander (if he is outranked at all).",
+      "description_fr": "En général, il n'est surpassé dans la hiérarchie que par le chef suprême, le maître ou le commandant du champ de bataille (si jamais il est surpassé).",
+      "special": [
+        "leader of chaos warriors"
+      ],
+      "source": "Companion I",
+      "page": 80,
+      "table_parent_group": null,
+      "table_name_raw": "Chaos Commander",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-030",
+      "name_en": "Black Reaver",
+      "name_fr": "Inexorable",
+      "category": "monsters",
+      "subcategory": "Undead",
+      "level": 85,
+      "level_code": "G",
+      "movement": {
+        "base_rate": 60,
+        "base_rate_raw": "60",
+        "base_rate_special": false,
+        "max_pace": "FSpt",
+        "mn_bonus": 40,
+        "speed_ms": "MD",
+        "speed_aq": "BF",
+        "movement_raw": {
+          "base_rate": "60",
+          "max_pace_mn": "FSpt/40",
+          "speed": "MD/BF"
+        }
+      },
+      "size": "M",
+      "critical_size": "SL#",
+      "hits_base": 999,
+      "constitution_factor": "G",
+      "hits_raw": "999G",
+      "armor_type": 20,
+      "db": 100,
+      "shield_db_included": false,
+      "armor_raw": "20(100)",
+      "attacks_raw": "375wpn(4D)(2x)/300HBa(3D)",
+      "attacks": [
+        {
+          "ob": 375,
+          "size": "M",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "4D; 2x; weapon"
+        },
+        {
+          "ob": 300,
+          "size": "H",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": "3D"
+        }
+      ],
+      "encounter": {
+        "number": "1",
+        "treasure": "z",
+        "ep_code": "LL",
+        "outlook": "Mission(SU)"
+      },
+      "description_codes": "any-9",
+      "detail_line_raw": null,
+      "physical": "8-9'tall",
+      "young": "NA",
+      "description_en": "May cut through 1 cu'/rd of any material softer than laen. There is nothing short of deity more dangerous than a Black Reaver. A Black Reaver is the result of the possession and subsequent combination of a major undead (lich, vampire, etc) or Greater Lycanthrope with an Ordainer or other demon beyond the Pale. They are always given a purpose, most often the guarding of a par- ticular object or door, or the killing of some individual. They are not wan- ton but they will do what is necessary and will remove any obstacles very quickly. They are always armed with a large hooked battle-axe (Eog + 30), and dressed in black plate armor (+ 25) and cape. Their helmets sport glisten- ing horns for decoration and two bright red eyes glow from within. They are capable of flight or underwater movement at a constant rate of 120'rd. They need nothing for life support (i.e. air, food, etc), do not age, become bored, or tired. They will not stop without fulfilling their objective. There is no easy way to kill one. They usually do not move faster than their base rate. Why hurry?",
+      "description_fr": "D n'y a rien de moins qu'une divinité qui soit plus dangereux qu'un Inexorable. Un Inexorable est le résultat de la possession, puis de la combinaison qui s'ensuit, d'un mort-vivant majeur (Liche, Vampire, ----etc.) ou d'un Lycanthrope supérieur par un Ordonnateur ou un autre démon au-delà du Pale. On leur donne toujouts un objectif, le plus souvent garderun objet ou une porte en particulier, ou tuer quelqu'un. Ds ne feront rien sans raison, mais ils feront tout ce qui est nécessaire et ilssupprimeronttous les obstacles au plus vite. Ils sont toujours armés d'une grande hache de bataille à aochet (Eog +30), et vêtus d'une armure de platesnoire (+25), et d'une cape noire. Leur casque porte des' cornes miroitantesen guise de décoration, et deux yeux rouges luisent à l'intérieur. lis sont capable de voler ou de se déplacer sous l'eau à une vitesse constantede 36 m/rnd. Ils n'ont besoin de rien pour se maintenir en vie (c'est-à-dire ni air, ni nourriture), ils ne vieillissent pas, ils ne se lassent pas, ils ne se fatiguent pas. TIsne s'arrêteront pas avant d'avoir atteint leur objectif.D n'existe pas de manière simple d'en tuer un. Ds ne se déplacent en général pas plus vite que leur vitesse de base. Pourquoi se presser?",
+      "special": [
+        "flight",
+        "underwater movement",
+        "no life support needed",
+        "mission-bound"
+      ],
+      "source": "Companion I",
+      "page": 80,
+      "table_parent_group": null,
+      "table_name_raw": "Black Reaver",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-031",
+      "name_en": "Lesser Black Reaver",
+      "name_fr": "Inexorable inférieur",
+      "category": "monsters",
+      "subcategory": "Undead",
+      "level": 50,
+      "level_code": "G",
+      "movement": {
+        "base_rate": 60,
+        "base_rate_raw": "60",
+        "base_rate_special": false,
+        "max_pace": "FSpt",
+        "mn_bonus": 40,
+        "speed_ms": "MD",
+        "speed_aq": "BF",
+        "movement_raw": {
+          "base_rate": "60",
+          "max_pace_mn": "FSpt/40",
+          "speed": "MD/BF"
+        }
+      },
+      "size": "M",
+      "critical_size": "SL#",
+      "hits_base": 600,
+      "constitution_factor": "G",
+      "hits_raw": "600G",
+      "armor_type": 20,
+      "db": 60,
+      "shield_db_included": false,
+      "armor_raw": "20(60)",
+      "attacks_raw": "250wpn(3D)(2x)/200HBa(2D)",
+      "attacks": [
+        {
+          "ob": 250,
+          "size": "M",
+          "type": "We",
+          "type_en": "Weapon",
+          "percent": null,
+          "special": "3D; 2x; weapon"
+        },
+        {
+          "ob": 200,
+          "size": "H",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": "2D"
+        }
+      ],
+      "encounter": {
+        "number": "1",
+        "treasure": "z",
+        "ep_code": "L",
+        "outlook": "Mission(AA)"
+      },
+      "description_codes": "any-9",
+      "detail_line_raw": null,
+      "physical": "7-8'tall",
+      "young": "NA",
+      "description_en": "Identical in most respects to their bigger brothers, the Lesser Black Reavers are not so over-whelming in their power, though certainly more dangerous than an average large Dragon! They are the result of the possession and subse- quent combination of an undead or a lycanthrope with a demon, but on a somewhat reduced scale.",
+      "description_fr": "7.6 DRAGONS",
+      "special": [
+        "flight",
+        "underwater movement",
+        "mission-bound"
+      ],
+      "source": "Companion I",
+      "page": 80,
+      "table_parent_group": null,
+      "table_name_raw": "Lesser Black Reaver",
+      "subcategory_fr": "Morts-vivants",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-032",
+      "name_en": "Faerie Dragon",
+      "name_fr": "Dragon-fée",
+      "category": "monsters",
+      "subcategory": "Dragons",
+      "level": 8,
+      "level_code": "F",
+      "movement": {
+        "base_rate": 180,
+        "base_rate_raw": "180",
+        "base_rate_special": false,
+        "max_pace": "Dash",
+        "mn_bonus": 50,
+        "speed_ms": "BF",
+        "speed_aq": "BF",
+        "movement_raw": {
+          "base_rate": "180",
+          "max_pace_mn": "Dash/50",
+          "speed": "BF/BF"
+        }
+      },
+      "size": "S",
+      "critical_size": "I",
+      "hits_base": 40,
+      "constitution_factor": "D",
+      "hits_raw": "40D",
+      "armor_type": 4,
+      "db": 80,
+      "shield_db_included": false,
+      "armor_raw": "4(80)",
+      "attacks_raw": "90SCl/100MSt/poison",
+      "attacks": [
+        {
+          "ob": 90,
+          "size": "S",
+          "type": "Cl",
+          "type_en": "Claw",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 100,
+          "size": "M",
+          "type": "St",
+          "type_en": "Stinger",
+          "percent": null,
+          "special": null
+        }
+      ],
+      "encounter": {
+        "number": "1-8",
+        "treasure": "u",
+        "ep_code": "F",
+        "outlook": "Good(SU)"
+      },
+      "description_codes": "wmsktc-(§Y)-(G)-(U)-(T)",
+      "detail_line_raw": null,
+      "physical": "1-3'long",
+      "young": "2-8 eggs",
+      "description_en": "The Faerie Dragon is a playful, somtimes mischievious, but always good and helpful creature. Its poison is a 15th Lvl: Sleep Poison. If a person of noble character is present at the hatching time, one and only one faerie dragon may attune itself to the person as a natural familiar. The Faerie dragon looks like a fully developed adult dragon, except in miniature and except for a tough scorpion like stinger in its tail.",
+      "description_fr": "Le Dragon-Fée est une créature joueuse, parfois malicieuse, mais",
+      "special": [
+        "15th level sleep poison",
+        "natural familiar",
+        "poison"
+      ],
+      "source": "Companion I",
+      "page": 80,
+      "table_parent_group": null,
+      "table_name_raw": "Faerie Dragon",
+      "subcategory_fr": "Dragons",
+      "table_parent_group_fr": null
+    },
+    {
+      "id": "comp1-033",
+      "name_en": "Magedrake",
+      "name_fr": "Dracomage",
+      "category": "monsters",
+      "subcategory": "Dragons",
+      "level": 40,
+      "level_code": "G",
+      "movement": {
+        "base_rate": 200,
+        "base_rate_raw": "200",
+        "base_rate_special": false,
+        "max_pace": "FSpt",
+        "mn_bonus": 15,
+        "speed_ms": "VF",
+        "speed_aq": "FA",
+        "movement_raw": {
+          "base_rate": "200",
+          "max_pace_mn": "FSpt/15",
+          "speed": "VF/FA"
+        }
+      },
+      "size": "H",
+      "critical_size": "SL",
+      "hits_base": 450,
+      "constitution_factor": "G",
+      "hits_raw": "450G",
+      "armor_type": 16,
+      "db": 50,
+      "shield_db_included": false,
+      "armor_raw": "16(50)",
+      "attacks_raw": "100HBi/140HCl/110HBa/70HHo/100FBr*",
+      "attacks": [
+        {
+          "ob": 100,
+          "size": "H",
+          "type": "Bi",
+          "type_en": "Bite",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 140,
+          "size": "H",
+          "type": "Cl",
+          "type_en": "Claw",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 110,
+          "size": "H",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 70,
+          "size": "H",
+          "type": "Ho",
+          "type_en": "Horn",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 100,
+          "size": null,
+          "type": "Breath",
+          "type_en": "Breath",
+          "percent": null,
+          "special": "see description; fire breath"
+        }
+      ],
+      "encounter": {
+        "number": "1",
+        "treasure": "yyz",
+        "ep_code": "L",
+        "outlook": "Varies(VH)"
+      },
+      "description_codes": "any-8",
+      "detail_line_raw": "Other statistics as for mature fire drake.",
+      "physical": null,
+      "young": null,
+      "description_en": "The Magedrake is a very special voluntary Shapechanger. He began as a common or high man magic user, who having attained lord level (i.e. level 20) and having learned all of the Arcane spell lists to his level, has under gone the \"Ritual of Ascension\" administered by a spell caster having already attained Magedrake status. Immediately, his lifespan increases to about 3000 years, he may change to and from Dragon form at will (3 rounds to change). A Magedrake may continue to grow in knowledge and power.",
+      "description_fr": "Le Dracomage est un changeur de forme volontaire très particulier. Ancien jeteur de sorts humain ayant maîtrisé toutes les listes d'Arcane de son niveau et subi le Rituel d'Ascension, il peut se transformer en dragon à volonté, voit sa vie s'étendre sur environ trois millénaires et continue à accroître son savoir et sa puissance.",
+      "special": [
+        "voluntary shapeshifter",
+        "arcane mastery",
+        "long lifespan"
+      ],
+      "source": "Companion I",
+      "page": 80,
+      "table_parent_group": "Fire Drake reference",
+      "table_name_raw": "Magedrake",
+      "subcategory_fr": "Dragons",
+      "table_parent_group_fr": "Référence au Drake de feu"
+    },
+    {
+      "id": "comp1-034",
+      "name_en": "Arcane Drake",
+      "name_fr": "Dragon de l'Arcane",
+      "category": "monsters",
+      "subcategory": "Dragons",
+      "level": 70,
+      "level_code": "G",
+      "movement": {
+        "base_rate": 180,
+        "base_rate_raw": "180",
+        "base_rate_special": false,
+        "max_pace": "Spt",
+        "mn_bonus": 0,
+        "speed_ms": "FA",
+        "speed_aq": "FA",
+        "movement_raw": {
+          "base_rate": "180",
+          "max_pace_mn": "Spt/0",
+          "speed": "FA/FA"
+        }
+      },
+      "size": "H",
+      "critical_size": "SL",
+      "hits_base": 600,
+      "constitution_factor": "G",
+      "hits_raw": "600G",
+      "armor_type": 20,
+      "db": 75,
+      "shield_db_included": false,
+      "armor_raw": "20(75)",
+      "attacks_raw": "125HBi/150HCl/130HBa/90HHo/120FBr*",
+      "attacks": [
+        {
+          "ob": 125,
+          "size": "H",
+          "type": "Bi",
+          "type_en": "Bite",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 150,
+          "size": "H",
+          "type": "Cl",
+          "type_en": "Claw",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 130,
+          "size": "H",
+          "type": "Ba",
+          "type_en": "Bash",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 90,
+          "size": "H",
+          "type": "Ho",
+          "type_en": "Horn",
+          "percent": null,
+          "special": null
+        },
+        {
+          "ob": 120,
+          "size": null,
+          "type": "Breath",
+          "type_en": "Breath",
+          "percent": null,
+          "special": "see description; fire breath"
+        }
+      ],
+      "encounter": {
+        "number": "1",
+        "treasure": "yyyz",
+        "ep_code": "LL",
+        "outlook": "Varies(EX)"
+      },
+      "description_codes": "any-9",
+      "detail_line_raw": "Other statistics as for old fire drake.",
+      "physical": null,
+      "young": null,
+      "description_en": "The Arcane Drake is a Magedrake who sometime after the \"Ritual of Ascension\" has finally risen to 50th level in his profession and his expertise in the Arcane Spells. He is now certainly recognized by any dragon and has come to the attention of the great spiritual forces in the cosmos. Whether for good or ill, he is considered a chief promoter and protector of his alignment and loyalties. 8.0 CITY DESIGN This section presents a system for generating populations for cities. The system is keyed to one specific population cross-section that the GM should modify to fit his world; it should serve primarily as an example of how to generate a population center. From time to time, a GM needs to design or fill out the population of a city. In doing this, the number of representatives of the various professions and classes is important. How many Alchemists, Seers, Healers, etc are all details required from time to time. This section is designed for that purpose: describing the population of a city of 1000 or more persons. The process is lengthy because it accounts for most professions, but it is not difficult. GM's are encouraged to modify the process in any way which particularly fits their campaigns. But GM's should be warned, if they are designing a large population center, they will possibly be startled, at how many of a particular class there are. But before throwing out 75% of these NPC's, remember that even if only 1 out of a thousand people has what it takes to be a good Mystic, there will be a thousand Mystics in a metropolis of a million inhabitants. Cities of that size have existed all through recorded history. This process is suitable for a program on a personal computer. GM's are invited to teach their favorite machines how to build Rolemaster cities. DICE ROLLING CONVENTIONS One of the basic types of dice rolls used in this section is: (50 + 1D100)%. It involves the following process: a. Roll l-100 to obtain a value between 1 and 100. b. Add 50 to the result. c. Divide that result by 100 and use the result as indicated. This convention yields results from 51% to 150% (i.e., .51 and 1.50). When multiplied by the outcome of the formulae which follow, the resulting product is relatively uniform. This process is the standard for those segments of the population (such as fighting men) which will almost always appear in a significant number. If the GM wishes to retain the possibility of extremes, he may treat the l-100 roll as an open-ended roll. The second basic die rolling convention used in this section is: (2D100)%. It involves the following process: a. Roll l-100 twice. b. Add the two results together and obtain a sum. c. Divide the result by 100 and use the result as indicated. This convention yields results from 2% to 200% (i.e., .02 to 2.00). This variation of possible results is intended to yield results for those segments of population whose numbers are not uniformly distributed and which may vary greatly. For example, Bards might predominate in a society interested in entertainment and the arts, but would have negligible representation hi a Spartan and pragmatic society. THE FORMULAE The formulae for the population make-up follow along with their explanatory notes. Examples of associations, institutions, and businesses have been given for the various professions that might be likely to form such organizations for their trade. GM's should feel especially free to alter or reject the corporations suggested which might support such a variety of arms users and Spell Casters on a regular basis. But a GM should remember that very few people can be adventurers all of the time, even in an adventurer's world. The first step is for the GM to decide how many people will be in the city. The following system gives best results when used for cities of over 1000 persons. Round off for all formulae unless that would result in unusual results. Step 1: Fighters In most fantasy cultures there seems to always be a need for Fighters: whether garrison, based regulars, feudal cavalry and nobles, mercenaries, elite special forces, rag-tag levies, or whatever. The total number of basic Fighters in the city will be: ARMY = POPULATION / 10 x (50 '+ 1D100)% [2th to 5th level]",
+      "description_fr": "Le Dragon de l'Arcane est un Dracomage qui a encore progressé jusqu'au très haut niveau dans sa profession et dans la maîtrise des sorts d'Arcane. Tous les dragons le reconnaissent, et les grandes forces spirituelles du cosmos remarquent sa présence; il devient un champion majeur de ses fidélités et de son alignement.",
+      "special": [
+        "voluntary shapeshifter",
+        "arcane mastery",
+        "cosmic significance"
+      ],
+      "source": "Companion I",
+      "page": 80,
+      "table_parent_group": "Fire Drake reference",
+      "table_name_raw": "Arcane Drake",
+      "subcategory_fr": "Dragons",
+      "table_parent_group_fr": "Référence au Drake de feu"
+    }
+  ]
+}
