@@ -1118,49 +1118,32 @@
 }
 
 /* ============================================
-   A5 — Hero video container (Sora)
+   A5 — Hero crystal ball container (Sora)
    ============================================ */
 
 .rm-hero-video {
   position: relative;
   width: 100%;
   overflow: hidden;
-  background: #0a0806;
-}
-.rm-hero-video video {
-  width: 100%;
-  display: block;
-}
-
-/* Masquer la vidéo hero sur toutes les vues sauf accueil */
-body[data-view]:not([data-view="home"]) .rm-hero-video {
-  display: none !important;
-}
-
-/* Accueil : pleine hauteur naturelle de la vidéo */
-body[data-view="home"] .rm-hero-video {
-  height: auto;
-}
-body[data-view="home"] .rm-hero-video video {
-  width: 100%;
-  height: auto;
-  object-fit: unset;
-}
-.rm-hero-overlay {
-  position: absolute;
-  inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, #1a1208 0%, #0a0806 60%);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
+  padding: 0.5rem 0 0;
 }
+
 .rm-hero-title {
   font-family: var(--font-title, 'Cinzel', serif);
   font-size: clamp(1.5rem, 5vw, 3rem);
   color: #f5c842;
   text-shadow: 0 2px 12px rgba(0,0,0,0.8);
   letter-spacing: 0.08em;
-  margin: 0;
+  margin: 0.25rem 0 0.25rem;
+}
+
+/* Masquer le hero sur toutes les vues sauf accueil */
+body[data-view]:not([data-view="home"]) .rm-hero-video {
+  display: none !important;
 }
 
 /* ============================================
@@ -1321,18 +1304,18 @@ body[data-view="home"] .rm-hero-video video {
 
 .rm-crystal-ball-container {
   position: relative;
-  width: 220px;
-  height: 330px;
+  width: 300px;
+  height: 450px;
 }
 
 /* Video layer — behind the overlay */
 .rm-crystal-ball-container video {
   position: absolute;
-  /* Position the video inside the globe's transparent zone */
-  /* Globe center is at ~36% height, ball radius ~37% of width */
-  top: 11%;
-  left: 17%;
-  width: 66%;
+  /* Calibrated to match the transparent zone of crystal_ball_overlay.png */
+  /* Base zone: center=(50%, 35.7%), expanded +20% lateral for better fill */
+  top: 14%;
+  left: 19%;
+  width: 62%;
   height: 44%;
   border-radius: 50%;
   object-fit: cover;
@@ -1372,6 +1355,34 @@ body[data-view="home"] .rm-hero-video video {
 /* Mobile: slightly smaller */
 @media (max-width: 480px) {
   .rm-crystal-ball-container {
+    width: 240px;
+    height: 360px;
+  }
+}
+
+/* ============================================
+   Crystal Ball — Hero variant (2× size, home page)
+   ============================================ */
+
+.rm-crystal-ball-hero {
+  width: 280px;
+  height: 420px;
+}
+
+/* Also suppress the base crystal-ball margin in the hero context */
+.rm-hero-video .rm-crystal-ball {
+  margin: 0 auto;
+}
+
+/* Mobile: hero ball scales down */
+@media (max-width: 680px) {
+  .rm-crystal-ball-hero {
+    width: 220px;
+    height: 330px;
+  }
+}
+@media (max-width: 440px) {
+  .rm-crystal-ball-hero {
     width: 180px;
     height: 270px;
   }
