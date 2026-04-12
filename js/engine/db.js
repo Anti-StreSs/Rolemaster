@@ -39,6 +39,10 @@ function openDB() {
 
 export async function saveCharacter(character) {
   const db = await openDB();
+  if (!character.name || !character.name.trim()) {
+    const base = character.createdAt || new Date().toISOString();
+    character.name = 'Personnage_' + base.slice(0, 16).replace('T', '_').replace(':', 'h');
+  }
   character.updatedAt = new Date().toISOString();
   return new Promise((resolve, reject) => {
     const tx = db.transaction('characters', 'readwrite');
