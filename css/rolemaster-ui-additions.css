@@ -1365,11 +1365,11 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
    ============================================ */
 
 .rm-crystal-ball-hero {
-  width: 280px;
-  height: 420px;
+  width: 600px;
+  height: 900px;
 }
 
-/* Also suppress the base crystal-ball margin in the hero context */
+/* Suppress the base crystal-ball margin in the hero context */
 .rm-hero-video .rm-crystal-ball {
   margin: 0 auto;
 }
@@ -1377,13 +1377,13 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
 /* Mobile: hero ball scales down */
 @media (max-width: 680px) {
   .rm-crystal-ball-hero {
-    width: 220px;
-    height: 330px;
+    width: 400px;
+    height: 600px;
   }
 }
 @media (max-width: 440px) {
   .rm-crystal-ball-hero {
-    width: 180px;
-    height: 270px;
+    width: 300px;
+    height: 450px;
   }
 }
