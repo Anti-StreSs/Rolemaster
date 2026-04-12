@@ -618,7 +618,7 @@ function renderStatsTab(lang) {
   // Rolling section — buttons
   let rollHtml = `<div class="mb-4 no-print flex flex-wrap gap-2">`;
   if (!statsValidated) {
-    rollHtml += `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-roll-dice" id="btn-roll-stats">${hasRolls ? 'Retirer' : (lang === 'en' ? 'Roll stats' : 'Tirer les caractéristiques')}</button>`;
+    rollHtml += `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-roll-dice" id="btn-roll-stats">${hasRolls ? 'Retirer' : (lang === 'en' ? 'Roll stats' : 'Tirer caracs')}</button>`;
     if (hasRolls && !allAssigned) rollHtml += `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-auto-assign" id="btn-auto-assign">${lang === 'en' ? 'Auto-assign' : 'Assigner auto'}</button>`;
     if (hasRolls && rollAssignments.some(a => a >= 0)) rollHtml += `<button class="btn-secondary" id="btn-clear-assign">${lang === 'en' ? 'Reset' : 'Réinitialiser'}</button>`;
     if (allAssigned) rollHtml += `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-validate" id="btn-validate-stats">${lang === 'en' ? 'Validate stats' : 'Valider les stats'}</button>`;
@@ -1952,11 +1952,11 @@ function renderSkillsTab(lang) {
     </div>
     <div class="flex gap-2 mb-3 no-print">
       ${!isValidated
-        ? `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-end-phase" id="btn-validate-phase">${lang === 'en' ? 'End development phase' : 'Fin de la phase de développement'}</button>`
-        : `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-next-level" id="btn-next-phase">${lang === 'en' ? 'Advance to next level' : 'Monter au prochain niveau'}</button>`
+        ? `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-end-phase" id="btn-validate-phase">${lang === 'en' ? 'End phase' : 'Valider la phase'}</button>`
+        : `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-next-level" id="btn-next-phase">${lang === 'en' ? 'Next level' : 'Niveau suivant'}</button>`
       }
-      ${(character.phases || []).length > 0 ? `<button class="btn-secondary text-xs" id="btn-phase-history">${lang === 'en' ? 'History' : 'Historique'} (${character.phases.length})</button>` : ''}
-      ${!isValidated && (character.phases || []).length > 0 ? `<button class="btn-secondary text-xs" id="btn-repeat-previous" title="${lang === 'en' ? 'Copy skill ranks from the last validated phase' : 'Copier les rangs de compétences de la dernière phase validée'}">${lang === 'en' ? 'Same as previous' : 'Comme au niveau précédent'}</button>` : ''}
+      ${(character.phases || []).length > 0 ? `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-edit-mode" id="btn-phase-history">${lang === 'en' ? 'History' : 'Historique'} (${character.phases.length})</button>` : ''}
+      ${!isValidated && (character.phases || []).length > 0 ? `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-auto-assign" id="btn-repeat-previous" title="${lang === 'en' ? 'Copy skill ranks from the last validated phase' : 'Copier les rangs de compétences de la dernière phase validée'}">${lang === 'en' ? 'Same as prev.' : 'Comme niv. précdt.'}</button>` : ''}
       ${!isValidated ? `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-auto-dp" id="btn-auto-assign-dp" title="${lang === 'en' ? 'Automatically assign remaining DP based on class archetype' : 'Attribuer automatiquement les PD restants selon l\'archétype de classe'}">${lang === 'en' ? 'Auto-assign' : 'Attribution auto'}</button>` : ''}
     </div>
   `;

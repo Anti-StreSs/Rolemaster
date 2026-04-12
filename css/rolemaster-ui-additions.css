@@ -1426,19 +1426,22 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   border: none;
   background: none;
   cursor: pointer;
-  padding: 0;
+  padding: 0 6% 0 8%;
   color: #fef3c7;
   font-family: var(--font-title, 'Cinzel', serif);
-  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+  font-weight: 600;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.95), 0 0 10px rgba(0,0,0,0.7), 0 0 3px rgba(0,0,0,0.9);
   transition: filter 0.2s ease, transform 0.2s ease;
-  background-size: contain;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
   text-decoration: none;
-  white-space: nowrap;
+  text-align: center;
+  overflow: hidden;
 }
 
 .rm-btn-ornate:hover {
@@ -1458,31 +1461,29 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
   transform: none;
 }
 
-/* Tier A — Large (Home page): 300×90 display */
+/* Tier A — Large (Home page) */
 .rm-btn-ornate-lg {
-  width: 300px;
-  height: 90px;
-  font-size: 1.05rem;
-  padding-left: 30%;
-  letter-spacing: 0.04em;
+  width: 380px;
+  height: 114px;
+  font-size: 1.1rem;
+  white-space: normal;
+  line-height: 1.3;
 }
 
-/* Tier B — Medium (Footer): 250×70 display */
+/* Tier B — Medium (Footer) */
 .rm-btn-ornate-md {
-  width: 250px;
-  height: 70px;
+  width: 280px;
+  height: 78px;
   font-size: 0.85rem;
-  padding-left: 28%;
-  letter-spacing: 0.03em;
+  white-space: nowrap;
 }
 
-/* Tier C — Small (Tab buttons): 200×60 display */
+/* Tier C — Small (Tab buttons) */
 .rm-btn-ornate-sm {
-  width: 200px;
-  height: 60px;
+  width: 250px;
+  height: 75px;
   font-size: 0.78rem;
-  padding-left: 26%;
-  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 /* Individual button backgrounds (WebP) */
@@ -1504,9 +1505,16 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
 .rm-btn-spell-sgr    { background-image: url('../assets/ui/buttons/webp/btn_spell_sgr.webp'); }
 .rm-btn-wpn-auto     { background-image: url('../assets/ui/buttons/webp/btn_wpn_auto.webp'); }
 
+/* Per-button padding/size tweaks */
+.rm-btn-roll-dice    { padding-left: 10%; }
+.rm-btn-print        { padding-left: 12%; }
+.rm-btn-download     { padding-left: 10%; }
+.rm-btn-export-pdf   { padding-left: 11%; }
+.rm-btn-load-file    { font-size: 1.04rem; }
+
 /* Mobile: scale down slightly */
 @media (max-width: 480px) {
-  .rm-btn-ornate-lg { width: 240px; height: 72px; font-size: 0.9rem; }
-  .rm-btn-ornate-md { width: 200px; height: 56px; font-size: 0.75rem; }
-  .rm-btn-ornate-sm { width: 170px; height: 51px; font-size: 0.7rem; }
+  .rm-btn-ornate-lg { width: 300px; height: 90px; font-size: 0.95rem; }
+  .rm-btn-ornate-md { width: 220px; height: 62px; font-size: 0.75rem; }
+  .rm-btn-ornate-sm { width: 200px; height: 60px; font-size: 0.7rem; }
 }
