@@ -1416,3 +1416,97 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
 .cat-collapsed .skill-category-header {
   opacity: 0.7;
 }
+
+/* ============================================
+   Ornate metal-plaque buttons (3 size tiers)
+   ============================================ */
+
+.rm-btn-ornate {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  color: #fef3c7;
+  font-family: var(--font-title, 'Cinzel', serif);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+  transition: filter 0.2s ease, transform 0.2s ease;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.rm-btn-ornate:hover {
+  filter: brightness(1.2) drop-shadow(0 0 6px rgba(196,154,32,0.4));
+  transform: translateY(-2px);
+}
+
+.rm-btn-ornate:active {
+  filter: brightness(0.9);
+  transform: scale(0.97);
+}
+
+.rm-btn-ornate:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+  transform: none;
+}
+
+/* Tier A — Large (Home page): 300×90 display */
+.rm-btn-ornate-lg {
+  width: 300px;
+  height: 90px;
+  font-size: 1.05rem;
+  padding-left: 30%;
+  letter-spacing: 0.04em;
+}
+
+/* Tier B — Medium (Footer): 250×70 display */
+.rm-btn-ornate-md {
+  width: 250px;
+  height: 70px;
+  font-size: 0.85rem;
+  padding-left: 28%;
+  letter-spacing: 0.03em;
+}
+
+/* Tier C — Small (Tab buttons): 200×60 display */
+.rm-btn-ornate-sm {
+  width: 200px;
+  height: 60px;
+  font-size: 0.78rem;
+  padding-left: 26%;
+  letter-spacing: 0.02em;
+}
+
+/* Individual button backgrounds (WebP) */
+.rm-btn-create-char  { background-image: url('../assets/ui/buttons/webp/btn_create_character.webp'); }
+.rm-btn-gen-npc      { background-image: url('../assets/ui/buttons/webp/btn_generate_npc.webp'); }
+.rm-btn-load-file    { background-image: url('../assets/ui/buttons/webp/btn_load_file.webp'); }
+.rm-btn-download     { background-image: url('../assets/ui/buttons/webp/btn_download_json.webp'); }
+.rm-btn-save-local   { background-image: url('../assets/ui/buttons/webp/btn_save_local.webp'); }
+.rm-btn-print        { background-image: url('../assets/ui/buttons/webp/btn_print.webp'); }
+.rm-btn-export-pdf   { background-image: url('../assets/ui/buttons/webp/btn_export_pdf.webp'); }
+.rm-btn-roll-dice    { background-image: url('../assets/ui/buttons/webp/btn_roll_dice.webp'); }
+.rm-btn-auto-assign  { background-image: url('../assets/ui/buttons/webp/btn_auto_assign.webp'); }
+.rm-btn-validate     { background-image: url('../assets/ui/buttons/webp/btn_validate.webp'); }
+.rm-btn-edit-mode    { background-image: url('../assets/ui/buttons/webp/btn_edit_mode.webp'); }
+.rm-btn-end-phase    { background-image: url('../assets/ui/buttons/webp/btn_end_dev_phase.webp'); }
+.rm-btn-next-level   { background-image: url('../assets/ui/buttons/webp/btn_next_level.webp'); }
+.rm-btn-auto-dp      { background-image: url('../assets/ui/buttons/webp/btn_auto_assign_dp.webp'); }
+.rm-btn-spell-rank   { background-image: url('../assets/ui/buttons/webp/btn_spell_rank.webp'); }
+.rm-btn-spell-sgr    { background-image: url('../assets/ui/buttons/webp/btn_spell_sgr.webp'); }
+.rm-btn-wpn-auto     { background-image: url('../assets/ui/buttons/webp/btn_wpn_auto.webp'); }
+
+/* Mobile: scale down slightly */
+@media (max-width: 480px) {
+  .rm-btn-ornate-lg { width: 240px; height: 72px; font-size: 0.9rem; }
+  .rm-btn-ornate-md { width: 200px; height: 56px; font-size: 0.75rem; }
+  .rm-btn-ornate-sm { width: 170px; height: 51px; font-size: 0.7rem; }
+}

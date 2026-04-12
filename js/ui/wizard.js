@@ -228,11 +228,10 @@ function renderEditor(app) {
   // Render footer action buttons
   if (footerActions) {
     footerActions.innerHTML = `
-      <button class="btn-primary text-sm" id="btn-save-json">${lang === 'en' ? 'Download JSON' : 'Télécharger JSON'}</button>
-      <button class="btn-secondary text-sm" id="btn-save-local">${lang === 'en' ? 'Local Save' : 'Sauvegarde locale'}</button>
-      <button class="btn-secondary text-sm" id="btn-print">${lang === 'en' ? 'Print' : 'Imprimer'}</button>
-      <button class="rm-btn-scroll" id="btn-export-pdf" style="font-size:0.8rem;min-height:2.2rem">
-        <img class="rm-btn-icon" src="assets/ui/icons/session_export_scroll.webp" alt="" onerror="this.style.display='none'">
+      <button class="rm-btn-ornate rm-btn-ornate-md rm-btn-download" id="btn-save-json">${lang === 'en' ? 'Download' : 'Télécharger'}</button>
+      <button class="rm-btn-ornate rm-btn-ornate-md rm-btn-save-local" id="btn-save-local">${lang === 'en' ? 'Save' : 'Sauvegarder'}</button>
+      <button class="rm-btn-ornate rm-btn-ornate-md rm-btn-print" id="btn-print">${lang === 'en' ? 'Print' : 'Imprimer'}</button>
+      <button class="rm-btn-ornate rm-btn-ornate-md rm-btn-export-pdf" id="btn-export-pdf">
         <span class="rm-spinner" id="pdf-spinner" style="display:none"></span>
         ${lang === 'en' ? 'Export PDF' : 'Export PDF'}
       </button>
@@ -619,12 +618,12 @@ function renderStatsTab(lang) {
   // Rolling section — buttons
   let rollHtml = `<div class="mb-4 no-print flex flex-wrap gap-2">`;
   if (!statsValidated) {
-    rollHtml += `<button class="btn-primary" id="btn-roll-stats">${hasRolls ? 'Retirer' : (lang === 'en' ? 'Roll stats' : 'Tirer les caractéristiques')}</button>`;
-    if (hasRolls && !allAssigned) rollHtml += `<button class="btn-secondary" id="btn-auto-assign">${lang === 'en' ? 'Auto-assign' : 'Assigner auto'}</button>`;
+    rollHtml += `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-roll-dice" id="btn-roll-stats">${hasRolls ? 'Retirer' : (lang === 'en' ? 'Roll stats' : 'Tirer les caractéristiques')}</button>`;
+    if (hasRolls && !allAssigned) rollHtml += `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-auto-assign" id="btn-auto-assign">${lang === 'en' ? 'Auto-assign' : 'Assigner auto'}</button>`;
     if (hasRolls && rollAssignments.some(a => a >= 0)) rollHtml += `<button class="btn-secondary" id="btn-clear-assign">${lang === 'en' ? 'Reset' : 'Réinitialiser'}</button>`;
-    if (allAssigned) rollHtml += `<button class="btn-primary" id="btn-validate-stats" style="background:#16a34a">${lang === 'en' ? 'Validate stats' : 'Valider les stats'}</button>`;
+    if (allAssigned) rollHtml += `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-validate" id="btn-validate-stats">${lang === 'en' ? 'Validate stats' : 'Valider les stats'}</button>`;
   }
-  rollHtml += `<button class="btn-secondary ${editMode ? 'active' : ''}" id="btn-edit-mode">${lang === 'en' ? 'Edit' : 'Editer'}</button>`;
+  rollHtml += `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-edit-mode ${editMode ? 'active' : ''}" id="btn-edit-mode">${lang === 'en' ? 'Edit' : 'Editer'}</button>`;
   rollHtml += `</div>`;
   if (editMode) {
     rollHtml += `<div class="text-xs text-amber-400 mb-3 p-2 border border-amber-700 rounded">⚠ ${lang === 'en' ? 'Changes are recorded and will be visible to the GM!' : 'Les changements sont enregistrés et pourront être vus par le MJ !'}</div>`;
@@ -1130,7 +1129,7 @@ function renderWeaponsTab(lang) {
     btns += `<button class="btn-secondary" id="btn-wpn-clear">${lang === 'en' ? 'Reset' : 'Réinitialiser'}</button>`;
   }
   if (!allAssigned) {
-    btns += `<button class="btn-secondary" id="btn-wpn-auto">${lang === 'en' ? 'Auto-assign' : 'Assigner auto'}</button>`;
+    btns += `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-wpn-auto" id="btn-wpn-auto">${lang === 'en' ? 'Auto-assign' : 'Assigner auto'}</button>`;
   }
   btns += `</div>`;
 
@@ -1296,8 +1295,8 @@ function renderSpellsTab(lang) {
         : `<div class="text-xs text-gray-400 mb-2"><span class="text-purple-400" title="Spell Gain Roll">SGR</span> = D100 + ${sgrBonus} → ${lang === 'en' ? 'success if' : 'succès si'} ≥ 101 (${lang === 'en' ? 'chance' : 'chance'}: ${sgrChance}%) — ${lang === 'en' ? 'Next block' : 'Bloc suivant'}: ${lang === 'en' ? 'levels' : 'niveaux'} ${study.nextBlockStart}-${blockEnd}</div>`
       }
       <div class="flex gap-2 flex-wrap no-print">
-        ${!spellLocked && !autoLearn ? `<button class="btn-primary text-xs" id="btn-spell-rank" ${dpRemaining < rankCost || study.ranks >= 20 ? 'disabled' : ''}>+ ${lang === 'en' ? 'Rank' : 'Rang'} (${rankCost} PD)</button>` : ''}
-        ${!spellLocked && study.ranks > 0 && !autoLearn && !study.sgrDone ? `<button class="btn-primary text-xs" id="btn-spell-sgr" style="background:linear-gradient(135deg,#5b21b6,#7c3aed)" title="Spell Gain Roll">SGR (D100+${sgrBonus})</button>` : ''}
+        ${!spellLocked && !autoLearn ? `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-spell-rank" id="btn-spell-rank" ${dpRemaining < rankCost || study.ranks >= 20 ? 'disabled' : ''}>+ ${lang === 'en' ? 'Rank' : 'Rang'} (${rankCost} PD)</button>` : ''}
+        ${!spellLocked && study.ranks > 0 && !autoLearn && !study.sgrDone ? `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-spell-sgr" id="btn-spell-sgr" title="Spell Gain Roll">SGR (D100+${sgrBonus})</button>` : ''}
         ${!spellLocked && study.ranks > 0 && study.sgrDone && !autoLearn ? `<button class="btn-secondary text-xs" id="btn-spell-sgr-table" title="${lang === 'en' ? 'Re-roll (table roll) — logged as extra roll' : 'Relancer (jet sur table) — journalisé comme jet supplémentaire'}">🎲 ${lang === 'en' ? 'Table roll' : 'Jet sur table'} (D100+${sgrBonus})</button>` : ''}
         ${autoLearn ? `<button class="btn-primary text-xs" id="btn-spell-confirm-auto" style="background:#16a34a">${lang === 'en' ? 'Confirm learning' : 'Confirmer l\'apprentissage'}</button>` : ''}
         ${!spellLocked ? `<button class="btn-secondary text-xs" id="btn-spell-abandon">${lang === 'en' ? 'Abandon' : 'Abandonner'}</button>` : ''}
@@ -1953,12 +1952,12 @@ function renderSkillsTab(lang) {
     </div>
     <div class="flex gap-2 mb-3 no-print">
       ${!isValidated
-        ? `<button class="btn-primary text-sm" id="btn-validate-phase">${lang === 'en' ? 'End development phase' : 'Fin de la phase de développement'}</button>`
-        : `<button class="btn-primary text-sm" id="btn-next-phase">${lang === 'en' ? 'Advance to next level' : 'Monter au prochain niveau'}</button>`
+        ? `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-end-phase" id="btn-validate-phase">${lang === 'en' ? 'End development phase' : 'Fin de la phase de développement'}</button>`
+        : `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-next-level" id="btn-next-phase">${lang === 'en' ? 'Advance to next level' : 'Monter au prochain niveau'}</button>`
       }
       ${(character.phases || []).length > 0 ? `<button class="btn-secondary text-xs" id="btn-phase-history">${lang === 'en' ? 'History' : 'Historique'} (${character.phases.length})</button>` : ''}
       ${!isValidated && (character.phases || []).length > 0 ? `<button class="btn-secondary text-xs" id="btn-repeat-previous" title="${lang === 'en' ? 'Copy skill ranks from the last validated phase' : 'Copier les rangs de compétences de la dernière phase validée'}">${lang === 'en' ? 'Same as previous' : 'Comme au niveau précédent'}</button>` : ''}
-      ${!isValidated ? `<button class="btn-secondary text-xs" id="btn-auto-assign-dp" title="${lang === 'en' ? 'Automatically assign remaining DP based on class archetype' : 'Attribuer automatiquement les PD restants selon l\'archétype de classe'}">🤖 ${lang === 'en' ? 'Auto-assign' : 'Attribution auto'}</button>` : ''}
+      ${!isValidated ? `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-auto-dp" id="btn-auto-assign-dp" title="${lang === 'en' ? 'Automatically assign remaining DP based on class archetype' : 'Attribuer automatiquement les PD restants selon l\'archétype de classe'}">${lang === 'en' ? 'Auto-assign' : 'Attribution auto'}</button>` : ''}
     </div>
   `;
 

@@ -1,7 +1,7 @@
 Copyright (c) 2025-2026 Quentin PARISOT — PC-Conseil-Toulouse
 All rights reserved.
 
-Rolemaster Reborn — Progressive Web App GM Assistant for Rolemaster 2nd Edition (RM2)
+Rolemaster Reborn — Progressive Web App GM Assistant for Rolemaster (RM2/RMSS)
 Based on CPR093 by Eric Lestrade (1997)
 
 PROPRIETARY LICENSE
@@ -16,15 +16,20 @@ The Software is provided "as is", without warranty of any kind, express or
 implied, including but not limited to the warranties of merchantability,
 fitness for a particular purpose, and noninfringement.
 
-GAME DATA NOTICE: This Software contains references to and data derived from
-the Rolemaster tabletop role-playing game system, originally published by
-Iron Crown Enterprises (ICE). Rolemaster is a trademark of Iron Crown
-Enterprises. Game mechanics and statistical data are used for interoperability
-purposes within a personal GM assistant tool. All original game content
-remains the property of its respective copyright holders.
+GAME DATA NOTICE:
+This Software is a fan-made companion tool for the Rolemaster tabletop
+role-playing game system. It is NOT an official product of Iron Crown
+Enterprises (ICE) or Fen Productions. Rolemaster, RoleMaster Standard System
+(RMSS), and all related trademarks are the property of Iron Crown Enterprises.
+Game mechanics references are used for interoperability purposes within a
+personal GM assistant tool and do not constitute reproduction of copyrighted
+game material. This Software does not replace ownership of the original
+Rolemaster rulebooks and is intended solely as a play aid for licensed owners
+of the game.
 
-THIRD-PARTY ASSETS: Certain visual assets (videos, images) used in the
-Software were generated using AI tools (Sora, Midjourney, GPT, Leonardo.ai) and are
-the property of the copyright holder.
+THIRD-PARTY ASSETS:
+Certain visual assets (videos, images, button graphics) used in the Software
+were generated using AI tools (OpenAI Sora, GPT, Leonardo.ai, Midjourney)
+and are the exclusive property of the copyright holder.
 
-For permissions or inquiries, contact the copyright holder.
+For permissions or inquiries: quentin@pc-conseil-toulouse.fr

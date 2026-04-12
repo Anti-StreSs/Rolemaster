@@ -59,8 +59,7 @@ async function render() {
   // Marquer la vue active pour le CSS (fond, torches, hero)
   document.body.dataset.view = app.currentView;
 
-  // Unload heavy hero video when leaving home view
-  if (app.currentView !== 'home') _unloadHeroVideo();
+  // Pause crystal ball videos when leaving a view (re-created on render)
   _pauseAllCrystalBallVideos();
 
   switch (app.currentView) {
@@ -113,51 +112,10 @@ async function render() {
 }
 
 // ── Hero video lazy-load / unload ───────────────────────────────────────────
-// The hero video (Sora) is 35MB+ — we only load it when on the home view,
-// using data-src on <source> elements so the browser doesn't fetch on page load.
-// After first paint + short delay, we swap data-src → src and call video.load().
-
-let _heroVideoLoaded = false;
-
-function _lazyLoadHeroVideo() {
-  const container = document.getElementById('hero-video-container');
-  const video = document.getElementById('hero-video');
-  if (!container || !video) return;
-
-  // Always re-show the container when on home view
-  container.style.display = '';
-
-  // Lazy-load sources only once (swap data-src → src)
-  if (!_heroVideoLoaded) {
-    setTimeout(() => {
-      const sources = video.querySelectorAll('source[data-src]');
-      if (!sources.length) {
-        // Sources already loaded on a previous path — just play
-        video.play().catch(() => {});
-        return;
-      }
-      sources.forEach(s => { s.src = s.dataset.src; s.removeAttribute('data-src'); });
-      video.load();
-      _heroVideoLoaded = true;
-    }, 800);
-  } else {
-    // Already loaded previously — resume playback
-    video.play().catch(() => {});
-  }
-}
-
 function _pauseAllCrystalBallVideos() {
   document.querySelectorAll('.rm-crystal-ball-container video').forEach(v => {
     v.pause();
   });
-}
-
-function _unloadHeroVideo() {
-  const video = document.getElementById('hero-video');
-  const container = document.getElementById('hero-video-container');
-  if (!video) return;
-  video.pause();
-  if (container) container.style.display = 'none';
 }
 
 async function renderHome(main) {
@@ -215,8 +173,8 @@ async function renderHome(main) {
   }
 
   // File upload section
-  const uploadHtml = `<div style="margin-top:1.5rem;text-align:center">
-    <label style="cursor:pointer;font-size:0.85rem;color:#6b5030;border:1px dashed rgba(139,92,20,0.3);border-radius:6px;padding:0.5rem 1.5rem;display:inline-block">
+  const uploadHtml = `<div style="margin-top:1rem;text-align:center">
+    <label class="rm-btn-ornate rm-btn-ornate-lg rm-btn-load-file" style="cursor:pointer;display:inline-flex">
       ${t.save.upload || 'Charger un fichier JSON'}
       <input type="file" id="home-file-upload" accept=".json" style="display:none">
     </label>
@@ -227,12 +185,22 @@ async function renderHome(main) {
       <h2 style="font-family:var(--font-title);font-size:2rem;color:#c49a20;margin-bottom:0.5rem;text-shadow:1px 1px 0 #1a0e04, -1px -1px 0 #1a0e04, 1px -1px 0 #1a0e04, -1px 1px 0 #1a0e04, 0 2px 4px rgba(0,0,0,0.4)">${t.home.title}</h2>
       <p style="margin-bottom:1rem;color:#4a3520;font-size:1.05rem">${t.home.subtitle}</p>
       <p style="font-size:0.85rem;color:#6b5030;margin-bottom:1.5rem">${statsLine}</p>
-      <button class="btn-primary" style="font-size:1.1rem;padding:0.75rem 2rem" id="btn-create">
-        ${t.home.createBtn}
-      </button>
-      <button class="btn-secondary" style="font-size:0.95rem;padding:0.5rem 1.5rem;margin-left:0.75rem" id="btn-gen-npc">
-        ${app.lang === 'en' ? 'Generate NPC' : 'Générer un PNJ'}
-      </button>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem">
+        <button class="rm-btn-ornate rm-btn-ornate-lg rm-btn-create-char" id="btn-create">
+          ${t.home.createBtn}
+        </button>
+        <button class="rm-btn-ornate rm-btn-ornate-lg rm-btn-gen-npc" id="btn-gen-npc">
+          ${app.lang === 'en' ? 'Generate NPC' : 'Générer un PNJ'}
+        </button>
+      </div>
+      <div class="rm-crystal-ball">
+        <div class="rm-crystal-ball-container rm-crystal-ball-hero">
+          <video muted loop playsinline autoplay
+            src="assets/hero-sora.mp4"
+            onerror="this.style.display='none'"></video>
+          <div class="rm-crystal-overlay"></div>
+        </div>
+      </div>
       ${savesHtml}
       ${uploadHtml}
     </div>
@@ -294,9 +262,6 @@ async function renderHome(main) {
       }
     });
   }
-
-  // Lazy-load hero background video (only when on home view)
-  _lazyLoadHeroVideo();
 }
 
 async function openCompareView(names) {

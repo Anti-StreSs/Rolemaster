@@ -406,7 +406,18 @@ body.rm-theme[data-view="home"] .rm-frame {
   width: 48px;
   object-fit: contain;
   display: block;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.85)) drop-shadow(0 0 2px rgba(0,0,0,0.7)) drop-shadow(0 0 8px rgba(0,0,0,0.4));
   transition: filter 0.2s ease, transform 0.2s ease;
+}
+/* Enlarge toolbox, compendium icons (+15%) */
+#footer-toolbox, #footer-compendium {
+  height: 55px;
+  width: 55px;
+}
+/* Enlarge merchants, herbs icons (+30% total) */
+#footer-merchants, #footer-herbs {
+  height: 63px;
+  width: 63px;
 }
 /* Home icon (emoji) — match img sizing */
 .rm-footer-icon #footer-home {
@@ -484,6 +495,8 @@ body.rm-theme[data-view="home"] .rm-frame {
   .rm-torch { display: block; }
   .rm-footer-deco { gap: 24px; }
   .rm-footer-icon img { height: 64px; width: 64px; }
+  #footer-toolbox, #footer-compendium { height: 74px; width: 74px; }
+  #footer-merchants, #footer-herbs { height: 84px; width: 84px; }
   .rm-footer-icon #footer-home { width: 64px !important; height: 64px !important; font-size: 2rem !important; }
   .rm-layout { padding: 0 64px; }
   .rm-tab-icon img { width: 52px; height: 52px; }
@@ -494,6 +507,8 @@ body.rm-theme[data-view="home"] .rm-frame {
   .rm-frame { padding: 32px; background-size: 32px 32px; }
   .rm-footer-deco { gap: 16px; }
   .rm-footer-icon img { height: 52px; width: 52px; }
+  #footer-toolbox, #footer-compendium { height: 60px; width: 60px; }
+  #footer-merchants, #footer-herbs { height: 68px; width: 68px; }
   .rm-footer-icon #footer-home { width: 52px !important; height: 52px !important; font-size: 1.8rem !important; }
 }
 

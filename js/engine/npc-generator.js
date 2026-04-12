@@ -265,6 +265,7 @@ export function autoAddWeaponSkills(char, data, n = 2, archetype = 'other') {
       : allWeapons[Math.floor(Math.random() * allWeapons.length)];
 
     const cost = getWeaponSkillCost(char.classIndex, pick.type, char.weaponPriorities);
+    if (!cost) continue; // skip weapon types with no cost for this class
     if (!char.weaponSkills) char.weaponSkills = [];
     char.weaponSkills.push({ name: weaponName, weaponType: pick.type, weaponTypeId: pick.type, cost });
     added++;
@@ -294,11 +295,12 @@ export function autoSpendDP(char, ranksStore, dpBudget, maxBodyDevRanks, archety
     const cost = getSkillDevCost(char.classIndex, bodyDevIdx);
     if (cost) {
       let ranksSpent = 0;
-      while (ranksSpent < maxBodyDevRanks && dpLeft >= cost.first) {
+      const existingRanks = ranksStore[bodyDevIdx] || 0;
+      while (ranksSpent < maxBodyDevRanks && existingRanks + ranksSpent < (cost.maxRanks || 2) && dpLeft >= cost.first) {
         dpLeft -= cost.first;
         ranksSpent++;
       }
-      if (ranksSpent > 0) ranksStore[bodyDevIdx] = (ranksStore[bodyDevIdx] || 0) + ranksSpent;
+      if (ranksSpent > 0) ranksStore[bodyDevIdx] = existingRanks + ranksSpent;
     }
   }
 
@@ -323,9 +325,9 @@ export function autoSpendDP(char, ranksStore, dpBudget, maxBodyDevRanks, archety
     if (skill.globalIndex === bodyDevIdx) continue;
     const cost = getSkillDevCost(char.classIndex, skill.globalIndex);
     if (!cost || cost.first <= 0) continue;
-    affordable.push({ idx: skill.globalIndex, name: skill.name_fr || '', cost: cost.first });
+    affordable.push({ idx: skill.globalIndex, name: skill.name_fr || '', cost, first: cost.first });
   }
-  affordable.sort((a, b) => a.cost - b.cost);
+  affordable.sort((a, b) => a.first - b.first);
 
   // Step 3: Tiered priorities — tier1 gets 3 passes, tier2 gets 2, others get 1
   const tiers = ARCHETYPE_SKILL_TIERS[archetype] || ARCHETYPE_SKILL_TIERS.other;
@@ -340,14 +342,21 @@ export function autoSpendDP(char, ranksStore, dpBudget, maxBodyDevRanks, archety
   for (let pass = 0; pass < 3 && dpLeft > 0; pass++) {
     let anySpent = false;
     for (const sk of eligiblePerPass[pass]) {
-      if (dpLeft < sk.cost) continue;
-      dpLeft -= sk.cost;
-      ranksStore[sk.idx] = (ranksStore[sk.idx] || 0) + 1;
+      const currentRanks = ranksStore[sk.idx] || 0;
+      const maxR = sk.cost.maxRanks || 2;
+      if (currentRanks >= maxR) continue;
+      const rankCost = currentRanks === 0 ? sk.cost.first : (sk.cost.second > 0 ? sk.cost.second : sk.cost.first);
+      if (dpLeft < rankCost) continue;
+      dpLeft -= rankCost;
+      ranksStore[sk.idx] = currentRanks + 1;
       anySpent = true;
       if (dpLeft <= 0) break;
     }
     if (!anySpent) break;
   }
+
+  // Return DP actually spent (caller needs this!)
+  return dpBudget - dpLeft;
 }
 
 /**

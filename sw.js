@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rolemaster-v67';
+const CACHE_NAME = 'rolemaster-v68';
 const ASSETS = [
   './',
   './index.html',
@@ -64,7 +64,24 @@ const ASSETS = [
   './assets/ui/icons/session_state_failure.webp',
   './assets/ui/icons/session_state_partial.webp',
   './assets/ui/icons/session_state_success.webp',
-  './assets/ui/icons/session_toolbox_satchel.webp'
+  './assets/ui/icons/session_toolbox_satchel.webp',
+  './assets/ui/buttons/webp/btn_create_character.webp',
+  './assets/ui/buttons/webp/btn_generate_npc.webp',
+  './assets/ui/buttons/webp/btn_load_file.webp',
+  './assets/ui/buttons/webp/btn_download_json.webp',
+  './assets/ui/buttons/webp/btn_save_local.webp',
+  './assets/ui/buttons/webp/btn_print.webp',
+  './assets/ui/buttons/webp/btn_export_pdf.webp',
+  './assets/ui/buttons/webp/btn_roll_dice.webp',
+  './assets/ui/buttons/webp/btn_auto_assign.webp',
+  './assets/ui/buttons/webp/btn_validate.webp',
+  './assets/ui/buttons/webp/btn_edit_mode.webp',
+  './assets/ui/buttons/webp/btn_end_dev_phase.webp',
+  './assets/ui/buttons/webp/btn_next_level.webp',
+  './assets/ui/buttons/webp/btn_auto_assign_dp.webp',
+  './assets/ui/buttons/webp/btn_spell_rank.webp',
+  './assets/ui/buttons/webp/btn_spell_sgr.webp',
+  './assets/ui/buttons/webp/btn_wpn_auto.webp'
 ];
 
 self.addEventListener('install', event => {
