@@ -1307,3 +1307,41 @@ body[data-view="home"] .rm-hero-video video {
   font-weight: bold;
   margin-bottom: 8px;
 }
+
+/* ============================================
+   Video Medallion — reusable elliptical frame
+   ============================================ */
+
+.rm-video-medallion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem auto;
+}
+
+.rm-video-medallion-frame {
+  position: relative;
+  width: 220px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(196, 154, 32, 0.6);
+  box-shadow:
+    0 0 12px rgba(196, 154, 32, 0.3),
+    inset 0 0 20px rgba(0, 0, 0, 0.4);
+  background: #0a0806;
+  animation: medallion-glow 4s ease-in-out infinite;
+}
+
+.rm-video-medallion-frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Subtle gold glow pulse on the border */
+@keyframes medallion-glow {
+  0%, 100% { border-color: rgba(196, 154, 32, 0.5); }
+  50% { border-color: rgba(196, 154, 32, 0.8); }
+}

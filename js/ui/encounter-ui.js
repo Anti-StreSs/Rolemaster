@@ -135,9 +135,18 @@ function _buildFiltersHTML(lang, t) {
 
 function _buildResultHTML(lang, t) {
   if (!_lastResult || !_lastResult.encounters.length) {
-    const empty = `<div style="text-align:center;padding:3rem 1rem;color:#8b6914;opacity:0.7">
-      <div style="font-size:2rem;margin-bottom:0.5rem">⚔</div>
-      <div style="font-size:0.9rem">${t('Choisissez un terrain et cliquez sur Générer', 'Choose a terrain and click Generate')}</div>
+    const empty = `<div style="text-align:center;padding:2rem 1rem;color:#8b6914;opacity:0.85">
+      <div class="rm-video-medallion">
+        <div class="rm-video-medallion-frame">
+          <video muted loop playsinline autoplay
+            src="assets/IntroSmall.mp4"
+            onerror="this.parentElement.parentElement.style.display='none'">
+          </video>
+        </div>
+      </div>
+      <div style="font-size:0.9rem;margin-top:0.75rem">
+        ${lang === 'en' ? 'Choose a terrain and click Generate' : 'Choisissez un terrain et cliquez sur Générer'}
+      </div>
     </div>`;
     return empty + _buildHistoryHTML(lang, t);
   }

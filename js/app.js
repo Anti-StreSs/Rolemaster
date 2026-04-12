@@ -61,6 +61,7 @@ async function render() {
 
   // Unload heavy hero video when leaving home view
   if (app.currentView !== 'home') _unloadHeroVideo();
+  _pauseAllMedallionVideos();
 
   switch (app.currentView) {
     case 'home':
@@ -143,6 +144,12 @@ function _lazyLoadHeroVideo() {
     // Already loaded previously — resume playback
     video.play().catch(() => {});
   }
+}
+
+function _pauseAllMedallionVideos() {
+  document.querySelectorAll('.rm-video-medallion-frame video').forEach(v => {
+    v.pause();
+  });
 }
 
 function _unloadHeroVideo() {

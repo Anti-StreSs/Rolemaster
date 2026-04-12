@@ -1148,6 +1148,14 @@ async function renderSetup(main, app) {
     main.innerHTML = `
       <div class="pm-root">
         <h2 class="pm-title">⚔ Gestionnaire d'Équipe</h2>
+        <div class="rm-video-medallion">
+          <div class="rm-video-medallion-frame">
+            <video muted loop playsinline autoplay
+              src="assets/IntroSmall.mp4"
+              onerror="this.parentElement.parentElement.style.display='none'">
+            </video>
+          </div>
+        </div>
         <p style="color:#9ca3af;margin-top:1rem">Aucun personnage sauvegardé. Créez des personnages d'abord.</p>
       </div>`;
     return;
@@ -1169,6 +1177,14 @@ async function renderSetup(main, app) {
   main.innerHTML = `
     <div class="pm-root">
       <h2 class="pm-title">⚔ Gestionnaire d'Équipe</h2>
+      <div class="rm-video-medallion">
+          <div class="rm-video-medallion-frame">
+            <video muted loop playsinline autoplay
+              src="assets/IntroSmall.mp4"
+              onerror="this.parentElement.parentElement.style.display='none'">
+            </video>
+          </div>
+        </div>
       <p class="pm-setup-hint">Sélectionnez les personnages pour cette session :</p>
       <div class="pm-char-list">${rows}</div>
       <div class="pm-action-row" style="margin-top:1rem">
