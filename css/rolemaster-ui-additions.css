@@ -1305,7 +1305,7 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
 .rm-crystal-ball-container {
   position: relative;
   width: 300px;
-  height: 450px;
+  height: 350px;
 }
 
 /* Video layer — behind the overlay */
@@ -1313,7 +1313,7 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
   position: absolute;
   /* Calibrated to match the transparent zone of crystal_ball_overlay.png */
   /* Base zone: center=(50%, 35.7%), expanded +20% lateral for better fill */
-  top: 14%;
+  top: 8%;
   left: 19%;
   width: 62%;
   height: 44%;
@@ -1356,7 +1356,7 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
 @media (max-width: 480px) {
   .rm-crystal-ball-container {
     width: 240px;
-    height: 360px;
+    height: 280px;
   }
 }
 
@@ -1366,7 +1366,7 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
 
 .rm-crystal-ball-hero {
   width: 600px;
-  height: 900px;
+  height: 700px;
 }
 
 /* Suppress the base crystal-ball margin in the hero context */
@@ -1378,12 +1378,12 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
 @media (max-width: 680px) {
   .rm-crystal-ball-hero {
     width: 400px;
-    height: 600px;
+    height: 467px;
   }
 }
 @media (max-width: 440px) {
   .rm-crystal-ball-hero {
     width: 300px;
-    height: 450px;
+    height: 350px;
   }
 }
