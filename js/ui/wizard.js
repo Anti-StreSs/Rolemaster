@@ -84,6 +84,7 @@ const STAT_ABBREVS = ['Co', 'Ag', 'AD', 'Mé', 'Ra', 'Fo', 'Rp', 'Pr', 'Em', 'In
 
 let character = null;
 let currentTab = 'infos';
+const _collapsedCategories = new Set();
 
 function isGMEditMode() { return character && character.isNPC === true; }
 
@@ -1994,7 +1995,8 @@ function renderSkillsTab(lang) {
   for (const cat of categories) {
     const catNameFr = CAT_NAMES_FR[cat.name] || cat.name;
     const catName = lang === 'en' ? cat.name : catNameFr;
-    table += `<tr><td colspan="10" class="skill-category-header">${catName}</td></tr>`;
+    const catId = cat.name.replace(/[^a-zA-Z]/g, '_').toLowerCase();
+    table += `<tr class="skill-cat-row" data-cat-id="${catId}"><td colspan="10" class="skill-category-header"><span class="cat-toggle-icon">▼</span> ${catName}</td></tr>`;
 
     for (const skill of cat.skills) {
       const name = getSkillName(skill, lang);
@@ -2033,7 +2035,7 @@ function renderSkillsTab(lang) {
           inlineAddBtn = `<button class="btn-add-subskill" data-parent="${globalIndex}" style="background:none;border:1px solid currentColor;border-radius:3px;width:1.2rem;height:1.2rem;font-size:0.75rem;cursor:pointer;color:inherit;line-height:1;padding:0;margin-left:4px" title="${lang === 'en' ? 'Add' : 'Ajouter'}">+</button>`;
         }
         table += `
-          <tr class="text-gray-500" style="background:rgba(139,92,246,0.05)">
+          <tr class="text-gray-500" data-cat-group="${catId}" style="background:rgba(139,92,246,0.05)">
             <td class="sticky-col text-purple-400 font-bold">${name} ${isWeapon ? '⚔' : '▸'}${subCount > 0 ? ` <span class="text-xs text-gray-500">(${subCount})</span>` : ''} ${inlineAddBtn}</td>
             <td colspan="3"></td>
             <td colspan="6" class="text-right">${parentAction}</td>
@@ -2081,7 +2083,7 @@ function renderSkillsTab(lang) {
             const wBoldClass = (character.skillBold || {})[wsKey] ? 'skill-bold' : '';
             const wTextColorClass = (character.skillTextColors || {})[wsKey] ? `skill-text-${character.skillTextColors[wsKey]}` : '';
             table += `
-              <tr class="${wTotalRanks > 0 ? '' : 'text-gray-600'} ${wHlClass} ${wBoldClass} ${wTextColorClass}">
+              <tr class="${wTotalRanks > 0 ? '' : 'text-gray-600'} ${wHlClass} ${wBoldClass} ${wTextColorClass}" data-cat-group="${catId}">
                 <td class="sticky-col text-gray-300 pl-6 skill-highlight-cell" data-skill-hl="${wsKey}" style="cursor:pointer">↳ ${esc(wpn.name)}</td>
                 <td class="text-center text-gray-500 text-xs">${wCostStr}</td>
                 <td class="text-center">
@@ -2133,7 +2135,7 @@ function renderSkillsTab(lang) {
             const sBoldClass = (character.skillBold || {})[subKey] ? 'skill-bold' : '';
             const sTextColorClass = (character.skillTextColors || {})[subKey] ? `skill-text-${character.skillTextColors[subKey]}` : '';
             table += `
-              <tr class="${sTotalRanks > 0 ? '' : 'text-gray-600'} ${sHlClass} ${sBoldClass} ${sTextColorClass}">
+              <tr class="${sTotalRanks > 0 ? '' : 'text-gray-600'} ${sHlClass} ${sBoldClass} ${sTextColorClass}" data-cat-group="${catId}">
                 <td class="sticky-col text-gray-300 pl-6 skill-highlight-cell" data-skill-hl="${subKey}" style="cursor:pointer">↳ ${esc(sub.name)} <button class="text-gray-600 hover:text-amber-300 text-xs ml-1 sub-skill-edit" data-parent="${globalIndex}" data-sub-idx="${si}" title="${lang === 'en' ? 'Edit name & stats' : 'Modifier nom & carac'}">✎</button></td>
                 <td class="text-center text-gray-500 text-xs">${sCostStr}</td>
                 <td class="text-center">
@@ -2198,7 +2200,7 @@ function renderSkillsTab(lang) {
         const boldClass = (character.skillBold || {})[globalIndex] ? 'skill-bold' : '';
         const textColorClass = (character.skillTextColors || {})[globalIndex] ? `skill-text-${character.skillTextColors[globalIndex]}` : '';
         table += `
-          <tr class="${totalRanks > 0 ? '' : 'text-gray-600'} ${hlClass} ${boldClass} ${textColorClass}">
+          <tr class="${totalRanks > 0 ? '' : 'text-gray-600'} ${hlClass} ${boldClass} ${textColorClass}" data-cat-group="${catId}">
             <td class="sticky-col text-gray-300 skill-highlight-cell" data-skill-hl="${globalIndex}" style="cursor:pointer">${name} <span class="skill-stats-label">(${c.statLabel})</span>${isSpecializableSkill(globalIndex) ? ` <button class="btn-add-subskill text-xs" data-parent="${globalIndex}" style="background:none;border:1px solid currentColor;border-radius:3px;width:1rem;height:1rem;font-size:0.6rem;cursor:pointer;color:inherit;padding:0;line-height:1" title="${lang === 'en' ? 'Add specialization' : 'Spécialiser'}">▸</button>` : ''}</td>
             <td class="text-center text-gray-500 text-xs">${costStr}</td>
             <td class="text-center">
@@ -2244,7 +2246,7 @@ function renderSkillsTab(lang) {
             const sHlColor = (character.skillHighlights || {})[subKey] || '';
             const sHlClass = sHlColor ? `highlight-${sHlColor}` : '';
             table += `
-              <tr class="${sTotalRanks > 0 ? '' : 'text-gray-600'} ${sHlClass}">
+              <tr class="${sTotalRanks > 0 ? '' : 'text-gray-600'} ${sHlClass}" data-cat-group="${catId}">
                 <td class="sticky-col text-gray-300 pl-6 skill-highlight-cell" data-skill-hl="${subKey}" style="cursor:pointer">↳ ${esc(sub.name)} <button class="text-gray-600 hover:text-amber-300 text-xs ml-1 sub-skill-edit" data-parent="${globalIndex}" data-sub-idx="${si}">✎</button></td>
                 <td class="text-center text-gray-500 text-xs">${sCostStr}</td>
                 <td class="text-center">${renderRankBoxes(sTotalRanks, sPhaseRanks)} <span class="text-xs text-amber-300 ml-1">${sTotalRanks > 0 ? sTotalRanks : ''}</span></td>
@@ -4349,6 +4351,28 @@ function bindSkillsEvents(app) {
       const parentIdx = parseInt(btn.dataset.parent);
       const subIdx = parseInt(btn.dataset.subIdx);
       openSubSkillEditor(app, parentIdx, subIdx);
+    });
+  });
+
+  // Collapsible skill categories — restore and bind
+  document.querySelectorAll('.skill-cat-row').forEach(row => {
+    const catId = row.dataset.catId;
+    row.style.cursor = 'pointer';
+    // Restore collapsed state from session memory
+    if (_collapsedCategories.has(catId)) {
+      row.classList.add('cat-collapsed');
+      const icon = row.querySelector('.cat-toggle-icon');
+      if (icon) icon.textContent = '▶';
+      document.querySelectorAll(`[data-cat-group="${catId}"]`).forEach(r => r.style.display = 'none');
+    }
+    row.addEventListener('click', () => {
+      const icon = row.querySelector('.cat-toggle-icon');
+      const skillRows = document.querySelectorAll(`[data-cat-group="${catId}"]`);
+      const isCollapsed = row.classList.toggle('cat-collapsed');
+      skillRows.forEach(r => r.style.display = isCollapsed ? 'none' : '');
+      if (icon) icon.textContent = isCollapsed ? '▶' : '▼';
+      if (isCollapsed) _collapsedCategories.add(catId);
+      else _collapsedCategories.delete(catId);
     });
   });
 }

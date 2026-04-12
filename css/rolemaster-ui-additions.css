@@ -1311,16 +1311,14 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
 /* Video layer — behind the overlay */
 .rm-crystal-ball-container video {
   position: absolute;
-  /* Calibrated to match the transparent zone of crystal_ball_overlay.png */
-  /* Base zone: center=(50%, 35.7%), expanded +20% lateral for better fill */
-  top: 8%;
+  /* Force a perfect circle clip regardless of video aspect ratio */
+  top: 12%;
   left: 19%;
   width: 62%;
   height: 44%;
-  border-radius: 50%;
+  clip-path: circle(48% at 50% 50%);
   object-fit: cover;
   z-index: 1;
-  /* Subtle glass distortion effect */
   filter: contrast(1.05) saturate(1.1);
 }
 
@@ -1365,8 +1363,8 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
    ============================================ */
 
 .rm-crystal-ball-hero {
-  width: 600px;
-  height: 700px;
+  width: 500px;
+  height: 585px;
 }
 
 /* Suppress the base crystal-ball margin in the hero context */
@@ -1377,8 +1375,8 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
 /* Mobile: hero ball scales down */
 @media (max-width: 680px) {
   .rm-crystal-ball-hero {
-    width: 400px;
-    height: 467px;
+    width: 340px;
+    height: 398px;
   }
 }
 @media (max-width: 440px) {
@@ -1386,4 +1384,35 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
     width: 300px;
     height: 350px;
   }
+}
+
+/* ============================================
+   Collapsible skill category headers
+   ============================================ */
+
+.skill-cat-row {
+  cursor: pointer;
+  user-select: none;
+}
+
+.skill-cat-row:hover .skill-category-header {
+  background: rgba(196, 154, 32, 0.15) !important;
+}
+
+.cat-toggle-icon {
+  display: inline-block;
+  width: 1em;
+  text-align: center;
+  font-size: 0.7rem;
+  transition: transform 0.15s ease;
+  margin-right: 0.3rem;
+  color: #8b6914;
+}
+
+.cat-collapsed .cat-toggle-icon {
+  color: #6b5030;
+}
+
+.cat-collapsed .skill-category-header {
+  opacity: 0.7;
 }
