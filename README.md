@@ -13,9 +13,9 @@ for Rolemaster 2nd Edition (RM2) and Rolemaster Standard System (RMSS).**
   race/class selection, skill development, spell lists, and background options
 - **NPC Generator** — Quick NPC creation with archetype-based skill distribution
 - **Party Manager** — Track HP, PP, status effects, and combat state for the whole party
-- **Bestiary** — 816 creatures from Creatures & Treasures 1/2/3 + Companion I
+- **Bestiary** — 816 creatures from Creatures & Treasures 1/2/3 + Companion I : find official book refs and pages numbers for each encounter
 - **Encounter Generator** — Random encounters by terrain, level, and category
-- **Spell Compendium** — 10,000+ spells across 112 spell lists
+- **Spell Compendium** — 10,000+ spells across 112 spell lists with easy refs to rulebooks
 - **Merchant Simulator** — Shops by town size with availability rolls
 - **Herbs & Poisons** — Complete herbal reference with terrain filters
 - **Combat Tracker** — Attack resolution with Arms Law tables, criticals, and fumbles
