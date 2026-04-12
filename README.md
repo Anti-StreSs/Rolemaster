@@ -3,7 +3,7 @@
 **A comprehensive offline-first Progressive Web App (PWA) serving as a GM assistant
 for Rolemaster 2nd Edition (RM2) and Rolemaster Standard System (RMSS).**
 
-🔗 **Live app**: [https://blaste.org/CPR/](https://blaste.org/CPR/)
+🔗 **Live app**: [https://rolemaster.blaste.org/](https://rolemaster.blaste.org/)
 
 ---
 

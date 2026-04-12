@@ -1311,7 +1311,6 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
 /* Video layer — behind the overlay */
 .rm-crystal-ball-container video {
   position: absolute;
-  /* Force a perfect circle clip regardless of video aspect ratio */
   top: 12%;
   left: 19%;
   width: 62%;
@@ -1320,6 +1319,17 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
   object-fit: cover;
   z-index: 1;
   filter: contrast(1.05) saturate(1.1);
+}
+
+/* Hero variant video (hero-sora.mp4 on Home) — same as base, no override needed */
+
+/* Standard medallion video (IntroSmall.mp4 on Encounters/Party) — larger & higher */
+.rm-crystal-ball-container:not(.rm-crystal-ball-hero) video {
+  top: 3%;
+  left: 10%;
+  width: 80%;
+  height: 60%;
+  clip-path: circle(43% at 50% 48%);
 }
 
 /* PNG overlay — the crystal ball frame with transparent center */

@@ -1,7 +1,7 @@
 {
-  "name": "Rolemaster Character Generator",
+  "name": "Rolemaster Reborn",
   "short_name": "Rolemaster",
-  "description": "Générateur de personnages Rolemaster (RMSS) — basé sur CPR093",
+  "description": "GM Assistant PWA for Rolemaster (RM2/RMSS) — based on CPR093",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#1a1a2e",
