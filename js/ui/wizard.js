@@ -2056,6 +2056,7 @@ function renderSkillsTab(lang) {
               wTotalRanks += Math.floor(wTotalRanks / 2);
             }
             let wCost = wpn.cost;
+            if (!wCost) wCost = { first: 8, second: 0, maxRanks: 1 }; // fallback for missing cost
             // Other-weapon cost multiplier: non-mastery weapons cost more
             if (_bgWpn.otherWeaponCostMultiplier !== 1 && _bgWpn.weaponMastery
                 && _bgWpn.weaponMastery.weaponIndex !== null && ws !== _bgWpn.weaponMastery.weaponIndex && wCost) {
@@ -3993,13 +3994,13 @@ function bindSkillsEvents(app) {
       const remaining = getDevPointsTotal(character) - getDevPointsSpent(character);
       if (remaining <= 0) { showToast(app.lang === 'en' ? 'No remaining DP' : 'Pas de PD restants', true); return; }
       const ranksObj = getCurrentPhaseRanksObj(character);
-      // Snapshot ranks before auto-assign to compute delta accurately
-      const ranksBefore = {};
-      for (const [k, v] of Object.entries(ranksObj)) ranksBefore[k] = v;
       let budgetLeft = remaining;
+      let wpnSpent = 0;
+
+      // ── 1. Auto-add weapon skills based on player's chosen categories ──
+      const hasPriorities = (character.weaponPriorities || []).some(p => p !== null);
       const hasWeapons = (character.weaponSkills || []).some((_, wi) => getTotalRanks(character, 'wpn_' + wi) > 0);
-      if (!hasWeapons) {
-        // Auto-populate weapon skills if none added yet
+      if (!hasWeapons && hasPriorities) {
         if ((character.weaponSkills || []).length === 0) {
           const isCombatant = archetype === 'fighter' || archetype === 'scout' || archetype === 'caster_staff';
           autoAddWeaponSkills(character, getData(), isCombatant ? 2 : 1, archetype);
@@ -4008,51 +4009,66 @@ function bindSkillsEvents(app) {
             character.skillRanksSimil['wpn_' + wi] = calcWeaponSimilarityRanks(wi, character);
           }
         }
-        const wpnSpent = spendWeaponSkillDP(character, ranksObj, budgetLeft, archetype);
+        wpnSpent = spendWeaponSkillDP(character, ranksObj, budgetLeft, archetype);
         budgetLeft -= wpnSpent;
       }
-      if (budgetLeft > 0) autoSpendDP(character, ranksObj, budgetLeft, 2, archetype);
-      // Auto-add Perception Générale senses (Vue, Ouïe) if not already present
+
+      // ── 2. Auto-add all 4 Perception senses ──
       const PERCEP_IDX = 173;
       const senseNames = ['Vue', 'Ouïe', 'Odorat', 'Toucher'];
       const existingSenses = character.subSkills.filter(s => s.parentIndex === PERCEP_IDX);
       let sensesSpent = 0;
-      if (existingSenses.length < 2 && budgetLeft > 0) {
+      if (existingSenses.length < 4 && budgetLeft > 0) {
         const senseCost = getSkillDevCost(character.classIndex, PERCEP_IDX);
         const costPer = senseCost?.first || 4;
-        const numToAdd = Math.min(2 - existingSenses.length, senseNames.length - existingSenses.length, Math.floor(budgetLeft / costPer));
+        const existingNames = existingSenses.map(s => s.name);
+        const toAdd = senseNames.filter(n => !existingNames.includes(n));
+        const numToAdd = Math.min(toAdd.length, Math.floor(budgetLeft / costPer));
         for (let si = 0; si < numToAdd; si++) {
           const senseIdx = existingSenses.length + si;
           character.subSkills.push({
             parentIndex: PERCEP_IDX,
-            name: senseNames[senseIdx],
+            name: toAdd[si],
             cost: senseCost ? { first: senseCost.first, second: senseCost.second } : { first: 4, second: 0 },
           });
           const subKey = 'sub_' + PERCEP_IDX + '_' + senseIdx;
           ranksObj[subKey] = 1;
-          ranksBefore[subKey] = 1; // exclude from delta loop to avoid double-counting
           sensesSpent += costPer;
           budgetLeft -= costPer;
         }
       }
-      // Recalculate total DP cost from DELTA ranks (new - previous) only
-      let totalAutoSpent = 0;
-      for (const [key, newRanks] of Object.entries(ranksObj)) {
-        const added = newRanks - (ranksBefore[key] || 0);
-        if (added <= 0) continue;
-        const skillIdx = key.startsWith('wpn_') || key.startsWith('sub_') ? key : parseInt(key);
-        const cost = typeof skillIdx === 'number' ? getSkillDevCost(character.classIndex, skillIdx) : null;
-        if (!cost) { totalAutoSpent += added * 4; continue; }
-        // First rank costs cost.first, second rank costs cost.second
-        const prevRanks = ranksBefore[key] || 0;
-        for (let r = 0; r < added; r++) {
-          const rankNum = prevRanks + r; // 0-indexed rank being added
-          totalAutoSpent += (rankNum === 0) ? cost.first : (cost.second > 0 ? cost.second : cost.first);
+
+      // ── 3. Auto-add Arts Martiaux: Frappe ──
+      const MARTIAL_IDX = 61;
+      let martialSpent = 0;
+      const existingMartial = character.subSkills.filter(s => s.parentIndex === MARTIAL_IDX);
+      const hasFrappe = existingMartial.some(s => s.name === 'Frappe');
+      if (!hasFrappe && budgetLeft > 0) {
+        const martialCost = getSkillDevCost(character.classIndex, MARTIAL_IDX);
+        const costPer = martialCost?.first || 6;
+        if (budgetLeft >= costPer) {
+          const subIdx = existingMartial.length;
+          character.subSkills.push({
+            parentIndex: MARTIAL_IDX,
+            name: 'Frappe',
+            cost: martialCost ? { first: martialCost.first, second: martialCost.second } : { first: 6, second: 0 },
+          });
+          const subKey = 'sub_' + MARTIAL_IDX + '_' + subIdx;
+          ranksObj[subKey] = 1;
+          martialSpent += costPer;
+          budgetLeft -= costPer;
         }
       }
-      totalAutoSpent += sensesSpent;
-      // Cap to remaining DP — never exceed budget
-      if (totalAutoSpent > remaining) totalAutoSpent = remaining;
+
+      // ── 4. Spend remaining DP on general skills ──
+      let skillsSpent = 0;
+      if (budgetLeft > 0) {
+        skillsSpent = autoSpendDP(character, ranksObj, budgetLeft, 2, archetype);
+        budgetLeft -= skillsSpent;
+      }
+
+      // ── 5. Total and apply ──
+      const totalAutoSpent = Math.min(wpnSpent + sensesSpent + martialSpent + skillsSpent, remaining);
       setDevPointsSpent(character, getDevPointsSpent(character) + totalAutoSpent);
       const newRemaining = getDevPointsTotal(character) - getDevPointsSpent(character);
       showToast(`${app.lang === 'en' ? 'Auto-assigned' : 'Attribution auto'}: ${totalAutoSpent} ${app.lang === 'en' ? 'DP' : 'PD'} (${newRemaining} ${app.lang === 'en' ? 'left' : 'restants'})`);
