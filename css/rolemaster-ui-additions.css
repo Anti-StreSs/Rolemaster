@@ -1309,39 +1309,70 @@ body[data-view="home"] .rm-hero-video video {
 }
 
 /* ============================================
-   Video Medallion — reusable elliptical frame
+   Crystal Ball Video Medallion
    ============================================ */
 
-.rm-video-medallion {
+.rm-crystal-ball {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1.5rem auto;
+  margin: 1.2rem auto;
 }
 
-.rm-video-medallion-frame {
+.rm-crystal-ball-container {
   position: relative;
   width: 220px;
-  height: 150px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid rgba(196, 154, 32, 0.6);
-  box-shadow:
-    0 0 12px rgba(196, 154, 32, 0.3),
-    inset 0 0 20px rgba(0, 0, 0, 0.4);
-  background: #0a0806;
-  animation: medallion-glow 4s ease-in-out infinite;
+  height: 330px;
 }
 
-.rm-video-medallion-frame video {
+/* Video layer — behind the overlay */
+.rm-crystal-ball-container video {
+  position: absolute;
+  /* Position the video inside the globe's transparent zone */
+  /* Globe center is at ~36% height, ball radius ~37% of width */
+  top: 11%;
+  left: 17%;
+  width: 66%;
+  height: 44%;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 1;
+  /* Subtle glass distortion effect */
+  filter: contrast(1.05) saturate(1.1);
+}
+
+/* PNG overlay — the crystal ball frame with transparent center */
+.rm-crystal-ball-container .rm-crystal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  display: block;
+  z-index: 2;
+  pointer-events: none;
+  background-image: url('../assets/ui/decorations/crystal_ball_overlay.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-/* Subtle gold glow pulse on the border */
-@keyframes medallion-glow {
-  0%, 100% { border-color: rgba(196, 154, 32, 0.5); }
-  50% { border-color: rgba(196, 154, 32, 0.8); }
+/* Subtle ambient glow beneath the ball */
+.rm-crystal-ball-container::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 12px;
+  background: radial-gradient(ellipse, rgba(196, 154, 32, 0.15) 0%, transparent 70%);
+  z-index: 0;
+}
+
+/* Mobile: slightly smaller */
+@media (max-width: 480px) {
+  .rm-crystal-ball-container {
+    width: 180px;
+    height: 270px;
+  }
 }

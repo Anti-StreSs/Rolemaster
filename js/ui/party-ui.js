@@ -1148,15 +1148,15 @@ async function renderSetup(main, app) {
     main.innerHTML = `
       <div class="pm-root">
         <h2 class="pm-title">⚔ Gestionnaire d'Équipe</h2>
-        <div class="rm-video-medallion">
-          <div class="rm-video-medallion-frame">
+        <div class="rm-crystal-ball">
+          <div class="rm-crystal-ball-container">
             <video muted loop playsinline autoplay
               src="assets/IntroSmall.mp4"
-              onerror="this.parentElement.parentElement.style.display='none'">
-            </video>
+              onerror="this.style.display='none'"></video>
+            <div class="rm-crystal-overlay"></div>
           </div>
         </div>
-        <p style="color:#9ca3af;margin-top:1rem">Aucun personnage sauvegardé. Créez des personnages d'abord.</p>
+        <p style="color:#9ca3af;margin-top:0.5rem">Aucun personnage sauvegardé. Créez des personnages d'abord.</p>
       </div>`;
     return;
   }
@@ -1177,12 +1177,12 @@ async function renderSetup(main, app) {
   main.innerHTML = `
     <div class="pm-root">
       <h2 class="pm-title">⚔ Gestionnaire d'Équipe</h2>
-      <div class="rm-video-medallion">
-          <div class="rm-video-medallion-frame">
+      <div class="rm-crystal-ball">
+          <div class="rm-crystal-ball-container">
             <video muted loop playsinline autoplay
               src="assets/IntroSmall.mp4"
-              onerror="this.parentElement.parentElement.style.display='none'">
-            </video>
+              onerror="this.style.display='none'"></video>
+            <div class="rm-crystal-overlay"></div>
           </div>
         </div>
       <p class="pm-setup-hint">Sélectionnez les personnages pour cette session :</p>

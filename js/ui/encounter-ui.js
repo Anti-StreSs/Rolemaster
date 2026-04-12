@@ -135,16 +135,16 @@ function _buildFiltersHTML(lang, t) {
 
 function _buildResultHTML(lang, t) {
   if (!_lastResult || !_lastResult.encounters.length) {
-    const empty = `<div style="text-align:center;padding:2rem 1rem;color:#8b6914;opacity:0.85">
-      <div class="rm-video-medallion">
-        <div class="rm-video-medallion-frame">
+    const empty = `<div style="text-align:center;padding:1.5rem 1rem;color:#8b6914;">
+      <div class="rm-crystal-ball">
+        <div class="rm-crystal-ball-container">
           <video muted loop playsinline autoplay
             src="assets/IntroSmall.mp4"
-            onerror="this.parentElement.parentElement.style.display='none'">
-          </video>
+            onerror="this.style.display='none'"></video>
+          <div class="rm-crystal-overlay"></div>
         </div>
       </div>
-      <div style="font-size:0.9rem;margin-top:0.75rem">
+      <div style="font-size:0.9rem;margin-top:0.5rem;opacity:0.8">
         ${lang === 'en' ? 'Choose a terrain and click Generate' : 'Choisissez un terrain et cliquez sur Générer'}
       </div>
     </div>`;

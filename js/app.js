@@ -61,7 +61,7 @@ async function render() {
 
   // Unload heavy hero video when leaving home view
   if (app.currentView !== 'home') _unloadHeroVideo();
-  _pauseAllMedallionVideos();
+  _pauseAllCrystalBallVideos();
 
   switch (app.currentView) {
     case 'home':
@@ -146,8 +146,8 @@ function _lazyLoadHeroVideo() {
   }
 }
 
-function _pauseAllMedallionVideos() {
-  document.querySelectorAll('.rm-video-medallion-frame video').forEach(v => {
+function _pauseAllCrystalBallVideos() {
+  document.querySelectorAll('.rm-crystal-ball-container video').forEach(v => {
     v.pause();
   });
 }
