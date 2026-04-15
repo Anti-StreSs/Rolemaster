@@ -1150,7 +1150,7 @@ async function renderSetup(main, app) {
         <h2 class="pm-title">⚔ Gestionnaire d'Équipe</h2>
         <div class="rm-crystal-ball">
           <div class="rm-crystal-ball-container">
-            <video muted loop playsinline autoplay
+            <video muted loop playsinline autoplay preload="none"
               src="assets/IntroSmall.mp4"
               onerror="this.style.display='none'"></video>
             <div class="rm-crystal-overlay"></div>
@@ -1179,7 +1179,7 @@ async function renderSetup(main, app) {
       <h2 class="pm-title">⚔ Gestionnaire d'Équipe</h2>
       <div class="rm-crystal-ball">
           <div class="rm-crystal-ball-container">
-            <video muted loop playsinline autoplay
+            <video muted loop playsinline autoplay preload="none"
               src="assets/IntroSmall.mp4"
               onerror="this.style.display='none'"></video>
             <div class="rm-crystal-overlay"></div>

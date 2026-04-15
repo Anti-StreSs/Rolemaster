@@ -1375,6 +1375,8 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
 .rm-crystal-ball-hero {
   width: 500px;
   height: 585px;
+  max-width: 90vw;
+  max-height: calc(90vw * 1.17);
 }
 
 /* Suppress the base crystal-ball margin in the hero context */
@@ -1383,16 +1385,32 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
 }
 
 /* Mobile: hero ball scales down */
+/* Tablet: hero ball medium */
 @media (max-width: 680px) {
   .rm-crystal-ball-hero {
-    width: 340px;
-    height: 398px;
+    width: 380px;
+    height: 445px;
+  }
+  .rm-crystal-ball-hero video {
+    top: 6%;
+    left: 13%;
+    width: 74%;
+    height: 52%;
+    clip-path: circle(46% at 50% 50%);
   }
 }
+/* Smartphone: hero ball compact */
 @media (max-width: 440px) {
   .rm-crystal-ball-hero {
     width: 300px;
-    height: 350px;
+    height: 351px;
+  }
+  .rm-crystal-ball-hero video {
+    top: 4%;
+    left: 10%;
+    width: 80%;
+    height: 56%;
+    clip-path: circle(44% at 50% 50%);
   }
 }
 

@@ -138,7 +138,7 @@ function _buildResultHTML(lang, t) {
     const empty = `<div style="text-align:center;padding:1.5rem 1rem;color:#8b6914;">
       <div class="rm-crystal-ball">
         <div class="rm-crystal-ball-container">
-          <video muted loop playsinline autoplay
+          <video muted loop playsinline autoplay preload="none"
             src="assets/IntroSmall.mp4"
             onerror="this.style.display='none'"></video>
           <div class="rm-crystal-overlay"></div>

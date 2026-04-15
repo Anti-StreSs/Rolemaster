@@ -195,9 +195,10 @@ async function renderHome(main) {
       </div>
       <div class="rm-crystal-ball">
         <div class="rm-crystal-ball-container rm-crystal-ball-hero">
-          <video muted loop playsinline autoplay
-            src="assets/hero-sora.mp4"
-            onerror="this.style.display='none'"></video>
+          <video muted loop playsinline preload="none" id="hero-sora-video"
+            onerror="this.style.display='none'">
+            <source data-src="assets/hero-sora.mp4" type="video/mp4">
+          </video>
           <div class="rm-crystal-overlay"></div>
         </div>
       </div>
@@ -262,6 +263,17 @@ async function renderHome(main) {
       }
     });
   }
+
+  // Lazy-load hero-sora video after first paint (8MB — don't block page load)
+  setTimeout(() => {
+    const heroVideo = document.getElementById('hero-sora-video');
+    if (!heroVideo) return;
+    const sources = heroVideo.querySelectorAll('source[data-src]');
+    if (!sources.length) { heroVideo.play().catch(() => {}); return; }
+    sources.forEach(s => { s.src = s.dataset.src; s.removeAttribute('data-src'); });
+    heroVideo.load();
+    heroVideo.addEventListener('canplay', () => heroVideo.play().catch(() => {}), { once: true });
+  }, 600);
 }
 
 async function openCompareView(names) {
