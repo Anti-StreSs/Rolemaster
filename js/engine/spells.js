@@ -2,10 +2,14 @@
 
 import { getData } from './data-loader.js';
 import { getCoutsIndex } from './skills.js';
-import { isPureCaster as isPureCasterCls } from './classes.js';
+import { isPureCaster as isPureCasterCls, isSpellUser } from './classes.js';
 
 // Re-export for backward compatibility: wizard.js imports isPureCaster from this module.
 export { isPureCaster } from './classes.js';
+
+// Arcane tri-realm hybrids: their Base Lists are the Arcane lists.
+// Same detection pattern as HYBRID_PP_NAMES in classes.js.
+const ARCANE_HYBRID_NAMES = new Set(['Archmage', 'Achiste']);
 
 /**
  * Get all spell realms with their lists.
@@ -69,7 +73,23 @@ export function getSpellListCost(cls, classRealm, listName, realmName) {
   if (!cls || classRealm === 'none') return { cost: 10, type: 'Autre' };
 
   const rn = realmName.toLowerCase();
-  const isPure = cls.caster_type >= 3; // Pure spell casters (type 3+)
+  const isPure = cls.caster_type === 3 || isPureCasterCls(cls); // Pure casters + all hybrids
+
+  // Arcane tri-realm hybrids (Archmage, Achiste): full pricing override.
+  // They operate as pure casters across all three realms; Arcane/Other lists are their Base Lists.
+  // Master's spec: Ess/Ch/Ment Libres = 2 DP bloc 10; Reservees = 2 DP bloc 5; Arcane/Other = 1 DP bloc 10.
+  // (Block sizes handled in getSpellBlockSize via the same ARCANE_HYBRID_NAMES set.)
+  if (ARCANE_HYBRID_NAMES.has(cls.name_fr)) {
+    if (rn.includes('arcane')) return { cost: 1, type: 'Base' };
+    const isAnyMainRealm = rn.includes('essence') || rn.includes('channeling') || rn.includes('mentalism');
+    if (isAnyMainRealm) {
+      if (rn.includes('open'))   return { cost: 2, type: 'Libre' };
+      if (rn.includes('closed')) return { cost: 2, type: 'Réservée' };
+      if (rn.includes('evil'))   return { cost: 6, type: 'Autre' };
+    }
+    // Fallback for 'Other' or unclassified lists — treat as Base per Master's spec
+    return { cost: 1, type: 'Base' };
+  }
 
   // Map class realm to sorts.json realm keywords
   const realmKeywords = {
@@ -97,6 +117,7 @@ export function getSpellListCost(cls, classRealm, listName, realmName) {
     return { cost: isPure ? 6 : 10, type: 'Autre' };
   }
 
+
   // Arcane lists
   if (rn.includes('arcane') || rn.includes('other')) {
     return { cost: isPure ? 4 : 8, type: 'Autre' };
@@ -114,7 +135,7 @@ export function getSpellRankCost(cls) {
   if (!cls) return 20;
   if (cls.caster_type === 3) return 1;      // Hybrid
   if (isPureCasterCls(cls)) return 1;        // Pure
-  if (cls.caster_type === 2) return 4;       // Semi
+  if (cls.caster_type === 2 && isSpellUser(cls)) return 4;  // Semi with real realm access
   return 20;                                 // Non-caster
 }
 
@@ -124,6 +145,11 @@ export function getSpellRankCost(cls) {
  */
 export function getSpellBlockSize(cls, listType) {
   if (!cls) return 5;
+  // Arcane tri-realm hybrids (Archmage, Achiste): block 10 on everything except Reservées (closed).
+  // Master's spec: Ess/Ch/Ment Libres = bloc 10, Reservees = bloc 5, Arcane/Autres = bloc 10.
+  if (ARCANE_HYBRID_NAMES.has(cls.name_fr)) {
+    return listType === 'closed' ? 5 : 10;
+  }
   const isPureOrHybrid = cls.caster_type === 3 || isPureCasterCls(cls);
   if (isPureOrHybrid && listType === 'base_own') return 10;
   return 5;
@@ -136,6 +162,7 @@ export function getSpellBlockSize(cls, listType) {
 export function getListTypeKey(costType, isBaseOwn) {
   if (isBaseOwn) return 'base_own';
   switch (costType) {
+    case 'Base': return 'base_own';
     case 'Libre': return 'open';
     case 'Réservée': return 'closed';
     default: return 'other';

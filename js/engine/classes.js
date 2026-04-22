@@ -76,14 +76,18 @@ const PP_STAT_MAP = { 'essence': 8, 'channeling': 9, 'mentalism': 7 };
 // Known RM2 hybrid professions: use average of two realm stats for PP
 // Sorcerer = Essence+Channeling, Mystic = Essence+Mentalism, Astrologer = Channeling+Mentalism
 const HYBRID_PP_NAMES = {
-  'Sorcier':        [8, 9], // Em + In (Essence + Channeling)
-  'Mystique':       [8, 7], // Em + Pr (Essence + Mentalism)
-  'Astrologue':     [9, 7], // In + Pr (Channeling + Mentalism)
-  // B70: additional hybrids now marked caster_type=3
-  'Mage cristal':   [8, 7], // Em + Pr (Essence + Mentalism)
-  'Mage du chaos':  [9, 7], // In + Pr (Channeling + Mentalism)
-  'Envout\u00e9ur': [8, 9], // Em + In (Essence + Channeling)
-  'Necromancien':   [8, 9], // Em + In (Essence + Channeling)
+  // RM2 bi-realm hybrids: average of two stat bonuses for PP
+  'Sorcier':         [8, 9], // Em + In (Essence + Channeling)
+  'Astrologue':      [9, 7], // In + Pr (Channeling + Mentalism)
+  'Envo\u00fbteur': [8, 9], // Em + In (Essence + Channeling) — u-circumflex
+  'Mage cristal':    [8, 9], // Em + In (Essence + Channeling) — pyRoleManager ref
+  'Mage du chaos':   [9, 7], // In + Pr (Channeling + Mentalism)
+  'Necromancien':    [8, 9], // Em + In (Essence + Channeling)
+  // RM2 Arcane tri-realm hybrids: average of three stat bonuses for PP
+  'Archmage':        [8, 9, 7], // Em + In + Pr (Arcane: Ess + Ch + Ment)
+  'Achiste':         [8, 9, 7], // Em + In + Pr (Arcane: same as Archmage)
+  // NOTE: Mystique removed — it's PURE (caster_type=2), not hybrid.
+  // NOTE: Magus (rc=7) handled by realm_code=7 fallback below = Em + Pr.
 };
 
 /**
@@ -158,7 +162,7 @@ const CLASS_PRIME_STATS = {
   'Sorcier': [8, 9], 'Mystique': [8, 7], 'Astrologue': [9, 7],
   'Archmage': [8, 9], 'Achiste': [8, 9],
   // Monks / Martial
-  'Moine': [1, 2], 'Guerrier-moine': [1, 2], 'Monastique': [1, 2],
+  'Moine': [1, 2], 'Guerrier-moine': [7, 3], 'Monastique': [2, 3],
   'Guerrier-mage': [5, 8], 'Magus': [8, 1],
   // Semi / Special
   'Ranger': [1, 0], 'Compagnon': [1, 0], 'Analyseur': [8, 3],
