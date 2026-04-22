@@ -76,9 +76,14 @@ const PP_STAT_MAP = { 'essence': 8, 'channeling': 9, 'mentalism': 7 };
 // Known RM2 hybrid professions: use average of two realm stats for PP
 // Sorcerer = Essence+Channeling, Mystic = Essence+Mentalism, Astrologer = Channeling+Mentalism
 const HYBRID_PP_NAMES = {
-  'Sorcier':     [8, 9], // Em + In (Essence + Channeling)
-  'Mystique':    [8, 7], // Em + Pr (Essence + Mentalism)
-  'Astrologue':  [9, 7], // In + Pr (Channeling + Mentalism)
+  'Sorcier':        [8, 9], // Em + In (Essence + Channeling)
+  'Mystique':       [8, 7], // Em + Pr (Essence + Mentalism)
+  'Astrologue':     [9, 7], // In + Pr (Channeling + Mentalism)
+  // B70: additional hybrids now marked caster_type=3
+  'Mage cristal':   [8, 7], // Em + Pr (Essence + Mentalism)
+  'Mage du chaos':  [9, 7], // In + Pr (Channeling + Mentalism)
+  'Envout\u00e9ur': [8, 9], // Em + In (Essence + Channeling)
+  'Necromancien':   [8, 9], // Em + In (Essence + Channeling)
 };
 
 /**
@@ -204,4 +209,25 @@ export function getClassCosts(classIndex) {
     return couts.classes[classIndex].cost_values;
   }
   return null;
+}
+
+// RM2 pure-caster professions identified by name (source: B70 delta audit vs pyRoleManager).
+// Does NOT include hybrids (caster_type=3) — those are handled separately in getSpellRankCost.
+export const PURE_CASTER_NAMES_FR = new Set([
+  'Alchimiste', 'Animiste', 'Clerc', 'Druide', 'Evocateur',
+  'Force Mage', 'Gu\u00e9risseur', 'Illusioniste', 'Magicien', 'Mentaliste',
+  'Soigneur', 'Enchanteur', 'Runiste', 'Proph\u00e8te', 'Shamane',
+  'Mystique', 'Sage',
+  'Oniromancien illusioniste', 'Oniromancien shamane',
+  'S\u00e9l\u00e9niste', 'Macabre', 'Achiste', 'Seigneur du chaos',
+]);
+
+/**
+ * Returns true if the class is a pure spell caster (1 DP/rank).
+ * Hybrids (caster_type=3) return false — they are handled separately.
+ */
+export function isPureCaster(cls) {
+  if (!cls) return false;
+  if (cls.caster_type === 3) return false;
+  return PURE_CASTER_NAMES_FR.has(cls.name_fr);
 }

@@ -74,7 +74,7 @@ export function calcTotalSkillBonus(skill, statValues, ranks) {
 
 // Mapping from classes.json index → couts.json index
 // classes.json has 68 classes, couts.json has 65. 3 classes have no cost data.
-const CLASS_TO_COUTS_MAP = [0,1,2,3,-1,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,64,22,23,24,25,26,27,28,29,30,31,-1,32,33,-1,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63];
+const CLASS_TO_COUTS_MAP = [0,1,2,3,65,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,64,22,23,24,25,26,27,28,29,30,31,66,32,33,67,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63];
 
 /**
  * Get the couts.json index for a classes.json class index.

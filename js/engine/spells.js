@@ -2,6 +2,10 @@
 
 import { getData } from './data-loader.js';
 import { getCoutsIndex } from './skills.js';
+import { isPureCaster as isPureCasterCls } from './classes.js';
+
+// Re-export for backward compatibility: wizard.js imports isPureCaster from this module.
+export { isPureCaster } from './classes.js';
 
 /**
  * Get all spell realms with their lists.
@@ -102,26 +106,16 @@ export function getSpellListCost(cls, classRealm, listName, realmName) {
   return { cost: isPure ? 8 : 12, type: 'Autre' };
 }
 
-// Realm codes where hasSpells=true (avoids circular import with classes.js)
-const REALM_HAS_SPELLS = { 3: true, 5: true, 7: true, 8: true, 9: true, 10: true };
-
 /**
- * Is this class a pure/hybrid spell caster?
- */
-export function isPureCaster(cls) {
-  if (!cls) return false;
-  if (cls.caster_type >= 3) return true; // Hybrid
-  return cls.caster_type === 2 && !!REALM_HAS_SPELLS[cls.realm_code]; // Pure
-}
-
-/**
- * Get DP cost per spell rank: 1 for pure/hybrid, 4 for semi, 20 for non-caster.
+ * Get DP cost per spell rank: 1 for hybrid or pure, 4 for semi, 20 for non-caster.
+ * B70 fix: previously isPureCaster returned true for semi-casters too (line 123 was unreachable).
  */
 export function getSpellRankCost(cls) {
   if (!cls) return 20;
-  if (isPureCaster(cls)) return 1;
-  if (cls.caster_type === 2) return 4; // Semi-caster
-  return 20;
+  if (cls.caster_type === 3) return 1;      // Hybrid
+  if (isPureCasterCls(cls)) return 1;        // Pure
+  if (cls.caster_type === 2) return 4;       // Semi
+  return 20;                                 // Non-caster
 }
 
 /**
@@ -130,8 +124,8 @@ export function getSpellRankCost(cls) {
  */
 export function getSpellBlockSize(cls, listType) {
   if (!cls) return 5;
-  const isPure = cls.caster_type >= 3 || (cls.caster_type === 2 && REALM_HAS_SPELLS[cls.realm_code]);
-  if (isPure && listType === 'base_own') return 10;
+  const isPureOrHybrid = cls.caster_type === 3 || isPureCasterCls(cls);
+  if (isPureOrHybrid && listType === 'base_own') return 10;
   return 5;
 }
 
