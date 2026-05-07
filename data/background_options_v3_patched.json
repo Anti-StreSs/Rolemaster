@@ -228,228 +228,409 @@
             {
               "roll": "01-05",
               "id": "cl-06-03-01",
-              "name_en": "Neutral Odor",
-              "name_fr": "Odeur Neutre",
-              "description_en": "The character has a neutral body odor that is hard to detect or track.",
-              "description_fr": "Le personnage dégage une odeur corporelle neutre, difficile à détecter ou à pister.",
+              "name_en": "Peculiar Body Odor",
+              "name_fr": "Odeur Corporelle Particulière",
+              "description_en": "The character's body emits a peculiar neutral odor that masks the smell of anything within a 5-foot radius. Unfortunately, the character is heat-sensitive and operates at -10 whenever the ambient temperature rises above 80°F (~27°C).",
+              "description_fr": "Le corps du personnage dégage une odeur neutre particulière qui masque l'odeur de tout ce qui se trouve dans un rayon de 1,5 m. En contrepartie, il est sensible à la chaleur et subit -10 à toutes ses actions dès que la température dépasse 27°C.",
               "type": "ability",
               "effects": {
-                "special_ability": "neutral_odor"
+                "scent_masking_radius_ft": 5,
+                "condition_modifiers": [
+                  {
+                    "trigger": "ambient_temp_above_80F",
+                    "all_actions_modifier": -10
+                  }
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "Masque les odeurs sur 1,5 m. -10 à toutes actions au-dessus de 27°C.",
+                "en": "Masks odors within 5 ft. -10 to all actions above 80°F."
+              },
+              "gm_notes": "Le rayon de masquage neutralise pistage olfactif et détection magique olfactive (à l'appréciation du MJ)."
             },
             {
               "roll": "06-10",
               "id": "cl-06-03-02",
-              "name_en": "Exceptional Tone",
-              "name_fr": "Tonalité Exceptionnelle",
-              "description_en": "The character possesses a remarkable vocal tone that aids singing.",
-              "description_fr": "Le personnage possède une tonalité vocale remarquable qui améliore sa pratique du chant.",
+              "name_en": "High-Range Voice",
+              "name_fr": "Voix Suraiguë",
+              "description_en": "The character has a high-range voice usable once per 4 hours (or once if used less than 4 hours apart) to either: (1) shatter normal glass surfaces no more than 1\" thick and weighing no more than 1000 pounds, or (2) deliver a 5th-level scream attack stunning all listeners within a 25-foot radius for 2 rounds (RR negates). When raining and not in a fully enclosed space, the ability must be rolled — on 01-25 the character cannot speak for that period.",
+              "description_fr": "Le personnage possède une voix très aiguë utilisable une fois toutes les 4 heures (ou une seule fois si réutilisée à moins de 4 h d'intervalle) pour : (1) briser des surfaces de verre de moins de 2,5 cm d'épaisseur et de moins de 450 kg, ou (2) déclencher une attaque de cri de niveau 5 qui étourdit pour 2 rounds tous les auditeurs dans un rayon de 7,5 m (RR négocie). Sous la pluie et hors espace clos, jet obligatoire — sur 01-25, le personnage ne peut plus parler pendant cette période.",
               "type": "ability",
               "effects": {
-                "special_ability": "exceptional_tone",
-                "skill_bonus": {
-                  "singing": 10
-                }
+                "scream_attack": {
+                  "level": 5,
+                  "radius_ft": 25,
+                  "stun_rounds": 2,
+                  "rr_negates": true
+                },
+                "shatter_glass": {
+                  "max_thickness_in": 1,
+                  "max_weight_lb": 1000
+                },
+                "cooldown_hours": 4,
+                "condition_modifiers": [
+                  {
+                    "trigger": "rain_outside_enclosed_space",
+                    "ability_use": "roll_d100",
+                    "fail_range": "01-25",
+                    "consequence": "mute_for_period"
+                  }
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "Brise verre ou cri-attaque niv.5 (1×/4h). En extérieur sous la pluie : risque de mutisme.",
+                "en": "Shatter glass or 5th-lvl scream attack (1×/4h). Outdoor in rain: muteness risk."
+              },
+              "gm_notes": "Précisez la portée de \"verre normal\" et la définition d'espace fully enclosed (carrosse fermé OK, charrette bâchée non)."
             },
             {
               "roll": "11-15",
               "id": "cl-06-03-03",
-              "name_en": "Acute Smell",
+              "name_en": "Acute Sense of Smell",
               "name_fr": "Odorat Aiguisé",
-              "description_en": "The character has a sharply developed sense of smell.",
-              "description_fr": "Le personnage dispose d'un odorat particulièrement développé.",
+              "description_en": "The character can perceive and distinguish odors up to 100' downwind, 2000' upwind, and 500' in still air. Tracking by experience-known scents grants +25. Drawback: nosebleeds at high altitudes — operate at -5 for every 1000 feet above sea level.",
+              "description_fr": "Le personnage perçoit et distingue les odeurs jusqu'à 30 m sous le vent, 600 m face au vent et 150 m en air calme. Pister une odeur connue accorde +25. Inconvénient : saignements de nez en altitude — -5 par tranche de 300 m au-dessus du niveau de la mer.",
               "type": "ability",
               "effects": {
-                "special_ability": "acute_smell",
+                "scent_range_ft": {
+                  "downwind": 100,
+                  "upwind": 2000,
+                  "still_air": 500
+                },
+                "tracking_known_scent_bonus": 25,
                 "perception_bonus": {
                   "smell": 15
-                }
+                },
+                "condition_modifiers": [
+                  {
+                    "trigger": "altitude_per_1000ft_above_sea_level",
+                    "all_actions_modifier": -5
+                  }
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "+25 pistage olfactif, +15 perception (odorat). -5 / 300 m d'altitude.",
+                "en": "+25 scent tracking, +15 smell perception. -5 per 1000 ft of altitude."
+              },
+              "gm_notes": null
             },
             {
               "roll": "16-20",
               "id": "cl-06-03-04",
               "name_en": "Infravision",
               "name_fr": "Infravision",
-              "description_en": "The character can see heat signatures in darkness.",
-              "description_fr": "Le personnage peut percevoir les sources de chaleur dans l'obscurité.",
+              "description_en": "The character possesses infravision and sees heat sources up to 100' away in darkness. Peculiar drawback: requires 10 hours of natural sleep per day. Operates at -5 for every hour short of that figure (e.g., -10 with only 8 hours of sleep).",
+              "description_fr": "Le personnage possède l'infravision et perçoit les sources de chaleur jusqu'à 30 m dans l'obscurité. Inconvénient : il a besoin de 10 heures de sommeil naturel par jour, et subit -5 par heure manquante (ex : -10 avec seulement 8 h de sommeil).",
               "type": "ability",
               "effects": {
-                "special_ability": "infravision",
-                "vision": "infravision_50ft"
+                "infravision": true,
+                "infravision_range_ft": 100,
+                "required_sleep_hours_per_day": 10,
+                "condition_modifiers": [
+                  {
+                    "trigger": "sleep_hours_short_per_hour",
+                    "all_actions_modifier": -5
+                  }
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "Vision infrarouge à 30 m. Besoin de 10 h de sommeil/jour, -5 par heure manquante.",
+                "en": "Infravision to 100 ft. Needs 10h sleep/day, -5 per missing hour."
+              },
+              "gm_notes": null
             },
             {
               "roll": "21-25",
               "id": "cl-06-03-05",
-              "name_en": "Exceptional Voice",
-              "name_fr": "Voix Exceptionnelle",
-              "description_en": "The character has an exceptional voice that aids singing and leadership.",
-              "description_fr": "Le personnage possède une voix exceptionnelle qui améliore sa pratique du chant et du leadership.",
+              "name_en": "Soothing Voice",
+              "name_fr": "Voix Apaisante",
+              "description_en": "The character's voice is soothing and grants +15 to verbal actions intended to calm or persuade (conversation, singing, public speaking, trading, acting, Calm spells, etc.). Drawback: terrified of lightning and thunder. Caught in a thunderstorm, operates at -50; if under partial cover, drops, freezes and is immobile if exposed to the elements.",
+              "description_fr": "La voix du personnage est apaisante et accorde +15 aux actions verbales visant à calmer ou persuader (conversation, chant, art oratoire, marchandage, comédie, sorts de Calme, etc.). Inconvénient : terreur de la foudre et du tonnerre. Pris dans un orage, il subit -50 ; sous abri partiel, il s'effondre, se fige et reste immobile s'il est exposé.",
               "type": "ability",
               "effects": {
-                "special_ability": "exceptional_voice",
                 "skill_bonus": {
-                  "singing": 15,
-                  "leadership": 5
-                }
+                  "calm_persuade_verbal": 15,
+                  "public_speaking": 15,
+                  "trading": 15,
+                  "acting": 15,
+                  "singing": 15
+                },
+                "spell_cast_bonus": {
+                  "calm_realm_spells": 15
+                },
+                "condition_modifiers": [
+                  {
+                    "trigger": "in_thunderstorm_unsheltered",
+                    "all_actions_modifier": -50,
+                    "extra": "drop_freeze_immobile_if_exposed"
+                  }
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "+15 actions verbales de persuasion. -50 sous orage non abrité, immobile si exposé.",
+                "en": "+15 verbal persuasion actions. -50 in thunderstorm unsheltered, immobilized if exposed."
+              },
+              "gm_notes": null
             },
             {
               "roll": "26-30",
               "id": "cl-06-03-06",
-              "name_en": "Empathy",
-              "name_fr": "Empathie",
-              "description_en": "The character senses emotional states more readily than normal.",
-              "description_fr": "Le personnage perçoit les états émotionnels des autres plus facilement que la normale.",
+              "name_en": "Animal Empathy",
+              "name_fr": "Empathie Animale",
+              "description_en": "The character has empathy with one chosen animal type, gaining +25 on any maneuver involving that animal type. After prolonged association (about a month) with a specific individual of that type, mental communication becomes possible at a range of 100' × the character's level. Drawback: any other animal which would normally attack the chosen type will attack the character on sight at +25 OB.",
+              "description_fr": "Le personnage possède une empathie naturelle avec un type d'animal choisi à la création, et obtient +25 à toute manœuvre impliquant ce type. Après environ un mois d'association suivie avec un individu précis, une communication mentale s'établit jusqu'à 30 m × niveau du personnage. Inconvénient : tout animal qui attaquerait normalement ce type d'animal attaque le personnage à vue avec +25 BO.",
               "type": "ability",
               "effects": {
-                "special_ability": "empathy",
-                "perception_bonus": {
-                  "empathy": 15
-                }
+                "animal_empathy": {
+                  "type": "player_choice",
+                  "maneuver_bonus": 25
+                },
+                "mental_link_range_per_level_ft": 100,
+                "mental_link_bonding_duration_days": 30,
+                "condition_modifiers": [
+                  {
+                    "trigger": "encounter_predator_of_chosen_type",
+                    "predator_ob_bonus": 25
+                  }
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "+25 sur un type d'animal au choix. Lien mental après ~1 mois (30 m × niveau). Prédateurs naturels +25 BO contre vous.",
+                "en": "+25 with one chosen animal type. Mental link after ~1 month (100 ft × level). Natural predators +25 OB vs you."
+              },
+              "gm_notes": "Le type d'animal doit être choisi à la création et est définitif."
             },
             {
               "roll": "31-35",
               "id": "cl-06-03-07",
               "name_en": "Acute Hearing",
               "name_fr": "Ouïe Aiguisée",
-              "description_en": "The character has an unusually keen sense of hearing.",
-              "description_fr": "Le personnage bénéficie d'une ouïe anormalement fine et précise.",
+              "description_en": "The character's acute hearing allows perceiving, isolating and understanding any sound within 100' in open areas, or 25' through solid objects. When asleep, the character cannot be awakened (even magically) during the first hour of slumber.",
+              "description_fr": "L'ouïe aiguisée du personnage lui permet de percevoir, isoler et comprendre tout son dans un rayon de 30 m en zone dégagée, ou 7,5 m à travers des matériaux solides. Inconvénient : pendant la première heure de son sommeil, il ne peut être réveillé (même magiquement).",
               "type": "ability",
               "effects": {
-                "special_ability": "acute_hearing",
+                "hearing_range_ft": {
+                  "open": 100,
+                  "through_solid": 25
+                },
                 "perception_bonus": {
                   "hearing": 15
-                }
+                },
+                "narrative_flags": [
+                  "unwakeable_first_hour_of_sleep"
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "Audition fine 30 m / 7,5 m à travers les murs. Imperturbable la 1re heure de sommeil.",
+                "en": "Fine hearing 100 ft / 25 ft through walls. Unwakeable in first hour of sleep."
+              },
+              "gm_notes": null
             },
             {
               "roll": "36-40",
               "id": "cl-06-03-08",
-              "name_en": "Exceptional Spatial Judgment",
-              "name_fr": "Jugement Spatial Exceptionnel",
-              "description_en": "The character judges space, distance, and orientation exceptionally well.",
-              "description_fr": "Le personnage évalue l'espace, les distances et l'orientation avec une précision exceptionnelle.",
+              "name_en": "Exceptional Sense of Angles",
+              "name_fr": "Sens Exceptionnel des Angles",
+              "description_en": "The character has an exceptional ability to judge angles and changes in slant of relatively uniform solid surfaces. +25 on perception attempts to detect traps or secret doors set in walls, floors, or ceilings with such surfaces. Can judge the angle of an incline almost immediately.",
+              "description_fr": "Le personnage juge avec une précision exceptionnelle les angles et les variations de pente sur des surfaces solides relativement uniformes. +25 aux tentatives de perception de pièges ou portes secrètes dans des murs, sols ou plafonds. Détermine l'angle d'une pente quasi instantanément.",
               "type": "ability",
               "effects": {
-                "special_ability": "spatial_judgment",
                 "skill_bonus": {
-                  "navigation": 10
-                }
+                  "perception_traps_secret_doors_in_walls_floors_ceilings": 25
+                },
+                "narrative_flags": [
+                  "instant_incline_angle_assessment"
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "+25 perception pièges/portes secrètes dans surfaces solides uniformes.",
+                "en": "+25 perception of traps/secret doors in uniform solid surfaces."
+              },
+              "gm_notes": null
             },
             {
               "roll": "41-45",
               "id": "cl-06-03-09",
-              "name_en": "Nimble",
-              "name_fr": "Agile",
-              "description_en": "The character is naturally nimble and gains an Agility bonus.",
-              "description_fr": "Le personnage est naturellement agile et bénéficie d'un bonus en Agilité.",
+              "name_en": "Nimble Skeleton",
+              "name_fr": "Squelette Souple",
+              "description_en": "The character's nimble skeleton grants +20 on moving maneuvers. Drawback: after walking more than 5 hours without resting at least 2 hours, must roll at the start of every subsequent hour — on 01-25, both arms fall \"asleep\" and are useless for 1-10 hours.",
+              "description_fr": "Le squelette souple du personnage accorde +20 aux manœuvres de mouvement. Inconvénient : après plus de 5 heures de marche sans pause d'au moins 2 heures, jet d'1d100 au début de chaque heure suivante — sur 01-25, les deux bras s'engourdissent et deviennent inutilisables pendant 1-10 heures.",
               "type": "ability",
               "effects": {
-                "special_ability": "nimble",
-                "stat_bonus": {
-                  "AG": 5
-                }
+                "moving_maneuver_bonus": 20,
+                "condition_modifiers": [
+                  {
+                    "trigger": "walking_over_5h_without_2h_rest",
+                    "hourly_d100_check": true,
+                    "fail_range": "01-25",
+                    "consequence": "both_arms_useless_1d10_hours"
+                  }
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "+20 manœuvres de mouvement. Risque de bras paralysés 1-10 h après 5 h de marche sans pause.",
+                "en": "+20 moving maneuvers. Risk of arms paralyzed 1-10h after 5h walking without 2h rest."
+              },
+              "gm_notes": null
             },
             {
               "roll": "46-50",
               "id": "cl-06-03-10",
-              "name_en": "Charismatic",
-              "name_fr": "Charismatique",
-              "description_en": "The character radiates personal magnetism and gains a Presence bonus.",
-              "description_fr": "Le personnage irradie un magnétisme personnel et bénéficie d'un bonus en Présence.",
+              "name_en": "Charismatic Eyes",
+              "name_fr": "Yeux Charismatiques",
+              "description_en": "The character has enticing, sparkling eyes that grant a charismatic air: +15 to all actions involving leadership or influence (public speaking, seduction, Charm spells, Hold spells, etc.). Drawback: the eyes occasionally spasm at random times causing severe pain — whenever any roll made by or on behalf of the character results in a natural 66, take 1-10 hits and become immobilized with pain for 1-10 rounds.",
+              "description_fr": "Les yeux pétillants et envoûtants du personnage lui confèrent une aura charismatique : +15 à toute action de leadership ou d'influence (art oratoire, séduction, sorts de Charme, sorts d'Emprise, etc.). Inconvénient : les yeux ont parfois des spasmes douloureux — tout jet (de ou pour le personnage) résultant en un 66 naturel inflige 1-10 PdV et l'immobilise de douleur pendant 1-10 rounds.",
               "type": "ability",
               "effects": {
-                "special_ability": "charismatic",
-                "stat_bonus": {
-                  "PR": 5
-                }
+                "skill_bonus": {
+                  "leadership_influence_actions": 15,
+                  "public_speaking": 15,
+                  "seduction": 15
+                },
+                "spell_cast_bonus": {
+                  "charm_spells": 15,
+                  "hold_spells": 15
+                },
+                "condition_modifiers": [
+                  {
+                    "trigger": "natural_roll_66_any_roll_for_or_by_character",
+                    "consequence": "1d10_hits_and_immobilized_1d10_rounds"
+                  }
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "+15 leadership/influence/Charme/Emprise. Sur n'importe quel 66 naturel : 1-10 PdV + immobilisé 1-10 rounds.",
+                "en": "+15 leadership/influence/Charm/Hold spells. On any natural 66: 1-10 hits + immobilized 1-10 rounds."
+              },
+              "gm_notes": "Le déclencheur \"66 naturel\" s'applique à tous les jets impliquant le personnage, y compris ceux faits par d'autres."
             },
             {
               "roll": "51-55",
               "id": "cl-06-03-11",
-              "name_en": "Good Tendons",
-              "name_fr": "Bons Tendons",
-              "description_en": "The character moves with resilient, springy tendons.",
-              "description_fr": "Les tendons du personnage sont souples et résistants, lui conférant une mobilité accrue.",
+              "name_en": "Spring Legs",
+              "name_fr": "Jambes Élastiques",
+              "description_en": "The character's legs have tremendous \"spring\": +10 on all leaping maneuvers (a vertical jump up to 4 ft, standing jump up to 8 ft, running jump up to 20 ft are routine). Hand joints share this uniqueness: +10 on actions involving picking locks, rowing, or pulling on things with the hands (tugging on a rope, firing a non-mechanical bow). Drawback: whenever striking something with hand or held object, roll d100 — on 01-05 the hand becomes \"locked\" and useless for 1-100 rounds.",
+              "description_fr": "Les jambes élastiques du personnage offrent +10 à toutes les manœuvres de saut (saut vertical 1,2 m, en longueur sans élan 2,4 m, avec élan 6 m, en routine). Les articulations des mains partagent cette particularité : +10 aux actions de crochetage, de rame ou de traction (tirer sur une corde, bander un arc non-mécanique). Inconvénient : à chaque coup porté avec une main ou un objet tenu, jet d1d100 — sur 01-05, la main se bloque et devient inutilisable pendant 1-100 rounds.",
               "type": "ability",
               "effects": {
-                "special_ability": "good_tendons",
-                "movement_bonus": 5
+                "skill_bonus": {
+                  "leaping_maneuvers": 10,
+                  "lock_picking": 10,
+                  "rowing": 10,
+                  "pulling_with_hands": 10,
+                  "non_mechanical_bow_use": 10
+                },
+                "leap_distances": {
+                  "vertical_ft": 4,
+                  "standing_ft": 8,
+                  "running_ft": 20
+                },
+                "condition_modifiers": [
+                  {
+                    "trigger": "strike_with_hand_or_held_object",
+                    "d100_check": true,
+                    "fail_range": "01-05",
+                    "consequence": "hand_locked_1_to_100_rounds"
+                  }
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "+10 sauts/crochetage/traction/arcs. À chaque attaque main/objet : 5 % main bloquée 1-100 rounds.",
+                "en": "+10 leaping/lock-picking/pulling/bows. Each strike with hand/object: 5% chance hand locks 1-100 rounds."
+              },
+              "gm_notes": null
             },
             {
               "roll": "56-60",
               "id": "cl-06-03-12",
               "name_en": "Increased Lung Capacity",
               "name_fr": "Capacité Pulmonaire Accrue",
-              "description_en": "The character has increased lung capacity and endurance.",
-              "description_fr": "Le personnage dispose d'une capacité pulmonaire accrue et d'une meilleure endurance à l'effort.",
+              "description_en": "The character's tremendous lung capacity allows holding breath up to 5 minutes without damage. Endurance is doubled. Drawback: allergic to coniferous plants (pines, spruces, junipers); operates at -20 within 25' of such a plant for more than a minute (10 rounds).",
+              "description_fr": "L'extraordinaire capacité pulmonaire du personnage lui permet de retenir sa respiration jusqu'à 5 minutes sans dommage. Son endurance est doublée. Inconvénient : allergique aux conifères (pins, sapins, genévriers) ; subit -20 à toutes ses actions s'il reste à moins de 7,5 m de tels végétaux pendant plus d'une minute (10 rounds).",
               "type": "ability",
               "effects": {
-                "special_ability": "lung_capacity",
-                "endurance_bonus": 10
+                "breath_hold_minutes": 5,
+                "endurance_multiplier": 2,
+                "condition_modifiers": [
+                  {
+                    "trigger": "within_25ft_of_conifer_for_10_rounds",
+                    "all_actions_modifier": -20
+                  }
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "Apnée 5 min, endurance ×2. -20 près de conifères (>1 min à <7,5 m).",
+                "en": "5-min breath hold, endurance ×2. -20 near conifers (>1 min within 25 ft)."
+              },
+              "gm_notes": null
             },
             {
               "roll": "61-65",
               "id": "cl-06-03-13",
-              "name_en": "Quick Thinker",
-              "name_fr": "Esprit Vif",
-              "description_en": "The character thinks quickly and gains a Reasoning bonus.",
-              "description_fr": "Le personnage réfléchit rapidement et bénéficie d'un bonus en Raisonnement.",
+              "name_en": "Rapid Concentration",
+              "name_fr": "Concentration Rapide",
+              "description_en": "An exceptional ability to concentrate and focus enables the character to prepare actions (e.g., spells, bow attacks) one round quicker than normally. Drawback: when attacked from flank or rear, the attacker automatically gets to ambush, with a 5-rank ambush skill bonus. Additionally, anytime a concentration spell is in effect the character must roll each round to attempt to stop concentrating — on 01-25, cannot disengage.",
+              "description_fr": "Une capacité exceptionnelle à se concentrer permet au personnage de préparer ses actions (sorts, tirs à l'arc, etc.) un round plus tôt que la normale. Inconvénient : attaqué de flanc ou de dos, l'attaquant obtient automatiquement une embuscade avec un bonus de compétence d'embuscade de 5 rangs. De plus, tant qu'un sort de concentration est actif, le personnage doit faire un jet à chaque round pour interrompre — sur 01-25, il ne peut pas se désengager.",
               "type": "ability",
               "effects": {
-                "special_ability": "quick_thinker",
-                "stat_bonus": {
-                  "RE": 5
-                }
+                "action_prep_round_reduction": 1,
+                "condition_modifiers": [
+                  {
+                    "trigger": "attacked_from_flank_or_rear",
+                    "consequence": "auto_ambush_with_5_rank_bonus_to_attacker"
+                  },
+                  {
+                    "trigger": "active_concentration_spell",
+                    "round_d100_check": true,
+                    "fail_range": "01-25",
+                    "consequence": "cannot_break_concentration"
+                  }
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "Préparation d'action -1 round. Embuscade auto si attaque de flanc/dos. Désengagement de concentration risqué.",
+                "en": "Action prep -1 round. Auto-ambush if attacked flank/rear. Concentration disengage risky."
+              },
+              "gm_notes": null
             },
             {
               "roll": "66-70",
@@ -470,136 +651,266 @@
             {
               "roll": "71-75",
               "id": "cl-06-03-15",
-              "name_en": "High Pain Threshold",
-              "name_fr": "Seuil de Douleur Élevé",
-              "description_en": "The character withstands pain and shock better than normal.",
-              "description_fr": "Le personnage supporte la douleur et le choc mieux que la normale.",
+              "name_en": "Inner Reserve",
+              "name_fr": "Force de Vie",
+              "description_en": "Exceptional inner reserve: +3 to each roll determining available concussion hits when increasing Body Development skill rank. This strength comes from years of dealing with a weird chronic disease. Drawback: at the beginning of each week, roll d100 — on a natural 01-02 the character breaks out in sweat and is covered with sores and rashes for 1-10 days, during which Appearance and temporary Presence are halved and the character operates at -20.",
+              "description_fr": "Réserve intérieure exceptionnelle : +3 à chaque jet de PdV gagnés lors d'un rang de Développement Corporel. Cette résistance vient d'années passées à composer avec une maladie chronique étrange. Inconvénient : chaque début de semaine, jet d1d100 — sur 01-02 naturel, le personnage se couvre de plaies et d'éruptions cutanées pendant 1-10 jours ; durant cette période, son Apparence et sa Présence temporaire sont divisées par deux et il subit -20 à toutes ses actions.",
               "type": "ability",
               "effects": {
-                "special_ability": "high_pain_threshold",
-                "stun_resistance": 1
+                "body_dev_bonus_per_rank": 3,
+                "condition_modifiers": [
+                  {
+                    "trigger": "weekly_d100_start_of_week",
+                    "fail_range": "01-02",
+                    "duration_days": "1d10",
+                    "consequences": [
+                      {
+                        "appearance_multiplier": 0.5
+                      },
+                      {
+                        "temporary_presence_multiplier": 0.5
+                      },
+                      {
+                        "all_actions_modifier": -20
+                      }
+                    ]
+                  }
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "+3 PdV par rang de DC. Chaque semaine : 2 % de crise (-20, App/PR ÷2) pendant 1-10 jours.",
+                "en": "+3 HP per BD rank. Each week: 2% disease flare (-20, App/PR halved) for 1-10 days."
+              },
+              "gm_notes": "Le bonus s'applique rétroactivement aux rangs déjà acquis si le MJ le souhaite (à trancher)."
             },
             {
               "roll": "76-80",
               "id": "cl-06-03-16",
-              "name_en": "Unusual Agility",
-              "name_fr": "Agilité Exceptionnelle",
-              "description_en": "The character has exceptionally high agility.",
-              "description_fr": "Le personnage possède une agilité exceptionnellement élevée.",
+              "name_en": "Precise Wrists",
+              "name_fr": "Poignets Précis",
+              "description_en": "Due to fine wrists, the character is impeccably precise with thrown objects: +20 to throwing attacks or actions including sweeps and pivots. Drawback: whenever landing after a fall, leap, climb, hang, \"fast sprint\" or dash, roll d100 — on 01-02 the appendages involved \"collapse\" and are sprained: stunned 1-10 rounds, and at -50 for 1-10 days for actions involving the injured areas.",
+              "description_fr": "Grâce à des poignets fins, le personnage est d'une précision impeccable avec les objets lancés : +20 aux attaques de lancer et aux actions impliquant balayages ou pivots. Inconvénient : à chaque réception après chute, saut, escalade, suspension, sprint rapide ou course, jet d1d100 — sur 01-02, les membres impliqués s'effondrent et sont foulés : étourdi 1-10 rounds et -50 pendant 1-10 jours sur toute action sollicitant la zone blessée.",
               "type": "ability",
               "effects": {
-                "special_ability": "unusual_agility",
-                "stat_bonus": {
-                  "AG": 10
-                }
+                "skill_bonus": {
+                  "thrown_attacks": 20,
+                  "sweeps_pivots_actions": 20
+                },
+                "condition_modifiers": [
+                  {
+                    "trigger": "landing_after_fall_leap_climb_hang_sprint_dash",
+                    "d100_check": true,
+                    "fail_range": "01-02",
+                    "consequence": "stunned_1d10_rounds_and_minus_50_for_1d10_days_on_injured_area"
+                  }
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "+20 lancers, balayages, pivots. 2 % d'entorse à chaque réception (étourdi + -50/membre 1-10 jours).",
+                "en": "+20 throwing, sweeps, pivots. 2% sprain on each landing (stun + -50/limb 1-10 days)."
+              },
+              "gm_notes": null
             },
             {
               "roll": "81-85",
               "id": "cl-06-03-17",
-              "name_en": "Silent Mover",
-              "name_fr": "Déplacement Silencieux",
-              "description_en": "The character moves quietly and gains a Stalk/Hide bonus.",
-              "description_fr": "Le personnage se déplace silencieusement et bénéficie d'un bonus en Pistage/Dissimulation.",
+              "name_en": "Quick Quiet Stride",
+              "name_fr": "Foulée Discrète",
+              "description_en": "The character's quick but quiet stride: (1) +20 when attempting to move silently (e.g., stalking); (2) allows ambush of anyone struck from behind, with +2 ambush skill rank bonus; (3) +20 to balancing maneuvers. Cause: peculiar inner ears tied to background and origin. Drawback: whenever in water or in rain when not in an enclosed unexposed area, the character cannot hear and operates at -30 (can swim normally).",
+              "description_fr": "La foulée discrète et rapide du personnage lui accorde : (1) +20 aux tentatives de déplacement silencieux (ex : pistage furtif) ; (2) la possibilité d'embuscader quiconque frappé dans le dos, avec +2 rangs de compétence d'embuscade ; (3) +20 aux manœuvres d'équilibre. Origine : oreilles internes particulières liées à l'historique et à la naissance. Inconvénient : dans l'eau ou sous la pluie hors espace clos abrité, le personnage devient sourd et subit -30 à toutes ses actions (la natation reste normale).",
               "type": "ability",
               "effects": {
-                "special_ability": "silent_mover",
                 "skill_bonus": {
-                  "stalk_hide": 15
-                }
+                  "stalk_hide_silent_movement": 20,
+                  "balancing": 20
+                },
+                "ambush_skill_rank_bonus_when_striking_from_behind": 2,
+                "condition_modifiers": [
+                  {
+                    "trigger": "in_water_or_in_rain_unsheltered",
+                    "all_actions_modifier": -30,
+                    "extra": "cannot_hear"
+                  }
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "+20 silence, équilibre. +2 rangs embuscade dans le dos. -30 et sourd dans l'eau ou la pluie non-abritée.",
+                "en": "+20 silent move, balance. +2 ambush ranks from behind. -30 and deaf in water or unsheltered rain."
+              },
+              "gm_notes": null
             },
             {
               "roll": "86-90",
               "id": "cl-06-03-18",
-              "name_en": "Great Strength",
-              "name_fr": "Grande Force",
-              "description_en": "The character has exceptional physical strength.",
-              "description_fr": "Le personnage dispose d'une force physique exceptionnelle.",
+              "name_en": "Unusually Strong",
+              "name_fr": "Force Inhabituelle",
+              "description_en": "The character is unusually strong: +20 Strength stat bonus (in addition to any other), due to being the maximum size for the species. Drawback: whenever consciously applying strength, must roll a RR vs a 1st-level attack (using SD stat bonus) or apply all power involuntarily. For example, must consciously develop a limp handshake to avoid crushing the offered hand.",
+              "description_fr": "Le personnage est exceptionnellement fort : +20 au bonus de stat Force (cumulable), conséquence de sa taille maximale pour son espèce. Inconvénient : à chaque application consciente de la force, jet de RR contre une attaque de niveau 1 (avec le bonus de stat AD) ou applique toute la puissance involontairement. Exemple : il doit consciemment relâcher sa poignée de main, sinon il broie celle qu'on lui présente.",
               "type": "ability",
               "effects": {
-                "special_ability": "great_strength",
-                "stat_bonus": {
-                  "ST": 10
-                }
+                "stat_bonus_extra": {
+                  "FO": 20
+                },
+                "condition_modifiers": [
+                  {
+                    "trigger": "conscious_application_of_strength",
+                    "rr_vs_1st_level_with_SD_stat": true,
+                    "consequence_on_fail": "applies_full_power_involuntarily"
+                  }
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "+20 bonus FO supplémentaire. RR à chaque effort musculaire conscient ou force ingouvernable.",
+                "en": "+20 extra ST stat bonus. RR on every conscious strength use or full uncontrolled power."
+              },
+              "gm_notes": "Le bonus est ADDITIONNEL à un éventuel bonus de stat existant (cumulatif)."
             },
             {
               "roll": "91-95",
               "id": "cl-06-03-19",
               "name_en": "Lycanthropy",
               "name_fr": "Lycanthropie",
-              "description_en": "The character is affected by lycanthropy; exact handling is determined by the GM.",
-              "description_fr": "Le personnage est atteint de lycanthropie ; les modalités exactes sont déterminées par le MJ.",
+              "description_en": "The character suffers from Lycanthropy and may change into a specific mammal of choice (subject to GM discretion, consistent with background and origin). Shape-change occurs in two ways: (1) voluntarily, by concentrating for 1 round, only on a successful open-ended D100 roll exceeding 100, with a +5/level bonus (a Control skill can be developed at 2/5 cost); (2) involuntarily, whenever struck or falling for the first time in a given day and failing a RR (using SD stat bonus) versus a 1st-level attack. Most worn items and equipment fall to the ground during change. The character then acts as a large wild beast of the chosen type, using large attacks at +25 OB. If Creatures & Treasures is available, use its Lycanthrope rules.",
+              "description_fr": "Le personnage souffre de Lycanthropie et peut se métamorphoser en un mammifère précis choisi à la création (à l'appréciation du MJ, cohérent avec son historique). La transformation s'opère de deux façons : (1) volontairement, en se concentrant 1 round, uniquement sur un jet de d100 ouvert excédant 100, avec un bonus de +5 par niveau (compétence Contrôle développable à coût 2/5) ; (2) involontairement, dès qu'il subit un coup ou une chute pour la première fois d'une journée et échoue à un RR (bonus AD) contre une attaque de niveau 1. La plupart des objets portés tombent au sol lors du changement, et le personnage agit comme une grande bête sauvage du type choisi, utilisant des attaques lourdes à +25 BO. Si Creatures & Treasures est disponible, utiliser ses règles de Lycanthrope.",
               "type": "ability",
               "effects": {
-                "special_ability": "lycanthropy",
+                "lycanthropy": true,
+                "lycanthrope_form_choice": "player_choice_mammal_subject_to_gm",
+                "voluntary_shift": {
+                  "concentration_rounds": 1,
+                  "open_ended_d100_threshold": 100,
+                  "level_bonus_per_level": 5
+                },
+                "control_skill": {
+                  "available": true,
+                  "dev_cost": "2/5"
+                },
+                "involuntary_shift_trigger": "first_time_per_day_struck_or_fall_and_fail_rr_vs_1st_lvl_attack_with_SD",
+                "beast_form_ob_bonus": 25,
                 "gm_determined": true
               },
               "requires_choice": false,
               "choice_type": "gm_decision",
-              "automatable": false
+              "automatable": false,
+              "mechanical_summary": {
+                "fr": "Métamorphose en mammifère choisi. Volontaire (d100 ouvert >100 +5/niv). Involontaire (1×/jour sur coup/chute si RR raté).",
+                "en": "Shift to chosen mammal. Voluntary (open-ended d100 >100 +5/lvl). Involuntary (1×/day on hit/fall if RR fails)."
+              },
+              "gm_notes": "Choix du mammifère à valider par le MJ. Renvoyer aux règles Creatures & Treasures si disponibles."
             },
             {
               "roll": "96-97",
               "id": "cl-06-03-20",
-              "name_en": "Highly Resistant",
-              "name_fr": "Très Résistant",
-              "description_en": "The character has heightened resistance to hostile effects.",
-              "description_fr": "Le personnage bénéficie d'une résistance accrue aux effets hostiles.",
+              "name_en": "Realm Allergy",
+              "name_fr": "Allergie de Royaume",
+              "description_en": "A bizarre allergy grants the character +40 RR vs spells from one randomly determined realm (01-40 = Essence; 41-70 = Channeling; 71-00 = Mentalism). Drawback: anytime the character casts a spell from that realm or handles an item powered by it, the character is beset by watery eyes and sneezing. The following round, roll D100; the result equals the penalty to all actions, applied for 1-18 rounds (e.g., 27 means -27 for 1-10 rounds).",
+              "description_fr": "Une allergie singulière confère +40 RR contre les sorts d'un royaume tiré au hasard (01-40 = Essence ; 41-70 = Canalisation ; 71-00 = Mentalisme). Inconvénient : dès que le personnage lance un sort de ce royaume ou manipule un objet lié à ce royaume, il est pris de larmes et d'éternuements. Au round suivant, jet d1d100 ; le résultat est égal à la pénalité appliquée à toutes ses actions, pendant 1-18 rounds (ex : un 27 = -27 pendant 1-10 rounds).",
               "type": "ability",
               "effects": {
-                "special_ability": "highly_resistant",
-                "rr_bonus": 15
+                "rr_bonus_vs_realm": {
+                  "value": 40,
+                  "realm_roll": {
+                    "01-40": "essence",
+                    "41-70": "channeling",
+                    "71-100": "mentalism"
+                  }
+                },
+                "condition_modifiers": [
+                  {
+                    "trigger": "cast_spell_or_handle_item_of_allergic_realm",
+                    "next_round": "d100_penalty_all_actions_for_1d18_rounds"
+                  }
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "+40 RR contre 1 royaume (tiré). Crise allergique invalidante en cas d'usage de ce royaume.",
+                "en": "+40 RR vs 1 realm (rolled). Disabling allergy fit when using that realm."
+              },
+              "gm_notes": "Le royaume doit être déterminé une fois pour toutes à la création."
             },
             {
               "roll": "98-99",
               "id": "cl-06-03-21",
-              "name_en": "Unusually Enchanted",
-              "name_fr": "Inhabituellement Enchanté",
-              "description_en": "The character has a minor innate magical attunement.",
-              "description_fr": "Le personnage possède une légère connexion innée à la magie.",
+              "name_en": "Innate Spell Affinity",
+              "name_fr": "Affinité Magique Innée",
+              "description_en": "The character has an enchanted quality and natural proficiency with spells. Starts knowing one spell list up to a level equivalent to one pick by a character of the same profession. Non-spell or Semi-spell users develop spell list ranks at half the normal cost. Drawback: whenever laughing, crying, stunned, or bleeding, the character glows with a bright red hue similar to a campfire's light, even if invisible — the \"aura\" remains visible.",
+              "description_fr": "Le personnage est naturellement enchanté et doué pour les sorts. Il commence en maîtrisant une liste de sorts jusqu'au niveau équivalent à un choix d'apprentissage par un personnage de sa profession. Les Non-magiciens et Semi-magiciens développent les rangs de liste à coût moitié. Inconvénient : lorsqu'il rit, pleure, est étourdi ou saigne, le personnage rougeoie d'une lueur rouge évoquant un feu de camp — visible même s'il est invisible, l'aura reste perceptible.",
               "type": "ability",
               "effects": {
-                "special_ability": "unusually_enchanted",
-                "pp_bonus": 5
+                "starting_spell_list": {
+                  "lists_count": 1,
+                  "level_equivalent": "one_pick_by_same_profession"
+                },
+                "spell_list_dev_cost_multiplier_for_non_or_semi_spell_users": 0.5,
+                "narrative_flags": [
+                  "red_glow_when_emotional_or_wounded",
+                  "aura_persists_through_invisibility"
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "Démarre avec 1 liste de sorts. Coût listes ÷2 pour Non/Semi-mages. Rougeoiement émotionnel/sanglant visible même invisible.",
+                "en": "Starts with 1 spell list. List dev cost ÷2 for Non/Semi-spell users. Red glow when emotional/bleeding visible through invisibility."
+              },
+              "gm_notes": "Vérifier la liste choisie : doit être cohérente avec le royaume du personnage (ou choisi librement si Non-mage)."
             },
             {
               "roll": "100",
               "id": "cl-06-03-22",
               "name_en": "Exceptionally Enchanted",
               "name_fr": "Exceptionnellement Enchanté",
-              "description_en": "The character has a major innate magical attunement.",
-              "description_fr": "Le personnage possède une puissante connexion innée à la magie.",
+              "description_en": "The character is exceptionally enchanted: +50 RR vs spells from one realm (01-40 = Essence; 41-70 = Channeling; 71-00 = Mentalism), and +25 bonus when casting such spells or attempting to understand and use inscriptions and items based on that realm. Drawback: a peculiar fear of dark, enclosed spaces — when entering such a situation, must roll a RR (no bonus) vs a 1st-level attack; on failure, the character panics and passes into a coma for 1-10 hours. For example, fine outside on a dark night, but a dark cave triggers a roll. If the character succeeds but a torch then goes out, roll again (watch for strobe lights).",
+              "description_fr": "Le personnage est exceptionnellement enchanté : +50 RR contre les sorts d'un royaume (01-40 = Essence ; 41-70 = Canalisation ; 71-00 = Mentalisme) et +25 pour lancer ces sorts ou comprendre et utiliser inscriptions et objets de ce royaume. Inconvénient : peur peu commune des espaces sombres et clos — à chaque entrée dans ce type d'environnement, jet de RR (sans bonus) contre une attaque de niveau 1 ; en cas d'échec, panique puis coma de 1-10 heures. Exemple : aucun risque dehors par nuit noire, mais une grotte sombre déclenche un jet. Si le jet est réussi mais qu'une torche s'éteint ensuite, rejeter (attention aux flashes).",
               "type": "ability",
               "effects": {
-                "special_ability": "exceptionally_enchanted",
-                "pp_bonus": 15
+                "rr_bonus_vs_realm": {
+                  "value": 50,
+                  "realm_roll": {
+                    "01-40": "essence",
+                    "41-70": "channeling",
+                    "71-100": "mentalism"
+                  }
+                },
+                "spell_cast_bonus_in_realm": 25,
+                "inscription_item_use_bonus_in_realm": 25,
+                "condition_modifiers": [
+                  {
+                    "trigger": "enter_dark_enclosed_space",
+                    "rr_vs_1st_level_no_bonus": true,
+                    "consequence_on_fail": "panic_then_coma_1d10_hours"
+                  },
+                  {
+                    "trigger": "light_extinguished_in_enclosed_space",
+                    "rr_vs_1st_level_no_bonus": true,
+                    "consequence_on_fail": "panic_then_coma_1d10_hours"
+                  }
+                ]
               },
               "requires_choice": false,
               "choice_type": null,
-              "automatable": true
+              "automatable": true,
+              "mechanical_summary": {
+                "fr": "+50 RR / +25 sorts/inscriptions d'1 royaume. Peur des lieux sombres clos : RR ou coma 1-10 h.",
+                "en": "+50 RR / +25 cast & inscriptions for 1 realm. Fear of dark enclosed spaces: RR or 1-10h coma."
+              },
+              "gm_notes": "Le royaume affecté est tiré une fois. Surveiller spécialement les changements de luminosité abruptes."
             }
           ]
         },
@@ -6216,5 +6527,6 @@
         }
       ]
     }
-  ]
+  ],
+  "data_version": "cl-06-03-v2"
 }

@@ -6,7 +6,9 @@
   /* Hide app chrome always in print */
   .rm-header, .rm-nav, .rm-footer, .rm-footer-deco,
   .rm-torch, .no-print,
-  .tab-bar, #main-nav, #app-footer-actions { display: none !important; }
+  .tab-bar, #main-nav, #app-footer-actions,
+  /* Session Toolbox FAB + shell (overlay floating UI must not bleed into print) */
+  #session-toolbox-fab, #session-toolbox, .rm-session-shell { display: none !important; }
 
   /* When print preview is active (class added by JS), hide main content */
   body.printing .rm-layout,

@@ -120,4 +120,15 @@ export default {
     saved: 'Personnage sauvegardé !',
     loaded: 'Personnage chargé !',
   },
+  manualRoll: {
+    buttonTitle: 'Saisir le résultat de mon jet physique',
+    warnTitle: '⚠️ Saisie manuelle',
+    warnBody: 'Cette action sera signalée au MJ. Continuer ?',
+    confirm: 'Confirmer',
+    cancel: 'Annuler',
+    inputTitle: 'Résultat du jet ({min}-{max})',
+    inputPlaceholder: 'Entrez votre score',
+    outOfRange: 'Valeur hors limites ({min}-{max}).',
+    flaggedTooltip: 'Saisi manuellement, signalé au MJ',
+  },
 };

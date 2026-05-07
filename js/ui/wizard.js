@@ -1,7 +1,7 @@
 // Tabbed character editor — all tabs accessible simultaneously
 // Profession chosen first, then stats (temp/pot pairs), then everything else
 
-import { panel, showToast } from './components.js';
+import { panel, showToast, confirmModal, promptNumberModal } from './components.js';
 import { createCharacter, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, applyRace, DEV_PHASES, getTotalRanks, getCurrentPhaseRanks, getCurrentPhaseRanksObj, getDevPointsSpent, setDevPointsSpent, getDevPointsTotal, getSpellPointsSpent, setSpellPointsSpent, getSpellPointsTotal, SHIELD_TYPES, calculateDB, setAdrenalDefenseIndex, rollBodyDevHitDie, getBodyDevSkillIndex, getDeathThreshold } from '../engine/character.js';
 import { generateStatRolls, getStatValues, statPotentialLookup, generateStatRollsHybrid, generateStatRollsAntiLose, getStatValuesHybrid, rollStatPairsRMSS, getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
 import { getAllClasses, getClassName, getRealmInfo, getRealmKey, getRealmLabel, isSpellUser, getClassPrimeStats, getPPStatIndices } from '../engine/classes.js';
@@ -93,6 +93,7 @@ let rolledStats = [];   // RM2: [{tempRoll, potRoll, temp, pot}], RMSS: [{temp, 
 let rollAssignments = new Array(10).fill(-1);
 let selectedRoll = -1;
 let editMode = false;
+let editModeFlagged = false;
 let rollingMethod = 'rm2'; // 'rm2' or 'rmss' — persists per character via statLog
 let statsValidated = false; // True once "Valider" is clicked
 
@@ -121,6 +122,7 @@ export function startWizard(app, forceNew = true) {
     rollAssignments = new Array(10).fill(-1);
     selectedRoll = -1;
     editMode = false;
+    editModeFlagged = false;
     rollingMethod = 'rm2';
     statsValidated = false;
   }
@@ -171,6 +173,7 @@ export function loadIntoWizard(app, loadedCharacter) {
   }
   selectedRoll = -1;
   editMode = false;
+  editModeFlagged = false;
   currentTab = 'infos';
 
   // Initialize caches
@@ -619,6 +622,7 @@ function renderStatsTab(lang) {
   let rollHtml = `<div class="mb-4 no-print flex flex-wrap gap-2">`;
   if (!statsValidated) {
     rollHtml += `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-roll-dice" id="btn-roll-stats">${hasRolls ? 'Retirer' : (lang === 'en' ? 'Roll stats' : 'Tirer caracs')}</button>`;
+    rollHtml += `<button class="rm-btn-ornate rm-btn-ornate-sm" id="btn-manual-stats" title="${lang === 'en' ? 'Enter my physical roll result' : 'Saisir le résultat de mon jet physique'}">✋</button>`;
     if (hasRolls && !allAssigned) rollHtml += `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-auto-assign" id="btn-auto-assign">${lang === 'en' ? 'Auto-assign' : 'Assigner auto'}</button>`;
     if (hasRolls && rollAssignments.some(a => a >= 0)) rollHtml += `<button class="btn-secondary" id="btn-clear-assign">${lang === 'en' ? 'Reset' : 'Réinitialiser'}</button>`;
     if (allAssigned) rollHtml += `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-validate" id="btn-validate-stats">${lang === 'en' ? 'Validate stats' : 'Valider les stats'}</button>`;
@@ -1651,7 +1655,7 @@ function renderEventLogHTML(events, lang) {
     return `<article class="rm-timeline-item" data-type="${type}">
       <div class="rm-timeline-head">
         <div>
-          <h4 class="rm-timeline-title">${esc(title)}</h4>
+          <h4 class="rm-timeline-title">${e.data?.flaggedForGm ? `<span title="${lang === 'en' ? 'Manually entered, flagged for GM' : 'Saisi manuellement, signalé au MJ'}">⚠️</span> ` : ''}${esc(title)}</h4>
           <p class="rm-timeline-meta">${esc(time)}</p>
         </div>
         <span class="rm-timeline-tag">${esc(tag)}</span>
@@ -1766,6 +1770,7 @@ function renderHistoryTab(lang) {
             ${catOptions}
           </select>
           <button class="btn-primary text-xs bg-opt-roll" data-bg-idx="${i}" style="padding:2px 10px">🎲 ${lang === 'en' ? 'Roll' : 'Jet'}</button>
+          <button class="btn-secondary text-xs bg-opt-manual-roll" data-bg-idx="${i}" style="padding:2px 6px" title="${lang === 'en' ? 'Enter my physical roll result' : 'Saisir le résultat de mon jet physique'}">✋</button>
         </div>
       </div>`;
     }
@@ -2949,7 +2954,25 @@ function bindStatsEvents(app) {
   if (btnEdit) {
     btnEdit.addEventListener('click', () => {
       editMode = !editMode;
+      if (!editMode) editModeFlagged = false;
       selectedRoll = -1;
+      renderEditor(app);
+    });
+  }
+
+  const btnManualStats = document.getElementById('btn-manual-stats');
+  if (btnManualStats) {
+    btnManualStats.addEventListener('click', async () => {
+      const lang = character.language || 'fr';
+      const ok = await confirmModal({
+        title: lang === 'en' ? '⚠️ Manual entry' : '⚠️ Saisie manuelle',
+        body: lang === 'en' ? 'This action will be flagged for the GM. Continue?' : 'Cette action sera signalée au MJ. Continuer ?',
+        confirmLabel: lang === 'en' ? 'Confirm' : 'Confirmer',
+        cancelLabel: lang === 'en' ? 'Cancel' : 'Annuler',
+      });
+      if (!ok) return;
+      editMode = true;
+      editModeFlagged = true;
       renderEditor(app);
     });
   }
@@ -3023,7 +3046,7 @@ function bindStatsEvents(app) {
             oldVal,
             newVal: val,
           });
-          logStatManualEdit(character, { statIndex: idx, field, oldVal, newVal: val });
+          logStatManualEdit(character, { statIndex: idx, field, oldVal, newVal: val, ...(editModeFlagged ? { manualEntry: true } : {}) });
         }
       }
 
@@ -3241,18 +3264,16 @@ function bindSpellsEvents(app) {
   // Table roll button (extra SGR after first one — logged as extra)
   const btnSgrTable = document.getElementById('btn-spell-sgr-table');
   if (btnSgrTable) {
-    btnSgrTable.addEventListener('click', () => {
+    btnSgrTable.addEventListener('click', async () => {
       const lang = character.language || 'fr';
-      const input = prompt(lang === 'en'
-        ? `Enter D100 result from table roll (1-100), or leave empty for digital roll:`
-        : `Entrez le résultat du jet sur table (1-100), ou laissez vide pour un jet numérique :`);
-      if (input === null) return; // cancelled
-      const manualRoll = input.trim() ? parseInt(input.trim()) : 0;
-      if (input.trim() && (isNaN(manualRoll) || manualRoll < 1 || manualRoll > 100)) {
-        showToast(lang === 'en' ? 'Invalid roll (1-100)' : 'Jet invalide (1-100)', true);
-        return;
-      }
-      performSGR(true, input.trim() ? manualRoll : 0);
+      const roll = await promptNumberModal({
+        title: lang === 'en' ? 'Table roll result (1-100)' : 'Résultat du jet sur table (1-100)',
+        min: 1, max: 100,
+        placeholder: lang === 'en' ? 'Enter your D100 result' : 'Entrez votre résultat D100',
+        cancelLabel: lang === 'en' ? 'Cancel' : 'Annuler',
+      });
+      if (roll == null) return;
+      performSGR(true, roll);
     });
   }
 
@@ -3277,6 +3298,7 @@ function bindSpellsEvents(app) {
     if (character.name) logSpellSGR(character, {
       listName: study.listName, d100: roll, bonus, total, threshold: 101,
       success, levelsGained: success ? study.blockSize : 0, level: character.level,
+      manualEntry: !!manualRoll,
     });
     if (success) {
       const blockStr = `${study.nextBlockStart}-${study.nextBlockStart + study.blockSize - 1}`;
@@ -3561,6 +3583,37 @@ function showTextInputModal(lang, titleText, placeholder, callback) {
   overlay.querySelector('#text-modal-cancel').addEventListener('click', () => document.body.removeChild(overlay));
 }
 
+function applyBgD100Roll(idx, roll, section, entries, cat, app, extra = {}) {
+  const entry = entries.find(e => {
+    if (!e.roll) return false;
+    const r = String(e.roll);
+    if (r.includes('-')) { const [lo, hi] = r.split('-').map(Number); return roll >= lo && roll <= hi; }
+    return parseInt(r) === roll;
+  });
+  if (!character.backgroundOptions) character.backgroundOptions = { totalOptions: 0, options: [], companionIIITalents: [] };
+  character.backgroundOptions.options[idx] = {
+    index: idx + 1, source: cat.source.id, category: section.name_en || section.name,
+    roll, name: entry ? (entry.name_en || entry.name || `Roll ${roll}`) : `Roll ${roll}`,
+    name_fr: entry ? (entry.name_fr || entry.name) : `Jet ${roll}`,
+    description: entry ? (entry.description_fr || entry.description_en || entry.description || '') : '',
+    type: entry?.type || 'mixed', effects: entry?.effects || {}, playerNotes: '', timestamp: new Date().toISOString(),
+  };
+  const _bgW = generateWealthText(getBackgroundBonuses(character));
+  if (_bgW) {
+    const _eq = character.equipment || '';
+    character.equipment = _eq.replace(/--- Richesse d'historique ---[\s\S]*?(?=\n---|$)/, '').trim();
+    character.equipment += (character.equipment ? '\n\n' : '') + _bgW;
+  }
+  showToast(`D100 = ${roll} → ${entry ? (entry.name_fr || entry.name_en || entry.name) : '?'}`);
+  if (character.name) logBgOption(character, {
+    category: section.name_en || section.name,
+    d100: roll, resultName: entry ? (entry.name_fr || entry.name_en || entry.name || `Roll ${roll}`) : `Roll ${roll}`,
+    effects: entry?.effects || {}, level: character.level,
+    ...extra,
+  });
+  renderEditor(app);
+}
+
 function bindHistoryEvents(app) {
   const lang = character.language || 'fr';
   // Physical description fields
@@ -3650,34 +3703,51 @@ function bindHistoryEvents(app) {
       } else {
         // D100 roll
         const roll = Math.floor(Math.random() * 100) + 1;
-        const entry = entries.find(e => {
-          if (!e.roll) return false;
-          const r = String(e.roll);
-          if (r.includes('-')) { const [lo, hi] = r.split('-').map(Number); return roll >= lo && roll <= hi; }
-          return parseInt(r) === roll;
-        });
-        if (!character.backgroundOptions) character.backgroundOptions = { totalOptions: 0, options: [], companionIIITalents: [] };
-        character.backgroundOptions.options[idx] = {
-          index: idx + 1, source: cat.source.id, category: section.name_en || section.name,
-          roll, name: entry ? (entry.name_en || entry.name || `Roll ${roll}`) : `Roll ${roll}`,
-          name_fr: entry ? (entry.name_fr || entry.name) : `Jet ${roll}`,
-          description: entry ? (entry.description_fr || entry.description_en || entry.description || '') : '',
-          type: entry?.type || 'mixed', effects: entry?.effects || {}, playerNotes: '', timestamp: new Date().toISOString(),
-        };
-        const _bgW2 = generateWealthText(getBackgroundBonuses(character));
-        if (_bgW2) {
-          const _eq2 = character.equipment || '';
-          character.equipment = _eq2.replace(/--- Richesse d'historique ---[\s\S]*?(?=\n---|$)/, '').trim();
-          character.equipment += (character.equipment ? '\n\n' : '') + _bgW2;
-        }
-        showToast(`D100 = ${roll} → ${entry ? (entry.name_fr || entry.name_en || entry.name) : '?'}`);
-        if (character.name) logBgOption(character, {
-          category: section.name_en || section.name,
-          d100: roll, resultName: entry ? (entry.name_fr || entry.name_en || entry.name || `Roll ${roll}`) : `Roll ${roll}`,
-          effects: entry?.effects || {}, level: character.level,
-        });
-        renderEditor(app);
+        applyBgD100Roll(idx, roll, section, entries, cat, app);
       }
+    });
+  });
+
+  // Manual background option roll (GM-flagged)
+  document.querySelectorAll('.bg-opt-manual-roll').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      if (character.bgOptionsLocked && !isGMEditMode()) {
+        showToast(lang === 'en' ? 'Background options locked' : 'Options verrouillées', true);
+        return;
+      }
+      const idx = parseInt(btn.dataset.bgIdx);
+      const catSelect = document.querySelector(`.bg-opt-category[data-bg-idx="${idx}"]`);
+      if (!catSelect || !catSelect.value) { showToast(lang === 'en' ? 'Select a category first' : 'Choisissez une catégorie', true); return; }
+      const bgData = getData().background_options_merged;
+      const catIdx = parseInt(catSelect.value);
+      const categories = [];
+      const s0 = bgData.sources[0];
+      if (s0) for (let si = 1; si < (s0.sections || []).length; si++) categories.push({ source: s0, sectionIdx: si });
+      const s1 = bgData.sources[1];
+      if (s1) for (let si = 0; si < (s1.sections || []).length; si++) categories.push({ source: s1, sectionIdx: si });
+      const cat = categories[catIdx];
+      if (!cat) return;
+      const section = cat.source.sections[cat.sectionIdx];
+      if (section.table_id === '06-02' || (section.name_en || '').includes('Set Options')) {
+        showToast(lang === 'en' ? 'Use the choice menu for this category' : 'Utilisez le menu de choix pour cette catégorie', true);
+        return;
+      }
+      const entries = section.entries || [];
+      const ok = await confirmModal({
+        title: lang === 'en' ? '⚠️ Manual entry' : '⚠️ Saisie manuelle',
+        body: lang === 'en' ? 'This action will be flagged for the GM. Continue?' : 'Cette action sera signalée au MJ. Continuer ?',
+        confirmLabel: lang === 'en' ? 'Confirm' : 'Confirmer',
+        cancelLabel: lang === 'en' ? 'Cancel' : 'Annuler',
+      });
+      if (!ok) return;
+      const roll = await promptNumberModal({
+        title: lang === 'en' ? 'Roll result (1-100)' : 'Résultat du jet (1-100)',
+        min: 1, max: 100,
+        placeholder: lang === 'en' ? 'Enter your score' : 'Entrez votre score',
+        cancelLabel: lang === 'en' ? 'Cancel' : 'Annuler',
+      });
+      if (roll == null) return;
+      applyBgD100Roll(idx, roll, section, entries, cat, app, { manualEntry: true });
     });
   });
 
@@ -3967,15 +4037,7 @@ function bindSkillsEvents(app) {
             const dieMax = dieMatch ? parseInt(dieMatch[1]) : 10;
             if (!character.bodyDevRolls) character.bodyDevRolls = [];
             for (let r = 0; r < ranks; r++) {
-              const autoRoll = Math.floor(Math.random() * dieMax) + 1;
-              const input = prompt(
-                lang === 'en'
-                  ? `Body Dev rank ${r + 1}/${ranks} — hit die (1d${dieMax}): auto = ${autoRoll}.\nOK to accept or enter table roll:`
-                  : `Dév. Corporel rang ${r + 1}/${ranks} — dé de vie (1d${dieMax}) : auto = ${autoRoll}.\nOK pour accepter ou entrez votre jet :`,
-                String(autoRoll)
-              );
-              const val = input !== null ? (parseInt(input) || autoRoll) : autoRoll;
-              character.bodyDevRolls.push(Math.max(1, Math.min(dieMax, val)));
+              character.bodyDevRolls.push(Math.floor(Math.random() * dieMax) + 1);
             }
           }
         }
@@ -4115,7 +4177,7 @@ function bindSkillsEvents(app) {
 
   // + buttons (add rank)
   document.querySelectorAll('.pm-plus').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', async () => {
       const skillIdx = parseInt(btn.dataset.skill);
       const cost = getSkillDevCost(character.classIndex, skillIdx);
       if (!cost) return;
@@ -4139,32 +4201,35 @@ function bindSkillsEvents(app) {
         skillIndex: skillIdx, skillName: _skills[skillIdx]?.name_fr || String(skillIdx),
         ranksAdded: 1, dpCost: rankCost, phase: character.devPhase, level: character.level,
       });
-      // Body Dev: roll hit die (or manual entry)
+      // Body Dev: roll hit die (or manual entry via modal)
       if (skillIdx === getBodyDevSkillIndex()) {
         const dieStr = character.raceHitDie || '1-10';
         const match = dieStr.match(/1-(\d+)/);
         const dieMax = match ? parseInt(match[1]) : 10;
         const autoRoll = Math.floor(Math.random() * dieMax) + 1;
         const lang = character.language || 'fr';
-        const input = prompt(
-          lang === 'en'
-            ? `Body Dev hit die (1d${dieMax}): auto roll = ${autoRoll}.\nPress OK to accept, or enter your own table roll (1-${dieMax}):`
-            : `Dé de vie Dév. Corporel (1d${dieMax}) : jet auto = ${autoRoll}.\nAppuyez OK pour accepter, ou entrez votre jet sur table (1-${dieMax}) :`,
-          String(autoRoll)
-        );
-        if (input === null) {
+        const roll = await promptNumberModal({
+          title: lang === 'en'
+            ? `Body Dev hit die (1d${dieMax}) — auto: ${autoRoll}`
+            : `Dé de vie Dév. Corporel (1d${dieMax}) — auto : ${autoRoll}`,
+          min: 1, max: dieMax,
+          defaultValue: autoRoll,
+          cancelLabel: lang === 'en' ? 'Cancel' : 'Annuler',
+        });
+        if (roll == null) {
           // Cancelled — undo the rank
           ranksObj[skillIdx] = phaseRanks;
           if (ranksObj[skillIdx] === 0) delete ranksObj[skillIdx];
           setDevPointsSpent(character, spent);
         } else {
-          const val = parseInt(input) || autoRoll;
-          const clamped = Math.max(1, Math.min(dieMax, val));
+          const clamped = Math.max(1, Math.min(dieMax, roll));
+          const isManual = clamped !== autoRoll;
           if (!character.bodyDevRolls) character.bodyDevRolls = [];
           character.bodyDevRolls.push(clamped);
           if (character.name) logHpRoll(character, {
             rank: character.bodyDevRolls.length, dieRoll: clamped, dieType: dieMax,
             level: character.level,
+            ...(isManual ? { manualEntry: true } : {}),
           });
           showToast(`Body Dev +1 → ${clamped === autoRoll ? '' : '(table) '}${clamped} PdC`);
         }

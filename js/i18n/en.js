@@ -120,4 +120,15 @@ export default {
     saved: 'Character saved!',
     loaded: 'Character loaded!',
   },
+  manualRoll: {
+    buttonTitle: 'Enter my physical roll result',
+    warnTitle: '⚠️ Manual entry',
+    warnBody: 'This action will be flagged for the GM. Continue?',
+    confirm: 'Confirm',
+    cancel: 'Cancel',
+    inputTitle: 'Roll result ({min}-{max})',
+    inputPlaceholder: 'Enter your score',
+    outOfRange: 'Value out of range ({min}-{max}).',
+    flaggedTooltip: 'Manually entered, flagged for GM',
+  },
 };

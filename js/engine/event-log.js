@@ -11,6 +11,7 @@ import { appendEvent, getEvents } from './db.js';
  * @param {string} summary — human-readable one-liner
  */
 export async function logEvent(character, type, data, summary) {
+  if (data.manualEntry) data.flaggedForGm = true;
   const entry = {
     timestamp: new Date().toISOString(),
     type,
