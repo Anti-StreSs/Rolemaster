@@ -84,6 +84,11 @@ export function pushNPCFromCreature(creature, customName) {
     statuses: [],
     initiative: 0,
     actionPoints: 0,
+    currentTarget: null,
+    boMaxThisRound: 0,
+    boRemainingThisRound: 0,
+    parryTransfer: 0,
+    parryDbBoost: 0,
   };
   _state.npcCombatants.push(npc);
   _sessionLog(`${npc.name} ajouté au combat (PdC ${npc.maxHP}, BD ${npc.db}, TA ${npc.armorType})`);

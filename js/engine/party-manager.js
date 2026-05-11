@@ -53,7 +53,9 @@ export function initParty(characters) {
     const dbResult = calculateDB(char);
     const db = dbResult?.meleeBD ?? dbResult?.totalBD ?? (typeof dbResult === 'number' ? dbResult : 0);
     return { char, maxHP, maxPP, db, currentHP: maxHP, currentPP: maxPP,
-             statuses: [], initiative: 0, actionPoints: 0, weaponSlot3: null };
+             statuses: [], initiative: 0, actionPoints: 0, weaponSlot3: null,
+             currentTarget: null, activeWeaponIndex: null,
+             boMaxThisRound: 0, boRemainingThisRound: 0, parryTransfer: 0, parryDbBoost: 0 };
   });
   setPartyMembers(members);
   addSessionLog(`Équipe initialisée (${members.length} membres)`);
@@ -74,6 +76,8 @@ export function addMember(char) {
   getSession().partyMembers.push({
     char, maxHP, maxPP, db, currentHP: maxHP, currentPP: maxPP,
     statuses: [], initiative: 0, actionPoints: 0, weaponSlot3: null,
+    currentTarget: null, activeWeaponIndex: null,
+    boMaxThisRound: 0, boRemainingThisRound: 0, parryTransfer: 0, parryDbBoost: 0,
   });
   addSessionLog(`${char.name} rejoint l'équipe`);
 }
@@ -119,20 +123,44 @@ export function addStatus(name, statusId, rounds, options = {}) {
   if (!m) return;
   const def = STATUS_LIST.find(s => s.id === statusId);
   if (!def) return;
-  if (!def.periodic && rounds === null && m.statuses.some(s => s.id === statusId)) return;
+
+  // Periodic effects (bleed): stack onto existing entry instead of duplicating
+  if (def.periodic) {
+    const addedDmg = options.dmgPerRound ?? def.defaultDmg ?? 1;
+    const existing = m.statuses.find(s => s.id === statusId);
+    if (existing) {
+      existing.dmgPerRound = (existing.dmgPerRound || 0) + addedDmg;
+      existing.effects = `${existing.dmgPerRound} PV/round — stopper par soin`;
+      addSessionLog(`${name} → ${def.fr} +${addedDmg} (total ${existing.dmgPerRound} PV/round)`);
+      return;
+    }
+    m.statuses.push({
+      id: statusId,
+      label: def.fr,
+      color: def.color,
+      effects: `${addedDmg} PV/round — stopper par soin`,
+      roundsRemaining: null,
+      periodic: true,
+      dmgPerRound: addedDmg,
+    });
+    addSessionLog(`${name} → ${def.fr} [${addedDmg} PV/round]`);
+    return;
+  }
+
+  // Non-periodic effects: existing behavior (no duplicate of permanent effects)
+  if (rounds === null && m.statuses.some(s => s.id === statusId)) return;
   const entry = {
     id: statusId,
     label: def.fr,
     color: def.color,
     effects: def.effects || '',
-    roundsRemaining: def.periodic ? null : (rounds ?? null),
-    periodic: def.periodic ?? false,
-    dmgPerRound: def.periodic ? (options.dmgPerRound ?? def.defaultDmg ?? 1) : 0,
+    roundsRemaining: rounds ?? null,
+    periodic: false,
+    dmgPerRound: 0,
   };
   m.statuses.push(entry);
   const roundStr = entry.roundsRemaining !== null ? ` (${entry.roundsRemaining}r)` : '';
-  const dmgStr   = entry.periodic ? ` [${entry.dmgPerRound} PV/round]` : '';
-  addSessionLog(`${name} → ${def.fr}${roundStr}${dmgStr}`);
+  addSessionLog(`${name} → ${def.fr}${roundStr}`);
 }
 
 export function removeStatus(name, statusIndex) {
@@ -154,8 +182,14 @@ export function clickStatus(name, statusIndex) {
   if (!m || statusIndex < 0 || statusIndex >= m.statuses.length) return;
   const s = m.statuses[statusIndex];
   if (s.periodic) {
-    m.statuses.splice(statusIndex, 1);
-    addSessionLog(`${name} : ${s.label} soigné`);
+    s.dmgPerRound = (s.dmgPerRound || 0) - 1;
+    if (s.dmgPerRound <= 0) {
+      m.statuses.splice(statusIndex, 1);
+      addSessionLog(`${name} : ${s.label} soigné`);
+    } else {
+      s.effects = `${s.dmgPerRound} PV/round — stopper par soin`;
+      addSessionLog(`${name} : ${s.label} −1 PV/r → ${s.dmgPerRound} PV/r restants`);
+    }
   } else if (s.roundsRemaining === null) {
     m.statuses.splice(statusIndex, 1);
     addSessionLog(`${name} : ${s.label} retiré`);
@@ -305,8 +339,19 @@ export function isRoundOver() {
 
 export function nextRound() {
   incrementCombatRound();
+  // Reset per-round BO/parry tracking for everyone
+  for (const m of getSession().partyMembers) {
+    m.boRemainingThisRound = m.boMaxThisRound || 0;
+    m.parryTransfer = 0;
+    m.parryDbBoost = 0;
+  }
+  for (const npc of getSession().npcCombatants) {
+    npc.boRemainingThisRound = npc.boMaxThisRound || 0;
+    npc.parryTransfer = 0;
+    npc.parryDbBoost = 0;
+  }
   tickStatuses();
-  rollAllInitiative();  // Nouveau round = nouveau jet d'initiative pour tous
+  rollAllInitiative();
   addSessionLog(`--- Round ${getSession().combat.round} ---`);
 }
 
@@ -314,6 +359,74 @@ export function setMemberWeapon3(name, weaponIndex) {
   const m = getSession().partyMembers.find(m => m.char.name === name);
   if (!m) return;
   m.weaponSlot3 = weaponIndex === '' ? null : parseInt(weaponIndex, 10);
+}
+
+export function setCurrentTarget(name, targetName) {
+  const m = _find(name);
+  if (!m) return;
+  m.currentTarget = targetName || null;
+}
+
+export function setMemberActiveWeapon(name, weaponIndex) {
+  const m = getSession().partyMembers.find(m => m.char.name === name);
+  if (!m) return;
+  m.activeWeaponIndex = weaponIndex === '' || weaponIndex == null ? null : parseInt(weaponIndex, 10);
+}
+
+function _computeBoMaxForMember(m) {
+  if (m.isNPC) {
+    if (!m.attacks?.length) return 0;
+    return m.attacks.reduce((max, atk) => Math.max(max, atk.ob || 0), 0);
+  }
+  // For PJ, boMaxThisRound is set by the UI layer to avoid circular deps
+  return m.boMaxThisRound || 0;
+}
+
+export function resetRoundBO(name) {
+  const m = _find(name);
+  if (!m) return;
+  m.boRemainingThisRound = m.boMaxThisRound || 0;
+  m.parryTransfer = 0;
+}
+
+export function setBoMaxForRound(name, boMax) {
+  const m = _find(name);
+  if (!m) return;
+  m.boMaxThisRound = boMax;
+  // If remaining is unset OR exceeds new max (weapon switch), clamp
+  if (m.boRemainingThisRound == null || m.boRemainingThisRound > boMax || m.boRemainingThisRound < 0) {
+    m.boRemainingThisRound = boMax;
+  }
+}
+
+export function setParryTransfer(name, amount) {
+  const m = _find(name);
+  if (!m) return;
+  m.parryTransfer = Math.max(0, parseInt(amount, 10) || 0);
+}
+
+export function applyParryTransfer(name) {
+  const m = _find(name);
+  if (!m) return 0;
+  const amt = Math.min(m.parryTransfer || 0, m.boRemainingThisRound || 0);
+  m.boRemainingThisRound = (m.boRemainingThisRound || 0) - amt;
+  m.parryTransfer = 0;
+  addSessionLog(`${name} : parade ${amt} (BO restant: ${m.boRemainingThisRound})`);
+  return amt;
+}
+
+export function addParryBoost(targetName, amount) {
+  const m = _find(targetName);
+  if (!m) return;
+  m.parryDbBoost = (m.parryDbBoost || 0) + amount;
+}
+
+export function consumeParryBoost(targetName) {
+  const m = _find(targetName);
+  if (!m) return 0;
+  const v = m.parryDbBoost || 0;
+  m.parryDbBoost = 0;
+  return v;
 }
 
 export function getPartyLog() { return getSession().sessionLog; }

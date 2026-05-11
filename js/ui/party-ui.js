@@ -8,6 +8,8 @@ import {
   getCurrentTurn, nextTurn, addNPCCombatant, removeNPCCombatant, getNPCCombatants,
   getCombatLog, logCombatAction,
   spendAction, adjustActionPoints, isRoundOver, ACTION_COSTS, ACTION_LABELS,
+  setCurrentTarget, setMemberActiveWeapon, resetRoundBO, setBoMaxForRound,
+  setParryTransfer, applyParryTransfer, addParryBoost, consumeParryBoost,
 } from '../engine/party-manager.js';
 import { getComputedSkills } from '../engine/skill-compute.js';
 import { showToast } from './components.js';
@@ -86,11 +88,14 @@ function renderBar(current, max, type) {
 function renderStatusPills(statuses, memberName) {
   if (!statuses.length) return '';
   return statuses.map((s, i) => {
+    const periodicSuffix = s.periodic ? ` ·${s.dmgPerRound || 0} PV/r` : '';
     const rounds = s.roundsRemaining !== null ? ` ·${s.roundsRemaining}r` : '';
-    const hint = s.roundsRemaining !== null
-      ? (s.roundsRemaining > 1 ? 'Cliquer pour décrémenter' : 'Cliquer pour retirer')
-      : 'Cliquer pour retirer';
-    return `<span class="pm-status-pill pm-status-${s.color}" data-member="${encodeURIComponent(memberName)}" data-idx="${i}" title="${hint}">${s.label}${rounds}</span>`;
+    const hint = s.periodic
+      ? 'Cliquer pour soigner −1 PV/round'
+      : (s.roundsRemaining !== null
+        ? (s.roundsRemaining > 1 ? 'Cliquer pour décrémenter' : 'Cliquer pour retirer')
+        : 'Cliquer pour retirer');
+    return `<span class="pm-status-pill pm-status-${s.color}" data-member="${encodeURIComponent(memberName)}" data-idx="${i}" title="${hint}">${s.label}${rounds}${periodicSuffix}</span>`;
   }).join('');
 }
 
@@ -138,35 +143,68 @@ function renderCard(m, lang, isActiveTurn) {
 
   // Weapons
   const allWeapons = getCharWeapons(char, lang);
+
+  // Default activeWeaponIndex to best weapon if unset
+  if (m.activeWeaponIndex == null && allWeapons.length > 0) {
+    m.activeWeaponIndex = allWeapons[0].weaponIndex;
+  }
+  const activeWeapon = allWeapons.find(w => w.weaponIndex === m.activeWeaponIndex) || allWeapons[0] || null;
+
+  // Sync BO max from active weapon (only update if changed to avoid disrupting parry transfers mid-round)
+  if (activeWeapon) {
+    if ((m.boMaxThisRound || 0) !== activeWeapon.total) {
+      setBoMaxForRound(char.name, activeWeapon.total);
+    }
+  }
+
   const top2 = allWeapons.slice(0, 2);
-  const slot3Weapon = m.weaponSlot3 !== null ? allWeapons.find(w => w.weaponIndex === m.weaponSlot3) : null;
+  const slot3Weapon = m.weaponSlot3 != null ? allWeapons.find(w => w.weaponIndex === m.weaponSlot3) : null;
 
-  const weaponRowsHtml = top2.map(w => `
-    <div class="pm-weapon-row">
-      <span class="pm-weapon-name">${w.name.replace(/^\s*↳\s*/, '')}</span>
-      <span class="pm-weapon-ob">${fmtOB(w.total)}</span>
-    </div>`).join('');
-
-  const weapon3Html = slot3Weapon ? `
-    <div class="pm-weapon-row pm-weapon-slot3">
-      <span class="pm-weapon-name">${slot3Weapon.name.replace(/^\s*↳\s*/, '')}</span>
-      <span class="pm-weapon-ob">${fmtOB(slot3Weapon.total)}</span>
-    </div>` : '';
-
-  const weapon3SelectHtml = allWeapons.length > 2 ? `
-    <select class="pm-weapon-select" data-action="weapon3" data-member="${enc}">
-      <option value="">— 3e arme —</option>
-      ${allWeapons.map(w => {
+  // Active weapon options = union of top2 + slot3 (deduplicated by weaponIndex)
+  const activeOptionsSource = [...top2];
+  if (slot3Weapon && !activeOptionsSource.some(w => w.weaponIndex === slot3Weapon.weaponIndex)) {
+    activeOptionsSource.push(slot3Weapon);
+  }
+  const activeWeaponSelectHtml = activeOptionsSource.length > 0 ? `
+  <div class="pm-active-weapon-row" style="display:flex;align-items:center;gap:4px;margin-bottom:3px">
+    <span style="font-size:0.65rem;color:#8b6914;font-weight:600">⚔ Arme active:</span>
+    <select class="pm-weapon-select" data-action="active-weapon" data-member="${enc}" style="flex:1;font-size:0.72rem;padding:2px 4px">
+      ${activeOptionsSource.map(w => {
         const wName = w.name.replace(/^\s*↳\s*/, '');
-        const sel = m.weaponSlot3 === w.weaponIndex ? 'selected' : '';
+        const sel = m.activeWeaponIndex === w.weaponIndex ? 'selected' : '';
         return `<option value="${w.weaponIndex}" ${sel}>${wName} (${fmtOB(w.total)})</option>`;
       }).join('')}
-    </select>` : '';
+    </select>
+  </div>` : '';
+
+  const weaponRowsHtml = top2.map(w => {
+    const isActive = w.weaponIndex === m.activeWeaponIndex;
+    return `<div class="pm-weapon-row${isActive ? ' is-active-weapon' : ''}">
+    <span class="pm-weapon-name">${isActive ? '▶ ' : ''}${w.name.replace(/^\s*↳\s*/, '')}</span>
+    <span class="pm-weapon-ob">${fmtOB(w.total)}</span>
+  </div>`;
+  }).join('');
+
+  const weapon3Html = slot3Weapon ? `
+  <div class="pm-weapon-row pm-weapon-slot3${slot3Weapon.weaponIndex === m.activeWeaponIndex ? ' is-active-weapon' : ''}">
+    <span class="pm-weapon-name">${slot3Weapon.weaponIndex === m.activeWeaponIndex ? '▶ ' : ''}${slot3Weapon.name.replace(/^\s*↳\s*/, '')}</span>
+    <span class="pm-weapon-ob">${fmtOB(slot3Weapon.total)}</span>
+  </div>` : '';
+
+  const weapon3SelectHtml = allWeapons.length > 2 ? `
+  <select class="pm-weapon-select" data-action="weapon3" data-member="${enc}">
+    <option value="">— 3e arme —</option>
+    ${allWeapons.map(w => {
+      const wName = w.name.replace(/^\s*↳\s*/, '');
+      const sel = m.weaponSlot3 === w.weaponIndex ? 'selected' : '';
+      return `<option value="${w.weaponIndex}" ${sel}>${wName} (${fmtOB(w.total)})</option>`;
+    }).join('')}
+  </select>` : '';
 
   const weaponsSection = allWeapons.length > 0 ? `
-    <div class="pm-weapons">
-      ${weaponRowsHtml}${weapon3Html}${weapon3SelectHtml}
-    </div>` : '';
+  <div class="pm-weapons">
+    ${activeWeaponSelectHtml}${weaponRowsHtml}${weapon3Html}${weapon3SelectHtml}
+  </div>` : '';
 
   const activeBorder = isActiveTurn ? ' combat-active-card' : '';
 
@@ -178,7 +216,7 @@ function renderCard(m, lang, isActiveTurn) {
   <button class="pm-pa-btn" data-member="${enc}" data-pa-delta="-50" title="Sort instant (−50 PA)">⚡−50</button>
   <button class="pm-pa-btn" data-member="${enc}" data-pa-delta="-40" title="Mvt (−40 PA)">🦶−40</button>
   <button class="pm-pa-btn" data-member="${enc}" data-pa-delta="-25" title="½Mvt (−25 PA)">½🦶−25</button>
-  <button class="pm-pa-btn" data-member="${enc}" data-pa-delta="-30" title="Parade (−30 PA)">🛡−30</button>
+  <button class="pm-pa-btn" data-member="${enc}" data-pa-delta="-30" data-parry="true" title="Parade (−30 PA)">🛡−30</button>
   <button class="pm-pa-btn" data-member="${enc}" data-pa-delta="-30" title="Manœuvre (−30 PA)">⚙−30</button>
   <button class="pm-pa-btn" data-member="${enc}" data-pa-delta="10" title="+10 PA">+10</button>
   <button class="pm-pa-btn" data-member="${enc}" data-pa-delta="-10" title="−10 PA">−10</button>
@@ -216,7 +254,16 @@ function renderCard(m, lang, isActiveTurn) {
       <div class="pm-bars">
         ${renderBar(m.currentHP, m.maxHP, 'hp')}
         ${ppBar}
-        <div class="pm-db-row"><span class="pm-bar-label">BD</span> <strong>${m.db}</strong></div>
+        <div class="pm-db-row" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:0.72rem">
+          <span class="pm-bar-label">BD</span><strong>${m.db}</strong>
+          <span style="color:#8b6914">| BO max</span><strong>${m.boMaxThisRound || 0}</strong>
+          <span style="color:#8b6914">| BO rest.</span><strong style="color:${(m.boRemainingThisRound || 0) < (m.boMaxThisRound || 0) ? '#dc2626' : '#16a34a'}">${m.boRemainingThisRound ?? 0}</strong>
+          <span style="color:#8b6914">| Parade →BD</span>
+          <input class="pm-parry-transfer" type="number" min="0" max="${m.boRemainingThisRound || 0}"
+            value="${m.parryTransfer || 0}" data-member="${enc}"
+            style="width:48px;font-size:0.72rem;padding:2px 4px;border:1px solid rgba(139,92,20,0.3);border-radius:3px;background:rgba(255,250,240,0.85);color:#3a1a08;text-align:center"
+            title="Montant de BO à transférer en BD lors de la prochaine parade">
+        </div>
       </div>
       ${renderActiveEffects(m.statuses)}
       ${weaponsSection}
@@ -243,6 +290,11 @@ function renderCard(m, lang, isActiveTurn) {
 function renderNPCCard(npc, lang, isActiveTurn) {
   const isDead = npc.currentHP <= 0 || npc.statuses.some(s => s.id === 'dead');
   const enc = encodeURIComponent(npc.name);
+
+  const bestNpcOb = (npc.attacks || []).reduce((m, a) => Math.max(m, a.ob || 0), 0);
+  if ((npc.boMaxThisRound || 0) !== bestNpcOb) {
+    setBoMaxForRound(npc.name, bestNpcOb);
+  }
 
   function dmgBtns(action, cls, sign) {
     return [1,3,5,10].map(n =>
@@ -278,7 +330,7 @@ function renderNPCCard(npc, lang, isActiveTurn) {
   <button class="pm-pa-btn" data-member="${enc}" data-pa-delta="-50" title="Sort instant (−50 PA)">⚡−50</button>
   <button class="pm-pa-btn" data-member="${enc}" data-pa-delta="-40" title="Mvt (−40 PA)">🦶−40</button>
   <button class="pm-pa-btn" data-member="${enc}" data-pa-delta="-25" title="½Mvt (−25 PA)">½🦶−25</button>
-  <button class="pm-pa-btn" data-member="${enc}" data-pa-delta="-30" title="Parade (−30 PA)">🛡−30</button>
+  <button class="pm-pa-btn" data-member="${enc}" data-pa-delta="-30" data-parry="true" title="Parade (−30 PA)">🛡−30</button>
   <button class="pm-pa-btn" data-member="${enc}" data-pa-delta="-30" title="Manœuvre (−30 PA)">⚙−30</button>
   <button class="pm-pa-btn" data-member="${enc}" data-pa-delta="10" title="+10 PA">+10</button>
   <button class="pm-pa-btn" data-member="${enc}" data-pa-delta="-10" title="−10 PA">−10</button>
@@ -490,11 +542,12 @@ function renderAttackPanel(currentTurn, lang) {
     if (m) {
       const weapons = getCharWeapons(m.char, lang);
       if (weapons.length) {
-        // Pick weapon with highest OB
-        const best = weapons.reduce((a, b) => (b.total > a.total ? b : a), weapons[0]);
-        defaultOB = best.total;
-        atkHint = best.name.replace(/^\s*↳\s*/, '');
-        // Try matching weapon name to attack table id
+        const active = m.activeWeaponIndex != null
+          ? weapons.find(w => w.weaponIndex === m.activeWeaponIndex)
+          : null;
+        const chosen = active || weapons.reduce((a, b) => (b.total > a.total ? b : a), weapons[0]);
+        defaultOB = chosen.total;
+        atkHint = chosen.name.replace(/^\s*↳\s*/, '');
         bestWeaponId = _matchWeaponToTable(atkHint);
       }
     }
@@ -520,8 +573,29 @@ function renderAttackPanel(currentTurn, lang) {
     })),
   ].filter(t => t.name !== currentTurn.name);
 
-  const targetOptions = allTargets.map(t => `<option value="${encodeURIComponent(t.name)}" data-db="${t.db}" data-at="${t.at}">${t.name}</option>`).join('');
   const firstTarget = allTargets[0];
+
+  // Restore saved target for this attacker
+  let savedTarget = null;
+  if (currentTurn) {
+    const attacker = !currentTurn.isNPC
+      ? p.members.find(m => m.char.name === currentTurn.name)
+      : npcs.find(n => n.name === currentTurn.name);
+    if (attacker?.currentTarget) {
+      const stillAlive = allTargets.find(t => t.name === attacker.currentTarget);
+      if (stillAlive) savedTarget = stillAlive;
+    }
+  }
+  const effectiveTarget = savedTarget || firstTarget;
+
+  const targetOptionsHtml = allTargets.map(t => {
+    const sel = savedTarget && t.name === savedTarget.name ? ' selected' : '';
+    return `<option value="${encodeURIComponent(t.name)}" data-db="${t.db}" data-at="${t.at}"${sel}>${t.name}</option>`;
+  }).join('');
+
+  // Consume any pending parry boost for the effective target (one-shot: zeroed after read)
+  const targetBoost = effectiveTarget ? consumeParryBoost(effectiveTarget.name) : 0;
+  const initialDb = (effectiveTarget?.db ?? 0) + targetBoost;
 
   return `<div class="combat-attack-panel" id="combat-attack-panel">
     <div style="font-size:0.8rem;font-weight:bold;color:#e8d5a0;margin-bottom:6px">⚔ Tour de ${currentTurn.name}</div>
@@ -539,17 +613,17 @@ function renderAttackPanel(currentTurn, lang) {
       <div>
         <label style="font-size:0.68rem;color:#c9a840;font-weight:600;display:block;margin-bottom:2px">Cible</label>
         <select id="catk-target" style="width:100%;font-size:0.72rem;padding:3px 4px;border:1px solid rgba(139,92,20,0.3);border-radius:4px;background:rgba(255,250,240,0.7);color:#3a1a08">
-          ${targetOptions || '<option value="">Aucune cible</option>'}
+          ${targetOptionsHtml || '<option value="">Aucune cible</option>'}
         </select>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px">
         <div>
           <label style="font-size:0.68rem;color:#c9a840;font-weight:600;display:block;margin-bottom:2px">BD cible</label>
-          <input id="catk-db" type="number" value="${firstTarget?.db ?? 0}" style="width:100%;font-size:0.72rem;padding:3px 6px;border:1px solid rgba(139,92,20,0.3);border-radius:4px;background:rgba(255,250,240,0.7);color:#3a1a08">
+          <input id="catk-db" type="number" value="${initialDb}" style="width:100%;font-size:0.72rem;padding:3px 6px;border:1px solid rgba(139,92,20,0.3);border-radius:4px;background:rgba(255,250,240,0.7);color:#3a1a08">
         </div>
         <div>
           <label style="font-size:0.68rem;color:#c9a840;font-weight:600;display:block;margin-bottom:2px">TA cible</label>
-          <input id="catk-at" type="number" value="${firstTarget?.at ?? 1}" min="1" max="20" style="width:100%;font-size:0.72rem;padding:3px 6px;border:1px solid rgba(139,92,20,0.3);border-radius:4px;background:rgba(255,250,240,0.7);color:#3a1a08">
+          <input id="catk-at" type="number" value="${effectiveTarget?.at ?? 1}" min="1" max="20" style="width:100%;font-size:0.72rem;padding:3px 6px;border:1px solid rgba(139,92,20,0.3);border-radius:4px;background:rgba(255,250,240,0.7);color:#3a1a08">
         </div>
       </div>
     </div>
@@ -739,6 +813,9 @@ function _bindAttackPanelTargetAutoFill(main) {
     const at = opt.dataset.at;
     if (db != null) main.querySelector('#catk-db').value = db;
     if (at != null) main.querySelector('#catk-at').value = at;
+    const currentTurn = getCurrentTurn();
+    const targetName = opt.value ? decodeURIComponent(opt.value) : null;
+    if (currentTurn) setCurrentTarget(currentTurn.name, targetName);
   });
 }
 
@@ -756,6 +833,7 @@ function _resolveAttack(main, app) {
   const manualCrit   = parseInt(main.querySelector('#catk-manual-crit')?.value)   || null;
   const manualFumble = parseInt(main.querySelector('#catk-manual-fumble')?.value) || null;
 
+  if (currentTurn && targetName) setCurrentTarget(currentTurn.name, targetName);
   let result;
   try {
     result = resolveFullAttack({ weaponTable, ob, db, armorType,
@@ -920,11 +998,38 @@ function bindDashboardEvents(main, app) {
   // Card grid event delegation
   const grid = main.querySelector('#pm-card-grid');
   grid.addEventListener('change', e => {
-    const sel = e.target.closest('[data-action="weapon3"]');
+    const sel = e.target.closest('[data-action="weapon3"], [data-action="active-weapon"]');
     if (!sel) return;
     const name = decodeURIComponent(sel.dataset.member);
-    setMemberWeapon3(name, sel.value);
+    if (sel.dataset.action === 'weapon3') {
+      setMemberWeapon3(name, sel.value);
+    } else {
+      setMemberActiveWeapon(name, sel.value);
+      resetRoundBO(name);
+    }
     renderDashboard(main, app);
+  });
+
+  // Status select change: update input placeholder/default based on selected status type
+  grid.addEventListener('change', e => {
+    const sel = e.target.closest('.pm-status-select');
+    if (!sel) return;
+    const card = sel.closest('.pm-card');
+    const inp = card?.querySelector('.pm-rounds-input');
+    if (!inp) return;
+    const def = STATUS_LIST.find(s => s.id === sel.value);
+    if (def?.periodic) {
+      inp.placeholder = 'PV/r';
+      inp.title = 'PV par round appliqués à chaque clic +État (cumule)';
+      inp.value = def.defaultDmg ?? 3;
+    } else if (def?.hasRounds) {
+      inp.placeholder = 'R';
+      inp.title = 'Durée en rounds';
+      inp.value = 3;
+    } else {
+      inp.placeholder = '';
+      inp.title = 'Sans durée';
+    }
   });
 
   grid.addEventListener('click', e => {
@@ -991,8 +1096,14 @@ function bindDashboardEvents(main, app) {
         const inp = card.querySelector('.pm-rounds-input');
         const statusId = sel.value;
         const statusDef = STATUS_LIST.find(s => s.id === statusId);
-        const rounds = statusDef?.hasRounds ? (parseInt(inp.value, 10) || 3) : null;
-        addStatus(name, statusId, rounds);
+        const inputVal = parseInt(inp.value, 10);
+        if (statusDef?.periodic) {
+          const dmg = isNaN(inputVal) || inputVal <= 0 ? (statusDef.defaultDmg ?? 1) : inputVal;
+          addStatus(name, statusId, null, { dmgPerRound: dmg });
+        } else {
+          const rounds = statusDef?.hasRounds ? (isNaN(inputVal) ? 3 : inputVal) : null;
+          addStatus(name, statusId, rounds);
+        }
         renderDashboard(main, app);
         break;
       }
@@ -1061,6 +1172,13 @@ function bindDashboardEvents(main, app) {
       const name = decodeURIComponent(btn.dataset.member);
       const delta = parseInt(btn.dataset.paDelta);
       if (isNaN(delta)) return;
+
+      // Parry: transfer BO → BD boost before spending PA
+      if (btn.dataset.parry === 'true') {
+        const transferred = applyParryTransfer(name);
+        if (transferred > 0) addParryBoost(name, transferred);
+      }
+
       adjustActionPoints(name, delta);
       if (isRoundOver()) {
         showToast(lang === 'en' ? 'Round over!' : 'Round terminé !');
@@ -1134,6 +1252,15 @@ function bindDashboardEvents(main, app) {
       const npc = getSession().npcCombatants.find(n => n.id === npcId);
       if (!npc?.attacks?.[atkIdx]) return;
       npc.attacks[atkIdx].ob = Math.max(0, val);
+      renderDashboard(main, app);
+    });
+  });
+
+  // ── Parade transfer inputs (BO → BD) ──
+  main.querySelectorAll('.pm-parry-transfer').forEach(input => {
+    input.addEventListener('change', () => {
+      const name = decodeURIComponent(input.dataset.member);
+      setParryTransfer(name, input.value);
       renderDashboard(main, app);
     });
   });
