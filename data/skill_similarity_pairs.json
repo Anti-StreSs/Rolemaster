@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "description": "Skill similarity matrix — fully decoded from SIMIL.DAT",
+  "version": 2,
+  "description": "Skill similarity matrix — fully decoded from SIMIL.DAT + B78b: Animal/Evaluation/General/Subterfuge/Category_15",
   "formula": "similarity_bonus_for_skill_A = floor(sum_over_all_similar_skills_B(coeff_AB * ranks_B) / 4)",
   "note": "Coefficients are in quarter-ranks: 4 = per rank of the similar skill, you get +1 to the bonus of this skill",
   "pairs": [
@@ -2011,6 +2011,446 @@
       "to_name": "Perception du pouvoir",
       "coefficient": 2,
       "category": "Medical"
+    },
+    {
+      "from_global": 40,
+      "from_name": "Conduite",
+      "to_global": 38,
+      "to_name": "Animalerie",
+      "coefficient": 8,
+      "category": "Animal"
+    },
+    {
+      "from_global": 41,
+      "from_name": "Controle Animalier",
+      "to_global": 38,
+      "to_name": "Animalerie",
+      "coefficient": 4,
+      "category": "Animal"
+    },
+    {
+      "from_global": 42,
+      "from_name": "Dressage",
+      "to_global": 38,
+      "to_name": "Animalerie",
+      "coefficient": 8,
+      "category": "Animal"
+    },
+    {
+      "from_global": 43,
+      "from_name": "Equitation",
+      "to_global": 38,
+      "to_name": "Animalerie",
+      "coefficient": 4,
+      "category": "Animal"
+    },
+    {
+      "from_global": 44,
+      "from_name": "Troupeaux",
+      "to_global": 38,
+      "to_name": "Animalerie",
+      "coefficient": 8,
+      "category": "Animal"
+    },
+    {
+      "from_global": 38,
+      "from_name": "Animalerie",
+      "to_global": 39,
+      "to_name": "Chargement",
+      "coefficient": 4,
+      "category": "Animal"
+    },
+    {
+      "from_global": 40,
+      "from_name": "Conduite",
+      "to_global": 39,
+      "to_name": "Chargement",
+      "coefficient": 4,
+      "category": "Animal"
+    },
+    {
+      "from_global": 44,
+      "from_name": "Troupeaux",
+      "to_global": 39,
+      "to_name": "Chargement",
+      "coefficient": 4,
+      "category": "Animal"
+    },
+    {
+      "from_global": 38,
+      "from_name": "Animalerie",
+      "to_global": 40,
+      "to_name": "Conduite",
+      "coefficient": 8,
+      "category": "Animal"
+    },
+    {
+      "from_global": 39,
+      "from_name": "Chargement",
+      "to_global": 40,
+      "to_name": "Conduite",
+      "coefficient": 8,
+      "category": "Animal"
+    },
+    {
+      "from_global": 43,
+      "from_name": "Equitation",
+      "to_global": 40,
+      "to_name": "Conduite",
+      "coefficient": 4,
+      "category": "Animal"
+    },
+    {
+      "from_global": 38,
+      "from_name": "Animalerie",
+      "to_global": 41,
+      "to_name": "Controle Animalier",
+      "coefficient": 12,
+      "category": "Animal"
+    },
+    {
+      "from_global": 42,
+      "from_name": "Dressage",
+      "to_global": 41,
+      "to_name": "Controle Animalier",
+      "coefficient": 8,
+      "category": "Animal"
+    },
+    {
+      "from_global": 44,
+      "from_name": "Troupeaux",
+      "to_global": 41,
+      "to_name": "Controle Animalier",
+      "coefficient": 2,
+      "category": "Animal"
+    },
+    {
+      "from_global": 38,
+      "from_name": "Animalerie",
+      "to_global": 42,
+      "to_name": "Dressage",
+      "coefficient": 8,
+      "category": "Animal"
+    },
+    {
+      "from_global": 39,
+      "from_name": "Chargement",
+      "to_global": 42,
+      "to_name": "Dressage",
+      "coefficient": 4,
+      "category": "Animal"
+    },
+    {
+      "from_global": 40,
+      "from_name": "Conduite",
+      "to_global": 42,
+      "to_name": "Dressage",
+      "coefficient": 8,
+      "category": "Animal"
+    },
+    {
+      "from_global": 43,
+      "from_name": "Equitation",
+      "to_global": 42,
+      "to_name": "Dressage",
+      "coefficient": 4,
+      "category": "Animal"
+    },
+    {
+      "from_global": 38,
+      "from_name": "Animalerie",
+      "to_global": 43,
+      "to_name": "Equitation",
+      "coefficient": 4,
+      "category": "Animal"
+    },
+    {
+      "from_global": 39,
+      "from_name": "Chargement",
+      "to_global": 43,
+      "to_name": "Equitation",
+      "coefficient": 8,
+      "category": "Animal"
+    },
+    {
+      "from_global": 40,
+      "from_name": "Conduite",
+      "to_global": 43,
+      "to_name": "Equitation",
+      "coefficient": 8,
+      "category": "Animal"
+    },
+    {
+      "from_global": 38,
+      "from_name": "Animalerie",
+      "to_global": 44,
+      "to_name": "Troupeaux",
+      "coefficient": 8,
+      "category": "Animal"
+    },
+    {
+      "from_global": 39,
+      "from_name": "Chargement",
+      "to_global": 44,
+      "to_name": "Troupeaux",
+      "coefficient": 4,
+      "category": "Animal"
+    },
+    {
+      "from_global": 98,
+      "from_name": "Embuscade",
+      "to_global": 100,
+      "to_name": "Mort Silencieuse",
+      "coefficient": 4,
+      "category": "Evaluation"
+    },
+    {
+      "from_global": 102,
+      "from_name": "Evaluation des Armes",
+      "to_global": 101,
+      "to_name": "Estimation",
+      "coefficient": 2,
+      "category": "General"
+    },
+    {
+      "from_global": 103,
+      "from_name": "Evaluation des Armures",
+      "to_global": 101,
+      "to_name": "Estimation",
+      "coefficient": 4,
+      "category": "General"
+    },
+    {
+      "from_global": 104,
+      "from_name": "Evaluation des Métaux",
+      "to_global": 101,
+      "to_name": "Estimation",
+      "coefficient": 4,
+      "category": "General"
+    },
+    {
+      "from_global": 105,
+      "from_name": "Evaluation des Pierres",
+      "to_global": 101,
+      "to_name": "Estimation",
+      "coefficient": 4,
+      "category": "General"
+    },
+    {
+      "from_global": 103,
+      "from_name": "Evaluation des Armures",
+      "to_global": 102,
+      "to_name": "Evaluation des Armes",
+      "coefficient": 4,
+      "category": "General"
+    },
+    {
+      "from_global": 104,
+      "from_name": "Evaluation des Métaux",
+      "to_global": 102,
+      "to_name": "Evaluation des Armes",
+      "coefficient": 4,
+      "category": "General"
+    },
+    {
+      "from_global": 102,
+      "from_name": "Evaluation des Armes",
+      "to_global": 103,
+      "to_name": "Evaluation des Armures",
+      "coefficient": 4,
+      "category": "General"
+    },
+    {
+      "from_global": 104,
+      "from_name": "Evaluation des Métaux",
+      "to_global": 103,
+      "to_name": "Evaluation des Armures",
+      "coefficient": 4,
+      "category": "General"
+    },
+    {
+      "from_global": 101,
+      "from_name": "Estimation",
+      "to_global": 104,
+      "to_name": "Evaluation des Métaux",
+      "coefficient": 4,
+      "category": "General"
+    },
+    {
+      "from_global": 102,
+      "from_name": "Evaluation des Armes",
+      "to_global": 104,
+      "to_name": "Evaluation des Métaux",
+      "coefficient": 4,
+      "category": "General"
+    },
+    {
+      "from_global": 103,
+      "from_name": "Evaluation des Armures",
+      "to_global": 104,
+      "to_name": "Evaluation des Métaux",
+      "coefficient": 4,
+      "category": "General"
+    },
+    {
+      "from_global": 101,
+      "from_name": "Estimation",
+      "to_global": 105,
+      "to_name": "Evaluation des Pierres",
+      "coefficient": 4,
+      "category": "General"
+    },
+    {
+      "from_global": 183,
+      "from_name": "Mystification",
+      "to_global": 179,
+      "to_name": "Commandement",
+      "coefficient": 4,
+      "category": "Subterfuge"
+    },
+    {
+      "from_global": 184,
+      "from_name": "Séduction",
+      "to_global": 179,
+      "to_name": "Commandement",
+      "coefficient": 4,
+      "category": "Subterfuge"
+    },
+    {
+      "from_global": 179,
+      "from_name": "Commandement",
+      "to_global": 180,
+      "to_name": "Diplomatie",
+      "coefficient": 4,
+      "category": "Subterfuge"
+    },
+    {
+      "from_global": 184,
+      "from_name": "Séduction",
+      "to_global": 180,
+      "to_name": "Diplomatie",
+      "coefficient": 4,
+      "category": "Subterfuge"
+    },
+    {
+      "from_global": 183,
+      "from_name": "Mystification",
+      "to_global": 181,
+      "to_name": "Interrogatoire",
+      "coefficient": 4,
+      "category": "Subterfuge"
+    },
+    {
+      "from_global": 184,
+      "from_name": "Séduction",
+      "to_global": 181,
+      "to_name": "Interrogatoire",
+      "coefficient": 4,
+      "category": "Subterfuge"
+    },
+    {
+      "from_global": 181,
+      "from_name": "Interrogatoire",
+      "to_global": 183,
+      "to_name": "Mystification",
+      "coefficient": 4,
+      "category": "Subterfuge"
+    },
+    {
+      "from_global": 184,
+      "from_name": "Séduction",
+      "to_global": 183,
+      "to_name": "Mystification",
+      "coefficient": 4,
+      "category": "Subterfuge"
+    },
+    {
+      "from_global": 180,
+      "from_name": "Diplomatie",
+      "to_global": 184,
+      "to_name": "Séduction",
+      "coefficient": 8,
+      "category": "Subterfuge"
+    },
+    {
+      "from_global": 181,
+      "from_name": "Interrogatoire",
+      "to_global": 184,
+      "to_name": "Séduction",
+      "coefficient": 4,
+      "category": "Subterfuge"
+    },
+    {
+      "from_global": 183,
+      "from_name": "Mystification",
+      "to_global": 184,
+      "to_name": "Séduction",
+      "coefficient": 4,
+      "category": "Subterfuge"
+    },
+    {
+      "from_global": 202,
+      "from_name": "Récupération",
+      "to_global": 200,
+      "to_name": "Contacts",
+      "coefficient": 8,
+      "category": "Category_15"
+    },
+    {
+      "from_global": 204,
+      "from_name": "Spéléologie",
+      "to_global": 200,
+      "to_name": "Contacts",
+      "coefficient": 4,
+      "category": "Category_15"
+    },
+    {
+      "from_global": 200,
+      "from_name": "Contacts",
+      "to_global": 202,
+      "to_name": "Récupération",
+      "coefficient": 12,
+      "category": "Category_15"
+    },
+    {
+      "from_global": 203,
+      "from_name": "Savoir Régional",
+      "to_global": 202,
+      "to_name": "Récupération",
+      "coefficient": 8,
+      "category": "Category_15"
+    },
+    {
+      "from_global": 204,
+      "from_name": "Spéléologie",
+      "to_global": 202,
+      "to_name": "Récupération",
+      "coefficient": 8,
+      "category": "Category_15"
+    },
+    {
+      "from_global": 202,
+      "from_name": "Récupération",
+      "to_global": 203,
+      "to_name": "Savoir Régional",
+      "coefficient": 2,
+      "category": "Category_15"
+    },
+    {
+      "from_global": 205,
+      "from_name": "Survie dans la Nature",
+      "to_global": 203,
+      "to_name": "Savoir Régional",
+      "coefficient": 4,
+      "category": "Category_15"
+    },
+    {
+      "from_global": 203,
+      "from_name": "Savoir Régional",
+      "to_global": 205,
+      "to_name": "Survie dans la Nature",
+      "coefficient": 2,
+      "category": "Category_15"
     }
   ]
 }
