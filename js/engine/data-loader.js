@@ -20,6 +20,8 @@ const FILES_MAP = {
   'critical_tables': 'critical_tables',
   'fumble_tables': 'fumble_tables',
   'maneuver_tables': 'maneuver_tables',
+  'level_bonus_per_skill': 'level_bonus_per_skill',
+  'level_bonus_category_defaults': 'level_bonus_category_defaults',
 };
 
 let gameData = null;

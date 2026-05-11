@@ -621,34 +621,6 @@ export function calcSubSkillSimilarityRanks(parentGlobalIndex, subIndex, charact
   return Math.max(0, Math.floor(bestSrcRanks * coefficient / 16) - ownRanks);
 }
 
-// === Level Bonus (Table 09-07, RM2 Option) ===
-// Bonus per level by profession and skill category. Cap at level 20.
-
-const LEVEL_BONUS_TABLE = {
-  'Fighter':     { combat: 3, academic: 0, outdoor: 1, subterfuge: 0, item: 0, perception: 0, baseSpells: 0, directedSpells: 0, bodyDev: 3 },
-  'Thief':       { combat: 2, academic: 0, outdoor: 1, subterfuge: 3, item: 0, perception: 1, baseSpells: 0, directedSpells: 0, bodyDev: 0 },
-  'Rogue':       { combat: 3, academic: 0, outdoor: 1, subterfuge: 2, item: 0, perception: 0, baseSpells: 0, directedSpells: 0, bodyDev: 1 },
-  'WarriorMonk': { combat: 2, academic: 0, outdoor: 2, subterfuge: 0, item: 0, perception: 1, baseSpells: 0, directedSpells: 0, bodyDev: 2 },
-  'Magician':    { combat: 0, academic: 2, outdoor: 0, subterfuge: 0, item: 2, perception: 0, baseSpells: 1, directedSpells: 3, bodyDev: 0 },
-  'Illusionist': { combat: 0, academic: 1, outdoor: 0, subterfuge: 0, item: 2, perception: 1, baseSpells: 1, directedSpells: 1, bodyDev: 0 },
-  'Alchemist':   { combat: 0, academic: 2, outdoor: 0, subterfuge: 1, item: 3, perception: 0, baseSpells: 1, directedSpells: 1, bodyDev: 0 },
-  'Cleric':      { combat: 1, academic: 1, outdoor: 1, subterfuge: 0, item: 1, perception: 1, baseSpells: 1, directedSpells: 1, bodyDev: 0 },
-  'Animist':     { combat: 0, academic: 1, outdoor: 2, subterfuge: 0, item: 1, perception: 1, baseSpells: 1, directedSpells: 1, bodyDev: 0 },
-  'Healer':      { combat: 0, academic: 1, outdoor: 0, subterfuge: 0, item: 0, perception: 1, baseSpells: 1, directedSpells: 1, bodyDev: 3 },
-  'Mentalist':   { combat: 0, academic: 1, outdoor: 0, subterfuge: 0, item: 1, perception: 1, baseSpells: 2, directedSpells: 1, bodyDev: 1 },
-  'LayHealer':   { combat: 0, academic: 1, outdoor: 0, subterfuge: 0, item: 1, perception: 1, baseSpells: 1, directedSpells: 1, bodyDev: 2 },
-  'Seer':        { combat: 0, academic: 2, outdoor: 0, subterfuge: 0, item: 1, perception: 3, baseSpells: 1, directedSpells: 1, bodyDev: 0 },
-  'Sorcerer':    { combat: 0, academic: 1, outdoor: 0, subterfuge: 0, item: 2, perception: 0, baseSpells: 2, directedSpells: 2, bodyDev: 0 },
-  'Mystic':      { combat: 0, academic: 1, outdoor: 0, subterfuge: 1, item: 1, perception: 1, baseSpells: 2, directedSpells: 1, bodyDev: 0 },
-  'Astrologer':  { combat: 0, academic: 2, outdoor: 0, subterfuge: 0, item: 2, perception: 2, baseSpells: 1, directedSpells: 1, bodyDev: 0 },
-  'Monk':        { combat: 1, academic: 0, outdoor: 1, subterfuge: 0, item: 0, perception: 1, baseSpells: 0, directedSpells: 0, bodyDev: 2 },
-  'Ranger':      { combat: 1, academic: 0, outdoor: 2, subterfuge: 1, item: 0, perception: 1, baseSpells: 0, directedSpells: 0, bodyDev: 0 },
-  'Bard':        { combat: 1, academic: 1, outdoor: 0, subterfuge: 1, item: 2, perception: 1, baseSpells: 0, directedSpells: 0, bodyDev: 0 },
-  'Scholar':     { combat: 0, academic: 2, outdoor: 0, subterfuge: 0, item: 1, perception: 2, baseSpells: 1, directedSpells: 1, bodyDev: 0 },
-  'Civilian':    { combat: 0, academic: 2, outdoor: 1, subterfuge: 0, item: 0, perception: 1, baseSpells: 0, directedSpells: 0, bodyDev: 0 },
-  'default':     { combat: 0, academic: 0, outdoor: 0, subterfuge: 0, item: 0, perception: 0, baseSpells: 0, directedSpells: 0, bodyDev: 0 },
-};
-
 // Category display name maps — keys are alphabetic cat.name IDs from competences.json
 // EN keys are legacy placeholders; actual RM2 content differs for indices 4+
 export const CAT_NAMES_FR = {
@@ -668,104 +640,46 @@ export const CAT_NAMES_EN = {
   'Category_15': 'Outdoor',
 };
 
-const SKILL_CATEGORY_TO_BONUS_TYPE = {
-  'Combat': 'combat',
-  'Athletic': null,
-  'Academic': 'academic',
-  'Animal': 'outdoor',
-  'General': null,
-  'Gymnastic': null,
-  'Medical': null,
-  'Perception': 'perception',
-  'Social': null,
-  'Subterfuge': 'subterfuge',
-  'Survival': 'outdoor',
-  'Deadly': null,
-  'Evaluation': null,
-  'Linguistic': null,
-  'Magical': 'item',
-  'Category_15': 'outdoor',
-};
-
-function getLevelBonusProfile(cls) {
-  if (!cls) return LEVEL_BONUS_TABLE['default'];
-
-  // 1. Cas nommés prioritaires (noms composés ambigus, détection par nom)
-  const lc = (cls.name_en || '').toLowerCase();
-  if (lc.includes('warrior monk') || lc.includes('high warrior monk') ||
-      (lc.includes('warrior') && lc.includes('monk'))) return LEVEL_BONUS_TABLE['WarriorMonk'];
-  if (lc.includes('ranger') || lc.includes('rôdeur') || lc.includes('rodeur'))
-    return LEVEL_BONUS_TABLE['Ranger'];
-  if (lc.includes('bard') || lc.includes('barde'))
-    return LEVEL_BONUS_TABLE['Bard'];
-
-  // 2. Dispatch principal par spell_user_code (champ fiable dans classes.json)
-  // spell_user_code: 1=combattant, 2=semi-combat, 3=semi-mage mental,
-  //   4=semi-mage théurgie, 5=mage pur, 6=hybride combat/magie,
-  //   7=hybride spécial, 8=mage avancé, 9=mage noir, 11=civil non-mage
+// Returns the class index of a covered class to use as fallback for classes absent from
+// level_bonus_per_skill.json. Dispatches by spell_user_code + realm_code (mirrors B82 ETL).
+function getFallbackClassIndex(cls) {
+  if (!cls) return -1;
   const suc = cls.spell_user_code || 0;
-  // realm_code: 3,10=Théurgie, 5,9=Essence, 7,8=Mentalisme/Essence/Mental
   const realm = cls.realm_code || 0;
   const isChanneling = (realm === 3 || realm === 10);
   const isEssence    = (realm === 5 || realm === 9);
   const isMentalism  = (realm === 7 || realm === 8);
-
   switch (suc) {
-    case 1:  // Combattants purs
-      return LEVEL_BONUS_TABLE['Fighter'];
-    case 2:  // Semi-combattants (Thief, Rogue, Sailor, Burglar…)
-      return LEVEL_BONUS_TABLE['Thief'];
-    case 3:  // Semi-mages (Monk, Mentalist, LayHealer, Seer)
-      if (isMentalism) return LEVEL_BONUS_TABLE['Mentalist'];
-      return LEVEL_BONUS_TABLE['Monk'];
-    case 4:  // Semi-mages théurgie/channeling (Cleric, Animist, Shaman, Druid)
-      if (isChanneling) return LEVEL_BONUS_TABLE['Animist'];
-      return LEVEL_BONUS_TABLE['Cleric'];
-    case 5:  // Mages purs (Magician, Alchemist, Scholar/Erudit, Conjuror…)
-      // Scholar/Erudit a realm_code=10 (Théurgie) → profil Scholar enrichi
-      if (isChanneling) return LEVEL_BONUS_TABLE['Scholar'];
-      if (isEssence)    return LEVEL_BONUS_TABLE['Magician'];
-      if (isMentalism)  return LEVEL_BONUS_TABLE['Mentalist'];
-      return LEVEL_BONUS_TABLE['Magician'];
-    case 6:  // Hybrides combat/magie (WarriorMage, Beastmaster, Paladin, Noble…)
-      return LEVEL_BONUS_TABLE['Cleric'];
-    case 7:  // Hybrides spéciaux (rares)
-      return LEVEL_BONUS_TABLE['Bard'];
-    case 8:  // Mages avancés (Enchanter, Mystic, Warlock, DreamLord…)
-      return LEVEL_BONUS_TABLE['Mystic'];
-    case 9:  // Mages noirs/chaos (Sorcerer, Necromancer, Witch…)
-      return LEVEL_BONUS_TABLE['Sorcerer'];
-    case 10: // Hybride magique avancé (rare)
-      return LEVEL_BONUS_TABLE['Mystic'];
-    case 11: // Non-mages civils (Craftsman, Professional, No Profession)
-      return LEVEL_BONUS_TABLE['Civilian'];
-    default:
-      return LEVEL_BONUS_TABLE['default'];
+    case 1:  return 31; // Fighter
+    case 2:  return 67; // Thief
+    case 3:  return isMentalism ? 46 : 47; // Mentalist or Monk
+    case 4:  return isChanneling ? 2 : 15; // Animist or Cleric
+    case 5:  return isChanneling ? 25 : (isMentalism ? 46 : 43); // Scholar, Mentalist, or Magician
+    case 6:  return 15; // Cleric
+    case 7:  return 9;  // Bard
+    case 8:  return 50; // Mystic
+    case 9:  return 66; // Sorcerer
+    case 10: return 50; // Mystic
+    case 11: return 5;  // Craftsman
+    default: return -1;
   }
 }
 
-let _bodyDevIdx = -1;
-
-/**
- * Get level bonus for a skill.
- * @param {object} cls - class object
- * @param {number} level - character level (capped at 20)
- * @param {string} categoryName - skill category name (e.g. 'Combat')
- * @param {number} skillIndex - global skill index
- * @returns {number} level bonus
- */
-export function getLevelBonus(cls, level, categoryName, skillIndex) {
-  const profile = getLevelBonusProfile(cls);
+export function getLevelBonus(cls, level, categoryName, globalIndex) {
+  if (!cls || level <= 0) return 0;
   const cappedLevel = Math.min(level, 20);
-
-  // Special case: Body Development
-  if (_bodyDevIdx < 0) { _bodyDevIdx = findSkillIndex('Body Development'); }
-  if (skillIndex === _bodyDevIdx) return (profile.bodyDev || 0) * cappedLevel;
-
-  // Determine bonus type from category
-  const bonusType = SKILL_CATEGORY_TO_BONUS_TYPE[categoryName];
-  if (!bonusType || !profile[bonusType]) return 0;
-  return profile[bonusType] * cappedLevel;
+  const data = getData();
+  const ci = String(cls.index ?? -1);
+  const gi = String(globalIndex);
+  const perSkill = data.level_bonus_per_skill?.per_class;
+  const catDef   = data.level_bonus_category_defaults?.per_class;
+  if (perSkill?.[ci]?.[gi] !== undefined) return perSkill[ci][gi] * cappedLevel;
+  if (catDef?.[ci]?.[categoryName] !== undefined) return catDef[ci][categoryName] * cappedLevel;
+  const fci = String(getFallbackClassIndex(cls));
+  if (fci === '-1') return 0;
+  if (perSkill?.[fci]?.[gi] !== undefined) return perSkill[fci][gi] * cappedLevel;
+  if (catDef?.[fci]?.[categoryName] !== undefined) return catDef[fci][categoryName] * cappedLevel;
+  return 0;
 }
 
 // ============================================================
