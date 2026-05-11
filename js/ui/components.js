@@ -138,3 +138,84 @@ export function promptNumberModal({ title, min, max, placeholder = '', defaultVa
     input.select();
   });
 }
+
+/**
+ * Render a modifier browser panel inside `container` (prepended).
+ * Shows all sections from action_modifiers.json with search + copy-to-clipboard.
+ * Calling again while the panel is open closes it (toggle).
+ */
+export function renderModifierBrowser(sections, container, lang) {
+  const t = (fr, en) => lang === 'en' ? en : fr;
+
+  const renderValue = v => {
+    if (v === null || v === 'na' || v === '*') return `<span style="color:#8b8b7a">${v ?? '—'}</span>`;
+    const n = Number(v);
+    if (!isNaN(n)) return `<span style="font-weight:bold;color:${n > 0 ? '#22c55e' : n < 0 ? '#ef4444' : '#8b8b7a'}">${n > 0 ? '+' : ''}${n}</span>`;
+    return `<span>${v}</span>`;
+  };
+
+  const renderSection = sec => {
+    const label = lang === 'en' ? (sec.label_en || sec.label_fr) : sec.label_fr;
+    if (!sec.modifiers?.length) return '';
+    const hasValues = sec.modifiers[0]?.values;
+    const axisHeader = hasValues && sec.axis
+      ? `<tr style="border-bottom:1px solid rgba(139,92,20,0.2)">${sec.axis.map(a => `<th style="padding:1px 4px;font-size:0.6rem;color:#8b6914">${a}</th>`).join('')}</tr>`
+      : '';
+    const rows = sec.modifiers.map(m => {
+      const lbl = lang === 'en' ? (m.label_en || m.label_fr || m.range || m.diff || '') : (m.label_fr || m.range || m.diff || '');
+      if (hasValues) {
+        const cells = m.values.map(v => `<td style="padding:1px 4px;text-align:center">${renderValue(v)}</td>`).join('');
+        return `<tr title="${lbl}"><td style="padding:1px 4px;font-size:0.65rem;color:#4a3520;max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${lbl}</td>${cells}</tr>`;
+      }
+      const val = m.value !== undefined ? m.value : '';
+      const copyVal = typeof val === 'number' ? (val >= 0 ? '+' + val : String(val)) : String(val);
+      return `<tr><td style="padding:1px 4px;font-size:0.65rem;color:#4a3520">${lbl}</td><td style="padding:1px 4px;text-align:right;cursor:pointer" title="${t('Copier','Copy')}" data-copy="${copyVal}">${renderValue(val)}</td></tr>`;
+    }).join('');
+    return `
+      <details style="margin-bottom:4px" open>
+        <summary style="cursor:pointer;font-size:0.72rem;font-weight:bold;color:#3a1a08;padding:3px 0;list-style:none">▶ ${label}</summary>
+        <table style="width:100%;font-size:0.68rem;border-collapse:collapse;margin-top:2px">
+          ${axisHeader ? `<thead>${axisHeader}</thead>` : ''}
+          <tbody>${rows}</tbody>
+        </table>
+      </details>`;
+  };
+
+  const sectionsHtml = sections.map(renderSection).filter(Boolean).join('');
+
+  const panel = document.createElement('div');
+  panel.id = 'pm-modif-panel';
+  panel.style.cssText = 'background:rgba(255,250,240,0.97);border:2px solid rgba(139,92,20,0.3);border-radius:8px;padding:10px 12px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,0.15);max-height:60vh;overflow-y:auto';
+  panel.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;position:sticky;top:0;background:rgba(255,250,240,0.97);z-index:1;padding-bottom:4px;border-bottom:1px solid rgba(139,92,20,0.15)">
+      <div style="font-size:0.82rem;font-weight:bold;color:#3a1a08">${t('Modificateurs d\'action', 'Action Modifiers')}</div>
+      <div style="display:flex;gap:6px;align-items:center">
+        <input id="pm-modif-search" type="text" placeholder="${t('Rechercher…','Search…')}"
+          style="font-size:0.65rem;padding:2px 6px;border:1px solid rgba(139,92,20,0.3);border-radius:4px;background:rgba(255,255,255,0.7);color:#2b1806;width:110px">
+        <button id="pm-close-modif" style="background:none;border:none;font-size:1rem;cursor:pointer;color:#8b6914">✕</button>
+      </div>
+    </div>
+    <div id="pm-modif-body">${sectionsHtml}</div>`;
+
+  const tracker = container.querySelector('#combat-init-track');
+  if (tracker) tracker.parentNode.insertBefore(panel, tracker);
+  else container.prepend(panel);
+
+  panel.querySelector('#pm-close-modif').addEventListener('click', () => panel.remove());
+
+  panel.querySelector('#pm-modif-search').addEventListener('input', e => {
+    const q = e.target.value.toLowerCase();
+    panel.querySelectorAll('tr').forEach(row => {
+      row.style.display = q && !row.textContent.toLowerCase().includes(q) ? 'none' : '';
+    });
+  });
+
+  panel.querySelectorAll('[data-copy]').forEach(el => {
+    el.addEventListener('click', () => {
+      navigator.clipboard?.writeText(el.dataset.copy).catch(() => {});
+      const orig = el.innerHTML;
+      el.innerHTML = '✓';
+      setTimeout(() => { el.innerHTML = orig; }, 800);
+    });
+  });
+}

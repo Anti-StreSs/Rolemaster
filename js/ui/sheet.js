@@ -3,7 +3,7 @@
 import { panel } from './components.js';
 import { getStatBonus, getRankBonus } from '../engine/stats.js';
 import { getClassByIndex, getClassName, getCasterTypeKey } from '../engine/classes.js';
-import { getAllCategories, getSkillName, calcSkillStatBonus } from '../engine/skills.js';
+import { getAllCategories, getSkillName, calcSkillStatBonus, CAT_NAMES_FR, CAT_NAMES_EN } from '../engine/skills.js';
 import { getAllRealms, getSpellListName } from '../engine/spells.js';
 import { ARMOR_TYPES } from '../engine/equipment.js';
 import { calcHitPoints, calcPowerPoints, getStatBonuses } from '../engine/character.js';
@@ -126,7 +126,8 @@ export function renderSheet(character, app) {
       globalIndex++;
     }
     if (catHasRanks) {
-      skillsHtml += `<tr><td colspan="5" class="skill-category-header">${cat.name}</td></tr>`;
+      const catLabel = lang === 'en' ? (CAT_NAMES_EN[cat.name] || cat.name) : (CAT_NAMES_FR[cat.name] || cat.name);
+      skillsHtml += `<tr><td colspan="5" class="skill-category-header">${catLabel}</td></tr>`;
       skillsHtml += catSkills;
     }
   }

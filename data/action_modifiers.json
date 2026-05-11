@@ -1,0 +1,195 @@
+{
+  "version": 1,
+  "source": "RM2 Combat Actions Table — Arms Law",
+  "sections": [
+    {
+      "id": "initiative",
+      "label_fr": "Initiative",
+      "label_en": "Initiative",
+      "formula": "1d100 + RP (project standard; PDF variant: 2d10 + Qu mod)",
+      "modifiers": [
+        { "label_fr": "Surpris", "label_en": "Surprised", "value": -4 },
+        { "label_fr": "PdV > 50% perdus", "label_en": "Taken > 50% hits", "value": -4 },
+        { "label_fr": "Mouvement déclaré (par 10%)", "label_en": "Declared movement (per 10%)", "value": -1 },
+        { "label_fr": "Combattant + fort", "label_en": "Stronger combatant", "value": 1, "context": "melee" },
+        { "label_fr": "Position supérieure", "label_en": "Higher position", "value": 1, "context": "melee" },
+        { "label_fr": "Arme plus longue", "label_en": "Longer weapon", "value": 1, "context": "melee" },
+        { "label_fr": "Arme plus longue en charge", "label_en": "Longer weapon when charging", "value": 3, "context": "melee" },
+        { "label_fr": "Une main libre", "label_en": "One hand free", "value": 1, "context": "melee" },
+        { "label_fr": "Arme d'hast — 1er round", "label_en": "Pole arm 1st round", "value": 5, "context": "melee" },
+        { "label_fr": "Arme d'hast — 2e round", "label_en": "Pole arm 2nd round", "value": -1, "context": "melee" }
+      ]
+    },
+    {
+      "id": "action_phase",
+      "label_fr": "Phase d'action",
+      "label_en": "Action Phase",
+      "modifiers": [
+        { "label_fr": "Snap (rapide)", "label_en": "Snap", "value": -20 },
+        { "label_fr": "Normal", "label_en": "Normal", "value": 0 },
+        { "label_fr": "Deliberate (préparé)", "label_en": "Deliberate", "value": 10 }
+      ]
+    },
+    {
+      "id": "static_maneuver_difficulty",
+      "label_fr": "Difficulté manœuvre statique",
+      "label_en": "Static Maneuver Difficulty",
+      "modifiers": [
+        { "label_fr": "Routine", "label_en": "Routine", "value": 30 },
+        { "label_fr": "Facile", "label_en": "Easy", "value": 20 },
+        { "label_fr": "Léger", "label_en": "Light", "value": 10 },
+        { "label_fr": "Moyen", "label_en": "Medium", "value": 0 },
+        { "label_fr": "Difficile", "label_en": "Hard", "value": -10 },
+        { "label_fr": "Très difficile", "label_en": "Very Hard", "value": -20 },
+        { "label_fr": "Extrêmement difficile", "label_en": "Extremely Hard", "value": -30 },
+        { "label_fr": "Folie pure", "label_en": "Sheer Folly", "value": -50 },
+        { "label_fr": "Absurde", "label_en": "Absurd", "value": -70 }
+      ]
+    },
+    {
+      "id": "hits_taken_penalty",
+      "label_fr": "% de PdV perdus",
+      "label_en": "% of Hits Taken",
+      "modifiers": [
+        { "range": "0-25%",   "value":   0 },
+        { "range": "26-50%",  "value": -10 },
+        { "range": "51-75%",  "value": -20 },
+        { "range": "76-100%", "value": -30 }
+      ]
+    },
+    {
+      "id": "other_wounds",
+      "label_fr": "Autres blessures",
+      "label_en": "Other Wounds",
+      "modifiers": [
+        { "label_fr": "Hémorragie (par PV/round)", "label_en": "Bleeding (per HP/rnd)", "value": -5 },
+        { "label_fr": "Étourdi (par round)",        "label_en": "Stunned (per round)",   "value": -50, "stat_modifier": "+3 × SD" }
+      ]
+    },
+    {
+      "id": "exp_expended",
+      "label_fr": "% PdP dépensés (sorts)",
+      "label_en": "% of PP Expended",
+      "modifiers": [
+        { "range": "0-25%",   "value":   0 },
+        { "range": "26-50%",  "value":  -5 },
+        { "range": "51-75%",  "value": -15 },
+        { "range": "76-90%",  "value": -30 },
+        { "range": "91-99%",  "value": -60 },
+        { "range": "100%+",   "value": -100 }
+      ]
+    },
+    {
+      "id": "combat_situation",
+      "label_fr": "Situation de combat",
+      "label_en": "Combat Situation",
+      "modifiers": [
+        { "label_fr": "Engagé en mêlée — sorts interdits", "label_en": "Engaged in melee — no spells", "value": null, "note": "not_allowed" },
+        { "label_fr": "Environnement de mêlée", "label_en": "In a melee environment", "value": -20 },
+        { "label_fr": "Sous tir de missile", "label_en": "Under missile fire", "value": -10 }
+      ]
+    },
+    {
+      "id": "lighting",
+      "label_fr": "Éclairage",
+      "label_en": "Lighting",
+      "modifiers": [
+        { "label_fr": "Pas d'ombre",       "label_en": "No Shadows",       "value":  10 },
+        { "label_fr": "Ombre légère",      "label_en": "Light Shadows",    "value":   5 },
+        { "label_fr": "Pénombre",          "label_en": "Medium Shadows",   "value":   0 },
+        { "label_fr": "Forte pénombre",    "label_en": "Heavy Shadows",    "value": -10 },
+        { "label_fr": "Obscurité",         "label_en": "Dark",             "value": -25 },
+        { "label_fr": "Noir absolu",       "label_en": "Pitch Black",      "value": -40 },
+        { "label_fr": "Obscurité avantageuse — Pénombre", "label_en": "Darkness Advantageous — Medium Shadows", "value":  10 },
+        { "label_fr": "Obscurité avantageuse — Forte",    "label_en": "Darkness Advantageous — Heavy Shadows",  "value":  20 },
+        { "label_fr": "Obscurité avantageuse — Noir",     "label_en": "Darkness Advantageous — Pitch Black",    "value":  40 }
+      ]
+    },
+    {
+      "id": "position",
+      "label_fr": "Position (attaque)",
+      "label_en": "Position (attack)",
+      "axis": ["Melee", "Missile", "Base Spells", "Directed Spells", "Area Spells"],
+      "modifiers": [
+        { "label_fr": "Attaque de flanc",     "label_en": "Flank Attack",     "values": [15, 0, 0, 0, 0] },
+        { "label_fr": "Attaque dans le dos",  "label_en": "Rear Attack",      "values": [20, 0, 0, 0, 0] },
+        { "label_fr": "Attaque surprise",     "label_en": "Surprise Attack",  "values": [20, 0, 0, 0, 0] }
+      ]
+    },
+    {
+      "id": "target_status",
+      "label_fr": "État de la cible",
+      "label_en": "Target Status",
+      "axis": ["Melee", "Missile", "Base Spells", "Directed Spells", "Area Spells"],
+      "modifiers": [
+        { "label_fr": "Cible immobile",    "label_en": "Static Target",  "values": [0,  0,  10, 30, 30], "note": "+30 vs prone/surprised — Qu bonus to DB nullified" },
+        { "label_fr": "Cible étourdie",    "label_en": "Stunned Target", "values": [20, 20, 0,  0,  0]  },
+        { "label_fr": "Cible à terre",     "label_en": "Prone Target",   "values": [50, 50, 0,  0,  0]  },
+        { "label_fr": "Cible neutralisée", "label_en": "Downed Target",  "values": [30, 30, 0,  0,  0]  }
+      ]
+    },
+    {
+      "id": "cover",
+      "label_fr": "Couvert",
+      "label_en": "Cover",
+      "axis": ["Melee", "Missile", "Base Spells", "Directed Spells", "Area Spells"],
+      "modifiers": [
+        { "label_fr": "Couvert souple complet (DB)", "label_en": "Full Soft Cover",  "values": ["na", "na", 20, "na", 40] },
+        { "label_fr": "Couvert souple partiel",      "label_en": "Half Soft Cover",  "values": [20,   40,  10,  20,  20] },
+        { "label_fr": "Couvert rigide complet",      "label_en": "Full Hard Cover",  "values": ["na", "na", 20, "na", 60] },
+        { "label_fr": "Couvert rigide partiel",      "label_en": "Half Hard Cover",  "values": [30,   60,  10,  30,  30] }
+      ]
+    },
+    {
+      "id": "shield",
+      "label_fr": "Bouclier (DB)",
+      "label_en": "Shield (DB)",
+      "axis": ["Melee", "Missile", "Base Spells", "Directed Spells", "Area Spells"],
+      "modifiers": [
+        { "label_fr": "Mur",    "label_en": "Wall Shield",   "values": [30, 40, "*", 20, 0] },
+        { "label_fr": "Plein",  "label_en": "Full Shield",   "values": [25, 25, "*", 20, 0] },
+        { "label_fr": "Normal", "label_en": "Normal Shield", "values": [20, 20, "*", 15, 0] },
+        { "label_fr": "Cible",  "label_en": "Target Shield", "values": [20, 10, "*",  5, 0] }
+      ]
+    },
+    {
+      "id": "spell_casting_prep",
+      "label_fr": "Lancement de sort (préparation)",
+      "label_en": "Spell Casting (preparation)",
+      "axis_label": "Caster level - Spell level",
+      "axis": ["Instant", "Round 0", "Round 1", "Round 2", "Round 3-4", "Round 5-6", "Round 7-8", "Round 9+"],
+      "modifiers": [
+        { "diff": "9+",   "values": [15,    5,    10,   15,   20,   25,   30,   35]  },
+        { "diff": "6-8",  "values": [10,    0,     5,   10,   15,   20,   25,   30]  },
+        { "diff": "5",    "values": [5,   -10,     0,    5,   10,   15,   20,   25]  },
+        { "diff": "4",    "values": [5,   -20,     0,    5,   10,   15,   20,   25]  },
+        { "diff": "3",    "values": [5,   -30,     0,    5,   10,   15,   20,   25]  },
+        { "diff": "2",    "values": [0,   -35,   -10,    0,    5,   10,   15,   20]  },
+        { "diff": "1",    "values": [0,   -45,   -20,    0,    5,   10,   15,   20]  },
+        { "diff": "0",    "values": [0,   -55,   -30,    0,    5,   10,   15,   20]  },
+        { "diff": "-1",   "values": [-30, -85,   -60,  -30,  -25,  -20,  -15,  -10]  },
+        { "diff": "-2",   "values": [-35, -90,   -65,  -35,  -30,  -25,  -20,  -15]  },
+        { "diff": "-3",   "values": [-40, -95,   -70,  -40,  -35,  -30,  -25,  -20]  },
+        { "diff": "-4",   "values": [-45, -100,  -75,  -45,  -40,  -35,  -30,  -25]  },
+        { "diff": "-5",   "values": [-50, -100,  -80,  -50,  -45,  -40,  -35,  -30]  },
+        { "diff": "≤-21", "values": [-220, -275, -250, -220, -215, -210, -205, -200]  }
+      ]
+    },
+    {
+      "id": "spell_realm",
+      "label_fr": "Réalm de sort",
+      "label_en": "Spell Realm",
+      "axis": ["Channeling", "Essence", "Mentalism"],
+      "modifiers": [
+        { "label_fr": "Liste de base propre realm", "label_en": "Own Base, Own Realm",       "values": [10, 10, 10] },
+        { "label_fr": "Liste ouverte propre realm", "label_en": "Open List, Own Realm",      "values": [5,  5,  5]  },
+        { "label_fr": "Liste fermée propre realm",  "label_en": "Closed List, Own Realm",    "values": [0,  0,  0]  },
+        { "label_fr": "Liste Arcane",               "label_en": "Arcane List",               "values": [-5, -5, -5] },
+        { "label_fr": "Liste de base autre realm",  "label_en": "Other Base, Other Realm",   "values": [-10, -10, -10] },
+        { "label_fr": "Liste ouverte autre realm",  "label_en": "Open List, Other Realm",    "values": [-10, -10, -10] },
+        { "label_fr": "Liste fermée autre realm",   "label_en": "Closed List, Other Realm",  "values": [-20, -20, -20] },
+        { "label_fr": "Liste de base autre realm",  "label_en": "Base List, Other Realm",    "values": [-30, -30, -30] }
+      ]
+    }
+  ]
+}

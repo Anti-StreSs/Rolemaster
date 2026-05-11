@@ -157,7 +157,7 @@ export function calcDevCostForRanks(cost, numRanks) {
 // Explicit list of parent skills that open sub-skill selection menus.
 // These cannot receive ranks directly — you pick a specific sub-skill instead.
 // Determined by RM2 rules, NOT by subskill_data (which is general metadata on most skills).
-const PARENT_SKILL_INDICES = new Set([
+export const PARENT_SKILL_INDICES = new Set([
   63,  // Compétence aux armes (Weapon Skill) — choose specific weapon
   61,  // Arts Martiaux (Martial Arts) — choose martial arts style
   136, // Linguistique (Language) — choose a language
@@ -586,6 +586,28 @@ export function calcWeaponSimilarityRanks(wsIndex, character) {
   return Math.max(0, Math.floor(bestSourceRanks / 2) - ownRanks);
 }
 
+export function calcSubSkillSimilarityRanks(parentGlobalIndex, subIndex, character, coefficient = 4) {
+  const subs = (character.subSkills || []).filter(s => s.parentIndex === parentGlobalIndex);
+  if (subs.length <= 1) return 0;
+
+  const subKey = i => `sub_${parentGlobalIndex}_${i}`;
+  const totalRanks = key =>
+    (character.skillRanksAdolescent?.[key] || 0)
+    + (character.skillRanksApprenti?.[key] || 0)
+    + (character.skillRanksPrior?.[key] || 0)
+    + (character.skillRanksLevel?.[key] || 0);
+
+  const ownRanks = totalRanks(subKey(subIndex));
+  let bestSrcRanks = 0;
+  for (let i = 0; i < subs.length; i++) {
+    if (i === subIndex) continue;
+    const r = totalRanks(subKey(i));
+    if (r > bestSrcRanks) bestSrcRanks = r;
+  }
+  if (bestSrcRanks === 0) return 0;
+  return Math.max(0, Math.floor(bestSrcRanks * coefficient / 16) - ownRanks);
+}
+
 // === Level Bonus (Table 09-07, RM2 Option) ===
 // Bonus per level by profession and skill category. Cap at level 20.
 
@@ -612,6 +634,25 @@ const LEVEL_BONUS_TABLE = {
   'Scholar':     { combat: 0, academic: 2, outdoor: 0, subterfuge: 0, item: 1, perception: 2, baseSpells: 1, directedSpells: 1, bodyDev: 0 },
   'Civilian':    { combat: 0, academic: 2, outdoor: 1, subterfuge: 0, item: 0, perception: 1, baseSpells: 0, directedSpells: 0, bodyDev: 0 },
   'default':     { combat: 0, academic: 0, outdoor: 0, subterfuge: 0, item: 0, perception: 0, baseSpells: 0, directedSpells: 0, bodyDev: 0 },
+};
+
+// Category display name maps — keys are alphabetic cat.name IDs from competences.json
+// EN keys are legacy placeholders; actual RM2 content differs for indices 4+
+export const CAT_NAMES_FR = {
+  'Academic': 'Savoir', 'Animal': 'Animaux', 'Athletic': 'Athlétique',
+  'Combat': 'Combat', 'Deadly': 'Contrôle de Soi', 'Evaluation': 'Attaques Spéciales',
+  'General': 'Évaluation', 'Gymnastic': 'Artisanat', 'Linguistic': 'Gymnastique',
+  'Magical': 'Communication', 'Medical': 'Magie', 'Perception': 'Médecine',
+  'Social': 'Perception', 'Subterfuge': 'Influence', 'Survival': 'Subterfuge',
+  'Category_15': 'Survie/Extérieur',
+};
+export const CAT_NAMES_EN = {
+  'Academic': 'Lore', 'Animal': 'Animal', 'Athletic': 'Athletic',
+  'Combat': 'Combat', 'Deadly': 'Self-Control', 'Evaluation': 'Deadly',
+  'General': 'Evaluation', 'Gymnastic': 'Crafts', 'Linguistic': 'Gymnastic',
+  'Magical': 'Communications', 'Medical': 'Magical', 'Perception': 'Medical',
+  'Social': 'Perception', 'Subterfuge': 'Influence', 'Survival': 'Subterfuge',
+  'Category_15': 'Outdoor',
 };
 
 const SKILL_CATEGORY_TO_BONUS_TYPE = {

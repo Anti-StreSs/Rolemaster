@@ -5,7 +5,7 @@ import { panel, showToast, confirmModal, promptNumberModal } from './components.
 import { createCharacter, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, applyRace, DEV_PHASES, getTotalRanks, getCurrentPhaseRanks, getCurrentPhaseRanksObj, getDevPointsSpent, setDevPointsSpent, getDevPointsTotal, getSpellPointsSpent, setSpellPointsSpent, getSpellPointsTotal, SHIELD_TYPES, calculateDB, setAdrenalDefenseIndex, rollBodyDevHitDie, getBodyDevSkillIndex, getDeathThreshold } from '../engine/character.js';
 import { generateStatRolls, getStatValues, statPotentialLookup, generateStatRollsHybrid, generateStatRollsAntiLose, getStatValuesHybrid, rollStatPairsRMSS, getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
 import { getAllClasses, getClassName, getRealmInfo, getRealmKey, getRealmLabel, isSpellUser, getClassPrimeStats, getPPStatIndices } from '../engine/classes.js';
-import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts, isParentSkill, isSpecializableSkill, getWeaponSubcategories, getWeaponSkillCost, getParentSubSkillOptions, WEAPON_SKILL_GLOBAL_INDEX, getAllSkillsFlat, getLevelBonus, calcSimilarityRanks, calcWeaponSimilarityRanks, getSpecializationSuggestion } from '../engine/skills.js';
+import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices, getWeaponCategoryCosts, isParentSkill, isSpecializableSkill, getWeaponSubcategories, getWeaponSkillCost, getParentSubSkillOptions, WEAPON_SKILL_GLOBAL_INDEX, getAllSkillsFlat, getLevelBonus, calcSimilarityRanks, calcWeaponSimilarityRanks, getSpecializationSuggestion, PARENT_SKILL_INDICES, calcSubSkillSimilarityRanks } from '../engine/skills.js';
 import { getAllRealms, getSpellListCost, getSpellRankCost, getSpellBlockSize, getListTypeKey, isPureCaster, getClassBaseSpellLists } from '../engine/spells.js';
 import { downloadCharacter, saveToLocalStorage } from '../engine/export.js';
 import { generateCharacterPDF } from '../engine/pdf-export.js';
@@ -42,6 +42,24 @@ const CAT_NAMES_FR = {
   'Subterfuge': 'Influence',
   'Survival': 'Subterfuge',
   'Category_15': 'Survie/Extérieur',
+};
+const CAT_NAMES_EN = {
+  'Academic':    'Lore',
+  'Animal':      'Animal',
+  'Athletic':    'Athletic',
+  'Combat':      'Combat',
+  'Deadly':      'Self-Control',
+  'Evaluation':  'Deadly',
+  'General':     'Evaluation',
+  'Gymnastic':   'Crafts',
+  'Linguistic':  'Gymnastic',
+  'Magical':     'Communications',
+  'Medical':     'Magical',
+  'Perception':  'Medical',
+  'Social':      'Perception',
+  'Subterfuge':  'Influence',
+  'Survival':    'Subterfuge',
+  'Category_15': 'Outdoor',
 };
 
 const TABS = [
@@ -1998,7 +2016,8 @@ function renderSkillsTab(lang) {
   let globalIndex = 0;
   for (const cat of categories) {
     const catNameFr = CAT_NAMES_FR[cat.name] || cat.name;
-    const catName = lang === 'en' ? cat.name : catNameFr;
+    const catNameEn = CAT_NAMES_EN[cat.name] || cat.name;
+    const catName = lang === 'en' ? catNameEn : catNameFr;
     const catId = cat.name.replace(/[^a-zA-Z]/g, '_').toLowerCase();
     table += `<tr class="skill-cat-row" data-cat-id="${catId}"><td colspan="10" class="skill-category-header"><span class="cat-toggle-icon">▼</span> ${catName}</td></tr>`;
 
@@ -3946,6 +3965,13 @@ function finalizeSimRanks(character) {
   const weapons = character.weaponSkills || [];
   for (let wi = 0; wi < weapons.length; wi++) {
     character.skillRanksSimil['wpn_' + wi] = calcWeaponSimilarityRanks(wi, character);
+  }
+  // Sub-skills (General Perception and other PARENT_SKILL_INDICES)
+  for (const parentIdx of PARENT_SKILL_INDICES) {
+    const subs = (character.subSkills || []).filter(s => s.parentIndex === parentIdx);
+    for (let si = 0; si < subs.length; si++) {
+      character.skillRanksSimil['sub_' + parentIdx + '_' + si] = calcSubSkillSimilarityRanks(parentIdx, si, character);
+    }
   }
 }
 

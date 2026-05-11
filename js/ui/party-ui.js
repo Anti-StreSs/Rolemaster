@@ -12,7 +12,7 @@ import {
   setParryTransfer, applyParryTransfer, addParryBoost, consumeParryBoost,
 } from '../engine/party-manager.js';
 import { getComputedSkills } from '../engine/skill-compute.js';
-import { showToast } from './components.js';
+import { showToast, renderModifierBrowser } from './components.js';
 import { getLocalSaves } from '../engine/export.js';
 import { getClassName, getRealmInfo, getAllClasses } from '../engine/classes.js';
 import { loadBestiaryData, filterCreatures, getCreatureById, CATEGORY_LABELS, ATTACK_TYPE_LABELS } from '../engine/bestiary.js';
@@ -767,6 +767,7 @@ function renderDashboard(main, app) {
           <button class="rm-action-btn is-secondary" id="pm-roll-all-init">${lang === 'en' ? '🎲 Roll Initiative (d100+RP)' : '🎲 Initiative (d100+RP)'}</button>
           ${inCombat ? `<button class="rm-action-btn is-secondary" id="pm-add-npc">+ PNJ</button>` : ''}
           ${inCombat ? `<button class="rm-action-btn" id="pm-show-pa-recap" style="font-size:0.7rem;padding:3px 10px" title="Récapitulatif des coûts PA">📋 Coûts PA</button>` : ''}
+          ${inCombat ? `<button class="rm-action-btn" id="pm-show-modif" style="font-size:0.7rem;padding:3px 10px" title="${lang === 'en' ? 'Action modifiers reference' : 'Référence des modificateurs d\'action'}">⚖ ${lang === 'en' ? 'Modifiers' : 'Modificateurs'}</button>` : ''}
           <button class="rm-action-btn is-subtle" id="pm-reset-party">Réinitialiser</button>
           <button class="rm-action-btn is-subtle" id="pm-gen-treasure">🏆 Trésor</button>
         </div>
@@ -1224,6 +1225,18 @@ function bindDashboardEvents(main, app) {
     else main.prepend(panel);
 
     panel.querySelector('#pm-close-pa-recap').addEventListener('click', () => panel.remove());
+  });
+
+  main.querySelector('#pm-show-modif')?.addEventListener('click', async () => {
+    const existing = main.querySelector('#pm-modif-panel');
+    if (existing) { existing.remove(); return; }
+    try {
+      const resp = await fetch('./data/action_modifiers.json');
+      const data = await resp.json();
+      renderModifierBrowser(data.sections, main, lang);
+    } catch (e) {
+      showToast(lang === 'en' ? 'Could not load modifiers' : 'Impossible de charger les modificateurs', true);
+    }
   });
 
   // ── Édition inline des stats NPC ──

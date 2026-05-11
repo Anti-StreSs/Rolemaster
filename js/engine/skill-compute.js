@@ -2,7 +2,8 @@
 // All bonus calculations happen HERE. Print, PDF, wizard consume the result.
 
 import { getAllCategories, getSkillName, getSkillDevCost, getSkillStatIndices,
-         getLevelBonus, isParentSkill, WEAPON_SKILL_GLOBAL_INDEX } from './skills.js';
+         getLevelBonus, isParentSkill, WEAPON_SKILL_GLOBAL_INDEX,
+         PARENT_SKILL_INDICES, calcSubSkillSimilarityRanks } from './skills.js';
 import { getRankBonus } from './stats.js';
 import { getTotalRanks, getTotalStatBonus, ARMOR_MANEUVER_PENALTIES,
          isMovingSkill, getBodyDevSkillIndex } from './character.js';
@@ -19,6 +20,14 @@ const CAT_NAMES_FR = {
   'Magical': 'Communication', 'Medical': 'Magie', 'Perception': 'Médecine',
   'Social': 'Perception', 'Subterfuge': 'Influence', 'Survival': 'Subterfuge',
   'Category_15': 'Survie/Extérieur',
+};
+const CAT_NAMES_EN = {
+  'Academic': 'Lore', 'Animal': 'Animal', 'Athletic': 'Athletic',
+  'Combat': 'Combat', 'Deadly': 'Self-Control', 'Evaluation': 'Deadly',
+  'General': 'Evaluation', 'Gymnastic': 'Crafts', 'Linguistic': 'Gymnastic',
+  'Magical': 'Communications', 'Medical': 'Magical', 'Perception': 'Medical',
+  'Social': 'Perception', 'Subterfuge': 'Influence', 'Survival': 'Subterfuge',
+  'Category_15': 'Outdoor',
 };
 
 /**
@@ -83,7 +92,7 @@ export function getComputedSkills(character, lang = 'fr', includeAll = false) {
   let globalIndex = 0;
 
   for (const cat of categories) {
-    const catName = lang === 'en' ? cat.name : (CAT_NAMES_FR[cat.name] || cat.name);
+    const catName = lang === 'en' ? (CAT_NAMES_EN[cat.name] || cat.name) : (CAT_NAMES_FR[cat.name] || cat.name);
     let catPushed = false;
 
     for (const skill of cat.skills) {
@@ -203,7 +212,7 @@ export function getComputedSkills(character, lang = 'fr', includeAll = false) {
             globalIndex: subKey, isParent: false, isSubSkill: true,
             totalRanks: sRanks, rankBonus: sRankB, statBonus: sStatB,
             lvlBonus, miscBonus: sMisc, armorPenalty: 0,
-            similRanks: 0, total: sTotal,
+            similRanks: PARENT_SKILL_INDICES.has(globalIndex) ? calcSubSkillSimilarityRanks(globalIndex, si, character) : 0, total: sTotal,
             costStr: sub.cost ? `${sub.cost.first}/${sub.cost.second || ''}` : '—',
             statLabel: sStatIndices.map(i => STAT_ABBREVS[i - 1]).join('/'),
             highlight: (character.skillHighlights || {})[subKey] || null,
