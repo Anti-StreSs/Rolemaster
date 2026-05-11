@@ -84,17 +84,30 @@ export function getCoutsIndex(classIndex) {
   return CLASS_TO_COUTS_MAP[classIndex];
 }
 
-// Weapon Skill at global index 63 takes 12 cost values (6 priority slots × 2)
-// instead of the normal 2, shifting all subsequent skill costs by +10.
-const WEAPON_SKILL_INDEX = 63;
-const WEAPON_COST_EXTRA = 10; // 12 values - 2 normal = 10 extra
+// Skills that occupy more than 1 cost pair (2 values) in couts.json.
+// Each extra pair shifts the offset for all subsequent skills.
+// Map: global index → number of cost PAIRS (each pair = 2 values). Default = 1.
+// Verified from Character Records PDF (ICE 1002) dev_costs.csv:
+//   - Weapon Skill (63): 6 weapon priority slots → 6 pairs
+//   - Play Instrument (114): 3 instrument types (strings/winds/percussion) with
+//     distinct costs → 3 pairs. Confirmed: Burglar gets 2/6, 3/7, 3/0.
+// TODO (B77+): verify Language (136), Directed Spells (145), Magical Languages (147)
+//   — also show repeated entries in the CSV but identical costs suggest 1 pair each.
+const SKILL_COST_SLOTS = {
+  63:  6,  // Weapon Skill — 6 weapon priority slots
+  114: 3,  // Play Instrument — 3 instrument type sub-categories
+};
 
-/**
- * Get the cost array offset for a skill, accounting for the Weapon Skill
- * taking 12 values (6 weapon category priority slots × 2) instead of 2.
- */
+function getSlotCount(skillGlobalIndex) {
+  return SKILL_COST_SLOTS[skillGlobalIndex] ?? 1;
+}
+
 function getCostOffset(skillGlobalIndex) {
-  return skillGlobalIndex * 2 + (skillGlobalIndex > WEAPON_SKILL_INDEX ? WEAPON_COST_EXTRA : 0);
+  let offset = 0;
+  for (let i = 0; i < skillGlobalIndex; i++) {
+    offset += getSlotCount(i) * 2;
+  }
+  return offset;
 }
 
 /**
@@ -132,7 +145,7 @@ export function getWeaponCategoryCosts(classIndex) {
   if (coutsIdx < 0 || coutsIdx >= couts.classes.length) return null;
 
   const costs = couts.classes[coutsIdx].cost_values;
-  const basePos = WEAPON_SKILL_INDEX * 2; // Position 126
+  const basePos = getCostOffset(63); // Weapon Skill at global index 63
   const slots = [];
   for (let i = 0; i < 6; i++) {
     const pos = basePos + i * 2;
