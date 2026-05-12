@@ -1199,23 +1199,34 @@ function bindDashboardEvents(main, app) {
       const icon = { melee: '⚔', ranged: '🏹', spell: '✦', spell_instant: '⚡',
         move_full: '🦶', move_half: '½🦶', parry: '🛡', draw_weapon: '🗡',
         stand_up: '⤴', maneuver: '⚙' }[id] || '•';
-      return `<tr><td style="padding:2px 6px">${icon}</td><td style="padding:2px 6px">${label}</td><td style="padding:2px 6px;text-align:right;font-weight:bold;color:#dc2626">−${cost}</td></tr>`;
+      return `<tr><td style="padding:3px 8px">${icon}</td><td style="padding:3px 8px;color:#e8d5a0">${label}</td><td style="padding:3px 8px;text-align:right;font-weight:bold;color:#fca5a5">−${cost}</td></tr>`;
     }).join('');
 
     const panel = document.createElement('div');
     panel.id = 'pm-pa-recap-panel';
-    panel.style.cssText = 'background:rgba(255,250,240,0.97);border:2px solid rgba(139,92,20,0.3);border-radius:8px;padding:10px 12px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,0.15)';
+    panel.style.cssText = [
+      'position:relative',
+      'z-index:5',
+      'background:linear-gradient(135deg,rgba(40,28,16,0.97),rgba(28,20,10,0.97))',
+      'border:2px solid rgba(201,154,46,0.5)',
+      'border-radius:8px',
+      'padding:10px 14px',
+      'margin:8px 0 10px 0',
+      'box-shadow:0 4px 12px rgba(0,0,0,0.45)',
+      'color:#e8d5a0',
+      'font-family:var(--font-data,monospace)',
+    ].join(';');
     panel.innerHTML = `
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-        <div style="font-size:0.82rem;font-weight:bold;color:#3a1a08">${t('Récapitulatif des coûts PA', 'Action Point Costs')}</div>
-        <button id="pm-close-pa-recap" style="background:none;border:none;font-size:1rem;cursor:pointer;color:#8b6914">✕</button>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div style="font-size:0.85rem;font-weight:bold;color:#fbbf24">${t('Récapitulatif des coûts PA', 'Action Point Costs')}</div>
+        <button id="pm-close-pa-recap" style="background:none;border:1px solid rgba(201,154,46,0.4);border-radius:4px;width:24px;height:24px;font-size:0.9rem;cursor:pointer;color:#fbbf24;line-height:1">✕</button>
       </div>
-      <div style="font-size:0.7rem;color:#6b5030;margin-bottom:6px">${t('Initiative = 1d100 + RP (PJ) ou MM (PNJ)', 'Initiative = 1d100 + QU (PC) or MM (NPC)')}</div>
-      <table style="width:100%;font-size:0.72rem;border-collapse:collapse">
-        <thead><tr style="border-bottom:1px solid rgba(139,92,20,0.2)">
-          <th style="padding:2px 6px;text-align:left"></th>
-          <th style="padding:2px 6px;text-align:left">${t('Action', 'Action')}</th>
-          <th style="padding:2px 6px;text-align:right">${t('Coût', 'Cost')}</th>
+      <div style="font-size:0.72rem;color:#c9a840;margin-bottom:8px;font-style:italic">${t('Initiative = 1d100 + RP (PJ) ou MM (PNJ)', 'Initiative = 1d100 + QU (PC) or MM (NPC)')}</div>
+      <table style="width:100%;font-size:0.78rem;border-collapse:collapse;color:#e8d5a0">
+        <thead><tr style="border-bottom:1px solid rgba(201,154,46,0.4);color:#c9a840">
+          <th style="padding:4px 8px;text-align:left;width:30px"></th>
+          <th style="padding:4px 8px;text-align:left">${t('Action', 'Action')}</th>
+          <th style="padding:4px 8px;text-align:right">${t('Coût', 'Cost')}</th>
         </tr></thead>
         <tbody>${rows}</tbody>
       </table>`;

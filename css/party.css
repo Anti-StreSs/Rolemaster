@@ -754,3 +754,49 @@
     flex-wrap: wrap;
   }
 }
+
+/* B83: contrast fixes for combat UI buttons and dropdowns */
+.pm-btn {
+  font-size: 0.74rem;
+  padding: 4px 9px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-data);
+  transition: opacity 0.15s, transform 0.1s;
+  font-weight: 600;
+}
+.pm-btn:hover  { opacity: 0.85; transform: translateY(-1px); }
+.pm-btn:active { transform: translateY(0); }
+
+.pm-btn-dmg     { background: rgba(185,28,28,0.55);  color: #fee2e2; border: 1px solid rgba(248,113,113,0.6); }
+.pm-btn-heal    { background: rgba(21,128,61,0.55);   color: #dcfce7; border: 1px solid rgba(74,222,128,0.6); }
+.pm-btn-pp-dmg  { background: rgba(29,78,216,0.5);    color: #dbeafe; border: 1px solid rgba(96,165,250,0.6); }
+.pm-btn-pp-heal { background: rgba(14,116,144,0.5);   color: #cffafe; border: 1px solid rgba(34,211,238,0.6); }
+.pm-btn-status  { background: rgba(201,154,46,0.45);  color: #fef3c7; border: 1px solid rgba(251,191,36,0.55); }
+.pm-btn-custom  { opacity: 0.85; }
+
+.pm-status-select,
+.pm-weapon-select,
+.pm-rounds-input {
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(201,154,46,0.45);
+  color: #f3e7c4;
+  font-weight: 500;
+}
+.pm-status-select:focus,
+.pm-weapon-select:focus,
+.pm-rounds-input:focus {
+  outline: 2px solid rgba(251,191,36,0.55);
+  outline-offset: 1px;
+}
+.pm-status-select option,
+.pm-weapon-select option {
+  background: #1a1207;
+  color: #f3e7c4;
+}
+
+.pm-pa-btn {
+  font-weight: 600;
+  color: #fff7e1 !important;
+}
