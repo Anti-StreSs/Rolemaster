@@ -1,7 +1,8 @@
 // Tabbed character editor — all tabs accessible simultaneously
 // Profession chosen first, then stats (temp/pot pairs), then everything else
 
-import { panel, showToast, confirmModal, promptNumberModal } from './components.js';
+import { panel, showToast, confirmModal, promptNumberModal, showSkillInfoPanel } from './components.js';
+import { loadSkillTables, getStaticTable } from '../engine/skill-tables.js';
 import { createCharacter, getTotalStatBonus, getStatDev, calcHitPoints, calcPowerPoints, applyRace, DEV_PHASES, getTotalRanks, getCurrentPhaseRanks, getCurrentPhaseRanksObj, getDevPointsSpent, setDevPointsSpent, getDevPointsTotal, getSpellPointsSpent, setSpellPointsSpent, getSpellPointsTotal, SHIELD_TYPES, calculateDB, setAdrenalDefenseIndex, rollBodyDevHitDie, getBodyDevSkillIndex, getDeathThreshold } from '../engine/character.js';
 import { generateStatRolls, getStatValues, statPotentialLookup, generateStatRollsHybrid, generateStatRollsAntiLose, getStatValuesHybrid, rollStatPairsRMSS, getStatBonus, getRankBonus, STAT_COUNT } from '../engine/stats.js';
 import { getAllClasses, getClassName, getRealmInfo, getRealmKey, getRealmLabel, isSpellUser, getClassPrimeStats, getPPStatIndices } from '../engine/classes.js';
@@ -1944,6 +1945,7 @@ function getComputed(computedMap, key) {
 
 // === Tab: Skills ===
 function renderSkillsTab(lang) {
+  loadSkillTables(); // preload in background; ready by first ⓘ click
   const categories = getAllCategories();
   const devPts = getDevPointsTotal(character);
   const spent = getDevPointsSpent(character);
@@ -2224,7 +2226,7 @@ function renderSkillsTab(lang) {
         const textColorClass = (character.skillTextColors || {})[globalIndex] ? `skill-text-${character.skillTextColors[globalIndex]}` : '';
         table += `
           <tr class="${totalRanks > 0 ? '' : 'text-gray-600'} ${hlClass} ${boldClass} ${textColorClass}" data-cat-group="${catId}">
-            <td class="sticky-col text-gray-300 skill-highlight-cell" data-skill-hl="${globalIndex}" style="cursor:pointer">${name} <span class="skill-stats-label">(${c.statLabel})</span>${isSpecializableSkill(globalIndex) ? ` <button class="btn-add-subskill text-xs" data-parent="${globalIndex}" style="background:none;border:1px solid currentColor;border-radius:3px;width:1rem;height:1rem;font-size:0.6rem;cursor:pointer;color:inherit;padding:0;line-height:1" title="${lang === 'en' ? 'Add specialization' : 'Spécialiser'}">▸</button>` : ''}</td>
+            <td class="sticky-col text-gray-300 skill-highlight-cell" data-skill-hl="${globalIndex}" style="cursor:pointer">${name} <span class="skill-stats-label">(${c.statLabel})</span>${isSpecializableSkill(globalIndex) ? ` <button class="btn-add-subskill text-xs" data-parent="${globalIndex}" style="background:none;border:1px solid currentColor;border-radius:3px;width:1rem;height:1rem;font-size:0.6rem;cursor:pointer;color:inherit;padding:0;line-height:1" title="${lang === 'en' ? 'Add specialization' : 'Spécialiser'}">▸</button>` : ''} <button class="btn-skill-info" data-global="${globalIndex}" style="background:none;border:none;font-size:0.6rem;cursor:pointer;color:#8b6914;opacity:0.45;padding:0;line-height:1;vertical-align:middle" title="${lang === 'en' ? 'Skill info' : 'Info compétence'}">ⓘ</button></td>
             <td class="text-center text-gray-500 text-xs">${costStr}</td>
             <td class="text-center">
               ${rankBoxes}
@@ -4310,6 +4312,15 @@ function bindSkillsEvents(app) {
         logSkillManualEdit(character, { skillIndex: idx, skillName, oldVal, newVal: val });
       }
       renderEditor(app);
+    });
+  });
+
+  // ⓘ skill info panel
+  document.querySelectorAll('.btn-skill-info').forEach(btn => {
+    btn.addEventListener('click', async e => {
+      e.stopPropagation();
+      await loadSkillTables();
+      showSkillInfoPanel(getStaticTable(parseInt(btn.dataset.global)), character.language || 'fr', btn);
     });
   });
 

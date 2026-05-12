@@ -1,6 +1,7 @@
 // Character sheet — full display and print view
 
-import { panel } from './components.js';
+import { panel, showSkillInfoPanel } from './components.js';
+import { loadSkillTables, getStaticTable } from '../engine/skill-tables.js';
 import { getStatBonus, getRankBonus } from '../engine/stats.js';
 import { getClassByIndex, getClassName, getCasterTypeKey } from '../engine/classes.js';
 import { getAllCategories, getSkillName, calcSkillStatBonus, CAT_NAMES_FR, CAT_NAMES_EN } from '../engine/skills.js';
@@ -11,6 +12,7 @@ import { downloadCharacter, saveToLocalStorage } from '../engine/export.js';
 import { showToast } from './components.js';
 
 export function renderSheet(character, app) {
+  loadSkillTables(); // preload in background
   const t = app.t;
   const lang = app.lang;
 
@@ -115,7 +117,7 @@ export function renderSheet(character, app) {
 
         catSkills += `
           <tr>
-            <td class="text-gray-300">${name}</td>
+            <td class="text-gray-300">${name} <button class="btn-skill-info" data-global="${globalIndex}" style="background:none;border:none;font-size:0.6rem;cursor:pointer;color:#8b6914;opacity:0.45;padding:0;line-height:1;vertical-align:middle" title="${lang === 'en' ? 'Skill info' : 'Info compétence'}">ⓘ</button></td>
             <td class="text-center text-amber-300">${ranks}</td>
             <td class="text-center stat-bonus ${statBonusClass}">${statBonus >= 0 ? '+' + statBonus : statBonus}</td>
             <td class="text-center text-green-400">+${rankBonus}</td>
@@ -172,7 +174,7 @@ export function renderSheet(character, app) {
 /**
  * Bind sheet action buttons (called from app after rendering).
  */
-export function bindSheetEvents(character) {
+export function bindSheetEvents(character, lang = 'fr') {
   const btnSaveJson = document.getElementById('btn-save-json');
   const btnSaveLocal = document.getElementById('btn-save-local');
   const btnPrint = document.getElementById('btn-print');
@@ -194,4 +196,12 @@ export function bindSheetEvents(character) {
   if (btnPrint) {
     btnPrint.addEventListener('click', () => window.print());
   }
+
+  document.querySelectorAll('.btn-skill-info').forEach(btn => {
+    btn.addEventListener('click', async e => {
+      e.stopPropagation();
+      await loadSkillTables();
+      showSkillInfoPanel(getStaticTable(parseInt(btn.dataset.global)), lang, btn);
+    });
+  });
 }

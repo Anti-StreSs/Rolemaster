@@ -140,6 +140,69 @@ export function promptNumberModal({ title, min, max, placeholder = '', defaultVa
 }
 
 /**
+ * Show a floating skill info panel (SoHK condition modifiers) near `anchorEl`.
+ * Calling again while open closes the previous one first (toggle if same skill).
+ */
+export function showSkillInfoPanel(tableData, lang, anchorEl) {
+  const existing = document.getElementById('skill-info-panel');
+  if (existing) {
+    const wasSame = existing.dataset.forGlobal === anchorEl.dataset.global;
+    existing.remove();
+    if (wasSame) return;
+  }
+  if (!tableData) return;
+
+  const t = (fr, en) => lang === 'en' ? en : fr;
+  const mods = tableData.special_modifiers || [];
+
+  const modsHtml = mods.length > 0
+    ? `<div style="margin-top:5px">
+        <div style="font-size:0.62rem;font-weight:bold;color:#8b6914;margin-bottom:2px">${t('Modificateurs de condition', 'Condition Modifiers')}</div>
+        <table style="width:100%;border-collapse:collapse">
+          ${mods.map(m => `<tr>
+            <td style="padding:1px 3px;color:#4a3520;font-size:0.65rem">${m.label_en}</td>
+            <td style="padding:1px 3px;text-align:right;font-weight:bold;font-size:0.65rem;color:${m.value > 0 ? '#22c55e' : '#ef4444'}">${m.value > 0 ? '+' : ''}${m.value}</td>
+          </tr>`).join('')}
+        </table>
+      </div>`
+    : `<div style="color:#8b8b7a;font-size:0.62rem;font-style:italic;margin-top:4px">${t('Aucun modificateur de condition.', 'No condition modifiers.')}</div>`;
+
+  const statsLine = tableData.sohk_stats
+    ? `<div style="font-size:0.61rem;color:#8b8b7a;margin-top:1px">${t('Carac.', 'Stats')}: ${tableData.sohk_stats}</div>`
+    : '';
+
+  const panel = document.createElement('div');
+  panel.id = 'skill-info-panel';
+  panel.dataset.forGlobal = anchorEl.dataset.global;
+  panel.style.cssText = 'position:fixed;z-index:9999;background:rgba(255,250,240,0.97);border:2px solid rgba(139,92,20,0.3);border-radius:8px;padding:8px 10px;box-shadow:0 4px 16px rgba(0,0,0,0.25);max-width:240px;min-width:160px';
+  panel.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <div>
+        <div style="font-size:0.72rem;font-weight:bold;color:#3a1a08">${tableData.skill_name_fr || tableData.skill_name_en}</div>
+        ${tableData.skill_name_fr && tableData.skill_name_en && tableData.skill_name_en !== tableData.skill_name_fr
+          ? `<div style="font-size:0.6rem;color:#8b6914">${tableData.skill_name_en}</div>` : ''}
+        ${statsLine}
+      </div>
+      <button id="sip-close" style="background:none;border:none;font-size:0.85rem;cursor:pointer;color:#8b6914;padding:0;margin-left:6px;line-height:1;flex-shrink:0">✕</button>
+    </div>
+    ${modsHtml}`;
+
+  const rect = anchorEl.getBoundingClientRect();
+  panel.style.left = Math.min(rect.left, window.innerWidth - 260) + 'px';
+  panel.style.top = (rect.bottom + 4) + 'px';
+
+  panel.querySelector('#sip-close').addEventListener('click', () => panel.remove());
+  const dismiss = e => {
+    if (!panel.contains(e.target) && e.target !== anchorEl) {
+      panel.remove();
+      document.removeEventListener('click', dismiss, true);
+    }
+  };
+  setTimeout(() => document.addEventListener('click', dismiss, true), 0);
+  document.body.appendChild(panel);
+}
+
+/**
  * Render a modifier browser panel inside `container` (prepended).
  * Shows all sections from action_modifiers.json with search + copy-to-clipboard.
  * Calling again while the panel is open closes it (toggle).

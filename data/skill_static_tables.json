@@ -1,0 +1,4108 @@
+{
+  "version": 1,
+  "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0 — Condition Modifier blocks",
+  "note": "applicable_modifiers are category-based defaults (Compeffets.pdf unavailable). special_modifiers are extracted verbatim from SoHK Condition Modifier sections. Keys are globalIndex strings from competences.json; 'name:X' keys have no match.",
+  "tables": {
+    "name:ADRENAL CONCENTRATION": {
+      "skill_name_en": "ADRENAL CONCENTRATION",
+      "skill_name_fr": "",
+      "sohk_name": "ADRENAL CONCENTRATION",
+      "sohk_category": "Self Control",
+      "sohk_stats": "SD/Pr/Pr",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "80": {
+      "skill_name_en": "Adrenal Defense",
+      "skill_name_fr": "Défense Adrénale",
+      "sohk_name": "ADRENAL DEFENSE",
+      "sohk_category": "Special Defenses",
+      "sohk_stats": "none",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:ADRENAL DEFLECTING": {
+      "skill_name_en": "ADRENAL DEFLECTING",
+      "skill_name_fr": "",
+      "sohk_name": "ADRENAL DEFLECTING",
+      "sohk_category": "Combat Maneuvers",
+      "sohk_stats": "Ag/Qu/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "94": {
+      "skill_name_en": "Landing",
+      "skill_name_fr": "Mouvement Adrénal Réception",
+      "sohk_name": "ADRENAL LANDING",
+      "sohk_category": "Self Control",
+      "sohk_stats": "SD/Pr/ Ag",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "90": {
+      "skill_name_en": "Leaping",
+      "skill_name_fr": "Mouvement Adrénal Bond",
+      "sohk_name": "ADRENAL LEAPING",
+      "sohk_category": "Self Control",
+      "sohk_stats": "SD/Pr/St",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "95": {
+      "skill_name_en": "Speed",
+      "skill_name_fr": "Mouvement Adrénal Vitesse",
+      "sohk_name": "ADRENAL QUICKDRAW ADRENAL SPEED",
+      "sohk_category": "Self Control Category: .................................................. Self Control",
+      "sohk_stats": "SD/Pr/ Ag Optional Stats Used: ............................... SD/Pr/Qu",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:ADRENAL STABILIZATION": {
+      "skill_name_en": "ADRENAL STABILIZATION",
+      "skill_name_fr": "",
+      "sohk_name": "ADRENAL STABILIZATION",
+      "sohk_category": "Self Control",
+      "sohk_stats": "SD/Pr/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "93": {
+      "skill_name_en": "Strength",
+      "skill_name_fr": "Mouvement Adrénal Force",
+      "sohk_name": "ADRENAL STRENGTH",
+      "sohk_category": "Self Control",
+      "sohk_stats": "SD/Pr/St",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "13": {
+      "skill_name_en": "Advanced Math",
+      "skill_name_fr": "Maths Avancées",
+      "sohk_name": "ADVANCED MATH",
+      "sohk_category": "Science/ Analytic • Specialized",
+      "sohk_stats": "Re/Me/Re",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "119": {
+      "skill_name_en": "Advertising",
+      "skill_name_fr": "Publicité",
+      "sohk_name": "ADVERTISING",
+      "sohk_category": "Technical/Trade • Professional",
+      "sohk_stats": "Re/Me/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "1": {
+      "skill_name_en": "Alchemy",
+      "skill_name_fr": "Alchimie",
+      "sohk_name": "ALCHEMY",
+      "sohk_category": "Science/ Analytic • Specialized",
+      "sohk_stats": "Alchemy",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:ALERTNESS": {
+      "skill_name_en": "ALERTNESS",
+      "skill_name_fr": "",
+      "sohk_name": "ALERTNESS",
+      "sohk_category": "Awareness • Perceptions",
+      "sohk_stats": "In/SD/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "166": {
+      "skill_name_en": "Animal Healing",
+      "skill_name_fr": "Soin d'Animaux",
+      "sohk_name": "ANIMAL HEALING",
+      "sohk_category": "Outdoor • Animal",
+      "sohk_stats": "Em/ Ag/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "38": {
+      "skill_name_en": "Animal Handling",
+      "skill_name_fr": "Animalerie",
+      "sohk_name": "ANIMAL HANDLING",
+      "sohk_category": "Outdoor • Animal",
+      "sohk_stats": "Em/ Ag/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:ANIMAL MASTERY": {
+      "skill_name_en": "ANIMAL MASTERY",
+      "skill_name_fr": "",
+      "sohk_name": "ANIMAL MASTERY",
+      "sohk_category": "Outdoor • Animal",
+      "sohk_stats": "Em/ Ag/Pr",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "42": {
+      "skill_name_en": "Animal Training",
+      "skill_name_fr": "Dressage",
+      "sohk_name": "ANIMAL TRAINING",
+      "sohk_category": "Outdoor • Animal",
+      "sohk_stats": "Em/ Ag/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "2": {
+      "skill_name_en": "Anthropology",
+      "skill_name_fr": "Anthropologie",
+      "sohk_name": "ANTHROPOLOGY",
+      "sohk_category": "Science/ Analytic • Specialized",
+      "sohk_stats": "Re/Me/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "101": {
+      "skill_name_en": "Appraisal",
+      "skill_name_fr": "Estimation",
+      "sohk_name": "APPRAISAL",
+      "sohk_category": "Technical/Trade • Vocational",
+      "sohk_stats": "Me/In/Re",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "103": {
+      "skill_name_en": "Armor Evaluation",
+      "skill_name_fr": "Evaluation des Armures",
+      "sohk_name": "ARMOR",
+      "sohk_category": "Armor",
+      "sohk_stats": "St/ Ag/St or Ag/St/ Ag",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:ARTIFACT LORI": {
+      "skill_name_en": "ARTIFACT LORI",
+      "skill_name_fr": "",
+      "sohk_name": "ARTIFACT LORI",
+      "sohk_category": "Lore • Magical",
+      "sohk_stats": "Me/Re/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "4": {
+      "skill_name_en": "Astronomy",
+      "skill_name_fr": "Astronomie",
+      "sohk_name": "ASTRONOMY",
+      "sohk_category": "Science/ Analytic • Specialized",
+      "sohk_stats": "Re/Me/Pr",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:ATTUNEMENT": {
+      "skill_name_en": "ATTUNEMENT",
+      "skill_name_fr": "",
+      "sohk_name": "ATTUNEMENT",
+      "sohk_category": "Power Awareness",
+      "sohk_stats": "Em/In/Pr",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Realm of the spell is unknown",
+          "value": -20
+        },
+        {
+          "label_en": "Realm of the spell is known",
+          "value": 10
+        },
+        {
+          "label_en": "Spell is not known",
+          "value": -10
+        },
+        {
+          "label_en": "Spell is known",
+          "value": 20
+        },
+        {
+          "label_en": "Realm of the spell differs from character",
+          "value": -30
+        },
+        {
+          "label_en": "Character can cast spell intrinsically",
+          "value": 30
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "14": {
+      "skill_name_en": "Basic Mathematics",
+      "skill_name_fr": "Maths de base",
+      "sohk_name": "BASIC MATH",
+      "sohk_category": "Science/ Analytic • Basic",
+      "sohk_stats": "Re/Me/ Re",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "195": {
+      "skill_name_en": "Begging",
+      "skill_name_fr": "Mendicité",
+      "sohk_name": "BEGGING",
+      "sohk_category": "Technical/Trade • General",
+      "sohk_stats": "Re/M e/Pr",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "5": {
+      "skill_name_en": "Biochemistry",
+      "skill_name_fr": "Biochimie",
+      "sohk_name": "BIOCHEMISTRY",
+      "sohk_category": "Science/ Analytic • Specialized",
+      "sohk_stats": "Re/Me/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "84": {
+      "skill_name_en": "Ki",
+      "skill_name_fr": "Méditation Ki",
+      "sohk_name": "STALKING",
+      "sohk_category": "Subterfuge,• Stealth",
+      "sohk_stats": "Ag/SD/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "20": {
+      "skill_name_en": "Boat Pilot",
+      "skill_name_fr": "Pilote de Bateau",
+      "sohk_name": "BOAT PILOT",
+      "sohk_category": "Technical/Trade • Vocational",
+      "sohk_stats": "Me/In/ Ag",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "47": {
+      "skill_name_en": "Body Development",
+      "skill_name_fr": "Développement Corporel",
+      "sohk_name": "BODY DEVELOPMENT",
+      "sohk_category": "Body Development",
+      "sohk_stats": "Co/SD/Co",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:N/A BOXING": {
+      "skill_name_en": "N/A BOXING",
+      "skill_name_fr": "",
+      "sohk_name": "N/A BOXING",
+      "sohk_category": "Martial Arts • Striking",
+      "sohk_stats": "St/ Ag/St",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "62": {
+      "skill_name_en": "Brawling",
+      "skill_name_fr": "Bagarre",
+      "sohk_name": "BRAWLING",
+      "sohk_category": "Special Attacks",
+      "sohk_stats": "St/ Ag/St",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "189": {
+      "skill_name_en": "Bribery",
+      "skill_name_fr": "Corruption",
+      "sohk_name": "BRIBERY",
+      "sohk_category": "Influence",
+      "sohk_stats": "Pr/Em/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:CARTOGRAPHY": {
+      "skill_name_en": "CARTOGRAPHY",
+      "skill_name_fr": "",
+      "sohk_name": "CARTOGRAPHY",
+      "sohk_category": "Technical/Trade • Vocational",
+      "sohk_stats": "Me/In/Re",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "204": {
+      "skill_name_en": "Caving",
+      "skill_name_fr": "Spéléologie",
+      "sohk_name": "CAVING",
+      "sohk_category": "Outdoor • Environmental",
+      "sohk_stats": "SD/In/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "154": {
+      "skill_name_en": "Circle Lore",
+      "skill_name_fr": "Savoir en Cercles",
+      "sohk_name": "CIRCLE LORE",
+      "sohk_category": "Lore • Magical",
+      "sohk_stats": "Me/Re/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "85": {
+      "skill_name_en": "Cleansing",
+      "skill_name_fr": "Méditation Purification",
+      "sohk_name": "CLEANSING TRANCE",
+      "sohk_category": "Self Control",
+      "sohk_stats": "SD/Pr/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "187": {
+      "skill_name_en": "Acting",
+      "skill_name_fr": "Comédie",
+      "sohk_name": "I CONTACTING",
+      "sohk_category": ". Urban",
+      "sohk_stats": "In/Pr/Re",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "123": {
+      "skill_name_en": "Contortions",
+      "skill_name_fr": "Contorsionisme",
+      "sohk_name": "CONTORTIONS",
+      "sohk_category": "Athletic • Gymnastics",
+      "sohk_stats": "Ag/Qu/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:CONTROLLYCANTHROPY": {
+      "skill_name_en": "CONTROLLYCANTHROPY",
+      "skill_name_fr": "",
+      "sohk_name": "CONTROLLYCANTHROPY",
+      "sohk_category": "Self Control",
+      "sohk_stats": "SD/Pr/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Full moon",
+          "value": -100
+        },
+        {
+          "label_en": "Half moon",
+          "value": -50
+        },
+        {
+          "label_en": "New moon",
+          "value": 0
+        },
+        {
+          "label_en": "No moon",
+          "value": 0
+        },
+        {
+          "label_en": "Daybreak",
+          "value": 100
+        },
+        {
+          "label_en": "Daylight outdoors",
+          "value": 50
+        },
+        {
+          "label_en": "Daylight indoors",
+          "value": 25
+        },
+        {
+          "label_en": "Daylight underground",
+          "value": 10
+        },
+        {
+          "label_en": "See a friend wounded",
+          "value": -25
+        },
+        {
+          "label_en": "See a friend killed",
+          "value": -50
+        },
+        {
+          "label_en": "Taken hits",
+          "value": -50
+        },
+        {
+          "label_en": "Taken a critical",
+          "value": -50
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:COUNTERFEITING": {
+      "skill_name_en": "COUNTERFEITING",
+      "skill_name_fr": "",
+      "sohk_name": "COUNTERFEITING",
+      "sohk_category": "Subterfuge • Mechanics",
+      "sohk_stats": "In/ Ag/Re",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:CULTURE LORE": {
+      "skill_name_en": "CULTURE LORE",
+      "skill_name_fr": "",
+      "sohk_name": "CULTURE LORE",
+      "sohk_category": "Lore • General",
+      "sohk_stats": "Me/Re/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "87": {
+      "skill_name_en": "Death",
+      "skill_name_fr": "Méditation Suicide",
+      "sohk_name": "DEATH TRANCE",
+      "sohk_category": "Self Control",
+      "sohk_stats": "SD/Pr/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "24": {
+      "skill_name_en": "Demon/Devil Lore",
+      "skill_name_fr": "Savoir en Démons/Diables",
+      "sohk_name": "DEMON/DEVIL LORE",
+      "sohk_category": "Lore • Obscure",
+      "sohk_stats": "Me/Re/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:DETECT TRAPS": {
+      "skill_name_en": "DETECT TRAPS",
+      "skill_name_fr": "",
+      "sohk_name": "DETECT TRAPS",
+      "sohk_category": "Awareness • Searching",
+      "sohk_stats": "In/Re/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "161": {
+      "skill_name_en": "Diagnostics",
+      "skill_name_fr": "Diagnostique",
+      "sohk_name": "DIAGNOSTICS",
+      "sohk_category": "Technical/Trade • Professional",
+      "sohk_stats": "Re/Me/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "145": {
+      "skill_name_en": "Directed Spells",
+      "skill_name_fr": "Direction de Sorts",
+      "sohk_name": "SPELLS",
+      "sohk_category": "Spells",
+      "sohk_stats": "Realm Stat",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "177": {
+      "skill_name_en": "Direction Sense",
+      "skill_name_fr": "Sens de l'Orientation",
+      "sohk_name": "DIRECTION SENSE",
+      "sohk_category": "Awareness • Senses",
+      "sohk_stats": "In/SD/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:DISARMING TRAPS": {
+      "skill_name_en": "DISARMING TRAPS",
+      "skill_name_fr": "",
+      "sohk_name": "DISARMING TRAPS",
+      "sohk_category": "Subterfuge • Mechanics",
+      "sohk_stats": "In/ Ag/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "191": {
+      "skill_name_en": "Disguise",
+      "skill_name_fr": "Déguisement",
+      "sohk_name": "DISGUISE",
+      "sohk_category": "Subterfuge • Mechanics",
+      "sohk_stats": "In/ Ag/Pr",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "46": {
+      "skill_name_en": "Distance Running",
+      "skill_name_fr": "Course de Fond",
+      "sohk_name": "DISTANCE RUNNING",
+      "sohk_category": "Athletic • Endurance",
+      "sohk_stats": "Co/ Ag/Co",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "146": {
+      "skill_name_en": "Divination",
+      "skill_name_fr": "Divination",
+      "sohk_name": "DIVINATION",
+      "sohk_category": "Power Awareness",
+      "sohk_stats": "Em/In/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:DMNG": {
+      "skill_name_en": "DMNG",
+      "skill_name_fr": "",
+      "sohk_name": "DMNG",
+      "sohk_category": "Athletic • Gymnastics",
+      "sohk_stats": "Ag/Qu/ Ag",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "96": {
+      "skill_name_en": "Dowsing",
+      "skill_name_fr": "Sourcier",
+      "sohk_name": "DOWSING",
+      "sohk_category": "Technical/Trade • Professional",
+      "sohk_stats": "Re/Me/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:DRATTING": {
+      "skill_name_en": "DRATTING",
+      "skill_name_fr": "",
+      "sohk_name": "DRATTING",
+      "sohk_category": ". Crafts",
+      "sohk_stats": "Ag/Me/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "25": {
+      "skill_name_en": "Dragon Lore",
+      "skill_name_fr": "Savoir en Dragons",
+      "sohk_name": "DRAGON LORE",
+      "sohk_category": "Lore • Obscure",
+      "sohk_stats": "Me/Re/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "40": {
+      "skill_name_en": "Driving",
+      "skill_name_fr": "Conduite",
+      "sohk_name": "DRIVING",
+      "sohk_category": "Outdoor • Animal",
+      "sohk_stats": "Em/ Ag/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:DROWSING": {
+      "skill_name_en": "DROWSING",
+      "skill_name_fr": "",
+      "sohk_name": "DROWSING",
+      "sohk_category": "Technical/Trade • Professional",
+      "sohk_stats": "Re/Me/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "12": {
+      "skill_name_en": "Engineering",
+      "skill_name_fr": "Ingénieurie",
+      "sohk_name": "ENGINEERING",
+      "sohk_category": "Technical/Trade • Professional",
+      "sohk_stats": "Re/Me/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:EVALUATE ARMOR": {
+      "skill_name_en": "EVALUATE ARMOR",
+      "skill_name_fr": "",
+      "sohk_name": "EVALUATE ARMOR",
+      "sohk_category": "Technical/Trade • Vocational",
+      "sohk_stats": "Me/In/Re",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:EVALUATE METAL": {
+      "skill_name_en": "EVALUATE METAL",
+      "skill_name_fr": "",
+      "sohk_name": "EVALUATE METAL",
+      "sohk_category": "Technical/Trade • Vocational",
+      "sohk_stats": "Me/In/Re",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "27": {
+      "skill_name_en": "Faerie Lore",
+      "skill_name_fr": "Savoir en Féerie",
+      "sohk_name": "FAERIE LORE",
+      "sohk_category": "Lore • Obscure",
+      "sohk_stats": "Me/Re/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "26": {
+      "skill_name_en": "Fauna Lore",
+      "skill_name_fr": "Savoir en Faune",
+      "sohk_name": "FAUNA LORE",
+      "sohk_category": "Lore • General",
+      "sohk_stats": "Me/Re/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "111": {
+      "skill_name_en": "Fletching",
+      "skill_name_fr": "Flècherie",
+      "sohk_name": "FLETCHING",
+      "sohk_category": ". Crafts",
+      "sohk_stats": "Ag/Me/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "28": {
+      "skill_name_en": "Flora Lore",
+      "skill_name_fr": "Savoir en Flore",
+      "sohk_name": "FLORA LORE",
+      "sohk_category": "Lore • General",
+      "sohk_stats": "Me/Re/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "59": {
+      "skill_name_en": "Flying/Gliding",
+      "skill_name_fr": "Vol",
+      "sohk_name": "FLYING/GLIDING",
+      "sohk_category": "Athletic • Gymnastics",
+      "sohk_stats": "Ag/Qu/ln",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "205": {
+      "skill_name_en": "Foraging",
+      "skill_name_fr": "Survie dans la Nature",
+      "sohk_name": "FORAGING",
+      "sohk_category": "Outdoor • Environmental",
+      "sohk_stats": "SD/In/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:FORGERY": {
+      "skill_name_en": "FORGERY",
+      "skill_name_fr": "",
+      "sohk_name": "FORGERY",
+      "sohk_category": "Subterfuge • Mechanics",
+      "sohk_stats": "In/ Ag/Re",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "81": {
+      "skill_name_en": "Frenzy",
+      "skill_name_fr": "Frénésie",
+      "sohk_name": "FRENZY",
+      "sohk_category": "Self Control",
+      "sohk_stats": "SD/Pr/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "182": {
+      "skill_name_en": "Gambling",
+      "skill_name_fr": "Jeu",
+      "sohk_name": "GAMBLING",
+      "sohk_category": "Technical/Trade • General",
+      "sohk_stats": "Re/Me/Pr",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "83": {
+      "skill_name_en": "Healing",
+      "skill_name_fr": "Méditation Guérison",
+      "sohk_name": "HEALING TRANCE",
+      "sohk_category": "Self Control",
+      "sohk_stats": "SD/Pr/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "10": {
+      "skill_name_en": "Heraldry",
+      "skill_name_fr": "Héraldique",
+      "sohk_name": "HERALDRY",
+      "sohk_category": "Lore • General",
+      "sohk_stats": "Me/Re/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "29": {
+      "skill_name_en": "Herb Lore",
+      "skill_name_fr": "Savoir en Herbes",
+      "sohk_name": "HERB LORE",
+      "sohk_category": "Lore • Technical",
+      "sohk_stats": "Me/Re/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "44": {
+      "skill_name_en": "Herding",
+      "skill_name_fr": "Troupeaux",
+      "sohk_name": "HERDING",
+      "sohk_category": "Outdoor • Animal",
+      "sohk_stats": "Em/ Ag/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Character has a properly trained herd dog",
+          "value": 20
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:HIDING": {
+      "skill_name_en": "HIDING",
+      "skill_name_fr": "",
+      "sohk_name": "HIDING",
+      "sohk_category": "Subterfuge • Stealth",
+      "sohk_stats": "Ag/SD/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:HIDING ITEMS": {
+      "skill_name_en": "HIDING ITEMS",
+      "skill_name_fr": "",
+      "sohk_name": "HIDING ITEMS",
+      "sohk_category": "Subterfuge • Mechanics",
+      "sohk_stats": "In/ Ag/Re",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "11": {
+      "skill_name_en": "Racial History",
+      "skill_name_fr": "Histoire de la race",
+      "sohk_name": "HISTORY",
+      "sohk_category": "Lore • General",
+      "sohk_stats": "Me/Re/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:HUNTING": {
+      "skill_name_en": "HUNTING",
+      "skill_name_fr": "",
+      "sohk_name": "HUNTING",
+      "sohk_category": "Outdoor • Environmental",
+      "sohk_stats": "SD/In/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Night",
+          "value": -20
+        },
+        {
+          "label_en": "Day",
+          "value": 0
+        },
+        {
+          "label_en": "Dusk/Dawn",
+          "value": 10
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "162": {
+      "skill_name_en": "Hypnosis",
+      "skill_name_fr": "Hypnose",
+      "sohk_name": "HYPNOSIS",
+      "sohk_category": "Technical/Trade • Vocational",
+      "sohk_stats": "Me/In/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "181": {
+      "skill_name_en": "Interrogation",
+      "skill_name_fr": "Interrogatoire",
+      "sohk_name": "INTERROGATION",
+      "sohk_category": "Influence",
+      "sohk_stats": "Pr/Em/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Causing discomfort",
+          "value": 10
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:JOUSTING": {
+      "skill_name_en": "JOUSTING",
+      "skill_name_fr": "",
+      "sohk_name": "JOUSTING",
+      "sohk_category": "Special Attacks",
+      "sohk_stats": "St/ Ag/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "127": {
+      "skill_name_en": "Juggling",
+      "skill_name_fr": "Jonglerie",
+      "sohk_name": "JUGGLING",
+      "sohk_category": "Athletic • Gymnastics",
+      "sohk_stats": "Ag/Qu/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Irregularly shaped objects",
+          "value": -10
+        },
+        {
+          "label_en": "Different objects",
+          "value": -30
+        },
+        {
+          "label_en": "Per pound over 1 lb",
+          "value": -5
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "129": {
+      "skill_name_en": "Jumping",
+      "skill_name_fr": "Saut",
+      "sohk_name": "JUMPING",
+      "sohk_category": "Athletic • Brawn",
+      "sohk_stats": "St/Co/ Ag",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "136": {
+      "skill_name_en": "Language",
+      "skill_name_fr": "Linguistique",
+      "sohk_name": "LANGUAGES",
+      "sohk_category": "Communication",
+      "sohk_stats": "Re/Me/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "179": {
+      "skill_name_en": "Leadership",
+      "skill_name_fr": "Commandement",
+      "sohk_name": "LEADERSHIP",
+      "sohk_category": "Influence",
+      "sohk_stats": "Pr/Em/Pr",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:LEATHER-CRAFTS": {
+      "skill_name_en": "LEATHER-CRAFTS",
+      "skill_name_fr": "",
+      "sohk_name": "LEATHER-CRAFTS",
+      "sohk_category": ". Crafts",
+      "sohk_stats": "Ag/Me/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "171": {
+      "skill_name_en": "Lie Perception",
+      "skill_name_fr": "Perception des Mensonges",
+      "sohk_name": "LIE PERCEPTION",
+      "sohk_category": "Awareness • Searching",
+      "sohk_stats": "In/Re/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Cannot see target",
+          "value": -30
+        },
+        {
+          "label_en": "Familiar with liar",
+          "value": 10
+        },
+        {
+          "label_en": "Knows liar well",
+          "value": 30
+        },
+        {
+          "label_en": "Unfamiliar with liar",
+          "value": -25
+        },
+        {
+          "label_en": "Less than 5 ranks in language",
+          "value": -20
+        },
+        {
+          "label_en": "No ranks in language",
+          "value": -40
+        },
+        {
+          "label_en": "Cannot hear target",
+          "value": -50
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "137": {
+      "skill_name_en": "Lip Reading",
+      "skill_name_fr": "Lire sur les Lèvres",
+      "sohk_name": "LIP READING",
+      "sohk_category": "Communication",
+      "sohk_stats": "Re/Me/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Each foot over 20'",
+          "value": -2
+        },
+        {
+          "label_en": "Using a telescope/binoculars",
+          "value": -10
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:LOCATE HIDDEN": {
+      "skill_name_en": "LOCATE HIDDEN",
+      "skill_name_fr": "",
+      "sohk_name": "LOCATE HIDDEN",
+      "sohk_category": "Awareness • Searching",
+      "sohk_stats": "In/Re/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Searching for a specific item",
+          "value": 10
+        },
+        {
+          "label_en": "Has had location described in detail",
+          "value": 20
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "34": {
+      "skill_name_en": "Lock Lore",
+      "skill_name_fr": "Savoir en Serrures",
+      "sohk_name": "LOCK LORE",
+      "sohk_category": "Lore • Technical",
+      "sohk_stats": "Me/Re/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "147": {
+      "skill_name_en": "Magical Languages",
+      "skill_name_fr": "Langages Magiques",
+      "sohk_name": "MAGICAL LANGUAGES",
+      "sohk_category": "Communication",
+      "sohk_stats": "Re/Me/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "152": {
+      "skill_name_en": "Magical Ritual",
+      "skill_name_fr": "Rituel Magique",
+      "sohk_name": "MAGICAL RITUAL",
+      "sohk_category": "Power Manipulation",
+      "sohk_stats": "Em/In/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Spell user",
+          "value": 5
+        },
+        {
+          "label_en": "Semi spell user",
+          "value": -10
+        },
+        {
+          "label_en": "Non spell user",
+          "value": -25
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "15": {
+      "skill_name_en": "Mechanition",
+      "skill_name_fr": "Mécanique",
+      "sohk_name": "MECHANITION",
+      "sohk_category": "Technical/Trade • Professional",
+      "sohk_stats": "Re/Me/ Ag",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:MEDITATION": {
+      "skill_name_en": "MEDITATION",
+      "skill_name_fr": "",
+      "sohk_name": "MEDITATION",
+      "sohk_category": "Self Control",
+      "sohk_stats": "SD /Pr/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Elves",
+          "value": 25
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "31": {
+      "skill_name_en": "Metal Lore",
+      "skill_name_fr": "Savoir en Mentaux",
+      "sohk_name": "METAL LORE",
+      "sohk_category": "Lore • Technical",
+      "sohk_stats": "Me/Re/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:METAL-CRAFTS": {
+      "skill_name_en": "METAL-CRAFTS",
+      "skill_name_fr": "",
+      "sohk_name": "METAL-CRAFTS",
+      "sohk_category": ". Crafts",
+      "sohk_stats": "Ag/Me/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "18": {
+      "skill_name_en": "Military Organization",
+      "skill_name_fr": "Organisation Militaire",
+      "sohk_name": "MILITARY ORGANIZATION",
+      "sohk_category": "Technical/Trade • Professional",
+      "sohk_stats": "Re/Me/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "196": {
+      "skill_name_en": "Mimery",
+      "skill_name_fr": "Mime",
+      "sohk_name": "MIMERY",
+      "sohk_category": "Artistic • Active",
+      "sohk_stats": "Pr/Em/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "135": {
+      "skill_name_en": "Mimicry",
+      "skill_name_fr": "Imitation",
+      "sohk_name": "MIMICRY",
+      "sohk_category": "Artistic • Active",
+      "sohk_stats": "Pr/Em/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:MINGLING": {
+      "skill_name_en": "MINGLING",
+      "skill_name_fr": "",
+      "sohk_name": "MINGLING",
+      "sohk_category": ". Urban",
+      "sohk_stats": "In/Pr/ Ag",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "9": {
+      "skill_name_en": "Mining",
+      "skill_name_fr": "Exploitation Minière",
+      "sohk_name": "MINING",
+      "sohk_category": "Technica1/Trade • Professional",
+      "sohk_stats": "Re/Me/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Per week in the past",
+          "value": -5
+        },
+        {
+          "label_en": "Carefully committed to memory",
+          "value": 30
+        },
+        {
+          "label_en": "Impact on PC",
+          "value": -10
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:MOUNTED COMBAT": {
+      "skill_name_en": "MOUNTED COMBAT",
+      "skill_name_fr": "",
+      "sohk_name": "MOUNTED COMBAT",
+      "sohk_category": "Combat Maneuvers",
+      "sohk_stats": "Ag/Qu/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "138": {
+      "skill_name_en": "Music",
+      "skill_name_fr": "Musique",
+      "sohk_name": "MUSIC",
+      "sohk_category": "Artistic • Passive",
+      "sohk_stats": "Em/In/Pr",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "2-4 people",
+          "value": -5
+        },
+        {
+          "label_en": "5-10 people",
+          "value": -10
+        },
+        {
+          "label_en": "11-20 people",
+          "value": -15
+        },
+        {
+          "label_en": "21 + people",
+          "value": -20
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "17": {
+      "skill_name_en": "Navigation",
+      "skill_name_fr": "Navigation",
+      "sohk_name": "NAVIGATION",
+      "sohk_category": "Technical/Trade • Vocational",
+      "sohk_stats": "Me/In/Re",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Light fog",
+          "value": -5
+        },
+        {
+          "label_en": "Dense fog",
+          "value": -15
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:OBSERVATION": {
+      "skill_name_en": "OBSERVATION",
+      "skill_name_fr": "",
+      "sohk_name": "OBSERVATION",
+      "sohk_category": "Awareness • Searching",
+      "sohk_stats": "In/Re/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:OPERATING EQUIPMENT": {
+      "skill_name_en": "OPERATING EQUIPMENT",
+      "skill_name_fr": "",
+      "sohk_name": "OPERATING EQUIPMENT",
+      "sohk_category": "TechnicaVTrade • General",
+      "sohk_stats": "Re/Me/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:ORIENTEERING": {
+      "skill_name_en": "ORIENTEERING",
+      "skill_name_fr": "",
+      "sohk_name": "ORIENTEERING",
+      "sohk_category": "Technical/Trade • General",
+      "sohk_stats": "Re/Me/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Light fog",
+          "value": -15
+        },
+        {
+          "label_en": "Dense fog",
+          "value": -45
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "118": {
+      "skill_name_en": "Painting",
+      "skill_name_fr": "Peinture",
+      "sohk_name": "PAINTING",
+      "sohk_category": "Artistic • Passive",
+      "sohk_stats": "Em/In/ Ag",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Unfamiliar medium",
+          "value": -30
+        },
+        {
+          "label_en": "From posed image or person",
+          "value": 10
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:PLANAR LORE": {
+      "skill_name_en": "PLANAR LORE",
+      "skill_name_fr": "",
+      "sohk_name": "PLANAR LORE",
+      "sohk_category": "Lore • Magical",
+      "sohk_stats": "Me/Re/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "114": {
+      "skill_name_en": "Play Instrument",
+      "skill_name_fr": "Instrument",
+      "sohk_name": "I PLAY INSTRUMENT",
+      "sohk_category": "Artistic • Active",
+      "sohk_stats": "Pr/Em/ Ag",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "139": {
+      "skill_name_en": "Poetic Improvisation",
+      "skill_name_fr": "Poésie",
+      "sohk_name": "POETIC IMPROVISATION",
+      "sohk_category": "Artistic • Active",
+      "sohk_stats": "Pr/Em/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Elves",
+          "value": 10
+        },
+        {
+          "label_en": "7+ ranks in spoken language",
+          "value": 10
+        },
+        {
+          "label_en": "Improvisation",
+          "value": -30
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:POETRY": {
+      "skill_name_en": "POETRY",
+      "skill_name_fr": "",
+      "sohk_name": "POETRY",
+      "sohk_category": "Artistic • Passive",
+      "sohk_stats": "Em/In/RE",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Writing about a personal experience",
+          "value": 10
+        },
+        {
+          "label_en": "Writing about an unfamiliar topic",
+          "value": -30
+        },
+        {
+          "label_en": "8+ ranks in written language",
+          "value": 15
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "33": {
+      "skill_name_en": "Poison Lore",
+      "skill_name_fr": "Savoir en Poison",
+      "sohk_name": "POISON LORE",
+      "sohk_category": "Lore • Technical",
+      "sohk_stats": "Me/Re/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "128": {
+      "skill_name_en": "Pole Vaulting",
+      "skill_name_fr": "Perche",
+      "sohk_name": "POLE-VAULTING",
+      "sohk_category": "Athletic • Gymnastics",
+      "sohk_stats": "Ag/Qu/ Ag",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "149": {
+      "skill_name_en": "Power Perception",
+      "skill_name_fr": "Perception du pouvoir",
+      "sohk_name": "POWER PERCEPTION",
+      "sohk_category": "Power Awareness",
+      "sohk_stats": "Em/In/Pr",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Per foot over 10'",
+          "value": -2
+        },
+        {
+          "label_en": "Informational Spell",
+          "value": -10
+        },
+        {
+          "label_en": "Elemental Spell",
+          "value": 20
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "53": {
+      "skill_name_en": "Rowing",
+      "skill_name_fr": "Navigation à la Rame",
+      "sohk_name": "ROWING",
+      "sohk_category": "Athletic • Endurance",
+      "sohk_stats": "Co/ Ag/St",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:PREPARE POISONS": {
+      "skill_name_en": "PREPARE POISONS",
+      "skill_name_fr": "",
+      "sohk_name": "PREPARE POISONS",
+      "sohk_category": "Technical/Trade • Vocational",
+      "sohk_stats": "Me/In/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "140": {
+      "skill_name_en": "Propaganda",
+      "skill_name_fr": "Propagande",
+      "sohk_name": "PROPAGANDA",
+      "sohk_category": "Influence",
+      "sohk_stats": "Pr/Em/Re",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:PSYCHOLOGY": {
+      "skill_name_en": "PSYCHOLOGY",
+      "skill_name_fr": "",
+      "sohk_name": "PSYCHOLOGY",
+      "sohk_category": "Science/ Analytic • Specialized",
+      "sohk_stats": "Re/Me/Pr",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "134": {
+      "skill_name_en": "Public-Speaking",
+      "skill_name_fr": "Eloquence en Public",
+      "sohk_name": "PUBLIC SPEAKING",
+      "sohk_category": "Influence",
+      "sohk_stats": "Pr/Em/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "55": {
+      "skill_name_en": "Rappelling",
+      "skill_name_fr": "Rappel",
+      "sohk_name": "RAPPELLING",
+      "sohk_category": "Athletic • Gymnastics",
+      "sohk_stats": "Ag/Qu/St",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Rope and climbing gear",
+          "value": 20
+        },
+        {
+          "label_en": "Rope only",
+          "value": -15
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "153": {
+      "skill_name_en": "Runes",
+      "skill_name_fr": "Runes",
+      "sohk_name": "READ RUNES",
+      "sohk_category": "Power Awareness",
+      "sohk_stats": "Em/In/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Realm of the spell is unknown",
+          "value": -20
+        },
+        {
+          "label_en": "Realm of the spell is known",
+          "value": 10
+        },
+        {
+          "label_en": "Spell is not known",
+          "value": -10
+        },
+        {
+          "label_en": "Spell is known",
+          "value": 20
+        },
+        {
+          "label_en": "Realm of the spell differs from character",
+          "value": -30
+        },
+        {
+          "label_en": "Character can cast spell intrinsically",
+          "value": 30
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:READING TRACKS": {
+      "skill_name_en": "READING TRACKS",
+      "skill_name_fr": "",
+      "sohk_name": "READING TRACKS",
+      "sohk_category": "Awareness • Searching",
+      "sohk_stats": "In/Re/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Mud",
+          "value": 20
+        },
+        {
+          "label_en": "Snow",
+          "value": 10
+        },
+        {
+          "label_en": "Grass",
+          "value": -10
+        },
+        {
+          "label_en": "Stone",
+          "value": -20
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:REALITY AWARENESS": {
+      "skill_name_en": "REALITY AWARENESS",
+      "skill_name_fr": "",
+      "sohk_name": "REALITY AWARENESS",
+      "sohk_category": "Awareness • Senses",
+      "sohk_stats": "In/SD/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:RELIGION": {
+      "skill_name_en": "RELIGION",
+      "skill_name_fr": "",
+      "sohk_name": "RELIGION",
+      "sohk_category": "Lore • General",
+      "sohk_stats": "Me/Re/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:RESEARCH": {
+      "skill_name_en": "RESEARCH",
+      "skill_name_fr": "",
+      "sohk_name": "RESEARCH",
+      "sohk_category": "Science/ Analytic • Basic",
+      "sohk_stats": "Re/Me/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "77": {
+      "skill_name_en": "Reverse Stroke",
+      "skill_name_fr": "Revers",
+      "sohk_name": "REVERSE STROKE",
+      "sohk_category": "Combat Maneuvers",
+      "sohk_stats": "Ag/Qu/Pr",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "43": {
+      "skill_name_en": "Riding",
+      "skill_name_fr": "Equitation",
+      "sohk_name": "RIDING",
+      "sohk_category": "Outdoor • Animal",
+      "sohk_stats": "Em/ Ag/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "116": {
+      "skill_name_en": "Rope Mastery",
+      "skill_name_fr": "Maitrise de la Corde",
+      "sohk_name": "ROPE MASTERY",
+      "sohk_category": ". Crafts",
+      "sohk_stats": "Ag/Me/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "51": {
+      "skill_name_en": "Sailing",
+      "skill_name_fr": "Marine",
+      "sohk_name": "SAILING",
+      "sohk_category": "Technical/Trade • General",
+      "sohk_stats": "Re/Me/ Ag",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:SCALING": {
+      "skill_name_en": "SCALING",
+      "skill_name_fr": "",
+      "sohk_name": "SCALING",
+      "sohk_category": "Athletic • Endurance",
+      "sohk_stats": "Co/ Ag/St",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:SCRIBING": {
+      "skill_name_en": "SCRIBING",
+      "skill_name_fr": "",
+      "sohk_name": "SCRIBING",
+      "sohk_category": ". Crafts",
+      "sohk_stats": "Ag/Me/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "3-5 ranks in written language",
+          "value": -10
+        },
+        {
+          "label_en": "8+ ranks in written language",
+          "value": 10
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:SCROUNGING": {
+      "skill_name_en": "SCROUNGING",
+      "skill_name_fr": "",
+      "sohk_name": "SCROUNGING",
+      "sohk_category": ". Urban",
+      "sohk_stats": "In/Pr/Re",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "120": {
+      "skill_name_en": "Sculpting",
+      "skill_name_fr": "Sculpture",
+      "sohk_name": "SCULPTING",
+      "sohk_category": "Artistic • Passive",
+      "sohk_stats": "Em/In/ Ag",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Unfamiliar medium",
+          "value": -30
+        },
+        {
+          "label_en": "From posed image or person",
+          "value": 10
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "165": {
+      "skill_name_en": "Second Aid",
+      "skill_name_fr": "Secours",
+      "sohk_name": "SECOND AID",
+      "sohk_category": "Technical/Trade • Professional",
+      "sohk_stats": "Re/Me/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "184": {
+      "skill_name_en": "Seduction",
+      "skill_name_fr": "Séduction",
+      "sohk_name": "SEDUCTION",
+      "sohk_category": "Influence",
+      "sohk_stats": "Pr/Em/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "98": {
+      "skill_name_en": "Ambush",
+      "skill_name_fr": "Embuscade",
+      "sohk_name": "SENSE AMBUSH",
+      "sohk_category": "Awareness • Perceptions",
+      "sohk_stats": "In/SD/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:N/A SENSE AWARENESS": {
+      "skill_name_en": "N/A SENSE AWARENESS",
+      "skill_name_fr": "",
+      "sohk_name": "N/A SENSE AWARENESS",
+      "sohk_category": "Awareness • Senses",
+      "sohk_stats": "In/SD/Pr",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:SERVICE": {
+      "skill_name_en": "SERVICE",
+      "skill_name_fr": "",
+      "sohk_name": "SERVICE",
+      "sohk_category": ". Crafts",
+      "sohk_stats": "Ag/Me/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:SEWING/WEAVING": {
+      "skill_name_en": "SEWING/WEAVING",
+      "skill_name_fr": "",
+      "sohk_name": "SEWING/WEAVING",
+      "sohk_category": ". Crafts",
+      "sohk_stats": "Ag/Me/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "35": {
+      "skill_name_en": "Siege Engineering",
+      "skill_name_fr": "Sièges",
+      "sohk_name": "SIEGE ENGINEERING",
+      "sohk_category": "Technical/Trade • Vocational",
+      "sohk_stats": "Me/In/Re",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "132": {
+      "skill_name_en": "Signaling",
+      "skill_name_fr": "Communication par Signaux",
+      "sohk_name": "SIGNALING",
+      "sohk_category": "Communication",
+      "sohk_stats": "Re/Me/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:N/A SILENT ATTACK": {
+      "skill_name_en": "N/A SILENT ATTACK",
+      "skill_name_fr": "",
+      "sohk_name": "N/A SILENT ATTACK",
+      "sohk_category": "Subterfuge • Attack",
+      "sohk_stats": "Ag/SD/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "130": {
+      "skill_name_en": "Singing",
+      "skill_name_fr": "Chant",
+      "sohk_name": "SINGING",
+      "sohk_category": "Artistic • Active",
+      "sohk_stats": "Pr/Em/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Per rank in spoken language below 4",
+          "value": -10
+        },
+        {
+          "label_en": "Improvisation",
+          "value": -30
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:SITUATIONAL AWARENESS": {
+      "skill_name_en": "SITUATIONAL AWARENESS",
+      "skill_name_fr": "",
+      "sohk_name": "SITUATIONAL AWARENESS",
+      "sohk_category": "Awareness • Senses",
+      "sohk_stats": "In/SD/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "54": {
+      "skill_name_en": "Skating",
+      "skill_name_fr": "Patinage",
+      "sohk_name": "SKATING",
+      "sohk_category": "Athletic • Gymnastics",
+      "sohk_stats": "Ag/Qu/ Ag",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "50": {
+      "skill_name_en": "Skiing",
+      "skill_name_fr": "Glisse",
+      "sohk_name": "SKIING",
+      "sohk_category": "Athletic • Gymnastics",
+      "sohk_stats": "Ag/Qu/Co",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "117": {
+      "skill_name_en": "Skinning",
+      "skill_name_fr": "Peaux",
+      "sohk_name": "SKINNING",
+      "sohk_category": ". Crafts",
+      "sohk_stats": "Ag/Me/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "86": {
+      "skill_name_en": "Sleep",
+      "skill_name_fr": "Méditation Sommeil",
+      "sohk_name": "SLEEP TRANCE",
+      "sohk_category": "Self Control",
+      "sohk_stats": "SD/Pr/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:SPATIAL LOCATION AWARENESS": {
+      "skill_name_en": "SPATIAL LOCATION AWARENESS",
+      "skill_name_fr": "",
+      "sohk_name": "SPATIAL LOCATION AWARENESS",
+      "sohk_category": "Awareness • Senses",
+      "sohk_stats": "In/SD /Pr",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:SPELL LORE": {
+      "skill_name_en": "SPELL LORE",
+      "skill_name_fr": "",
+      "sohk_name": "SPELL LORE",
+      "sohk_category": "Lore • Magical",
+      "sohk_stats": "Me/Re/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "148": {
+      "skill_name_en": "Spell Mastery",
+      "skill_name_fr": "Maitrise de Sort",
+      "sohk_name": "SPELL MASTERY",
+      "sohk_category": "Power Manipulation",
+      "sohk_stats": "Em/In/Pr",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "57": {
+      "skill_name_en": "Sprinting",
+      "skill_name_fr": "Sprint",
+      "sohk_name": "SPRINTING",
+      "sohk_category": "Athletic • Endurance",
+      "sohk_stats": "Co/ Ag/Qu",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "22": {
+      "skill_name_en": "Star-Gazing",
+      "skill_name_fr": "Repérage aux Etoiles",
+      "sohk_name": "STAR-GAZING",
+      "sohk_category": "Outdoor • Environmental",
+      "sohk_stats": "SD/In/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "125": {
+      "skill_name_en": "Stilt Walking",
+      "skill_name_fr": "Echasses",
+      "sohk_name": "STILT-WALKING",
+      "sohk_category": "Athletic • Gymnastics",
+      "sohk_stats": "Ag/Qu/ Ag",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "108": {
+      "skill_name_en": "Stone-Crafts",
+      "skill_name_fr": "Artisanat de la Pierre",
+      "sohk_name": "STONE-CRAFTS",
+      "sohk_category": ". Crafts",
+      "sohk_stats": "Ag/Me/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "200": {
+      "skill_name_en": "Streetwise",
+      "skill_name_fr": "Contacts",
+      "sohk_name": "STREETWISE",
+      "sohk_category": ". Urban",
+      "sohk_stats": "In/Pr/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "76": {
+      "skill_name_en": "Stunned Maneuver",
+      "skill_name_fr": "Maneuvre en étant Etourdi",
+      "sohk_name": "STUNNED MANEUVERING",
+      "sohk_category": "Self Control",
+      "sohk_stats": "SD/Pr/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:N/A STUN REMOVAL": {
+      "skill_name_en": "N/A STUN REMOVAL",
+      "skill_name_fr": "",
+      "sohk_name": "N/A STUN REMOVAL",
+      "sohk_category": "Self Control",
+      "sohk_stats": "SD/Pr/Pr",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:SUBDUAL": {
+      "skill_name_en": "SUBDUAL",
+      "skill_name_fr": "",
+      "sohk_name": "SUBDUAL",
+      "sohk_category": "Combat Maneuvers",
+      "sohk_stats": "Ag/Qu/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "58": {
+      "skill_name_en": "Surfing",
+      "skill_name_fr": "Surf",
+      "sohk_name": "SURFING",
+      "sohk_category": "Athletic • Gymnastics",
+      "sohk_stats": "Ag/Qu/Co",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "160": {
+      "skill_name_en": "Surgery",
+      "skill_name_fr": "Chirurgie",
+      "sohk_name": "SURGERY",
+      "sohk_category": "Technical/Trade • Professional",
+      "sohk_stats": "Re/Me/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "178": {
+      "skill_name_en": "Surveillance",
+      "skill_name_fr": "Surveillance",
+      "sohk_name": "SURVEILLANCE",
+      "sohk_category": "Awareness • Searching",
+      "sohk_stats": "In/Re/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:SURVIVAL": {
+      "skill_name_en": "SURVIVAL",
+      "skill_name_fr": "",
+      "sohk_name": "SURVIVAL",
+      "sohk_category": "Outdoor • Environmental",
+      "sohk_stats": "SD/In/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "52": {
+      "skill_name_en": "Swimming",
+      "skill_name_fr": "Natation",
+      "sohk_name": "SWIMMING",
+      "sohk_category": "Athletic • Endurance",
+      "sohk_stats": "Co/ Ag/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "156": {
+      "skill_name_en": "Symbol Lore",
+      "skill_name_fr": "Savoir en Symboles",
+      "sohk_name": "SYMBOL LORE",
+      "sohk_category": "Lore • Magical",
+      "sohk_stats": "Me/Re/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:TACKLING": {
+      "skill_name_en": "TACKLING",
+      "skill_name_fr": "",
+      "sohk_name": "TACKLING",
+      "sohk_category": "Martial Arts • Striking",
+      "sohk_stats": "St/ Ag/Qu",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "115": {
+      "skill_name_en": "Tactical Games",
+      "skill_name_fr": "Jeux Tactiques",
+      "sohk_name": "TACTICAL GAMES",
+      "sohk_category": "Technical/Trade • General",
+      "sohk_stats": "Re/Me/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "133": {
+      "skill_name_en": "Tale Telling",
+      "skill_name_fr": "Conteur",
+      "sohk_name": "TALE TELLING",
+      "sohk_category": "Artistic • Active",
+      "sohk_stats": "Pr/Em/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "7+ ranks in spoken language",
+          "value": 10
+        },
+        {
+          "label_en": "Elves",
+          "value": 10
+        },
+        {
+          "label_en": "Halflings",
+          "value": 15
+        },
+        {
+          "label_en": "Improvisation",
+          "value": -30
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "126": {
+      "skill_name_en": "Tightrope Walking",
+      "skill_name_fr": "Funambule",
+      "sohk_name": "TIGHTROPE-WALKING",
+      "sohk_category": "Athletic • Gymnastics",
+      "sohk_stats": "Ag/Qu/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Balancing Pole",
+          "value": 10
+        },
+        {
+          "label_en": "Tightrope Sole Shoes",
+          "value": 10
+        },
+        {
+          "label_en": "Surface (GM discretion)",
+          "value": 30
+        },
+        {
+          "label_en": "Light Breeze",
+          "value": -10
+        },
+        {
+          "label_en": "Strong Breeze",
+          "value": -20
+        },
+        {
+          "label_en": "Light Wind",
+          "value": -30
+        },
+        {
+          "label_en": "Strong Wind",
+          "value": -50
+        },
+        {
+          "label_en": "Gale",
+          "value": -100
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "174": {
+      "skill_name_en": "Tracking",
+      "skill_name_fr": "Pistage",
+      "sohk_name": "TRACKING",
+      "sohk_category": "Awareness • Searching",
+      "sohk_stats": "In/Re/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "23": {
+      "skill_name_en": "Trading Lore",
+      "skill_name_fr": "Savoir en Commerce",
+      "sohk_name": "TRADING LORE",
+      "sohk_category": "Lore • Technical",
+      "sohk_stats": "Me/Re/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "157": {
+      "skill_name_en": "Transcend Armor",
+      "skill_name_fr": "Transcendance d'Armure",
+      "sohk_name": "TRANSCEND ARMOR",
+      "sohk_category": "Power Manipulation",
+      "sohk_stats": "Em/In/Pr",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "188": {
+      "skill_name_en": "Trap-Building",
+      "skill_name_fr": "Construction de Pièges",
+      "sohk_name": "TRAP BUILDING",
+      "sohk_category": "Subterfuge • Mechanics",
+      "sohk_stats": "In/ Ag/Re",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:TRAPPING": {
+      "skill_name_en": "TRAPPING",
+      "skill_name_fr": "",
+      "sohk_name": "TRAPPING",
+      "sohk_category": ". Crafts",
+      "sohk_stats": "Ag/Me/Em",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "199": {
+      "skill_name_en": "Trickery",
+      "skill_name_fr": "Trucage",
+      "sohk_name": "TRICKERY",
+      "sohk_category": "Subterfuge • Stealth",
+      "sohk_stats": "Ag/SD/Pr",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "124": {
+      "skill_name_en": "Tumbling",
+      "skill_name_fr": "Culbutes",
+      "sohk_name": "TUMBLING EVASION",
+      "sohk_category": "Combat Maneuvers",
+      "sohk_stats": "Ag/Qu/ Ag",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:TWO-WEAPON COMBAT": {
+      "skill_name_en": "TWO-WEAPON COMBAT",
+      "skill_name_fr": "",
+      "sohk_name": "TWO-WEAPON COMBAT",
+      "sohk_category": "Combat Maneuvers",
+      "sohk_stats": "Ag/Qu/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:UNDEAD LORE": {
+      "skill_name_en": "UNDEAD LORE",
+      "skill_name_fr": "",
+      "sohk_name": "UNDEAD LORE",
+      "sohk_category": "Lore • Magical",
+      "sohk_stats": "Me/Re/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:USING PREPARED HERBS": {
+      "skill_name_en": "USING PREPARED HERBS",
+      "skill_name_fr": "",
+      "sohk_name": "USING PREPARED HERBS",
+      "sohk_category": "TechnicaVTrade • General",
+      "sohk_stats": "Re/Me/ Ag",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:USING/REMOVING POISON": {
+      "skill_name_en": "USING/REMOVING POISON",
+      "skill_name_fr": "",
+      "sohk_name": "USING/REMOVING POISON",
+      "sohk_category": "Subterfuge • Mechanics",
+      "sohk_stats": "In/ Ag/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "141": {
+      "skill_name_en": "Ventriloquism",
+      "skill_name_fr": "Ventriloquie",
+      "sohk_name": "VENTRILOQUISM",
+      "sohk_category": "Artistic • Active",
+      "sohk_stats": "Pr/Em/SD",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Language utilizes excessive labial sounds",
+          "value": -20
+        },
+        {
+          "label_en": "With props",
+          "value": 15
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "155": {
+      "skill_name_en": "Warding Lore",
+      "skill_name_fr": "Savoir en Rets",
+      "sohk_name": "WARDING LORE",
+      "sohk_category": "Lore • Magical",
+      "sohk_stats": "Me/Re/Me",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "63": {
+      "skill_name_en": "Weapon Skill",
+      "skill_name_fr": "Compétence aux armes",
+      "sohk_name": "WEAPON",
+      "sohk_category": "Weapon",
+      "sohk_stats": "Varies",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": false,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "16": {
+      "skill_name_en": "Weather Watching",
+      "skill_name_fr": "Météo",
+      "sohk_name": "WEATHER WATCHING",
+      "sohk_category": "Outdoor • Environmental",
+      "sohk_stats": "SD/In/In",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    },
+    "name:WEIGHT-LIITING": {
+      "skill_name_en": "WEIGHT-LIITING",
+      "skill_name_fr": "",
+      "sohk_name": "WEIGHT-LIITING",
+      "sohk_category": "Athletic • Brawn",
+      "sohk_stats": "St/Co/St",
+      "applicable_modifiers": {
+        "difficulty": true,
+        "lighting": true,
+        "shock_pain": true,
+        "bleeding_per_hp_round": -5,
+        "serious_wound_per_limb": -10,
+        "serious_wound_stunned": -50,
+        "serious_wound_down": -70,
+        "combat_in_melee": -30,
+        "combat_under_missile_fire": -10
+      },
+      "special_modifiers": [
+        {
+          "label_en": "Weight is unevenly distributed",
+          "value": -20
+        },
+        {
+          "label_en": "Easy hand-holds",
+          "value": 10
+        },
+        {
+          "label_en": "Extra prep round",
+          "value": 10
+        }
+      ],
+      "source": "ICE 5808 RMFRP School of Hard Knocks [2000] §6.0"
+    }
+  }
+}
