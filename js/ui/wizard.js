@@ -1946,6 +1946,9 @@ function getComputed(computedMap, key) {
 // === Tab: Skills ===
 function renderSkillsTab(lang) {
   loadSkillTables(); // preload in background; ready by first ⓘ click
+  const displayName = sub =>
+    lang === 'en' ? (sub.name_en || sub.name_fr || sub.name)
+                  : (sub.name_fr || sub.name_en || sub.name);
   const categories = getAllCategories();
   const devPts = getDevPointsTotal(character);
   const spent = getDevPointsSpent(character);
@@ -2161,7 +2164,7 @@ function renderSkillsTab(lang) {
             const sTextColorClass = (character.skillTextColors || {})[subKey] ? `skill-text-${character.skillTextColors[subKey]}` : '';
             table += `
               <tr class="${sTotalRanks > 0 ? '' : 'text-gray-600'} ${sHlClass} ${sBoldClass} ${sTextColorClass}" data-cat-group="${catId}">
-                <td class="sticky-col text-gray-300 pl-6 skill-highlight-cell" data-skill-hl="${subKey}" style="cursor:pointer">↳ ${esc(sub.name)} <button class="text-gray-600 hover:text-amber-300 text-xs ml-1 sub-skill-edit" data-parent="${globalIndex}" data-sub-idx="${si}" title="${lang === 'en' ? 'Edit name & stats' : 'Modifier nom & carac'}">✎</button></td>
+                <td class="sticky-col text-gray-300 pl-6 skill-highlight-cell" data-skill-hl="${subKey}" style="cursor:pointer">↳ ${esc(displayName(sub))} <button class="text-gray-600 hover:text-amber-300 text-xs ml-1 sub-skill-edit" data-parent="${globalIndex}" data-sub-idx="${si}" title="${lang === 'en' ? 'Edit name & stats' : 'Modifier nom & carac'}">✎</button></td>
                 <td class="text-center text-gray-500 text-xs">${sCostStr}</td>
                 <td class="text-center">
                   ${renderRankBoxes(sTotalRanks, sPhaseRanks)}
@@ -2272,7 +2275,7 @@ function renderSkillsTab(lang) {
             const sHlClass = sHlColor ? `highlight-${sHlColor}` : '';
             table += `
               <tr class="${sTotalRanks > 0 ? '' : 'text-gray-600'} ${sHlClass}" data-cat-group="${catId}">
-                <td class="sticky-col text-gray-300 pl-6 skill-highlight-cell" data-skill-hl="${subKey}" style="cursor:pointer">↳ ${esc(sub.name)} <button class="text-gray-600 hover:text-amber-300 text-xs ml-1 sub-skill-edit" data-parent="${globalIndex}" data-sub-idx="${si}">✎</button></td>
+                <td class="sticky-col text-gray-300 pl-6 skill-highlight-cell" data-skill-hl="${subKey}" style="cursor:pointer">↳ ${esc(displayName(sub))} <button class="text-gray-600 hover:text-amber-300 text-xs ml-1 sub-skill-edit" data-parent="${globalIndex}" data-sub-idx="${si}">✎</button></td>
                 <td class="text-center text-gray-500 text-xs">${sCostStr}</td>
                 <td class="text-center">${renderRankBoxes(sTotalRanks, sPhaseRanks)} <span class="text-xs text-amber-300 ml-1">${sTotalRanks > 0 ? sTotalRanks : ''}</span></td>
                 <td class="text-center"><span class="skill-pm"><button class="pm-btn sub-skill-minus" data-sub-key="${subKey}" data-parent="${globalIndex}" data-sub-idx="${si}" ${isValidated || sPhaseRanks <= 0 ? 'disabled' : ''}>−</button><button class="pm-btn sub-skill-plus" data-sub-key="${subKey}" data-parent="${globalIndex}" data-sub-idx="${si}" ${!sCanAdd || remaining < sNextCost ? 'disabled' : ''}>+</button></span> <button class="text-red-400 text-xs ml-1 sub-skill-remove" data-parent="${globalIndex}" data-sub-idx="${si}">✕</button></td>
@@ -4569,7 +4572,10 @@ function openSubSkillSelector(app, parentIndex) {
 
   // Special case: Spell Mastery uses character's known spell lists
   if (parentIndex === 148) {
-    options = character.spellLists.filter(sl => sl.name).map(sl => ({ name: sl.name }));
+    options = character.spellLists.filter(sl => sl.name).map(sl => ({
+      name_fr: sl.name_fr || sl.name,
+      name_en: sl.name_en || sl.name,
+    }));
   }
 
   if (options.length === 0) {
@@ -4581,10 +4587,13 @@ function openSubSkillSelector(app, parentIndex) {
       : `Nom de la spécialisation :${suggestion ? `\nEx. : ${suggestion}` : ''}`;
     const input = prompt(msg);
     if (!input || !input.trim()) return;
+    const trimmed = input.trim();
     const cost = getSkillDevCost(character.classIndex, parentIndex);
     character.subSkills.push({
       parentIndex,
-      name: input.trim(),
+      name: trimmed,
+      name_fr: trimmed,
+      name_en: trimmed,
       cost: cost ? { first: cost.first, second: cost.second } : { first: 4, second: 0 },
     });
     renderEditor(app);
@@ -4596,12 +4605,15 @@ function openSubSkillSelector(app, parentIndex) {
   const costStr = cost ? (cost.second > 0 ? `${cost.first}/${cost.second}` : `${cost.first}`) : '?';
 
   // Find parent name
+  const lang = character.language || 'fr';
   let parentName = '';
   let gIdx = 0;
   const categories = getAllCategories();
   for (const cat of categories) {
     for (const skill of cat.skills) {
-      if (gIdx === parentIndex) parentName = skill.name_fr;
+      if (gIdx === parentIndex) {
+        parentName = lang === 'en' ? (skill.name_en || skill.name_fr) : skill.name_fr;
+      }
       gIdx++;
     }
   }
@@ -4609,19 +4621,23 @@ function openSubSkillSelector(app, parentIndex) {
   let html = `<div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center" id="subskill-selector-overlay">
     <div class="bg-gray-800 rounded-lg p-4 max-w-md" style="display:flex;flex-direction:column">
       <h3 class="text-amber-300 font-bold mb-1">${esc(parentName)}</h3>
-      <p class="text-xs text-gray-500 mb-3">Coût: ${costStr} par rang</p>
+      <p class="text-xs text-gray-500 mb-3">${lang === 'en' ? 'Cost' : 'Coût'}: ${costStr} ${lang === 'en' ? 'per rank' : 'par rang'}</p>
       <div class="overflow-y-auto flex-1" style="max-height:60vh">`;
 
   for (const opt of options) {
-    const already = character.subSkills.some(s => s.parentIndex === parentIndex && s.name === opt.name);
+    const display = lang === 'en' ? (opt.name_en || opt.name_fr) : (opt.name_fr || opt.name_en);
+    const fr = opt.name_fr || opt.name_en || display;
+    const en = opt.name_en || opt.name_fr || display;
+    const already = character.subSkills.some(s =>
+      s.parentIndex === parentIndex && (s.name_fr === fr || s.name === fr));
     html += `<button class="block w-full text-left text-sm py-1 px-2 rounded ${already ? 'text-gray-600' : 'text-gray-300 hover:bg-gray-700 hover:text-amber-300'} subskill-select-item"
-      data-name="${esc(opt.name)}" data-parent="${parentIndex}" ${already ? 'disabled' : ''}>
-      ${esc(opt.name)}${already ? ' ✓' : ''}
+      data-name-fr="${esc(fr)}" data-name-en="${esc(en)}" data-parent="${parentIndex}" ${already ? 'disabled' : ''}>
+      ${esc(display)}${already ? ' ✓' : ''}
     </button>`;
   }
 
   html += `</div>
-      <button class="btn-secondary text-sm mt-3" id="subskill-selector-close">Fermer</button>
+      <button class="btn-secondary text-sm mt-3" id="subskill-selector-close">${lang === 'en' ? 'Close' : 'Fermer'}</button>
     </div></div>`;
 
   document.body.insertAdjacentHTML('beforeend', html);
@@ -4635,9 +4651,13 @@ function openSubSkillSelector(app, parentIndex) {
 
   document.querySelectorAll('.subskill-select-item:not([disabled])').forEach(btn => {
     btn.addEventListener('click', () => {
+      const fr = btn.dataset.nameFr;
+      const en = btn.dataset.nameEn;
       character.subSkills.push({
         parentIndex,
-        name: btn.dataset.name,
+        name: fr,
+        name_fr: fr,
+        name_en: en,
         cost: cost ? { first: cost.first, second: cost.second } : { first: 4, second: 0 },
       });
       document.getElementById('subskill-selector-overlay').remove();
@@ -4679,7 +4699,7 @@ function openSubSkillEditor(app, parentIndex, subIdx) {
       <h3 class="text-amber-300 font-bold mb-3">${lang === 'en' ? 'Edit Sub-Skill' : 'Modifier sous-compétence'}</h3>
       <div class="mb-3">
         <label class="text-xs text-gray-500">${lang === 'en' ? 'Name' : 'Nom'}</label>
-        <input type="text" id="subskill-edit-name" class="field-inline w-full text-sm" value="${esc(sub.name)}" style="background:#1f2937;border:1px solid #4b5563;padding:4px 8px;border-radius:4px">
+        <input type="text" id="subskill-edit-name" class="field-inline w-full text-sm" value="${esc(lang === 'en' ? (sub.name_en || sub.name_fr || sub.name) : (sub.name_fr || sub.name_en || sub.name))}" style="background:#1f2937;border:1px solid #4b5563;padding:4px 8px;border-radius:4px">
       </div>
       <div class="mb-3">
         <label class="text-xs text-gray-500">${lang === 'en' ? 'Determining Stats (for bonus)' : 'Caractéristiques déterminantes (pour bonus)'}</label>
@@ -4717,7 +4737,16 @@ function openSubSkillEditor(app, parentIndex, subIdx) {
 
   document.getElementById('subskill-edit-save').addEventListener('click', () => {
     const newName = document.getElementById('subskill-edit-name').value.trim();
-    if (newName) sub.name = newName;
+    if (newName) {
+      if (lang === 'en') {
+        sub.name_en = newName;
+        sub.name_fr = sub.name_fr || newName;
+      } else {
+        sub.name_fr = newName;
+        sub.name_en = sub.name_en || newName;
+      }
+      sub.name = sub.name_fr || sub.name_en;
+    }
 
     // Collect selected stats
     const newStats = [];

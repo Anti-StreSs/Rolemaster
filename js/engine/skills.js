@@ -460,33 +460,70 @@ export function getWeaponSkillCost(classIndex, weaponTypeId, weaponPriorities) {
 }
 
 /**
- * Get sub-skill options for a parent skill.
- * Returns array of {name} items the player can choose from.
+ * Get predefined sub-skill options for parent skills.
+ * Returns array of {name_fr, name_en} objects.
+ * For skills without predefined options, returns [] (free-text mode).
  */
 export function getParentSubSkillOptions(globalIndex) {
   const monde = getData().monde;
   if (!monde) return [];
   const ws = monde.world_sections || [];
 
+  const MARTIAL_ARTS_EN = {
+    'Striking 1': 'Striking 1', 'Striking 2': 'Striking 2',
+    'Striking 3': 'Striking 3', 'Striking 4': 'Striking 4',
+    'Sweeps 1': 'Sweeps 1', 'Sweeps 2': 'Sweeps 2',
+    'Sweeps 3': 'Sweeps 3', 'Sweeps 4': 'Sweeps 4',
+    'Karate': 'Karate', 'Boxe': 'Boxing', 'Lutte': 'Wrestling',
+    'Judo': 'Judo', 'Aikido': 'Aikido', 'Kung Fu': 'Kung Fu',
+    'Capoeira': 'Capoeira', 'Sumo': 'Sumo',
+  };
+  const DIRECTED_SPELL_EN = {
+    'Trait de Feu': 'Fire Bolt', 'Boule de Feu': 'Fire Ball',
+    'Trait de Glace': 'Ice Bolt', 'Boule de Glace': 'Ice Ball',
+    'Trait de Foudre': 'Lightning Bolt', 'Boule de Foudre': 'Lightning Ball',
+    'Trait de Choc': 'Shock Bolt', 'Trait Aqueux': 'Water Bolt',
+    'Choc Mental': 'Mind Shock', 'Sommeil X': 'Sleep X',
+    'Trait Mortel': 'Death Bolt', 'Œil Maléfique': 'Evil Eye',
+    'Vague de Choc': 'Shock Wave', 'Cône de Givre': 'Frost Cone',
+    'Cône de Feu': 'Fire Cone', 'Vol Mineur': 'Minor Flight',
+  };
+  const LANGUAGE_EN = {
+    'Commun': 'Common', 'Elfique': 'Elvish', 'Nain': 'Dwarvish',
+    'Orque': 'Orcish', 'Goblin': 'Goblin', 'Hobbit': 'Hobbitish',
+    'Westron': 'Westron', 'Quenya': 'Quenya', 'Sindarin': 'Sindarin',
+    'Adûnaic': 'Adûnaic', 'Rohirric': 'Rohirric', 'Noir': 'Black Speech',
+    'Trollish': 'Trollish', 'Géant': 'Giantish', 'Druidique': 'Druidic',
+  };
+
+  const tr = (fr, dict) => ({ name_fr: fr, name_en: dict[fr] || fr });
+
   switch (globalIndex) {
-    case 61: // Arts Martiaux — martial arts styles from section 56
-      return (ws[56] || []).filter(s => s && s.length > 0).map(name => ({ name }));
+    case 61: // Arts Martiaux — styles from section 56
+      return (ws[56] || []).filter(s => s && s.length > 0)
+        .map(fr => tr(fr, MARTIAL_ARTS_EN));
     case 136: // Linguistique — languages from section 43
-      return (ws[43] || []).map(name => ({ name: name + ' (parlé)' }))
-        .concat((ws[43] || []).map(name => ({ name: name + ' (écrit)' })));
-    case 147: // Langages Magiques — magical languages from section 45
-      return (ws[45] || []).filter(s => s && s.length > 1).map(name => ({ name }));
-    case 145: // Direction de Sorts — directed spell types from section 57
-      return (ws[57] || []).map(name => ({ name }));
-    case 148: // Maitrise de Sort — depends on character's known spell lists (dynamic)
-      return []; // Handled in UI from character.spellLists
-    case 173: // Perception Générale — 5 sens
+      return (ws[43] || []).flatMap(fr => {
+        const en = LANGUAGE_EN[fr] || fr;
+        return [
+          { name_fr: `${fr} (parlé)`,  name_en: `${en} (spoken)` },
+          { name_fr: `${fr} (écrit)`,  name_en: `${en} (written)` },
+        ];
+      });
+    case 147: // Langages Magiques — proper nouns, FR=EN
+      return (ws[45] || []).filter(s => s && s.length > 1)
+        .map(fr => ({ name_fr: fr, name_en: fr }));
+    case 145: // Direction de Sorts — from section 57
+      return (ws[57] || []).map(fr => tr(fr, DIRECTED_SPELL_EN));
+    case 148: // Maitrise de Sort — dynamic, handled in UI
+      return [];
+    case 173: // Perception Générale — 5 senses
       return [
-        { name: 'Vue' },
-        { name: 'Ouïe' },
-        { name: 'Odorat' },
-        { name: 'Toucher' },
-        { name: 'Goût' },
+        { name_fr: 'Vue',     name_en: 'Sight'   },
+        { name_fr: 'Ouïe',    name_en: 'Hearing' },
+        { name_fr: 'Odorat',  name_en: 'Smell'   },
+        { name_fr: 'Toucher', name_en: 'Touch'   },
+        { name_fr: 'Goût',    name_en: 'Taste'   },
       ];
     default:
       return [];
