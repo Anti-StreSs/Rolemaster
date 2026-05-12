@@ -107,7 +107,7 @@ export function getComputedSkills(character, lang = 'fr', includeAll = false) {
       const elvenAdBonus = (adRacial < 0 && statIndices.includes(3) &&
         (cat.name === 'Combat' || cat.name === 'Survival'))
         ? Math.floor(-2 * adRacial / statIndices.length) : 0;
-      const lvlBonus = getLevelBonus(cls, character.level, cat.name, globalIndex);
+      const lvlBonus = getLevelBonus(cls, character.level, cat.name, globalIndex, character.devPhase);
       const miscManual = character.skillMiscBonuses[globalIndex] || 0;
       const bgSkillBonus = getSkillBackgroundBonus(bgBonuses,
         skill.name_fr || skill.name, skill.name_en);

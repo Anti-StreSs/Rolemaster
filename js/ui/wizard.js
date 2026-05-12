@@ -2073,7 +2073,7 @@ function renderSkillsTab(lang) {
         // Render weapon sub-skills added by the player (under the parent)
         if (isWeapon) {
           const wCls = character.classIndex >= 0 ? getAllClasses()[character.classIndex] : null;
-          const wLvlBonus = getLevelBonus(wCls, character.level, cat.name, globalIndex);
+          const wLvlBonus = getLevelBonus(wCls, character.level, cat.name, globalIndex, character.devPhase);
           for (let ws = 0; ws < character.weaponSkills.length; ws++) {
             const wpn = character.weaponSkills[ws];
             const wsKey = 'wpn_' + ws;
@@ -2139,7 +2139,7 @@ function renderSkillsTab(lang) {
         // Render generic sub-skills for non-weapon parents
         if (!isWeapon) {
           const sParentCls = character.classIndex >= 0 ? getAllClasses()[character.classIndex] : null;
-          const sParentLvlBonus = getLevelBonus(sParentCls, character.level, cat.name, globalIndex);
+          const sParentLvlBonus = getLevelBonus(sParentCls, character.level, cat.name, globalIndex, character.devPhase);
           const parentSubs = character.subSkills.filter(s => s.parentIndex === globalIndex);
           for (let si = 0; si < parentSubs.length; si++) {
             const sub = parentSubs[si];

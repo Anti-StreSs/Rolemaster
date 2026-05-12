@@ -702,7 +702,8 @@ function getFallbackClassIndex(cls) {
   }
 }
 
-export function getLevelBonus(cls, level, categoryName, globalIndex) {
+export function getLevelBonus(cls, level, categoryName, globalIndex, devPhase = 'level') {
+  if (['adolescent', 'apprenti', 'background'].includes(devPhase)) return 0;
   if (!cls || level <= 0) return 0;
   const cappedLevel = Math.min(level, 20);
   const data = getData();
