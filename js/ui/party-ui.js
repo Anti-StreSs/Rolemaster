@@ -9,7 +9,8 @@ import {
   getCombatLog, logCombatAction,
   spendAction, adjustActionPoints, isRoundOver, ACTION_COSTS, ACTION_LABELS,
   setCurrentTarget, setMemberActiveWeapon, resetRoundBO, setBoMaxForRound,
-  setParryTransfer, applyParryTransfer, addParryBoost, consumeParryBoost,
+  setParryTransfer, applyParryTransfer, addParryBoost, consumeParryBoost, peekParryBoost,
+  spendBoForAttack,
 } from '../engine/party-manager.js';
 import { getComputedSkills } from '../engine/skill-compute.js';
 import { showToast, renderModifierBrowser } from './components.js';
@@ -150,11 +151,15 @@ function renderCard(m, lang, isActiveTurn) {
   }
   const activeWeapon = allWeapons.find(w => w.weaponIndex === m.activeWeaponIndex) || allWeapons[0] || null;
 
-  // Sync BO max from active weapon (only update if changed to avoid disrupting parry transfers mid-round)
+  // Sync BO max from active weapon (only update if changed to avoid disrupting parry transfers mid-round).
+  // Fallback: if no weapon detected (char without ranked weapon skills), seed with 50 so parry isn't blocked.
+  // The user can edit the BO max manually via the inline input.
   if (activeWeapon) {
     if ((m.boMaxThisRound || 0) !== activeWeapon.total) {
       setBoMaxForRound(char.name, activeWeapon.total);
     }
+  } else if ((m.boMaxThisRound || 0) === 0) {
+    setBoMaxForRound(char.name, 50);
   }
 
   const top2 = allWeapons.slice(0, 2);
@@ -255,14 +260,23 @@ function renderCard(m, lang, isActiveTurn) {
         ${renderBar(m.currentHP, m.maxHP, 'hp')}
         ${ppBar}
         <div class="pm-db-row" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:0.72rem">
-          <span class="pm-bar-label">BD</span><strong>${m.db}</strong>
-          <span style="color:#8b6914">| BO max</span><strong>${m.boMaxThisRound || 0}</strong>
+          <span class="pm-bar-label">BD</span><strong>${m.db}</strong>${(m.parryDbBoost || 0) > 0 ? `<strong style="color:#22c55e" title="BD effectif contre la prochaine attaque ciblant ce perso">→ ${m.db + m.parryDbBoost}</strong>` : ''}
+          <span style="color:#8b6914">| BO max</span>
+          <input class="pm-bomax-edit" type="text" inputmode="numeric" pattern="[0-9]*"
+            value="${m.boMaxThisRound || 0}" data-member="${enc}"
+            style="width:42px;font-size:0.72rem;font-weight:bold;padding:1px 3px;border:1px solid rgba(139,92,20,0.3);border-radius:3px;background:rgba(255,250,240,0.85);color:#3a1a08;text-align:center"
+            title="BO max disponible pour ce round (ajustez si pas d'arme active détectée)">
           <span style="color:#8b6914">| BO rest.</span><strong style="color:${(m.boRemainingThisRound || 0) < (m.boMaxThisRound || 0) ? '#dc2626' : '#16a34a'}">${m.boRemainingThisRound ?? 0}</strong>
-          <span style="color:#8b6914">| Parade →BD</span>
-          <input class="pm-parry-transfer" type="number" min="0" max="${m.boRemainingThisRound || 0}"
-            value="${m.parryTransfer || 0}" data-member="${enc}"
-            style="width:48px;font-size:0.72rem;padding:2px 4px;border:1px solid rgba(139,92,20,0.3);border-radius:3px;background:rgba(255,250,240,0.85);color:#3a1a08;text-align:center"
+        </div>
+        <div class="pm-parry-row" style="display:flex;align-items:center;gap:4px;font-size:0.72rem;margin-top:2px;flex-wrap:wrap">
+          <span style="color:#fbbf24;font-weight:600">🛡 Parade →BD</span>
+          <button type="button" class="pm-parry-dec" data-member="${enc}" style="width:22px;height:22px;font-size:0.85rem;border:1px solid rgba(139,92,20,0.4);border-radius:3px;background:rgba(0,0,0,0.25);color:#fbbf24;cursor:pointer;line-height:1;padding:0">−</button>
+          <input class="pm-parry-transfer" type="text" inputmode="numeric" pattern="[0-9]*"
+            value="${m.parryTransfer || 0}" data-member="${enc}" data-max="${m.boRemainingThisRound || 0}"
+            style="width:48px;font-size:0.78rem;padding:2px 4px;border:1px solid rgba(139,92,20,0.4);border-radius:3px;background:rgba(255,250,240,0.92);color:#3a1a08;text-align:center;font-weight:bold"
             title="Montant de BO à transférer en BD lors de la prochaine parade">
+          <button type="button" class="pm-parry-inc" data-member="${enc}" style="width:22px;height:22px;font-size:0.85rem;border:1px solid rgba(139,92,20,0.4);border-radius:3px;background:rgba(0,0,0,0.25);color:#fbbf24;cursor:pointer;line-height:1;padding:0">+</button>
+          <span style="color:#ffffff;font-size:0.65rem;font-style:italic;opacity:0.85">(puis cliquer 🛡−30)</span>${(m.parryDbBoost || 0) > 0 ? `<span style="color:#22c55e;font-size:0.7rem;font-weight:bold;margin-left:auto">+${m.parryDbBoost} en attente</span>` : ''}
         </div>
       </div>
       ${renderActiveEffects(m.statuses)}
@@ -534,7 +548,8 @@ function renderAttackPanel(currentTurn, lang) {
     }).join('');
   } catch (e) { /* attack tables may not be loaded */ }
 
-  // Pre-fill OB from active combatant
+  // Pre-fill OB from active combatant, capped by their remaining BO this round
+  // (multi-attack rule: each attack/parry depletes BO restant)
   let defaultOB = 0;
   let atkHint = '';
   if (!currentTurn.isNPC) {
@@ -549,6 +564,10 @@ function renderAttackPanel(currentTurn, lang) {
         defaultOB = chosen.total;
         atkHint = chosen.name.replace(/^\s*↳\s*/, '');
         bestWeaponId = _matchWeaponToTable(atkHint);
+      }
+      // Cap default to remaining BO this round (always non-negative)
+      if (m.boRemainingThisRound != null && m.boRemainingThisRound < defaultOB) {
+        defaultOB = Math.max(0, m.boRemainingThisRound);
       }
     }
   } else {
@@ -593,8 +612,9 @@ function renderAttackPanel(currentTurn, lang) {
     return `<option value="${encodeURIComponent(t.name)}" data-db="${t.db}" data-at="${t.at}"${sel}>${t.name}</option>`;
   }).join('');
 
-  // Consume any pending parry boost for the effective target (one-shot: zeroed after read)
-  const targetBoost = effectiveTarget ? consumeParryBoost(effectiveTarget.name) : 0;
+  // Peek (not consume) the pending parry boost so it persists across re-renders.
+  // The boost is consumed only when the attack actually resolves (see _resolveAttack).
+  const targetBoost = effectiveTarget ? peekParryBoost(effectiveTarget.name) : 0;
   const initialDb = (effectiveTarget?.db ?? 0) + targetBoost;
 
   return `<div class="combat-attack-panel" id="combat-attack-panel">
@@ -812,10 +832,14 @@ function _bindAttackPanelTargetAutoFill(main) {
     if (!opt) return;
     const db = opt.dataset.db;
     const at = opt.dataset.at;
-    if (db != null) main.querySelector('#catk-db').value = db;
+    const targetName = opt.value ? decodeURIComponent(opt.value) : null;
+    if (db != null) {
+      // Add pending parry boost so the displayed BD reflects an active parry on this target
+      const boost = targetName ? peekParryBoost(targetName) : 0;
+      main.querySelector('#catk-db').value = (parseInt(db, 10) || 0) + boost;
+    }
     if (at != null) main.querySelector('#catk-at').value = at;
     const currentTurn = getCurrentTurn();
-    const targetName = opt.value ? decodeURIComponent(opt.value) : null;
     if (currentTurn) setCurrentTarget(currentTurn.name, targetName);
   });
 }
@@ -835,6 +859,15 @@ function _resolveAttack(main, app) {
   const manualFumble = parseInt(main.querySelector('#catk-manual-fumble')?.value) || null;
 
   if (currentTurn && targetName) setCurrentTarget(currentTurn.name, targetName);
+  // Consume the parry boost on this target — the attack is being resolved now,
+  // so the boost has served its purpose (already reflected in `db` via renderAttackPanel/peek).
+  if (targetName) consumeParryBoost(targetName);
+  // Multi-attack rule: spend the attacker's BO for this attack — reduces
+  // boRemainingThisRound so subsequent attacks/parries in the same round
+  // have less BO available.
+  if (currentTurn && !currentTurn.isNPC && ob > 0) {
+    spendBoForAttack(currentTurn.name, ob);
+  }
   let result;
   try {
     result = resolveFullAttack({ weaponTable, ob, db, armorType,
@@ -896,6 +929,7 @@ function _resolveAttack(main, app) {
 }
 
 function bindDashboardEvents(main, app) {
+  const lang = app.lang;
   // Combat mode toggle
   main.querySelector('#pm-toggle-combat').addEventListener('click', () => {
     if (isCombatMode()) {
@@ -1033,7 +1067,9 @@ function bindDashboardEvents(main, app) {
     }
   });
 
-  grid.addEventListener('click', e => {
+  // NOTE: delegation bound to `main` (not `grid`) so it also catches clicks
+  // inside the NPC picker (#combat-npc-picker), which is a sibling of #pm-card-grid.
+  main.addEventListener('click', e => {
     // NPC remove button
     const removeNpc = e.target.closest('[data-action="remove-npc"]');
     if (removeNpc) {
@@ -1174,10 +1210,24 @@ function bindDashboardEvents(main, app) {
       const delta = parseInt(btn.dataset.paDelta);
       if (isNaN(delta)) return;
 
-      // Parry: transfer BO → BD boost before spending PA
+      // Parry: transfer BO → BD boost before spending PA.
+      // Read input value directly so it works even if user clicks parry
+      // before the input's 'change' event fires (no blur needed).
       if (btn.dataset.parry === 'true') {
+        const card = btn.closest('.pm-card');
+        const transferInput = card?.querySelector('.pm-parry-transfer');
+        const inputVal = transferInput ? (parseInt(transferInput.value, 10) || 0) : 0;
+        if (transferInput) setParryTransfer(name, inputVal);
         const transferred = applyParryTransfer(name);
         if (transferred > 0) addParryBoost(name, transferred);
+        // Diagnostic — remove once confirmed working
+        console.log('[Parry]', name, {
+          inputFound: !!transferInput,
+          inputValue: inputVal,
+          transferred,
+          newBoRemaining: getParty().members.find(m => m.char.name === name)?.boRemainingThisRound,
+          newBoost: getParty().members.find(m => m.char.name === name)?.parryDbBoost,
+        });
       }
 
       adjustActionPoints(name, delta);
@@ -1280,12 +1330,48 @@ function bindDashboardEvents(main, app) {
     });
   });
 
+  // ── BO max manual edit (fallback when no active weapon detected) ──
+  main.querySelectorAll('.pm-bomax-edit').forEach(input => {
+    input.addEventListener('change', () => {
+      const name = decodeURIComponent(input.dataset.member);
+      const val = Math.max(0, parseInt(input.value, 10) || 0);
+      setBoMaxForRound(name, val);
+      renderDashboard(main, app);
+    });
+  });
+
   // ── Parade transfer inputs (BO → BD) ──
   main.querySelectorAll('.pm-parry-transfer').forEach(input => {
     input.addEventListener('change', () => {
       const name = decodeURIComponent(input.dataset.member);
       setParryTransfer(name, input.value);
-      renderDashboard(main, app);
+      // No full re-render here — would lose focus mid-typing. The parry button
+      // handler reads the input value directly at click time anyway.
+    });
+  });
+
+  // ── Custom +/- buttons for parry transfer (cross-browser reliable, no native spinners) ──
+  main.querySelectorAll('.pm-parry-inc').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = decodeURIComponent(btn.dataset.member);
+      const input = btn.parentElement.querySelector('.pm-parry-transfer');
+      if (!input) return;
+      const max = parseInt(input.dataset.max, 10) || 999;
+      const cur = parseInt(input.value, 10) || 0;
+      const next = Math.min(max, cur + 1);
+      input.value = next;
+      setParryTransfer(name, next);
+    });
+  });
+  main.querySelectorAll('.pm-parry-dec').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = decodeURIComponent(btn.dataset.member);
+      const input = btn.parentElement.querySelector('.pm-parry-transfer');
+      if (!input) return;
+      const cur = parseInt(input.value, 10) || 0;
+      const next = Math.max(0, cur - 1);
+      input.value = next;
+      setParryTransfer(name, next);
     });
   });
 }

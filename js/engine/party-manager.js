@@ -392,11 +392,39 @@ export function resetRoundBO(name) {
 export function setBoMaxForRound(name, boMax) {
   const m = _find(name);
   if (!m) return;
+  const prevMax = m.boMaxThisRound || 0;
   m.boMaxThisRound = boMax;
-  // If remaining is unset OR exceeds new max (weapon switch), clamp
-  if (m.boRemainingThisRound == null || m.boRemainingThisRound > boMax || m.boRemainingThisRound < 0) {
+  // Reset boRemainingThisRound when:
+  //   - It's unset (null/undefined) OR
+  //   - It's 0 while boMax > 0 (initial seed case — caught by initParty creating BO=0) OR
+  //   - It exceeds the new max (weapon switch downward) OR
+  //   - It's somehow negative
+  //   - The max increased AND remaining was equal to old max (treat as fresh round)
+  const r = m.boRemainingThisRound;
+  if (r == null
+      || (r === 0 && boMax > 0)
+      || r > boMax
+      || r < 0
+      || (boMax > prevMax && r === prevMax)) {
     m.boRemainingThisRound = boMax;
   }
+}
+
+/**
+ * Spend BO on an attack — reduces the character's remaining BO this round.
+ * Implements the "multi-attack BO depletion" optional rule: a character can
+ * attack multiple times per round, but each attack consumes the BO used,
+ * leaving less for subsequent attacks/parries.
+ *
+ * Returns the amount actually spent (clamped to non-negative).
+ */
+export function spendBoForAttack(name, amount) {
+  const m = _find(name);
+  if (!m) return 0;
+  const spent = Math.max(0, parseInt(amount, 10) || 0);
+  m.boRemainingThisRound = Math.max(0, (m.boRemainingThisRound || 0) - spent);
+  addSessionLog(`${name} : attaque BO ${spent} (BO restant: ${m.boRemainingThisRound})`);
+  return spent;
 }
 
 export function setParryTransfer(name, amount) {
@@ -419,6 +447,12 @@ export function addParryBoost(targetName, amount) {
   const m = _find(targetName);
   if (!m) return;
   m.parryDbBoost = (m.parryDbBoost || 0) + amount;
+}
+
+export function peekParryBoost(targetName) {
+  const m = _find(targetName);
+  if (!m) return 0;
+  return m.parryDbBoost || 0;
 }
 
 export function consumeParryBoost(targetName) {
