@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rolemaster-v96';
+const CACHE_NAME = 'rolemaster-v97';
 const ASSETS = [
   './',
   './index.html',

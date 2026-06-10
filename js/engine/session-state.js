@@ -80,6 +80,8 @@ export function pushNPCFromCreature(creature, customName) {
     attacks: creature.attacks ?? [],
     attacks_raw: creature.attacks_raw ?? '—',
     size: creature.size ?? 'M',
+    crit_table: creature.crit_table ?? 'normal',
+    crit_markers: creature.crit_markers ?? [],
     base_rate: creature.movement?.base_rate ?? creature.level * 3 + 50,
     statuses: [],
     initiative: 0,

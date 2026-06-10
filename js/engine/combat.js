@@ -5,6 +5,15 @@
 import { getData } from './data-loader.js';
 
 // ============================================================
+// CRIT MARKER EFFECTS (Step 0 — gated on C&T legend confirmation)
+// Source: Creatures & Treasures (C&T1, legend pages ~5-9)
+// Populate from GPTwork/ct_crit_legend.json when Step 0 is complete.
+// While null: markers are stored + displayed but immunities are NOT enforced.
+// ============================================================
+
+export const CRIT_MARKER_EFFECTS = null;
+
+// ============================================================
 // LAZY INDEXES — built once per session from raw arrays
 // ============================================================
 
@@ -255,13 +264,26 @@ export function resolveFumble(weaponTable, roll) {
 // FULL ATTACK (attack + auto-resolve critical + fumble)
 // ============================================================
 
-export function resolveFullAttack({ weaponTable, ob, db, armorType, attackRoll, critRoll, fumbleRoll }) {
+// Large/Super-Large creature critical table override (B86)
+const _CRIT_SIZE_OVERRIDE = {
+  large: 'large_creature',
+  superlarge: 'super_large_creature',
+};
+
+export function resolveFullAttack({ weaponTable, ob, db, armorType, attackRoll, critRoll, fumbleRoll, targetCritTable }) {
   const attack = resolveAttack({ weaponTable, ob, db, armorType, roll: attackRoll });
   if (attack.error) return attack;
 
   let critical = null;
   if (attack.critical) {
-    critical = resolveCritical(attack.critical, critRoll);
+    let critCode = attack.critical;
+    const sizeOverride = targetCritTable && _CRIT_SIZE_OVERRIDE[targetCritTable];
+    if (sizeOverride) {
+      // Keep severity letter, override type to size-specific table
+      const sev = critCode.split('_')[0];
+      critCode = `${sev}_${sizeOverride}`;
+    }
+    critical = resolveCritical(critCode, critRoll);
   }
 
   let fumbleResult = null;

@@ -17,7 +17,7 @@ import { showToast, renderModifierBrowser } from './components.js';
 import { getLocalSaves } from '../engine/export.js';
 import { getClassName, getRealmInfo, getAllClasses } from '../engine/classes.js';
 import { loadBestiaryData, filterCreatures, getCreatureById, CATEGORY_LABELS, ATTACK_TYPE_LABELS } from '../engine/bestiary.js';
-import { rollOpenEndedD100, resolveFullAttack, getAvailableWeapons } from '../engine/combat.js';
+import { rollOpenEndedD100, resolveFullAttack, getAvailableWeapons, CRIT_MARKER_EFFECTS } from '../engine/combat.js';
 import { formatCriticalText } from '../engine/text-format.js';
 import { rollTreasure, getTreasureTypes } from '../engine/merchants.js';
 import { subscribeSession, getSession, updateNPC } from '../engine/session-state.js';
@@ -31,6 +31,34 @@ const CRIT_TYPE_FR = {
   super_large_creature: 'T.Gde Créature', tiny_animal: 'Petit Animal',
 };
 const SEVERITY_FR = { A: 'Critique A', B: 'Critique B', C: 'Critique C', D: 'Critique D', E: 'Critique E (mortel)' };
+
+const _CRIT_SIZE_CODE    = { large: 'LA', superlarge: 'SL', type1: 'I', type2: 'II' };
+const _CRIT_TABLE_LABEL  = {
+  fr: { large: 'Table Gde Créature', superlarge: 'Table T.Gde Créature', type1: 'Critique Type I', type2: 'Critique Type II' },
+  en: { large: 'Large Creature table', superlarge: 'Super Large Creature table', type1: 'Type I criticals', type2: 'Type II criticals' },
+};
+const _MARKER_FALLBACK   = {
+  fr: { '#': 'Immunisé étourdissement', '@': 'Immunisé étourd.+saign.', '*': 'Voir description' },
+  en: { '#': 'Immune to stun', '@': 'Immune to stun+bleed', '*': 'See description' },
+};
+
+function _critSizeBadge(npc, lang) {
+  const table = npc.crit_table;
+  const markers = npc.crit_markers || [];
+  const code = _CRIT_SIZE_CODE[table] || '';
+  if (!code && !markers.length) return '';
+  let html = '';
+  if (code) {
+    const tip = _CRIT_TABLE_LABEL[lang]?.[table] || code;
+    html += `<span title="${tip}" style="font-size:0.6rem;font-weight:700;padding:1px 4px;border-radius:3px;background:rgba(220,38,38,0.18);color:#fca5a5;margin-left:4px;cursor:default">${code}</span>`;
+  }
+  for (const mk of markers) {
+    const tip = CRIT_MARKER_EFFECTS?.[mk]?.[lang === 'fr' ? 'meaning_fr' : 'meaning_en']
+      || _MARKER_FALLBACK[lang]?.[mk] || mk;
+    html += `<span title="${tip}" style="font-size:0.6rem;padding:1px 3px;border-radius:3px;background:rgba(107,114,128,0.18);color:#9ca3af;margin-left:2px;cursor:default">${mk}</span>`;
+  }
+  return html;
+}
 
 // Realm → left border color
 const REALM_COLORS = {
@@ -356,7 +384,7 @@ function renderNPCCard(npc, lang, isActiveTurn) {
       <header class="pm-card-header">
         <div>
           <div class="pm-card-name">${npc.name} <span class="pm-npc-badge">PNJ</span></div>
-          <div class="pm-card-meta">Niv.${npc.level} · Taille ${npc.size}</div>
+          <div class="pm-card-meta">Niv.${npc.level} · Taille ${npc.size}${_critSizeBadge(npc, lang)}</div>
         </div>
         <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
           <button class="pm-btn" style="padding:2px 6px;font-size:0.85rem;background:rgba(185,28,28,0.25);color:#fca5a5;border:1px solid rgba(185,28,28,0.4);line-height:1" data-action="remove-npc" data-npc-id="${npc.id}" title="Retirer du combat">🗑</button>
@@ -884,10 +912,16 @@ function _resolveAttack(main, app) {
   if (currentTurn && !currentTurn.isNPC && ob > 0) {
     spendBoForAttack(currentTurn.name, ob);
   }
+  // B86 — pass target creature's crit_table for Large/Super-Large table override
+  let targetCritTable = null;
+  if (targetName) {
+    const _tnpc = getNPCCombatants().find(n => n.name === targetName);
+    targetCritTable = _tnpc?.crit_table ?? null;
+  }
   let result;
   try {
     result = resolveFullAttack({ weaponTable, ob, db, armorType,
-      attackRoll: manualAtk, critRoll: manualCrit, fumbleRoll: manualFumble });
+      attackRoll: manualAtk, critRoll: manualCrit, fumbleRoll: manualFumble, targetCritTable });
   } catch (e) {
     main.querySelector('#catk-result').innerHTML = `<div style="color:#dc2626;font-size:0.75rem">Erreur: ${e.message}</div>`;
     return;
@@ -909,8 +943,19 @@ function _resolveAttack(main, app) {
     if (hits > 0) applyDamage(targetName, hits);
     if (isCrit && result.critical?.parsedEffects) {
       const fx = result.critical.parsedEffects;
-      if (fx.stun_rounds > 0) addStatus(targetName, 'stunned', fx.stun_rounds);
-      if (fx.bleed_per_round > 0) addStatus(targetName, 'bleeding', null, { dmgPerRound: fx.bleed_per_round });
+      // B86 — immunity guard (Step 3): active only when CRIT_MARKER_EFFECTS is set
+      const _tnpc2 = getNPCCombatants().find(n => n.name === targetName);
+      const markers = _tnpc2?.crit_markers ?? [];
+      const stunImmune  = CRIT_MARKER_EFFECTS !== null && markers.some(mk => CRIT_MARKER_EFFECTS[mk]?.no_stun);
+      const bleedImmune = CRIT_MARKER_EFFECTS !== null && markers.some(mk => CRIT_MARKER_EFFECTS[mk]?.no_bleed);
+      if (fx.stun_rounds > 0) {
+        if (stunImmune) logCombatAction({ msg: lang === 'fr' ? `${targetName} : immunisé (étourdissement)` : `${targetName}: immune (stun)` });
+        else addStatus(targetName, 'stunned', fx.stun_rounds);
+      }
+      if (fx.bleed_per_round > 0) {
+        if (bleedImmune) logCombatAction({ msg: lang === 'fr' ? `${targetName} : immunisé (saignement)` : `${targetName}: immune (bleed)` });
+        else addStatus(targetName, 'bleeding', null, { dmgPerRound: fx.bleed_per_round });
+      }
       if (fx.unconscious) addStatus(targetName, 'unconscious', null);
       if (fx.dead) addStatus(targetName, 'dead', null);
     }
@@ -937,7 +982,7 @@ function _resolveAttack(main, app) {
   main.querySelector('#catk-result').innerHTML = `<div class="combat-result-card">
     <div style="font-weight:bold;color:${stateColor};margin-bottom:3px">${stateLbl}</div>
     <div style="font-size:0.72rem;color:#c9a840;font-weight:500">Jet ${roll} + BO${ob} = ${total} · BD${db} · TA${armorType}</div>
-    ${isCrit ? `<div class="combat-result-crit" style="margin-top:3px;font-size:0.75rem">${sev} ${critType}: ${critText}</div>` : ''}
+    ${isCrit ? `<div class="combat-result-crit" style="margin-top:3px;font-size:0.75rem">${sev} : ${result.critical.roll} (${critType}) &rarr; ${critText}</div>` : ''}
     ${isFumble ? `<div class="combat-result-fumble" style="margin-top:3px;font-size:0.75rem">${fumbleText}</div>` : ''}
     ${targetName && hits > 0 ? `<div style="font-size:0.7rem;color:#9ca3af;margin-top:2px">→ ${hits} PdC appliqués à ${targetName}</div>` : ''}
   </div>`;
