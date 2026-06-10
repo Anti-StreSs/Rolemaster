@@ -1291,6 +1291,19 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
   margin-bottom: 8px;
 }
 
+/* B84 — GM edit toggle button */
+.rm-btn-gm-edit {
+  background-image: linear-gradient(180deg, rgba(196,154,32,0.10), rgba(60,40,15,0.55));
+  border-color: #8b6914;
+  color: #d4c5a9;
+}
+.rm-btn-gm-edit.is-active {
+  background-image: linear-gradient(180deg, rgba(220,50,50,0.25), rgba(80,15,15,0.6));
+  border-color: #c44343;
+  color: #ffd2d2;
+  box-shadow: 0 0 8px rgba(220,50,50,0.4);
+}
+
 /* ============================================
    Crystal Ball Video Medallion
    ============================================ */

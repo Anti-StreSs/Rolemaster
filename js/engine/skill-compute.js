@@ -97,7 +97,11 @@ export function getComputedSkills(character, lang = 'fr', includeAll = false) {
 
     for (const skill of cat.skills) {
       const isParent_ = isParentSkill(skill, globalIndex);
-      const statIndices = getSkillStatIndices(skill);
+      // B84 — GM override: per-skill stat indices (1-based) take precedence
+      const _override = character.skillStatOverrides && character.skillStatOverrides[globalIndex];
+      const statIndices = (Array.isArray(_override) && _override.length > 0)
+        ? _override
+        : getSkillStatIndices(skill);
       const totalRanks = getTotalRanks(character, globalIndex);
       const rankBonus = getRankBonus(totalRanks);
       const statBonus = calcStatBonus(statIndices, character);
@@ -116,7 +120,11 @@ export function getComputedSkills(character, lang = 'fr', includeAll = false) {
       const armorPenalty = isMovingSkill(skill) ? Math.min(0, armorMM + armorMagic) : 0;
       const similRanks = character.skillRanksSimil?.[globalIndex] || 0;
       const total = rankBonus + statBonus + elvenAdBonus + lvlBonus + miscManual + bgSkillBonus + armorPenalty;
-      let cost = getSkillDevCost(character.classIndex, globalIndex);
+      // B84 — GM override of dev cost takes precedence
+      const _costOverride = character.skillCostOverrides && character.skillCostOverrides[globalIndex];
+      let cost = (_costOverride && typeof _costOverride === 'object')
+        ? { ..._costOverride }
+        : getSkillDevCost(character.classIndex, globalIndex);
       cost = applyBgCostModifiers(bgBonuses, cost, globalIndex, skill, getBodyDevSkillIndex(), cat.name);
       const costStr = cost ? (cost.second > 0 ? `${cost.first}/${cost.second}` : `${cost.first}`) : '—';
 
@@ -197,11 +205,17 @@ export function getComputedSkills(character, lang = 'fr', includeAll = false) {
         const subKey = 'sub_' + globalIndex + '_' + si;
         const sRanks = getTotalRanks(character, subKey);
         const sRankB = getRankBonus(sRanks);
-        // Use sub's own statIndices if defined, otherwise inherit from parent skill.
-        // Note: sub.statIndices uses 1-based indices like skill statIndices.
-        const sStatIndices = (sub.statIndices && sub.statIndices.length > 0)
-          ? sub.statIndices
-          : statIndices; // statIndices already computed for parent skill above
+        // Use sub's own stat indices if defined, otherwise inherit from parent skill.
+        // sub.statIndices is 1-based (legacy); sub.stats is 0-based (openSubSkillEditor).
+        // B84 fix — accept both so the editor's saves actually feed compute.
+        let sStatIndices;
+        if (sub.statIndices && sub.statIndices.length > 0) {
+          sStatIndices = sub.statIndices;
+        } else if (Array.isArray(sub.stats) && sub.stats.length > 0) {
+          sStatIndices = sub.stats.map(i => i + 1); // convert 0-based → 1-based
+        } else {
+          sStatIndices = statIndices;
+        }
         const sStatB = calcStatBonus(sStatIndices, character);
         const sMisc = character.skillMiscBonuses[subKey] || 0;
         const sTotal = sRankB + sStatB + lvlBonus + sMisc;

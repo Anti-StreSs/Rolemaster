@@ -470,6 +470,12 @@
   background: rgba(196,154,32,0.35);
   box-shadow: 0 0 10px rgba(240,192,64,0.45), 0 2px 6px rgba(0,0,0,0.3);
 }
+/* Active token sits on a light golden background — force dark text for legibility */
+.init-token.is-active .init-name,
+.init-token.is-active .init-value {
+  color: #1a0d04;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.25);
+}
 .init-token.is-npc {
   border-color: rgba(220,60,60,0.6);
   background: rgba(120,20,20,0.65);

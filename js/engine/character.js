@@ -140,6 +140,10 @@ export function createCharacter() {
     skillMiscBonuses: {},
     // Skill similarity bonuses (manual entry for now)
     skillSimilBonuses: {},
+    // B84 — GM override of stat indices per parent skill (key = globalIndex, value = [1..10] 1-based)
+    skillStatOverrides: {},
+    // B84 — GM override of dev cost per parent skill (key = globalIndex, value = {first, second, maxRanks})
+    skillCostOverrides: {},
     // Skill formatting for print
     skillHighlights: {},  // {skillIndex: 'yellow'|'green'|...}
     skillBold: {},        // {skillIndex: true}

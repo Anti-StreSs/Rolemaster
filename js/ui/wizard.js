@@ -14,7 +14,8 @@ import { logEvent, logStatRoll, logStatValidate, logSkillDevelop, logSpellSGR,
          logPhaseValidate, logLevelUp, logBgOption, logHpRoll, logStatGain,
          logStatManualEdit, logBgOptionAdd, logBgOptionRemove, logBgOptionResolve,
          logSpellListAdd, logSpellListRemove, logSkillManualEdit, logSpellLearn,
-         getCharacterHistory } from '../engine/event-log.js';
+         logGmEdit, getCharacterHistory } from '../engine/event-log.js';
+import { hasGmPassword, setGmPassword, verifyGmPassword } from '../engine/gm-auth.js';
 import { processLevelUpStatGains, statGainLookup } from '../engine/stat_gain.js';
 import { generateBackground, getRacialLanguages } from '../engine/background.js';
 import { getData } from '../engine/data-loader.js';
@@ -105,7 +106,54 @@ let character = null;
 let currentTab = 'infos';
 const _collapsedCategories = new Set();
 
-function isGMEditMode() { return character && character.isNPC === true; }
+// B84 — runtime flag for GM-editing player characters (independent from isNPC)
+let _gmEditingFlag = false;
+function isGMEditMode() {
+  return character && (character.isNPC === true || _gmEditingFlag === true);
+}
+
+// B84 — returns the effective dev cost for a skill, honoring GM overrides.
+function getEffectiveSkillCost(skillIdx) {
+  if (character && character.skillCostOverrides && character.skillCostOverrides[skillIdx]) {
+    return { ...character.skillCostOverrides[skillIdx] };
+  }
+  return getSkillDevCost(character.classIndex, skillIdx);
+}
+
+// B84 — GM rank editing helpers.
+// Drains a single rank in newest-first order across the manual buckets.
+// Returns true if a rank was actually removed.
+function gmDecrementOneRank(skillKey) {
+  for (const bucket of ['skillRanksLevel', 'skillRanksApprenti', 'skillRanksAdolescent', 'skillRanksPrior']) {
+    if (!character[bucket]) continue;
+    const cur = character[bucket][skillKey] || 0;
+    if (cur > 0) {
+      character[bucket][skillKey] = cur - 1;
+      if (character[bucket][skillKey] === 0) delete character[bucket][skillKey];
+      return true;
+    }
+  }
+  return false;
+}
+// Sets the displayed total (incl. similarity-driven ranks) to newTotal.
+// Surplus ranks land in skillRanksLevel; removals drain newest→oldest manual buckets.
+// Cannot drop below similarity+background contribution (those are computed elsewhere).
+function gmSetTotalRanks(skillKey, newTotal) {
+  newTotal = Math.max(0, newTotal | 0);
+  const oldTotal = getTotalRanks(character, skillKey);
+  let delta = newTotal - oldTotal;
+  if (delta === 0) return;
+  if (delta > 0) {
+    if (!character.skillRanksLevel) character.skillRanksLevel = {};
+    character.skillRanksLevel[skillKey] = (character.skillRanksLevel[skillKey] || 0) + delta;
+    return;
+  }
+  let toRemove = -delta;
+  while (toRemove > 0) {
+    if (!gmDecrementOneRank(skillKey)) break;
+    toRemove--;
+  }
+}
 
 // Rolling state
 let rolledStats = [];   // RM2: [{tempRoll, potRoll, temp, pot}], RMSS: [{temp, pot}]
@@ -145,6 +193,8 @@ export function startWizard(app, forceNew = true) {
     rollingMethod = 'rm2';
     statsValidated = false;
   }
+  // B84 — always reset GM-edit flag when (re)starting the wizard
+  _gmEditingFlag = false;
   // Ensure PP stat indices are set from class
   if (character.classIndex >= 0) {
     const cls = getAllClasses()[character.classIndex];
@@ -155,6 +205,8 @@ export function startWizard(app, forceNew = true) {
 
 export function loadIntoWizard(app, loadedCharacter) {
   character = loadedCharacter;
+  // B84 — always reset GM-edit flag when loading another character
+  _gmEditingFlag = false;
   // Ensure statLog exists (for characters saved before this feature)
   if (!character.statLog) {
     character.statLog = { method: 'rm2', rerollCount: 0, rolls: [], validated: null, editsAfterValidation: [] };
@@ -257,6 +309,9 @@ function renderEditor(app) {
         <span class="rm-spinner" id="pdf-spinner" style="display:none"></span>
         ${lang === 'en' ? 'Export PDF' : 'Export PDF'}
       </button>
+      <button class="rm-btn-ornate rm-btn-ornate-md rm-btn-gm-edit ${_gmEditingFlag ? 'is-active' : ''}" id="btn-gm-edit" title="${lang === 'en' ? 'GM edit mode (password)' : 'Mode édition MJ (mot de passe)'}">
+        ${_gmEditingFlag ? (lang === 'en' ? '🎭 Exit GM' : '🎭 Quitter MJ') : (lang === 'en' ? '🎭 GM' : '🎭 MJ')}
+      </button>
     `;
   }
 
@@ -266,7 +321,7 @@ function renderEditor(app) {
     : '';
   main.innerHTML = gmBanner + content;
   bindTabEvents(app);
-  bindActionEvents();
+  bindActionEvents(app);
   bindContentEvents(app);
 
   // Restore scroll position
@@ -1266,7 +1321,8 @@ function renderSpellsTab(lang) {
   const dpTotal = getDevPointsTotal(character);
   const dpSpent = getDevPointsSpent(character);
   const dpRemaining = dpTotal - dpSpent;
-  const spellLocked = !!character.phaseValidated;
+  // B84 — GM mode ignores phase lock on spell lists
+  const spellLocked = !!character.phaseValidated && !isGMEditMode();
 
   if (cls && !isSpellUser(cls)) {
     return panel(lang === 'en' ? 'Spell Lists' : 'Listes de Sorts', `
@@ -1318,10 +1374,11 @@ function renderSpellsTab(lang) {
         : `<div class="text-xs text-gray-400 mb-2"><span class="text-purple-400" title="Spell Gain Roll">SGR</span> = D100 + ${sgrBonus} → ${lang === 'en' ? 'success if' : 'succès si'} ≥ 101 (${lang === 'en' ? 'chance' : 'chance'}: ${sgrChance}%) — ${lang === 'en' ? 'Next block' : 'Bloc suivant'}: ${lang === 'en' ? 'levels' : 'niveaux'} ${study.nextBlockStart}-${blockEnd}</div>`
       }
       <div class="flex gap-2 flex-wrap no-print">
-        ${!spellLocked && !autoLearn ? `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-spell-rank" id="btn-spell-rank" ${dpRemaining < rankCost || study.ranks >= 20 ? 'disabled' : ''}>+ ${lang === 'en' ? 'Rank' : 'Rang'} (${rankCost} PD)</button>` : ''}
+        ${!spellLocked && !autoLearn ? `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-spell-rank" id="btn-spell-rank" ${(dpRemaining < rankCost && !isGMEditMode()) || study.ranks >= 20 ? 'disabled' : ''}>+ ${lang === 'en' ? 'Rank' : 'Rang'} (${isGMEditMode() ? '0' : rankCost} PD)</button>` : ''}
         ${!spellLocked && study.ranks > 0 && !autoLearn && !study.sgrDone ? `<button class="rm-btn-ornate rm-btn-ornate-sm rm-btn-spell-sgr" id="btn-spell-sgr" title="Spell Gain Roll">SGR (D100+${sgrBonus})</button>` : ''}
         ${!spellLocked && study.ranks > 0 && study.sgrDone && !autoLearn ? `<button class="btn-secondary text-xs" id="btn-spell-sgr-table" title="${lang === 'en' ? 'Re-roll (table roll) — logged as extra roll' : 'Relancer (jet sur table) — journalisé comme jet supplémentaire'}">🎲 ${lang === 'en' ? 'Table roll' : 'Jet sur table'} (D100+${sgrBonus})</button>` : ''}
         ${autoLearn ? `<button class="btn-primary text-xs" id="btn-spell-confirm-auto" style="background:#16a34a">${lang === 'en' ? 'Confirm learning' : 'Confirmer l\'apprentissage'}</button>` : ''}
+        ${isGMEditMode() && !autoLearn ? `<button class="btn-primary text-xs" id="btn-spell-gm-validate" style="background:#9333ea" title="${lang === 'en' ? 'GM: validate this study block as learned' : 'MJ : valider ce bloc d\'étude comme appris'}">🎭 ${lang === 'en' ? 'GM Validate' : 'Valider (MJ)'}</button>` : ''}
         ${!spellLocked ? `<button class="btn-secondary text-xs" id="btn-spell-abandon">${lang === 'en' ? 'Abandon' : 'Abandonner'}</button>` : ''}
       </div>
     </div>`;
@@ -1351,7 +1408,7 @@ function renderSpellsTab(lang) {
           ${isStudying ? `<span class="text-xs text-purple-400">◆ ${lang === 'en' ? 'studying' : 'en étude'}</span>` : ''}
           ${canStudy ? `<button class="text-xs text-purple-400 hover:text-purple-300 spell-study-list" data-idx="${i}">${hasLevels ? (lang === 'en' ? 'Next block' : 'Bloc suivant') : (lang === 'en' ? 'Study' : 'Étudier')}</button>` : ''}
           ${!spellLocked && !isStudying ? `<button class="text-xs ${sl.type === 'base_own' ? 'text-green-400' : 'text-gray-600 hover:text-green-400'} ml-1 spell-toggle-base" data-idx="${i}" title="${lang === 'en' ? 'Toggle base list (10 lvl blocks for pure casters)' : 'Basculer liste de base (blocs de 10 niv pour lanceurs purs)'}">♦</button>` : ''}
-          ${!spellLocked && !isStudying ? `<button class="text-red-400 hover:text-red-300 text-xs ml-1 spell-remove-list" data-idx="${i}">✕</button>` : ''}
+          ${(!spellLocked && !isStudying) || isGMEditMode() ? `<button class="text-red-400 hover:text-red-300 text-xs ml-1 spell-remove-list" data-idx="${i}">✕</button>` : ''}
         </td>
       </tr>`;
     });
@@ -2116,12 +2173,14 @@ function renderSkillsTab(lang) {
                 <td class="text-center text-gray-500 text-xs">${wCostStr}</td>
                 <td class="text-center">
                   ${renderRankBoxes(wTotalRanks, wPhaseRanks)}
-                  <span class="text-xs text-amber-300 ml-1">${wTotalRanks > 0 ? wTotalRanks : ''}</span>
+                  ${isGMEditMode()
+                    ? `<input type="number" class="field-inline gm-rank-input" data-skill="${wsKey}" value="${wTotalRanks}" min="0" style="width:2.8rem;background:rgba(196,154,32,0.10);border:1px solid #8b6914;color:#fbbf24;font-weight:bold">`
+                    : `<span class="text-xs text-amber-300 ml-1">${wTotalRanks > 0 ? wTotalRanks : ''}</span>`}
                 </td>
                 <td class="text-center">
                   <span class="skill-pm">
-                    <button class="pm-btn wpn-skill-minus" data-wpn-skill="${ws}" ${isValidated || wPhaseRanks <= 0 ? 'disabled' : ''}>−</button>
-                    <button class="pm-btn wpn-skill-plus" data-wpn-skill="${ws}" ${!wCanAdd || !wCanAfford ? 'disabled' : ''}>+</button>
+                    <button class="pm-btn wpn-skill-minus" data-wpn-skill="${ws}" ${isGMEditMode() ? (wTotalRanks <= 0 ? 'disabled' : '') : ((isValidated || wPhaseRanks <= 0) ? 'disabled' : '')}>−</button>
+                    <button class="pm-btn wpn-skill-plus" data-wpn-skill="${ws}" ${isGMEditMode() ? '' : (!wCanAdd || !wCanAfford ? 'disabled' : '')}>+</button>
                   </span>
                   <button class="text-red-400 text-xs ml-1 wpn-skill-remove" data-wpn-skill="${ws}">✕</button>
                 </td>
@@ -2168,12 +2227,14 @@ function renderSkillsTab(lang) {
                 <td class="text-center text-gray-500 text-xs">${sCostStr}</td>
                 <td class="text-center">
                   ${renderRankBoxes(sTotalRanks, sPhaseRanks)}
-                  <span class="text-xs text-amber-300 ml-1">${sTotalRanks > 0 ? sTotalRanks : ''}</span>
+                  ${isGMEditMode()
+                    ? `<input type="number" class="field-inline gm-rank-input" data-skill="${subKey}" value="${sTotalRanks}" min="0" style="width:2.8rem;background:rgba(196,154,32,0.10);border:1px solid #8b6914;color:#fbbf24;font-weight:bold">`
+                    : `<span class="text-xs text-amber-300 ml-1">${sTotalRanks > 0 ? sTotalRanks : ''}</span>`}
                 </td>
                 <td class="text-center">
                   <span class="skill-pm">
-                    <button class="pm-btn sub-skill-minus" data-sub-key="${subKey}" data-parent="${globalIndex}" data-sub-idx="${si}" ${isValidated || sPhaseRanks <= 0 ? 'disabled' : ''}>−</button>
-                    <button class="pm-btn sub-skill-plus" data-sub-key="${subKey}" data-parent="${globalIndex}" data-sub-idx="${si}" ${!sCanAdd || remaining < sNextCost ? 'disabled' : ''}>+</button>
+                    <button class="pm-btn sub-skill-minus" data-sub-key="${subKey}" data-parent="${globalIndex}" data-sub-idx="${si}" ${isGMEditMode() ? (sTotalRanks <= 0 ? 'disabled' : '') : ((isValidated || sPhaseRanks <= 0) ? 'disabled' : '')}>−</button>
+                    <button class="pm-btn sub-skill-plus" data-sub-key="${subKey}" data-parent="${globalIndex}" data-sub-idx="${si}" ${isGMEditMode() ? '' : (!sCanAdd || remaining < sNextCost ? 'disabled' : '')}>+</button>
                   </span>
                   <button class="text-red-400 text-xs ml-1 sub-skill-remove" data-parent="${globalIndex}" data-sub-idx="${si}">✕</button>
                 </td>
@@ -2191,7 +2252,8 @@ function renderSkillsTab(lang) {
         // Normal developable skill
         const phaseRanks = getCurrentPhaseRanks(character, globalIndex);
         const totalRanks = getTotalRanks(character, globalIndex);
-        let cost = getSkillDevCost(character.classIndex, globalIndex);
+        // B84 — honor GM cost override
+        let cost = getEffectiveSkillCost(globalIndex);
         cost = applyBgCostModifiers(bgBonuses, cost, globalIndex, skill, getBodyDevSkillIndex(), cat.name);
         let costStr = '—';
         let maxRanks = 0;
@@ -2214,8 +2276,10 @@ function renderSkillsTab(lang) {
           : c.similRanks;
         const total = c.total;
         let rankBoxes = renderRankBoxes(totalRanks, phaseRanks, isValidated ? 0 : simPreview);
-        const addDisabled = !canAdd || !canAfford ? 'disabled' : '';
-        const removeDisabled = !canRemove ? 'disabled' : '';
+        // B84 — in GM mode: plus always enabled, minus enabled while totalRanks > 0 (cross-phase)
+        const _gm = isGMEditMode();
+        const addDisabled = _gm ? '' : (!canAdd || !canAfford ? 'disabled' : '');
+        const removeDisabled = _gm ? (totalRanks <= 0 ? 'disabled' : '') : (!canRemove ? 'disabled' : '');
         const plusMinus = cost ? `
           <span class="skill-pm">
             <button class="pm-btn pm-minus" data-skill="${globalIndex}" ${removeDisabled}>−</button>
@@ -2229,11 +2293,13 @@ function renderSkillsTab(lang) {
         const textColorClass = (character.skillTextColors || {})[globalIndex] ? `skill-text-${character.skillTextColors[globalIndex]}` : '';
         table += `
           <tr class="${totalRanks > 0 ? '' : 'text-gray-600'} ${hlClass} ${boldClass} ${textColorClass}" data-cat-group="${catId}">
-            <td class="sticky-col text-gray-300 skill-highlight-cell" data-skill-hl="${globalIndex}" style="cursor:pointer">${name} <span class="skill-stats-label">(${c.statLabel})</span>${isSpecializableSkill(globalIndex) ? ` <button class="btn-add-subskill text-xs" data-parent="${globalIndex}" style="background:none;border:1px solid currentColor;border-radius:3px;width:1rem;height:1rem;font-size:0.6rem;cursor:pointer;color:inherit;padding:0;line-height:1" title="${lang === 'en' ? 'Add specialization' : 'Spécialiser'}">▸</button>` : ''} <button class="btn-skill-info" data-global="${globalIndex}" style="background:none;border:none;font-size:0.6rem;cursor:pointer;color:#8b6914;opacity:0.45;padding:0;line-height:1;vertical-align:middle" title="${lang === 'en' ? 'Skill info' : 'Info compétence'}">ⓘ</button></td>
-            <td class="text-center text-gray-500 text-xs">${costStr}</td>
+            <td class="sticky-col text-gray-300 skill-highlight-cell" data-skill-hl="${globalIndex}" style="cursor:pointer">${name} <span class="skill-stats-label ${_gm ? 'gm-stat-edit' : ''}" ${_gm ? `data-gm-skill-stat="${globalIndex}" title="${lang === 'en' ? 'Click to change determining stats (GM)' : 'Cliquer pour changer les carac. déterminantes (MJ)'}" style="cursor:pointer;color:#fca5a5;text-decoration:underline dotted"` : ''}>(${c.statLabel})</span>${isSpecializableSkill(globalIndex) ? ` <button class="btn-add-subskill text-xs" data-parent="${globalIndex}" style="background:none;border:1px solid currentColor;border-radius:3px;width:1rem;height:1rem;font-size:0.6rem;cursor:pointer;color:inherit;padding:0;line-height:1" title="${lang === 'en' ? 'Add specialization' : 'Spécialiser'}">▸</button>` : ''} <button class="btn-skill-info" data-global="${globalIndex}" style="background:none;border:none;font-size:0.6rem;cursor:pointer;color:#8b6914;opacity:0.45;padding:0;line-height:1;vertical-align:middle" title="${lang === 'en' ? 'Skill info' : 'Info compétence'}">ⓘ</button></td>
+            <td class="text-center text-gray-500 text-xs ${_gm ? 'gm-cost-edit' : ''}" ${_gm ? `data-gm-cost="${globalIndex}" style="cursor:pointer;color:#fca5a5;text-decoration:underline dotted" title="${lang === 'en' ? 'Click to override dev cost (GM) — format X/Y or X. Empty resets.' : 'Cliquer pour modifier le coût (MJ) — format X/Y ou X. Vide = défaut.'}"` : ''}>${costStr}</td>
             <td class="text-center">
               ${rankBoxes}
-              <span class="text-xs text-amber-300 ml-1">${totalRanks > 0 ? totalRanks : ''}</span>
+              ${_gm
+                ? `<input type="number" class="field-inline gm-rank-input" data-skill="${globalIndex}" value="${totalRanks}" min="0" style="width:2.8rem;background:rgba(196,154,32,0.10);border:1px solid #8b6914;color:#fbbf24;font-weight:bold">`
+                : `<span class="text-xs text-amber-300 ml-1">${totalRanks > 0 ? totalRanks : ''}</span>`}
             </td>
             <td class="text-center">${plusMinus}</td>
             <td class="text-center stat-bonus ${rankBonus >= 0 ? 'positive' : 'negative'}">${rankBonus >= 0 ? '+' + rankBonus : rankBonus}</td>
@@ -2277,8 +2343,8 @@ function renderSkillsTab(lang) {
               <tr class="${sTotalRanks > 0 ? '' : 'text-gray-600'} ${sHlClass}" data-cat-group="${catId}">
                 <td class="sticky-col text-gray-300 pl-6 skill-highlight-cell" data-skill-hl="${subKey}" style="cursor:pointer">↳ ${esc(displayName(sub))} <button class="text-gray-600 hover:text-amber-300 text-xs ml-1 sub-skill-edit" data-parent="${globalIndex}" data-sub-idx="${si}">✎</button></td>
                 <td class="text-center text-gray-500 text-xs">${sCostStr}</td>
-                <td class="text-center">${renderRankBoxes(sTotalRanks, sPhaseRanks)} <span class="text-xs text-amber-300 ml-1">${sTotalRanks > 0 ? sTotalRanks : ''}</span></td>
-                <td class="text-center"><span class="skill-pm"><button class="pm-btn sub-skill-minus" data-sub-key="${subKey}" data-parent="${globalIndex}" data-sub-idx="${si}" ${isValidated || sPhaseRanks <= 0 ? 'disabled' : ''}>−</button><button class="pm-btn sub-skill-plus" data-sub-key="${subKey}" data-parent="${globalIndex}" data-sub-idx="${si}" ${!sCanAdd || remaining < sNextCost ? 'disabled' : ''}>+</button></span> <button class="text-red-400 text-xs ml-1 sub-skill-remove" data-parent="${globalIndex}" data-sub-idx="${si}">✕</button></td>
+                <td class="text-center">${renderRankBoxes(sTotalRanks, sPhaseRanks)} ${isGMEditMode() ? `<input type="number" class="field-inline gm-rank-input" data-skill="${subKey}" value="${sTotalRanks}" min="0" style="width:2.8rem;background:rgba(196,154,32,0.10);border:1px solid #8b6914;color:#fbbf24;font-weight:bold">` : `<span class="text-xs text-amber-300 ml-1">${sTotalRanks > 0 ? sTotalRanks : ''}</span>`}</td>
+                <td class="text-center"><span class="skill-pm"><button class="pm-btn sub-skill-minus" data-sub-key="${subKey}" data-parent="${globalIndex}" data-sub-idx="${si}" ${isGMEditMode() ? (sTotalRanks <= 0 ? 'disabled' : '') : ((isValidated || sPhaseRanks <= 0) ? 'disabled' : '')}>−</button><button class="pm-btn sub-skill-plus" data-sub-key="${subKey}" data-parent="${globalIndex}" data-sub-idx="${si}" ${isGMEditMode() ? '' : (!sCanAdd || remaining < sNextCost ? 'disabled' : '')}>+</button></span> <button class="text-red-400 text-xs ml-1 sub-skill-remove" data-parent="${globalIndex}" data-sub-idx="${si}">✕</button></td>
                 <td class="text-center stat-bonus ${sRankBonus >= 0 ? 'positive' : 'negative'}">${sRankBonus >= 0 ? '+' + sRankBonus : sRankBonus}</td>
                 <td class="text-center stat-bonus ${sStatBonus >= 0 ? 'positive' : 'negative'}">${sStatBonus >= 0 ? '+' + sStatBonus : sStatBonus}</td>
                 <td class="text-center text-xs col-lvl">${lvlBonus > 0 ? '+' + lvlBonus : ''}</td>
@@ -2384,7 +2450,7 @@ function bindTabEvents(app) {
   });
 }
 
-function bindActionEvents() {
+function bindActionEvents(app) {
   const btnSaveJson = document.getElementById('btn-save-json');
   const btnSaveLocal = document.getElementById('btn-save-local');
   const btnPrint = document.getElementById('btn-print');
@@ -2397,11 +2463,74 @@ function bindActionEvents() {
   });
   if (btnSaveLocal) btnSaveLocal.addEventListener('click', async () => {
     saveCurrentTabData();
+    // B84 — auto-log when saving while in GM-edit mode (player characters)
+    if (_gmEditingFlag) {
+      await logGmEdit(character, { via: 'save_button', timestamp: new Date().toISOString() });
+    }
     character.updatedAt = new Date().toISOString();
     await saveToLocalStorage(character);
     showToast('Personnage sauvegardé !');
   });
   if (btnPrint) btnPrint.addEventListener('click', () => openPrintConfigPopup());
+
+  // B84 — GM edit mode toggle (password-gated) for player characters
+  const btnGmEdit = document.getElementById('btn-gm-edit');
+  if (btnGmEdit) btnGmEdit.addEventListener('click', async () => {
+    const isEn = (app && app.lang === 'en') || character.language === 'en';
+    if (_gmEditingFlag) {
+      // EXIT GM mode: capture optional note, log, save, re-render
+      const note = window.prompt(
+        isEn
+          ? 'Optional note for the event log (Cancel = no note):'
+          : 'Note facultative pour le journal (Annuler = pas de note) :',
+        ''
+      );
+      saveCurrentTabData();
+      await logGmEdit(character, { note: note || null, via: 'exit_button', timestamp: new Date().toISOString() });
+      _gmEditingFlag = false;
+      character.updatedAt = new Date().toISOString();
+      await saveToLocalStorage(character);
+      showToast(isEn ? 'GM edit saved' : 'Édition MJ sauvegardée');
+      renderEditor(app);
+      return;
+    }
+    // ENTER GM mode: first-use sets password, otherwise verify
+    if (!hasGmPassword()) {
+      const newPwd = window.prompt(
+        isEn
+          ? 'Set a GM password (min 4 chars). It will be hashed and stored locally:'
+          : 'Définir un mot de passe MJ (min 4 caractères). Il sera haché et stocké localement :',
+        ''
+      );
+      if (!newPwd) return;
+      const confirmPwd = window.prompt(
+        isEn ? 'Confirm password:' : 'Confirmer le mot de passe :',
+        ''
+      );
+      if (newPwd !== confirmPwd) {
+        showToast(isEn ? 'Passwords do not match' : 'Les mots de passe ne correspondent pas', true);
+        return;
+      }
+      try {
+        await setGmPassword(newPwd);
+        showToast(isEn ? 'GM password set' : 'Mot de passe MJ défini');
+      } catch (e) {
+        showToast(e.message, true);
+        return;
+      }
+    } else {
+      const pwd = window.prompt(isEn ? 'GM password:' : 'Mot de passe MJ :', '');
+      if (!pwd) return;
+      const ok = await verifyGmPassword(pwd);
+      if (!ok) {
+        showToast(isEn ? 'Wrong password' : 'Mot de passe incorrect', true);
+        return;
+      }
+    }
+    _gmEditingFlag = true;
+    showToast(isEn ? 'GM edit mode ON — all fields unlocked' : 'Mode MJ activé — tous les champs sont déverrouillés');
+    renderEditor(app);
+  });
 
   const btnExportPdf = document.getElementById('btn-export-pdf');
   if (btnExportPdf) btnExportPdf.addEventListener('click', () => {
@@ -3261,18 +3390,16 @@ function bindSpellsEvents(app) {
     btnRank.addEventListener('click', () => {
       const spent = getDevPointsSpent(character);
       const budget = getDevPointsTotal(character);
-      if (spent + rankCost > budget) { showToast('Pas assez de PD !', true); return; }
+      const gm = isGMEditMode();
+      if (!gm && spent + rankCost > budget) { showToast('Pas assez de PD !', true); return; }
       if (study.ranks >= 20) return;
       study.ranks++;
-      setDevPointsSpent(character, spent + rankCost);
+      if (!gm) setDevPointsSpent(character, spent + rankCost);
       character.spellLog.push({
-        timestamp: new Date().toISOString(), action: 'invest', listName: study.listName,
-        phase: character.devPhase, details: { cost: rankCost, newRanks: study.ranks },
+        timestamp: new Date().toISOString(), action: gm ? 'gm_invest' : 'invest', listName: study.listName,
+        phase: character.devPhase, details: { cost: gm ? 0 : rankCost, newRanks: study.ranks },
       });
-      // Auto-learn at 20 ranks
-      if (study.ranks >= 20) {
-        applySpellLearn(study);
-      }
+      // Auto-learn at 20 ranks (note: applySpellLearn is defined later as finalizeSpellLearn)
       renderEditor(app);
     });
   }
@@ -3346,6 +3473,28 @@ function bindSpellsEvents(app) {
       });
       finalizeSpellLearn();
       showToast(`Niveaux ${blockStart}-${blockEnd} appris automatiquement !`);
+      renderEditor(app);
+    });
+  }
+
+  // B84 — GM: validate current study block as learned (no SGR, free)
+  const btnGmValidate = document.getElementById('btn-spell-gm-validate');
+  if (btnGmValidate) {
+    btnGmValidate.addEventListener('click', () => {
+      if (!isGMEditMode() || !study.listName) return;
+      const blockStart = study.nextBlockStart;
+      const blockEnd = blockStart + study.blockSize - 1;
+      character.spellLog.push({
+        timestamp: new Date().toISOString(), action: 'gm_validate', listName: study.listName,
+        phase: character.devPhase, details: { ranks: study.ranks, block: `${blockStart}-${blockEnd}` },
+      });
+      if (character.name) logGmEdit(character, {
+        action: 'spell_validate', listName: study.listName, blockStart, blockEnd,
+      });
+      finalizeSpellLearn();
+      showToast(character.language === 'en'
+        ? `GM: levels ${blockStart}-${blockEnd} validated.`
+        : `MJ : niveaux ${blockStart}-${blockEnd} validés.`);
       renderEditor(app);
     });
   }
@@ -4210,23 +4359,25 @@ function bindSkillsEvents(app) {
   document.querySelectorAll('.pm-plus').forEach(btn => {
     btn.addEventListener('click', async () => {
       const skillIdx = parseInt(btn.dataset.skill);
-      const cost = getSkillDevCost(character.classIndex, skillIdx);
-      if (!cost) return;
+      const cost = getEffectiveSkillCost(skillIdx);
+      // B84 — in GM mode allow even when class can't develop (cost may be null)
+      const gm = isGMEditMode();
+      if (!cost && !gm) return;
 
       const phaseRanks = getCurrentPhaseRanks(character, skillIdx);
-      if (phaseRanks >= cost.maxRanks) return;
+      if (!gm && cost && phaseRanks >= cost.maxRanks) return;
 
-      const rankCost = phaseRanks === 0 ? cost.first : cost.second;
+      const rankCost = !cost ? 0 : (phaseRanks === 0 ? cost.first : cost.second);
       const devPts = getDevPointsTotal(character);
       const spent = getDevPointsSpent(character);
-      if (spent + rankCost > devPts) {
+      if (!gm && spent + rankCost > devPts) {
         showToast('Pas assez de points de développement !', true);
         return;
       }
 
       const ranksObj = getCurrentPhaseRanksObj(character);
       ranksObj[skillIdx] = phaseRanks + 1;
-      setDevPointsSpent(character, spent + rankCost);
+      if (!gm) setDevPointsSpent(character, spent + rankCost);
       const _skills = getAllSkillsFlat();
       if (character.name) logSkillDevelop(character, {
         skillIndex: skillIdx, skillName: _skills[skillIdx]?.name_fr || String(skillIdx),
@@ -4273,18 +4424,26 @@ function bindSkillsEvents(app) {
   document.querySelectorAll('.pm-minus').forEach(btn => {
     btn.addEventListener('click', () => {
       const skillIdx = parseInt(btn.dataset.skill);
-      const cost = getSkillDevCost(character.classIndex, skillIdx);
-      if (!cost) return;
+      const cost = getEffectiveSkillCost(skillIdx);
+      const gm = isGMEditMode();
+      if (!cost && !gm) return;
+
+      // B84 — GM drains newest non-empty bucket (cross-phase), no DP refund
+      if (gm) {
+        if (!gmDecrementOneRank(skillIdx)) return;
+        if (skillIdx === getBodyDevSkillIndex() && character.bodyDevRolls && character.bodyDevRolls.length > 0) {
+          character.bodyDevRolls.pop();
+        }
+        renderEditor(app);
+        return;
+      }
 
       const phaseRanks = getCurrentPhaseRanks(character, skillIdx);
       if (phaseRanks <= 0) return;
-
-      // Refund the last rank's cost
       const refund = phaseRanks === 2 ? cost.second : cost.first;
       const ranksObj = getCurrentPhaseRanksObj(character);
       ranksObj[skillIdx] = phaseRanks - 1;
       if (ranksObj[skillIdx] === 0) delete ranksObj[skillIdx];
-
       const spent = getDevPointsSpent(character);
       setDevPointsSpent(character, Math.max(0, spent - refund));
       // Body Dev: remove last die roll
@@ -4343,14 +4502,16 @@ function bindSkillsEvents(app) {
       const wsKey = 'wpn_' + wsIdx;
       const phaseRanks = getCurrentPhaseRanks(character, wsKey);
       const maxRanks = wpn.cost.second > 0 ? 2 : 1;
-      if (phaseRanks >= maxRanks) return;
+      // B84 — GM bypasses max-per-phase cap and DP check
+      const gm = isGMEditMode();
+      if (!gm && phaseRanks >= maxRanks) return;
       const rankCost = phaseRanks === 0 ? wpn.cost.first : wpn.cost.second;
       const devPts = getDevPointsTotal(character);
       const spent = getDevPointsSpent(character);
-      if (spent + rankCost > devPts) return;
+      if (!gm && spent + rankCost > devPts) return;
       const ranksObj = getCurrentPhaseRanksObj(character);
       ranksObj[wsKey] = phaseRanks + 1;
-      setDevPointsSpent(character, spent + rankCost);
+      if (!gm) setDevPointsSpent(character, spent + rankCost);
       renderEditor(app);
     });
   });
@@ -4362,6 +4523,12 @@ function bindSkillsEvents(app) {
       const wpn = character.weaponSkills[wsIdx];
       if (!wpn) return;
       const wsKey = 'wpn_' + wsIdx;
+      // B84 — GM drains newest non-empty bucket (cross-phase), no DP refund
+      if (isGMEditMode()) {
+        if (!gmDecrementOneRank(wsKey)) return;
+        renderEditor(app);
+        return;
+      }
       const phaseRanks = getCurrentPhaseRanks(character, wsKey);
       if (phaseRanks <= 0) return;
       const refund = phaseRanks === 2 ? wpn.cost.second : wpn.cost.first;
@@ -4402,14 +4569,16 @@ function bindSkillsEvents(app) {
       const cost = sub.cost || getSkillDevCost(character.classIndex, parentIdx) || { first: 4, second: 0 };
       const phaseRanks = getCurrentPhaseRanks(character, subKey);
       const maxRanks = cost.second > 0 ? 2 : 1;
-      if (phaseRanks >= maxRanks) return;
+      // B84 — GM bypasses cap and DP
+      const gm = isGMEditMode();
+      if (!gm && phaseRanks >= maxRanks) return;
       const rankCost = phaseRanks === 0 ? cost.first : cost.second;
       const spent = getDevPointsSpent(character);
       const devPts = getDevPointsTotal(character);
-      if (spent + rankCost > devPts) return;
+      if (!gm && spent + rankCost > devPts) return;
       const ranksObj = getCurrentPhaseRanksObj(character);
       ranksObj[subKey] = phaseRanks + 1;
-      setDevPointsSpent(character, spent + rankCost);
+      if (!gm) setDevPointsSpent(character, spent + rankCost);
       renderEditor(app);
     });
   });
@@ -4423,6 +4592,12 @@ function bindSkillsEvents(app) {
       const sub = character.subSkills.filter(s => s.parentIndex === parentIdx)[subIdx];
       if (!sub) return;
       const cost = sub.cost || getSkillDevCost(character.classIndex, parentIdx) || { first: 4, second: 0 };
+      // B84 — GM drains newest non-empty bucket, no DP refund
+      if (isGMEditMode()) {
+        if (!gmDecrementOneRank(subKey)) return;
+        renderEditor(app);
+        return;
+      }
       const phaseRanks = getCurrentPhaseRanks(character, subKey);
       if (phaseRanks <= 0) return;
       const refund = phaseRanks === 2 ? cost.second : cost.first;
@@ -4456,6 +4631,67 @@ function bindSkillsEvents(app) {
       const subIdx = parseInt(btn.dataset.subIdx);
       openSubSkillEditor(app, parentIdx, subIdx);
     });
+  });
+
+  // B84 — GM clickable stat label (override determining stats on parent skill)
+  document.querySelectorAll('.gm-stat-edit').forEach(el => {
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      const gi = parseInt(el.dataset.gmSkillStat);
+      if (!isNaN(gi)) openGmStatPickerForSkill(app, gi);
+    });
+  });
+
+  // B84 — GM clickable cost cell (override dev cost per parent skill)
+  document.querySelectorAll('.gm-cost-edit').forEach(td => {
+    td.addEventListener('click', e => {
+      e.stopPropagation();
+      const gi = parseInt(td.dataset.gmCost);
+      if (isNaN(gi)) return;
+      const cur = getEffectiveSkillCost(gi);
+      const curStr = cur ? (cur.second > 0 ? `${cur.first}/${cur.second}` : `${cur.first}`) : '';
+      const isEn = character.language === 'en';
+      const input = window.prompt(
+        isEn
+          ? 'New cost — format "X/Y" (2 ranks) or "X" (1 rank). Empty resets to default.'
+          : 'Nouveau coût — format « X/Y » (2 rangs) ou « X » (1 rang). Vide = défaut.',
+        curStr
+      );
+      if (input === null) return; // cancelled
+      if (!character.skillCostOverrides) character.skillCostOverrides = {};
+      const trimmed = input.trim();
+      if (trimmed === '') {
+        delete character.skillCostOverrides[gi];
+        renderEditor(app);
+        return;
+      }
+      const m = trimmed.match(/^(\d+)\s*(?:\/\s*(\d+))?$/);
+      if (!m) {
+        showToast(isEn ? 'Invalid format (expected "X/Y" or "X")' : 'Format invalide (attendu « X/Y » ou « X »)', true);
+        return;
+      }
+      const first = parseInt(m[1]);
+      const second = m[2] ? parseInt(m[2]) : 0;
+      character.skillCostOverrides[gi] = {
+        first,
+        second,
+        maxRanks: second > 0 ? 2 : 1,
+      };
+      renderEditor(app);
+    });
+  });
+
+  // B84 — GM direct edit of total ranks (set to arbitrary value)
+  document.querySelectorAll('.gm-rank-input').forEach(input => {
+    input.addEventListener('change', () => {
+      const key = input.dataset.skill;
+      const idx = (key.startsWith('wpn_') || key.startsWith('sub_')) ? key : parseInt(key);
+      const newTotal = Math.max(0, parseInt(input.value) || 0);
+      gmSetTotalRanks(idx, newTotal);
+      renderEditor(app);
+    });
+    // Stop click from collapsing the row
+    input.addEventListener('click', e => e.stopPropagation());
   });
 
   // Collapsible skill categories — restore and bind
@@ -4757,6 +4993,83 @@ function openSubSkillEditor(app, parentIndex, subIdx) {
     sub.stats = newStats.length > 0 ? newStats : undefined;
 
     document.getElementById('subskill-editor-overlay').remove();
+    renderEditor(app);
+  });
+}
+
+/**
+ * B84 — GM-only modal: override the stat indices of a parent skill.
+ * Stores result in character.skillStatOverrides[globalIndex] as 1-based indices.
+ * Clearing all slots removes the override (revert to default).
+ */
+function openGmStatPickerForSkill(app, globalIndex) {
+  const lang = character.language || 'fr';
+  // Find skill to read default stats
+  let skill = null;
+  let gi = 0;
+  for (const cat of getAllCategories()) {
+    for (const s of cat.skills) {
+      if (gi === globalIndex) skill = s;
+      gi++;
+    }
+  }
+  if (!skill) return;
+  const statNames = lang === 'en' ? STAT_NAMES_EN : STAT_NAMES_FR;
+  const defaultIdx = getSkillStatIndices(skill); // 1-based
+  if (!character.skillStatOverrides) character.skillStatOverrides = {};
+  const override = character.skillStatOverrides[globalIndex] || [];
+  // Display current selection (override if any, else defaults). All 1-based.
+  const current = override.length > 0 ? override : defaultIdx;
+
+  const skillName = getSkillName(skill, lang);
+  let html = `<div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center" id="gm-stat-overlay">
+    <div class="bg-gray-800 rounded-lg p-4 w-80">
+      <h3 class="text-amber-300 font-bold mb-1">🎭 ${lang === 'en' ? 'GM — Skill Stats' : 'MJ — Carac. de compétence'}</h3>
+      <div class="text-xs text-gray-400 mb-3">${esc(skillName)} <span class="text-gray-500">— ${lang === 'en' ? 'default' : 'défaut'}: ${defaultIdx.map(i => STAT_ABBREVS[i - 1]).join('/') || '—'}</span></div>
+      <div class="mb-3">
+        <label class="text-xs text-gray-500">${lang === 'en' ? 'Up to 4 stats (avg = bonus)' : "Jusqu'à 4 carac. (moyenne = bonus)"}</label>
+        <div class="flex flex-col gap-1 mt-1">`;
+  for (let s = 0; s < 4; s++) {
+    const sel = s < current.length ? current[s] : -1; // 1-based value, -1 = none
+    html += `<select class="gm-stat-select text-sm" data-slot="${s}" style="background:#1f2937;border:1px solid #4b5563;padding:2px 4px;border-radius:4px;color:#d1d5db">
+      <option value="-1" ${sel === -1 ? 'selected' : ''}>—</option>`;
+    for (let si = 1; si <= 10; si++) {
+      html += `<option value="${si}" ${sel === si ? 'selected' : ''}>${STAT_ABBREVS[si - 1]} — ${statNames[si - 1]}</option>`;
+    }
+    html += `</select>`;
+  }
+  html += `</div>
+      </div>
+      <div class="flex gap-2">
+        <button class="btn-primary text-sm flex-1" id="gm-stat-save">${lang === 'en' ? 'Save' : 'Enregistrer'}</button>
+        <button class="btn-secondary text-sm flex-1" id="gm-stat-reset">${lang === 'en' ? 'Reset default' : 'Défaut'}</button>
+        <button class="btn-secondary text-sm flex-1" id="gm-stat-cancel">${lang === 'en' ? 'Cancel' : 'Annuler'}</button>
+      </div>
+    </div></div>`;
+
+  document.body.insertAdjacentHTML('beforeend', html);
+  const closeModal = () => document.getElementById('gm-stat-overlay')?.remove();
+  document.getElementById('gm-stat-cancel').addEventListener('click', closeModal);
+  document.getElementById('gm-stat-overlay').addEventListener('click', e => {
+    if (e.target.id === 'gm-stat-overlay') closeModal();
+  });
+  document.getElementById('gm-stat-reset').addEventListener('click', () => {
+    delete character.skillStatOverrides[globalIndex];
+    closeModal();
+    renderEditor(app);
+  });
+  document.getElementById('gm-stat-save').addEventListener('click', () => {
+    const picked = [];
+    document.querySelectorAll('.gm-stat-select').forEach(sel => {
+      const v = parseInt(sel.value);
+      if (v >= 1 && v <= 10) picked.push(v);
+    });
+    if (picked.length === 0) {
+      delete character.skillStatOverrides[globalIndex];
+    } else {
+      character.skillStatOverrides[globalIndex] = picked;
+    }
+    closeModal();
     renderEditor(app);
   });
 }

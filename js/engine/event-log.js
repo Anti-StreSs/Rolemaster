@@ -103,6 +103,10 @@ export const logSkillManualEdit = (character, data) =>
   logEvent(character, 'skill_manual_edit', data,
     `Bonus manuel modifié: ${data.skillName} → ${data.newVal}`);
 
+// B84 — GM edit mode for player characters
+export const logGmEdit = (character, data = {}) =>
+  logEvent(character, 'gm_edit', data, 'Personnage édité par le MJ');
+
 /** Get full event history for a character from IndexedDB. */
 export async function getCharacterHistory(characterName, options) {
   return getEvents(characterName, options);

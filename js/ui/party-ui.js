@@ -8,7 +8,7 @@ import {
   getCurrentTurn, nextTurn, addNPCCombatant, removeNPCCombatant, getNPCCombatants,
   getCombatLog, logCombatAction,
   spendAction, adjustActionPoints, isRoundOver, ACTION_COSTS, ACTION_LABELS,
-  setCurrentTarget, setMemberActiveWeapon, resetRoundBO, setBoMaxForRound,
+  setCurrentTarget, setCurrentAttackTable, setMemberActiveWeapon, resetRoundBO, setBoMaxForRound,
   setParryTransfer, applyParryTransfer, addParryBoost, consumeParryBoost, peekParryBoost,
   spendBoForAttack,
 } from '../engine/party-manager.js';
@@ -537,24 +537,19 @@ function renderAttackPanel(currentTurn, lang) {
   const p = getParty();
   const npcs = getNPCCombatants();
 
-  // Weapon table options
-  let weaponOptions = '<option value="">— Table d\'arme —</option>';
-  let bestWeaponId = ''; // for auto-select
-  try {
-    const weapons = getAvailableWeapons();
-    weaponOptions += weapons.map(w => {
-      const sel = w.id === bestWeaponId ? ' selected' : '';
-      return `<option value="${w.id}"${sel}>${lang === 'fr' ? (w.name_fr || w.name_en) : w.name_en}</option>`;
-    }).join('');
-  } catch (e) { /* attack tables may not be loaded */ }
-
-  // Pre-fill OB from active combatant, capped by their remaining BO this round
-  // (multi-attack rule: each attack/parry depletes BO restant)
+  // B85 — compute defaults BEFORE building the dropdown so the selected option
+  // can be marked at render time. Priority for the selected weapon table:
+  //   (1) attacker.attackTableId — last user choice this combat, OR
+  //   (2) the attacker's active/best weapon mapped to a table (auto-suggestion).
   let defaultOB = 0;
   let atkHint = '';
+  let bestWeaponId = '';
+  // Remembered choice takes precedence over the auto-suggestion below.
+  let rememberedTableId = '';
   if (!currentTurn.isNPC) {
     const m = p.members.find(m => m.char.name === currentTurn.name);
     if (m) {
+      rememberedTableId = m.attackTableId || '';
       const weapons = getCharWeapons(m.char, lang);
       if (weapons.length) {
         const active = m.activeWeaponIndex != null
@@ -572,15 +567,34 @@ function renderAttackPanel(currentTurn, lang) {
     }
   } else {
     const npc = npcs.find(n => n.name === currentTurn.name);
-    if (npc?.attacks?.length) {
-      // Pick attack with highest OB
-      const best = npc.attacks.reduce((a, b) => (b.ob > a.ob ? b : a), npc.attacks[0]);
-      defaultOB = best.ob;
-      atkHint = ATTACK_TYPE_LABELS[best.type]?.[lang] || best.type_en || best.type;
-      // Map creature attack type to proper creature table (size-aware)
-      bestWeaponId = _creatureAttackToTable(best, npc.size);
+    if (npc) {
+      rememberedTableId = npc.attackTableId || '';
+      if (npc.attacks?.length) {
+        // Pick attack with highest OB
+        const best = npc.attacks.reduce((a, b) => (b.ob > a.ob ? b : a), npc.attacks[0]);
+        defaultOB = best.ob;
+        atkHint = ATTACK_TYPE_LABELS[best.type]?.[lang] || best.type_en || best.type;
+        // Map creature attack type to proper creature table (size-aware)
+        bestWeaponId = _creatureAttackToTable(best, npc.size);
+      }
     }
   }
+  // Pre-selected table = remembered choice (if any) else best auto-suggestion
+  const preselectId = rememberedTableId || bestWeaponId;
+
+  // Weapon table dropdown — sorted alphabetically with pre-selected option
+  let weaponOptions = '<option value="">— Table d\'arme —</option>';
+  try {
+    const weapons = getAvailableWeapons().slice().sort((a, b) => {
+      const aN = (lang === 'fr' ? (a.name_fr || a.name_en) : a.name_en) || '';
+      const bN = (lang === 'fr' ? (b.name_fr || b.name_en) : b.name_en) || '';
+      return aN.localeCompare(bN, lang === 'fr' ? 'fr' : 'en', { sensitivity: 'base' });
+    });
+    weaponOptions += weapons.map(w => {
+      const sel = w.id === preselectId ? ' selected' : '';
+      return `<option value="${w.id}"${sel}>${lang === 'fr' ? (w.name_fr || w.name_en) : w.name_en}</option>`;
+    }).join('');
+  } catch (e) { /* attack tables may not be loaded */ }
 
   // Target options: all combatants except self
   const allTargets = [
@@ -859,6 +873,8 @@ function _resolveAttack(main, app) {
   const manualFumble = parseInt(main.querySelector('#catk-manual-fumble')?.value) || null;
 
   if (currentTurn && targetName) setCurrentTarget(currentTurn.name, targetName);
+  // B85 — remember the chosen weapon table so it persists across re-renders & turns
+  if (currentTurn && weaponTable) setCurrentAttackTable(currentTurn.name, weaponTable);
   // Consume the parry boost on this target — the attack is being resolved now,
   // so the boost has served its purpose (already reflected in `db` via renderAttackPanel/peek).
   if (targetName) consumeParryBoost(targetName);
@@ -1029,6 +1045,11 @@ function bindDashboardEvents(main, app) {
     nextTurn();
     renderDashboard(main, app);
   });
+  // B85 — persist weapon-table choice as soon as the GM picks it (no need to resolve)
+  main.querySelector('#catk-weapon')?.addEventListener('change', e => {
+    const turn = getCurrentTurn();
+    if (turn) setCurrentAttackTable(turn.name, e.target.value || null);
+  });
 
   // Card grid event delegation
   const grid = main.querySelector('#pm-card-grid');
@@ -1069,7 +1090,11 @@ function bindDashboardEvents(main, app) {
 
   // NOTE: delegation bound to `main` (not `grid`) so it also catches clicks
   // inside the NPC picker (#combat-npc-picker), which is a sibling of #pm-card-grid.
-  main.addEventListener('click', e => {
+  // B85 — use onclick assignment (replaces) instead of addEventListener (accumulates)
+  // because renderDashboard is called repeatedly on the same `main` element.
+  // Bug it fixes: each click was triggering N handlers (N = renders so far) → +5/−5 deltas
+  // applied N times (instant-kill of HP, multi-spawn of NPC, exponential listener-leak freeze).
+  main.onclick = (e => {
     // NPC remove button
     const removeNpc = e.target.closest('[data-action="remove-npc"]');
     if (removeNpc) {

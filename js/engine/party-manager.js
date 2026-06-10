@@ -54,7 +54,7 @@ export function initParty(characters) {
     const db = dbResult?.meleeBD ?? dbResult?.totalBD ?? (typeof dbResult === 'number' ? dbResult : 0);
     return { char, maxHP, maxPP, db, currentHP: maxHP, currentPP: maxPP,
              statuses: [], initiative: 0, actionPoints: 0, weaponSlot3: null,
-             currentTarget: null, activeWeaponIndex: null,
+             currentTarget: null, activeWeaponIndex: null, attackTableId: null,
              boMaxThisRound: 0, boRemainingThisRound: 0, parryTransfer: 0, parryDbBoost: 0 };
   });
   setPartyMembers(members);
@@ -365,6 +365,15 @@ export function setCurrentTarget(name, targetName) {
   const m = _find(name);
   if (!m) return;
   m.currentTarget = targetName || null;
+}
+
+// B85 — remember last selected attack table per combatant (PC or NPC).
+// Survives turn changes so the GM doesn't have to re-pick on every turn.
+export function setCurrentAttackTable(name, tableId) {
+  const m = _find(name);
+  if (m) { m.attackTableId = tableId || null; return; }
+  const npc = getSession().npcCombatants.find(n => n.name === name);
+  if (npc) npc.attackTableId = tableId || null;
 }
 
 export function setMemberActiveWeapon(name, weaponIndex) {
