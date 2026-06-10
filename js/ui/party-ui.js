@@ -38,8 +38,8 @@ const _CRIT_TABLE_LABEL  = {
   en: { large: 'Large Creature table', superlarge: 'Super Large Creature table', type1: 'Type I criticals', type2: 'Type II criticals' },
 };
 const _MARKER_FALLBACK   = {
-  fr: { '#': 'Immunisé étourdissement', '@': 'Immunisé étourd.+saign.', '*': 'Voir description' },
-  en: { '#': 'Immune to stun', '@': 'Immune to stun+bleed', '*': 'See description' },
+  fr: { '@': 'Immunisé étourdissement', '#': 'Immunisé étourd.+saign.', '*': 'Voir description' },
+  en: { '@': 'Immune to stun',          '#': 'Immune to stun+bleed',    '*': 'See description' },
 };
 
 function _critSizeBadge(npc, lang) {

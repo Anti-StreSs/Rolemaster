@@ -5,13 +5,16 @@
 import { getData } from './data-loader.js';
 
 // ============================================================
-// CRIT MARKER EFFECTS (Step 0 — gated on C&T legend confirmation)
-// Source: Creatures & Treasures (C&T1, legend pages ~5-9)
-// Populate from GPTwork/ct_crit_legend.json when Step 0 is complete.
-// While null: markers are stored + displayed but immunities are NOT enforced.
+// CRIT MARKER EFFECTS — Source: RMC C&T [2007] section 2.4, p.12
+// @ = stun immunity only; # = stun + hits/rnd (bleed) immunity; * = special (display only)
+// Note: RM2 C&T1/2/3 are image-only PDFs; RMC 2007 text layer was authoritative.
 // ============================================================
 
-export const CRIT_MARKER_EFFECTS = null;
+export const CRIT_MARKER_EFFECTS = {
+  '@': { no_stun: true,  no_bleed: false, meaning_en: 'Stun results do not affect creature.',                meaning_fr: "Les résultats d'étourdissement n'affectent pas la créature.", source: 'RMC C&T p.12' },
+  '#': { no_stun: true,  no_bleed: true,  meaning_en: 'Stun results and hits/rnd do not affect creature.', meaning_fr: "Étourdissement et PdC/round n'affectent pas la créature.",         source: 'RMC C&T p.12' },
+  '*': { no_stun: false, no_bleed: false, meaning_en: 'Special — see creature description.',                meaning_fr: 'Spécial — voir description de la créature.',                       source: 'RMC C&T (see description)' },
+};
 
 // ============================================================
 // LAZY INDEXES — built once per session from raw arrays
