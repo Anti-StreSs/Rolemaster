@@ -14,7 +14,7 @@ export default {
     subtitle: 'Rolemaster Standard System (RMSS)',
     createBtn: 'Créer un Personnage',
     loadBtn: 'Charger un Personnage',
-    stats: '{classes} professions · {skills} compétences · {spells} listes de sorts',
+    stats: '{classes} professions · {skills} compétences · {lists} listes · {spells} sorts',
   },
   wizard: {
     step: 'Étape',

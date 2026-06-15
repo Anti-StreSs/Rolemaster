@@ -130,12 +130,23 @@ async function renderHome(main) {
 
   const classCount = data.classes.total_classes;
   const skillCount = data.competences.total_skills;
-  const spellCount = data.sorts.total_spell_lists;
-
+  // Grimoire totals (full compendium) — live from the precached lists index, fallback to known totals
+  let listCount = 510, spellTotal = 10561;
+  try {
+    const r = await fetch('./data/spell_lists_index.json');
+    if (r.ok) {
+      const idx = await r.json();
+      const LL = idx.lists || idx;
+      listCount = (idx._metadata && idx._metadata.list_count) || LL.length;
+      spellTotal = LL.reduce((acc, x) => acc + (x.spell_count || 0), 0);
+    }
+  } catch (e) { /* offline before precache — keep fallback totals */ }
+  const loc = app.lang === 'en' ? 'en' : 'fr';
   const statsLine = t.home.stats
     .replace('{classes}', classCount)
     .replace('{skills}', skillCount)
-    .replace('{spells}', spellCount);
+    .replace('{lists}', listCount.toLocaleString(loc))
+    .replace('{spells}', spellTotal.toLocaleString(loc));
 
   // Local saves list
   const saves = await getLocalSaves();
