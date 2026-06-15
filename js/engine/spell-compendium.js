@@ -14,6 +14,7 @@ let paramsLoaded = false;       // true after ensureParams()
 let loadIndexPromise = null;    // dedup concurrent loadListsIndex() calls
 let loadParamsPromise = null;   // dedup concurrent ensureParams() calls
 const loadedShards = new Set(); // buckets already merged into spell objects
+let manifestVersion; // cached spell_effects.manifest.json version — for IDB shard cache invalidation
 
 /**
  * Fast first paint: fetch spell_lists_index.json (the 510 list records only).
@@ -116,9 +117,18 @@ export async function loadDescriptionsForRealm(bucket) {
 
   let effects = null;
 
-  // Try IDB cache first
+  // Resolve current manifest version once (used to invalidate stale IDB shard caches)
+  if (manifestVersion === undefined) {
+    manifestVersion = null;
+    try {
+      const mf = await fetch('./data/spell_effects.manifest.json');
+      if (mf.ok) { const m = await mf.json(); manifestVersion = m.version || null; }
+    } catch (e) { /* manifest optional */ }
+  }
+
+  // Try IDB cache first — but only if its version matches the current manifest
   const cached = await getShard(bucket);
-  if (cached?.effects) {
+  if (cached?.effects && cached.version === manifestVersion) {
     effects = cached.effects;
   } else {
     try {
@@ -126,13 +136,7 @@ export async function loadDescriptionsForRealm(bucket) {
       if (resp.ok) {
         const data = await resp.json();
         effects = data.spell_effects || {};
-        // Persist manifest version for cache validation
-        let version = 'unknown';
-        try {
-          const mf = await fetch('./data/spell_effects.manifest.json');
-          if (mf.ok) { const m = await mf.json(); version = m.version || version; }
-        } catch (e) { /* manifest optional */ }
-        await putShard(bucket, effects, version);
+        await putShard(bucket, effects, manifestVersion || 'unknown');
         console.log(`Spell shard loaded: ${bucket} (${Object.keys(effects).length} spells)`);
       }
     } catch (e) { /* shard optional */ }
