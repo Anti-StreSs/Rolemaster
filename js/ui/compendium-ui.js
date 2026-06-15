@@ -483,4 +483,7 @@ function esc(s) { return (s == null ? '' : String(s)).replace(/[&<>"]/g, c => ({
 
 // ── Global keyboard & hash ────────────────────────────────────────────────────
 
-window.addEventListener('hashchange', () => { readHash(); go(); });
+window.addEventListener('hashchange', () => {
+  // Only react while the Grimoire is the active view — never hijack navigation to other views (bestiary, party…).
+  if (compendiumApp && compendiumApp.currentView === 'compendium') { readHash(); go(); }
+});
