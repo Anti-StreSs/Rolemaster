@@ -45,7 +45,7 @@ body.rm-theme[data-view="home"] .rm-main {
 }
 body.rm-theme[data-view="home"] .rm-frame {
   width: fit-content;
-  max-width: min(580px, 100%);
+  max-width: min(1000px, 100%);
   min-width: 300px;
   min-height: auto;
 }
@@ -402,8 +402,8 @@ body.rm-theme[data-view="home"] .rm-frame {
   transition: transform 0.2s ease;
 }
 .rm-footer-icon img {
-  height: 48px;
-  width: 48px;
+  height: 58px;
+  width: 58px;
   object-fit: contain;
   display: block;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.85)) drop-shadow(0 0 2px rgba(0,0,0,0.7)) drop-shadow(0 0 8px rgba(0,0,0,0.4));
@@ -446,7 +446,7 @@ body.rm-theme[data-view="home"] .rm-frame {
   transform: translateX(-50%) translateY(4px);
   background: rgba(30, 20, 10, 0.88);
   color: #e8d5a0;
-  font-size: 10px;
+  font-size: 12px;
   font-family: serif;
   letter-spacing: 0.05em;
   padding: 3px 8px;
@@ -494,10 +494,10 @@ body.rm-theme[data-view="home"] .rm-frame {
 @media (min-width: 1200px) {
   .rm-torch { display: block; }
   .rm-footer-deco { gap: 24px; }
-  .rm-footer-icon img { height: 64px; width: 64px; }
-  #footer-toolbox, #footer-compendium { height: 74px; width: 74px; }
-  #footer-merchants, #footer-herbs { height: 84px; width: 84px; }
-  .rm-footer-icon #footer-home { width: 64px !important; height: 64px !important; font-size: 2rem !important; }
+  .rm-footer-icon img { height: 77px; width: 77px; }
+  #footer-toolbox, #footer-compendium { height: 89px; width: 89px; }
+  #footer-merchants, #footer-herbs { height: 101px; width: 101px; }
+  .rm-footer-icon #footer-home { width: 77px !important; height: 77px !important; font-size: 2.4rem !important; }
   .rm-layout { padding: 0 64px; }
   .rm-tab-icon img { width: 52px; height: 52px; }
 }
@@ -506,10 +506,10 @@ body.rm-theme[data-view="home"] .rm-frame {
   .rm-tab-icon img { width: 40px; height: 40px; }
   .rm-frame { padding: 32px; background-size: 32px 32px; }
   .rm-footer-deco { gap: 16px; }
-  .rm-footer-icon img { height: 52px; width: 52px; }
-  #footer-toolbox, #footer-compendium { height: 60px; width: 60px; }
-  #footer-merchants, #footer-herbs { height: 68px; width: 68px; }
-  .rm-footer-icon #footer-home { width: 52px !important; height: 52px !important; font-size: 1.8rem !important; }
+  .rm-footer-icon img { height: 62px; width: 62px; }
+  #footer-toolbox, #footer-compendium { height: 72px; width: 72px; }
+  #footer-merchants, #footer-herbs { height: 82px; width: 82px; }
+  .rm-footer-icon #footer-home { width: 62px !important; height: 62px !important; font-size: 2.16rem !important; }
 }
 
 @media (max-width: 767px) {

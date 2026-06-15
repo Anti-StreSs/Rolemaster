@@ -206,10 +206,8 @@ async function renderHome(main) {
       </div>
       <div class="rm-crystal-ball">
         <div class="rm-crystal-ball-container rm-crystal-ball-hero">
-          <video muted loop playsinline preload="none" id="hero-sora-video"
-            onerror="this.style.display='none'">
-            <source data-src="assets/hero-sora.mp4" type="video/mp4">
-          </video>
+          <video class="rm-ball-vid" muted playsinline preload="auto" data-vi="0" onerror="this.style.display='none'"></video>
+          <video class="rm-ball-vid" muted playsinline preload="auto" data-vi="1" style="opacity:0" onerror="this.style.display='none'"></video>
           <div class="rm-crystal-overlay"></div>
         </div>
       </div>
@@ -275,15 +273,27 @@ async function renderHome(main) {
     });
   }
 
-  // Lazy-load hero-sora video after first paint (8MB — don't block page load)
+  // Crystal-ball playlist: two stacked clips, preloaded, cross-faded, looping (smooth, no reload flash).
   setTimeout(() => {
-    const heroVideo = document.getElementById('hero-sora-video');
-    if (!heroVideo) return;
-    const sources = heroVideo.querySelectorAll('source[data-src]');
-    if (!sources.length) { heroVideo.play().catch(() => {}); return; }
-    sources.forEach(s => { s.src = s.dataset.src; s.removeAttribute('data-src'); });
-    heroVideo.load();
-    heroVideo.addEventListener('canplay', () => heroVideo.play().catch(() => {}), { once: true });
+    const cont = document.querySelector('.rm-crystal-ball-hero');
+    if (!cont) return;
+    const vids = [...cont.querySelectorAll('video.rm-ball-vid')];
+    if (!vids.length) return;
+    const playlist = ['assets/hero-sora.mp4', 'assets/IntroSmall.mp4'];
+    if (vids.length < 2) { vids[0].src = playlist[0]; vids[0].loop = true; vids[0].play().catch(() => {}); return; }
+    vids[0].src = playlist[0]; vids[1].src = playlist[1];
+    vids.forEach(v => v.load());
+    let cur = 0;
+    vids[0].style.opacity = '1'; vids[1].style.opacity = '0';
+    vids[0].play().catch(() => {});
+    vids.forEach(v => v.addEventListener('ended', () => {
+      const next = (cur + 1) % vids.length;
+      vids[next].currentTime = 0;
+      vids[next].play().catch(() => {});
+      vids[next].style.opacity = '1';
+      vids[cur].style.opacity = '0';
+      cur = next;
+    }));
   }, 600);
 }
 
