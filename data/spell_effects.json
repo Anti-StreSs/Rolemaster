@@ -8733,7 +8733,7 @@
    "list_id": "list-094",
    "level": 15,
    "source": "RMSS Spell Law",
-   "description_fr": "Comme Undoor I, sauf que la porte peut mesurer jusqu'\u00e0 2'x20'x6 m."
+   "description_fr": "Comme Undoor I, sauf que la porte peut mesurer jusqu'\u00e0 0,6 m x 6 m x 6 m."
   },
   "sp-02027": {
    "description_en": "As Open Prison I, except chance is 40% (90% for Magic Locks).",
@@ -8747,7 +8747,7 @@
    "list_id": "list-094",
    "level": 17,
    "source": "RMSS Spell Law",
-   "description_fr": "Comme Undoor I, sauf que la porte peut mesurer jusqu'\u00e0 3'x50'x15 m."
+   "description_fr": "Comme Undoor I, sauf que la porte peut mesurer jusqu'\u00e0 0,9 m x 15 m x 15 m."
   },
   "sp-02029": {
    "description_en": "As Magic Lock, except duration is 1 day/lvl and the chance that an Opening spell (or Open Prison) will work is reduced by 40%.",
@@ -8768,7 +8768,7 @@
    "list_id": "list-094",
    "level": 20,
    "source": "RMSS Spell Law",
-   "description_fr": "Une ouverture de porte (8'x1,5 m) est cr\u00e9\u00e9e dans n'importe quel mur jusqu'\u00e0 15 cm de profondeur par niveau du lanceur."
+   "description_fr": "Une ouverture de porte (2,4 m x 1,5 m) est cr\u00e9\u00e9e dans n'importe quel mur jusqu'\u00e0 15 cm de profondeur par niveau du lanceur."
   },
   "sp-02032": {
    "description_en": "Gives the caster a 90% chance of opening a lock. The roll is open-ended and the sophistication of the lock may modify the roll.",
@@ -9265,7 +9265,7 @@
    "list_id": "list-106",
    "level": 6,
    "source": "RMSS Spell Law",
-   "description_fr": "Ouvre un portail de 3'x6'x0,9 m dans n'importe quelle surface solide. \u00c0 la fin de la dur\u00e9e, la surface retrouve son \u00e9tat pr\u00e9c\u00e9dent. Si quelqu'un se trouve dans la zone d'effet quand l'effet du sort prend fin, il est repouss\u00e9 jusqu'\u00e0 son point d'entr\u00e9e."
+   "description_fr": "Ouvre un portail de 0,9 m x 1,8 m x 0,9 m dans n'importe quelle surface solide. \u00c0 la fin de la dur\u00e9e, la surface retrouve son \u00e9tat pr\u00e9c\u00e9dent. Si quelqu'un se trouve dans la zone d'effet quand l'effet du sort prend fin, il est repouss\u00e9 jusqu'\u00e0 son point d'entr\u00e9e."
   },
   "sp-02269": {
    "description_en": "As Fly I, except rate is 150' per round.",
@@ -9321,7 +9321,7 @@
    "list_id": "list-106",
    "level": 14,
    "source": "RMSS Spell Law",
-   "description_fr": "Comme Portal, sauf que le portail mesure 3'x1,8 m et jusqu'\u00e0 1,5 m de profondeur par niveau."
+   "description_fr": "Comme Portal, sauf que le portail mesure 0,9 m x 1,8 m et jusqu'\u00e0 1,5 m de profondeur par niveau."
   },
   "sp-02277": {
    "description_en": "As Long Door I, except movement range is 500'.",
@@ -11029,7 +11029,7 @@
    "list_id": "list-007",
    "level": 5,
    "source": "RMSS Spell Law",
-   "description_fr": "Toute fissure ou faille pr\u00e9alable dans une section de mat\u00e9riau allant jusqu'\u00e0 10'x10'x3 m s'\u00e9tendra jusqu'\u00e0 sa limite."
+   "description_fr": "Toute fissure ou faille pr\u00e9alable dans une section de mat\u00e9riau allant jusqu'\u00e0 3 m x 3 m x 3 m s'\u00e9tendra jusqu'\u00e0 sa limite."
   },
   "sp-00134": {
    "description_en": "The caster may mend a single break in a small (up to 2 pounds) inorganic object or multiple breaks, rips, or cracks in a larger (up to 10 pounds) organic object. All component parts of the object must be within a 10' radius.",
@@ -11043,7 +11043,7 @@
    "list_id": "list-007",
    "level": 7,
    "source": "RMSS Spell Law",
-   "description_fr": "Comme Earthwall, sauf que le mur est jusqu'\u00e0 10'x10'x0,3 m de pierre. Il peut \u00eatre travers\u00e9 en \u00e9tant \u00e9br\u00e9ch\u00e9."
+   "description_fr": "Comme Earthwall, sauf que le mur est jusqu'\u00e0 3 m x 3 m x 0,3 m de pierre. Il peut \u00eatre travers\u00e9 en \u00e9tant \u00e9br\u00e9ch\u00e9."
   },
   "sp-00136": {
    "description_en": "This spell causes the area of effect to bristle with hundreds of 6\" to 12\" sharp edges and blades. The exact composition of these spikes will depend on the material the ground is made of. The area of effect must be placed horizontally on a surface (i.e., it cannot be placed on walls). Most animals and creatures cannot be induced to walk through the area. Anyone moving through the area must make a manuever roll (at least Extremely Hard difficulty) for every 5' moved through. Anyone who falls inside the area of effect receives an 'A' Puncture critical strike.",
@@ -11232,7 +11232,7 @@
    "list_id": "list-008",
    "level": 12,
    "source": "RMSS Spell Law",
-   "description_fr": "Comme Call Flame I, sauf que le cube mesure jusqu'\u00e0 20'x20'x6 m et que la port\u00e9e est de 6 m."
+   "description_fr": "Comme Call Flame I, sauf que le cube mesure jusqu'\u00e0 6 m x 6 m x 6 m et que la port\u00e9e est de 6 m."
   },
   "sp-00163": {
    "description_en": "As Call Flame I, except the effect can be delayed for up to 24 hours. The effect can be triggered by one of the following (decided by caster at the time of casting): time period, specific movements, specific sounds, touch, violent actions in the area, etc.",
@@ -11330,7 +11330,7 @@
    "list_id": "list-009",
    "level": 3,
    "source": "RMSS Spell Law",
-   "description_fr": "Cr\u00e9e un mur clair de froid intense (jusqu'\u00e0 10'x10'x0,3 m). Quiconque traverse ce mur subit un 'A' Cold critical (no JR)."
+   "description_fr": "Cr\u00e9e un mur clair de froid intense (jusqu'\u00e0 3 m x 3 m x 0,3 m). Quiconque traverse ce mur subit un 'A' Cold critical (no JR)."
   },
   "sp-00177": {
    "description_en": "As Cool Solid, except material can be cooled to -200\u02daF, at a rate of 50\u02daF per round. The caster must concentrate to decrease the temperature (without concentration, the material will remain at its current temperature for the duration of the spell).",
@@ -11358,7 +11358,7 @@
    "list_id": "list-009",
    "level": 8,
    "source": "RMSS Spell Law",
-   "description_fr": "Invoque un mur de glace jusqu'\u00e0 10'x10'x(0,6 m \u00e0 la base, 0,3 m au sommet). Il peut \u00eatre travers\u00e9 en \u00e9tant fondu ou \u00e9br\u00e9ch\u00e9, ou renvers\u00e9 (s'il n'est pas contre une surface solide)."
+   "description_fr": "Invoque un mur de glace jusqu'\u00e0 3 m x 3 mx(0,6 m \u00e0 la base, 0,3 m au sommet). Il peut \u00eatre travers\u00e9 en \u00e9tant fondu ou \u00e9br\u00e9ch\u00e9, ou renvers\u00e9 (s'il n'est pas contre une surface solide)."
   },
   "sp-00181": {
    "description_en": "As Wall of Cold, except it creates a cube of cold (up to 10' x 10' x 10'). The cube takes a complete round to form and be effective. Anyone passing through (or that is caught inside) the cube takes an 'A' Cold critical.",
@@ -14032,7 +14032,7 @@
    "list_id": "list-036",
    "level": 50,
    "source": "RMSS Spell Law",
-   "description_fr": "D\u00e9truit les gaz dans une seule enceinte (par exemple, g\u00e9n\u00e9ralement un b\u00e2timent) jusqu'\u00e0 une taille de 100'x100'x30 m (ou 1,000,000 cu'). Le b\u00e2timent a une chance de s'effondrer (selon sa construction) et tous ceux qui se trouvent \u00e0 l'int\u00e9rieur subissent un 'E' Impact critical d\u00fb aux d\u00e9bris qui tombent. Il en r\u00e9sulte une explosion tr\u00e8s bruyante. Si le b\u00e2timent s'effondre, tous ceux qui se trouvent \u00e0 30 m du b\u00e2timent subissent un 'C' Impact critical d\u00fb \u00e0 l'explosion."
+   "description_fr": "D\u00e9truit les gaz dans une seule enceinte (par exemple, g\u00e9n\u00e9ralement un b\u00e2timent) jusqu'\u00e0 une taille de 30 m x 30 m x 30 m (ou 1,000,000 cu'). Le b\u00e2timent a une chance de s'effondrer (selon sa construction) et tous ceux qui se trouvent \u00e0 l'int\u00e9rieur subissent un 'E' Impact critical d\u00fb aux d\u00e9bris qui tombent. Il en r\u00e9sulte une explosion tr\u00e8s bruyante. Si le b\u00e2timent s'effondre, tous ceux qui se trouvent \u00e0 30 m du b\u00e2timent subissent un 'C' Impact critical d\u00fb \u00e0 l'explosion."
   },
   "sp-00784": {
    "description_en": "Target takes 25% of his remaining concussion hits (i.e., those not already taken). These hits are restored when the duration is up, provided target has not died.",
@@ -14193,7 +14193,7 @@
    "list_id": "list-038",
    "level": 4,
    "source": "RMSS Spell Law",
-   "description_fr": "Toute fissure ou faille pr\u00e9existante dans une section de mat\u00e9riau pouvant atteindre 10'x10'x3 m (et non 1,000 pieds cubes) s'\u00e9tendra jusqu'\u00e0 sa limite. Voir la section 7.1.13."
+   "description_fr": "Toute fissure ou faille pr\u00e9existante dans une section de mat\u00e9riau pouvant atteindre 3 m x 3 m x 3 m (et non 1,000 pieds cubes) s'\u00e9tendra jusqu'\u00e0 sa limite. Voir la section 7.1.13."
   },
   "sp-00811": {
    "description_en": "Will vaporize a non-magic door up to 6\" thick, 10' high, and 10' wide (if the door is thicker than 6\" it will vaporize the closest 6 inches). This will only work on an object that is used as a door (e.g., a caster cannot Undoor a section of wall).",
@@ -14221,7 +14221,7 @@
    "list_id": "list-038",
    "level": 10,
    "source": "RMSS Spell Law",
-   "description_fr": "Cr\u00e9e un couloir de 3'x1,8 m, long de 0,3 m par niveau. Il peut traverser tout mat\u00e9riau inorganique non m\u00e9tallique. Le couloir est cr\u00e9\u00e9 \u00e0 un rythme de 0,3 m de longueur par tour tant que le lanceur se concentre."
+   "description_fr": "Cr\u00e9e un couloir de 0,9 m x 1,8 m, long de 0,3 m par niveau. Il peut traverser tout mat\u00e9riau inorganique non m\u00e9tallique. Le couloir est cr\u00e9\u00e9 \u00e0 un rythme de 0,3 m de longueur par tour tant que le lanceur se concentre."
   },
   "sp-00815": {
    "description_en": "Can shatter an inorganic object, up to 1 cubic foot. All within a 5'R take an 'A' Impact critical and holder takes a 'C'. Metal objects get a +30 RR modification.",
@@ -15019,7 +15019,7 @@
    "list_id": "list-050",
    "level": 3,
    "source": "RMSS Spell Law",
-   "description_fr": "Toute fissure ou faiblesse pr\u00e9existante dans une section de 1,000 pieds cubes (10'x10'x3 m) de n'importe quel mat\u00e9riau normal s'\u00e9tendra jusqu'\u00e0 sa limite. Voir section 7.1.7."
+   "description_fr": "Toute fissure ou faiblesse pr\u00e9existante dans une section de 1,000 pieds cubes (3 m x 3 m x 3 m) de n'importe quel mat\u00e9riau normal s'\u00e9tendra jusqu'\u00e0 sa limite. Voir section 7.1.7."
   },
   "sp-01070": {
    "description_en": "Turns 10 cubic feet of stone into fine powder.",
@@ -16510,7 +16510,7 @@
    "list_id": "list-324",
    "level": 4,
    "source": "RMSS Spell Law",
-   "description_fr": "Cr\u00e9e un mur d'air agit\u00e9 de 10'x10'x0,9 m : r\u00e9duit tous les mouvements et attaques \u00e0 travers lui de 50% (c'est-\u00e0-dire -50 aux attaques)."
+   "description_fr": "Cr\u00e9e un mur d'air agit\u00e9 de 3 m x 3 m x 0,9 m : r\u00e9duit tous les mouvements et attaques \u00e0 travers lui de 50% (c'est-\u00e0-dire -50 aux attaques)."
   },
   "sp-06882": {
    "description_en": "Stops all generalized air movement (e.g., wind) up to winds of 30 mph and cuts higher winds by 30 mph in a 10'R.",
@@ -16545,7 +16545,7 @@
    "list_id": "list-324",
    "level": 9,
    "source": "RMSS Spell Law",
-   "description_fr": "Comme Airwall, sauf que le mur est de 10'x20'x0,9 m et peut \u00eatre courb\u00e9 jusqu'\u00e0 un demi-cercle."
+   "description_fr": "Comme Airwall, sauf que le mur est de 3 m x 6 m x 0,9 m et peut \u00eatre courb\u00e9 jusqu'\u00e0 un demi-cercle."
   },
   "sp-06887": {
    "description_en": "As Airwall, but has a set duration of 1 min/ lvl and doesn't require concentration.",
@@ -16636,7 +16636,7 @@
    "list_id": "list-325",
    "level": 15,
    "source": "RMSS Spell Law",
-   "description_fr": "Comme Water Corridor I, sauf que la limite est de 300'x4'x15 m de profondeur."
+   "description_fr": "Comme Water Corridor I, sauf que la limite est de 90 m x 1,2 m x 15 m de profondeur."
   },
   "sp-06911": {
    "description_en": "Creates a 20'R whirlpool that will draw in any unpowered objects up to 200' away. Powered objects may make a very hard movement manuever to resist the pull of the whirlpool.",
@@ -16720,7 +16720,7 @@
    "list_id": "list-325",
    "level": 6,
    "source": "RMSS Spell Law",
-   "description_fr": "Cr\u00e9e un mur d'eau tourbillonnante de 10'x10'x0,3 m (une source d'eau doit se trouver \u00e0 moins de 3 m). Toutes les attaques \u00e0 travers le mur subissent un malus de -80. Tous les mouvements \u00e0 travers le mur sont r\u00e9duits de 80%."
+   "description_fr": "Cr\u00e9e un mur d'eau tourbillonnante de 3 m x 3 m x 0,3 m (une source d'eau doit se trouver \u00e0 moins de 3 m). Toutes les attaques \u00e0 travers le mur subissent un malus de -80. Tous les mouvements \u00e0 travers le mur sont r\u00e9duits de 80%."
   },
   "sp-06904": {
    "description_en": "As Boil Water, except all the liquid is evaporated at a rate of 1 cubic foot per round of concentration.",
@@ -16748,7 +16748,7 @@
    "list_id": "list-325",
    "level": 10,
    "source": "RMSS Spell Law",
-   "description_fr": "Comme Waterwall, sauf que le mur est de 10'x20'x0,3 m et peut \u00eatre courb\u00e9 jusqu'\u00e0 un demi-cercle."
+   "description_fr": "Comme Waterwall, sauf que le mur est de 3 m x 6 m x 0,3 m et peut \u00eatre courb\u00e9 jusqu'\u00e0 un demi-cercle."
   },
   "sp-06918": {
    "description_en": "Caster may cast this spell with any spell he wants to store. The spell to be stored must be cast within one minute after the Spell Store is cast. The stored spell may be cast later as an instantaneous spell. The Storing spell costs the same number of PPs as the spell stored. No other spell may be cast while a spell is stored.",
@@ -17476,7 +17476,7 @@
    "list_id": "list-331",
    "level": 10,
    "source": "RMSS Spell Law",
-   "description_fr": "Toutes les fissures ou d\u00e9fauts pr\u00e9existants dans un mat\u00e9riau d'une section maximale de 10'x10'x3 m s'\u00e9tendent jusqu'\u00e0 leur limite."
+   "description_fr": "Toutes les fissures ou d\u00e9fauts pr\u00e9existants dans un mat\u00e9riau d'une section maximale de 3 m x 3 m x 3 m s'\u00e9tendent jusqu'\u00e0 leur limite."
   },
   "sp-07022": {
    "description_en": "As Heat Solid, except the only limit to the temperature is the melting point of the solid (i.e., until the solid melts). Will affect 6 cubic inches of metal or 1 cubic foot of any other material. See Section 7.1.13 for some sample melting points.",
@@ -17504,7 +17504,7 @@
    "list_id": "list-331",
    "level": 15,
    "source": "RMSS Spell Law",
-   "description_fr": "Cr\u00e9e une ouverture de 3'x6'x0,3 m dans la pierre."
+   "description_fr": "Cr\u00e9e une ouverture de 0,9 m x 1,8 m x 0,3 m dans la pierre."
   },
   "sp-07026": {
    "description_en": "As Stone Door, except doorway can be through metal.",
@@ -17532,7 +17532,7 @@
    "list_id": "list-331",
    "level": 19,
    "source": "RMSS Spell Law",
-   "description_fr": "Comme Stone Door, sauf que l'ouverture peut \u00eatre dans n'importe quel mat\u00e9riau solide et inanim\u00e9 et peut mesurer 3'x1,8 m avec une profondeur de 0,3 m par niveau (pour la pierre) ou 8 cm par niveau (pour tous les autres mat\u00e9riaux)."
+   "description_fr": "Comme Stone Door, sauf que l'ouverture peut \u00eatre dans n'importe quel mat\u00e9riau solide et inanim\u00e9 et peut mesurer 0,9 m x 1,8 m avec une profondeur de 0,3 m par niveau (pour la pierre) ou 8 cm par niveau (pour tous les autres mat\u00e9riaux)."
   },
   "sp-07030": {
    "description_en": "By molding with his hands, caster may shape 1 cubic foot of stone as if it were putty or clay. At the end of the spell's duration, the stone will harden to normal consistency.",
@@ -21305,7 +21305,7 @@
    "list_id": "list-261",
    "level": 2,
    "source": "RMSS Spell Law",
-   "description_fr": "Cr\u00e9e un mur d\u2019air dense de 10'x10'x0,9 m. Ce mur r\u00e9duit de 50% tout mouvement \u00e0 travers lui. De plus, toutes les attaques \u00e0 travers le mur subissent une p\u00e9nalit\u00e9 de -50."
+   "description_fr": "Cr\u00e9e un mur d\u2019air dense de 3 m x 3 m x 0,9 m. Ce mur r\u00e9duit de 50% tout mouvement \u00e0 travers lui. De plus, toutes les attaques \u00e0 travers le mur subissent une p\u00e9nalit\u00e9 de -50."
   },
   "sp-05535": {
    "description_en": "Creates dense fog in a 20'R.",
@@ -21627,7 +21627,7 @@
    "list_id": "list-263",
    "level": 4,
    "source": "RMSS Spell Law",
-   "description_fr": "Cr\u00e9e un mur d'eau agit\u00e9e de 10'x10'x0,3 m (une source d'eau doit se trouver \u00e0 moins de 3 m). Toutes les attaques \u00e0 travers le mur subissent une p\u00e9nalit\u00e9 de -80. Tout d\u00e9placement \u00e0 travers le mur est r\u00e9duit de 80%."
+   "description_fr": "Cr\u00e9e un mur d'eau agit\u00e9e de 3 m x 3 m x 0,3 m (une source d'eau doit se trouver \u00e0 moins de 3 m). Toutes les attaques \u00e0 travers le mur subissent une p\u00e9nalit\u00e9 de -80. Tout d\u00e9placement \u00e0 travers le mur est r\u00e9duit de 80%."
   },
   "sp-05581": {
    "description_en": "A bolt of water is shot from the palm of the caster (a water source must be within 10'). Attack is resolved on the Water Bolt Attack Table.",
@@ -21676,7 +21676,7 @@
    "list_id": "list-263",
    "level": 11,
    "source": "RMSS Spell Law",
-   "description_fr": "Comme Water Corridor I, sauf que la limite est de 300'x4'x15 m de profondeur."
+   "description_fr": "Comme Water Corridor I, sauf que la limite est de 90 m x 1,2 m x 15 m de profondeur."
   },
   "sp-05588": {
    "description_en": "Changes any liquid into normal water.",
@@ -21739,7 +21739,7 @@
    "list_id": "list-263",
    "level": 30,
    "source": "RMSS Spell Law",
-   "description_fr": "Le lanceur peut d\u00e9tourner une source d'eau, ou une partie d'une source d'eau, en un cours d'eau pouvant mesurer jusqu'\u00e0 15'x1,8 m et \u00eatre aussi long que la port\u00e9e de ce sort."
+   "description_fr": "Le lanceur peut d\u00e9tourner une source d'eau, ou une partie d'une source d'eau, en un cours d'eau pouvant mesurer jusqu'\u00e0 4,5 m x 1,8 m et \u00eatre aussi long que la port\u00e9e de ce sort."
   },
   "sp-05598": {
    "description_en": "May transmute 1 cubic foot of liquid into another non-magical liquid that the caster has a sample of. This spell takes 8 hours of continuous, uninterrupted concentration.",
@@ -21914,7 +21914,7 @@
    "list_id": "list-265",
    "level": 4,
    "source": "RMSS Spell Law",
-   "description_fr": "Toutes les fissures ou failles pr\u00e9existantes dans une section de mat\u00e9riau allant jusqu'\u00e0 10'x10'x3 m s'\u00e9tendent jusqu'\u00e0 leur limite."
+   "description_fr": "Toutes les fissures ou failles pr\u00e9existantes dans une section de mat\u00e9riau allant jusqu'\u00e0 3 m x 3 m x 3 m s'\u00e9tendent jusqu'\u00e0 leur limite."
   },
   "sp-05625": {
    "description_en": "Can cause a door to expand or contract due to subtle temperature changes. Door can be jammed or loosened (+50 to -50 on attempts to break down the door).",
@@ -21949,14 +21949,14 @@
    "list_id": "list-265",
    "level": 10,
    "source": "RMSS Spell Law",
-   "description_fr": "Cr\u00e9e un mur de glace transparent de 10'x10'x(0,6 m \u00e0 la base, 0,3 m au sommet). Il peut \u00eatre fondu, taill\u00e9 \u00e0 coups d'outil ou renvers\u00e9 (s'il n'est pas contre une surface solide). N\u00e9cessite une source d'eau \u00e0 moins de 3 m."
+   "description_fr": "Cr\u00e9e un mur de glace transparent de 3 m x 3 mx(0,6 m \u00e0 la base, 0,3 m au sommet). Il peut \u00eatre fondu, taill\u00e9 \u00e0 coups d'outil ou renvers\u00e9 (s'il n'est pas contre une surface solide). N\u00e9cessite une source d'eau \u00e0 moins de 3 m."
   },
   "sp-05630": {
    "description_en": "Creates a doorway through any solid, inanimate material. The Doowary can be up to 3'x6'x1'.",
    "list_id": "list-265",
    "level": 11,
    "source": "RMSS Spell Law",
-   "description_fr": "Cr\u00e9e une ouverture de porte \u00e0 travers n'importe quel mat\u00e9riau solide inanim\u00e9. L'ouverture peut mesurer jusqu'\u00e0 3'x6'x0,3 m."
+   "description_fr": "Cr\u00e9e une ouverture de porte \u00e0 travers n'importe quel mat\u00e9riau solide inanim\u00e9. L'ouverture peut mesurer jusqu'\u00e0 0,9 m x 1,8 m x 0,3 m."
   },
   "sp-05631": {
    "description_en": "Will turn 100 cubic feet of stone to packed earth, or 100 cubic feet of earth to mud, or 100 cubic feet mud to earth, or 100 cubic feet of earth to stone.",
@@ -21977,7 +21977,7 @@
    "list_id": "list-265",
    "level": 14,
    "source": "RMSS Spell Law",
-   "description_fr": "Comme Solid Door I, sauf que la taille est de 4'x8'x1,5 m."
+   "description_fr": "Comme Solid Door I, sauf que la taille est de 1,2 m x 2,4 m x 1,5 m."
   },
   "sp-05634": {
    "description_en": "By molding with his hands, caster may shape 1 cubic foot of solid, inanimate material as if it were putty or clay. At the end of the spell's duration, the stone will harden to normal consistency.",
@@ -22019,14 +22019,14 @@
    "list_id": "list-265",
    "level": 25,
    "source": "RMSS Spell Law",
-   "description_fr": "Comme Solid Door, sauf que la taille est de 6'x12'x3 m."
+   "description_fr": "Comme Solid Door, sauf que la taille est de 1,8 m x 3,6 m x 3 m."
   },
   "sp-05640": {
    "description_en": "As Solid Tunnel, except that it is permanent and size is 3'x6'x(1' per level).",
    "list_id": "list-265",
    "level": 30,
    "source": "RMSS Spell Law",
-   "description_fr": "Comme Solid Tunnel, sauf qu'il est permanent et que sa taille est de 3'x6'x(0,3 m par niveau)."
+   "description_fr": "Comme Solid Tunnel, sauf qu'il est permanent et que sa taille est de 0,9 m x 1,8 mx(0,3 m par niveau)."
   },
   "sp-05641": {
    "description_en": "May transmute 1 oz. of any solid material into another non-magical solid material that the caster has a sample of. This spell takes 8 hours of continues, uninterrupted concentration.",
@@ -27682,7 +27682,7 @@
    "list_id": "list-161",
    "level": 3,
    "source": "Channeling Companion",
-   "description_fr": "Cr\u00e9e un mur d'air dense et tourbillonnant jusqu'\u00e0 10'x10'x0,9 m. Ce mur r\u00e9duit de 50% tout mouvement \u00e0 travers lui. De plus, toutes les attaques \u00e0 travers le mur subissent une p\u00e9nalit\u00e9 de -50."
+   "description_fr": "Cr\u00e9e un mur d'air dense et tourbillonnant jusqu'\u00e0 3 m x 3 m x 0,9 m. Ce mur r\u00e9duit de 50% tout mouvement \u00e0 travers lui. De plus, toutes les attaques \u00e0 travers le mur subissent une p\u00e9nalit\u00e9 de -50."
   },
   "sp-03461": {
    "description_en": "Caster blends into surrounding terrain. This results in a +75 bonus to Hiding attempts. Caster may not move (appreciably) without loosing this bonus.",
@@ -27696,7 +27696,7 @@
    "list_id": "list-161",
    "level": 7,
    "source": "Channeling Companion",
-   "description_fr": "Cr\u00e9e un mur de terre tass\u00e9e jusqu'\u00e0 10'xl0'x0,9 m. Ce mur peut \u00eatre taill\u00e9 ou renvers\u00e9 s'il n'est pas \u00e9tay\u00e9 d'une mani\u00e8re quelconque."
+   "description_fr": "Cr\u00e9e un mur de terre tass\u00e9e jusqu'\u00e0 3 mxl0 m x 0,9 m. Ce mur peut \u00eatre taill\u00e9 ou renvers\u00e9 s'il n'est pas \u00e9tay\u00e9 d'une mani\u00e8re quelconque."
   },
   "sp-03463": {
    "description_en": "As Prayer I, except the total the bonus is 10 and may be spread over 1-2 targets. One target would get +10 and two would get +5 each.",
@@ -27948,7 +27948,7 @@
    "list_id": "list-163",
    "level": 3,
    "source": "Channeling Companion",
-   "description_fr": "Le lanceur cr\u00e9e un bouclier magique form\u00e9 de son \u00e9l\u00e9ment choisi. Ce bouclier occupe une main comme un bouclier normal. Il agit comme un bouclier normal, et en a la forme g\u00e9n\u00e9rale, \u00e0 tous \u00e9gards. Le bouclier donne +5 suppl\u00e9mentaires \u00e0 la BD et aux JR contre les attaques de son \u00e9l\u00e9ment. Si quelqu'un autre que le lanceur entre en contact avec le bouclier du lanceur, il doit effectuer un JR ou subir un critique 'A' de l'\u00e9l\u00e9ment appropri\u00e9. Il y a 50% de chances que, pour chaque attaque de l'\u00e9l\u00e9ment oppos\u00e9 contre le lanceur, le bouclier soit d\u00e9truit. 3) Element Shield * lanceur 1 min/niveau soi-m\u00eame; 4) Element Wall 10'x10'x0,3 m E 1 min/niveau 30 m; 5) Turn Elemental 1 \u00e9l\u00e9mentaire F 1 min/niveau 30 m; 6) Element Strike I * lanceur soi-m\u00eame; 7) Element Protection lanceur 1 min/niveau soi-m\u00eame; 8) Banish Elemental 1 \u00e9l\u00e9mentaire F 1 min/niveau 30 m; 9) Element Shroud lanceur soi-m\u00eame E 1 min/niveau; 10) Element Cloud 3 m de rayon 1 min/niveau 30 m E."
+   "description_fr": "Le lanceur cr\u00e9e un bouclier magique form\u00e9 de son \u00e9l\u00e9ment choisi. Ce bouclier occupe une main comme un bouclier normal. Il agit comme un bouclier normal, et en a la forme g\u00e9n\u00e9rale, \u00e0 tous \u00e9gards. Le bouclier donne +5 suppl\u00e9mentaires \u00e0 la BD et aux JR contre les attaques de son \u00e9l\u00e9ment. Si quelqu'un autre que le lanceur entre en contact avec le bouclier du lanceur, il doit effectuer un JR ou subir un critique 'A' de l'\u00e9l\u00e9ment appropri\u00e9. Il y a 50% de chances que, pour chaque attaque de l'\u00e9l\u00e9ment oppos\u00e9 contre le lanceur, le bouclier soit d\u00e9truit. 3) Element Shield * lanceur 1 min/niveau soi-m\u00eame; 4) Element Wall 3 m x 3 m x 0,3 m E 1 min/niveau 30 m; 5) Turn Elemental 1 \u00e9l\u00e9mentaire F 1 min/niveau 30 m; 6) Element Strike I * lanceur soi-m\u00eame; 7) Element Protection lanceur 1 min/niveau soi-m\u00eame; 8) Banish Elemental 1 \u00e9l\u00e9mentaire F 1 min/niveau 30 m; 9) Element Shroud lanceur soi-m\u00eame E 1 min/niveau; 10) Element Cloud 3 m de rayon 1 min/niveau 30 m E."
   },
   "sp-03504": {
    "description_en": "Caster forms a wall created from his chosen \u25a1 11) Element Armor caster 1 min/lvl self element. Anything passing through the wall will take an 'A' critical caster self",
@@ -30692,7 +30692,7 @@
    "list_id": "list-182",
    "level": 4,
    "source": "Channeling Companion",
-   "description_fr": "Invoque un mur d'\u00e9pines tr\u00e8s r\u00e9sistantes (mais souples). Le mur mesure jusqu'\u00e0 10'x10'x1,5 m. Tout d\u00e9placement \u00e0 travers le mur est r\u00e9duit de 50%. Toutes les attaques \u00e0 travers le mur subissent une p\u00e9nalit\u00e9 de -50. Quiconque le traverse re\u00e7oit un subit un critique 'B' Puncture (pas de JR)."
+   "description_fr": "Invoque un mur d'\u00e9pines tr\u00e8s r\u00e9sistantes (mais souples). Le mur mesure jusqu'\u00e0 3 m x 3 m x 1,5 m. Tout d\u00e9placement \u00e0 travers le mur est r\u00e9duit de 50%. Toutes les attaques \u00e0 travers le mur subissent une p\u00e9nalit\u00e9 de -50. Quiconque le traverse re\u00e7oit un subit un critique 'B' Puncture (pas de JR)."
   },
   "sp-03931": {
    "description_en": "All non-magical fire in the area of effect is put out. Magical fire must make an RR or be extinguished.",
@@ -37741,7 +37741,7 @@
    "list_id": "list-127",
    "level": 3,
    "source": "Essence Companion",
-   "description_fr": "Permet au lanceur de faire l\u00e9viter un miroir plat (pas plus grand que 2'x0,6 m). Le miroir doit rester en vue du lanceur en permanence. Tant que le lanceur se concentre, le miroir peut \u00eatre manoeuvr\u00e9 dans la port\u00e9e du sort \u00e0 une vitesse de 6 m par tour."
+   "description_fr": "Permet au lanceur de faire l\u00e9viter un miroir plat (pas plus grand que 0,6 m x 0,6 m). Le miroir doit rester en vue du lanceur en permanence. Tant que le lanceur se concentre, le miroir peut \u00eatre manoeuvr\u00e9 dans la port\u00e9e du sort \u00e0 une vitesse de 6 m par tour."
   },
   "sp-02733": {
    "description_en": "Allows caster to gaze into a reflective surface and gain knowledge regarding one specific topic. This information will be conveyed in an indirect, symbolic, and metaphorical manner. The caster is in a trance like state for the duration of his vision.",
@@ -37762,14 +37762,14 @@
    "list_id": "list-127",
    "level": 6,
    "source": "Essence Companion",
-   "description_fr": "Cr\u00e9e un mur miroir de 10'x10'x3 cm. Ce mur peut subir 50 points de concussion avant de voler en \u00e9clats."
+   "description_fr": "Cr\u00e9e un mur miroir de 3 m x 3 m x 3 cm. Ce mur peut subir 50 points de concussion avant de voler en \u00e9clats."
   },
   "sp-02736": {
    "description_en": "This spell may be cast on two mirrors that are within 1000' feet of each other (atthe time of casting). The mirrors must have the spells cast upon them within I day. The mirrors must be at least 2'x3' in size. At any time during the duration of this spell, the caster may step \"into\" one of the two mirrors and emerge \"out of' the other. If either mirror is moved, the spell is dispelled. Note that this spell must be cast separately on each mirror of a pair (and only two mirrors at a time may hold this spell.",
    "list_id": "list-127",
    "level": 7,
    "source": "Essence Companion",
-   "description_fr": "Ce sort peut \u00eatre lanc\u00e9 sur deux miroirs situ\u00e9s \u00e0 moins de 300 m l'un de l'autre (au moment du lancement). Les sorts doivent \u00eatre lanc\u00e9s sur les miroirs dans un d\u00e9lai de 1 jour. Les miroirs doivent mesurer au moins 2'x0,9 m. \u00c0 tout moment pendant la dur\u00e9e de ce sort, le lanceur peut entrer \u00ab dans \u00bb l'un des deux miroirs et ressortir \u00ab de \u00bb l'autre. Si l'un des miroirs est d\u00e9plac\u00e9, le sort est dissip\u00e9. Notez que ce sort doit \u00eatre lanc\u00e9 s\u00e9par\u00e9ment sur chaque miroir d'une paire (et que seuls deux miroirs \u00e0 la fois peuvent d\u00e9tenir ce sort)."
+   "description_fr": "Ce sort peut \u00eatre lanc\u00e9 sur deux miroirs situ\u00e9s \u00e0 moins de 300 m l'un de l'autre (au moment du lancement). Les sorts doivent \u00eatre lanc\u00e9s sur les miroirs dans un d\u00e9lai de 1 jour. Les miroirs doivent mesurer au moins 0,6 m x 0,9 m. \u00c0 tout moment pendant la dur\u00e9e de ce sort, le lanceur peut entrer \u00ab dans \u00bb l'un des deux miroirs et ressortir \u00ab de \u00bb l'autre. Si l'un des miroirs est d\u00e9plac\u00e9, le sort est dissip\u00e9. Notez que ce sort doit \u00eatre lanc\u00e9 s\u00e9par\u00e9ment sur chaque miroir d'une paire (et que seuls deux miroirs \u00e0 la fois peuvent d\u00e9tenir ce sort)."
   },
   "sp-02737": {
    "description_en": "When cast on an appropriate reflective surface, the surface will reflect all objects, including those that are masked by magic.",
@@ -37783,7 +37783,7 @@
    "list_id": "list-127",
    "level": 9,
    "source": "Essence Companion",
-   "description_fr": "Permet au lanceur de cr\u00e9er une image illusoire dans n'importe quel miroir (jusqu'\u00e0 10'x3 m). L'illusion est purement visuelle, mais le lanceur peut contr\u00f4ler le mouvement des objets dans l'image, ou changer toute l'image en se concentrant."
+   "description_fr": "Permet au lanceur de cr\u00e9er une image illusoire dans n'importe quel miroir (jusqu'\u00e0 3 m x 3 m). L'illusion est purement visuelle, mais le lanceur peut contr\u00f4ler le mouvement des objets dans l'image, ou changer toute l'image en se concentrant."
   },
   "sp-02739": {
    "description_en": "Allows caster to ask a single \"yes/no\" question when gazing into a mirror. He will receive a correct answer 75% of the time, an incorrect answer 20% of the time and a detailed answer 5% of the time.",
@@ -37867,7 +37867,7 @@
    "list_id": "list-127",
    "level": 25,
    "source": "Essence Companion",
-   "description_fr": "Le lanceur fait surgir un labyrinthe de miroirs qui occupe une zone pouvant atteindre 50'x15 m (il ne peut y avoir aucun objet interm\u00e9diaire, comme des murs, dans la zone d\u00e9sign\u00e9e). Les miroirs ont 3 m de haut et peuvent supporter 50 points de concussion par section de 1,5 m avant de voler en \u00e9clats. Les \u00ab couloirs \u00bb du labyrinthe font 1,5 m de large. Le lanceur sait intuitivement comment se d\u00e9placer dans son propre labyrinthe."
+   "description_fr": "Le lanceur fait surgir un labyrinthe de miroirs qui occupe une zone pouvant atteindre 15 m x 15 m (il ne peut y avoir aucun objet interm\u00e9diaire, comme des murs, dans la zone d\u00e9sign\u00e9e). Les miroirs ont 3 m de haut et peuvent supporter 50 points de concussion par section de 1,5 m avant de voler en \u00e9clats. Les \u00ab couloirs \u00bb du labyrinthe font 1,5 m de large. Le lanceur sait intuitivement comment se d\u00e9placer dans son propre labyrinthe."
   },
   "sp-02751": {
    "description_en": "As Reflection Double, except target's reflection becomes caster's personal slave, under his complete control. The target no longer has a reflection. The target's reflection can be restored by the caster or by the caster's death.",
@@ -38679,7 +38679,7 @@
    "list_id": "list-080",
    "level": 15,
    "source": "Essence Companion",
-   "description_fr": "La cible re\u00e7oit une t\u00e2che qui doit \u00eatre dans ses capacit\u00e9s. L'\u00e9chec ou le refus d'accomplir la t\u00e2che fait subir \u00e0 la cible 3 'E' electricity criticals."
+   "description_fr": "La cible re\u00e7oit une t\u00e2che qui doit \u00eatre dans ses capacit\u00e9s. L'\u00e9chec ou le refus d'accomplir la t\u00e2che fait subir \u00e0 la cible 0,9 mE' electricity criticals."
   },
   "sp-01745": {
    "description_en": "As Charm Plant I, except up to 3 plants may be affected.",
@@ -38994,7 +38994,7 @@
    "list_id": "list-091",
    "level": 6,
    "source": "Essence Companion",
-   "description_fr": "Cr\u00e9e un plan (jusqu'\u00e0 20'x6 m) que le son ne peut pas traverser."
+   "description_fr": "Cr\u00e9e un plan (jusqu'\u00e0 6 m x 6 m) que le son ne peut pas traverser."
   },
   "sp-01952": {
    "description_en": "Caster's point of hearing may be moved independently up to 100' away (moves at the rate of 1O' per round). He must physically be able to go there (e.g. he could not send his point of hearing through walls or doors).",
@@ -39575,7 +39575,7 @@
    "list_id": "list-098",
    "level": 4,
    "source": "Essence Companion",
-   "description_fr": "Cr\u00e9e un mur de terre allant jusqu'\u00e0 10'x10'x(0,9 m \u00e0 la base, 0,3 m au sommet). Ce mur peut \u00eatre creus\u00e9."
+   "description_fr": "Cr\u00e9e un mur de terre allant jusqu'\u00e0 3 m x 3 mx(0,9 m \u00e0 la base, 0,3 m au sommet). Ce mur peut \u00eatre creus\u00e9."
   },
   "sp-02107": {
    "description_en": "This spell causes earth and stone tendrils to rise up out of the ground and attack anything within their area of effect. The tendrils attack as a +0 Medium Grapple attack. Alternatively, the GM may allow the caster to develop a skill called Targeting for Earth Fingers (Power Manipulation Skill Category). If the GM allows this skill, then all attacks that use this bonus requires that the caster concentrates.",
@@ -39603,7 +39603,7 @@
    "list_id": "list-098",
    "level": 8,
    "source": "Essence Companion",
-   "description_fr": "Cr\u00e9e un mur de pierre allant jusqu'\u00e0 10'x10'x(0,9 m \u00e0 la base, 0,3 m au sommet). Ce mur peut \u00eatre entaill\u00e9 peu \u00e0 peu."
+   "description_fr": "Cr\u00e9e un mur de pierre allant jusqu'\u00e0 3 m x 3 mx(0,9 m \u00e0 la base, 0,3 m au sommet). Ce mur peut \u00eatre entaill\u00e9 peu \u00e0 peu."
   },
   "sp-02111": {
    "description_en": "As Earthwall, except range and duration.",
@@ -39694,7 +39694,7 @@
    "list_id": "list-098",
    "level": 30,
    "source": "Essence Companion",
-   "description_fr": "Comme Stone Wall, sauf qu'il cr\u00e9e un mur de pierre de 50'x10'x0,3 m."
+   "description_fr": "Comme Stone Wall, sauf qu'il cr\u00e9e un mur de pierre de 15 m x 3 m x 0,3 m."
   },
   "sp-02125": {
    "description_en": "Caster can use one lower level spell on this list each round.",
@@ -40016,7 +40016,7 @@
    "list_id": "list-101",
    "level": 17,
    "source": "Essence Companion",
-   "description_fr": "Le lanceur cr\u00e9e un cube de flammes de 10'x10'x3 m. Le cube prend un tour complet \u00e0 se former et \u00e0 devenir efficace. Quiconque le traverse (ou est pris \u00e0 l'int\u00e9rieur) subit un 'A' Heat critical."
+   "description_fr": "Le lanceur cr\u00e9e un cube de flammes de 3 m x 3 m x 3 m. Le cube prend un tour complet \u00e0 se former et \u00e0 devenir efficace. Quiconque le traverse (ou est pris \u00e0 l'int\u00e9rieur) subit un 'A' Heat critical."
   },
   "sp-02183": {
    "description_en": "As Fire Cloak I, except causes a 'C' Heat critical to anyone touching the caster and an 'A' Heat Critical to all within 5'R of the caster.",
@@ -41668,7 +41668,7 @@
    "list_id": "list-013",
    "level": 3,
    "source": "Essence Companion",
-   "description_fr": "Cr\u00e9e une barri\u00e8re invisible de 10'x10'x0,3 m qui ralentit de 35% quiconque tente de la traverser. Elle modifiera aussi de -35 toute attaque effectu\u00e9e \u00e0 travers elle."
+   "description_fr": "Cr\u00e9e une barri\u00e8re invisible de 3 m x 3 m x 0,3 m qui ralentit de 35% quiconque tente de la traverser. Elle modifiera aussi de -35 toute attaque effectu\u00e9e \u00e0 travers elle."
   },
   "sp-00257": {
    "description_en": "Creates a shield of mana behind the caster that negates any bonuses for flank or rear attack made on him.",
@@ -42634,7 +42634,7 @@
    "list_id": "list-068",
    "level": 4,
    "source": "Essence Companion",
-   "description_fr": "Cr\u00e9e un mur d'obscurit\u00e9 allant jusqu'\u00e0 20'x20'x3 cm. Tout sauf la lumi\u00e8re peut traverser ce mur. Toutes les attaques effectu\u00e9es contre des cibles masqu\u00e9es par ce mur subissent une p\u00e9nalit\u00e9 sp\u00e9ciale de -70."
+   "description_fr": "Cr\u00e9e un mur d'obscurit\u00e9 allant jusqu'\u00e0 6 m x 6 m x 3 cm. Tout sauf la lumi\u00e8re peut traverser ce mur. Toutes les attaques effectu\u00e9es contre des cibles masqu\u00e9es par ce mur subissent une p\u00e9nalit\u00e9 sp\u00e9ciale de -70."
   },
   "sp-01476": {
    "description_en": "Any sounds originating within l' of the caster are completely muffled. This results in a +25 bonus to all Stalking maneuvers.",
@@ -49529,7 +49529,7 @@
    "list_id": "list-026",
    "level": 5,
    "source": "Fire & Ice Companion",
-   "description_fr": "Le lanceur enflamme une surface de 10'x3 m. Ceux qui marchent sur cette surface subissent un 'A' heat critical. Les surfaces n'ont pas besoin d'\u00eatre planes. Les flammes ne montent qu'\u00e0 15 cm au-dessus du sol."
+   "description_fr": "Le lanceur enflamme une surface de 3 m x 3 m. Ceux qui marchent sur cette surface subissent un 'A' heat critical. Les surfaces n'ont pas besoin d'\u00eatre planes. Les flammes ne montent qu'\u00e0 15 cm au-dessus du sol."
   },
   "sp-00545": {
    "description_en": "A sheet of fire is shot from the caster's hands spreading out in a fan shape. Fan is 1' at its base, 5' long, and 5' wide at its ending. All caught in the area of the fan take an attack on the Fireball table.",
@@ -50145,7 +50145,7 @@
    "list_id": "list-030",
    "level": 3,
    "source": "Fire & Ice Companion",
-   "description_fr": "Cr\u00e9e un mur d'obscurit\u00e9 absolue (jusqu'\u00e0 10'x10'x0,3 m). Ce mur emp\u00eache toute lumi\u00e8re de traverser sa surface ; rien ne peut voir \u00e0 travers le mur et les attaques fond\u00e9es sur la lumi\u00e8re ne peuvent pas le p\u00e9n\u00e9trer."
+   "description_fr": "Cr\u00e9e un mur d'obscurit\u00e9 absolue (jusqu'\u00e0 3 m x 3 m x 0,3 m). Ce mur emp\u00eache toute lumi\u00e8re de traverser sa surface ; rien ne peut voir \u00e0 travers le mur et les attaques fond\u00e9es sur la lumi\u00e8re ne peuvent pas le p\u00e9n\u00e9trer."
   },
   "sp-00635": {
    "description_en": "Frequency and depth of shadows increase for the duration. All stalk and hide attempts in the area are at +20 for the duration.",
