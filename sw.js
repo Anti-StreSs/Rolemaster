@@ -59,6 +59,7 @@ const ASSETS = [
   './data/spell_effects.alchemy.json',
   './data/spell_effects.other.json',
   './data/spell_effects.manifest.json',
+  './data/spells_detail.json',
   './js/ui/compendium-book.js',
   './manifest.json',
   './assets/ui/icons/session_attack_crossed_swords.webp',
