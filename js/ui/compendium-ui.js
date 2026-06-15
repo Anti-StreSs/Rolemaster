@@ -18,6 +18,7 @@ let state = { lang: 'fr', view: 'library', ...structuredClone(DEFAULT_FILTERS), 
 let compendiumApp = null;
 let shellBuilt = false;
 let cardObserver = null;
+let expandedRealms = new Set(); // realms expanded in the collapsible library
 
 // ── Entry point ─────────────────────────────────────────────────────────────
 
@@ -208,6 +209,13 @@ function bindShellEvents(main, L) {
   });
   // Realm chips (re-rendered inside renderCards, delegated via main)
   main.addEventListener('click', e => {
+    const realmToggle = e.target.closest('[data-realm-toggle]');
+    if (realmToggle) {
+      const r = realmToggle.dataset.realmToggle;
+      if (expandedRealms.has(r)) expandedRealms.delete(r); else expandedRealms.add(r);
+      renderCards(main, i18n());
+      return;
+    }
     const chip = e.target.closest('[data-realm]');
     if (chip) { const v = chip.dataset.realm; state.realm = v === state.realm ? '' : v; renderCards(main, i18n()); writeHash(); return; }
     const typechip = e.target.closest('[data-type]');
@@ -218,6 +226,8 @@ function bindShellEvents(main, L) {
     if (spellhit) { openSpell(spellhit.dataset.spell); return; }
     const ribbon = e.target.closest('[data-jump]');
     if (ribbon) {
+      expandedRealms.add(ribbon.dataset.jump);
+      renderCards(main, i18n());
       const el = document.getElementById('realm-' + ribbon.dataset.jump.replace(/\W/g, '_'));
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); return;
     }
@@ -232,6 +242,7 @@ function bindShellEvents(main, L) {
   // Reset
   main.querySelector('#gl-reset').onclick = () => {
     Object.assign(state, structuredClone(DEFAULT_FILTERS));
+    expandedRealms.clear();
     const qi = main.querySelector('#gl-q'); if (qi) qi.value = '';
     renderCards(main, i18n()); writeHash();
   };
@@ -290,21 +301,29 @@ function renderCards(main, L) {
     return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || a.localeCompare(b);
   });
 
+  // A filter/search active -> auto-expand matching sections; otherwise collapse to category headers (perf + declutter).
+  const filterActive = !!(state.realm || state.type !== 'all' || state.prof || state.charOnly || (state.q && state.q.length >= 2));
+
   let sectionsHtml = '';
   if (!filtered.length) {
     sectionsHtml = `<div class="empty">${esc(L.noLists)}</div>`;
   } else {
+    if (!filterActive) sectionsHtml += `<p class="grim-cats-hint">${esc(L.catsHint)}</p>`;
     for (const realm of realmKeys) {
       const rc = resolveRealm(realm);
-      const cards = grouped[realm].map(l => cardHTML(l, rc, L)).join('');
-      sectionsHtml += `<section class="realm-section" id="realm-${realm.replace(/\W/g, '_')}"
+      const lists = grouped[realm];
+      const open = filterActive || expandedRealms.has(realm);
+      const spellsN = lists.reduce((a, l) => a + (l.spell_count || 0), 0);
+      const cards = open ? `<div class="card-grid">${lists.map(l => cardHTML(l, rc, L)).join('')}</div>` : '';
+      sectionsHtml += `<section class="realm-section ${open ? 'open' : 'collapsed'}" id="realm-${realm.replace(/\W/g, '_')}"
         style="--realm:${rc.border};--realm-text:${rc.text};--realm-light:${rc.light}">
-        <div class="realm-head">
+        <button class="realm-head" type="button" data-realm-toggle="${esc(realm)}" aria-expanded="${open}">
+          <span class="caret">${open ? '▾' : '▸'}</span>
           <span class="glyph">${rc.glyph}</span>
           <h3>${esc(rc.multi ? realm : rc['label_' + state.lang])}</h3>
-          <span class="n">(${grouped[realm].length})</span>
-        </div>
-        <div class="card-grid">${cards}</div>
+          <span class="n">${lists.length} ${esc(L.lists)} · ${spellsN} ${esc(state.lang === 'en' ? 'spells' : 'sorts')}</span>
+        </button>
+        ${cards}
       </section>`;
     }
   }
@@ -445,14 +464,14 @@ function i18n() {
     title: 'Grimoire', searchPH: 'Rechercher sorts ou listes…', all: 'Tous', allTypes: 'Tous types',
     realm: 'Royaume', type: 'Type', prof: 'Profession', allProf: 'Toutes professions',
     mySpells: 'Mes sorts', reset: 'réinitialiser', spells: 'Sorts', lists: 'listes',
-    noLists: 'Aucune liste ne correspond aux filtres.', described: 'décrits', lvl: 'Niv',
+    noLists: 'Aucune liste ne correspond aux filtres.', described: 'décrits', lvl: 'Niv', catsHint: 'Choisissez un royaume pour afficher ses listes, ou filtrez ci-dessus.',
     types: { base: 'Base', open: 'Libre', closed: 'Réservée', training_package: 'Formation' },
   };
   const en = {
     title: 'Grimoire', searchPH: 'Search spells or lists…', all: 'All', allTypes: 'All types',
     realm: 'Realm', type: 'Type', prof: 'Profession', allProf: 'All professions',
     mySpells: 'My spells', reset: 'reset', spells: 'Spells', lists: 'lists',
-    noLists: 'No list matches your filters.', described: 'described', lvl: 'Lv',
+    noLists: 'No list matches your filters.', described: 'described', lvl: 'Lv', catsHint: 'Pick a realm to reveal its lists, or use the filters above.',
     types: { base: 'Base', open: 'Open', closed: 'Closed', training_package: 'Training' },
   };
   return state.lang === 'en' ? en : fr;

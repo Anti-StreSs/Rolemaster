@@ -1334,7 +1334,17 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
   filter: contrast(1.05) saturate(1.1);
 }
 
-/* Hero variant video (hero-sora.mp4 on Home) — same as base, no override needed */
+/* Hero variant video (hero-sora.mp4 on Home): the hero ball has different proportions than
+   the small medallion, so the base % sit too small/high (only fixed via the <=680/<=440 media
+   queries before — desktop fell back to the wrong base size). Ball aspect ratio is constant
+   across breakpoints, so these % are size-independent. */
+.rm-crystal-ball-hero video {
+  top: 6%;
+  left: 13%;
+  width: 74%;
+  height: 52%;
+  clip-path: circle(46% at 50% 50%);
+}
 
 /* Standard medallion video (IntroSmall.mp4 on Encounters/Party) — larger & higher */
 .rm-crystal-ball-container:not(.rm-crystal-ball-hero) video {

@@ -1260,8 +1260,13 @@ function initSessionToolbox() {
 }
 
 function handleHash() {
-  const hash = window.location.hash.replace('#', '') || 'home';
-  app.currentView = hash;
+  const raw = window.location.hash.replace(/^#\/?/, '');
+  let view = raw || 'home';
+  // Grimoire owns its own sub-routing (#/library, #/list/<id>, #/spell/<id>)
+  if (/^(library|list|spell)\b/.test(raw)) view = 'compendium';
+  // While already in the Grimoire, let it manage internal hash changes (avoid bounce/re-reset)
+  if (view === 'compendium' && app.currentView === 'compendium') return;
+  app.currentView = view;
   render();
 }
 

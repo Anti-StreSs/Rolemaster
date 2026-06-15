@@ -345,14 +345,18 @@
 .ribbon { position: relative; padding: 6px 16px 6px 14px; font-family: var(--font-title, 'Cinzel', serif); font-size: .78rem; letter-spacing: .05em; color: #241402; border: 0; background: var(--realm, #caa55a); clip-path: polygon(0 0,100% 0,100% 100%,0 100%,7px 50%); box-shadow: 0 2px 5px rgba(0,0,0,.35); cursor: pointer; }
 .ribbon:hover { filter: brightness(1.06); }
 .realm-section { margin-bottom: 30px; }
-.realm-head { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; padding-bottom: 6px; border-bottom: 2px solid var(--realm-light, #caa55a); }
+.realm-head { display: flex; align-items: center; gap: 10px; width: 100%; margin: 0 0 14px; padding: 5px 8px 6px; background: transparent; border: 0; border-bottom: 2px solid var(--realm-light, #caa55a); border-radius: 6px 6px 0 0; cursor: pointer; text-align: left; font: inherit; color: inherit; transition: background .12s; }
+.realm-head:hover { background: rgba(184,136,31,.10); }
+.realm-section.collapsed .realm-head { margin-bottom: 0; }
+.realm-head .caret { flex: none; width: 1em; font-size: .85rem; color: var(--realm-light, #caa55a); }
+.grim-cats-hint { color: #b29a73; font-style: italic; font-size: .85rem; margin: 0 0 14px; }
 .realm-head .glyph { font-size: 1.35rem; color: var(--realm-light, #caa55a); text-shadow: 0 1px 3px rgba(0,0,0,.6); }
 .realm-head h3 { font-family: var(--font-title, 'Cinzel', serif); font-size: 1.2rem; color: var(--realm-light, #e7be58); margin: 0; text-shadow: 0 1px 3px rgba(0,0,0,.7), 0 0 12px rgba(0,0,0,.4); }
-.realm-head .n { font-size: .8rem; color: #b29a73; font-weight: 400; }
+.realm-head .n { font-size: .8rem; color: #b29a73; font-weight: 400; margin-left: auto; }
 
 /* -- List cards ------------------------------------------------------------ */
 .card-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(218px,1fr)); gap: 12px; }
-.lcard { text-align: left; border-radius: 10px; border: 1px solid rgba(120,80,24,.4); border-top: none; padding: 0; overflow: hidden; color: var(--ink, #2a1c0c); box-shadow: 0 3px 10px rgba(0,0,0,.35); transition: transform .14s, box-shadow .14s; display: flex; flex-direction: column; min-height: 142px; cursor: pointer; font-family: inherit; background: none; }
+.lcard { text-align: left; border-radius: 10px; border: 1px solid rgba(120,80,24,.4); border-top: none; padding: 0; overflow: hidden; color: var(--ink, #2a1c0c); box-shadow: 0 3px 10px rgba(0,0,0,.35); transition: transform .14s, box-shadow .14s; display: flex; flex-direction: column; min-height: 142px; cursor: pointer; font-family: inherit; }
 .lcard:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,.45); }
 .lcard .ribbon-top { height: 6px; background: var(--realm, #caa55a); display: block; }
 .lcard .body { padding: 11px 13px 12px; display: flex; flex-direction: column; gap: 5px; flex: 1; }
