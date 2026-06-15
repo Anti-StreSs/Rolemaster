@@ -56,7 +56,37 @@ export async function loadSpellData() {
     }
   } catch (e) { /* optional patch — silent if missing */ }
 
+  // Load optional spell effects/descriptions patch (pwa/data/spell_effects.json)
+  try {
+    const effResp = await fetch('./data/spell_effects.json');
+    if (effResp.ok) {
+      const effData = await effResp.json();
+      const effects = effData.spell_effects || {};
+      let n = 0;
+      for (const sp of spellData.spells) {
+        const e = effects[sp.id];
+        if (!e) continue;
+        if (e.description_en) sp.description_en = e.description_en;
+        if (e.description_fr) sp.description_fr = e.description_fr;
+        if (e.effect) sp.effect = e.effect;
+        n++;
+      }
+      console.log(`Spell effects loaded: ${n} spells enriched`);
+    }
+  } catch (e) { /* optional patch — silent if missing */ }
+
   return spellData;
+}
+
+/** Get a spell by its id (across all lists). */
+export function getSpellById(id) {
+  if (!spellData?.spells) return null;
+  return spellData.spells.find(s => s.id === id) || null;
+}
+
+/** True if a spell has any description text. */
+export function spellHasDescription(sp) {
+  return !!(sp && (sp.description_fr || sp.description_en));
 }
 
 /** Check if data is loaded. */

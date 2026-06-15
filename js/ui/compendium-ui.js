@@ -4,6 +4,7 @@
 import { loadSpellData, isSpellDataLoaded, getSpellMetadata, getAllSpellLists,
   getSpellsForList, getListById, getCharacterSpellbook, matchCharacterList, filterLists,
   searchSpells, groupListsByRealm, getRealmColor, getListTypeLabel,
+  getSpellById, spellHasDescription,
   REALM_COLORS } from '../engine/spell-compendium.js';
 import { getCharacter } from './wizard.js';
 import { showToast } from './components.js';
@@ -11,6 +12,7 @@ import { getAllClasses, getClassName } from '../engine/classes.js';
 
 let currentFilters = { realm: '', listType: 'all', keyword: '', characterOnly: false };
 let currentListId = null; // detail view
+let currentSpellId = null; // spell detail view
 let compendiumApp = null;
 
 /**
@@ -38,7 +40,9 @@ export async function renderCompendium(app) {
     }
   }
 
-  if (currentListId) {
+  if (currentSpellId) {
+    renderSpellDetail(main, lang);
+  } else if (currentListId) {
     renderListDetail(main, lang);
   } else {
     renderBrowser(main, lang);
@@ -136,6 +140,32 @@ function renderBrowser(main, lang) {
     </div>`;
   }
 
+  // Global spell search results (shown above list grid when keyword ≥ 2 chars)
+  let spellHitsHtml = '';
+  if (currentFilters.keyword && currentFilters.keyword.length >= 2) {
+    const spellHits = searchSpells(currentFilters.keyword, 40);
+    if (spellHits.length > 0) {
+      const hitCards = spellHits.map(hit => {
+        const rc = getRealmColor(hit.realm || 'Other');
+        const hitName = lang === 'fr' && hit.name_fr ? hit.name_fr : hit.name_en;
+        const listName = lang === 'fr' && hit.listNameFr ? hit.listNameFr : hit.listName;
+        const descIcon = spellHasDescription(hit) ? ` <span title="${lang === 'en' ? 'Description available' : 'Description disponible'}">📖</span>` : '';
+        return `<button class="comp-spell-result-card" data-spell-id="${hit.id}" style="border-left-color:${rc.border}">
+          <span class="comp-spell-result-name">${hitName}${descIcon}</span>
+          <span class="comp-spell-result-meta">
+            <span class="comp-badge" style="background:${rc.bg};color:${rc.text};border-color:${rc.border}">${hit.realm || ''}</span>
+            <span class="comp-spell-result-lvl">${lang === 'en' ? 'Lv' : 'Niv'} ${hit.level}</span>
+            <span class="comp-spell-result-list">${listName}</span>
+          </span>
+        </button>`;
+      }).join('');
+      spellHitsHtml = `<div class="comp-spell-results-section">
+        <h4 class="comp-spell-results-title">${lang === 'en' ? 'Spells' : 'Sorts'} <span class="comp-realm-count">(${spellHits.length})</span></h4>
+        <div class="comp-spell-results-grid">${hitCards}</div>
+      </div>`;
+    }
+  }
+
   main.innerHTML = `
     <div class="comp-header">
       <div class="comp-title-row">
@@ -163,6 +193,7 @@ function renderBrowser(main, lang) {
           ${charName} — ${filteredLists.length} ${lang === 'en' ? 'lists' : 'listes'}
         </span>
       </div>` : ''}
+    ${spellHitsHtml}
     <div class="comp-body">${listsHtml}</div>
   `;
   bindBrowserEvents(main, lang);
@@ -212,6 +243,13 @@ function bindBrowserEvents(main, lang) {
       printCharacterSpellbook(char, lang);
     });
   }
+  // Spell result card click → spell detail
+  main.querySelectorAll('.comp-spell-result-card').forEach(card => {
+    card.addEventListener('click', () => {
+      currentSpellId = card.dataset.spellId;
+      renderCompendium(compendiumApp);
+    });
+  });
   // List card click → detail
   main.querySelectorAll('.comp-list-card').forEach(card => {
     card.addEventListener('click', () => {
@@ -241,9 +279,11 @@ function renderListDetail(main, lang) {
     if (matched) charMaxLvl = matched.maxLevel || 0;
   }
 
+  const described = spells.filter(spellHasDescription).length;
+
   const headers = lang === 'en'
-    ? ['Lvl', 'Spell', 'AoE', 'Dur.', 'Range', 'Type']
-    : ['Niv', 'Sort', 'Zone', 'Dur.', 'Portée', 'Type'];
+    ? ['', 'Lvl', 'Spell', 'AoE', 'Dur.', 'Range', 'Type']
+    : ['', 'Niv', 'Sort', 'Zone', 'Dur.', 'Portée', 'Type'];
 
   let rows = '';
   for (const sp of spells) {
@@ -255,7 +295,12 @@ function renderListDetail(main, lang) {
     const dur = lang === 'fr' ? (sp.duration_fr || sp.duration_en || '') : (sp.duration_en || '');
     const rng = lang === 'fr' ? (sp.range_fr || sp.range_en || '') : (sp.range_en || '');
     const stype = lang === 'fr' ? (sp.spell_type_fr || sp.spell_type || '') : (sp.spell_type || '');
-    rows += `<tr class="${cls}">
+    const hasDesc = spellHasDescription(sp);
+    const affordance = hasDesc
+      ? `<span class="comp-desc-affordance" title="${lang === 'en' ? 'Click to expand description' : 'Cliquez pour lire la description'}">📖</span>`
+      : `<span class="comp-desc-affordance comp-desc-none" title="${lang === 'en' ? 'No description available' : 'Pas de description disponible'}">—</span>`;
+    rows += `<tr class="comp-row-clickable ${cls}" data-spell-id="${sp.id}" data-has-desc="${hasDesc}">
+      <td class="comp-td-afford">${affordance}</td>
       <td class="comp-td-lvl">${sp.level}</td>
       <td class="comp-td-name">${spName}</td>
       <td class="comp-td-aoe">${aoe}</td>
@@ -284,7 +329,7 @@ function renderListDetail(main, lang) {
             <span class="comp-badge" style="background:${rc.bg};color:${rc.text};border-color:${rc.border}">${list.realm}</span>
             <span class="comp-badge-type">${getListTypeLabel(list.list_type, lang)}</span>
             ${list.class_or_category && list.list_type === 'base' ? `<span class="comp-detail-class">${list.class_or_category}</span>` : ''}
-            <span class="comp-detail-count">${spells.length} ${lang === 'en' ? 'spells' : 'sorts'}</span>
+            <span class="comp-detail-count">${spells.length} ${lang === 'en' ? 'spells' : 'sorts'} · ${described}/${spells.length} ${lang === 'en' ? 'described' : 'décrits'}</span>
             ${noFRNote}
             ${charInfo}
           </div>
@@ -309,12 +354,102 @@ function renderListDetail(main, lang) {
   main.querySelector('#comp-print-list')?.addEventListener('click', () => {
     printSpellList(list, spells, lang);
   });
+
+  // Expandable description rows
+  main.querySelectorAll('.comp-row-clickable[data-has-desc="true"]').forEach(row => {
+    row.addEventListener('click', () => {
+      const spId = row.dataset.spellId;
+      const existingDesc = row.nextElementSibling;
+      if (existingDesc?.classList.contains('comp-desc-row')) {
+        existingDesc.remove();
+        row.classList.remove('comp-row-expanded');
+        return;
+      }
+      const sp = getSpellById(spId);
+      if (!sp) return;
+      const text = sp.description_fr || sp.description_en || '';
+      const enBadge = !sp.description_fr && lang === 'fr'
+        ? `<span class="comp-badge-en" style="margin-right:6px">EN</span>` : '';
+      const descRow = document.createElement('tr');
+      descRow.className = 'comp-desc-row';
+      descRow.innerHTML = `<td colspan="7"><div class="comp-desc-text">${enBadge}${text}</div></td>`;
+      row.after(descRow);
+      row.classList.add('comp-row-expanded');
+    });
+  });
 }
 
 /** Reset compendium state (called when navigating away). */
 export function resetCompendium() {
   currentListId = null;
+  currentSpellId = null;
   currentFilters = { realm: '', listType: 'all', keyword: '', characterOnly: false };
+}
+
+function renderSpellDetail(main, lang) {
+  const sp = getSpellById(currentSpellId);
+  if (!sp) { currentSpellId = null; renderCompendium(compendiumApp); return; }
+
+  const list = getListById(sp.list_id);
+  const rc = list ? getRealmColor(list.realm) : getRealmColor('Other');
+  const spName = lang === 'fr' && sp.name_fr ? sp.name_fr : sp.name_en;
+  const spAlt  = lang === 'fr' && sp.name_fr ? sp.name_en : (sp.name_fr || '');
+  const listName = list ? (lang === 'fr' && list.name_fr ? list.name_fr : (list.name_en_clean || list.name_en)) : sp.list_id;
+
+  const aoe  = lang === 'fr' ? (sp.aoe_fr  || sp.aoe_en  || '—') : (sp.aoe_en  || '—');
+  const dur  = lang === 'fr' ? (sp.duration_fr  || sp.duration_en  || '—') : (sp.duration_en  || '—');
+  const rng  = lang === 'fr' ? (sp.range_fr  || sp.range_en  || '—') : (sp.range_en  || '—');
+  const stype = lang === 'fr' ? (sp.spell_type_fr || sp.spell_type || '—') : (sp.spell_type || '—');
+
+  const paramLabels = lang === 'en'
+    ? { lvl: 'Level', type: 'Type', aoe: 'AoE', dur: 'Duration', rng: 'Range' }
+    : { lvl: 'Niveau', type: 'Type', aoe: 'Zone', dur: 'Durée', rng: 'Portée' };
+
+  let descHtml;
+  if (sp.description_fr || sp.description_en) {
+    const enBadge = !sp.description_fr && lang === 'fr'
+      ? `<span class="comp-badge-en" style="margin-right:8px">EN</span>` : '';
+    descHtml = `<p class="comp-spell-desc">${enBadge}${sp.description_fr || sp.description_en}</p>`;
+  } else {
+    const placeholder = lang === 'en'
+      ? 'No description yet — pending Spell Law extraction.'
+      : 'Description non disponible — à extraire des Spell Law.';
+    descHtml = `<p class="comp-spell-desc comp-desc-missing">${placeholder}</p>`;
+  }
+
+  main.innerHTML = `
+    <div class="comp-spell-detail">
+      <div class="comp-detail-nav">
+        <button class="comp-back-btn" id="comp-back-spell">← ${lang === 'en' ? 'Back' : 'Retour'}</button>
+      </div>
+      <div class="comp-detail-header" style="border-left-color:${rc.border}">
+        <h2 class="comp-detail-title">${spName}</h2>
+        ${spAlt ? `<p class="comp-detail-alt">${spAlt}</p>` : ''}
+        <div class="comp-detail-meta">
+          <span class="comp-badge" style="background:${rc.bg};color:${rc.text};border-color:${rc.border}">${list?.realm || ''}</span>
+          <button class="comp-spell-list-link" data-list-id="${sp.list_id}">${listName}</button>
+        </div>
+      </div>
+      <div class="comp-spell-param-grid">
+        <div class="comp-spell-param"><span class="comp-param-label">${paramLabels.lvl}</span><span class="comp-param-val">${sp.level}</span></div>
+        <div class="comp-spell-param"><span class="comp-param-label">${paramLabels.type}</span><span class="comp-param-val">${stype}</span></div>
+        <div class="comp-spell-param"><span class="comp-param-label">${paramLabels.aoe}</span><span class="comp-param-val">${aoe}</span></div>
+        <div class="comp-spell-param"><span class="comp-param-label">${paramLabels.dur}</span><span class="comp-param-val">${dur}</span></div>
+        <div class="comp-spell-param"><span class="comp-param-label">${paramLabels.rng}</span><span class="comp-param-val">${rng}</span></div>
+      </div>
+      <div class="comp-spell-desc-block">${descHtml}</div>
+      ${list?.source_book ? `<p class="comp-detail-source">📖 ${list.source_book}</p>` : ''}
+    </div>`;
+
+  main.querySelector('#comp-back-spell')?.addEventListener('click', () => {
+    currentSpellId = null;
+    renderCompendium(compendiumApp);
+  });
+  main.querySelector('.comp-spell-list-link')?.addEventListener('click', () => {
+    currentListId = sp.list_id;
+    currentSpellId = null;
+    renderCompendium(compendiumApp);
+  });
 }
 
 /** Print a single spell list (improved layout). */

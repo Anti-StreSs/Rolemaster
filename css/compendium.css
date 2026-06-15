@@ -151,9 +151,79 @@
 .comp-detail-source { font-size: 0.7rem; color: #8b6914; font-style: italic; display: block; margin-top: 4px; }
 .comp-card-source { font-size: 0.6rem; color: #8b6914; font-style: italic; margin-top: 2px; }
 
+/* Spell search results (browser view, above list grid) */
+.comp-spell-results-section { margin-bottom: 1.5rem; }
+.comp-spell-results-title {
+  font-family: var(--font-title); font-size: 1rem; color: #6b5030;
+  margin: 0 0 0.5rem; padding-bottom: 4px; border-bottom: 1px solid rgba(139,92,20,0.2);
+}
+.comp-spell-results-grid {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.comp-spell-result-card {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 6px 10px; border: 1px solid rgba(139,92,20,0.2);
+  border-left: 3px solid; border-radius: 6px;
+  background: rgba(255,250,240,0.5); font-family: inherit;
+  cursor: pointer; text-align: left; min-width: 180px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.comp-spell-result-card:hover {
+  transform: translateY(-2px); box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  background: rgba(255,250,240,0.9); filter: drop-shadow(0 0 3px rgba(196,154,32,0.25));
+}
+.comp-spell-result-name { font-size: 0.85rem; font-weight: bold; color: #3a1a08; }
+.comp-spell-result-meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.comp-spell-result-lvl { font-size: 0.7rem; color: #8b6914; }
+.comp-spell-result-list { font-size: 0.7rem; color: #6b5030; font-style: italic; }
+
+/* Expandable rows in list detail */
+.comp-td-afford { width: 20px; text-align: center; padding: 3px 4px; }
+.comp-desc-affordance { font-size: 0.75rem; cursor: default; user-select: none; }
+.comp-desc-none { color: #c0b090; font-size: 0.8rem; }
+.comp-row-clickable[data-has-desc="true"] { cursor: pointer; }
+.comp-row-clickable[data-has-desc="true"]:hover { background: rgba(196,154,32,0.08) !important; }
+.comp-row-expanded { background: rgba(196,154,32,0.06) !important; }
+.comp-desc-row td {
+  padding: 0; border-bottom: 1px solid rgba(139,92,20,0.18);
+  background: rgba(255,250,230,0.5);
+}
+.comp-desc-text {
+  padding: 8px 12px 10px 36px; font-family: 'Palatino','Georgia',serif;
+  font-size: 0.82rem; line-height: 1.6; color: #2a1a08;
+}
+
+/* Spell detail card */
+.comp-spell-detail { max-width: 680px; }
+.comp-spell-param-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 8px; margin: 1rem 0;
+  padding: 10px 12px; background: rgba(255,250,240,0.5);
+  border: 1px solid rgba(139,92,20,0.15); border-radius: 8px;
+}
+.comp-spell-param { display: flex; flex-direction: column; gap: 2px; }
+.comp-param-label { font-size: 0.65rem; color: #8b6914; text-transform: uppercase; letter-spacing: 0.05em; }
+.comp-param-val { font-size: 0.85rem; font-weight: bold; color: #3a1a08; }
+.comp-spell-desc-block { margin-top: 0.5rem; }
+.comp-spell-desc {
+  font-family: 'Palatino','Georgia',serif; font-size: 0.9rem;
+  line-height: 1.7; color: #2a1a08; margin: 0;
+  padding: 12px 14px; background: rgba(255,250,230,0.5);
+  border-left: 3px solid rgba(139,92,20,0.2); border-radius: 0 6px 6px 0;
+}
+.comp-desc-missing { color: #8b6914; font-style: italic; }
+.comp-spell-list-link {
+  background: none; border: none; padding: 1px 6px; cursor: pointer;
+  font-family: inherit; font-size: 0.75rem; color: #6b5030; text-decoration: underline;
+  border-radius: 4px; transition: background 0.15s;
+}
+.comp-spell-list-link:hover { background: rgba(139,92,20,0.1); }
+
 /* Responsive */
 @media (max-width: 640px) {
   .comp-list-grid { grid-template-columns: 1fr; }
   .comp-td-aoe, .comp-td-dur { display: none; }
   .comp-title { font-size: 1.2rem; }
+  .comp-spell-results-grid { flex-direction: column; }
+  .comp-spell-param-grid { grid-template-columns: repeat(2, 1fr); }
 }
