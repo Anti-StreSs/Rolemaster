@@ -55662,6 +55662,1632 @@
    "level": 50,
    "source": "Construct Companion",
    "description_fr": "Comme Transfer Mastery I, sauf que cela affecte les entit\u00e9s artificielles de n'importe quel niveau. Notes sp\u00e9ciales 1. Les sorts de cette liste affectent tous les types de Golems et de Construits. 2. Le niveau d'une Entit\u00e9 pour les sorts Command Entity # et Transfer Mastery # est soit le niveau de cr\u00e9ation de l'Entit\u00e9"
+  },
+  "sp-10092": {
+   "description_en": "Creates an invisible force shield in front of the caster; it subtracts 25 from melee and missile attacks and functions as a normal shield.",
+   "description_fr": "Cr\u00e9e un bouclier de force invisible devant le lanceur ; il soustrait 25 aux attaques de m\u00eal\u00e9e et de tir et fonctionne comme un bouclier normal.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10093": {
+   "description_en": "Allows the caster to increase the armor protection of AT 1 or AT 2 by +4 armor types (AT 1 becomes AT 5 and AT 2 becomes AT 6). Armor so enchanted is treated as the lower AT for determining armor penalties.",
+   "description_fr": "Permet au lanceur d'augmenter la protection d'un AT 1 ou AT 2 de +4 cat\u00e9gories (AT 1 devient AT 5, AT 2 devient AT 6). L'armure ainsi enchant\u00e9e est trait\u00e9e comme l'AT inf\u00e9rieur pour la d\u00e9termination des malus d'armure.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10094": {
+   "description_en": "As Armoring Cloth except leather armor (AT 5-12) may be improved by +4, or cloth armor (AT 1-2) by +8 (AT 1 becomes AT 9, AT 11 becomes AT 15, etc.).",
+   "description_fr": "Comme Armoring Cloth, sauf que l'armure de cuir (AT 5-12) peut \u00eatre am\u00e9lior\u00e9e de +4, ou l'armure de tissu (AT 1-2) de +8 (AT 1 devient AT 9, AT 11 devient AT 15, etc.).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10095": {
+   "description_en": "Allows the caster to use his shield to automatically intercept the next attack (melee or missile) that delivers a critical; the attack may not come from the rear. The critical strike is changed to reflect this (e.g., a neck strike becomes a shield-arm strike).",
+   "description_fr": "Permet au lanceur d'utiliser son bouclier pour intercepter automatiquement la prochaine attaque (m\u00eal\u00e9e ou tir) infligeant un critique ; l'attaque ne peut venir de dos. Le critique est modifi\u00e9 en cons\u00e9quence (p. ex. un coup au cou devient un coup au bras portant le bouclier).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10096": {
+   "description_en": "As Armoring Cloth except chain armor (AT 13-16) may be improved by +4, or leather armor by +8 (AT 7 becomes AT 15, AT 11 becomes AT 19, AT 14 becomes AT 18, etc.).",
+   "description_fr": "Comme Armoring Cloth, sauf que l'armure de maille (AT 13-16) peut \u00eatre am\u00e9lior\u00e9e de +4, ou l'armure de cuir de +8 (AT 7 devient AT 15, AT 11 devient AT 19, AT 14 devient AT 18, etc.).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10097": {
+   "description_en": "As Armoring Leather except soft leather armor is improved by +12.",
+   "description_fr": "Comme Armoring Leather, sauf que l'armure de cuir souple est am\u00e9lior\u00e9e de +12.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10098": {
+   "description_en": "As Shield Blow I except the critical is lowered one level in severity (E crit = D, D = C, C = B, B = A, and A criticals are ignored).",
+   "description_fr": "Comme Shield Blow I, sauf que le critique est abaiss\u00e9 d'un niveau de gravit\u00e9 (E devient D, D devient C, C devient B, B devient A, et les critiques A sont ignor\u00e9s).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10099": {
+   "description_en": "As Armoring Cloth except all critical strikes against this armor are reduced one level in severity (E crit = D, ... B = A, and A criticals are ignored).",
+   "description_fr": "Comme Armoring Cloth, sauf que tous les critiques port\u00e9s contre cette armure sont r\u00e9duits d'un niveau de gravit\u00e9 (E devient D, \u2026, B devient A, et les critiques A sont ignor\u00e9s).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10100": {
+   "description_en": "Allows the caster to create armor out of ordinary cloth (e.g., robe, cloak). Gives the cloth +1 AT for every two levels of the caster.",
+   "description_fr": "Permet au lanceur de cr\u00e9er une armure \u00e0 partir de tissu ordinaire (robe, cape, etc.). Conf\u00e8re au tissu +1 AT par tranche de deux niveaux du lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10101": {
+   "description_en": "As Armoring Leather except all critical strikes against this armor are reduced one level in severity.",
+   "description_fr": "Comme Armoring Leather, sauf que tous les critiques port\u00e9s contre cette armure sont r\u00e9duits d'un niveau de gravit\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10102": {
+   "description_en": "As Shield Blow I except the critical is lowered two levels in severity (E = C, D = B, C = A, and B and A criticals are ignored). No effect if the caster uses the large or super-large critical tables.",
+   "description_fr": "Comme Shield Blow I, sauf que le critique est abaiss\u00e9 de deux niveaux de gravit\u00e9 (E devient C, D devient B, C devient A, et les critiques B et A sont ignor\u00e9s). Sans effet si le lanceur utilise les tables de critiques larges ou super-larges.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10103": {
+   "description_en": "As Armoring Chain except all critical strikes against this armor are reduced one level in severity.",
+   "description_fr": "Comme Armoring Chain, sauf que tous les critiques port\u00e9s contre cette armure sont r\u00e9duits d'un niveau de gravit\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10104": {
+   "description_en": "As Shield Blow III except the critical is lowered three levels in severity (E = B, D = A, and C, B and A criticals are ignored).",
+   "description_fr": "Comme Shield Blow III, sauf que le critique est abaiss\u00e9 de trois niveaux de gravit\u00e9 (E devient B, D devient A, et les critiques C, B et A sont ignor\u00e9s).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10105": {
+   "description_en": "As Armoring Plate except all critical strikes against this armor are reduced one level in severity.",
+   "description_fr": "Comme Armoring Plate, sauf que tous les critiques port\u00e9s contre cette armure sont r\u00e9duits d'un niveau de gravit\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10106": {
+   "description_en": "As Shield Blow III except the critical is lowered four levels in severity (E = A, and D, C, B and A criticals are ignored).",
+   "description_fr": "Comme Shield Blow III, sauf que le critique est abaiss\u00e9 de quatre niveaux de gravit\u00e9 (E devient A, et les critiques D, C, B et A sont ignor\u00e9s).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10107": {
+   "description_en": "As Mystical Plate except all melee and missile criticals are reduced two levels. No effect if the caster uses the large or super-large critical tables.",
+   "description_fr": "Comme Mystical Plate, sauf que tous les critiques de m\u00eal\u00e9e et de tir sont r\u00e9duits de deux niveaux. Sans effet si le lanceur utilise les tables de critiques larges ou super-larges.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10108": {
+   "description_en": "As Mystical Armor except all melee and missile criticals are reduced three levels (E = B, D = A, and C, B and A criticals are ignored).",
+   "description_fr": "Comme Mystical Armor, sauf que tous les critiques de m\u00eal\u00e9e et de tir sont r\u00e9duits de trois niveaux (E devient B, D devient A, et les critiques C, B et A sont ignor\u00e9s).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10109": {
+   "description_en": "Gives up to a +2/level bonus to the wielder's OB; PP cost is 1 PP per +2 bonus.",
+   "description_fr": "Conf\u00e8re jusqu'\u00e0 un bonus de +2/niveau \u00e0 l'BO du porteur ; co\u00fbt de 1 PP par bonus de +2.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10110": {
+   "description_en": "Increases the portion of OB put into parrying by 50% (e.g., if the wielder puts 30 of his 70 OB into parrying, his DB is actually increased by 45).",
+   "description_fr": "Augmente de 50% la part d'BO consacr\u00e9e \u00e0 la parade (p. ex. si le porteur consacre 30 de ses 70 d'BO \u00e0 parer, son BD est en r\u00e9alit\u00e9 augment\u00e9 de 45).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10111": {
+   "description_en": "The weapon's next critical strike roll is modified by +5. Any result over 100 is treated as 100.",
+   "description_fr": "Le prochain jet de critique de l'arme est modifi\u00e9 de +5. Tout r\u00e9sultat sup\u00e9rieur \u00e0 100 est trait\u00e9 comme 100.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10112": {
+   "description_en": "This blade fills the air with a song of courage and glory. Allies within 10'R of the blade are immune to fear effects, and those beyond 10'R but within hearing range receive a bonus against fear.",
+   "description_fr": "Cette lame emplit l'air d'un chant de courage et de gloire. Les alli\u00e9s dans un rayon de 3 m de rayon de la lame sont immunis\u00e9s contre les effets de peur, et ceux au-del\u00e0 de 3 m de rayon mais \u00e0 port\u00e9e d'ou\u00efe re\u00e7oivent un bonus contre la peur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10113": {
+   "description_en": "Allows the weapon two attacks each round; but the OB for each attack is decreased by 40% of the OB or by 30 (whichever is less).",
+   "description_fr": "Permet \u00e0 l'arme deux attaques par round ; mais l'BO de chaque attaque est r\u00e9duit de 40% de l'BO ou de 30 (le plus faible des deux).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10114": {
+   "description_en": "For the next critical, increases the severity by 1 level; a no-crit result stays no-crit, and an E crit stays E (A = B, B = C, etc.).",
+   "description_fr": "Pour le prochain critique, augmente la gravit\u00e9 d'un niveau ; un r\u00e9sultat sans critique reste sans critique, et un critique E reste E (A devient B, B devient C, etc.).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10115": {
+   "description_en": "Doubles the amount of concussion damage the weapon does on its next strike that delivers concussion hits.",
+   "description_fr": "Double les d\u00e9g\u00e2ts de commotion inflig\u00e9s par l'arme lors de sa prochaine frappe causant des points de commotion.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10116": {
+   "description_en": "When the weapon delivers its next critical strike, it also delivers an A elemental critical in addition to the normal critical; the caster chooses the elemental type (fire = heat criticals; ice = cold; water = impact; etc.).",
+   "description_fr": "Lors de sa prochaine frappe critique, l'arme inflige \u00e9galement un critique \u00e9l\u00e9mentaire A en plus du critique normal ; le lanceur choisit le type \u00e9l\u00e9mentaire (feu = critiques de chaleur ; glace = froid ; eau = impact ; etc.).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10117": {
+   "description_en": "As Multiple Strike II except it allows the weapon three attacks each round; but the OB for each attack is decreased by 50% of the OB or by 40 (whichever is less).",
+   "description_fr": "Comme Multiple Strike II, sauf que l'arme effectue trois attaques par round ; l'BO de chaque attaque est r\u00e9duit de 50% de l'BO ou de 40 (le plus faible des deux).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10118": {
+   "description_en": "Gives the wielder +25 to initiative, delivers double concussion damage, and all E criticals have a 10% chance of severing a limb provided the critical is an arm, leg, or neck strike.",
+   "description_fr": "Conf\u00e8re au porteur +25 \u00e0 l'initiative, inflige le double des d\u00e9g\u00e2ts de commotion, et tout critique E a 10% de chance de trancher un membre si le critique est un coup au bras, \u00e0 la jambe ou au cou.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10119": {
+   "description_en": "Triples the amount of concussion damage the weapon does.",
+   "description_fr": "Triple les d\u00e9g\u00e2ts de commotion inflig\u00e9s par l'arme.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10120": {
+   "description_en": "If the next crit causes hits/rnd and the victim fails his RR (modified by CO bonus), he is consumed by an elemental poison (caster chooses fire, ice, water, etc.) that slowly consumes his body. The victim takes 1D10 elemental hits per round for 1 rnd/1% failure. If the elemental hit total reaches the victim's concussion hit total + Constitution, the body is consumed (fire = goes up in smoke; ice = becomes a living ice statue; water = becomes a pool of water). Cures: the caster may cancel the poison, the elemental hits may be cured at half normal rate, or an opposite elemental poison may be applied (GM discretion).",
+   "description_fr": "Si le prochain critique cause des hits/rd et que la victime rate son JR (modifi\u00e9 par le bonus de CO), elle est rong\u00e9e par un poison \u00e9l\u00e9mentaire (feu, glace, eau, etc., au choix du lanceur) qui consume lentement son corps. La victime subit 1D10 hits \u00e9l\u00e9mentaires par round pendant 1 rd/1% d'\u00e9chec. Si le total de hits \u00e9l\u00e9mentaires atteint le total de hits de commotion de la victime + sa Constitution, le corps est consum\u00e9 (feu = part en fum\u00e9e ; glace = devient une statue de glace vivante ; eau = devient une flaque). Rem\u00e8des : le lanceur peut annuler le poison, les hits \u00e9l\u00e9mentaires peuvent \u00eatre soign\u00e9s \u00e0 demi-vitesse, ou un poison \u00e9l\u00e9mentaire oppos\u00e9 peut \u00eatre appliqu\u00e9 (\u00e0 la discr\u00e9tion du MJ).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10121": {
+   "description_en": "As Lesser Strike except critical severity is increased two levels; and if the weapon does concussion damage but does not score a critical, an A crit is delivered.",
+   "description_fr": "Comme Lesser Strike, sauf que la gravit\u00e9 du critique est augment\u00e9e de deux niveaux ; et si l'arme inflige des d\u00e9g\u00e2ts de commotion sans obtenir de critique, un critique A est inflig\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10122": {
+   "description_en": "As Multiple Strike II except it allows the weapon four attacks each round; but the OB for each attack is decreased by 60% of the OB or by 50 (whichever is less).",
+   "description_fr": "Comme Multiple Strike II, sauf que l'arme effectue quatre attaques par round ; l'BO de chaque attaque est r\u00e9duit de 60% de l'BO ou de 50 (le plus faible des deux).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10123": {
+   "description_en": "As Lesser Elemental Weapon except it delivers a B critical in addition to the normal critical.",
+   "description_fr": "Comme Lesser Elemental Weapon, sauf qu'elle inflige un critique B en plus du critique normal.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10124": {
+   "description_en": "Allows the weapon to leave the wielder's hand and attack (on its own) an opponent within 50' (it moves 50' per round). The dancing weapon has +50 OB when attacking on its own. The caster must be able to see the weapon and its target for it to attack.",
+   "description_fr": "Permet \u00e0 l'arme de quitter la main de son porteur et d'attaquer seule un adversaire \u00e0 moins de 15 m (elle se d\u00e9place de 15 m par round). L'arme dansante a +50 d'BO lorsqu'elle attaque seule. Le lanceur doit pouvoir voir l'arme et sa cible pour qu'elle attaque.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10125": {
+   "description_en": "Anyone wishing to confront the wielder must first overcome a 10'R sphere of fear surrounding him. All must make an RR each round they are within the 10'R. Those who fail flee from the wielder for 1 min/5% failure.",
+   "description_fr": "Quiconque veut affronter le porteur doit d'abord surmonter une sph\u00e8re de peur de 3 m de rayon l'entourant. Chacun doit r\u00e9ussir un JR \u00e0 chaque round pass\u00e9 dans le 3 m de rayon. Ceux qui \u00e9chouent fuient le porteur pendant 1 min/5% d'\u00e9chec.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10126": {
+   "description_en": "Doubles the wielder's normal initiative number.",
+   "description_fr": "Double le nombre d'initiative normal du porteur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10127": {
+   "description_en": "As Multiple Strike II except it allows the weapon five attacks each round; but the OB for each attack is decreased by 70% of the OB or by 60 (whichever is less).",
+   "description_fr": "Comme Multiple Strike II, sauf que l'arme effectue cinq attaques par round ; l'BO de chaque attaque est r\u00e9duit de 70% de l'BO ou de 60 (le plus faible des deux).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10128": {
+   "description_en": "As Lesser Noble Weapon except it adds +50 to initiative, delivers 3x concussion damage, and the severing chance is 30% for E criticals, 20% for D, and 10% for C. +10 to all RRs versus fear effects.",
+   "description_fr": "Comme Lesser Noble Weapon, sauf qu'elle ajoute +50 \u00e0 l'initiative, inflige 3x les d\u00e9g\u00e2ts de commotion, et la chance de trancher est de 30% pour les critiques E, 20% pour les D et 10% pour les C. +10 \u00e0 tous les JR contre les effets de peur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10130": {
+   "description_en": "As Lesser Elemental Weapon except the elemental weapon delivers a C critical.",
+   "description_fr": "Comme Lesser Elemental Weapon, sauf que l'arme \u00e9l\u00e9mentaire inflige un critique C.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10131": {
+   "description_en": "As Greater Noble Weapon except the initiative number is doubled, delivers 4x concussion damage, and the severing chance is 50% for E criticals, 40% for D, 30% for C, 20% for B and 10% for A.",
+   "description_fr": "Comme Greater Noble Weapon, sauf que le nombre d'initiative est doubl\u00e9, inflige 4x les d\u00e9g\u00e2ts de commotion, et la chance de trancher est de 50% pour les critiques E, 40% pour les D, 30% pour les C, 20% pour les B et 10% pour les A.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10132": {
+   "description_en": "Allows the caster to learn the origins, purity, and general worth of one portion of food or drink. Any impurity is discovered; only its type (bacteria, poison, dirt, excrement, chemical, etc.) is indicated.",
+   "description_fr": "Permet au lanceur de conna\u00eetre l'origine, la puret\u00e9 et la valeur g\u00e9n\u00e9rale d'une portion de nourriture ou de boisson. Toute impuret\u00e9 est d\u00e9cel\u00e9e ; seul son type (bact\u00e9rie, poison, salet\u00e9, excr\u00e9ment, produit chimique, etc.) est indiqu\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10134": {
+   "description_en": "As Food & Drink Analysis except one drug or poison (if any) in the portion is analyzed.",
+   "description_fr": "Comme Food & Drink Analysis, sauf qu'une drogue ou un poison (le cas \u00e9ch\u00e9ant) dans la portion est analys\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10135": {
+   "description_en": "As Text Analysis I except the caster can understand, but not speak, one spoken language.",
+   "description_fr": "Comme Text Analysis I, sauf que le lanceur peut comprendre, mais non parler, une langue parl\u00e9e.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10137": {
+   "description_en": "One item, person, or place may be examined to determine whether it bears magical power, and of which realm.",
+   "description_fr": "Un objet, une personne ou un lieu peut \u00eatre examin\u00e9 pour d\u00e9terminer s'il rec\u00e8le un pouvoir magique, et de quel royaume.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10138": {
+   "description_en": "As Text Analysis II except the caster can understand, but not speak, one spoken language.",
+   "description_fr": "Comme Text Analysis II, sauf que le lanceur peut comprendre, mais non parler, une langue parl\u00e9e.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10142": {
+   "description_en": "As Text Analysis III except the caster can understand, but not speak, one spoken language.",
+   "description_fr": "Comme Text Analysis III, sauf que le lanceur peut comprendre, mais non parler, une langue parl\u00e9e.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10143": {
+   "description_en": "As Text Analysis III except texts written in code are fully comprehended.",
+   "description_fr": "Comme Text Analysis III, sauf que les textes \u00e9crits en code sont pleinement compris.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10145": {
+   "description_en": "As Metal Analysis except a solid is examined.",
+   "description_fr": "Comme Metal Analysis, sauf qu'un solide est examin\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10147": {
+   "description_en": "As Detect Good except it detects Chaotic alignment.",
+   "description_fr": "Comme Detect Good, sauf qu'il d\u00e9tecte l'alignement chaotique.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10148": {
+   "description_en": "As Spell Analysis (Open Essence list, Delving) except only a Channeling spell may be analyzed.",
+   "description_fr": "Comme Spell Analysis (liste Essence ouverte, Delving), sauf que seul un sort de Canalisation peut \u00eatre analys\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10149": {
+   "description_en": "Caster can see at night as if it were daylight.",
+   "description_fr": "Le lanceur voit la nuit comme en plein jour.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10150": {
+   "description_en": "As Spell Analysis (Open Essence list, Delving) except only a Mentalism spell may be analyzed.",
+   "description_fr": "Comme Spell Analysis (liste Essence ouverte, Delving), sauf que seul un sort de Mentalisme peut \u00eatre analys\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10151": {
+   "description_en": "As Spell Analysis (Open Essence list, Delving) except only an Essence spell may be analyzed.",
+   "description_fr": "Comme Spell Analysis (liste Essence ouverte, Delving), sauf que seul un sort d'Essence peut \u00eatre analys\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10173": {
+   "description_en": "As Lock II except Routine to Absurd complexity locks can be unlocked or locked; locking is automatic and the chance of unlocking is: Routine 95%, Easy 90%, Light 80%, Medium 70%, Hard 60%, Very Hard 50%, Extremely Hard 40%, Sheer Folly 30%, Absurd 20%.",
+   "description_fr": "Comme Lock II, sauf que les serrures de complexit\u00e9 Routini\u00e8re \u00e0 Absurde peuvent \u00eatre ouvertes ou verrouill\u00e9es ; le verrouillage est automatique et la chance d'ouverture est : Routini\u00e8re 95%, Facile 90%, L\u00e9g\u00e8re 80%, Moyenne 70%, Difficile 60%, Tr\u00e8s difficile 50%, Extr\u00eamement difficile 40%, Pure folie 30%, Absurde 20%.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10174": {
+   "description_en": "Allows the caster to escape any bonds in 4 minutes.",
+   "description_fr": "Permet au lanceur de se lib\u00e9rer de n'importe quels liens en 4 minutes.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10175": {
+   "description_en": "Gives the caster +20 to picking the lock analyzed, and +10 to anyone to whom he describes the lock.",
+   "description_fr": "Conf\u00e8re au lanceur +20 pour crocheter la serrure analys\u00e9e, et +10 \u00e0 quiconque \u00e0 qui il d\u00e9crit la serrure.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10176": {
+   "description_en": "Caster can cause any mundane-complexity lock (e.g., sliding bolts) he can see within range to be unlocked or locked (the lock is just normally locked/unlocked and can be operated normally).",
+   "description_fr": "Le lanceur peut faire ouvrir ou verrouiller toute serrure de complexit\u00e9 ordinaire (p. ex. verrous coulissants) qu'il voit \u00e0 port\u00e9e (la serrure est simplement verrouill\u00e9e/d\u00e9verrouill\u00e9e normalement et peut ensuite \u00eatre man\u0153uvr\u00e9e normalement).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10177": {
+   "description_en": "Allows the caster to escape from cloth bindings in 1 rnd.",
+   "description_fr": "Permet au lanceur de se lib\u00e9rer de liens en tissu en 1 rd.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10178": {
+   "description_en": "As Lock I except Routine to Medium complexity locks can be locked, and there is a chance such a lock will spontaneously unlock: Routine 50%, Easy 40%, Light 30%, Medium 20%.",
+   "description_fr": "Comme Lock I, sauf que les serrures de complexit\u00e9 Routini\u00e8re \u00e0 Moyenne peuvent \u00eatre verrouill\u00e9es, avec une chance qu'une telle serrure se d\u00e9verrouille : Routini\u00e8re 50%, Facile 40%, L\u00e9g\u00e8re 30%, Moyenne 20%.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10181": {
+   "description_en": "Caster knows whether or not the target has been involved in a specified crime.",
+   "description_fr": "Le lanceur sait si la cible a \u00e9t\u00e9 ou non impliqu\u00e9e dans un crime d\u00e9termin\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10185": {
+   "description_en": "Caster knows if the target location was the scene of a specified crime.",
+   "description_fr": "Le lanceur sait si le lieu vis\u00e9 fut la sc\u00e8ne d'un crime d\u00e9termin\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10190": {
+   "description_en": "In conjunction with other Crime Lore spells, allows the caster to know the approximate time a specified crime occurred.",
+   "description_fr": "Conjointement aux autres sorts Crime Lore, permet au lanceur de conna\u00eetre le moment approximatif o\u00f9 un crime d\u00e9termin\u00e9 a eu lieu.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10197": {
+   "description_en": "Allows the caster to cast any one of the Crime Lore spells each round. It also enhances those spells so that a specific crime need not be indicated.",
+   "description_fr": "Permet au lanceur de lancer l'un quelconque des sorts Crime Lore \u00e0 chaque round. Il am\u00e9liore aussi ces sorts de sorte qu'il n'est plus n\u00e9cessaire de d\u00e9signer un crime pr\u00e9cis.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10198": {
+   "description_en": "Creates an invisible force shield in front of the caster which protects like a wall shield: it subtracts 30 from melee attacks and 40 from missile attacks and functions as a normal shield.",
+   "description_fr": "Cr\u00e9e un bouclier de force invisible devant le lanceur qui prot\u00e8ge comme un pavois : il soustrait 30 aux attaques de m\u00eal\u00e9e et 40 aux attaques de tir et fonctionne comme un bouclier normal.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10199": {
+   "description_en": "Caster may mend a single break in a metal object of 5 lbs or less, and multiple breaks, rips, or shatters in a larger (50 lbs or less) ceramic, wooden, stone, or cloth object. The object cannot be magical and all component parts must be present (within a 10' radius).",
+   "description_fr": "Le lanceur peut r\u00e9parer une seule cassure dans un objet m\u00e9tallique de 2,2 kg ou moins, et plusieurs cassures, d\u00e9chirures ou \u00e9clats dans un objet plus grand (22,5 kg ou moins) en c\u00e9ramique, bois, pierre ou tissu. L'objet ne peut \u00eatre magique et tous ses fragments doivent \u00eatre pr\u00e9sents (dans un rayon de 3 m).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10200": {
+   "description_en": "May be cast at two levels, 3 and 7. At 3rd level it destroys the form, straightness, and strength of a piece of wood up to 1 lb/lvl. At 7th level the caster may cause a wooden door or object (10 lb/lvl) to swell and jam (roll severity 1-100, from slightly stuck to unopenable), or may reduce its inherent strength by 50%.",
+   "description_fr": "Peut \u00eatre lanc\u00e9 \u00e0 deux niveaux, 3 et 7. Au niveau 3, il d\u00e9truit la forme, la rectitude et la solidit\u00e9 d'une pi\u00e8ce de bois jusqu'\u00e0 0,5 kg/niv. Au niveau 7, le lanceur peut faire gonfler et coincer une porte ou un objet en bois (4,5 kg/niv) (gravit\u00e9 1-100, de l\u00e9g\u00e8rement coinc\u00e9 \u00e0 inouvrable), ou r\u00e9duire sa solidit\u00e9 de 50%.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10201": {
+   "description_en": "The caster may transform stone, earth, or wood into fine dry powder. The amount depends on the casting level (4 = 10 cu', 9 = 100 cu', 14 = 1000 cu', 25 = 100 cu'/lvl).",
+   "description_fr": "Le lanceur peut transformer pierre, terre ou bois en fine poudre s\u00e8che. La quantit\u00e9 d\u00e9pend du niveau de lancement (4 = 10 cu', 9 = 100 cu', 14 = 1000 cu', 25 = 100 cu'/niv).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10202": {
+   "description_en": "The caster may create and manipulate smoke of a volume up to 10'R/lvl, varying its shape and movement by concentrating. He may vary the density from translucent to opaque, and create any color of smoke.",
+   "description_fr": "Le lanceur peut cr\u00e9er et manipuler de la fum\u00e9e d'un volume allant jusqu'\u00e0 3 m de rayon/niv, en variant sa forme et son mouvement par concentration. Il peut faire varier la densit\u00e9 du translucide \u00e0 l'opaque, et cr\u00e9er une fum\u00e9e de n'importe quelle couleur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10203": {
+   "description_en": "The caster may simultaneously ignite or extinguish every common light-giving implement (candles, torches, fireplaces, etc.) in the radius. The spell affects any fire up to bonfire size (5'R). Cast at a lower level (3rd) it ignites a single implement.",
+   "description_fr": "Le lanceur peut simultan\u00e9ment allumer ou \u00e9teindre tout dispositif d'\u00e9clairage courant (bougies, torches, foyers, etc.) dans le rayon. Le sort affecte tout feu jusqu'\u00e0 la taille d'un feu de joie (1,5 m de rayon). Lanc\u00e9 \u00e0 un niveau inf\u00e9rieur (3), il allume un seul dispositif.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10204": {
+   "description_en": "This illusory spell affects one inanimate object up to 10 lbs/lvl, altering its look, feel, and shape to conceal its true nature. If the item is magical, the illusion may disguise its power level by 1 lvl/caster's lvl. A successful RR reveals that the item is disguised but not its true nature; resisting by 25+ reveals the true nature; by 50+ the illusion is dispelled if the being so desires.",
+   "description_fr": "Ce sort illusoire affecte un objet inanim\u00e9 jusqu'\u00e0 4,5 kg/niv, en alt\u00e9rant son aspect, sa texture et sa forme pour dissimuler sa vraie nature. Si l'objet est magique, l'illusion peut d\u00e9guiser son niveau de pouvoir de 1 niv/niv du lanceur. Un JR r\u00e9ussi r\u00e9v\u00e8le que l'objet est d\u00e9guis\u00e9 mais non sa vraie nature ; une r\u00e9ussite de 25+ r\u00e9v\u00e8le la vraie nature ; de 50+, l'illusion est dissip\u00e9e si l'\u00eatre le souhaite.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10205": {
+   "description_en": "RR Mod: -20. The caster may cause a living target to bleed through his skin at a rate of 1 hit/5% failure each round. The duration depends on the degree of failure: roll 1d10/5% failure for the number of rounds. The caster may will the process to stop prematurely.",
+   "description_fr": "JR Mod : -20. Le lanceur peut faire saigner une cible vivante \u00e0 travers sa peau, au rythme de 1 hit/5% d'\u00e9chec par round. La dur\u00e9e d\u00e9pend de l'ampleur de l'\u00e9chec : lancer 1d10/5% d'\u00e9chec pour le nombre de rounds. Le lanceur peut faire cesser le processus pr\u00e9matur\u00e9ment par sa volont\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10206": {
+   "description_en": "Turns any 1 inorganic object to fine powder. The total volume of the item cannot exceed 10 cu'.",
+   "description_fr": "R\u00e9duit un objet inorganique en fine poudre. Le volume total de l'objet ne peut exc\u00e9der 10 cu'.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10207": {
+   "description_en": "The caster may cause a number of items equal to his level/10 to dance about the area as if alive. A melee weapon or bashing object may attack a target with a melee OB equal to (25 + 1/lvl). The items are treated as AT 8(-20) with 1-10 hits/lvl. Most criticals (except knock-down results) have no effect against a dancing weapon.",
+   "description_fr": "Le lanceur peut faire danser un nombre d'objets \u00e9gal \u00e0 son niveau/10 comme s'ils \u00e9taient vivants. Une arme de m\u00eal\u00e9e ou un objet contondant peut attaquer une cible avec un BO de m\u00eal\u00e9e de (25 + 1/niv). Les objets sont trait\u00e9s comme AT 8(-20) avec 1-10 hits/niv. La plupart des critiques (sauf les r\u00e9sultats de mise \u00e0 terre) n'ont aucun effet contre une arme dansante.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10208": {
+   "description_en": "The caster may cause an amorphous mass of a suitable elemental material (earth, stone, fire, water, wind, etc.) to act with a life of its own and obey simple commands. The creature's abilities depend on the casting level: 11 = weak elemental; 18 = strong elemental.",
+   "description_fr": "Le lanceur peut animer une masse amorphe d'un mat\u00e9riau \u00e9l\u00e9mentaire appropri\u00e9 (terre, pierre, feu, eau, vent, etc.) qui agit de sa propre volont\u00e9 et ob\u00e9it \u00e0 des ordres simples. Les capacit\u00e9s de la cr\u00e9ature d\u00e9pendent du niveau de lancement : 11 = \u00e9l\u00e9mentaire faible ; 18 = \u00e9l\u00e9mentaire puissant.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10209": {
+   "description_en": "Can shatter an inorganic object explosively, up to 1 cu'. All within a 5'R take an A impact critical and the holder takes a C.",
+   "description_fr": "Peut faire exploser un objet inorganique, jusqu'\u00e0 1 cu'. Tous dans un 1,5 m de rayon subissent un critique d'impact A et le porteur subit un C.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10210": {
+   "description_en": "The target is wrapped in chains of energy. Any escape attempt is resolved as a spell attack with the chains as attacker (RR Mod: -20). On a successful RR the target escapes; on failure he suffers one impact critical of severity by failure (1-10 = A; 11-20 = B; 21-30 = C; 31-40 = D; 41+ = E). If escape is attempted with magic (especially movement or transport spells), the target must resist three separate criticals (Impact, Electrical, and Heat) with severities determined as above.",
+   "description_fr": "La cible est enserr\u00e9e de cha\u00eenes d'\u00e9nergie. Toute tentative d'\u00e9vasion se r\u00e9sout comme une attaque de sort, les cha\u00eenes \u00e9tant l'attaquant (JR Mod : -20). Sur un JR r\u00e9ussi, la cible s'\u00e9chappe ; sur un \u00e9chec, elle subit un critique d'impact de gravit\u00e9 selon l'\u00e9chec (1-10 = A ; 11-20 = B ; 21-30 = C ; 31-40 = D ; 41+ = E). Si l'\u00e9vasion est tent\u00e9e par magie (surtout des sorts de mouvement ou de transport), la cible doit r\u00e9sister \u00e0 trois critiques distincts (Impact, \u00c9lectrique et Chaleur) de gravit\u00e9 d\u00e9termin\u00e9e comme ci-dessus.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10211": {
+   "description_en": "Caster may instantly kill and wither any one plant he touches. Some plants may get an RR (e.g., magical, living, large, etc.).",
+   "description_fr": "Le lanceur peut instantan\u00e9ment tuer et fl\u00e9trir une plante qu'il touche. Certaines plantes peuvent b\u00e9n\u00e9ficier d'un JR (p. ex. magiques, vivantes, grandes, etc.).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10212": {
+   "description_en": "A bolt of lightning is shot from the palm of the caster; results are determined on the Lightning Bolt table.",
+   "description_fr": "Un \u00e9clair jaillit de la paume du lanceur ; les r\u00e9sultats sont d\u00e9termin\u00e9s sur la table de l'\u00c9clair (Lightning Bolt).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10213": {
+   "description_en": "The caster may cause fluids or solids to take a desired shape (e.g., smoke staircases, warm-water statues) and solidify for the duration. The material has the strength and consistency of wood.",
+   "description_fr": "Le lanceur peut faire prendre \u00e0 des fluides ou des solides une forme voulue (p. ex. escaliers de fum\u00e9e, statues d'eau ti\u00e8de) et les solidifier pour la dur\u00e9e. Le mat\u00e9riau a la solidit\u00e9 et la consistance du bois.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10214": {
+   "description_en": "Disintegrates 1000 cu' of earth, stone, sand, clay, etc.",
+   "description_fr": "D\u00e9sint\u00e8gre 1000 cu' de terre, pierre, sable, argile, etc.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10215": {
+   "description_en": "A door or container can be magically locked. The spell may be dispelled, or willed to cease by the original caster, but the door or container is unbreakable by normal means.",
+   "description_fr": "Une porte ou un coffre peut \u00eatre magiquement verrouill\u00e9. Le sort peut \u00eatre dissip\u00e9, ou interrompu par la volont\u00e9 du lanceur d'origine, mais la porte ou le coffre est indestructible par des moyens normaux.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10216": {
+   "description_en": "The caster may either assist or impede a vessel's progress; the ship's speed is increased or decreased by 1 mph/lvl. Alternatively, the caster may treat this spell as a Whirlwind (Magician Base, Wind Law, level 14).",
+   "description_fr": "Le lanceur peut soit favoriser, soit entraver la progression d'un navire ; la vitesse du navire est augment\u00e9e ou diminu\u00e9e de 1 mph/niv. Le lanceur peut aussi traiter ce sort comme un Tourbillon (Whirlwind, base Magicien, Wind Law, niveau 14).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10217": {
+   "description_en": "Shatters the heart and the nearby large blood vessels of the target. For almost all living creatures, unconsciousness occurs immediately after a brief awareness of terrific pain, followed by physical death in 1 round. Interior bleeding occurs at 50 hits/rnd.",
+   "description_fr": "Brise le c\u0153ur et les gros vaisseaux sanguins voisins de la cible. Pour presque toute cr\u00e9ature vivante, l'inconscience survient imm\u00e9diatement apr\u00e8s un bref \u00e9clair de douleur atroce, suivie de la mort physique en 1 round. L'h\u00e9morragie interne se produit au rythme de 50 hits/rd.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10218": {
+   "description_en": "Caster may cause a living or organic target to gradually turn to stone at 10%/rnd. The caster may reverse the effect at any time if within range and concentrating; it may also simply be dispelled. However, the petrified target gets +20 RR vs. any dispelling attempt, and failed attempts are treated as attack spell fumbles.",
+   "description_fr": "Le lanceur peut faire p\u00e9trifier progressivement une cible vivante ou organique au rythme de 10%/rd. Le lanceur peut inverser l'effet \u00e0 tout moment s'il est \u00e0 port\u00e9e et se concentre ; il peut aussi \u00eatre simplement dissip\u00e9. Toutefois, la cible p\u00e9trifi\u00e9e b\u00e9n\u00e9ficie de +20 au JR contre toute tentative de dissipation, et les tentatives rat\u00e9es sont trait\u00e9es comme des maladresses de sort d'attaque.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10219": {
+   "description_en": "The caster may duplicate any non-magic object (e.g., broadsword, table) he has seen or designed, from a mass of inorganic materials not exceeding 1 lb/lvl. The created item has the same polish, texture, and quality as the materials used. The effect is permanent, but the item may be normally dispelled, whereupon it reverts to the original materials.",
+   "description_fr": "Le lanceur peut dupliquer tout objet non magique (p. ex. \u00e9p\u00e9e large, table) qu'il a vu ou con\u00e7u, \u00e0 partir d'une masse de mat\u00e9riaux inorganiques n'exc\u00e9dant pas 0,5 kg/niv. L'objet cr\u00e9\u00e9 a le m\u00eame poli, la m\u00eame texture et la m\u00eame qualit\u00e9 que les mat\u00e9riaux utilis\u00e9s. L'effet est permanent, mais l'objet peut \u00eatre normalement dissip\u00e9, redevenant alors les mat\u00e9riaux d'origine.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10220": {
+   "description_en": "The caster is propelled for one round into timelessness. To him the universe appears to have stopped for the duration, and he may take any action during that round which he might normally take. This spell may not be enhanced in length or range.",
+   "description_fr": "Le lanceur est projet\u00e9 pour un round hors du temps. Pour lui, l'univers para\u00eet s'\u00eatre arr\u00eat\u00e9 durant la dur\u00e9e, et il peut accomplir ce round toute action qu'il pourrait normalement faire. Ce sort ne peut \u00eatre prolong\u00e9 en dur\u00e9e ni en port\u00e9e.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10222": {
+   "description_en": "The caster may inscribe a Rune I or a Rune II as Rune I on the Open Essence Rune Mastery spell list.",
+   "description_fr": "Le lanceur peut inscrire une Rune I ou une Rune II comme Rune I de la liste Essence ouverte Rune Mastery.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10223": {
+   "description_en": "The caster may emplace or remove one Symbol I in any 1 given non-mobile stone, as in Symbol I or Unsymbol I on the Closed Channeling Symbolic Ways spell list.",
+   "description_fr": "Le lanceur peut apposer ou retirer un Symbole I dans une pierre immobile donn\u00e9e, comme Symbol I ou Unsymbol I de la liste Canalisation ferm\u00e9e Symbolic Ways.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10224": {
+   "description_en": "(I) The caster immediately determines if any 1 given rune or symbol is inherently dangerous to read or trigger (e.g., a Rune of Disembowelment). Inherently dangerous means it will perform some attack on the being even when knowingly and successfully activated. There is a 1% chance per level of the enruned spell that the rune will be set off.",
+   "description_fr": "(I) Le lanceur d\u00e9termine imm\u00e9diatement si une rune ou un symbole donn\u00e9 est intrins\u00e8quement dangereux \u00e0 lire ou \u00e0 d\u00e9clencher (p. ex. une Rune d'\u00c9tripage). Intrins\u00e8quement dangereux signifie qu'il porte une attaque sur l'\u00eatre m\u00eame lorsqu'il est sciemment et correctement activ\u00e9. Il y a 1% de chance par niveau du sort enrun\u00e9 que la rune se d\u00e9clenche.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10225": {
+   "description_en": "As Rune I, except it can inscribe 1st- to 3rd-level spells.",
+   "description_fr": "Comme Rune I, sauf qu'elle peut inscrire des sorts de niveau 1 \u00e0 3.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10227": {
+   "description_en": "As Rune I, except it can inscribe 1st- to 5th-level spells.",
+   "description_fr": "Comme Rune I, sauf qu'elle peut inscrire des sorts de niveau 1 \u00e0 5.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10228": {
+   "description_en": "As Symbol/Unsymbol I, except the caster can emplace or remove 1st- to 3rd-level symbols.",
+   "description_fr": "Comme Symbol/Unsymbol I, sauf que le lanceur peut apposer ou retirer des symboles de niveau 1 \u00e0 3.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10229": {
+   "description_en": "As Rune I, except it can inscribe 1st- to 6th-level spells.",
+   "description_fr": "Comme Rune I, sauf qu'elle peut inscrire des sorts de niveau 1 \u00e0 6.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10230": {
+   "description_en": "As Symbol/Unsymbol I, except the caster can emplace or remove 1st- to 5th-level symbols.",
+   "description_fr": "Comme Symbol/Unsymbol I, sauf que le lanceur peut apposer ou retirer des symboles de niveau 1 \u00e0 5.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10231": {
+   "description_en": "As Rune I, except it can inscribe 1st- to 7th-level spells.",
+   "description_fr": "Comme Rune I, sauf qu'elle peut inscrire des sorts de niveau 1 \u00e0 7.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10232": {
+   "description_en": "As Symbol/Unsymbol I, except the caster can emplace or remove 1st- to 6th-level symbols.",
+   "description_fr": "Comme Symbol/Unsymbol I, sauf que le lanceur peut apposer ou retirer des symboles de niveau 1 \u00e0 6.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10233": {
+   "description_en": "As Rune I, except it can inscribe 1st- to 8th-level spells.",
+   "description_fr": "Comme Rune I, sauf qu'elle peut inscrire des sorts de niveau 1 \u00e0 8.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10234": {
+   "description_en": "As Symbol/Unsymbol I, except the caster can emplace or remove 1st- to 7th-level symbols.",
+   "description_fr": "Comme Symbol/Unsymbol I, sauf que le lanceur peut apposer ou retirer des symboles de niveau 1 \u00e0 7.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10235": {
+   "description_en": "As Rune I, except it can inscribe 1st- to 10th-level spells.",
+   "description_fr": "Comme Rune I, sauf qu'elle peut inscrire des sorts de niveau 1 \u00e0 10.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10236": {
+   "description_en": "As Symbol/Unsymbol I, except the caster can emplace or remove 1st- to 8th-level symbols.",
+   "description_fr": "Comme Symbol/Unsymbol I, sauf que le lanceur peut apposer ou retirer des symboles de niveau 1 \u00e0 8.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10238": {
+   "description_en": "As Rune I, except it can inscribe 1st- to 15th-level spells.",
+   "description_fr": "Comme Rune I, sauf qu'elle peut inscrire des sorts de niveau 1 \u00e0 15.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10239": {
+   "description_en": "As Symbol/Unsymbol I, except the caster can emplace or remove 1st- to 10th-level symbols.",
+   "description_fr": "Comme Symbol/Unsymbol I, sauf que le lanceur peut apposer ou retirer des symboles de niveau 1 \u00e0 10.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10240": {
+   "description_en": "As Rune I, except it can inscribe 1st- to 20th-level spells.",
+   "description_fr": "Comme Rune I, sauf qu'elle peut inscrire des sorts de niveau 1 \u00e0 20.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10242": {
+   "description_en": "Duration: until the rune is cast. The caster may inscribe a rune that stores a number of power points equal to the level of this spell. He may cast it at a higher level if capable and holding rune paper of sufficient level, or at a lower level to store fewer power points. The stored power points are of the caster's realm and may not be multiplied in any way when the rune is eventually activated.",
+   "description_fr": "Dur\u00e9e : jusqu'\u00e0 ce que la rune soit d\u00e9clench\u00e9e. Le lanceur peut inscrire une rune qui stocke un nombre de points de pouvoir \u00e9gal au niveau de ce sort. Il peut le lancer \u00e0 un niveau sup\u00e9rieur s'il en est capable et poss\u00e8de un papier \u00e0 rune de niveau suffisant, ou \u00e0 un niveau inf\u00e9rieur pour stocker moins de points de pouvoir. Les points stock\u00e9s sont du royaume du lanceur et ne peuvent \u00eatre multipli\u00e9s d'aucune fa\u00e7on lors de l'activation de la rune.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10243": {
+   "description_en": "The caster may cast this spell in four ways. As a Rune True, inscribing a rune of any level less than or equal to his own. As a Symbol True, emplacing a symbol of any level up to his own. As an Unsymbol True, removing any 1 given symbol of a level up to his own. Or as a Symbol of Power, which acts as a Rune of Power except that the symbol is permanent and recharges itself every 24 hours.",
+   "description_fr": "Le lanceur peut lancer ce sort de quatre mani\u00e8res. Comme une Rune True, inscrivant une rune de niveau inf\u00e9rieur ou \u00e9gal au sien. Comme un Symbol True, apposant un symbole de niveau jusqu'au sien. Comme un Unsymbol True, retirant un symbole donn\u00e9 de niveau jusqu'au sien. Ou comme un Symbole de Pouvoir, qui agit comme une Rune de Pouvoir sauf que le symbole est permanent et se recharge toutes les 24 heures.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10244": {
+   "description_en": "The caster inscribes an Observation sign, the only permanent sign on this list. It serves as a point through which the caster may later see and hear (see Signwatch).",
+   "description_fr": "Le lanceur inscrit un signe d'Observation, le seul signe permanent de cette liste. Il sert de point \u00e0 travers lequel le lanceur peut ensuite voir et entendre (voir Signwatch).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10252": {
+   "description_en": "The caster's point of seeing and hearing may be moved to any of his Observation signs within range. His vision may rotate around the point of the Observation sign (but he cannot look backward through the surface the sign is on if it is opaque).",
+   "description_fr": "Le point de vue et d'ou\u00efe du lanceur peut \u00eatre d\u00e9plac\u00e9 vers l'un quelconque de ses signes d'Observation \u00e0 port\u00e9e. Sa vision peut pivoter autour du point du signe d'Observation (mais il ne peut regarder derri\u00e8re la surface portant le signe si elle est opaque).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10253": {
+   "description_en": "As Pain except the target falls into a sleep from which he cannot be awakened for 10 min/10% failure.",
+   "description_fr": "Comme Pain, sauf que la cible sombre dans un sommeil dont elle ne peut \u00eatre r\u00e9veill\u00e9e pendant 10 min/10% d'\u00e9chec.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10254": {
+   "description_en": "As Pain except the target takes 90% of his remaining hits for 10 min/10% failure. Thereafter the target cannot usually be persuaded to approach the area of the sign again unless he succeeds at a Hard static maneuver using Self-Discipline as a bonus modifier.",
+   "description_fr": "Comme Pain, sauf que la cible subit 90% de ses hits restants pendant 10 min/10% d'\u00e9chec. Ensuite, la cible ne peut g\u00e9n\u00e9ralement plus \u00eatre persuad\u00e9e d'approcher la zone du signe \u00e0 moins de r\u00e9ussir une man\u0153uvre statique Difficile avec l'Autodiscipline comme modificateur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10255": {
+   "description_en": "As Pain except the target is blind for 1 hr/10% failure.",
+   "description_fr": "Comme Pain, sauf que la cible est aveugle pendant 1 h/10% d'\u00e9chec.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10256": {
+   "description_en": "As Pain except the critical suffered is a cold critical.",
+   "description_fr": "Comme Pain, sauf que le critique subi est un critique de froid.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10257": {
+   "description_en": "As Pain except the target is paralyzed for 1 hr/10% failure.",
+   "description_fr": "Comme Pain, sauf que la cible est paralys\u00e9e pendant 1 h/10% d'\u00e9chec.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10258": {
+   "description_en": "As Stumbling except the critical suffered is a heat critical.",
+   "description_fr": "Comme Stumbling, sauf que le critique subi est un critique de chaleur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10259": {
+   "description_en": "As Stumbling except the critical suffered is an impact critical.",
+   "description_fr": "Comme Stumbling, sauf que le critique subi est un critique d'impact.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10260": {
+   "description_en": "RR Mod: -20. Target is treated as if he had just suffered the effects of an Absolution Pure (Cleric Channels Base spell list, level 20).",
+   "description_fr": "JR Mod : -20. La cible est trait\u00e9e comme si elle venait de subir les effets d'une Absolution Pure (liste de base Clerc Channels, niveau 20).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10261": {
+   "description_en": "As Signwatch (level 12) except the range is 100 miles/lvl.",
+   "description_fr": "Comme Signwatch (niveau 12), sauf que la port\u00e9e est de 160 km/niv.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10262": {
+   "description_en": "As Pain except any sign may be used; and it is not canceled until it has been triggered (perhaps more than once) by targets whose combined levels exceed the caster's level.",
+   "description_fr": "Comme Pain, sauf que n'importe quel signe peut \u00eatre utilis\u00e9 ; et il n'est pas annul\u00e9 tant qu'il n'a pas \u00e9t\u00e9 d\u00e9clench\u00e9 (peut-\u00eatre plus d'une fois) par des cibles dont les niveaux cumul\u00e9s d\u00e9passent le niveau du lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10263": {
+   "description_en": "As Fatal Channels except the target's body also suffers three E-class criticals of a type designated by the caster.",
+   "description_fr": "Comme Fatal Channels, sauf que le corps de la cible subit aussi trois critiques de classe E d'un type d\u00e9sign\u00e9 par le lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10264": {
+   "description_en": "Allows the caster to retain anything he reads or learns as if he had a photographic memory with total recall.",
+   "description_fr": "Permet au lanceur de retenir tout ce qu'il lit ou apprend comme s'il avait une m\u00e9moire photographique \u00e0 rappel total.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10265": {
+   "description_en": "Caster can read text written in an unknown language, but only understands its basic concepts. He knows what language the work is written in, and the author if noteworthy or if the caster has seen his work.",
+   "description_fr": "Le lanceur peut lire un texte \u00e9crit dans une langue inconnue, mais n'en comprend que les concepts de base. Il sait dans quelle langue l'ouvrage est \u00e9crit, et qui en est l'auteur s'il est notable ou si le lanceur a d\u00e9j\u00e0 vu son \u0153uvre.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10267": {
+   "description_en": "If the caster has a book-length piece of written material, he may learn the written form of a language to rank 3 by concentrating on it for 24 hours. With a speaker who knows the language to at least Skill Rank 3 available, he may learn the spoken form to Skill Rank 3 by touching the being and concentrating for 24 hrs. (The GM may require the caster to expend one development point each time the spell is successfully used.)",
+   "description_fr": "Si le lanceur dispose d'un \u00e9crit de la longueur d'un livre, il peut apprendre la forme \u00e9crite d'une langue jusqu'au rang 3 en se concentrant dessus pendant 24 heures. Avec un locuteur connaissant la langue au moins au rang de comp\u00e9tence 3, il peut en apprendre la forme parl\u00e9e jusqu'au rang 3 en touchant l'\u00eatre et en se concentrant 24 h. (Le MJ peut exiger que le lanceur d\u00e9pense un point de d\u00e9veloppement \u00e0 chaque usage r\u00e9ussi du sort.)",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10268": {
+   "description_en": "As Study I, except the caster can also read at 2x normal rate.",
+   "description_fr": "Comme Study I, sauf que le lanceur peut aussi lire \u00e0 2x la vitesse normale.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10269": {
+   "description_en": "As Learn Language II, except the rate is 3x.",
+   "description_fr": "Comme Learn Language II, sauf que la vitesse est de 3x.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10270": {
+   "description_en": "As Text Analysis I, except it gives a complete technical analysis (vocabulary and syntax) but not an understanding of idioms, jargon, implications, or cultural references.",
+   "description_fr": "Comme Text Analysis I, sauf qu'il fournit une analyse technique compl\u00e8te (vocabulaire et syntaxe) mais sans compr\u00e9hension des idiomes, du jargon, des implications ou des r\u00e9f\u00e9rences culturelles.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10271": {
+   "description_en": "As Linguistics III except the caster may learn the language to Skill Rank 5.",
+   "description_fr": "Comme Linguistics III, sauf que le lanceur peut apprendre la langue jusqu'au rang de comp\u00e9tence 5.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10272": {
+   "description_en": "Gives the area of origin of an item, the race of its maker, and when it was made (within 100 years). Also determines whether the item has cultural or historical significance, but not exactly what it is.",
+   "description_fr": "Indique la r\u00e9gion d'origine d'un objet, la race de son fabricant et l'\u00e9poque de sa fabrication (\u00e0 100 ans pr\u00e8s). D\u00e9termine aussi si l'objet a une importance culturelle ou historique, mais non laquelle exactement.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10273": {
+   "description_en": "As Study II, except the caster can read at 3x normal rate.",
+   "description_fr": "Comme Study II, sauf que le lanceur peut lire \u00e0 3x la vitesse normale.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10274": {
+   "description_en": "Caster can read a piece and tell whether it has been translated; and if so, what the original language was, and possibly the author if noteworthy or if the caster has seen his work.",
+   "description_fr": "Le lanceur peut lire un \u00e9crit et dire s'il a \u00e9t\u00e9 traduit ; le cas \u00e9ch\u00e9ant, quelle \u00e9tait la langue d'origine, et \u00e9ventuellement l'auteur s'il est notable ou si le lanceur a d\u00e9j\u00e0 vu son \u0153uvre.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10275": {
+   "description_en": "As Learn Language II, except the rate is 4x.",
+   "description_fr": "Comme Learn Language II, sauf que la vitesse est de 4x.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10276": {
+   "description_en": "As History except the caster also learns the exact cultural or historical significances.",
+   "description_fr": "Comme History, sauf que le lanceur apprend aussi les importances culturelles ou historiques exactes.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10277": {
+   "description_en": "As Text Analysis I except everything but implications is known (e.g., answers to riddles or codes are not known automatically).",
+   "description_fr": "Comme Text Analysis I, sauf que tout est connu hormis les implications (p. ex. les r\u00e9ponses aux \u00e9nigmes ou aux codes ne sont pas connues automatiquement).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10278": {
+   "description_en": "As Study II, except the caster can read at 5x normal rate.",
+   "description_fr": "Comme Study II, sauf que le lanceur peut lire \u00e0 5x la vitesse normale.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10279": {
+   "description_en": "As Linguistics III except the caster may learn the language to Skill Rank 7.",
+   "description_fr": "Comme Linguistics III, sauf que le lanceur peut apprendre la langue jusqu'au rang de comp\u00e9tence 7.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10280": {
+   "description_en": "Caster can communicate with and/or visualize the thoughts and emotions of any 1 animal, plant, stone, or dead organic object.",
+   "description_fr": "Le lanceur peut communiquer avec, et/ou visualiser les pens\u00e9es et \u00e9motions de, n'importe quel animal, plante, pierre ou objet organique mort.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10281": {
+   "description_en": "As Text Analysis I except all implications are known automatically (e.g., answers to riddles, cultural references, jargon, technical terms). Coded sections may make an RR against the caster at the level of the writer.",
+   "description_fr": "Comme Text Analysis I, sauf que toutes les implications sont connues automatiquement (r\u00e9ponses aux \u00e9nigmes, r\u00e9f\u00e9rences culturelles, jargon, termes techniques). Les sections cod\u00e9es peuvent tenter un JR contre le lanceur, au niveau de leur auteur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10282": {
+   "description_en": "As Study II, except the caster can read as fast as he can glance at a page.",
+   "description_fr": "Comme Study II, sauf que le lanceur peut lire aussi vite qu'il peut parcourir une page du regard.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10283": {
+   "description_en": "As Linguistics III except the caster may learn the language to Skill Rank 9.",
+   "description_fr": "Comme Linguistics III, sauf que le lanceur peut apprendre la langue jusqu'au rang de comp\u00e9tence 9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10284": {
+   "description_en": "As Text Analysis I except all implications are known and all codes are automatically deciphered and explained.",
+   "description_fr": "Comme Text Analysis I, sauf que toutes les implications sont connues et tous les codes automatiquement d\u00e9chiffr\u00e9s et expliqu\u00e9s.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10285": {
+   "description_en": "As Linguistics III except the caster is not limited in the Skill Rank he may attain; he may achieve whatever rank is represented in the text or speaker available.",
+   "description_fr": "Comme Linguistics III, sauf que le lanceur n'est pas limit\u00e9 dans le rang de comp\u00e9tence atteignable ; il peut atteindre le rang repr\u00e9sent\u00e9 par le texte ou le locuteur disponible.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10286": {
+   "description_en": "As Linguistics III except the caster can learn any code or magical language this way, and may learn both spoken and written skills from either a text or a speaker. He gains complete ability to communicate, write, or compose magical effects in the language (if applicable).",
+   "description_fr": "Comme Linguistics III, sauf que le lanceur peut ainsi apprendre n'importe quel code ou langue magique, et acqu\u00e9rir les formes parl\u00e9e et \u00e9crite \u00e0 partir d'un texte ou d'un locuteur. Il obtient une pleine capacit\u00e9 \u00e0 communiquer, \u00e9crire ou composer des effets magiques dans la langue (le cas \u00e9ch\u00e9ant).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10287": {
+   "description_en": "Target will take no aggressive or offensive action, and will fight only if attacked. If the caster casts this spell at an already calmed target, the target falls asleep.",
+   "description_fr": "La cible n'entreprend aucune action agressive ou offensive et ne se bat que si elle est attaqu\u00e9e. Si le lanceur vise une cible d\u00e9j\u00e0 calm\u00e9e, celle-ci s'endort.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10288": {
+   "description_en": "Target must answer single-concept questions truthfully. He may roll an RR to break the spell after every question.",
+   "description_fr": "La cible doit r\u00e9pondre v\u00e9ridiquement aux questions \u00e0 concept unique. Elle peut tenter un JR pour briser le sort apr\u00e8s chaque question.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10289": {
+   "description_en": "Target is incapable of making decisions or initiating action; he may continue to fight current foes or in self-defense.",
+   "description_fr": "La cible est incapable de prendre des d\u00e9cisions ou d'initier une action ; elle peut continuer \u00e0 combattre ses adversaires en cours ou se d\u00e9fendre.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10290": {
+   "description_en": "Target believes that the caster is of the same alignment as himself, is influential, and is superior to himself in rank, power, and/or efficiency. The target will usually seek to ingratiate himself to the caster.",
+   "description_fr": "La cible croit que le lanceur est du m\u00eame alignement qu'elle, qu'il est influent et qu'il lui est sup\u00e9rieur en rang, pouvoir et/ou efficacit\u00e9. La cible cherchera g\u00e9n\u00e9ralement \u00e0 s'attirer les bonnes gr\u00e2ces du lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10291": {
+   "description_en": "One of the Great Command I spells (Commands of the Outer Circle) that the caster knows may be used. The GM decides which ones are available based on culture and world system. If the caster knows more than one Great Command I spell, he may select which to cast.",
+   "description_fr": "L'un des sorts de Grand Commandement I (Commandements du Cercle Ext\u00e9rieur) que le lanceur conna\u00eet peut \u00eatre employ\u00e9. Le MJ d\u00e9cide lesquels sont disponibles selon la culture et le syst\u00e8me de jeu. Si le lanceur en conna\u00eet plusieurs, il choisit lequel lancer.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10292": {
+   "description_en": "Target permanently forgets up to 1 min/lvl of specified memories, as selected by the caster.",
+   "description_fr": "La cible oublie d\u00e9finitivement jusqu'\u00e0 1 min/niv de souvenirs d\u00e9termin\u00e9s, choisis par le lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10293": {
+   "description_en": "Caster may dictate the dreams of a specific sleeping target. If the target succeeds at his RR by 25+, he wakens (unless somehow prevented) and knows what was attempted; by 50+ he also knows who attempted it. This spell may be cast through intervening obstacles such as floors or ceilings. Magical obstacles get an RR.",
+   "description_fr": "Le lanceur peut dicter les r\u00eaves d'une cible endormie pr\u00e9cise. Si la cible r\u00e9ussit son JR de 25+, elle s'\u00e9veille (sauf emp\u00eachement) et sait ce qui a \u00e9t\u00e9 tent\u00e9 ; de 50+, elle sait aussi qui l'a tent\u00e9. Ce sort peut \u00eatre lanc\u00e9 \u00e0 travers des obstacles interpos\u00e9s (planchers, plafonds, etc.). Les obstacles magiques ont droit \u00e0 un JR.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10294": {
+   "description_en": "Caster causes the target to experience any 1 specified emotion.",
+   "description_fr": "Le lanceur fait \u00e9prouver \u00e0 la cible une \u00e9motion d\u00e9termin\u00e9e.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10295": {
+   "description_en": "The target likes or dislikes a person, place, or thing as specified by the caster. If the target had very strong feelings about the subject previously, the GM may allow a second RR if the first one fails.",
+   "description_fr": "La cible appr\u00e9cie ou d\u00e9teste une personne, un lieu ou une chose d\u00e9sign\u00e9s par le lanceur. Si la cible avait d\u00e9j\u00e0 des sentiments tr\u00e8s forts \u00e0 ce sujet, le MJ peut autoriser un second JR en cas d'\u00e9chec du premier.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10296": {
+   "description_en": "As Great Command I, except a Great Command II (Command of the Second Circle) is cast.",
+   "description_fr": "Comme Grand Commandement I, sauf qu'un Grand Commandement II (Commandement du Deuxi\u00e8me Cercle) est lanc\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10297": {
+   "description_en": "Target develops a very serious and troublesome doubt concerning a previously accepted fact, action, or idea.",
+   "description_fr": "La cible d\u00e9veloppe un doute tr\u00e8s s\u00e9rieux et g\u00eanant concernant un fait, une action ou une id\u00e9e jusque-l\u00e0 accept\u00e9s.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10298": {
+   "description_en": "RR Mod: -20. As Like/Dislike, except the target experiences either devoted love or repulsive hatred toward the subject. For the duration, the emotion is so intense that the target struggles to focus on anything else. At the end of the duration, the target must make an additional RR (with a +20 instead of a -20 RR mod) or the effect becomes permanent.",
+   "description_fr": "JR Mod : -20. Comme Like/Dislike, sauf que la cible \u00e9prouve soit un amour d\u00e9vou\u00e9, soit une haine repoussante envers le sujet. Pour la dur\u00e9e, l'\u00e9motion est si intense que la cible peine \u00e0 se concentrer sur autre chose. \u00c0 la fin de la dur\u00e9e, la cible doit r\u00e9ussir un JR suppl\u00e9mentaire (avec un JR Mod de +20 au lieu de -20), sinon l'effet devient permanent.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10299": {
+   "description_en": "Target will seek to enact some sort of vengeance against a person, place, or thing as specified by the caster. There must be in the target's mind some concept of the subject having wronged him for the spell to work. The exact form of vengeance depends on the target's character and the severity of his RR failure (1 = mild; 50+ = very severe).",
+   "description_fr": "La cible cherchera \u00e0 exercer une forme de vengeance contre une personne, un lieu ou une chose d\u00e9sign\u00e9s par le lanceur. Pour que le sort op\u00e8re, la cible doit avoir \u00e0 l'esprit l'id\u00e9e que le sujet lui a fait du tort. La forme exacte de la vengeance d\u00e9pend du caract\u00e8re de la cible et de l'ampleur de son \u00e9chec au JR (1 = l\u00e9g\u00e8re ; 50+ = tr\u00e8s s\u00e9v\u00e8re).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10300": {
+   "description_en": "The caster may summon to himself by name any entity regardless of range, even on the ethereal and other planes. Each round there is a 35% chance the specified entity hears the summons, and a 15% chance a random being hears it. This spell does not command the entity, though it is heavily motivated (RR mod: -20) to come. It is especially designed for, and the GM may restrict it to, supernatural spiritual entities (spirits, demons, elementals, deities, etc.).",
+   "description_fr": "Le lanceur peut convoquer \u00e0 lui, par son nom, n'importe quelle entit\u00e9 quelle que soit la distance, m\u00eame sur le plan \u00e9th\u00e9r\u00e9 et les autres plans. Chaque round, il y a 35% de chance que l'entit\u00e9 d\u00e9sign\u00e9e entende l'appel, et 15% qu'un \u00eatre al\u00e9atoire l'entende. Ce sort ne commande pas l'entit\u00e9, mais celle-ci est fortement incit\u00e9e (JR mod : -20) \u00e0 venir. Il est sp\u00e9cialement con\u00e7u pour les entit\u00e9s spirituelles surnaturelles (esprits, d\u00e9mons, \u00e9l\u00e9mentaires, divinit\u00e9s, etc.), et le MJ peut le restreindre \u00e0 elles.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10301": {
+   "description_en": "As Great Command I, except a Great Command III (Command of the Third Circle) is cast.",
+   "description_fr": "Comme Grand Commandement I, sauf qu'un Grand Commandement III (Commandement du Troisi\u00e8me Cercle) est lanc\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10302": {
+   "description_en": "RR Mod: -20. Dismisses a spiritual being (demon, elemental, appropriate spirit, etc.) from the caster's present plane for 200-1200 years. The caster may also force the entity to answer one single-concept question truthfully before it is dismissed. If the entity resists or the spell fumbles, the caster may be commanded by the entity; the caster may attempt a new RR each day to break the effect of his spell failure.",
+   "description_fr": "JR Mod : -20. Renvoie un \u00eatre spirituel (d\u00e9mon, \u00e9l\u00e9mentaire, esprit appropri\u00e9, etc.) hors du plan actuel du lanceur pour 200 \u00e0 1200 ans. Le lanceur peut aussi forcer l'entit\u00e9 \u00e0 r\u00e9pondre v\u00e9ridiquement \u00e0 une question \u00e0 concept unique avant son renvoi. Si l'entit\u00e9 r\u00e9siste ou si le sort \u00e9choue (fumble), le lanceur peut \u00eatre command\u00e9 par l'entit\u00e9 ; il peut tenter un nouveau JR chaque jour pour briser l'effet de son \u00e9chec.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10303": {
+   "description_en": "Targets flee in total panic from the caster.",
+   "description_fr": "Les cibles fuient le lanceur dans une panique totale.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10304": {
+   "description_en": "Caster may affect a number of targets up to his level with a Great Command I.",
+   "description_fr": "Le lanceur peut affecter un nombre de cibles \u00e9gal \u00e0 son niveau avec un Grand Commandement I.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10305": {
+   "description_en": "As Confuse, except it affects all within the radius.",
+   "description_fr": "Comme Confuse, sauf qu'il affecte tous ceux dans le rayon.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10306": {
+   "description_en": "As Great Command I, except a Great Command IV (Command of the Stone Circle) is cast.",
+   "description_fr": "Comme Grand Commandement I, sauf qu'un Grand Commandement IV (Commandement du Cercle de Pierre) est lanc\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10307": {
+   "description_en": "As Great Command I, except a Great Command V (Command of the Ancient Circle) is cast.",
+   "description_fr": "Comme Grand Commandement I, sauf qu'un Grand Commandement V (Commandement du Cercle Ancien) est lanc\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10310": {
+   "description_en": "Prepares an item to receive Spirit Runes. An item has two Tolerance Levels (TL): Rune Level (the maximum level of Spirit Rune it can hold) and Capacity Level (the total number of Spirit Runes it can hold); both start at 0 for an untempered item. To raise a TL from B to B+1, the caster must cast Temper once a day for B+1 days, spending B+1 power points per day; each Temper spell is treated as being of the level being reached. If the caster fails or fumbles on any of those days, that Tempering must restart from day 1. The days need not be consecutive, and the caster may freely alternate between raising Rune Level and Capacity Level, but a given item may receive only one Temper spell per day. Imbedding an individual rune takes one minute per rune level, though the Tempering itself may take years (raising one TL from 0 to 10 requires 1+2+...+10 = 55 days; a Lord-level item of Rune Capacity 10 and Rune Level 10 requires 420 days in all).",
+   "description_fr": "Pr\u00e9pare un objet \u00e0 recevoir des Runes Spirituelles. Un objet poss\u00e8de deux Niveaux de Tol\u00e9rance (TL) : le Niveau de Rune (niveau maximal de Rune Spirituelle qu'il peut contenir) et le Niveau de Capacit\u00e9 (nombre total de Runes Spirituelles qu'il peut contenir) ; les deux partent de 0 pour un objet non tremp\u00e9. Pour \u00e9lever un TL de B \u00e0 B+1, le lanceur doit lancer Temper une fois par jour pendant B+1 jours, en d\u00e9pensant B+1 points de pouvoir par jour ; chaque sort Temper est trait\u00e9 comme du niveau vis\u00e9. Si le lanceur \u00e9choue ou rate (fumble) l'un de ces jours, cette trempe recommence au jour 1. Les jours n'ont pas \u00e0 \u00eatre cons\u00e9cutifs, et le lanceur peut alterner librement entre \u00e9lever le Niveau de Rune et le Niveau de Capacit\u00e9, mais un objet donn\u00e9 ne peut recevoir qu'un seul Temper par jour. Incruster une rune individuelle prend une minute par niveau de rune, alors que la trempe elle-m\u00eame peut prendre des ann\u00e9es (\u00e9lever un TL de 0 \u00e0 10 demande 1+2+...+10 = 55 jours ; un objet de rang Seigneur \u00e0 Capacit\u00e9 10 et Niveau de Rune 10 demande 420 jours au total).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10311": {
+   "description_en": "Each Rune of Striking placed on a properly tempered weapon raises its OB by +5. However, each additional (Nth) Rune of Striking requires a Striking Rune of level (N x N): the 1st is 1st level, the 2nd is 4th, the 3rd is 9th, the 4th is 16th, the 5th is 25th, the 6th is 36th, etc. This requires the requisite Rune Capacity in the item's Temper, sufficient caster level, and a Rune Level high enough to hold the runes.",
+   "description_fr": "Chaque Rune de Frappe appos\u00e9e sur une arme correctement tremp\u00e9e augmente son BO de +5. Toutefois, chaque Rune de Frappe suppl\u00e9mentaire (la Ni\u00e8me) exige une Rune de Frappe de niveau (N x N) : la 1re est de niveau 1, la 2e de 4, la 3e de 9, la 4e de 16, la 5e de 25, la 6e de 36, etc. Cela requiert la Capacit\u00e9 de Rune n\u00e9cessaire dans la trempe de l'objet, un niveau de lanceur suffisant, et un Niveau de Rune assez \u00e9lev\u00e9 pour contenir ces runes.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10312": {
+   "description_en": "As Rune of Striking, except the caster raises an item's DB by +5 per rune engraved. However, if the caster gives a non-defensive item a DB bonus (e.g., a sword), the level required of the Shielding Runes increases 50%.",
+   "description_fr": "Comme Rune de Frappe, sauf que le lanceur augmente le BD d'un objet de +5 par rune grav\u00e9e. Toutefois, s'il conf\u00e8re un bonus de BD \u00e0 un objet non d\u00e9fensif (p. ex. une \u00e9p\u00e9e), le niveau requis des Runes de Bouclier augmente de 50%.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10313": {
+   "description_en": "The caster may determine the pluses on a weapon or defensive item. If the item is enruned, he also learns its current Tolerance and Temper levels. The caster gains no further information.",
+   "description_fr": "Le lanceur peut d\u00e9terminer les bonus d'une arme ou d'un objet d\u00e9fensif. Si l'objet est enrun\u00e9, il apprend aussi ses Niveaux de Tol\u00e9rance et de trempe actuels. Le lanceur n'obtient aucune autre information.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10314": {
+   "description_en": "An item with this engraved rune may be summoned to either hand of someone wearing or wielding it, quickly enough to be used the same round it is summoned. The wearer must know the item has this property. The item may not be one currently worn around the body, such as a breastplate.",
+   "description_fr": "Un objet portant cette rune grav\u00e9e peut \u00eatre convoqu\u00e9 dans l'une ou l'autre main de celui qui le porte ou le manie, assez vite pour \u00eatre utilis\u00e9 d\u00e8s le round de sa convocation. Le porteur doit savoir que l'objet poss\u00e8de cette propri\u00e9t\u00e9. L'objet ne peut \u00eatre de ceux port\u00e9s autour du corps, comme une cuirasse.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10315": {
+   "description_en": "Caster learns the types and effects of all runes on an enruned item.",
+   "description_fr": "Le lanceur apprend les types et les effets de toutes les runes d'un objet enrun\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10316": {
+   "description_en": "A being wielding an item with this rune may add +50 to his DB in any round in which he performs only defensive actions (no attacks, spells, maneuvers, etc.).",
+   "description_fr": "Un \u00eatre maniant un objet portant cette rune peut ajouter +50 \u00e0 son BD lors de tout round o\u00f9 il n'effectue que des actions d\u00e9fensives (aucune attaque, sort, man\u0153uvre, etc.).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10317": {
+   "description_en": "Allows a crystal of the caster's crystal-color alignment to serve as a spell adder (+1). Once the crystal adder has been used once, it turns to dust.",
+   "description_fr": "Permet \u00e0 un cristal de l'alignement de couleur cristalline du lanceur de servir d'adjuvant de sort (spell adder +1). Une fois utilis\u00e9, le cristal adjuvant tombe en poussi\u00e8re.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10318": {
+   "description_en": "Allows the caster to store power points in a crystal that has been treated with Crystal Matrix I; the caster charges the crystal and may later draw upon the stored power.",
+   "description_fr": "Permet au lanceur de stocker des points de pouvoir dans un cristal trait\u00e9 par Crystal Matrix I ; le lanceur charge le cristal et peut ensuite puiser dans le pouvoir stock\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10330": {
+   "description_en": "Allows the caster to replace his heart with a crystal heart. It serves as a x2 spell multiplier and cannot be pierced without the aid of magic. If his original heart is harmed, the caster is harmed.",
+   "description_fr": "Permet au lanceur de remplacer son c\u0153ur par un c\u0153ur de cristal. Il sert de multiplicateur de sorts x2 et ne peut \u00eatre perc\u00e9 sans l'aide de la magie. Si son c\u0153ur d'origine est bless\u00e9, le lanceur est bless\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10331": {
+   "description_en": "As Crystal Adder I except the adder is +4.",
+   "description_fr": "Comme Crystal Adder I, sauf que l'adjuvant est +4.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10332": {
+   "description_en": "As Crystal Matrix I except it allows 4 times the essence value of the crystal to be stored.",
+   "description_fr": "Comme Crystal Matrix I, sauf qu'il permet de stocker 4 fois la valeur d'essence du cristal.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10333": {
+   "description_en": "As Crystal Store I except it powers up a Crystal Matrix V.",
+   "description_fr": "Comme Crystal Store I, sauf qu'il alimente une Crystal Matrix V.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10334": {
+   "description_en": "As Crystal Heart except it is a x3 multiplier.",
+   "description_fr": "Comme Crystal Heart, sauf que c'est un multiplicateur x3.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10335": {
+   "description_en": "As Crystal Matrix I except it allows 5 times the essence value of the crystal to be stored.",
+   "description_fr": "Comme Crystal Matrix I, sauf qu'il permet de stocker 5 fois la valeur d'essence du cristal.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10336": {
+   "description_en": "Allows the caster to make healing salves. He may enchant one of the following: Deep Earth Dust (heals 1-10 concussion hits, 1 dose) or Deep Earth Clay (stops bleeding, 1 dose).",
+   "description_fr": "Permet au lanceur de fabriquer des onguents de soin. Il peut enchanter l'un des suivants : Poussi\u00e8re des Profondeurs (soigne 1-10 hits de commotion, 1 dose) ou Argile des Profondeurs (arr\u00eate les saignements, 1 dose).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10337": {
+   "description_en": "Allows the caster to heal 10 cu' of wasted, blasted, or blighted earth.",
+   "description_fr": "Permet au lanceur de soigner 10 cu' de terre \u00e9puis\u00e9e, d\u00e9vast\u00e9e ou fl\u00e9trie.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10338": {
+   "description_en": "As Enchant Earth I, except the caster may prepare more salves: Deep Earth Dust (2 doses), Deep Earth Clay (2 doses), a muscle-damage salve (1 dose), and Deep Earth Oil (heals 1st-degree burn or frost damage, 1 dose).",
+   "description_fr": "Comme Enchant Earth I, sauf que le lanceur peut pr\u00e9parer davantage d'onguents : Poussi\u00e8re des Profondeurs (2 doses), Argile des Profondeurs (2 doses), un onguent contre les l\u00e9sions musculaires (1 dose) et Huile des Profondeurs (soigne les br\u00fblures ou gelures du 1er degr\u00e9, 1 dose).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10339": {
+   "description_en": "Allows the caster to locate a minor crystal locality: an area that serves as a x2 power point multiplier for the caster while he is in it. The area is normally loaded with crystals of the caster's crystal-color alignment.",
+   "description_fr": "Permet au lanceur de localiser un site cristallin mineur : une zone qui sert de multiplicateur de points de pouvoir x2 pour le lanceur tant qu'il s'y trouve. La zone est normalement charg\u00e9e de cristaux de l'alignement de couleur cristalline du lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10340": {
+   "description_en": "Allows the caster to create a power matrix inside a crystal, letting him store and withdraw power. Crystal Matrix I lets the crystal hold up to its essence rating in power. Exceed its essence rating and the crystal cracks and falls to pieces.",
+   "description_fr": "Permet au lanceur de cr\u00e9er une matrice de pouvoir \u00e0 l'int\u00e9rieur d'un cristal, lui permettant d'y stocker et d'en retirer du pouvoir. Crystal Matrix I permet au cristal de contenir jusqu'\u00e0 sa valeur d'essence en pouvoir. D\u00e9passez sa valeur d'essence et le cristal se fissure et tombe en morceaux.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10341": {
+   "description_en": "As Crystal Adder I except the adder is +2.",
+   "description_fr": "Comme Crystal Adder I, sauf que l'adjuvant est +2.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10342": {
+   "description_en": "As Crystal Store I except it powers up a Crystal Matrix II.",
+   "description_fr": "Comme Crystal Store I, sauf qu'il alimente une Crystal Matrix II.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10343": {
+   "description_en": "As Locate Minor Crystal Locality except it locates a major crystal locality, which serves as a x3 power point multiplier for the caster while he is in it.",
+   "description_fr": "Comme Locate Minor Crystal Locality, sauf qu'il localise un site cristallin majeur, qui sert de multiplicateur de points de pouvoir x3 pour le lanceur tant qu'il s'y trouve.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10344": {
+   "description_en": "As Crystal Matrix I except it allows 2 times the essence value of the crystal to be stored.",
+   "description_fr": "Comme Crystal Matrix I, sauf qu'il permet de stocker 2 fois la valeur d'essence du cristal.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10345": {
+   "description_en": "Allows the caster to speak and understand the language of magical crystals. All 11th-level or higher crystal spells must be spoken in crystal tongue to work.",
+   "description_fr": "Permet au lanceur de parler et de comprendre la langue des cristaux magiques. Tous les sorts de cristal de niveau 11 ou plus doivent \u00eatre prononc\u00e9s en langue cristalline pour fonctionner.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10346": {
+   "description_en": "As Crystal Store I except it powers up a Crystal Matrix III.",
+   "description_fr": "Comme Crystal Store I, sauf qu'il alimente une Crystal Matrix III.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10347": {
+   "description_en": "As Enchant Earth I, except the caster may prepare several healing salves at once (doses increase with the spell's level): Deep Earth Dust (heals 1-10 concussion hits), Deep Earth Clay (stops bleeding), a muscle-damage salve, Deep Earth Oil (heals 1st-, 2nd-, and 3rd-degree burn or frost damage), Deep Earth Mud (heals minor and major fractures and shattered bones), Deep Earth Water (doubles healing time), and Deep Earth Loam (heals minor nerve damage).",
+   "description_fr": "Comme Enchant Earth I, sauf que le lanceur peut pr\u00e9parer plusieurs onguents \u00e0 la fois (le nombre de doses augmente avec le niveau du sort) : Poussi\u00e8re des Profondeurs (soigne 1-10 hits de commotion), Argile des Profondeurs (arr\u00eate les saignements), un onguent musculaire, Huile des Profondeurs (soigne les br\u00fblures ou gelures des 1er, 2e et 3e degr\u00e9s), Boue des Profondeurs (soigne fractures mineures et majeures et os bris\u00e9s), Eau des Profondeurs (double la vitesse de gu\u00e9rison) et Limon des Profondeurs (soigne les l\u00e9sions nerveuses mineures).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10348": {
+   "description_en": "As Crystal Adder I except the adder is +3.",
+   "description_fr": "Comme Crystal Adder I, sauf que l'adjuvant est +3.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10349": {
+   "description_en": "Allows the caster to heal 10 cu' of broken, blemished, or cracked stone.",
+   "description_fr": "Permet au lanceur de soigner 10 cu' de pierre bris\u00e9e, ternie ou fissur\u00e9e.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10350": {
+   "description_en": "As Crystal Matrix I except it allows 3 times the essence value of the crystal to be stored.",
+   "description_fr": "Comme Crystal Matrix I, sauf qu'il permet de stocker 3 fois la valeur d'essence du cristal.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10351": {
+   "description_en": "As Crystal Store I except it powers up a Crystal Matrix IV.",
+   "description_fr": "Comme Crystal Store I, sauf qu'il alimente une Crystal Matrix IV.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10352": {
+   "description_en": "As Enchant Earth V, except the caster may prepare even greater quantities of the Deep Earth healing salves.",
+   "description_fr": "Comme Enchant Earth V, sauf que le lanceur peut pr\u00e9parer des quantit\u00e9s encore plus grandes des onguents des Profondeurs.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10353": {
+   "description_en": "Allows the caster to heal 50 cu' of rusted or corroded metal.",
+   "description_fr": "Permet au lanceur de soigner 50 cu' de m\u00e9tal rouill\u00e9 ou corrod\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10354": {
+   "description_en": "Allows the caster to heal 50 cu' of broken or blemished stone.",
+   "description_fr": "Permet au lanceur de soigner 50 cu' de pierre bris\u00e9e ou ternie.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10355": {
+   "description_en": "As Enchant Earth V, except in greater quantity and also able to heal major nerve damage and minor and major organ damage.",
+   "description_fr": "Comme Enchant Earth V, sauf en plus grande quantit\u00e9 et capable aussi de soigner les l\u00e9sions nerveuses majeures et les l\u00e9sions d'organes mineures et majeures.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10356": {
+   "description_en": "Allows the caster to heal 10 cu'/lvl of wasted, blasted, or blighted earth.",
+   "description_fr": "Permet au lanceur de soigner 10 cu'/niv de terre \u00e9puis\u00e9e, d\u00e9vast\u00e9e ou fl\u00e9trie.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10357": {
+   "description_en": "Allows the caster to heal 2 cu'/lvl of rusted or corroded metal.",
+   "description_fr": "Permet au lanceur de soigner 2 cu'/niv de m\u00e9tal rouill\u00e9 ou corrod\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10358": {
+   "description_en": "Allows the caster to heal 2 cu'/lvl of broken, blemished, or cracked stone.",
+   "description_fr": "Permet au lanceur de soigner 2 cu'/niv de pierre bris\u00e9e, ternie ou fissur\u00e9e.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10397": {
+   "description_en": "Allows the caster to detect whether an item is composed of dream-state reality.",
+   "description_fr": "Permet au lanceur de d\u00e9tecter si un objet est compos\u00e9 de r\u00e9alit\u00e9 onirique (dream state).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10399": {
+   "description_en": "Allows the caster to create a nonliving item or object that has a +5 bonus. The bonus is only usable in the dream world in which the item was created. This lets a caster who has entered a dream world by non-physical means create items that function normally within that dream world.",
+   "description_fr": "Permet au lanceur de cr\u00e9er un objet non vivant dot\u00e9 d'un bonus de +5. Ce bonus n'est utilisable que dans le monde onirique o\u00f9 l'objet a \u00e9t\u00e9 cr\u00e9\u00e9. Cela permet \u00e0 un lanceur entr\u00e9 dans un monde onirique par des moyens non physiques d'y cr\u00e9er des objets qui y fonctionnent normalement.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10400": {
+   "description_en": "Allows the caster to store the patterns of items or objects made in a dream world, so he can recreate the item in another dream world or in the physical world. The duplicate may not work as it did in the dream world (GM discretion).",
+   "description_fr": "Permet au lanceur de m\u00e9moriser les sch\u00e9mas d'objets fabriqu\u00e9s dans un monde onirique, afin de recr\u00e9er l'objet dans un autre monde onirique ou dans le monde physique. Le duplicata peut ne pas fonctionner comme dans le monde onirique (\u00e0 la discr\u00e9tion du MJ).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10401": {
+   "description_en": "Allows the caster to summon a type I dream beast. The dream beast is loyal to the caster and obeys his commands, but is non-intelligent. If it is killed while under this spell, the caster suffers an A stun critical and operates at -30 for 1 day.",
+   "description_fr": "Permet au lanceur d'invoquer une b\u00eate onirique de type I. La b\u00eate est loyale au lanceur et ob\u00e9it \u00e0 ses ordres, mais elle est d\u00e9nu\u00e9e d'intelligence. Si elle est tu\u00e9e sous l'effet de ce sort, le lanceur subit un critique d'\u00e9tourdissement A et agit \u00e0 -30 pendant 1 jour.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10402": {
+   "description_en": "Allows the caster to see all dream-state items clearly and in their true form. Everything not of the dream state appears blurry and is handled with a negative modifier based on the proportion of blurry items (e.g., if only one item is dream-state and the rest normal, the penalty might be -90 to -99; in the reverse case, -01 to -10).",
+   "description_fr": "Permet au lanceur de voir clairement tous les objets oniriques sous leur vraie forme. Tout ce qui n'est pas onirique appara\u00eet flou et est trait\u00e9 avec un malus fond\u00e9 sur la proportion d'objets flous (p. ex. si un seul objet est onirique et le reste normal, le malus peut \u00eatre de -90 \u00e0 -99 ; dans le cas inverse, de -01 \u00e0 -10).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10403": {
+   "description_en": "Allows the caster to attune himself to a dream beast he has summoned (his dream familiar). He must cast this spell on the beast once a day for 1 week (concentrating 2 hours per day). He can then control the familiar and view the world through its senses by concentrating on it (within 50'/lvl). If the familiar is killed, the caster is at -25 on all actions for 2 weeks. When the caster leaves the dream world where he attuned the familiar, the bond is severed and both feel an emptiness, operating at -10 for 1 day; if he returns and the familiar sees him, the bond must be reestablished, but the rolls are modified by +30.",
+   "description_fr": "Permet au lanceur de s'accorder \u00e0 une b\u00eate onirique qu'il a invoqu\u00e9e (son familier onirique). Il doit lancer ce sort sur la b\u00eate une fois par jour pendant 1 semaine (en se concentrant 2 heures par jour). Il peut alors contr\u00f4ler le familier et percevoir le monde par ses sens en se concentrant sur lui (\u00e0 15 m/niv). Si le familier est tu\u00e9, le lanceur est \u00e0 -25 \u00e0 toutes ses actions pendant 2 semaines. Lorsque le lanceur quitte le monde onirique o\u00f9 il s'est accord\u00e9 au familier, le lien est rompu et tous deux ressentent un vide, agissant \u00e0 -10 pendant 1 jour ; s'il revient et que le familier le voit, le lien doit \u00eatre r\u00e9tabli, mais les jets sont modifi\u00e9s de +30.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10404": {
+   "description_en": "As Dream State I except the bonus is +10.",
+   "description_fr": "Comme Dream State I, sauf que le bonus est +10.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10405": {
+   "description_en": "Allows the caster to create Dream State I items or objects whose patterns were stored by a Dream Pattern spell. Such an item receives a +5 bonus in the non-dream world or any other dream world, keeping the appearance it had in its dream world of creation. This spell may also let a summoned type I dream beast or familiar remain alive outside its own dream world.",
+   "description_fr": "Permet au lanceur de cr\u00e9er des objets Dream State I dont les sch\u00e9mas ont \u00e9t\u00e9 m\u00e9moris\u00e9s par un sort Dream Pattern. Un tel objet re\u00e7oit un bonus de +5 dans le monde non onirique ou dans tout autre monde onirique, en conservant l'apparence qu'il avait dans son monde onirique de cr\u00e9ation. Ce sort peut aussi permettre \u00e0 une b\u00eate ou un familier onirique de type I invoqu\u00e9 de rester en vie hors de son propre monde onirique.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10406": {
+   "description_en": "Allows the caster to summon a 1st-level dream-world companion (NPC), placed under a quest-type spell. The companion may or may not like being a companion; he assists the caster in all endeavors for the duration provided he is not endangered. A companion endangered by the caster may make an RR at +30 to resist the caster's commands; if successful, the spell's influence is broken.",
+   "description_fr": "Permet au lanceur d'invoquer un compagnon de monde onirique de niveau 1 (PNJ), plac\u00e9 sous un sort de type qu\u00eate. Le compagnon peut appr\u00e9cier ou non son r\u00f4le ; il assiste le lanceur en toute entreprise pour la dur\u00e9e tant qu'il n'est pas mis en danger. Un compagnon mis en danger par le lanceur peut tenter un JR \u00e0 +30 pour r\u00e9sister \u00e0 ses ordres ; en cas de r\u00e9ussite, l'influence du sort est rompue.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10407": {
+   "description_en": "As Dream Beast I except a type II dream beast is summoned.",
+   "description_fr": "Comme Dream Beast I, sauf qu'une b\u00eate onirique de type II est invoqu\u00e9e.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10408": {
+   "description_en": "As Dream Pattern except it works on living dream-state beings and beasts.",
+   "description_fr": "Comme Dream Pattern, sauf qu'il fonctionne sur les \u00eatres et b\u00eates oniriques vivants.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10409": {
+   "description_en": "As Dream Familiar I except a type II dream beast is attuned to the caster.",
+   "description_fr": "Comme Dream Familiar I, sauf qu'une b\u00eate onirique de type II est accord\u00e9e au lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10410": {
+   "description_en": "As Dream State I except the bonus is +15.",
+   "description_fr": "Comme Dream State I, sauf que le bonus est +15.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10411": {
+   "description_en": "As Dream Adaptation I except Dream State II items, objects, type II dream beasts/familiars, or 1st-level dream-world companions are affected.",
+   "description_fr": "Comme Dream Adaptation I, sauf qu'il affecte les objets Dream State II, les b\u00eates/familiers oniriques de type II ou les compagnons de monde onirique de niveau 1.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10412": {
+   "description_en": "As Dream Companion I except a 2nd-level dream being is summoned.",
+   "description_fr": "Comme Dream Companion I, sauf qu'un \u00eatre onirique de niveau 2 est invoqu\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10413": {
+   "description_en": "As Dream Beast I except a type III dream beast is summoned.",
+   "description_fr": "Comme Dream Beast I, sauf qu'une b\u00eate onirique de type III est invoqu\u00e9e.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10414": {
+   "description_en": "Creates a whirlwind about the caster; it moves with the caster and is 10' in radius. No missile attacks can penetrate it, and any movement or melee through it is cut by 80%.",
+   "description_fr": "Cr\u00e9e un tourbillon autour du lanceur ; il se d\u00e9place avec lui et a un rayon de 3 m. Aucune attaque de tir ne peut le p\u00e9n\u00e9trer, et tout mouvement ou m\u00eal\u00e9e le traversant est r\u00e9duit de 80%.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10416": {
+   "description_en": "As Dream State I except the bonus is +5 for every 4 levels of the caster.",
+   "description_fr": "Comme Dream State I, sauf que le bonus est de +5 par tranche de 4 niveaux du lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10417": {
+   "description_en": "As Dream Beast I except a type IV, V, or VI beast may be summoned (roll: 01-50 type IV; 51-85 type V; 86+ type VI).",
+   "description_fr": "Comme Dream Beast I, sauf qu'une b\u00eate de type IV, V ou VI peut \u00eatre invoqu\u00e9e (jet : 01-50 type IV ; 51-85 type V ; 86+ type VI).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10418": {
+   "description_en": "As Dream Adaptation I except it may affect any level of dream-state item, object, beast, or companion.",
+   "description_fr": "Comme Dream Adaptation I, sauf qu'il peut affecter un objet, une b\u00eate ou un compagnon onirique de n'importe quel niveau.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10419": {
+   "description_en": "As Dream Companion I except the dream-world companion's level is +1 for every 3 levels of the caster, and the companion is under True Quest restrictions and will always be loyal until released. Once released, the companion may react as the GM sees fit.",
+   "description_fr": "Comme Dream Companion I, sauf que le niveau du compagnon de monde onirique est de +1 par tranche de 3 niveaux du lanceur, et que le compagnon est soumis aux restrictions de Qu\u00eate V\u00e9ritable et reste toujours loyal jusqu'\u00e0 sa lib\u00e9ration. Une fois lib\u00e9r\u00e9, le compagnon peut r\u00e9agir comme le MJ l'entend.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10420": {
+   "description_en": "Allows the caster to unlock a level-1 dream lock for 1 round. If the dream lock spell is overcome by 50%, the dream unlock goes unnoticed.",
+   "description_fr": "Permet au lanceur d'ouvrir un verrou onirique de niveau 1 pendant 1 round. Si le sort de verrou onirique est surmont\u00e9 de 50%, l'ouverture passe inaper\u00e7ue.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10421": {
+   "description_en": "Allows the caster to place a level-1 magical barrier prohibiting free dream travel into a particular dream world.",
+   "description_fr": "Permet au lanceur de poser une barri\u00e8re magique de niveau 1 interdisant le voyage onirique libre vers un monde onirique donn\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10422": {
+   "description_en": "Allows the caster to bind a type I demon to guard a particular dream world entrance. A dream traveller wishing to enter has one round to decide whether to confront the dream guard or leave. The Dream Guard lets none pass save the one who set it there. Combat with the Dream Guard is conducted normally.",
+   "description_fr": "Permet au lanceur de lier un d\u00e9mon de type I pour garder l'entr\u00e9e d'un monde onirique donn\u00e9. Le voyageur onirique souhaitant entrer a un round pour d\u00e9cider d'affronter le gardien ou de partir. Le Gardien Onirique ne laisse passer personne hormis celui qui l'a plac\u00e9 l\u00e0. Le combat contre lui se d\u00e9roule normalement.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10423": {
+   "description_en": "As Dream Unlock I except it overcomes a type I dream lock with a 40% chance of being detected, or a type II dream lock with a 50% chance of being detected.",
+   "description_fr": "Comme Dream Unlock I, sauf qu'il surmonte un verrou onirique de type I avec 40% de chance d'\u00eatre d\u00e9tect\u00e9, ou un verrou de type II avec 50% de chance d'\u00eatre d\u00e9tect\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10424": {
+   "description_en": "As Dream Lock I except a level-2 magical lock.",
+   "description_fr": "Comme Dream Lock I, sauf qu'il s'agit d'un verrou magique de niveau 2.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10425": {
+   "description_en": "As Dream Guard I except it binds a type II demon.",
+   "description_fr": "Comme Dream Guard I, sauf qu'il lie un d\u00e9mon de type II.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10426": {
+   "description_en": "As Dream Unlock I except it overcomes a type I dream lock (30% detection), type II (40%), or type III (50%).",
+   "description_fr": "Comme Dream Unlock I, sauf qu'il surmonte un verrou onirique de type I (30% de d\u00e9tection), de type II (40%) ou de type III (50%).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10427": {
+   "description_en": "As Dream Lock I except a 3rd-level magical lock.",
+   "description_fr": "Comme Dream Lock I, sauf qu'il s'agit d'un verrou magique de niveau 3.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10429": {
+   "description_en": "As Dream Unlock I except it overcomes a type I dream lock (20% detection), type II (30%), type III (40%), or type IV (50%).",
+   "description_fr": "Comme Dream Unlock I, sauf qu'il surmonte un verrou onirique de type I (20% de d\u00e9tection), de type II (30%), de type III (40%) ou de type IV (50%).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10430": {
+   "description_en": "As Dream Lock I except a 4th-level magical lock.",
+   "description_fr": "Comme Dream Lock I, sauf qu'il s'agit d'un verrou magique de niveau 4.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10431": {
+   "description_en": "As Dream Guard I except it binds a type IV demon.",
+   "description_fr": "Comme Dream Guard I, sauf qu'il lie un d\u00e9mon de type IV.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10432": {
+   "description_en": "As Dream Unlock I except it may overcome a dream lock of level +1 per every 5 levels of the caster, and the chance of detection is reduced 10% per level of Dream Unlock above the Dream Lock spell (e.g., a Dream Unlock IV used to open a Dream Lock I lowers the chance of being detected by 30%).",
+   "description_fr": "Comme Dream Unlock I, sauf qu'il peut surmonter un verrou onirique de niveau +1 par tranche de 5 niveaux du lanceur, et que la chance de d\u00e9tection est r\u00e9duite de 10% par niveau de Dream Unlock sup\u00e9rieur au sort Dream Lock (p. ex. un Dream Unlock IV employ\u00e9 pour ouvrir un Dream Lock I abaisse la chance d'\u00eatre d\u00e9tect\u00e9 de 30%).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10433": {
+   "description_en": "As Dream Guard I except it binds a type V demon.",
+   "description_fr": "Comme Dream Guard I, sauf qu'il lie un d\u00e9mon de type V.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10434": {
+   "description_en": "As Dream Lock I except the magical lock level is +1 per every 5 levels of the caster.",
+   "description_fr": "Comme Dream Lock I, sauf que le niveau du verrou magique est de +1 par tranche de 5 niveaux du lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10435": {
+   "description_en": "As Dream Guard I except it binds a type VI demon.",
+   "description_fr": "Comme Dream Guard I, sauf qu'il lie un d\u00e9mon de type VI.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10497": {
+   "description_en": "Allows the caster to work with non-magical wax.",
+   "description_fr": "Permet au lanceur de travailler la cire non magique.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10498": {
+   "description_en": "Caster can ascertain the exact nature and origin of one wax item, including who made it.",
+   "description_fr": "Le lanceur peut d\u00e9terminer la nature et l'origine exactes d'un objet en cire, y compris qui l'a fabriqu\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10499": {
+   "description_en": "Allows the caster to prepare wax sufficient to enchant one magical waxen item. This spell must be cast on the item before any of the Wax Magic spells below can be cast.",
+   "description_fr": "Permet au lanceur de pr\u00e9parer de la cire suffisante pour enchanter un objet de cire magique. Ce sort doit \u00eatre lanc\u00e9 sur l'objet avant tout autre sort de Magie de la Cire ci-dessous.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10500": {
+   "description_en": "After casting Enchant Wax on an undyed candle, the caster may imbed a 1st-level spell in it by casting White Candle (together with the spell to be imbedded) on the candle. The imbedded spell is released by burning the candle and affects all in the same room (or within 50' if outdoors). To be affected, a target must be exposed to the burning candle for ten consecutive minutes (a Perception roll each minute); after ten full minutes the target is affected with no RR. One casting lets the candle burn 10 minutes; each additional casting extends the burning by another 10 minutes. PP cost = Enchant Wax cost + (candle cost x number of 10-minute increments) + the cost of the imbedded spell.",
+   "description_fr": "Apr\u00e8s avoir lanc\u00e9 Enchant Wax sur une bougie non teint\u00e9e, le lanceur peut y incruster un sort de niveau 1 en lan\u00e7ant White Candle (avec le sort \u00e0 incruster) sur la bougie. Le sort incrust\u00e9 se lib\u00e8re en br\u00fblant la bougie et affecte tous ceux dans la m\u00eame pi\u00e8ce (ou \u00e0 15 m en ext\u00e9rieur). Pour \u00eatre affect\u00e9, une cible doit \u00eatre expos\u00e9e \u00e0 la bougie allum\u00e9e pendant dix minutes cons\u00e9cutives (un jet de Perception chaque minute) ; apr\u00e8s dix minutes pleines, la cible est affect\u00e9e sans JR. Un lancement fait br\u00fbler la bougie 10 minutes ; chaque lancement suppl\u00e9mentaire prolonge la combustion de 10 minutes. Co\u00fbt en PP = co\u00fbt d'Enchant Wax + (co\u00fbt de la bougie x nombre de tranches de 10 minutes) + co\u00fbt du sort incrust\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10501": {
+   "description_en": "(F) After casting Enchant Wax, the caster creates a piece of waxen fruit that looks, tastes, and smells real. Consuming the fruit causes the target to fall into a deep sleep unless an RR (vs. the caster's level) is made.",
+   "description_fr": "(F) Apr\u00e8s avoir lanc\u00e9 Enchant Wax, le lanceur cr\u00e9e un fruit de cire d'apparence, de go\u00fbt et d'odeur r\u00e9els. En le consommant, la cible sombre dans un sommeil profond \u00e0 moins de r\u00e9ussir un JR (contre le niveau du lanceur).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10503": {
+   "description_en": "As White Candle except with brown wax; the caster creates a candle in which a 2nd-level spell may be imbedded.",
+   "description_fr": "Comme White Candle, sauf avec de la cire brune ; le lanceur cr\u00e9e une bougie o\u00f9 un sort de niveau 2 peut \u00eatre incrust\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10504": {
+   "description_en": "As Grey Candle except with burgundy wax; the caster creates a candle that intoxicates all nearby beings (same room or within 50' outdoors). The intoxication is a cumulative +1/rnd to RRs and -1/rnd to all other activities for each round spent in the burning candle's presence, wearing off after a few hours; the maximum modification is 50. (Thus 50 rounds give +50 to RRs and -50 to activities.) The effect is insidious, since it may feel thoroughly enjoyable until the target can no longer safely move.",
+   "description_fr": "Comme Grey Candle, sauf avec de la cire bordeaux ; le lanceur cr\u00e9e une bougie qui enivre tous les \u00eatres proches (m\u00eame pi\u00e8ce ou \u00e0 15 m en ext\u00e9rieur). L'ivresse est un cumul de +1/rd aux JR et de -1/rd \u00e0 toutes les autres activit\u00e9s par round pass\u00e9 en pr\u00e9sence de la bougie allum\u00e9e, se dissipant apr\u00e8s quelques heures ; le modificateur maximal est de 50. (Ainsi 50 rounds donnent +50 aux JR et -50 aux activit\u00e9s.) L'effet est insidieux, car il peut sembler tout \u00e0 fait plaisant jusqu'\u00e0 ce que la cible ne puisse plus se d\u00e9placer en s\u00fbret\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10505": {
+   "description_en": "As White Candle except with red wax; the caster creates a candle in which a 3rd-level spell may be imbedded.",
+   "description_fr": "Comme White Candle, sauf avec de la cire rouge ; le lanceur cr\u00e9e une bougie o\u00f9 un sort de niveau 3 peut \u00eatre incrust\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10506": {
+   "description_en": "As Lesser Wax Fruit except the victim must make an RR vs. a poison of the caster's choice, determined when the fruit is formed and this spell is cast.",
+   "description_fr": "Comme Lesser Wax Fruit, sauf que la victime doit r\u00e9ussir un JR contre un poison choisi par le lanceur, d\u00e9termin\u00e9 lors de la formation du fruit et du lancement de ce sort.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10507": {
+   "description_en": "As White Candle except with orange wax; the caster creates a candle in which a 4th-level spell may be imbedded.",
+   "description_fr": "Comme White Candle, sauf avec de la cire orange ; le lanceur cr\u00e9e une bougie o\u00f9 un sort de niveau 4 peut \u00eatre incrust\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10509": {
+   "description_en": "As White Candle except with yellow wax; the caster creates a candle in which a 5th-level spell may be imbedded.",
+   "description_fr": "Comme White Candle, sauf avec de la cire jaune ; le lanceur cr\u00e9e une bougie o\u00f9 un sort de niveau 5 peut \u00eatre incrust\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10510": {
+   "description_en": "After casting Enchant Wax, the caster may sculpt a wax mask that may or may not resemble someone else. When worn, the wax mask looks very convincing, adding +50 to Disguise attempts.",
+   "description_fr": "Apr\u00e8s avoir lanc\u00e9 Enchant Wax, le lanceur peut sculpter un masque de cire pouvant ou non ressembler \u00e0 quelqu'un d'autre. Port\u00e9, le masque para\u00eet tr\u00e8s convaincant, ajoutant +50 aux tentatives de D\u00e9guisement.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10511": {
+   "description_en": "As White Candle except with green wax; the caster creates a candle in which a 6th-level spell may be imbedded.",
+   "description_fr": "Comme White Candle, sauf avec de la cire verte ; le lanceur cr\u00e9e une bougie o\u00f9 un sort de niveau 6 peut \u00eatre incrust\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10513": {
+   "description_en": "As White Candle except with blue wax; the caster creates a candle in which a 7th-level spell may be imbedded.",
+   "description_fr": "Comme White Candle, sauf avec de la cire bleue ; le lanceur cr\u00e9e une bougie o\u00f9 un sort de niveau 7 peut \u00eatre incrust\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10514": {
+   "description_en": "After casting Enchant Wax, the caster creates a small doll-like wax object, which must contain some bodily excretion from the target (hair, nail clippings, saliva, etc.). The wax doll is keyed to the target. Wherever the target goes, whoever holds the doll may control him: by concentrating, the holder may cause the target to follow some Suggestion (as the spell on the Spirit Mastery list). Whatever damage befalls the doll occurs in a similar manner to the target (GM discretion). The target's only hope (other than waiting out the duration) is to have a Cancel True or a Remove Curse cast on the doll or on the target.",
+   "description_fr": "Apr\u00e8s avoir lanc\u00e9 Enchant Wax, le lanceur cr\u00e9e un petit objet de cire en forme de poup\u00e9e, qui doit contenir une s\u00e9cr\u00e9tion corporelle de la cible (cheveux, rognures d'ongles, salive, etc.). La poup\u00e9e de cire est li\u00e9e \u00e0 la cible. O\u00f9 qu'aille la cible, quiconque tient la poup\u00e9e peut la contr\u00f4ler : en se concentrant, il peut faire suivre \u00e0 la cible une Suggestion (comme le sort de la liste Spirit Mastery). Tout dommage subi par la poup\u00e9e frappe la cible de fa\u00e7on analogue (\u00e0 la discr\u00e9tion du MJ). Le seul espoir de la cible (hormis attendre la fin de la dur\u00e9e) est qu'un Cancel True ou un Remove Curse soit lanc\u00e9 sur la poup\u00e9e ou sur la cible.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10515": {
+   "description_en": "As White Candle except with purple wax; the caster creates a candle in which an 8th-level spell may be imbedded.",
+   "description_fr": "Comme White Candle, sauf avec de la cire violette ; le lanceur cr\u00e9e une bougie o\u00f9 un sort de niveau 8 peut \u00eatre incrust\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10517": {
+   "description_en": "As White Candle except with silvered wax; the caster creates a candle in which a 9th- or 10th-level spell may be imbedded.",
+   "description_fr": "Comme White Candle, sauf avec de la cire argent\u00e9e ; le lanceur cr\u00e9e une bougie o\u00f9 un sort de niveau 9 ou 10 peut \u00eatre incrust\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10518": {
+   "description_en": "As Wax Mask except the caster may also fabricate other body parts, allowing her to alter her entire body to the form of another humanoid race; adds +75 to Disguise.",
+   "description_fr": "Comme Wax Mask, sauf que le lanceur peut aussi fa\u00e7onner d'autres parties du corps, lui permettant d'alt\u00e9rer son corps entier en la forme d'une autre race humano\u00efde ; ajoute +75 au D\u00e9guisement.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10519": {
+   "description_en": "As White Candle except with many waxes; the caster creates a candle that may contain up to one color/effect (see the spells above) per ten levels of the caster. The colors may be in swirls, stripes, or layers for different effects, ranging from sequential to simultaneous.",
+   "description_fr": "Comme White Candle, sauf avec plusieurs cires ; le lanceur cr\u00e9e une bougie pouvant contenir jusqu'\u00e0 une couleur/effet (voir les sorts ci-dessus) par tranche de dix niveaux du lanceur. Les couleurs peuvent former des volutes, des rayures ou des couches pour des effets vari\u00e9s, du s\u00e9quentiel au simultan\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10520": {
+   "description_en": "Caster unlocks (80% chance) a non-magically locked door, lid, etc. by loudly knocking on the locked item's surface. The GM may assign the normal difficulty modifiers from the Static Maneuver Table.",
+   "description_fr": "Le lanceur ouvre (80% de chance) une porte, un couvercle, etc. verrouill\u00e9 de fa\u00e7on non magique en frappant bruyamment sur la surface de l'objet verrouill\u00e9. Le MJ peut appliquer les modificateurs de difficult\u00e9 normaux de la Table de Man\u0153uvre Statique.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10521": {
+   "description_en": "Caster causes one lock to become locked (the lock is just normally locked and can be opened normally).",
+   "description_fr": "Le lanceur fait se verrouiller une serrure (la serrure est simplement verrouill\u00e9e normalement et peut \u00eatre ouverte normalement).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10522": {
+   "description_en": "Caster has a 75% chance of detecting any active traps; he can concentrate on a 5'R area each round. This may be modified by certain traps (difficulty, accessibility, magical, etc.).",
+   "description_fr": "Le lanceur a 75% de chance de d\u00e9tecter tout pi\u00e8ge actif ; il peut se concentrer sur une zone de 1,5 m de rayon par round. Cela peut \u00eatre modifi\u00e9 par certains pi\u00e8ges (difficult\u00e9, accessibilit\u00e9, magie, etc.).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10523": {
+   "description_en": "Creates a wall of dense churning air; cuts all movement and attacks through it by 50%.",
+   "description_fr": "Cr\u00e9e un mur d'air dense et tourbillonnant ; r\u00e9duit de 50% tout mouvement et toute attaque le traversant.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10524": {
+   "description_en": "Gives the caster +20 on disarming the trap analyzed, and +10 to anyone to whom he describes the trap.",
+   "description_fr": "Conf\u00e8re au lanceur +20 pour d\u00e9samorcer le pi\u00e8ge analys\u00e9, et +10 \u00e0 quiconque \u00e0 qui il d\u00e9crit le pi\u00e8ge.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10525": {
+   "description_en": "As Detect Traps, but doors, openings, passages, etc. are revealed 75% of the time.",
+   "description_fr": "Comme Detect Traps, mais les portes, ouvertures, passages, etc. sont r\u00e9v\u00e9l\u00e9s 75% du temps.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10526": {
+   "description_en": "Caster causes one trap to go off.",
+   "description_fr": "Le lanceur fait se d\u00e9clencher un pi\u00e8ge.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10527": {
+   "description_en": "Creates a wall of water; cuts movement and attacks through it by 80%.",
+   "description_fr": "Cr\u00e9e un mur d'eau ; r\u00e9duit de 80% tout mouvement et toute attaque le traversant.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10528": {
+   "description_en": "Causes a door to expand and jam into its frame (roll 1-100 for severity, ranging from slightly stuck to unopenable).",
+   "description_fr": "Fait gonfler une porte et la coince dans son cadre (jet de 1-100 pour la gravit\u00e9, de l\u00e9g\u00e8rement coinc\u00e9e \u00e0 inouvrable).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10529": {
+   "description_en": "Reduces the inherent strength of a door by 50%.",
+   "description_fr": "R\u00e9duit la solidit\u00e9 intrins\u00e8que d'une porte de 50%.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10530": {
+   "description_en": "Creates a wall of wood; it must rest on a solid surface. It can be burned through (50 hits for a 2'R hole), chopped through (20 man-rounds), or toppled if one end is not against a wall or buttress of some kind.",
+   "description_fr": "Cr\u00e9e un mur de bois ; il doit reposer sur une surface solide. On peut le br\u00fbler (50 hits pour un trou de 0,6 m de rayon), le tailler (20 homme-rounds), ou le renverser si l'une de ses extr\u00e9mit\u00e9s ne s'appuie pas contre un mur ou un contrefort.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10531": {
+   "description_en": "A door or container can be magically locked; the door can be broken normally or the spell dispelled, but otherwise the door cannot be opened.",
+   "description_fr": "Une porte ou un coffre peut \u00eatre magiquement verrouill\u00e9 ; la porte peut \u00eatre enfonc\u00e9e normalement ou le sort dissip\u00e9, mais sinon la porte ne peut \u00eatre ouverte.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10532": {
+   "description_en": "As Wall of Wood, except the wall is up to 10'x10'x(3' at base, 1' at top) of packed earth; it can only be dug through (10 man-rounds at the top, 30 man-rounds at the base).",
+   "description_fr": "Comme Wall of Wood, sauf que le mur fait jusqu'\u00e0 3 m x 3 m x (0,9 m \u00e0 la base, 0,3 m au sommet) de terre tass\u00e9e ; on ne peut le franchir qu'en creusant (10 homme-rounds au sommet, 30 homme-rounds \u00e0 la base).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10533": {
+   "description_en": "Will vaporize a non-magic door up to 10'x10'x6\" (if the door is thicker than 6\", it vaporizes the closest 6\").",
+   "description_fr": "Vaporise une porte non magique jusqu'\u00e0 3 m x 3 m x 15 cm (si la porte est plus \u00e9paisse que 15 cm, il vaporise les 15 cm les plus proches).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10535": {
+   "description_en": "As Wall of Wood, but of stone; it can be chipped through in 200 man-rounds (1'R hole).",
+   "description_fr": "Comme Wall of Wood, mais en pierre ; on peut le percer en 200 homme-rounds (trou de 0,3 m de rayon).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10536": {
+   "description_en": "Creates an opening up to 3'x6', with a depth of 3\"/lvl, through any inanimate material.",
+   "description_fr": "Cr\u00e9e une ouverture jusqu'\u00e0 0,9 m x 1,8 m, d'une profondeur de 8 cm/niv, \u00e0 travers tout mat\u00e9riau inanim\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10537": {
+   "description_en": "Creates a shimmering 10'x10' plane. Any spell passing through this plane must first make a successful RR in order to resolve its effect. The attack level of the RR is the level of the caster of the Spell Wall, and the defender level is the level of the caster of the spell passing through. If the RR is successful, the spell proceeds normally.",
+   "description_fr": "Cr\u00e9e un plan chatoyant de 3 m x 3 m. Tout sort traversant ce plan doit d'abord r\u00e9ussir un JR pour que son effet se r\u00e9solve. Le niveau d'attaque du JR est le niveau du lanceur du Spell Wall, et le niveau du d\u00e9fenseur est celui du lanceur du sort qui traverse. Si le JR r\u00e9ussit, le sort se d\u00e9roule normalement.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10538": {
+   "description_en": "Creates a transparent barrier that is absolutely impassable by anyone or anything (GM discretion).",
+   "description_fr": "Cr\u00e9e une barri\u00e8re transparente absolument infranchissable par quiconque ou quoi que ce soit (\u00e0 la discr\u00e9tion du MJ).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
   }
  }
 }
