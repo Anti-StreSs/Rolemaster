@@ -2,7 +2,7 @@
 // No server needed — runs entirely in the browser
 
 const DB_NAME = 'rolemaster_cpr';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 let dbPromise = null;
 
 function openDB() {
@@ -27,6 +27,9 @@ function openDB() {
         logStore.createIndex('characterName', 'characterName');
         logStore.createIndex('timestamp', 'timestamp');
         logStore.createIndex('type', 'type');
+      }
+      if (!db.objectStoreNames.contains('spell_shards')) {
+        db.createObjectStore('spell_shards', { keyPath: 'bucket' });
       }
     };
     req.onsuccess = () => resolve(req.result);
@@ -133,6 +136,32 @@ export async function appendEvent(event) {
     tx.oncomplete = () => resolve(true);
     tx.onerror = () => reject(tx.error);
   });
+}
+
+// --- Spell shard cache (B91) — IDB is a cache layer, never a hard dep ---
+
+export async function getShard(bucket) {
+  try {
+    const db = await openDB();
+    return new Promise((resolve) => {
+      const tx = db.transaction('spell_shards', 'readonly');
+      const req = tx.objectStore('spell_shards').get(bucket);
+      req.onsuccess = () => resolve(req.result || null);
+      req.onerror = () => resolve(null);
+    });
+  } catch (e) { return null; }
+}
+
+export async function putShard(bucket, effects, version) {
+  try {
+    const db = await openDB();
+    return new Promise((resolve) => {
+      const tx = db.transaction('spell_shards', 'readwrite');
+      tx.objectStore('spell_shards').put({ bucket, effects, version });
+      tx.oncomplete = () => resolve(true);
+      tx.onerror = () => resolve(false);
+    });
+  } catch (e) { return false; }
 }
 
 export async function getEvents(characterName, options = {}) {

@@ -1,42 +1,86 @@
 // spell-compendium.js — Spell Compendium engine
-// Lazy-loads spells_detail.json, provides filtering, matching, and formatting
+// Hybrid loader: tiny lists index for first paint, lazy params, per-realm description shards.
 
 import { getData } from './data-loader.js';
+import { getShard, putShard } from './db.js';
+import { getAllClasses, getClassName } from './classes.js';
 
-let spellData = null;
-let listIndex = null;   // Map<listId, listObj>
-let listByName = null;  // Map<name_en_lower, listObj>
-let spellsByList = null; // Map<listId, spell[]>
+let spellData = null;           // full spells_detail payload (loaded lazily via ensureParams)
+let listIndex = null;           // Map<listId, listObj>
+let listByName = null;          // Map<name_en_lower, listObj>
+let spellsByList = null;        // Map<listId, spell[]>
+let listsLoaded = false;        // true after loadListsIndex()
+let paramsLoaded = false;       // true after ensureParams()
+let loadIndexPromise = null;    // dedup concurrent loadListsIndex() calls
+let loadParamsPromise = null;   // dedup concurrent ensureParams() calls
+const loadedShards = new Set(); // buckets already merged into spell objects
 
 /**
- * Lazy-load spells_detail.json (called on first compendium open).
- * Returns { lists, spells, _metadata }.
+ * Fast first paint: fetch spell_lists_index.json (the 510 list records only).
+ * Builds listIndex, listByName, runs buildBridgeMap.
+ * source_book is already in the index (computed by build_spell_shards.py).
+ * Idempotent; subsequent calls return immediately.
  */
-export async function loadSpellData() {
-  if (spellData) return spellData;
-  const resp = await fetch('./data/spells_detail.json');
-  if (!resp.ok) throw new Error('Failed to load spells_detail.json: ' + resp.status);
-  spellData = await resp.json();
+export function loadListsIndex() {
+  if (listsLoaded) return Promise.resolve();
+  if (loadIndexPromise) return loadIndexPromise;
+  loadIndexPromise = (async () => {
+  const resp = await fetch('./data/spell_lists_index.json');
+  if (!resp.ok) throw new Error('Failed to load spell_lists_index.json: ' + resp.status);
+  const data = await resp.json();
 
-  // Build indices
   listIndex = new Map();
   listByName = new Map();
-  spellsByList = new Map();
 
-  for (const list of spellData.lists) {
+  for (const list of data.lists) {
     listIndex.set(list.id, list);
     listByName.set((list.name_en_clean || list.name_en).toLowerCase(), list);
     if (list.name_fr) listByName.set(list.name_fr.toLowerCase(), list);
   }
+
+  buildBridgeMap();
+  listsLoaded = true;
+  })();
+  return loadIndexPromise;
+}
+
+/**
+ * Lazy-load spells_detail.json once (per-spell params: level, aoe, duration, range…).
+ * Called automatically by getSpellsForList and openBook. Idempotent.
+ */
+export function ensureParams() {
+  if (paramsLoaded) return Promise.resolve();
+  if (loadParamsPromise) return loadParamsPromise;
+  loadParamsPromise = (async () => {
+  if (!listsLoaded) await loadListsIndex();
+
+  const resp = await fetch('./data/spells_detail.json');
+  if (!resp.ok) throw new Error('Failed to load spells_detail.json: ' + resp.status);
+  spellData = await resp.json();
+
+  spellsByList = new Map();
   for (const sp of spellData.spells) {
     if (!spellsByList.has(sp.list_id)) spellsByList.set(sp.list_id, []);
     spellsByList.get(sp.list_id).push(sp);
   }
 
+  // Merge list metadata already fetched via index into spellData.lists
+  for (const list of spellData.lists) {
+    const indexed = listIndex.get(list.id);
+    if (indexed?.described !== undefined) list.described = indexed.described;
+  }
+
+  // Rebuild indices from the full dataset (covers any name_fr added by bridge)
+  for (const list of spellData.lists) {
+    listIndex.set(list.id, list);
+    listByName.set((list.name_en_clean || list.name_en).toLowerCase(), list);
+    if (list.name_fr) listByName.set(list.name_fr.toLowerCase(), list);
+  }
+
   buildBridgeMap();
   extractSourceRefs();
 
-  // Load optional FR translation patch (pwa/data/spell_translations_fr.json)
+  // Optional FR translation patch
   try {
     const patchResp = await fetch('./data/spell_translations_fr.json');
     if (patchResp.ok) {
@@ -52,29 +96,76 @@ export async function loadSpellData() {
           if (patch.spell_translations[sp.id]) sp.name_fr = patch.spell_translations[sp.id];
         }
       }
-      console.log(`Spell translations loaded: ${Object.keys(patch.list_translations || {}).length} lists, ${Object.keys(patch.spell_translations || {}).length} spells`);
     }
-  } catch (e) { /* optional patch — silent if missing */ }
+  } catch (e) { /* optional */ }
 
-  // Load optional spell effects/descriptions patch (pwa/data/spell_effects.json)
-  try {
-    const effResp = await fetch('./data/spell_effects.json');
-    if (effResp.ok) {
-      const effData = await effResp.json();
-      const effects = effData.spell_effects || {};
-      let n = 0;
-      for (const sp of spellData.spells) {
-        const e = effects[sp.id];
-        if (!e) continue;
-        if (e.description_en) sp.description_en = e.description_en;
-        if (e.description_fr) sp.description_fr = e.description_fr;
-        if (e.effect) sp.effect = e.effect;
-        n++;
+  paramsLoaded = true;
+  })();
+  return loadParamsPromise;
+}
+
+/**
+ * Load descriptions for a realm bucket: check IDB cache first, else fetch shard.
+ * Merges description_en/description_fr onto spell objects already in spellsByList.
+ * Idempotent — calling twice for the same bucket is a no-op.
+ */
+export async function loadDescriptionsForRealm(bucket) {
+  if (loadedShards.has(bucket)) return;
+  if (!paramsLoaded) await ensureParams();
+  loadedShards.add(bucket); // mark early to prevent concurrent double-loads
+
+  let effects = null;
+
+  // Try IDB cache first
+  const cached = await getShard(bucket);
+  if (cached?.effects) {
+    effects = cached.effects;
+  } else {
+    try {
+      const resp = await fetch(`./data/spell_effects.${bucket}.json`);
+      if (resp.ok) {
+        const data = await resp.json();
+        effects = data.spell_effects || {};
+        // Persist manifest version for cache validation
+        let version = 'unknown';
+        try {
+          const mf = await fetch('./data/spell_effects.manifest.json');
+          if (mf.ok) { const m = await mf.json(); version = m.version || version; }
+        } catch (e) { /* manifest optional */ }
+        await putShard(bucket, effects, version);
+        console.log(`Spell shard loaded: ${bucket} (${Object.keys(effects).length} spells)`);
       }
-      console.log(`Spell effects loaded: ${n} spells enriched`);
-    }
-  } catch (e) { /* optional patch — silent if missing */ }
+    } catch (e) { /* shard optional */ }
+  }
 
+  if (!effects || !spellData?.spells) return;
+
+  let n = 0;
+  for (const sp of spellData.spells) {
+    const e = effects[sp.id];
+    if (!e) continue;
+    if (e.description_en) sp.description_en = e.description_en;
+    if (e.description_fr) sp.description_fr = e.description_fr;
+    n++;
+  }
+  if (n > 0) console.log(`Shard ${bucket}: ${n} spells enriched`);
+}
+
+/** Convenience: resolve the list's realm bucket and load descriptions for it. */
+export async function loadDescriptionsForList(listId) {
+  const list = listIndex?.get(listId);
+  if (!list) return;
+  const { key } = resolveRealm(list.realm);
+  await loadDescriptionsForRealm(key);
+}
+
+/**
+ * Compatibility wrapper — preserves the existing single-call pattern.
+ * Now: loads index + params (descriptions stream in per-realm on demand).
+ */
+export async function loadSpellData() {
+  await loadListsIndex();
+  await ensureParams();
   return spellData;
 }
 
@@ -89,21 +180,28 @@ export function spellHasDescription(sp) {
   return !!(sp && (sp.description_fr || sp.description_en));
 }
 
-/** Check if data is loaded. */
-export function isSpellDataLoaded() { return !!spellData; }
+/** Check if params are loaded (spells_detail.json). */
+export function isSpellDataLoaded() { return paramsLoaded; }
+
+/** True after loadListsIndex() returns. */
+export function isIndexLoaded() { return listsLoaded; }
 
 /** Get metadata. */
 export function getSpellMetadata() { return spellData?._metadata || null; }
 
-/** Get all lists. */
-export function getAllSpellLists() { return spellData?.lists || []; }
+/** Get all lists (available after loadListsIndex). */
+export function getAllSpellLists() {
+  if (listsLoaded) return Array.from(listIndex?.values() || []);
+  return spellData?.lists || [];
+}
 
-/** Get list by ID. */
+/** Get list by ID (available after loadListsIndex). */
 export function getListById(id) { return listIndex?.get(id) || null; }
 
-/** Get spells for a specific list ID, sorted by level. */
-export function getSpellsForList(listId) {
-  return (spellsByList?.get(listId) || []).sort((a, b) => a.level - b.level);
+/** Get spells for a specific list ID, sorted by level. Loads params if needed. */
+export async function getSpellsForList(listId) {
+  await ensureParams();
+  return (spellsByList?.get(listId) || []).slice().sort((a, b) => a.level - b.level);
 }
 
 /**
@@ -171,19 +269,53 @@ export function matchCharacterList(charListName) {
  * Get the full character spellbook: for each learned list, return
  * the list metadata + spells up to maxLevel.
  */
-export function getCharacterSpellbook(character) {
-  if (!character?.spellLists || !spellData) return [];
-  return character.spellLists.map(cl => {
+export async function getCharacterSpellbook(character) {
+  if (!character?.spellLists) return [];
+  await ensureParams();
+  const entries = await Promise.all(character.spellLists.map(async cl => {
     const matched = matchCharacterList(cl.name);
     if (!matched) return { charList: cl, list: null, spells: [], matched: false };
-    const allSpells = getSpellsForList(matched.id);
+    const allSpells = await getSpellsForList(matched.id);
     const known = allSpells.filter(s => s.level <= (cl.maxLevel || 0));
     const beyond = allSpells.filter(s => s.level > (cl.maxLevel || 0));
     return { charList: cl, list: matched, spells: known, beyondSpells: beyond, matched: true };
-  }).sort((a, b) => {
+  }));
+  return entries.sort((a, b) => {
     if (a.matched !== b.matched) return a.matched ? -1 : 1;
     return (a.charList.name || '').localeCompare(b.charList.name || '');
   });
+}
+
+/**
+/**
+ * Build profession list from classes.js × distinct "Base" class_or_category values.
+ * Returns [{value, label}] sorted; excludes generic TP/Open/Closed buckets.
+ */
+export function getProfessions(lang) {
+  if (!listsLoaded) return [];
+  const categories = new Set();
+  for (const list of listIndex.values()) {
+    if (list.list_type === 'base' && list.class_or_category) {
+      categories.add(list.class_or_category);
+    }
+  }
+  const allClasses = getAllClasses();
+  const classMap = new Map();
+  for (const cls of allClasses) {
+    const en = getClassName(cls, 'en');
+    const fr = getClassName(cls, 'fr');
+    classMap.set(en, fr || en);
+    if (fr) classMap.set(fr, fr);
+  }
+
+  const result = [];
+  for (const cat of categories) {
+    if (['TP', 'Open', 'Closed'].includes(cat)) continue;
+    const base = cat.replace(/\s*Base\s*$/, '').trim();
+    const label = (lang === 'fr' ? (classMap.get(base) || base) : base) + ' Base';
+    result.push({ value: cat, label });
+  }
+  return result.sort((a, b) => a.label.localeCompare(b.label));
 }
 
 /**
@@ -193,7 +325,7 @@ export function getCharacterSpellbook(character) {
  */
 export function filterLists(filters = {}, character = null) {
   let lists = getAllSpellLists();
-  const { realm, listType, keyword, characterOnly } = filters;
+  const { realm, listType, keyword, characterOnly, profession } = filters;
 
   if (realm) {
     const r = realm.toLowerCase();
@@ -201,6 +333,9 @@ export function filterLists(filters = {}, character = null) {
   }
   if (listType && listType !== 'all') {
     lists = lists.filter(l => l.list_type === listType);
+  }
+  if (profession) {
+    lists = lists.filter(l => l.class_or_category === profession);
   }
   if (keyword) {
     const kw = keyword.toLowerCase();
@@ -263,15 +398,32 @@ export function groupListsByRealm(lists) {
   return groups;
 }
 
-/** Realm display config: color + icon. */
+/** Realm display config. */
 export const REALM_COLORS = {
-  'Essence':    { bg: '#faeeda', border: '#ba7517', text: '#633806', badge: 'Ess' },
-  'Channeling': { bg: '#e1f5ee', border: '#0f6e56', text: '#04342c', badge: 'Cha' },
-  'Mentalism':  { bg: '#eeedfe', border: '#534ab7', text: '#26215c', badge: 'Men' },
-  'Arcane':     { bg: '#faece7', border: '#993c1d', text: '#4a1b0c', badge: 'Arc' },
-  'Alchemy':    { bg: '#eaf3de', border: '#3b6d11', text: '#173404', badge: 'Alc' },
-  'Other':      { bg: '#f1efe8', border: '#5f5e5a', text: '#2c2c2a', badge: '...' },
+  'Essence':    { bg: '#faeeda', border: '#ba7517', light: '#e8a23e', text: '#633806', badge: 'Ess', glyph: '❋', label_fr: 'Essence',      label_en: 'Essence' },
+  'Channeling': { bg: '#e1f5ee', border: '#0f6e56', light: '#46c39f', text: '#04342c', badge: 'Cha', glyph: '☩', label_fr: 'Canalisation',  label_en: 'Channeling' },
+  'Mentalism':  { bg: '#eeedfe', border: '#534ab7', light: '#9b92f2', text: '#26215c', badge: 'Men', glyph: '☉', label_fr: 'Mentalisme',    label_en: 'Mentalism' },
+  'Arcane':     { bg: '#faece7', border: '#993c1d', light: '#e3804f', text: '#4a1b0c', badge: 'Arc', glyph: '✦', label_fr: 'Arcanes',       label_en: 'Arcane' },
+  'Alchemy':    { bg: '#eaf3de', border: '#3b6d11', light: '#8fc451', text: '#173404', badge: 'Alc', glyph: '⚗', label_fr: 'Alchimie',      label_en: 'Alchemy' },
+  'Other':      { bg: '#f1efe8', border: '#7a5a18', light: '#d8b765', text: '#3a2a0a', badge: '...',  glyph: '✶', label_fr: 'Autre',         label_en: 'Other' },
 };
+
+/**
+ * Resolve any realm string (incl. compound "Channeling/Essence",
+ * "Channeling (Unlife)", "Multi-Realm") to a full REALM_COLORS entry
+ * plus { key, multi, raw } fields.
+ */
+export function resolveRealm(realm) {
+  if (REALM_COLORS[realm]) return { ...REALM_COLORS[realm], key: realm.toLowerCase(), multi: false, raw: realm };
+  const base = (realm || '').replace(/\s*\([^)]*\)\s*/g, '').split('/')[0].trim();
+  if (REALM_COLORS[base]) {
+    return { ...REALM_COLORS[base], key: base.toLowerCase(), multi: (realm || '').includes('/') || /multi/i.test(realm), raw: realm };
+  }
+  if (/multi/i.test(realm || '')) {
+    return { ...REALM_COLORS['Arcane'], key: 'other', multi: true, raw: realm, glyph: '✸' };
+  }
+  return { ...REALM_COLORS['Other'], key: 'other', multi: false, raw: realm };
+}
 
 export function getRealmColor(realm) {
   return REALM_COLORS[realm] || REALM_COLORS['Other'];

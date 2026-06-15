@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rolemaster-v103';
+const CACHE_NAME = 'rolemaster-v104';
 const ASSETS = [
   './',
   './index.html',
@@ -51,6 +51,15 @@ const ASSETS = [
   './data/simil.json',
   './data/options.json',
   './data/monde.json',
+  './data/spell_lists_index.json',
+  './data/spell_effects.essence.json',
+  './data/spell_effects.channeling.json',
+  './data/spell_effects.mentalism.json',
+  './data/spell_effects.arcane.json',
+  './data/spell_effects.alchemy.json',
+  './data/spell_effects.other.json',
+  './data/spell_effects.manifest.json',
+  './js/ui/compendium-book.js',
   './manifest.json',
   './assets/ui/icons/session_attack_crossed_swords.webp',
   './assets/ui/icons/session_comparator_scales.webp',
