@@ -1339,11 +1339,14 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
    queries before — desktop fell back to the wrong base size). Ball aspect ratio is constant
    across breakpoints, so these % are size-independent. */
 .rm-crystal-ball-hero video {
-  top: 6%;
-  left: 13%;
-  width: 74%;
-  height: 52%;
-  clip-path: circle(46% at 50% 50%);
+  /* Square box -> perfect circle (no overflow); object-fit:cover inherited from base.
+     Centre tuned on the sphere; size-independent (container aspect ratio is constant). */
+  top: 3%;
+  left: 18%;
+  width: 64%;
+  height: auto;
+  aspect-ratio: 1;
+  clip-path: circle(50% at 50% 50%);
 }
 
 /* Standard medallion video (IntroSmall.mp4 on Encounters/Party) — larger & higher */
@@ -1396,10 +1399,13 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
    ============================================ */
 
 .rm-crystal-ball-hero {
-  width: 500px;
-  height: 585px;
-  max-width: 90vw;
-  max-height: calc(90vw * 1.17);
+  /* Validated live: the content-sized parent caps a clamp(); flex:none + vw width frees
+     the ball to scale with the viewport (overflow-centred by .rm-crystal-ball). */
+  flex: none;
+  width: min(48vw, 600px);
+  height: auto;
+  aspect-ratio: 500 / 585;
+  max-width: none;
 }
 
 /* Suppress the base crystal-ball margin in the hero context */
@@ -1414,26 +1420,12 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
     width: 380px;
     height: 445px;
   }
-  .rm-crystal-ball-hero video {
-    top: 6%;
-    left: 13%;
-    width: 74%;
-    height: 52%;
-    clip-path: circle(46% at 50% 50%);
-  }
 }
 /* Smartphone: hero ball compact */
 @media (max-width: 440px) {
   .rm-crystal-ball-hero {
     width: 300px;
     height: 351px;
-  }
-  .rm-crystal-ball-hero video {
-    top: 4%;
-    left: 10%;
-    width: 80%;
-    height: 56%;
-    clip-path: circle(44% at 50% 50%);
   }
 }
 
