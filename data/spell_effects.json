@@ -3,10 +3,11 @@
   "generated": "2026-06-15",
   "sources": [
    "RMSS Spell Law",
-   "RMFRP Channeling/Mentalism/Fire&Ice/Construct Companions"
+   "RMFRP Channeling/Mentalism/Fire&Ice/Construct Companions",
+   "RMSS Arcane Companion"
   ],
   "lang": "en",
-  "spells_with_description": 4830,
+  "spells_with_description": 5074,
   "total_spells": 10561,
   "note": "EN descriptions (4830). Alchemy Companion OCR present but different layout + noisy OCR -> 0 via generic parser (needs dedicated pass/GPT). Pending OCR: Essence/Arcane Companions + Powers L&D. FR pending."
  },
@@ -28990,6 +28991,1470 @@
    "list_id": "list-447",
    "level": 50,
    "source": "Construct Companion"
+  },
+  "sp-07992": {
+   "description_en": "Creates a black, insubstantial wall up to 20' x 20' x l\" that light cannot pass into or through (i.e., does not hinder movement, but it blocks vision).",
+   "list_id": "list-380",
+   "level": 1,
+   "source": "Arcane Companion"
+  },
+  "sp-07993": {
+   "description_en": "This wall reduces all movement through it by 50%. In addition, all attacks through the wall suffer a -50 penalty.",
+   "list_id": "list-380",
+   "level": 2,
+   "source": "Arcane Companion"
+  },
+  "sp-07994": {
+   "description_en": "As Light Wall, except for duration.",
+   "list_id": "list-380",
+   "level": 3,
+   "source": "Arcane Companion"
+  },
+  "sp-07995": {
+   "description_en": "wall reduces all movement through it by 80%. In addition, all attacks through the wall suffer a -80 penalty.",
+   "list_id": "list-380",
+   "level": 4,
+   "source": "Arcane Companion"
+  },
+  "sp-07996": {
+   "description_en": "Creates a wall of wood up to IO'x20'x2'. This wall can be burned though, chopped through, or toppled (if not propped up somehow).",
+   "list_id": "list-380",
+   "level": 5,
+   "source": "Arcane Companion"
+  },
+  "sp-07997": {
+   "description_en": "As Woodwall, except wall is made of earth and has a size up to I O'x l O'x (3' at base, l' at top) of packed earth.",
+   "list_id": "list-380",
+   "level": 6,
+   "source": "Arcane Companion"
+  },
+  "sp-07999": {
+   "description_en": "As Airwall, except for duration.",
+   "list_id": "list-380",
+   "level": 8,
+   "source": "Arcane Companion"
+  },
+  "sp-08000": {
+   "description_en": "feet in earth or ice). The entire pit must be within 50' of caster. A pit may not be opened except on a horizontal surface with an incline of Jess than 45'.",
+   "list_id": "list-380",
+   "level": 9,
+   "source": "Arcane Companion"
+  },
+  "sp-08001": {
+   "description_en": "has a size up to IO'x IO'x l '. It can be chipped through.",
+   "list_id": "list-380",
+   "level": 10,
+   "source": "Arcane Companion"
+  },
+  "sp-08002": {
+   "description_en": "As Waterwall, except for duration.",
+   "list_id": "list-380",
+   "level": 11,
+   "source": "Arcane Companion"
+  },
+  "sp-08003": {
+   "description_en": "As Woodwall, except for duration.",
+   "list_id": "list-380",
+   "level": 12,
+   "source": "Arcane Companion"
+  },
+  "sp-08004": {
+   "description_en": "As Earth Wall, except for duration.",
+   "list_id": "list-380",
+   "level": 13,
+   "source": "Arcane Companion"
+  },
+  "sp-08005": {
+   "description_en": "As lcewall l, except for area of effect.",
+   "list_id": "list-380",
+   "level": 14,
+   "source": "Arcane Companion"
+  },
+  "sp-08007": {
+   "description_en": "Fuses 2 touching walls (must be of the same material; seam can be up to 20' long) or fuses a section of stone blocks (up to 100 cu').",
+   "list_id": "list-380",
+   "level": 16,
+   "source": "Arcane Companion"
+  },
+  "sp-08008": {
+   "description_en": "Creates a wall out of the predominant ground material (grassy earth, sand, etc.) The wall may have dimensions of up to IO'xlOO'xl'. The wall has all of the physical properties of the ground it came from.",
+   "list_id": "list-380",
+   "level": 17,
+   "source": "Arcane Companion"
+  },
+  "sp-08009": {
+   "description_en": "on this list (except Meld Walls), except the wall can be curved up to a semicircle.",
+   "list_id": "list-380",
+   "level": 18,
+   "source": "Arcane Companion"
+  },
+  "sp-08010": {
+   "description_en": "As Meld Walls, except walls may be of dissimiliar type.",
+   "list_id": "list-380",
+   "level": 19,
+   "source": "Arcane Companion"
+  },
+  "sp-08011": {
+   "description_en": "As Stonewall True, except the caster may create a freestanding structure with a total surface area ofup to 2000'.",
+   "list_id": "list-380",
+   "level": 20,
+   "source": "Arcane Companion"
+  },
+  "sp-08012": {
+   "description_en": "As Groundwall, except for the duration.",
+   "list_id": "list-380",
+   "level": 25,
+   "source": "Arcane Companion"
+  },
+  "sp-08013": {
+   "description_en": "By directly Channeling the power of his deity, the caster creates a transparent wall of \"force\" that is absolutely impassable by anyone or anything. It is up to IO'x20'x I\".",
+   "list_id": "list-380",
+   "level": 30,
+   "source": "Arcane Companion"
+  },
+  "sp-08015": {
+   "description_en": "Exerts 1 pound of pressure on a person or object. Object cannot be moved by Staying alone and pressure can only be in one direction.",
+   "list_id": "list-381",
+   "level": 1,
+   "source": "Arcane Companion"
+  },
+  "sp-08017": {
+   "description_en": "1O' per round. The spell does not provide a means for horizontal movement.",
+   "list_id": "list-381",
+   "level": 3,
+   "source": "Arcane Companion"
+  },
+  "sp-08019": {
+   "description_en": "Target can fly at a rate of 100' per round (approximately 7 mph). While Fly is active, normal movement (e.g., walking, running, etc.) is not allowed.",
+   "list_id": "list-381",
+   "level": 5,
+   "source": "Arcane Companion"
+  },
+  "sp-08020": {
+   "description_en": "As Telekinesis I, except mass limit is 25 pounds.",
+   "list_id": "list-381",
+   "level": 6,
+   "source": "Arcane Companion"
+  },
+  "sp-08021": {
+   "description_en": "As Levitation I, except rate is I 00' per round.",
+   "list_id": "list-381",
+   "level": 7,
+   "source": "Arcane Companion"
+  },
+  "sp-08022": {
+   "description_en": "As Flying /, except rate is 300' per round (approximately 20 mph).",
+   "list_id": "list-381",
+   "level": 8,
+   "source": "Arcane Companion"
+  },
+  "sp-08023": {
+   "description_en": "the flight of the missile, the caster causes +50 to be added to the attack roll of the missile. The caster must concentrate, touch the firer and the see the mssile for the entire round that the missile is fired.",
+   "list_id": "list-381",
+   "level": 9,
+   "source": "Arcane Companion"
+  },
+  "sp-08024": {
+   "description_en": "the target area. All falling damage is halved (round up). Moving maneuvers are suffer a special -25 penalty. Movement is limited to a jog pace within the area.",
+   "list_id": "list-381",
+   "level": 10,
+   "source": "Arcane Companion"
+  },
+  "sp-08025": {
+   "description_en": "the range of the spell) of 5 pounds or less with sufficient force to deliver an attack on the Sling Attack Table (doing double normal concussion hits) with a maximum range of 300' (see Arms Law). The caster's 08 will equal his directed spell skill \u2022 bonus with this spell.",
+   "list_id": "list-381",
+   "level": 11,
+   "source": "Arcane Companion"
+  },
+  "sp-08026": {
+   "description_en": "As Flying /, except rate is 50' per level of the caster.",
+   "list_id": "list-381",
+   "level": 12,
+   "source": "Arcane Companion"
+  },
+  "sp-08027": {
+   "description_en": "20 pounds per level of the caster.",
+   "list_id": "list-381",
+   "level": 14,
+   "source": "Arcane Companion"
+  },
+  "sp-08028": {
+   "description_en": "As Staying I, except pressure limit is 10 pounds per level of the caster.",
+   "list_id": "list-381",
+   "level": 15,
+   "source": "Arcane Companion"
+  },
+  "sp-08029": {
+   "description_en": "target area by threefold. All moving maneuvers, melee attacks, and missle attacks within the area suffer a special -50 penalty. Exhaustion points accrued while in the target area are doubled.",
+   "list_id": "list-381",
+   "level": 16,
+   "source": "Arcane Companion"
+  },
+  "sp-08030": {
+   "description_en": "archers as he has levels. All archers (and their arrows) must be within range (and missiles) when the spell is cast.",
+   "list_id": "list-381",
+   "level": 17,
+   "source": "Arcane Companion"
+  },
+  "sp-08031": {
+   "description_en": "As Hurling II, except weight limit is 50 pounds, the attack delivers four times normal concussion damage, and the attack has a special +50 modifier.",
+   "list_id": "list-381",
+   "level": 18,
+   "source": "Arcane Companion"
+  },
+  "sp-08032": {
+   "description_en": "for the duration. The target takes a 'C' Impact critical each round.",
+   "list_id": "list-381",
+   "level": 19,
+   "source": "Arcane Companion"
+  },
+  "sp-08033": {
+   "description_en": "the caster has levels (all targets must be within range 6f the spell).",
+   "list_id": "list-381",
+   "level": 20,
+   "source": "Arcane Companion"
+  },
+  "sp-08034": {
+   "description_en": "field (that attracts all ferrous material). Any metal objects within 20' of the target must make an RR or be attracted to the target (possibly resulting in a Bash attack on the target). If the target is wearing metal armor, he suffers a -25 penalty to all moving maneuvers. Any melee attacks with 20' of the target suffer a special -25 penalty (and have their fumble ranges quadrupled). Missile attacks aimed at the target have a +25 bonus to their 08 (if they are at least partially ferrous). Any other missile attacks that pass within 20' of the target suffer a 25 penalty to their OB.",
+   "list_id": "list-381",
+   "level": 25,
+   "source": "Arcane Companion"
+  },
+  "sp-08035": {
+   "description_en": "(doing maximum damage). In addition, if the attack was against a creature that takes Large or Super-Large criticals, the attack is resolved as a Slaying attack.",
+   "list_id": "list-381",
+   "level": 30,
+   "source": "Arcane Companion"
+  },
+  "sp-08036": {
+   "description_en": "The target object begins attracting all material (regardless of its compositionI) within 50'. Any loose items within the 50' of the target begin flying towards him (and are crushed upon impact). The target takes dlO 'A' Impact criticals each round. Any other person within 50' of the target must make an RR each round (versus the level of this spell) to avoid taking an 'A' Impact critical.",
+   "list_id": "list-381",
+   "level": 50,
+   "source": "Arcane Companion"
+  },
+  "sp-08185": {
+   "description_en": "Caster knows the direction, and distance to any inhibition zones within the area of effect. The caster receives no specific information on the nature of the spell inhibition.",
+   "list_id": "list-389",
+   "level": 1,
+   "source": "Arcane Companion"
+  },
+  "sp-08186": {
+   "description_en": "Caster creates an inhibition zone, preventing the casting of spells from a specific spell list. This spell prevents the casting of up to second level spells from the specified spell list.",
+   "list_id": "list-389",
+   "level": 4,
+   "source": "Arcane Companion"
+  },
+  "sp-08187": {
+   "description_en": "As Spell Inhibition II, except that a whole realm of magic is affected by the inhibition.",
+   "list_id": "list-389",
+   "level": 6,
+   "source": "Arcane Companion"
+  },
+  "sp-08188": {
+   "description_en": "from any realm are affected.",
+   "list_id": "list-389",
+   "level": 8,
+   "source": "Arcane Companion"
+  },
+  "sp-08189": {
+   "description_en": "to fourth level are prevented.",
+   "list_id": "list-389",
+   "level": 10,
+   "source": "Arcane Companion"
+  },
+  "sp-08190": {
+   "description_en": "whole realm of magic is affected by the inhibition.",
+   "list_id": "list-389",
+   "level": 12,
+   "source": "Arcane Companion"
+  },
+  "sp-08191": {
+   "description_en": "spells from any realm are affected.",
+   "list_id": "list-389",
+   "level": 14,
+   "source": "Arcane Companion"
+  },
+  "sp-08192": {
+   "description_en": "to sixth level are prevented.",
+   "list_id": "list-389",
+   "level": 16,
+   "source": "Arcane Companion"
+  },
+  "sp-08193": {
+   "description_en": "As Spell Inhibition VJ, except that a whole realm of magic is affected by the inhibition.",
+   "list_id": "list-389",
+   "level": 18,
+   "source": "Arcane Companion"
+  },
+  "sp-08194": {
+   "description_en": "As Spell Inhibition VI, except that spells from any realm are affected.",
+   "list_id": "list-389",
+   "level": 20,
+   "source": "Arcane Companion"
+  },
+  "sp-08195": {
+   "description_en": "As Spell Inhibition II, except spells up to tenth level are prevented.",
+   "list_id": "list-389",
+   "level": 25,
+   "source": "Arcane Companion"
+  },
+  "sp-08196": {
+   "description_en": "that a whole realm of magic is affected by the inhibition.",
+   "list_id": "list-389",
+   "level": 30,
+   "source": "Arcane Companion"
+  },
+  "sp-08197": {
+   "description_en": "As Spell Inhibition True, except that spells from any realm are affected.",
+   "list_id": "list-389",
+   "level": 50,
+   "source": "Arcane Companion"
+  },
+  "sp-08276": {
+   "description_en": "Caster gains insight into important events in the very recent past of a place or an item. The caster will see the most significant events in the item's past (the past is defined as 1 hour per level of the caster). The caster will see one event for every five levels of experience. The importance of the events is only measured with respect to the time period viewed (not in the absolute history of the item or place).",
+   "list_id": "list-394",
+   "level": 1,
+   "source": "Arcane Companion"
+  },
+  "sp-08277": {
+   "description_en": "Gives the area oforigin of the item, the race of the being who created it, and when it was made (within 100 years).",
+   "list_id": "list-394",
+   "level": 3,
+   "source": "Arcane Companion"
+  },
+  "sp-08278": {
+   "description_en": "Caster learns the cause of death, the instrument(s) used to cause death, and the time of death of a single dead body (must be within 10' of the body). Corpse must have died within a number of years equal to the caster's level.",
+   "list_id": "list-394",
+   "level": 5,
+   "source": "Arcane Companion"
+  },
+  "sp-08279": {
+   "description_en": "One of the caster's senses is moved to a point up to 100' distant (ignoring intervening barriers). The exact distance must be specified when the spell is cast. Once the sense is placed, it may not move, but may rotate. If the caster has access to sense affecting spells, the projected sense may use these as well.",
+   "list_id": "list-394",
+   "level": 6,
+   "source": "Arcane Companion"
+  },
+  "sp-08280": {
+   "description_en": "is defined as I day per level of the caster.",
+   "list_id": "list-394",
+   "level": 7,
+   "source": "Arcane Companion"
+  },
+  "sp-08282": {
+   "description_en": "project up to three senses.",
+   "list_id": "list-394",
+   "level": 9,
+   "source": "Arcane Companion"
+  },
+  "sp-08283": {
+   "description_en": "Caster may cause a number of targets equal to his level to perceive what he senses with either along Sense or Scrying spell.",
+   "list_id": "list-394",
+   "level": 10,
+   "source": "Arcane Companion"
+  },
+  "sp-08285": {
+   "description_en": "project all five senses.",
+   "list_id": "list-394",
+   "level": 13,
+   "source": "Arcane Companion"
+  },
+  "sp-08286": {
+   "description_en": "Caster transfers one of his sense into an inanimate object. While the object contains the sense, the caster can only sense through the object (regardless of the range to the object). The caster may end the spell at any time (up to the proscribed duration), but the sense is not restored until the caster touches the object.",
+   "list_id": "list-394",
+   "level": 14,
+   "source": "Arcane Companion"
+  },
+  "sp-08288": {
+   "description_en": "caster learns exact circumstances and sees tha face of the killer.",
+   "list_id": "list-394",
+   "level": 17,
+   "source": "Arcane Companion"
+  },
+  "sp-08289": {
+   "description_en": "on different topics.",
+   "list_id": "list-394",
+   "level": 19,
+   "source": "Arcane Companion"
+  },
+  "sp-08290": {
+   "description_en": "Caster gains momentary insights into the future. This results in +25 to all maneuvers, 08, and DB for the duration.",
+   "list_id": "list-394",
+   "level": 20,
+   "source": "Arcane Companion"
+  },
+  "sp-08292": {
+   "description_en": "per level of the caster. SO. Scrying True -As Scrying, except that range is 100 miles per level of the caster, no medium is needed, and all senses may be used.",
+   "list_id": "list-394",
+   "level": 30,
+   "source": "Arcane Companion"
+  },
+  "sp-07388": {
+   "description_en": "power. If the item has PPs or charges, he will know exactly how many.",
+   "list_id": "list-348",
+   "level": 1,
+   "source": "Arcane Companion"
+  },
+  "sp-07389": {
+   "description_en": "Caster bathes the area in magical energy, creating waves of magical resonance. All spells become visible (if the GM deems it appropriate, all Power Perception maneuvers are modified by +50 instead of all spells becoming visible).",
+   "list_id": "list-348",
+   "level": 3,
+   "source": "Arcane Companion"
+  },
+  "sp-07390": {
+   "description_en": "is visible as a rippling wall of light). All coming into contact with the wall suffer a 'A' Mana critical. No spells can be cast through this wall (and no power can be detected through the wall).",
+   "list_id": "list-348",
+   "level": 5,
+   "source": "Arcane Companion"
+  },
+  "sp-07391": {
+   "description_en": "Caster fires a blinding white beam of concentrated power from his palm. Bolt strikes on the Mana Bolt Attack Table. Mana Bolts add + 10 to all Spell Risk Rolls.",
+   "list_id": "list-348",
+   "level": 6,
+   "source": "Arcane Companion"
+  },
+  "sp-07392": {
+   "description_en": "As Magelight I, except for the area of effect.",
+   "list_id": "list-348",
+   "level": 8,
+   "source": "Arcane Companion"
+  },
+  "sp-07393": {
+   "description_en": "weapon with raw power. Strikes made with the weapon yield Mana criticals of one less severity to the normal Anns Law criticals. In addition, directed elemental attacks may be parried with the Eldritch Weapon at half effectiveness (2 points of OB giving 1 point of DB). When this spell expires, the weapon is automatically consumed (destroyed beyond use).",
+   "list_id": "list-348",
+   "level": 9,
+   "source": "Arcane Companion"
+  },
+  "sp-07394": {
+   "description_en": "Caster creates an explosion of pure magical power. Those caught within the area are subjected to an attack on the Mana Ball Attack Table. Mana Balls add +20 to all Spell Risk Rolls.",
+   "list_id": "list-348",
+   "level": 10,
+   "source": "Arcane Companion"
+  },
+  "sp-07395": {
+   "description_en": "As Mana Bolt I, except for the range.",
+   "list_id": "list-348",
+   "level": 12,
+   "source": "Arcane Companion"
+  },
+  "sp-07396": {
+   "description_en": "and the target. The target and the caster may freely exchange PPs. Note that neither the caster nor the target may exceed his normal maximum of PPs. When spell expires, the PPs remain exchanged.",
+   "list_id": "list-348",
+   "level": 13,
+   "source": "Arcane Companion"
+  },
+  "sp-07397": {
+   "description_en": "As Mana Ball I, above, except for the area of effect.",
+   "list_id": "list-348",
+   "level": 15,
+   "source": "Arcane Companion"
+  },
+  "sp-07398": {
+   "description_en": "As Eldritch Weapon, except weapon delivers Mana critical equal in severity to normal criticals.",
+   "list_id": "list-348",
+   "level": 17,
+   "source": "Arcane Companion"
+  },
+  "sp-07399": {
+   "description_en": "As Mage light I, except for the area of effect.",
+   "list_id": "list-348",
+   "level": 18,
+   "source": "Arcane Companion"
+  },
+  "sp-07400": {
+   "description_en": "As Mana Bolt I, except for the range.",
+   "list_id": "list-348",
+   "level": 20,
+   "source": "Arcane Companion"
+  },
+  "sp-07401": {
+   "description_en": "The target of this spell regains half of his currently spent PPs. If the target has not spent any PPs, this spell has no effect on him. For example, if the target normally have SO PPs and has spent 20, he would be returned to 40 PPs (regaining 10). If that same caster had spent all of his PPs, he would be returned to 25 PPs (regaining 25).",
+   "list_id": "list-348",
+   "level": 25,
+   "source": "Arcane Companion"
+  },
+  "sp-07402": {
+   "description_en": "Caster summons a sentient portion of his power source. The animate mana remains so long as the caster concentrates. The animated mana fights as a Weak Fire Elemental (except dealing Mana crits instead of Heat crits). The mana creature is immune to non-magical weapons. Elemental spells heal the number of hits that they would have inflicted to the construct, with criticals being ignored. If the caster ceases to concentrate, the mana creature vanishes in a bright flash. SO. Mana Pool - All spell users within the area of effect may share power points freely amongst themselves. PPs are totaled each round and all spell users may access all PPs in the pool. No spell user suffers penalties for PP expenditure until the pool is sufficiently drained (at which time, all spell users suffer the same penalties). No caster can regain PPs while they are in the area of effect of this spell (and the pool does not regain PPs). If a caster leaves the area, he loses all his normal PPs (as they are in the pool), though they may be regained normally.",
+   "list_id": "list-348",
+   "level": 30,
+   "source": "Arcane Companion"
+  },
+  "sp-07477": {
+   "description_en": "Detects any active ward; caster can concentrate on a different 5'R each round.",
+   "list_id": "list-353",
+   "level": 1,
+   "source": "Arcane Companion"
+  },
+  "sp-07478": {
+   "description_en": "Caster gains understanding the nature of the target ward (including all things prohibited/protected by the ward).",
+   "list_id": "list-353",
+   "level": 2,
+   "source": "Arcane Companion"
+  },
+  "sp-07479": {
+   "description_en": "The area of the spell is protected from intrusion by any normal creatures. Any creature above level 0 must make an RR (versus the level fo the caster) or they will not be able to enter the protected area.",
+   "list_id": "list-353",
+   "level": 3,
+   "source": "Arcane Companion"
+  },
+  "sp-07480": {
+   "description_en": "The caster prevents the casting of a single spell from outside of the area to inside of the area. The caster declares the specific spell to be prevented when this spell is cast (all versions of the spell are prevented; e.g., if Fire Bolt were declared, Fire Bolt I, Fire Bolt V, and Cornering Fire Bolt would be prevented). The intruding spell gets an RR versus the level of the caster (modified by -30). If the intruding spell passes its RR, it may enter the area unhindered.",
+   "list_id": "list-353",
+   "level": 4,
+   "source": "Arcane Companion"
+  },
+  "sp-07481": {
+   "description_en": "The caster is alerted if any sentient being enters the area. The alarm may be silent (empathic) or audible. The caster must decide (at time of casting) the volume of the alarm. If set to be audible, the alarm will sound for l 0 minutes before stopping.",
+   "list_id": "list-353",
+   "level": 5,
+   "source": "Arcane Companion"
+  },
+  "sp-07482": {
+   "description_en": "As Spell Ward I, except that caster may prevent up to two different spells.",
+   "list_id": "list-353",
+   "level": 6,
+   "source": "Arcane Companion"
+  },
+  "sp-07483": {
+   "description_en": "As Spell Ward I, except that this spell prevents all magical scrying. If anything in the area might show up on any spell with a type of I, it will not show up. Spells that allow sensing within the area will be muffled (providing slightly obscured information)",
+   "list_id": "list-353",
+   "level": 7,
+   "source": "Arcane Companion"
+  },
+  "sp-07484": {
+   "description_en": "As Spell Ward I, except that caster may prevent up to three different spells (and all versions of those spells).",
+   "list_id": "list-353",
+   "level": 8,
+   "source": "Arcane Companion"
+  },
+  "sp-07485": {
+   "description_en": "As Alarm Ward I, except for the area of effect.",
+   "list_id": "list-353",
+   "level": 9,
+   "source": "Arcane Companion"
+  },
+  "sp-07487": {
+   "description_en": "As Spell Ward I, except that caster may prevent up to four different spells (and all versions of those spells).",
+   "list_id": "list-353",
+   "level": 11,
+   "source": "Arcane Companion"
+  },
+  "sp-07488": {
+   "description_en": "As Spell Ward/, except that caster may prevent up to five different spells (and all versions of those spells).",
+   "list_id": "list-353",
+   "level": 13,
+   "source": "Arcane Companion"
+  },
+  "sp-07489": {
+   "description_en": "of effect.",
+   "list_id": "list-353",
+   "level": 15,
+   "source": "Arcane Companion"
+  },
+  "sp-07490": {
+   "description_en": "prevent up to seven different spells (and all versions of those spells).",
+   "list_id": "list-353",
+   "level": 16,
+   "source": "Arcane Companion"
+  },
+  "sp-07491": {
+   "description_en": "As A farm Ward I, except for the area of effect.",
+   "list_id": "list-353",
+   "level": 18,
+   "source": "Arcane Companion"
+  },
+  "sp-07492": {
+   "description_en": "As Repulsion Ward, except that caster may also specify a single sentient race that will receive an additional penalty of 20 to their RR (when they attempt to enter the protected area).",
+   "list_id": "list-353",
+   "level": 20,
+   "source": "Arcane Companion"
+  },
+  "sp-07493": {
+   "description_en": "As Spell Ward/, except that caster may prevent up to ten different spells (and all versions of those spells).",
+   "list_id": "list-353",
+   "level": 25,
+   "source": "Arcane Companion"
+  },
+  "sp-07494": {
+   "description_en": "magical transportation (leaping, leaving, long door, teleportation, returning, etc.) are prevented. Casters/beings attempting to enter or leave must make an RR (with a special -30 modifier) versus the level of the caster to actually enter or leave via magical methods.",
+   "list_id": "list-353",
+   "level": 30,
+   "source": "Arcane Companion"
+  },
+  "sp-07496": {
+   "description_en": "The caster senses the presence of any Holy or Unholy objects in the area. Caster may concentrate on a different IO'R area each round.",
+   "list_id": "list-354",
+   "level": 1,
+   "source": "Arcane Companion"
+  },
+  "sp-07497": {
+   "description_en": "to see through plants as if they were nonexistent.",
+   "list_id": "list-354",
+   "level": 3,
+   "source": "Arcane Companion"
+  },
+  "sp-07498": {
+   "description_en": "The caster creates a field of energy around the target. All spells cast will require a Spell Casting Static Maneuver. If the spell is a Channeling spell, there is an additional -10 penalty to the maneuver.",
+   "list_id": "list-354",
+   "level": 4,
+   "source": "Arcane Companion"
+  },
+  "sp-07499": {
+   "description_en": "The target may not send or receive spells or power points for the duration.",
+   "list_id": "list-354",
+   "level": 5,
+   "source": "Arcane Companion"
+  },
+  "sp-07500": {
+   "description_en": "he casts a spell. If the target fails his RR by more than 20, he is unaware that this spell has been cast upon him. If the target is casting a Channeling spell, he takes a 'C' Void critical.",
+   "list_id": "list-354",
+   "level": 7,
+   "source": "Arcane Companion"
+  },
+  "sp-07501": {
+   "description_en": "his lord, church, religion, god, etc .. No therapy will help this. The target will take irrational actions to regain favor.",
+   "list_id": "list-354",
+   "level": 8,
+   "source": "Arcane Companion"
+  },
+  "sp-07502": {
+   "description_en": "are eradicated.",
+   "list_id": "list-354",
+   "level": 9,
+   "source": "Arcane Companion"
+  },
+  "sp-07503": {
+   "description_en": "All plant material within the area turns into a grey mush and falls to the ground. The grey mush is still fertile, however.",
+   "list_id": "list-354",
+   "level": 10,
+   "source": "Arcane Companion"
+  },
+  "sp-07504": {
+   "description_en": "Target is without power points. The duration of this spell is 1 hour for targets who do not have Channeling as their realm; one day for Channeling targets.",
+   "list_id": "list-354",
+   "level": 11,
+   "source": "Arcane Companion"
+  },
+  "sp-07505": {
+   "description_en": "Target is cured of one diagnosed or known disease (the caster must know the specific disease or this spell has no effect).",
+   "list_id": "list-354",
+   "level": 12,
+   "source": "Arcane Companion"
+  },
+  "sp-07506": {
+   "description_en": "As Defoliation I, except for the area of effect.",
+   "list_id": "list-354",
+   "level": 14,
+   "source": "Arcane Companion"
+  },
+  "sp-07507": {
+   "description_en": "One known curse is removed from target (the caster must know the specific curse or this spell has no effect).",
+   "list_id": "list-354",
+   "level": 15,
+   "source": "Arcane Companion"
+  },
+  "sp-07508": {
+   "description_en": "must make a RR or they will not enter area. Animals within the area when the spell is cast must make an RR each round or leave the area. Animal that are magically controlled receive a special +10 modifier to their RRs.",
+   "list_id": "list-354",
+   "level": 16,
+   "source": "Arcane Companion"
+  },
+  "sp-07509": {
+   "description_en": "As Soul Poison I, except for the duration.",
+   "list_id": "list-354",
+   "level": 17,
+   "source": "Arcane Companion"
+  },
+  "sp-07510": {
+   "description_en": "As Defoliation I, except for the area of effect.",
+   "list_id": "list-354",
+   "level": 18,
+   "source": "Arcane Companion"
+  },
+  "sp-07511": {
+   "description_en": "of the caster). A successful Read Tracks maneuver (with a -70 modfier) will reveal that the trail is false.",
+   "list_id": "list-354",
+   "level": 20,
+   "source": "Arcane Companion"
+  },
+  "sp-07512": {
+   "description_en": "Target is unable to magical means of transportaion for the duration.",
+   "list_id": "list-354",
+   "level": 25,
+   "source": "Arcane Companion"
+  },
+  "sp-07513": {
+   "description_en": "will cease any combat immediately. A pilgrimage is sure to follow.",
+   "list_id": "list-354",
+   "level": 30,
+   "source": "Arcane Companion"
+  },
+  "sp-07514": {
+   "description_en": "per round.",
+   "list_id": "list-354",
+   "level": 50,
+   "source": "Arcane Companion"
+  },
+  "sp-07532": {
+   "description_en": "When the target of this spell is the target of a spell, the \"incoming\" spell must first make an RR. For RR purposes, the incoming spell uses its caster's level. If the incoming spell fails the RR, it has no effect on the target.",
+   "list_id": "list-356",
+   "level": 1,
+   "source": "Arcane Companion"
+  },
+  "sp-07533": {
+   "description_en": "If the target attempts to cast a spell while this spell is active, that spell (and only that first spell) automatically takes one extra round before the effects are resolved. This has no effect on the preparation/casting time-the effect is simply delayed one round.",
+   "list_id": "list-356",
+   "level": 2,
+   "source": "Arcane Companion"
+  },
+  "sp-07534": {
+   "description_en": "make an RR (use the level of that spell's caster as its level). If the RR fails, the spell is dispelled.",
+   "list_id": "list-356",
+   "level": 3,
+   "source": "Arcane Companion"
+  },
+  "sp-07535": {
+   "description_en": "is active, that spell (and only that first spell) automatically makes a Spell Casting Static Maneuver with a -15 penalty.",
+   "list_id": "list-356",
+   "level": 4,
+   "source": "Arcane Companion"
+  },
+  "sp-07536": {
+   "description_en": "The target's must make a Spell Casting Static Maneuever (ifhe is not already forced to make one) and rounds of preparation currently accrued are lost. This spell automatically stops a caster from concentrating on a spell that has a duration requiring concentration.",
+   "list_id": "list-356",
+   "level": 5,
+   "source": "Arcane Companion"
+  },
+  "sp-07537": {
+   "description_en": "As Delay Spell I, except the effects are delayed for two rounds.",
+   "list_id": "list-356",
+   "level": 6,
+   "source": "Arcane Companion"
+  },
+  "sp-07538": {
+   "description_en": "As Fumble/, except that the penalty is -30.",
+   "list_id": "list-356",
+   "level": 7,
+   "source": "Arcane Companion"
+  },
+  "sp-07539": {
+   "description_en": "effect (to normal senses or magical detections). Indirect effects will still be noticed. For example, if cast before a Fireball, the explosion is silent, invisible and will not be felt; but suddenly the vegetation will be burning and lots of damage will appear on the area.",
+   "list_id": "list-356",
+   "level": 8,
+   "source": "Arcane Companion"
+  },
+  "sp-07540": {
+   "description_en": "The target forgets the spell that he most recently cast. He may not cast that spell again for the duration of this spell. All lower- and higher-level versions of the spell are also forgotten (e.g., Sleep V, Sleep X, etc.).",
+   "list_id": "list-356",
+   "level": 9,
+   "source": "Arcane Companion"
+  },
+  "sp-07541": {
+   "description_en": "For the duration of this spell, the target must make Spell Casting Static Maneuevers for all spells he wants to cast; each of these maneuvers suffers a -10 penalty.",
+   "list_id": "list-356",
+   "level": 10,
+   "source": "Arcane Companion"
+  },
+  "sp-07542": {
+   "description_en": "For the duration of this spell, any information gathering spells cast on anything in the area will only discern what the caster specifies. The caster must specify exactly what will be learned (if left unspecific, the information spell will discern the truth). For example, if the caster specifies that his presence in the area will be masked, all information spells will reveal everything as normal, except the caster of this spell will not be revealed.",
+   "list_id": "list-356",
+   "level": 11,
+   "source": "Arcane Companion"
+  },
+  "sp-07543": {
+   "description_en": "As Delay Spell I, excpet the effects are delayed for three rounds.",
+   "list_id": "list-356",
+   "level": 13,
+   "source": "Arcane Companion"
+  },
+  "sp-07544": {
+   "description_en": "As Failure I, except that the penalty is -30.",
+   "list_id": "list-356",
+   "level": 14,
+   "source": "Arcane Companion"
+  },
+  "sp-07546": {
+   "description_en": "The caster may change the target spell into any spell of the same Type of lower level. The caster of the targetted spell is fully aware of the change and has full control over the spell (for durations, targets, etc.).",
+   "list_id": "list-356",
+   "level": 16,
+   "source": "Arcane Companion"
+  },
+  "sp-07547": {
+   "description_en": "As Failure I, except that the penalty is -40.",
+   "list_id": "list-356",
+   "level": 18,
+   "source": "Arcane Companion"
+  },
+  "sp-07548": {
+   "description_en": "Target magic item loses all magical abilities. Artifacts receive a special +30 bonus to their RR. All items use creator's level for item level in RR and add their inherent bonuses to the roll.",
+   "list_id": "list-356",
+   "level": 19,
+   "source": "Arcane Companion"
+  },
+  "sp-07549": {
+   "description_en": "As Dispel Magic I, except for the area of effect.",
+   "list_id": "list-356",
+   "level": 20,
+   "source": "Arcane Companion"
+  },
+  "sp-07550": {
+   "description_en": "not get the special bonus to their RR. Some very powerful items may still receive this bonus (GM's discretion).",
+   "list_id": "list-356",
+   "level": 25,
+   "source": "Arcane Companion"
+  },
+  "sp-07551": {
+   "description_en": "As Failure I, except that the penalty is -50.",
+   "list_id": "list-356",
+   "level": 30,
+   "source": "Arcane Companion"
+  },
+  "sp-07552": {
+   "description_en": "per round .",
+   "list_id": "list-356",
+   "level": 50,
+   "source": "Arcane Companion"
+  },
+  "sp-07569": {
+   "description_en": "Causes the next spell that the target casts (must be within I minute of the completion of this spell) to have it's range increased by 50'.",
+   "list_id": "list-358",
+   "level": 1,
+   "source": "Arcane Companion"
+  },
+  "sp-07570": {
+   "description_en": "Causes the next spell that the target casts (must be within I minute of the completion of this spell) to have it's duration tripled.",
+   "list_id": "list-358",
+   "level": 2,
+   "source": "Arcane Companion"
+  },
+  "sp-07572": {
+   "description_en": "As Extend Range /, except that range is increased by 100'.",
+   "list_id": "list-358",
+   "level": 4,
+   "source": "Arcane Companion"
+  },
+  "sp-07573": {
+   "description_en": "(must be within I minute of the completion of this spell) to have it's radius increased by 5'.",
+   "list_id": "list-358",
+   "level": 5,
+   "source": "Arcane Companion"
+  },
+  "sp-07574": {
+   "description_en": "As Extend Duration Ill, except that duration is quadrupled (x4).",
+   "list_id": "list-358",
+   "level": 6,
+   "source": "Arcane Companion"
+  },
+  "sp-07576": {
+   "description_en": "As Extend Range I, except that range is increased by 300'.",
+   "list_id": "list-358",
+   "level": 9,
+   "source": "Arcane Companion"
+  },
+  "sp-07577": {
+   "description_en": "As Increase Radius I, except Radius is increased by 10'.",
+   "list_id": "list-358",
+   "level": 10,
+   "source": "Arcane Companion"
+  },
+  "sp-07578": {
+   "description_en": "As Extend Duration Ill, except that duration is increase by five times.",
+   "list_id": "list-358",
+   "level": 11,
+   "source": "Arcane Companion"
+  },
+  "sp-07579": {
+   "description_en": "increased by 500'.",
+   "list_id": "list-358",
+   "level": 12,
+   "source": "Arcane Companion"
+  },
+  "sp-07580": {
+   "description_en": "is increased by 15'.",
+   "list_id": "list-358",
+   "level": 13,
+   "source": "Arcane Companion"
+  },
+  "sp-07581": {
+   "description_en": "duration is increased by ten times.",
+   "list_id": "list-358",
+   "level": 14,
+   "source": "Arcane Companion"
+  },
+  "sp-07582": {
+   "description_en": "increased by 1,000' .",
+   "list_id": "list-358",
+   "level": 15,
+   "source": "Arcane Companion"
+  },
+  "sp-07583": {
+   "description_en": "As Extend Range IV, except that this spell is instantaneous.",
+   "list_id": "list-358",
+   "level": 16,
+   "source": "Arcane Companion"
+  },
+  "sp-07584": {
+   "description_en": "is increased by 20'.",
+   "list_id": "list-358",
+   "level": 18,
+   "source": "Arcane Companion"
+  },
+  "sp-07585": {
+   "description_en": "As Increase Radius I, except radius is increased by 25'.",
+   "list_id": "list-358",
+   "level": 20,
+   "source": "Arcane Companion"
+  },
+  "sp-07586": {
+   "description_en": "As Extend Duration Ill, except that duration is increased by 20 times.",
+   "list_id": "list-358",
+   "level": 25,
+   "source": "Arcane Companion"
+  },
+  "sp-07587": {
+   "description_en": "is increased by I 00' per level of the caster.",
+   "list_id": "list-358",
+   "level": 30,
+   "source": "Arcane Companion"
+  },
+  "sp-07588": {
+   "description_en": "As Extend Duration Ill, except that duration is Permanent.",
+   "list_id": "list-358",
+   "level": 50,
+   "source": "Arcane Companion"
+  },
+  "sp-07589": {
+   "description_en": "Everyone with 5' of the caster adds +5 to all their RRs.",
+   "list_id": "list-359",
+   "level": 1,
+   "source": "Arcane Companion"
+  },
+  "sp-07590": {
+   "description_en": "Caster gains + 10 to RRs versus a specific element (chosen at time of casting) and 10 is subtracted from any elemental attack from that element (when the caster is the target of the attack).",
+   "list_id": "list-359",
+   "level": 2,
+   "source": "Arcane Companion"
+  },
+  "sp-07591": {
+   "description_en": "As Protect I, except bonus is + 10.",
+   "list_id": "list-359",
+   "level": 3,
+   "source": "Arcane Companion"
+  },
+  "sp-07593": {
+   "description_en": "+20 and elemental attacks suffer a -20 penalty.",
+   "list_id": "list-359",
+   "level": 6,
+   "source": "Arcane Companion"
+  },
+  "sp-07594": {
+   "description_en": "be chosen.",
+   "list_id": "list-359",
+   "level": 7,
+   "source": "Arcane Companion"
+  },
+  "sp-07595": {
+   "description_en": "As Protect/, except for the area of effect.",
+   "list_id": "list-359",
+   "level": 8,
+   "source": "Arcane Companion"
+  },
+  "sp-07596": {
+   "description_en": "As Element Shield/, except that two elements may be chosen .",
+   "list_id": "list-359",
+   "level": 9,
+   "source": "Arcane Companion"
+  },
+  "sp-07597": {
+   "description_en": "Caster gains protection from a specific realm of magic (chosen at the time of casting). All RRs versus spells of that realm are receive a bonus of +30.",
+   "list_id": "list-359",
+   "level": 10,
+   "source": "Arcane Companion"
+  },
+  "sp-07598": {
+   "description_en": "As Element Shield /, except that all criticals are reduced by one severity (\"D\" becomes \"C\", \"B\" becomes \"A\", \"A\" subtracts 50 from the critical result, etc.) and all concussion damage is halved.",
+   "list_id": "list-359",
+   "level": 12,
+   "source": "Arcane Companion"
+  },
+  "sp-07599": {
+   "description_en": "As Protect//, except for the area of effect.",
+   "list_id": "list-359",
+   "level": 13,
+   "source": "Arcane Companion"
+  },
+  "sp-07601": {
+   "description_en": "As Realm Annor I, except that two realms may be chosen.",
+   "list_id": "list-359",
+   "level": 16,
+   "source": "Arcane Companion"
+  },
+  "sp-07602": {
+   "description_en": "that two elements may be protected against. I 9. Protect Sphere III As Protect l/l, except for the area of effect.",
+   "list_id": "list-359",
+   "level": 17,
+   "source": "Arcane Companion"
+  },
+  "sp-07604": {
+   "description_en": "Shield /, except that caster may shield up tp 1 target for each of his level.",
+   "list_id": "list-359",
+   "level": 20,
+   "source": "Arcane Companion"
+  },
+  "sp-07605": {
+   "description_en": "As Realm Armor I, except that caster may protect up tp I target for each of his level.",
+   "list_id": "list-359",
+   "level": 25,
+   "source": "Arcane Companion"
+  },
+  "sp-07606": {
+   "description_en": "that Bonus is +50.",
+   "list_id": "list-359",
+   "level": 30,
+   "source": "Arcane Companion"
+  },
+  "sp-07607": {
+   "description_en": "As Realm Resistance // and Element Armor // simultaneously.",
+   "list_id": "list-359",
+   "level": 50,
+   "source": "Arcane Companion"
+  },
+  "sp-07735": {
+   "description_en": "Allows the target to leap 50' laterally or 20' horizontally in the round that this spell is cast.",
+   "list_id": "list-366",
+   "level": 1,
+   "source": "Arcane Companion"
+  },
+  "sp-07736": {
+   "description_en": "per level of the caster. The target may also take that distance off of the severity of a greater fall.",
+   "list_id": "list-366",
+   "level": 2,
+   "source": "Arcane Companion"
+  },
+  "sp-07737": {
+   "description_en": "Caster teleports the target to a point up to 100' away. There can be no intervening \"barriers\" in a direct line between the target and the point. A \"barrier\" is defined as anything the target could not physically go through (e.g., a closed door is a barrier, a pit is not).",
+   "list_id": "list-366",
+   "level": 3,
+   "source": "Arcane Companion"
+  },
+  "sp-07739": {
+   "description_en": "The caster stores a location for use with other spells (e.g., Teleport and Returning spells). When used with a Teleport spell, the location is treated as \"Studied carefully.\" The caster can have only one location stored at a time.",
+   "list_id": "list-366",
+   "level": 5,
+   "source": "Arcane Companion"
+  },
+  "sp-07740": {
+   "description_en": "Target can walk on water as if he were on level ground; may not be used on rough water.",
+   "list_id": "list-366",
+   "level": 6,
+   "source": "Arcane Companion"
+  },
+  "sp-07742": {
+   "description_en": "As Leaving I, except target can pass through barriers by specifying exact distances. If the arrival point coincides with solid or liquid material, the target does not move; instead, he is stunned dlO rounds (the caster still expends the PPs for this spell).",
+   "list_id": "list-366",
+   "level": 8,
+   "source": "Arcane Companion"
+  },
+  "sp-07743": {
+   "description_en": "As Long Door I, except movement range is I 0 miles per level. This can be very risky depending upon the caster's famliarity with the destination's locale. The following chances for failure exist: Never seen the place (but has had described) = 50%; Been briefly (one hour or less) = 25%; Studied (been in for 24 hours)= 10%; Studied carefully (7 days) = 1%;Livedin(foratleastayear) =0.01 %. In the case of failure, first determine the direction of the error (randomly). The amount of the error is then determined by making ad 100 (openended) to determine the distance in feet.",
+   "list_id": "list-366",
+   "level": 9,
+   "source": "Arcane Companion"
+  },
+  "sp-07744": {
+   "description_en": "Target's feet (and footwear, while he is wearing them) grip to any surface (walls, ceilings, branches, etc.). The target gains a +50 on any maneuvers involving balance while using this spell. The target may move at a Walking pace or slower.",
+   "list_id": "list-366",
+   "level": 10,
+   "source": "Arcane Companion"
+  },
+  "sp-07745": {
+   "description_en": "As Fly I, except rate is 300' per round.",
+   "list_id": "list-366",
+   "level": 11,
+   "source": "Arcane Companion"
+  },
+  "sp-07746": {
+   "description_en": "Target may merge into any solid, inanimate material. While merged, the target cannot move or perceive. When the target emerges from the material, he can emerge from any side or face of the material. The target cannot move \"through\" material greater in width than his own body size plus 2 feet. The caster can exit at any time up to 1 hournevel; all other targets must emerge after a specified time (the caster specifies the time when the spell is cast, must be less than 1 hour per level).",
+   "list_id": "list-366",
+   "level": 13,
+   "source": "Arcane Companion"
+  },
+  "sp-07747": {
+   "description_en": "As Gripping I, except target may move up to a Run (x2) pace.",
+   "list_id": "list-366",
+   "level": 14,
+   "source": "Arcane Companion"
+  },
+  "sp-07749": {
+   "description_en": "As Leaving I, except range of the teleport is up to one mile.",
+   "list_id": "list-366",
+   "level": 16,
+   "source": "Arcane Companion"
+  },
+  "sp-07750": {
+   "description_en": "As Teleport I, except that the caster may teleport up to five targets.",
+   "list_id": "list-366",
+   "level": 17,
+   "source": "Arcane Companion"
+  },
+  "sp-07751": {
+   "description_en": "Caster is immediately returned to his stored location (see Store Location) if that stored location is less than 10 miles per level of the caster away.",
+   "list_id": "list-366",
+   "level": 18,
+   "source": "Arcane Companion"
+  },
+  "sp-07752": {
+   "description_en": "As Gripping I, except the target may move at up to a Sprint pace (x3).",
+   "list_id": "list-366",
+   "level": 19,
+   "source": "Arcane Companion"
+  },
+  "sp-07753": {
+   "description_en": "As Fly I, except affects a number of targets equaling the caster's level.",
+   "list_id": "list-366",
+   "level": 20,
+   "source": "Arcane Companion"
+  },
+  "sp-07754": {
+   "description_en": "As Teleport I, except that caster may teleport a number of targets equaling his level.",
+   "list_id": "list-366",
+   "level": 25,
+   "source": "Arcane Companion"
+  },
+  "sp-07755": {
+   "description_en": "at up to a Fast Sprint pace (x4).",
+   "list_id": "list-366",
+   "level": 30,
+   "source": "Arcane Companion"
+  },
+  "sp-07756": {
+   "description_en": "As Teleport I, except the range ot the teleport is unlimited.",
+   "list_id": "list-366",
+   "level": 50,
+   "source": "Arcane Companion"
+  },
+  "sp-07846": {
+   "description_en": "Target must answer a single concept question truthfully (presuming the target can understand the question).",
+   "list_id": "list-372",
+   "level": 1,
+   "source": "Arcane Companion"
+  },
+  "sp-07847": {
+   "description_en": "Caster knows whether the target is lying or not.",
+   "list_id": "list-372",
+   "level": 2,
+   "source": "Arcane Companion"
+  },
+  "sp-07848": {
+   "description_en": "Target humanoid believes that the caster is a good friend.",
+   "list_id": "list-372",
+   "level": 3,
+   "source": "Arcane Companion"
+  },
+  "sp-07849": {
+   "description_en": "As Question, except that target must respond to up to 5 single concept questions.",
+   "list_id": "list-372",
+   "level": 4,
+   "source": "Arcane Companion"
+  },
+  "sp-07850": {
+   "description_en": "Target will follow a single suggestion so long as it is not completely alien to him (no jumping off the bridge suggestions, no throwing yourself in front of runaway manure cart suggestions, etc).",
+   "list_id": "list-372",
+   "level": 5,
+   "source": "Arcane Companion"
+  },
+  "sp-07851": {
+   "description_en": "The next spell the target attempts to cast requires a Spell Casting Static Maneuver (with a special -JO modifier).",
+   "list_id": "list-372",
+   "level": 6,
+   "source": "Arcane Companion"
+  },
+  "sp-07852": {
+   "description_en": "up to 10 single concept questions.",
+   "list_id": "list-372",
+   "level": 7,
+   "source": "Arcane Companion"
+  },
+  "sp-07853": {
+   "description_en": "As Suggestion, except that two targets will receive the same suggestion. JO. Telepathy - Caster can read the surface thoughts of one target.",
+   "list_id": "list-372",
+   "level": 8,
+   "source": "Arcane Companion"
+  },
+  "sp-07855": {
+   "description_en": "Target humanoid must obey caster. Commands must not be completely alien to the target.",
+   "list_id": "list-372",
+   "level": 11,
+   "source": "Arcane Companion"
+  },
+  "sp-07856": {
+   "description_en": "As Question, except that target must respond to up to 20 single concept questions.",
+   "list_id": "list-372",
+   "level": 12,
+   "source": "Arcane Companion"
+  },
+  "sp-07857": {
+   "description_en": "three spells the target attempts to cast.",
+   "list_id": "list-372",
+   "level": 13,
+   "source": "Arcane Companion"
+  },
+  "sp-07858": {
+   "description_en": "As Telepathy, except for the range.",
+   "list_id": "list-372",
+   "level": 14,
+   "source": "Arcane Companion"
+  },
+  "sp-07859": {
+   "description_en": "The target forgets the spell that he most recently cast. He may not cast that spell again for the duration of this spell. All lower- and higher-level versions of the spell are also forgotten (e.g., Sleep V, Sleep X, etc.).",
+   "list_id": "list-372",
+   "level": 15,
+   "source": "Arcane Companion"
+  },
+  "sp-07860": {
+   "description_en": "Caster may read target's conscious memories, at a rate of I scene per round.",
+   "list_id": "list-372",
+   "level": 16,
+   "source": "Arcane Companion"
+  },
+  "sp-07862": {
+   "description_en": "Caster may read target's deep subconscious memories, at a rate of I scene per round.",
+   "list_id": "list-372",
+   "level": 20,
+   "source": "Arcane Companion"
+  },
+  "sp-07863": {
+   "description_en": "As Mind Scan, except that the caster may scan a different target each round.",
+   "list_id": "list-372",
+   "level": 25,
+   "source": "Arcane Companion"
+  },
+  "sp-07864": {
+   "description_en": "single memory from target's mind each round.",
+   "list_id": "list-372",
+   "level": 30,
+   "source": "Arcane Companion"
+  },
+  "sp-07865": {
+   "description_en": "except that the caster may scan a different target each round. In addition, the number of scenes scanned per round is equal to the caster's level.",
+   "list_id": "list-372",
+   "level": 50,
+   "source": "Arcane Companion"
+  },
+  "sp-07882": {
+   "description_en": "Caster gains +5 to all RRs versus spells of all realms.",
+   "list_id": "list-374",
+   "level": 1,
+   "source": "Arcane Companion"
+  },
+  "sp-07883": {
+   "description_en": "Caster is totally protected against all natural heat (up to 200\u00b0F and modifies spells involving heat by 10.",
+   "list_id": "list-374",
+   "level": 2,
+   "source": "Arcane Companion"
+  },
+  "sp-07884": {
+   "description_en": "cold to -20\u00b0F and modifies spells involving cold by 10.",
+   "list_id": "list-374",
+   "level": 3,
+   "source": "Arcane Companion"
+  },
+  "sp-07885": {
+   "description_en": "Caster gains + 10 on RRs and DB versus all frontal spell attacks. The caster must be aware of the attack(s) to get the bonus.",
+   "list_id": "list-374",
+   "level": 5,
+   "source": "Arcane Companion"
+  },
+  "sp-07887": {
+   "description_en": "He may gain a bonus of+ 1 DB for every 5 points of OB put into the parry. In addition, the caster can parry any spell that he would normally get an RR against (so long as the origin of the spell is more than 5' away from the caster). In this case, he may gain an RR bonus of + 1 for every 5 points of OB put into the parry.",
+   "list_id": "list-374",
+   "level": 8,
+   "source": "Arcane Companion"
+  },
+  "sp-07888": {
+   "description_en": "As SpellShield /, except bonus is +20.",
+   "list_id": "list-374",
+   "level": 10,
+   "source": "Arcane Companion"
+  },
+  "sp-07889": {
+   "description_en": "As Protect /, except bonus is + 15.",
+   "list_id": "list-374",
+   "level": 11,
+   "source": "Arcane Companion"
+  },
+  "sp-07890": {
+   "description_en": "Caster gains +20 to RRs and DB versus electricity-based attacks.",
+   "list_id": "list-374",
+   "level": 13,
+   "source": "Arcane Companion"
+  },
+  "sp-07891": {
+   "description_en": "As Light Shield, except applies to heat/firebased attacks.",
+   "list_id": "list-374",
+   "level": 14,
+   "source": "Arcane Companion"
+  },
+  "sp-07892": {
+   "description_en": "attacks.",
+   "list_id": "list-374",
+   "level": 15,
+   "source": "Arcane Companion"
+  },
+  "sp-07893": {
+   "description_en": "gained for every 3 points of OB.",
+   "list_id": "list-374",
+   "level": 16,
+   "source": "Arcane Companion"
+  },
+  "sp-07894": {
+   "description_en": "back upon its caster. If necessary, the spell is treated as having a +O attack modification.",
+   "list_id": "list-374",
+   "level": 18,
+   "source": "Arcane Companion"
+  },
+  "sp-07895": {
+   "description_en": "As Spell Parry I, except that the bonus is gained for every point of OB.",
+   "list_id": "list-374",
+   "level": 20,
+   "source": "Arcane Companion"
+  },
+  "sp-07896": {
+   "description_en": "or Cold Shield (chosen at the time of casting). In addition, any damage incurred from the selected element is halved and all criticals taken from the element are reduced by one in severity (\"D\" goes to a \"C\", with an \"A\" critical modified by -50).",
+   "list_id": "list-374",
+   "level": 25,
+   "source": "Arcane Companion"
+  },
+  "sp-07897": {
+   "description_en": "As Reverse Spells, except for the duration. Any spells that target the caster are reflected back upon their origin.",
+   "list_id": "list-374",
+   "level": 30,
+   "source": "Arcane Companion"
+  },
+  "sp-07898": {
+   "description_en": "addition, the caster gains a +20 bonus to all RRs versus those elements.",
+   "list_id": "list-374",
+   "level": 50,
+   "source": "Arcane Companion"
+  },
+  "sp-07913": {
+   "description_en": "Caster determines the presence of any extradimensional entities within the area. A different area may be concentrated on each round. I 2. Origin of Entity - Caster learns the place of origin of the target entity and gets a vision of that place.",
+   "list_id": "list-376",
+   "level": 1,
+   "source": "Arcane Companion"
+  },
+  "sp-07915": {
+   "description_en": "I or Type II Entity (the chance of non-control is [the Entity's Type x 2%]). The Entity leaves when the caster stops concentrating. The Entity will not speak with the caster.",
+   "list_id": "list-376",
+   "level": 4,
+   "source": "Arcane Companion"
+  },
+  "sp-07916": {
+   "description_en": "Caster summons a lesser Entity. Roll for random Type (01-55 Type I Entity; 56-90Type II Entity; 91-lOOType III Entity). The Entity forms over two rounds. Ifthe Entity is not mastered within 2 rounds, the caster suffers the effects as outline in Section 7 .1.31 of Spell law.",
+   "list_id": "list-376",
+   "level": 5,
+   "source": "Arcane Companion"
+  },
+  "sp-07917": {
+   "description_en": "Entities (no greater than Type II). Any Entity summoned from this list can be made to appear within or outside the Circle. Entities within the Circle may not leave the Circle while the caster is concentrating. Entities outside the Circle may not enter it while the caster is concentrating. Treat the edges of the Circle as a very specific Wall ofForce (creating an inpenatrable barrier between the caster and the Entity). The caster can cross the barrier freely (though why he would want to is not clear). The design of the Circle is very important and dictates the kind (race) of Entity is affected. Circles must be especially made for each race of Entity (demons, fire elementals, etc.) and will not affect any other kind of Entity. Only one Circle may be placed on each 40' x 40' area. The area must be flat and horizontal to the ground. Circles take some time to create (note that creating the Circle does not enchant it; this spell enchants an a Circle), depending upon the method of creation.",
+   "list_id": "list-376",
+   "level": 6,
+   "source": "Arcane Companion"
+  },
+  "sp-07918": {
+   "description_en": "Caster may control any Type I Entity, regardless of its present state of control (mastered/controlled by another spell user, free, berserk, etc). The Entity will revert to its original state of control when the caster stops concentrating. If the Entity was being 'controlled' by another spellcaster and that caster is no longer concentrating, the original controller has three rounds to re-control the Entity or it will berserk. If the Entity was 'controlled' or 'mastered' by another spell user, the original controller may make an RR to prevent the seizure of control.",
+   "list_id": "list-376",
+   "level": 7,
+   "source": "Arcane Companion"
+  },
+  "sp-07919": {
+   "description_en": "As Control Entity II, except that caster need not concentrate to control Entity. The chance of nonmastery is 5 times the Entity's type. The Entity will remain and obey the caster untilthe caster is killed or the Entity is outside the range limit or the caster releases him. A maximum of two Entities may be master at one time by one caster.",
+   "list_id": "list-376",
+   "level": 8,
+   "source": "Arcane Companion"
+  },
+  "sp-07920": {
+   "description_en": "As Gate I, except that more powerful Entities may be summoned: 01-10 Type I; 11-20 Type II; 21-50 Type III; 51-90 Type IV; 91-100 Type V. JO. Seize Control II - As Seize Control I, except that the caster may seize control of a Type II Entity.",
+   "list_id": "list-376",
+   "level": 9,
+   "source": "Arcane Companion"
+  },
+  "sp-07922": {
+   "description_en": "As Seize Control/ and Master Entity II, except that only a mastered Type I Entity may be seized.",
+   "list_id": "list-376",
+   "level": 11,
+   "source": "Arcane Companion"
+  },
+  "sp-07923": {
+   "description_en": "affected.",
+   "list_id": "list-376",
+   "level": 12,
+   "source": "Arcane Companion"
+  },
+  "sp-07924": {
+   "description_en": "As Control Entity II, except that up to a Type IV Entity may be controlled.",
+   "list_id": "list-376",
+   "level": 13,
+   "source": "Arcane Companion"
+  },
+  "sp-07925": {
+   "description_en": "may seize control of a Type III Entity.",
+   "list_id": "list-376",
+   "level": 14,
+   "source": "Arcane Companion"
+  },
+  "sp-07926": {
+   "description_en": "Type IV Entity may be mastered.",
+   "list_id": "list-376",
+   "level": 15,
+   "source": "Arcane Companion"
+  },
+  "sp-07927": {
+   "description_en": "are affected.",
+   "list_id": "list-376",
+   "level": 16,
+   "source": "Arcane Companion"
+  },
+  "sp-07928": {
+   "description_en": "As Seize Mastery I, except that up to Type III mastered Entity may be seized.",
+   "list_id": "list-376",
+   "level": 17,
+   "source": "Arcane Companion"
+  },
+  "sp-07929": {
+   "description_en": "As Control Entity II, except that up to a Type V Entity may be controlled.",
+   "list_id": "list-376",
+   "level": 18,
+   "source": "Arcane Companion"
+  },
+  "sp-07930": {
+   "description_en": "As Master Entity II, except that up to a Type V Entity may be mastered.",
+   "list_id": "list-376",
+   "level": 19,
+   "source": "Arcane Companion"
+  },
+  "sp-07931": {
+   "description_en": "As Seize Control/, except that the caster may seize control of up to a Type V Entity.",
+   "list_id": "list-376",
+   "level": 20,
+   "source": "Arcane Companion"
+  },
+  "sp-07932": {
+   "description_en": "As Seize Mastery/, except that up to a Type V mastered Entity may be seized.",
+   "list_id": "list-376",
+   "level": 25,
+   "source": "Arcane Companion"
+  },
+  "sp-07933": {
+   "description_en": "As Gate I, except that very powerful entities may be summoned: 01-03 Type I; 04-10 Type II; 11-20 Type III; 21-30 Type IV; 31-65 Type V; 66-90 Type IV; 91-100 Something bigger (a Elemental Lord or Demon Beyond the Pale, etc.; GM's discretion). Note that no method has yet been found to master Entities of Types greater than VI.",
+   "list_id": "list-376",
+   "level": 30,
+   "source": "Arcane Companion"
+  },
+  "sp-07934": {
+   "description_en": "As Master Entity II, except that up to a Type VI Entity may be mastered.",
+   "list_id": "list-376",
+   "level": 50,
+   "source": "Arcane Companion"
   }
  }
 }
