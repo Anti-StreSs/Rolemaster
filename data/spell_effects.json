@@ -57288,6 +57288,534 @@
    "description_fr": "Cr\u00e9e une barri\u00e8re transparente absolument infranchissable par quiconque ou quoi que ce soit (\u00e0 la discr\u00e9tion du MJ).",
    "source": "RMC3",
    "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10436": {
+   "description_en": "Adds 10 to the Presence stat (not the bonus) and 20 to the Appearance of the caster (to a maximum of 100). The stat increase will not affect the caster's PPs.",
+   "description_fr": "Ajoute 10 \u00e0 la caract\u00e9ristique de Pr\u00e9sence (pas au bonus) et 20 \u00e0 l'Apparence du lanceur (jusqu'\u00e0 un maximum de 100). L'augmentation de caract\u00e9ristique n'affecte pas les PP du lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10437": {
+   "description_en": "One humanoid target of the opposite sex believes the caster is a good friend.",
+   "description_fr": "Une cible humano\u00efde du sexe oppos\u00e9 croit que le lanceur est un bon ami.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10438": {
+   "description_en": "Causes a bright aura about the caster, making him appear more powerful and subtracting 10 from all attacks made against him.",
+   "description_fr": "Provoque une aura \u00e9clatante autour du lanceur, le faisant para\u00eetre plus puissant et soustrayant 10 \u00e0 toutes les attaques dirig\u00e9es contre lui.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10439": {
+   "description_en": "As Charm Opposite Sex I, but 1 sentient plant is affected.",
+   "description_fr": "Comme Charm Opposite Sex I, mais 1 plante dou\u00e9e de conscience est affect\u00e9e.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10440": {
+   "description_en": "Caster emotionally, sensually, and/or sexually manipulates one humanoid target (emotional attachment may result).",
+   "description_fr": "Le lanceur manipule \u00e9motionnellement, sensuellement et/ou sexuellement une cible humano\u00efde (un attachement \u00e9motionnel peut en r\u00e9sulter).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10443": {
+   "description_en": "As Charm Opposite Sex I except 1 animal is affected.",
+   "description_fr": "Comme Charm Opposite Sex I, sauf qu'1 animal est affect\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10444": {
+   "description_en": "As above, but affects a humanoid of the same sex.",
+   "description_fr": "Comme ci-dessus, mais affecte un humano\u00efde du m\u00eame sexe.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10445": {
+   "description_en": "As Charm Opposite Sex I except affects up to 5 targets.",
+   "description_fr": "Comme Charm Opposite Sex I, sauf que le sort affecte jusqu'\u00e0 5 cibles.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10446": {
+   "description_en": "Adds 10 to the Presence stat (not the bonus) and 20 to the Appearance of the caster (to a maximum of 100). The stat increase will not affect the caster's PPs.",
+   "description_fr": "Ajoute 10 \u00e0 la caract\u00e9ristique de Pr\u00e9sence (pas au bonus) et 20 \u00e0 l'Apparence du lanceur (jusqu'\u00e0 un maximum de 100). L'augmentation de caract\u00e9ristique n'affecte pas les PP du lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10447": {
+   "description_en": "As Charm Opposite Sex I except affects any sentient being.",
+   "description_fr": "Comme Charm Opposite Sex I, sauf que le sort affecte tout \u00eatre dou\u00e9 de conscience.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10448": {
+   "description_en": "As Self-Aura except 20 is subtracted from all attacks.",
+   "description_fr": "Comme Self-Aura, sauf que 20 est soustrait \u00e0 toutes les attaques.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10449": {
+   "description_en": "As Charm Opposite Sex I except up to 7 targets are affected.",
+   "description_fr": "Comme Charm Opposite Sex I, sauf que jusqu'\u00e0 7 cibles sont affect\u00e9es.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10450": {
+   "description_en": "Target is given one task; failure results in a penalty determined by the Gamemaster.",
+   "description_fr": "La cible re\u00e7oit une t\u00e2che ; l'\u00e9chec entra\u00eene une p\u00e9nalit\u00e9 d\u00e9termin\u00e9e par le Ma\u00eetre de Jeu.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10451": {
+   "description_en": "As Charm Opposite Sex I except affects up to 10 targets.",
+   "description_fr": "Comme Charm Opposite Sex I, sauf que le sort affecte jusqu'\u00e0 10 cibles.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10452": {
+   "description_en": "As Geas, but failure results in death.",
+   "description_fr": "Comme Geas, mais l'\u00e9chec entra\u00eene la mort.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10453": {
+   "description_en": "As Self-Aura, except the caster seems like a demi-god and the subtraction is 30 (-30 from all attacks).",
+   "description_fr": "Comme Self-Aura, sauf que le lanceur semble \u00eatre un demi-dieu et la soustraction est de 30 (-30 \u00e0 toutes les attaques).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10454": {
+   "description_en": "Caster can use one spell/rnd from this list.",
+   "description_fr": "Le lanceur peut utiliser un sort/round de cette liste.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10320": {
+   "description_en": "As Crystal Matrix I except allows 4 times the essence value of the crystal to be stored.",
+   "description_fr": "Comme Crystal Matrix I, sauf que le sort permet de stocker 4 fois la valeur d'essence du cristal.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10321": {
+   "description_en": "As Crystal Adder I except the adder is +4.",
+   "description_fr": "Comme Crystal Adder I, sauf que le bonus est de +4.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10324": {
+   "description_en": "As Crystal Matrix I except allows 4 times the essence value of the crystal to be stored.",
+   "description_fr": "Comme Crystal Matrix I, sauf que le sort permet de stocker 4 fois la valeur d'essence du cristal.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10327": {
+   "description_en": "As Crystal Adder I except the adder is +4.",
+   "description_fr": "Comme Crystal Adder I, sauf que le bonus est de +4.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10328": {
+   "description_en": "As Crystal Matrix I except allows 4 times the essence value of the crystal to be stored.",
+   "description_fr": "Comme Crystal Matrix I, sauf que le sort permet de stocker 4 fois la valeur d'essence du cristal.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10308": {
+   "description_en": "One of the Great Command I spells (Commands of the Outer Circle) that the caster \"knows\" may be used. The Gamemaster decides which are available based on culture and world system. If the caster knows more than one Great Command I spell, he may select which to cast.",
+   "description_fr": "L'un des sorts Great Command I (Commandements du Cercle Ext\u00e9rieur) que le lanceur \u00ab conna\u00eet \u00bb peut \u00eatre utilis\u00e9. Le Ma\u00eetre de Jeu d\u00e9cide lesquels sont disponibles selon la culture et le syst\u00e8me du monde. Si le lanceur conna\u00eet plusieurs sorts Great Command I, il peut choisir lequel lancer.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10309": {
+   "description_en": "As Great Command I, except a Great Command II (Command of the Second Circle) is cast.",
+   "description_fr": "Comme Great Command I, sauf qu'un Great Command II (Commandement du Deuxi\u00e8me Cercle) est lanc\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10415": {
+   "description_en": "As Dream Familiar I except a type II dream beast is attuned to the caster.",
+   "description_fr": "Comme Dream Familiar I, sauf qu'une b\u00eate onirique de type II est li\u00e9e au lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10428": {
+   "description_en": "Allows the caster to bind a type I demon to guard a particular dream world entrance. The dream traveller wishing to enter has one round to decide to confront the dream guard or leave. The Dream Guard will let none pass save the one who set him there. Combat with the Dream Guard is conducted normally.",
+   "description_fr": "Permet au lanceur de lier un d\u00e9mon de type I pour garder l'entr\u00e9e d'un monde des r\u00eaves particulier. Le voyageur onirique souhaitant entrer dispose d'un round pour d\u00e9cider d'affronter le gardien onirique ou de partir. Le Dream Guard ne laisse passer que celui qui l'a plac\u00e9 l\u00e0. Le combat contre le Dream Guard se d\u00e9roule normalement.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10140": {
+   "description_en": "As Spell Analysis on the Open Essence spell list Delving, except only a Mentalism spell may be analyzed.",
+   "description_fr": "Comme Spell Analysis de la liste Open Essence \u00ab Delving \u00bb, sauf que seul un sort de Mentalisme peut \u00eatre analys\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10359": {
+   "description_en": "Target has a daydream relating to a topic decided upon by the caster at the time the spell was cast. Target is totally unaware of what is going on around them (-50 to orientation rolls). The daydream will not be horrifying; if that result is desired use a Nightmare spell.",
+   "description_fr": "La cible fait une r\u00eaverie \u00e9veill\u00e9e portant sur un sujet choisi par le lanceur au moment de l'incantation. La cible est totalement inconsciente de ce qui se passe autour d'elle (-50 aux jets d'orientation). La r\u00eaverie ne sera pas horrifiante ; si cet effet est recherch\u00e9, utiliser un sort Nightmare.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10360": {
+   "description_en": "Target has a dream relating to one topic decided upon by the caster at the time the spell was cast. The dream occurs during the target's next sleep/meditation period. The dream will not be horrifying; if that result is desired use a Nightmare spell.",
+   "description_fr": "La cible fait un r\u00eave portant sur un sujet choisi par le lanceur au moment de l'incantation. Le r\u00eave survient durant la prochaine p\u00e9riode de sommeil/m\u00e9ditation de la cible. Le r\u00eave ne sera pas horrifiant ; si cet effet est recherch\u00e9, utiliser un sort Nightmare.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10361": {
+   "description_en": "Target is placed into a magical sleep for the duration of the spell, after which he reverts into normal, non-magical sleep. During the magical sleep, he may only be \"awakened\" by appropriate magic, herb, or extreme pain.",
+   "description_fr": "La cible est plong\u00e9e dans un sommeil magique pour la dur\u00e9e du sort, apr\u00e8s quoi elle bascule dans un sommeil normal, non magique. Durant le sommeil magique, elle ne peut \u00eatre \u00ab r\u00e9veill\u00e9e \u00bb que par une magie appropri\u00e9e, une herbe ou une douleur extr\u00eame.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10362": {
+   "description_en": "The target dreams of important situations/events involving him that may occur in the near future. Since every potential situation has many possible outcomes, the target will only see one outcome, the worst possible one (thus the name \"Doom Sayer\" attached to those exposed to this spell). These dreams manifest themselves as nightmares during the target's next sleep/meditation period.",
+   "description_fr": "La cible r\u00eave de situations/\u00e9v\u00e9nements importants la concernant qui pourraient survenir dans un futur proche. Comme chaque situation potentielle a de nombreuses issues possibles, la cible n'en voit qu'une seule, la pire (d'o\u00f9 le surnom de \u00ab Proph\u00e8te de malheur \u00bb donn\u00e9 \u00e0 ceux qui subissent ce sort). Ces r\u00eaves se manifestent sous forme de cauchemars durant la prochaine p\u00e9riode de sommeil/m\u00e9ditation de la cible.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10363": {
+   "description_en": "As Dream I except the dream may involve two topics.",
+   "description_fr": "Comme Dream I, sauf que le r\u00eave peut porter sur deux sujets.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10364": {
+   "description_en": "The target has a 30% chance of getting up and wandering off during each of his sleep/meditation periods. If \"awakened\" during his jaunt he will not remember anything and will be completely confused.",
+   "description_fr": "La cible a 30 % de chances de se lever et de partir en divagant durant chacune de ses p\u00e9riodes de sommeil/m\u00e9ditation. Si elle est \u00ab r\u00e9veill\u00e9e \u00bb pendant son errance, elle ne se souviendra de rien et sera totalement d\u00e9sorient\u00e9e.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10365": {
+   "description_en": "As Dream I except the dream may involve three topics.",
+   "description_fr": "Comme Dream I, sauf que le r\u00eave peut porter sur trois sujets.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10366": {
+   "description_en": "As Nightmare I except the target has nightmares during his next two sleep/meditation periods.",
+   "description_fr": "Comme Nightmare I, sauf que la cible fait des cauchemars durant ses deux prochaines p\u00e9riodes de sommeil/m\u00e9ditation.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10367": {
+   "description_en": "Target does not dream and may not utilize any \"Dream\" spells for the duration of this spell.",
+   "description_fr": "La cible ne r\u00eave pas et ne peut utiliser aucun sort \u00ab Dream \u00bb pendant la dur\u00e9e de ce sort.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10368": {
+   "description_en": "As Sleep except affects 1 target/lvl.",
+   "description_fr": "Comme Sleep, sauf que le sort affecte 1 cible/niv.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10369": {
+   "description_en": "As Dream I except the dream may involve four topics.",
+   "description_fr": "Comme Dream I, sauf que le r\u00eave peut porter sur quatre sujets.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10370": {
+   "description_en": "During the target's next sleep/meditation period, he will encounter and fight to the death a type I Demon in his dream. Any damage taken during the dream is actually taken by the target's physical body. Note that, unless the target has the Dream State spell list, he will be naked and unarmed against this foe. Target may use any material at hand and has his PPs and spells available. Any wounds taken during the dream will appear on the target's body as they occur; the target's body will toss and turn. Until the death duel is concluded one way or another, the target may only be \"awakened\" by spells or herbs. If \"awakened\" before the duel is concluded, the duel will start over again during the target's next sleep/meditation period. Option 1: The GM may wish to allow the target to have one of his items during the duel. Option 2: The GM may wish to conclude the duel upon unconsciousness rather than death.",
+   "description_fr": "Durant la prochaine p\u00e9riode de sommeil/m\u00e9ditation de la cible, celle-ci rencontre et combat \u00e0 mort un D\u00e9mon de type I dans son r\u00eave. Tout d\u00e9g\u00e2t subi durant le r\u00eave est r\u00e9ellement encaiss\u00e9 par le corps physique de la cible. \u00c0 noter que, \u00e0 moins de poss\u00e9der la liste de sorts Dream State, la cible sera nue et d\u00e9sarm\u00e9e face \u00e0 cet adversaire. La cible peut utiliser tout mat\u00e9riau \u00e0 port\u00e9e et dispose de ses PP et de ses sorts. Toute blessure re\u00e7ue durant le r\u00eave appara\u00eet sur le corps de la cible au moment o\u00f9 elle survient ; le corps de la cible s'agite et se retourne. Jusqu'\u00e0 ce que le duel \u00e0 mort soit conclu d'une mani\u00e8re ou d'une autre, la cible ne peut \u00eatre \u00ab r\u00e9veill\u00e9e \u00bb que par des sorts ou des herbes. Si elle est \u00ab r\u00e9veill\u00e9e \u00bb avant la fin du duel, celui-ci recommence durant la prochaine p\u00e9riode de sommeil/m\u00e9ditation de la cible. Option 1 : le MJ peut autoriser la cible \u00e0 disposer de l'un de ses objets durant le duel. Option 2 : le MJ peut conclure le duel \u00e0 la perte de conscience plut\u00f4t qu'\u00e0 la mort.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10371": {
+   "description_en": "As Nightmare I except the target has nightmares during his next three sleep/meditation periods.",
+   "description_fr": "Comme Nightmare I, sauf que la cible fait des cauchemars durant ses trois prochaines p\u00e9riodes de sommeil/m\u00e9ditation.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10372": {
+   "description_en": "Target is cursed and may never dream again until the curse is removed, the caster dies, or the caster cancels the curse.",
+   "description_fr": "La cible est maudite et ne peut plus jamais r\u00eaver jusqu'\u00e0 ce que la mal\u00e9diction soit lev\u00e9e, que le lanceur meure, ou que le lanceur annule la mal\u00e9diction.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10373": {
+   "description_en": "As Dream I except the dream may involve five topics.",
+   "description_fr": "Comme Dream I, sauf que le r\u00eave peut porter sur cinq sujets.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10374": {
+   "description_en": "As Dream Killer I except the target must fight a type II or type III Demon. Roll 1D100: 1-70 = type II; 71-100 = type III.",
+   "description_fr": "Comme Dream Killer I, sauf que la cible doit affronter un D\u00e9mon de type II ou de type III. Lancer 1D100 : 1-70 = type II ; 71-100 = type III.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10375": {
+   "description_en": "Each round that a target (except the caster) is in the area of effect, he must make an RR; if he fails, he will fall asleep and dream continuously. He may be awakened by appropriate magic, herbs, or extreme pain.",
+   "description_fr": "\u00c0 chaque round o\u00f9 une cible (sauf le lanceur) se trouve dans la zone d'effet, elle doit effectuer un JR ; en cas d'\u00e9chec, elle s'endort et r\u00eave sans interruption. Elle peut \u00eatre r\u00e9veill\u00e9e par une magie appropri\u00e9e, des herbes ou une douleur extr\u00eame.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10376": {
+   "description_en": "As Nightmare I except the target has nightmares during his next four sleep/meditation periods.",
+   "description_fr": "Comme Nightmare I, sauf que la cible fait des cauchemars durant ses quatre prochaines p\u00e9riodes de sommeil/m\u00e9ditation.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10377": {
+   "description_en": "During the target's next sleep/meditation period, the target's dreams are influenced by all the dreams of all beings within 10'R/(lvl of caster). The dreams are intermingled and very difficult for the target to comprehend. The GM may wish to make real certain effects/injuries that result in these types of dreams.",
+   "description_fr": "Durant la prochaine p\u00e9riode de sommeil/m\u00e9ditation de la cible, les r\u00eaves de celle-ci sont influenc\u00e9s par tous les r\u00eaves de tous les \u00eatres situ\u00e9s dans un rayon de 3 m de rayon/(niv du lanceur). Les r\u00eaves s'entrem\u00ealent et sont tr\u00e8s difficiles \u00e0 comprendre pour la cible. Le MJ peut choisir de rendre r\u00e9els certains effets/blessures issus de ce type de r\u00eaves.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10378": {
+   "description_en": "As Dream Killer I except the target must fight a type III-VI Demon. Roll 1D100: 1-40 = type III; 41-70 = type IV; 71-90 = type V; 91-100 = type VI.",
+   "description_fr": "Comme Dream Killer I, sauf que la cible doit affronter un D\u00e9mon de type III \u00e0 VI. Lancer 1D100 : 1-40 = type III ; 41-70 = type IV ; 71-90 = type V ; 91-100 = type VI.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10379": {
+   "description_en": "As Nightmare I except the target has nightmares for a number of sleep/meditation periods equal to the caster's level divided by 2 (round down).",
+   "description_fr": "Comme Nightmare I, sauf que la cible fait des cauchemars pendant un nombre de p\u00e9riodes de sommeil/m\u00e9ditation \u00e9gal au niveau du lanceur divis\u00e9 par 2 (arrondi \u00e0 l'inf\u00e9rieur).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10380": {
+   "description_en": "As Dream Field except the duration is Permanent.",
+   "description_fr": "Comme Dream Field, sauf que la dur\u00e9e est Permanente.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10381": {
+   "description_en": "Target is immediately awakened from a dream state. This spell will not revive someone in a coma unless the coma is the direct cause of dream world travel.",
+   "description_fr": "La cible est imm\u00e9diatement r\u00e9veill\u00e9e d'un \u00e9tat de r\u00eave. Ce sort ne ranime pas une personne dans le coma, sauf si le coma est la cause directe d'un voyage dans le monde des r\u00eaves.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10382": {
+   "description_en": "Caster learns the general nature and history of 1 dream, and is provided with the dream's parameters for future use. (E.g., \"The dream is a recurring nightmare of your adventure into the catacombs of Sirearlliff.\" \"I've never been to those catacombs.\" \"Ah, but you will go; your inner self already knows.\")",
+   "description_fr": "Le lanceur apprend la nature g\u00e9n\u00e9rale et l'histoire d'1 r\u00eave, et obtient les param\u00e8tres de ce r\u00eave pour un usage ult\u00e9rieur. (Ex. : \u00ab Le r\u00eave est un cauchemar r\u00e9current de ton aventure dans les catacombes de Sirearlliff. \u00bb \u00ab Je ne suis jamais all\u00e9 dans ces catacombes. \u00bb \u00ab Ah, mais tu iras ; ton moi int\u00e9rieur le sait d\u00e9j\u00e0. \u00bb)",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10383": {
+   "description_en": "Allows the target to enter into their dreams via mental transference. The character is there in a pseudo-physical form, entering the world with only their pseudo-body and mental capabilities; nothing else may be brought into this world by means of this spell. This form can be killed, causing the target to lose 1 life level in their physical form; lose enough life levels and the target can die for real. The biggest threats to dream-world adventuring are the lack of attention to the real body (left alone long enough it will die of starvation), outside forces that still affect the body (heat, rain, snow, etc.), and predators (animals, monsters, men, etc.). If the real body dies while in a dream world, the target is stuck there and may never return to the physical world. Awakening from a dream-travel session and later returning to the same dream world may or may not place the target back where they started.",
+   "description_fr": "Permet \u00e0 la cible de p\u00e9n\u00e9trer dans ses propres r\u00eaves par transfert mental. Le personnage s'y trouve sous une forme pseudo-physique, n'entrant dans ce monde qu'avec son pseudo-corps et ses capacit\u00e9s mentales ; rien d'autre ne peut y \u00eatre amen\u00e9 par ce sort. Cette forme peut \u00eatre tu\u00e9e, faisant perdre \u00e0 la cible 1 niveau de vie dans sa forme physique ; en perdant assez de niveaux de vie, la cible peut mourir pour de bon. Les plus grands dangers de l'aventure onirique sont le manque d'attention au corps r\u00e9el (laiss\u00e9 seul assez longtemps, il meurt de faim), les forces ext\u00e9rieures qui affectent toujours le corps (chaleur, pluie, neige, etc.) et les pr\u00e9dateurs (animaux, monstres, hommes, etc.). Si le corps r\u00e9el meurt pendant un s\u00e9jour dans un monde des r\u00eaves, la cible y reste pi\u00e9g\u00e9e et ne peut plus jamais revenir dans le monde physique. Se r\u00e9veiller d'une session de voyage onirique puis revenir plus tard dans le m\u00eame monde des r\u00eaves peut, ou non, replacer la cible l\u00e0 o\u00f9 elle avait commenc\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10384": {
+   "description_en": "Allows the caster to locate the dream path to any dream world that has previously been dream-lored.",
+   "description_fr": "Permet au lanceur de localiser le chemin onirique menant \u00e0 tout monde des r\u00eaves ayant pr\u00e9alablement fait l'objet d'un Dream Lore.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10385": {
+   "description_en": "When Dream Travel is cast within 3 rounds, allows the caster to put two targets into the dream world.",
+   "description_fr": "Lorsque Dream Travel est lanc\u00e9 dans les 3 rounds, permet au lanceur de faire entrer deux cibles dans le monde des r\u00eaves.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10386": {
+   "description_en": "Allows the caster to slow down the metabolism of the target's body for the duration of the spell. The target's body does not require nourishment for the duration, after which the normal aging process resumes. By its very nature this spell only works while the target is in the dream world (the source of nourishment that keeps the body alive), and consciousness voids this spell.",
+   "description_fr": "Permet au lanceur de ralentir le m\u00e9tabolisme du corps de la cible pour la dur\u00e9e du sort. Le corps de la cible n'a pas besoin de nourriture pendant cette dur\u00e9e, apr\u00e8s quoi le processus de vieillissement normal reprend. Par sa nature m\u00eame, ce sort ne fonctionne que tant que la cible est dans le monde des r\u00eaves (la source de subsistance qui maintient le corps en vie), et la reprise de conscience annule ce sort.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10387": {
+   "description_en": "Allows physical entry into a dream world via a magical gateway. Physical items may be transferred into dream worlds subject to the following restrictions: 1) High-tech items convert to magically oriented items of the same type in magical worlds, or vice versa (e.g., a flamethrower brought through a dream gate into a magical world becomes a staff of fireballs with the same number of charges, and vice versa for a magical item entering a technical world); 2) Lower-tech items may always be brought over as is; 3) Lesser magical items may always be brought over as is.",
+   "description_fr": "Permet l'entr\u00e9e physique dans un monde des r\u00eaves via un portail magique. Des objets physiques peuvent y \u00eatre transf\u00e9r\u00e9s sous r\u00e9serve des restrictions suivantes : 1) les objets de haute technologie se transforment en objets \u00e0 orientation magique de m\u00eame type dans les mondes magiques, et inversement (ex. : un lance-flammes amen\u00e9 par une porte onirique dans un monde magique devient un b\u00e2ton de boules de feu ayant le m\u00eame nombre de charges, et inversement pour un objet magique entrant dans un monde technologique) ; 2) les objets de moindre technologie peuvent toujours \u00eatre amen\u00e9s tels quels ; 3) les objets magiques mineurs peuvent toujours \u00eatre amen\u00e9s tels quels.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10388": {
+   "description_en": "As Dream Lore I except the caster also learns the general enchantments/magic of the dream world (e.g., no magic, limited magic [only up to 10th level], normal magic [no restrictions], etc.).",
+   "description_fr": "Comme Dream Lore I, sauf que le lanceur apprend aussi les enchantements/la magie g\u00e9n\u00e9rale du monde des r\u00eaves (ex. : aucune magie, magie limit\u00e9e [seulement jusqu'au 10e niveau], magie normale [sans restriction], etc.).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10389": {
+   "description_en": "As Dream Travel I except the duration is increased to 1 week/level of caster.",
+   "description_fr": "Comme Dream Travel I, sauf que la dur\u00e9e passe \u00e0 1 semaine/niveau du lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10390": {
+   "description_en": "As Dream Share I except allows five targets to enter into the dream world.",
+   "description_fr": "Comme Dream Share I, sauf que le sort permet \u00e0 cinq cibles d'entrer dans le monde des r\u00eaves.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10391": {
+   "description_en": "As Substances I except the duration is increased to 1 week/level of caster.",
+   "description_fr": "Comme Substances I, sauf que la dur\u00e9e passe \u00e0 1 semaine/niveau du lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10392": {
+   "description_en": "As Dream Lore I except the caster also learns specific details of the dream world's magical/technical base (names of spell lists and spells, names of tech weapons, etc.).",
+   "description_fr": "Comme Dream Lore I, sauf que le lanceur apprend aussi des d\u00e9tails pr\u00e9cis sur la base magique/technique du monde des r\u00eaves (noms des listes de sorts et des sorts, noms des armes technologiques, etc.).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10393": {
+   "description_en": "As Dream Travel I except the duration is increased to 1 month/level of caster.",
+   "description_fr": "Comme Dream Travel I, sauf que la dur\u00e9e passe \u00e0 1 mois/niveau du lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10394": {
+   "description_en": "As Dream Share I except allows 1 target/level of the caster to enter into the dream world.",
+   "description_fr": "Comme Dream Share I, sauf que le sort permet \u00e0 1 cible/niveau du lanceur d'entrer dans le monde des r\u00eaves.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10395": {
+   "description_en": "As Substances I except the duration is increased to 1 month/level of caster.",
+   "description_fr": "Comme Substances I, sauf que la dur\u00e9e passe \u00e0 1 mois/niveau du lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10396": {
+   "description_en": "As Dream Gate except the duration is increased to 10 minutes and the size of the gate is increased to 10' x 6' x 1\".",
+   "description_fr": "Comme Dream Gate, sauf que la dur\u00e9e passe \u00e0 10 minutes et que la taille du portail passe \u00e0 3 m x 1,8 m x 3 cm.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10474": {
+   "description_en": "Gives the caster +20 to cooking (Cookery roll) and +10 to anyone to whom she describes the preparation. Also chills or warms food to the proper serving temperature.",
+   "description_fr": "Donne au lanceur +20 en cuisine (jet de Cuisine) et +10 \u00e0 quiconque il d\u00e9crit la pr\u00e9paration. Refroidit ou r\u00e9chauffe aussi les aliments \u00e0 la bonne temp\u00e9rature de service.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10475": {
+   "description_en": "This spell perfectly preserves one day's worth of food (1 ration) for one week. Also instantly \"freshens\" any slightly turned or spoiled food, e.g., wilted lettuce.",
+   "description_fr": "Ce sort conserve parfaitement une journ\u00e9e de nourriture (1 ration) pendant une semaine. \u00ab Rafra\u00eechit \u00bb aussi instantan\u00e9ment tout aliment l\u00e9g\u00e8rement avari\u00e9 ou g\u00e2t\u00e9, p. ex. une laitue fl\u00e9trie.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10476": {
+   "description_en": "This spell removes most of the water from one day's worth of food, reducing its weight by 80%-90%. The food is edible only after water is added (approximately 2 quarts for 1 ration). As long as it stays dry the food remains dehydrated, and the normal spoilage rate (not the preserved rate) is decreased tenfold.",
+   "description_fr": "Ce sort retire la majeure partie de l'eau d'une journ\u00e9e de nourriture, r\u00e9duisant son poids de 80 \u00e0 90 %. La nourriture n'est comestible qu'apr\u00e8s ajout d'eau (environ 2 litres pour 1 ration). Tant qu'elle reste s\u00e8che, elle demeure d\u00e9shydrat\u00e9e, et son taux de d\u00e9t\u00e9rioration normal (non le taux conserv\u00e9) est divis\u00e9 par dix.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10477": {
+   "description_en": "This spell neutralizes abnormal diseases, poisons, and other similar substances in one day's worth (1 ration) of food and/or water. It will not neutralize a poison or similar substance that is a natural part of the food (e.g., the natural alkaloids in certain mushrooms). Special or magical poisons/diseases may be allowed an RR.",
+   "description_fr": "Ce sort neutralise les maladies anormales, poisons et autres substances similaires dans une journ\u00e9e (1 ration) de nourriture et/ou d'eau. Il ne neutralise pas un poison ou une substance qui fait naturellement partie de l'aliment (p. ex. les alcalo\u00efdes naturels de certains champignons). Les poisons/maladies sp\u00e9ciaux ou magiques peuvent avoir droit \u00e0 un JR.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10478": {
+   "description_en": "Caster can produce sufficient water in any available receptacle to supply one person for one day (1 ration).",
+   "description_fr": "Le lanceur peut produire, dans tout r\u00e9cipient disponible, assez d'eau pour approvisionner une personne pendant une journ\u00e9e (1 ration).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10479": {
+   "description_en": "Caster can produce sufficient food from the surrounding area to feed one hearty appetite for one day (1 ration). This food still needs to be prepared.",
+   "description_fr": "Le lanceur peut produire, \u00e0 partir des environs, assez de nourriture pour rassasier un solide app\u00e9tit pendant une journ\u00e9e (1 ration). Cette nourriture doit encore \u00eatre pr\u00e9par\u00e9e.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10480": {
+   "description_en": "Caster can produce one loaf of waybread that weighs half a pound and will support one being for one day; the loaf loses potency in one month.",
+   "description_fr": "Le lanceur peut produire une miche de pain de voyage pesant une demi-livre et pouvant sustenter un \u00eatre pendant une journ\u00e9e ; la miche perd toute vertu au bout d'un mois.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10481": {
+   "description_en": "As Water Production I except produces 2 rations of water.",
+   "description_fr": "Comme Water Production I, sauf que le sort produit 2 rations d'eau.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10482": {
+   "description_en": "As Food Production I except produces 2 rations of food.",
+   "description_fr": "Comme Food Production I, sauf que le sort produit 2 rations de nourriture.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10483": {
+   "description_en": "Automatically and successfully prepares one course of food, taking only half the normal preparation time. In addition to normal cooking, the caster also detects spoiled or poisoned food, prepares and/or neutralizes dangerous herbs and food ingredients, or may prepare minor poisons for insinuation into food.",
+   "description_fr": "Pr\u00e9pare automatiquement et avec succ\u00e8s un plat, en ne prenant que la moiti\u00e9 du temps de pr\u00e9paration normal. Outre la cuisine normale, le lanceur d\u00e9tecte aussi les aliments avari\u00e9s ou empoisonn\u00e9s, pr\u00e9pare et/ou neutralise les herbes et ingr\u00e9dients dangereux, ou peut pr\u00e9parer des poisons mineurs \u00e0 dissimuler dans la nourriture.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10484": {
+   "description_en": "As Water Production I except produces 3 rations of water.",
+   "description_fr": "Comme Water Production I, sauf que le sort produit 3 rations d'eau.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10485": {
+   "description_en": "As Food Production I except produces 3 rations of food.",
+   "description_fr": "Comme Food Production I, sauf que le sort produit 3 rations de nourriture.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10486": {
+   "description_en": "As Food Preservation except preserves 1 ration/level.",
+   "description_fr": "Comme Food Preservation, sauf que le sort conserve 1 ration/niveau.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10487": {
+   "description_en": "As Food Dehydration except dehydrates 1 ration/lvl.",
+   "description_fr": "Comme Food Dehydration, sauf que le sort d\u00e9shydrate 1 ration/niv.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10488": {
+   "description_en": "As Water Production I except produces 5 rations of water.",
+   "description_fr": "Comme Water Production I, sauf que le sort produit 5 rations d'eau.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10489": {
+   "description_en": "As Food Production I except produces 5 rations of food.",
+   "description_fr": "Comme Food Production I, sauf que le sort produit 5 rations de nourriture.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10490": {
+   "description_en": "As Sustenance Purification except purifies 1 ration/lvl.",
+   "description_fr": "Comme Sustenance Purification, sauf que le sort purifie 1 ration/niv.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10491": {
+   "description_en": "Caster can double the potency of any one herb/spice (growing or dead); the spell may be employed but once per herb.",
+   "description_fr": "Le lanceur peut doubler la puissance d'une herbe/\u00e9pice (vivante ou morte) ; le sort ne peut \u00eatre employ\u00e9 qu'une seule fois par herbe.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10492": {
+   "description_en": "As Water Production I except produces 1 ration/lvl of water.",
+   "description_fr": "Comme Water Production I, sauf que le sort produit 1 ration/niv d'eau.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10493": {
+   "description_en": "As Food Production I except produces 1 ration/lvl of food.",
+   "description_fr": "Comme Food Production I, sauf que le sort produit 1 ration/niv de nourriture.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10494": {
+   "description_en": "As Cookery except may prepare 1 course/lvl.",
+   "description_fr": "Comme Cookery, sauf que le lanceur peut pr\u00e9parer 1 plat/niv.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10495": {
+   "description_en": "Caster creates a banquet table complete with chairs, silver eatingware, crystal glasses, pitchers and bowls, and a wondrous dinner of wines, appetizers, gourmet foods, fruits, and desserts. The table is initially set with beverages and introductory dishes, then each course is served by barely visible spirits as the previous one is finished. If a selection is refused, a different but comparable one is served. The serving spirits can be asked to bring special favorites. At the end of the duration, any leftovers disappear along with the spirits, table, chairs, cutlery, etc. This spell can serve up to one person per two levels of the caster.",
+   "description_fr": "Le lanceur cr\u00e9e une table de banquet compl\u00e8te avec chaises, couverts en argent, verres en cristal, pichets et coupes, et un merveilleux repas de vins, hors-d'\u0153uvre, mets gastronomiques, fruits et desserts. La table est d'abord dress\u00e9e avec les boissons et les entr\u00e9es, puis chaque plat est servi par des esprits \u00e0 peine visibles \u00e0 mesure que le pr\u00e9c\u00e9dent est termin\u00e9. Si un mets est refus\u00e9, un autre, diff\u00e9rent mais comparable, est servi. On peut demander aux esprits serveurs d'apporter des mets favoris. \u00c0 la fin de la dur\u00e9e, tout reste dispara\u00eet avec les esprits, la table, les chaises, les couverts, etc. Ce sort peut servir jusqu'\u00e0 une personne par tranche de deux niveaux du lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10496": {
+   "description_en": "Caster can use one spell/round from this list.",
+   "description_fr": "Le lanceur peut utiliser un sort/round de cette liste.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
   }
  }
 }
