@@ -58374,6 +58374,786 @@
    "description_fr": "Comme Speak With MDE Spirit, sauf que l'esprit gardien conna\u00eet la bonne r\u00e9ponse 80 % du temps.",
    "source": "RMC3",
    "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10655": {
+   "description_en": "Allows the caster to work with non-magic liquids.",
+   "description_fr": "Permet au lanceur de travailler les liquides non magiques.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10656": {
+   "description_en": "The caster knows the origins, purity, and general worth of one drug sample; any impurity is known.",
+   "description_fr": "Le lanceur conna\u00eet l'origine, la puret\u00e9 et la valeur g\u00e9n\u00e9rale d'un \u00e9chantillon de drogue ; toute impuret\u00e9 est r\u00e9v\u00e9l\u00e9e.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10657": {
+   "description_en": "The caster rapidly ferments a base into an alcoholic beverage (beer, wine, etc.); can also distill whiskey, brandy, etc.",
+   "description_fr": "Le lanceur fait rapidement fermenter une base en une boisson alcoolis\u00e9e (bi\u00e8re, vin, etc.) ; peut aussi distiller whisky, eau-de-vie, etc.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10658": {
+   "description_en": "As Identify Drug except a poison is identified.",
+   "description_fr": "Comme Identify Drug, sauf qu'un poison est identifi\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10659": {
+   "description_en": "Allows the caster to extract the stimulant essence from an herb (e.g., Pekoe Tea, Elben's Basket, Zulsendura).",
+   "description_fr": "Permet au lanceur d'extraire l'essence stimulante d'une herbe (p. ex. th\u00e9 Pekoe, Panier d'Elben, Zulsendura).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10660": {
+   "description_en": "Allows the caster to brew one dose of a potion holding an embedded 1st-level spell.",
+   "description_fr": "Permet au lanceur de pr\u00e9parer une dose de potion contenant un sort de niveau 1.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10661": {
+   "description_en": "Allows the caster to prepare, handle, and contain a known poison of up to 10th-level potency (attack level).",
+   "description_fr": "Permet au lanceur de pr\u00e9parer, manipuler et contenir un poison connu d'une puissance allant jusqu'au niveau 10 (niveau d'attaque).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10662": {
+   "description_en": "As Brew Stimulants except the caster extracts the essence of a euphoric or narcotic herb (e.g., Rumareth, Breldiar, Galenas).",
+   "description_fr": "Comme Brew Stimulants, sauf que le lanceur extrait l'essence d'une herbe euphorisante ou narcotique (p. ex. Rumareth, Breldiar, Galenas).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10663": {
+   "description_en": "As Brew Stimulants except the caster extracts the essence of a healing herb or of analgesics, decongestants, and anaesthetics (e.g., Aloe, Thurl, Arkasu).",
+   "description_fr": "Comme Brew Stimulants, sauf que le lanceur extrait l'essence d'une herbe de soin ou d'analg\u00e9siques, d\u00e9congestionnants et anesth\u00e9siques (p. ex. Aloe, Thurl, Arkasu).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10664": {
+   "description_en": "As Brew Potion I except a 3rd-level spell or less may be embedded.",
+   "description_fr": "Comme Brew Potion I, sauf qu'un sort de niveau 3 ou moins peut y \u00eatre int\u00e9gr\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10665": {
+   "description_en": "As Brew Stimulants except the caster extracts the essence of a hallucinogenic herb (e.g., Gort, Hoak-Foerr, Magic Mushrooms).",
+   "description_fr": "Comme Brew Stimulants, sauf que le lanceur extrait l'essence d'une herbe hallucinog\u00e8ne (p. ex. Gort, Hoak-Foerr, Champignons magiques).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10666": {
+   "description_en": "As Brew Minor Poison except the caster may work with acids.",
+   "description_fr": "Comme Brew Minor Poison, sauf que le lanceur peut travailler avec des acides.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10667": {
+   "description_en": "As Brew Minor Poison except the caster may work with poisons up to 20th-level potency.",
+   "description_fr": "Comme Brew Minor Poison, sauf que le lanceur peut travailler avec des poisons d'une puissance allant jusqu'au niveau 20.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10668": {
+   "description_en": "As Brew Potion I except a 5th-level spell or less may be embedded.",
+   "description_fr": "Comme Brew Potion I, sauf qu'un sort de niveau 5 ou moins peut y \u00eatre int\u00e9gr\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10669": {
+   "description_en": "As Brew Stimulants except the caster brews a drug that makes the imbiber tell the whole, naked truth for one hour.",
+   "description_fr": "Comme Brew Stimulants, sauf que le lanceur pr\u00e9pare une drogue qui force celui qui la boit \u00e0 dire toute la v\u00e9rit\u00e9 pendant une heure.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10670": {
+   "description_en": "The caster may 'brew' any spell on this list at a rate of 1/hour.",
+   "description_fr": "Le lanceur peut \u00ab distiller \u00bb n'importe quel sort de cette liste au rythme de 1/heure.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10671": {
+   "description_en": "As Brew Potion I except a 7th-level spell or less may be embedded.",
+   "description_fr": "Comme Brew Potion I, sauf qu'un sort de niveau 7 ou moins peut y \u00eatre int\u00e9gr\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10672": {
+   "description_en": "As Brew Stimulants except the caster extracts the essence of an antidote (e.g., Argsbargies, Eldaana, Menelar).",
+   "description_fr": "Comme Brew Stimulants, sauf que le lanceur extrait l'essence d'un antidote (p. ex. Argsbargies, Eldaana, Menelar).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10673": {
+   "description_en": "As Magic Cauldron I except two doses/hour may be brewed.",
+   "description_fr": "Comme Magic Cauldron I, sauf que deux doses/heure peuvent \u00eatre distill\u00e9es.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10674": {
+   "description_en": "As Brew Potion I except a 10th-level spell or less may be embedded.",
+   "description_fr": "Comme Brew Potion I, sauf qu'un sort de niveau 10 ou moins peut y \u00eatre int\u00e9gr\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10675": {
+   "description_en": "As Brew Stimulants except the essence of any herb may be extracted.",
+   "description_fr": "Comme Brew Stimulants, sauf que l'essence de n'importe quelle herbe peut \u00eatre extraite.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10676": {
+   "description_en": "As Brew Minor Poison except the caster may work with any poison.",
+   "description_fr": "Comme Brew Minor Poison, sauf que le lanceur peut travailler avec n'importe quel poison.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10677": {
+   "description_en": "The caster can use one spell/round from this list.",
+   "description_fr": "Le lanceur peut utiliser un sort/round de cette liste.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10678": {
+   "description_en": "Causes the target to appear blurred to attackers, subtracting 10 from all attacks.",
+   "description_fr": "Rend la cible floue aux yeux des attaquants, soustrayant 10 \u00e0 toutes les attaques.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10679": {
+   "description_en": "A beam of light (like a flashlight) springs from the caster's palm; 50' effective range.",
+   "description_fr": "Un faisceau de lumi\u00e8re (comme une lampe) jaillit de la paume du lanceur ; port\u00e9e effective de 15 m.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10680": {
+   "description_en": "Causes a bright aura about the caster, making him appear more powerful and subtracting 5 from all attacks.",
+   "description_fr": "Provoque une aura \u00e9clatante autour du lanceur, le faisant para\u00eetre plus puissant et soustrayant 5 \u00e0 toutes les attaques.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10681": {
+   "description_en": "Lights a 10'R area about the point touched.",
+   "description_fr": "\u00c9claire une zone de 3 m de rayon autour du point touch\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10682": {
+   "description_en": "As Self Aura I except it subtracts 10 from all attacks.",
+   "description_fr": "Comme Self Aura I, sauf que le sort soustrait 10 \u00e0 toutes les attaques.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10683": {
+   "description_en": "Causes a 10'R burst of intense light; all those inside are stunned 1 rnd/5% failure.",
+   "description_fr": "Provoque une explosion de lumi\u00e8re intense de 3 m de rayon ; tous ceux \u00e0 l'int\u00e9rieur sont \u00e9tourdis 1 rd/5 % d'\u00e9chec.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10684": {
+   "description_en": "As Self Aura I except it subtracts 15 from all attacks.",
+   "description_fr": "Comme Self Aura I, sauf que le sort soustrait 15 \u00e0 toutes les attaques.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10685": {
+   "description_en": "Lights a 50'R area about the point touched.",
+   "description_fr": "\u00c9claire une zone de 15 m de rayon autour du point touch\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10686": {
+   "description_en": "Causes a bright 5'R aura about the caster, making him and all beings within the aura appear more powerful and subtracting 5 from all attacks.",
+   "description_fr": "Provoque une aura \u00e9clatante de 1,5 m de rayon autour du lanceur, le faisant para\u00eetre, lui et tous les \u00eatres dans l'aura, plus puissants et soustrayant 5 \u00e0 toutes les attaques.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10687": {
+   "description_en": "As Lesser Sudden Light except the burst is 20'R.",
+   "description_fr": "Comme Lesser Sudden Light, sauf que l'explosion fait 6 m de rayon.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10688": {
+   "description_en": "Lights a 100'R area about the point touched.",
+   "description_fr": "\u00c9claire une zone de 30 m de rayon autour du point touch\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10689": {
+   "description_en": "In conjunction with any light spell, can delay that spell's action for up to 24 hrs, OR until a being passes, OR until a certain word is spoken, etc.",
+   "description_fr": "Combin\u00e9 \u00e0 tout sort de lumi\u00e8re, peut diff\u00e9rer l'action de ce sort jusqu'\u00e0 24 h, ou jusqu'au passage d'un \u00eatre, ou \u00e0 la prononciation d'un mot donn\u00e9, etc.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10690": {
+   "description_en": "As Aura I except the aura is 15'R.",
+   "description_fr": "Comme Aura I, sauf que l'aura fait 4,5 m de rayon.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10691": {
+   "description_en": "A ray of light of any color springs from the area touched; it can be up to 5 miles long.",
+   "description_fr": "Un rayon de lumi\u00e8re de n'importe quelle couleur jaillit de la zone touch\u00e9e ; jusqu'\u00e0 8 km de long.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10692": {
+   "description_en": "Lights a 200'R area about the point touched.",
+   "description_fr": "\u00c9claire une zone de 60 m de rayon autour du point touch\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10693": {
+   "description_en": "As Lesser Sudden Light except the burst is 50'R.",
+   "description_fr": "Comme Lesser Sudden Light, sauf que l'explosion fait 15 m de rayon.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10694": {
+   "description_en": "As Aura I except the aura is 20'R.",
+   "description_fr": "Comme Aura I, sauf que l'aura fait 6 m de rayon.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10695": {
+   "description_en": "Summons the forces of nature into a fierce storm with random lightning strikes. Can be delayed up to 1 hr/lvl after casting.",
+   "description_fr": "Invoque les forces de la nature en un violent orage aux impacts de foudre al\u00e9atoires. Peut \u00eatre diff\u00e9r\u00e9 jusqu'\u00e0 1 h/niv apr\u00e8s l'incantation.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10696": {
+   "description_en": "As Aura I except the aura is 25'R.",
+   "description_fr": "Comme Aura I, sauf que l'aura fait 7,5 m de rayon.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10697": {
+   "description_en": "Lights a 100'R area about the point touched and nullifies all magically created darkness.",
+   "description_fr": "\u00c9claire une zone de 30 m de rayon autour du point touch\u00e9 et annule toute obscurit\u00e9 cr\u00e9\u00e9e magiquement.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10698": {
+   "description_en": "As Beacon V except the ray can be up to 10 miles long.",
+   "description_fr": "Comme Beacon V, sauf que le rayon peut atteindre 16 km de long.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10699": {
+   "description_en": "Lights a 10'R/lvl area about the point touched.",
+   "description_fr": "\u00c9claire une zone de 3 m de rayon/niv autour du point touch\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10700": {
+   "description_en": "As Light Storm except the caster has a 50% chance of controlling the lightning strikes. Can be delayed up to 1 hr/lvl after casting.",
+   "description_fr": "Comme Light Storm, sauf que le lanceur a 50 % de chances de contr\u00f4ler les impacts de foudre. Peut \u00eatre diff\u00e9r\u00e9 jusqu'\u00e0 1 h/niv apr\u00e8s l'incantation.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10701": {
+   "description_en": "The Crystal Runestone is cleansed of all residual energies (evil/good taints, lingering old spell patterns, etc.).",
+   "description_fr": "La pierre runique de cristal est purifi\u00e9e de toutes ses \u00e9nergies r\u00e9siduelles (souillures mal\u00e9fiques/b\u00e9n\u00e9fiques, anciens sch\u00e9mas de sorts persistants, etc.).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10702": {
+   "description_en": "Prepares the Crystal Runestone to receive crystal runes and related spells; priming lets many runes be placed without interference from overlapping magics/energies.",
+   "description_fr": "Pr\u00e9pare la pierre runique de cristal \u00e0 recevoir des runes de cristal et sorts associ\u00e9s ; l'amor\u00e7age permet d'y placer de nombreuses runes sans interf\u00e9rence des magies/\u00e9nergies qui se chevauchent.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10703": {
+   "description_en": "Gives the caster detailed information on crystal runes, allowing a rune to be used; deciphers 1 crystal rune per round.",
+   "description_fr": "Donne au lanceur des informations d\u00e9taill\u00e9es sur les runes de cristal, permettant d'en utiliser une ; d\u00e9chiffre 1 rune de cristal par round.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10704": {
+   "description_en": "Inscribes a spell on a facet of a Crystal Runestone; the rune can then cast the inscribed spell once (per the rune-casting rules used). The caster spends power points for both the inscribed spell and the Crystal Rune spell. Crystal Rune I can inscribe only 1st-level spells. The stone is reusable; once released, the rune fades from the facet.",
+   "description_fr": "Inscrit un sort sur une facette d'une pierre runique de cristal ; la rune peut alors lancer une fois le sort inscrit (selon les r\u00e8gles de runes employ\u00e9es). Le lanceur d\u00e9pense les points de pouvoir du sort inscrit et ceux du sort Crystal Rune. Crystal Rune I ne peut inscrire que des sorts de niveau 1. La pierre est r\u00e9utilisable ; une fois lib\u00e9r\u00e9e, la rune s'efface de la facette.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10705": {
+   "description_en": "Gives the Crystal Runestone empathy, letting anyone attuned to it use its runes \u2014 but blindly, without deciphering them (no information on the runes or their inscribed spells). The GM decides what effect, if any, results (including misreads and effects on the user).",
+   "description_fr": "Donne de l'empathie \u00e0 la pierre runique, permettant \u00e0 quiconque s'y est accord\u00e9 d'utiliser ses runes \u2014 mais \u00e0 l'aveugle, sans les d\u00e9chiffrer (aucune information sur les runes ni les sorts inscrits). Le MJ d\u00e9cide de l'effet \u00e9ventuel (y compris les mauvaises lectures et les effets sur l'utilisateur).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10706": {
+   "description_en": "As Crystal Rune I except the caster can inscribe 1st-2nd level spells.",
+   "description_fr": "Comme Crystal Rune I, sauf que le lanceur peut inscrire des sorts de niveau 1 \u00e0 2.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10707": {
+   "description_en": "Links the caster's next two crystal rune spells: the first cast is the primary rune, the second the linked rune. When the primary rune is released, the linked rune is released immediately (as an instantaneous spell).",
+   "description_fr": "Lie les deux prochains sorts de rune du lanceur : le premier lanc\u00e9 est la rune primaire, le second la rune li\u00e9e. Quand la rune primaire est lib\u00e9r\u00e9e, la rune li\u00e9e l'est imm\u00e9diatement (comme un sort instantan\u00e9).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10708": {
+   "description_en": "As Crystal Rune I except the caster can inscribe 1st-3rd level spells.",
+   "description_fr": "Comme Crystal Rune I, sauf que le lanceur peut inscrire des sorts de niveau 1 \u00e0 3.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10709": {
+   "description_en": "Causes the caster's next Crystal Rune spell to have two uses before the rune fades.",
+   "description_fr": "Fait que le prochain sort Crystal Rune du lanceur dispose de deux usages avant que la rune ne s'efface.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10710": {
+   "description_en": "As Crystal Rune I except the caster can inscribe 1st-4th level spells.",
+   "description_fr": "Comme Crystal Rune I, sauf que le lanceur peut inscrire des sorts de niveau 1 \u00e0 4.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10711": {
+   "description_en": "Makes the caster's next Crystal Rune voice-activated; its name must be spoken in the crystal magical tongue to trigger it.",
+   "description_fr": "Rend la prochaine rune de cristal du lanceur activable \u00e0 la voix ; son nom doit \u00eatre prononc\u00e9 dans la langue magique des cristaux pour la d\u00e9clencher.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10712": {
+   "description_en": "As Crystal Rune I except the caster can inscribe 1st-5th level spells.",
+   "description_fr": "Comme Crystal Rune I, sauf que le lanceur peut inscrire des sorts de niveau 1 \u00e0 5.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10713": {
+   "description_en": "As Crystal Rune Link II except two crystal runes are linked sequentially to the primary rune.",
+   "description_fr": "Comme Crystal Rune Link II, sauf que deux runes de cristal sont li\u00e9es s\u00e9quentiellement \u00e0 la rune primaire.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10714": {
+   "description_en": "As Crystal Rune I except the caster can inscribe 1st-6th level spells.",
+   "description_fr": "Comme Crystal Rune I, sauf que le lanceur peut inscrire des sorts de niveau 1 \u00e0 6.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10715": {
+   "description_en": "As Crystal Rune Empathy except the stone informs the attuner which spell is inscribed in each crystal rune.",
+   "description_fr": "Comme Crystal Rune Empathy, sauf que la pierre indique \u00e0 celui qui s'y accorde quel sort est inscrit dans chaque rune.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10716": {
+   "description_en": "As Crystal Rune I except the caster can inscribe 1st-7th level spells.",
+   "description_fr": "Comme Crystal Rune I, sauf que le lanceur peut inscrire des sorts de niveau 1 \u00e0 7.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10717": {
+   "description_en": "As Crystal Rune Link II except three crystal runes are linked sequentially to the primary rune.",
+   "description_fr": "Comme Crystal Rune Link II, sauf que trois runes de cristal sont li\u00e9es s\u00e9quentiellement \u00e0 la rune primaire.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10718": {
+   "description_en": "As Crystal Rune I except the caster can inscribe 1st-8th level spells.",
+   "description_fr": "Comme Crystal Rune I, sauf que le lanceur peut inscrire des sorts de niveau 1 \u00e0 8.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10719": {
+   "description_en": "As Deep Inscription I except the crystal rune may be used three times before it fades.",
+   "description_fr": "Comme Deep Inscription I, sauf que la rune de cristal peut \u00eatre utilis\u00e9e trois fois avant de s'effacer.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10720": {
+   "description_en": "As Crystal Rune I except the caster can inscribe 1st-9th level spells.",
+   "description_fr": "Comme Crystal Rune I, sauf que le lanceur peut inscrire des sorts de niveau 1 \u00e0 9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10721": {
+   "description_en": "As Crystal Rune I except the caster can inscribe 1st-10th level spells.",
+   "description_fr": "Comme Crystal Rune I, sauf que le lanceur peut inscrire des sorts de niveau 1 \u00e0 10.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10722": {
+   "description_en": "As Deep Inscription I except the crystal rune may be used four times before it fades.",
+   "description_fr": "Comme Deep Inscription I, sauf que la rune de cristal peut \u00eatre utilis\u00e9e quatre fois avant de s'effacer.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10723": {
+   "description_en": "As Crystal Rune I except the caster can inscribe 1st-20th level spells.",
+   "description_fr": "Comme Crystal Rune I, sauf que le lanceur peut inscrire des sorts de niveau 1 \u00e0 20.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10724": {
+   "description_en": "Mends multiple rips in a piece of string/twine. All components must be gathered together (within 10'R).",
+   "description_fr": "R\u00e9pare de multiples d\u00e9chirures d'une ficelle/cordelette. Tous les fragments doivent \u00eatre rassembl\u00e9s (dans un rayon de 3 m de rayon).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10725": {
+   "description_en": "As Mend String and Twine except it mends rope.",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare la corde.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10726": {
+   "description_en": "As Mend String and Twine except it mends parchment, paper, vellum, etc.",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare parchemin, papier, v\u00e9lin, etc.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10727": {
+   "description_en": "As Mend String and Twine except it mends cloth.",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare le tissu.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10728": {
+   "description_en": "As Mend String and Twine except it mends leather, hide, skin, etc.",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare cuir, peau, etc.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10729": {
+   "description_en": "As Mend String and Twine except it mends multiple breaks in non-magical wood.",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare de multiples cassures du bois non magique.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10730": {
+   "description_en": "As Mend String and Twine except it mends earth, ceramics, etc.",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare terre, c\u00e9ramique, etc.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10731": {
+   "description_en": "As Mend String and Twine except it mends hard animal substances (horn, bone, antler, shell, chitin).",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare les substances animales dures (corne, os, bois de cerf, coquille, chitine).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10732": {
+   "description_en": "As Mend String and Twine except it mends iron, tin, lead, etc.",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare fer, \u00e9tain, plomb, etc.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10733": {
+   "description_en": "As Mend String and Twine except it mends ordinary stone and glass.",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare pierre ordinaire et verre.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10734": {
+   "description_en": "As Mend String and Twine except it mends gold, silver, platinum, etc.",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare or, argent, platine, etc.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10735": {
+   "description_en": "As Mend String and Twine except it mends semi-precious stone.",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare les pierres semi-pr\u00e9cieuses.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10736": {
+   "description_en": "As Mend String and Twine except it mends precious stone.",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare les pierres pr\u00e9cieuses.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10737": {
+   "description_en": "As Mend String and Twine except it mends magic parchment, paper, etc.",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare parchemin et papier magiques, etc.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10738": {
+   "description_en": "As Mend String and Twine except it mends magic cloth, rope, and string.",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare tissu, corde et ficelle magiques.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10739": {
+   "description_en": "As Mend String and Twine except it mends magic leather, hide, etc.",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare cuir et peau magiques, etc.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10740": {
+   "description_en": "As Mend String and Twine except it mends magic wood.",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare le bois magique.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10741": {
+   "description_en": "As Mend String and Twine except it mends magic horn, bone, etc.",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare corne et os magiques, etc.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10742": {
+   "description_en": "As Mend String and Twine except it mends magic earthenware.",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare la terre cuite magique.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10743": {
+   "description_en": "As Mend String and Twine except it mends magic stone and glass.",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare pierre et verre magiques.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10744": {
+   "description_en": "As Mend String and Twine except it mends magic metal.",
+   "description_fr": "Comme Mend String and Twine, sauf qu'il r\u00e9pare le m\u00e9tal magique.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10745": {
+   "description_en": "Mends all facets of any one item. All components must be within a 50'R.",
+   "description_fr": "R\u00e9pare tous les aspects d'un objet unique. Tous les fragments doivent se trouver dans un rayon de 15 m de rayon.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10746": {
+   "description_en": "Allows the caster to cast any of the above spells at a rate of 1/rnd.",
+   "description_fr": "Permet au lanceur de lancer n'importe quel sort ci-dessus au rythme de 1/rd.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10747": {
+   "description_en": "As Presence on the Base Mentalist list except only the presence of raw Nether or spells employing it may be detected.",
+   "description_fr": "Comme Presence de la liste Base Mentalist, sauf que seule la pr\u00e9sence de N\u00e9ther brut ou de sorts l'employant peut \u00eatre d\u00e9tect\u00e9e.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10748": {
+   "description_en": "Lets the caster look into the swirling mass of Nether, making out objects within it.",
+   "description_fr": "Permet au lanceur de regarder dans la masse tourbillonnante de N\u00e9ther et d'y distinguer des objets.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10749": {
+   "description_en": "As Resist Light on the Elemental Shields list (Open Essence) except it protects against Nether.",
+   "description_fr": "Comme Resist Light de la liste Elemental Shields (Open Essence), sauf qu'il prot\u00e8ge contre le N\u00e9ther.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10750": {
+   "description_en": "Creates a 1'R cloud of Nether matter: 'C' Nether criticals on rounds 1-2, 'B' on rounds 3-4, 'A' on rounds 5-6. On the first round, any target at the point of creation may make a 'Medium' maneuver to avoid contact. It drifts with the wind and affects all within its radius.",
+   "description_fr": "Cr\u00e9e un nuage de mati\u00e8re de N\u00e9ther de 0,3 m de rayon : critiques de N\u00e9ther \u00ab C \u00bb aux rounds 1-2, \u00ab B \u00bb aux rounds 3-4, \u00ab A \u00bb aux rounds 5-6. Au premier round, toute cible au point de cr\u00e9ation peut tenter une man\u0153uvre \u00ab Moyenne \u00bb pour \u00e9viter le contact. Le nuage d\u00e9rive avec le vent et affecte tout ce qui entre dans son rayon.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10751": {
+   "description_en": "Lets the caster summon a Nether Elemental, which obeys for 1 minute/lvl while the caster concentrates, then vanishes to the Nether Plane. Treat as a Fire Servant that delivers Plasma crits.",
+   "description_fr": "Permet au lanceur d'invoquer un \u00c9l\u00e9mentaire de N\u00e9ther, qui ob\u00e9it pendant 1 minute/niv tant que le lanceur se concentre, puis dispara\u00eet vers le Plan du N\u00e9ther. Trait\u00e9 comme un Serviteur de Feu infligeant des critiques de Plasma.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10752": {
+   "description_en": "As Wall of Fire on the Fire Law list except the wall is formed of Nether and criticals are 'A' (50%) or 'B' (50%) Nether crits.",
+   "description_fr": "Comme Wall of Fire de la liste Fire Law, sauf que le mur est fait de N\u00e9ther et les critiques sont des critiques de N\u00e9ther \u00ab A \u00bb (50 %) ou \u00ab B \u00bb (50 %).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10753": {
+   "description_en": "A bolt of Nether is shot from the caster's palm; results are determined on the Nether Bolt Attack Table 13.3.",
+   "description_fr": "Un trait de N\u00e9ther jaillit de la paume du lanceur ; les r\u00e9sultats sont d\u00e9termin\u00e9s sur la Table d'Attaque des \u00c9clairs de N\u00e9ther 13.3.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10754": {
+   "description_en": "As Nether Resistance except it protects all within 10' of the caster.",
+   "description_fr": "Comme Nether Resistance, sauf qu'il prot\u00e8ge tous ceux \u00e0 moins de 3 m du lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10755": {
+   "description_en": "As Circle Aflame on the Fire Law list (Base Magician) except criticals inflicted are Nether criticals, and the caster may raise the critical's severity by one for every additional 13 PP spent (to a maximum of 'E').",
+   "description_fr": "Comme Circle Aflame de la liste Fire Law (Base Magician), sauf que les critiques inflig\u00e9s sont des critiques de N\u00e9ther, et le lanceur peut augmenter la gravit\u00e9 du critique d'un cran pour chaque tranche de 13 PP suppl\u00e9mentaires (maximum \u00ab E \u00bb).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10756": {
+   "description_en": "A 1' ball of Nether is shot from the caster's palm; it explodes to affect a 10'R area; results are determined on the Nether Ball Attack Table 13.4 (RMCIII).",
+   "description_fr": "Une boule de N\u00e9ther d'0,3 m jaillit de la paume du lanceur ; elle explose en affectant une zone de 3 m de rayon ; les r\u00e9sultats sont d\u00e9termin\u00e9s sur la Table d'Attaque des Boules de N\u00e9ther 13.4 (RMCIII).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10757": {
+   "description_en": "Lets the caster summon a Nether Elemental. Treat as a Weak Fire Elemental that delivers Plasma crits.",
+   "description_fr": "Permet au lanceur d'invoquer un \u00c9l\u00e9mentaire de N\u00e9ther. Trait\u00e9 comme un \u00c9l\u00e9mentaire de Feu faible infligeant des critiques de Plasma.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10758": {
+   "description_en": "As Nether Bolt (100') except range is 300'.",
+   "description_fr": "Comme Nether Bolt (30 m), sauf que la port\u00e9e est de 90 m.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10759": {
+   "description_en": "As Light Armor on the Elemental Shields list (Open Essence) except it protects against Nether.",
+   "description_fr": "Comme Light Armor de la liste Elemental Shields (Open Essence), sauf qu'il prot\u00e8ge contre le N\u00e9ther.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10760": {
+   "description_en": "As Nether Mass (1'R) except the radius is 5' and duration is 8 rounds: 'D' criticals rounds 1-2, 'C' rounds 3-4, 'B' rounds 5-6, 'A' rounds 7-8.",
+   "description_fr": "Comme Nether Mass (0,3 m de rayon), sauf que le rayon est de 1,5 m et la dur\u00e9e de 8 rounds : critiques \u00ab D \u00bb aux rounds 1-2, \u00ab C \u00bb aux rounds 3-4, \u00ab B \u00bb aux rounds 5-6, \u00ab A \u00bb aux rounds 7-8.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10761": {
+   "description_en": "Lets the caster envelop a weapon in Nether matter. When the weapon inflicts damage, the armor must make an RR; on failure the AT is treated as AT 1. At the spell's end the weapon is completely destroyed. Any fumble delivers a 'B' Nether crit to the wielder.",
+   "description_fr": "Permet au lanceur d'envelopper une arme de mati\u00e8re de N\u00e9ther. Quand l'arme inflige des d\u00e9g\u00e2ts, l'armure doit r\u00e9ussir un JR ; en cas d'\u00e9chec, l'AT est trait\u00e9e comme AT 1. \u00c0 la fin du sort, l'arme est enti\u00e8rement d\u00e9truite. Toute maladresse inflige un critique de N\u00e9ther \u00ab B \u00bb \u00e0 celui qui la manie.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10762": {
+   "description_en": "As Nether Ball except the radius is 20'R.",
+   "description_fr": "Comme Nether Ball, sauf que le rayon est de 6 m de rayon.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10763": {
+   "description_en": "Lets the caster summon a Nether Elemental. Treat as a Strong Fire Elemental that delivers Nether criticals.",
+   "description_fr": "Permet au lanceur d'invoquer un \u00c9l\u00e9mentaire de N\u00e9ther. Trait\u00e9 comme un \u00c9l\u00e9mentaire de Feu puissant infligeant des critiques de N\u00e9ther.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10764": {
+   "description_en": "As Triad of Water on the Water Law list (Base Magician) except Nether Bolts are shot.",
+   "description_fr": "Comme Triad of Water de la liste Water Law (Base Magician), sauf que ce sont des \u00c9clairs de N\u00e9ther qui sont tir\u00e9s.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10765": {
+   "description_en": "A Gate is opened to the Elemental Plane of Nether, 7' tall by 4' wide. Only creatures small enough may pass, though unusually powerful creatures (20+ levels) may rip the gate wider. GM discretion required.",
+   "description_fr": "Un Portail est ouvert vers le Plan \u00c9l\u00e9mentaire du N\u00e9ther, 2,1 m de haut sur 1,2 m de large. Seules les cr\u00e9atures assez petites peuvent passer, mais des cr\u00e9atures exceptionnellement puissantes (niveau 20+) peuvent d\u00e9chirer le portail pour l'agrandir. Discr\u00e9tion du MJ requise.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10766": {
+   "description_en": "As Presence on the Base Mentalist list except only the presence of raw Plasma or Plasma spells may be detected.",
+   "description_fr": "Comme Presence de la liste Base Mentalist, sauf que seule la pr\u00e9sence de Plasma brut ou de sorts de Plasma peut \u00eatre d\u00e9tect\u00e9e.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10767": {
+   "description_en": "As Resist Light on the Elemental Shields list (Open Essence) except it protects against Plasma and gives a +5 bonus versus other elements.",
+   "description_fr": "Comme Resist Light de la liste Elemental Shields (Open Essence), sauf qu'il prot\u00e8ge contre le Plasma et donne un bonus de +5 contre les autres \u00e9l\u00e9ments.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10768": {
+   "description_en": "As Wall of Fire on the Fire Law list (Base Magician) except the wall is formed of Plasma and criticals are 'A' (50%) or 'B' (50%) Plasma crits.",
+   "description_fr": "Comme Wall of Fire de la liste Fire Law (Base Magician), sauf que le mur est fait de Plasma et les critiques sont des critiques de Plasma \u00ab A \u00bb (50 %) ou \u00ab B \u00bb (50 %).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10769": {
+   "description_en": "A bolt of Plasma is shot from the caster's palm; results are determined on the Plasma Bolt Attack Table 13.1 (RMCIII).",
+   "description_fr": "Un trait de Plasma jaillit de la paume du lanceur ; les r\u00e9sultats sont d\u00e9termin\u00e9s sur la Table d'Attaque des \u00c9clairs de Plasma 13.1 (RMCIII).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10770": {
+   "description_en": "The caster's weapon (must be at least partly metal for the Plasma to bind) is enveloped in 'Coldfire' and inflicts Plasma criticals one degree less severe in addition to normal criticals. The caster may have only one Eldritch weapon at a time. Any fumble delivers a 'B' Plasma crit to the wielder.",
+   "description_fr": "L'arme du lanceur (au moins partiellement m\u00e9tallique pour que le Plasma s'y lie) est envelopp\u00e9e de \u00ab Feu Froid \u00bb et inflige, en plus des critiques normaux, des critiques de Plasma d'un degr\u00e9 de gravit\u00e9 inf\u00e9rieur. Le lanceur ne peut avoir qu'une arme Eldritch \u00e0 la fois. Tout maladresse inflige un critique de Plasma \u00ab B \u00bb \u00e0 celui qui la manie.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10771": {
+   "description_en": "A 1' ball of Plasma is shot from the caster's palm; it explodes to affect a 10'R area; results are determined on the Plasma Ball Attack Table 13.2 (RMCIII).",
+   "description_fr": "Une boule de Plasma d'0,3 m jaillit de la paume du lanceur ; elle explose en affectant une zone de 3 m de rayon ; les r\u00e9sultats sont d\u00e9termin\u00e9s sur la Table d'Attaque des Boules de Plasma 13.2 (RMCIII).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10772": {
+   "description_en": "As Light Armor on the Elemental Shields list (Open Essence) except it protects against Plasma and gives a +10 bonus versus other elements.",
+   "description_fr": "Comme Light Armor de la liste Elemental Shields (Open Essence), sauf qu'il prot\u00e8ge contre le Plasma et donne un bonus de +10 contre les autres \u00e9l\u00e9ments.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10773": {
+   "description_en": "As Plasma Bolt except range is 300'.",
+   "description_fr": "Comme Plasma Bolt, sauf que la port\u00e9e est de 90 m.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10774": {
+   "description_en": "As Circle Aflame on the Fire Law list (Base Magician) except criticals inflicted are Plasma criticals, and the caster may raise the critical's severity by one for every additional 13 PP spent (to a maximum of 'E').",
+   "description_fr": "Comme Circle Aflame de la liste Fire Law (Base Magician), sauf que les critiques inflig\u00e9s sont des critiques de Plasma, et le lanceur peut augmenter la gravit\u00e9 du critique d'un cran pour chaque tranche de 13 PP suppl\u00e9mentaires d\u00e9pens\u00e9s (maximum \u00ab E \u00bb).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10775": {
+   "description_en": "The target is imprisoned in chains of Coldfire. Physical escape attempts deliver a 'C' Plasma crit if successful or an 'E' Plasma crit if unsuccessful; magical escape attempts deliver an 'H' Plasma crit regardless (see Plasma Bolt Attack Table 13.1).",
+   "description_fr": "La cible est emprisonn\u00e9e dans des cha\u00eenes de Feu Froid. Les tentatives d'\u00e9vasion physiques infligent un critique de Plasma \u00ab C \u00bb si elles r\u00e9ussissent ou \u00ab E \u00bb si elles \u00e9chouent ; les tentatives magiques infligent un critique de Plasma \u00ab H \u00bb quel qu'en soit le r\u00e9sultat (voir Table d'Attaque des \u00c9clairs de Plasma 13.1).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10776": {
+   "description_en": "As Unearth on the Earth Law list (Base Magician) except the target matter (solid, liquid, or gas) is not destroyed but converted equally into its other two states. E.g., a targeted solid becomes half liquid (usually water) and half gas (usually air); matter converted to solid usually forms packed earth or sandstone.",
+   "description_fr": "Comme Unearth de la liste Earth Law (Base Magician), sauf que la mati\u00e8re cibl\u00e9e (solide, liquide ou gaz) n'est pas d\u00e9truite mais convertie \u00e0 parts \u00e9gales dans ses deux autres \u00e9tats. Ex. : un solide cibl\u00e9 devient moiti\u00e9 liquide (souvent de l'eau) et moiti\u00e9 gaz (souvent de l'air) ; la mati\u00e8re convertie en solide prend souvent la forme de terre compacte ou de gr\u00e8s.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10777": {
+   "description_en": "As Stone/Earth on the Earth Law list (Base Magician) except the target matter may be any nonmagical matter. The caster may control the final state (solid, liquid, gas) and, if a sample is available, the kind of matter, provided the final material is worth no more than 5 gp/lb. Results are subject to GM approval.",
+   "description_fr": "Comme Stone/Earth de la liste Earth Law (Base Magician), sauf que la mati\u00e8re cibl\u00e9e peut \u00eatre n'importe quelle mati\u00e8re non magique. Le lanceur peut contr\u00f4ler l'\u00e9tat final (solide, liquide, gaz) et, si un \u00e9chantillon est disponible, le type de mati\u00e8re, \u00e0 condition que le mat\u00e9riau final ne vaille pas plus de 13 cm/livre. R\u00e9sultats soumis \u00e0 l'approbation du MJ.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10778": {
+   "description_en": "As Plasma Ball except the area of effect is 20'R.",
+   "description_fr": "Comme Plasma Ball, sauf que la zone d'effet est de 6 m de rayon.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10779": {
+   "description_en": "As Plasma Bolt except the range is 500'.",
+   "description_fr": "Comme Plasma Bolt, sauf que la port\u00e9e est de 150 m.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10780": {
+   "description_en": "The caster's body is covered by Plasma, giving +30 versus Plasma attacks and halving concussion damage from them. Anyone within 5' suffers an 'A' Plasma critical (no RR); anyone in physical contact suffers a 'C' Plasma critical (no RR). The caster's physical attacks that deliver a critical also deliver an 'A' Plasma critical. All the caster's items are immune to Plasma for the duration, but any ignitable/fragile material he contacts must make an RR or burn/break.",
+   "description_fr": "Le corps du lanceur est recouvert de Plasma, ce qui donne +30 contre les attaques de Plasma et r\u00e9duit de moiti\u00e9 les points d'impact qu'elles causent. Quiconque se trouve \u00e0 moins de 1,5 m subit un critique de Plasma \u00ab A \u00bb (sans JR) ; quiconque est en contact physique subit un critique de Plasma \u00ab C \u00bb (sans JR). Les attaques physiques du lanceur infligeant un critique infligent aussi un critique de Plasma \u00ab A \u00bb. Tous les objets du lanceur sont immunis\u00e9s au Plasma pour la dur\u00e9e, mais tout mat\u00e9riau inflammable/fragile qu'il touche doit r\u00e9ussir un JR sous peine de br\u00fbler/se briser.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10781": {
+   "description_en": "As Triad of Water on the Water Law list (Base Magician) except Plasma Bolts are shot.",
+   "description_fr": "Comme Triad of Water de la liste Water Law (Base Magician), sauf que ce sont des \u00c9clairs de Plasma qui sont tir\u00e9s.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10782": {
+   "description_en": "A Gate is opened to the Elemental Plane of Plasma, 7' tall by 4' wide. Only creatures small enough may pass, though unusually powerful creatures (20+ levels) may rip the gate wider. GM discretion required.",
+   "description_fr": "Un Portail est ouvert vers le Plan \u00c9l\u00e9mentaire du Plasma, 2,1 m de haut sur 1,2 m de large. Seules les cr\u00e9atures assez petites peuvent passer, mais des cr\u00e9atures exceptionnellement puissantes (niveau 20+) peuvent d\u00e9chirer le portail pour l'agrandir. Discr\u00e9tion du MJ requise.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10783": {
+   "description_en": "A Strong Plasma Elemental is conjured from the Elemental Plane of Plasma. It regenerates hits and damage in direct proportion to any elemental attack spell that hits it, if that spell fails an RR vs the caster's level (e.g., a Firebolt doing 15D that fails its RR heals the Elemental 15 hits and cures a medium or severe wound).",
+   "description_fr": "Un \u00c9l\u00e9mentaire de Plasma puissant est invoqu\u00e9 depuis le Plan \u00c9l\u00e9mentaire du Plasma. Il r\u00e9g\u00e9n\u00e8re points de vie et d\u00e9g\u00e2ts en proportion directe de tout sort d'attaque \u00e9l\u00e9mentaire qui le frappe, si ce sort \u00e9choue \u00e0 un JR contre le niveau du lanceur (ex. : un Firebolt infligeant 15D qui rate son JR soigne l'\u00c9l\u00e9mentaire de 15 points et gu\u00e9rit une blessure moyenne ou grave).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10784": {
+   "description_en": "The caster taps Plasma directly, gaining several abilities for the duration: a Plasma breath weapon usable 3 times/spell as a Great Drake (either a 130 OB using the Plasma Bolt Attack Table 13.1, or a cone 300' long and 100' at the base); he drains CO points as an Undead within up to 20'R (5 CO/rnd, -20 to RR) due to Plasma's soul-numbing nature; and he may use any one lower-level spell (below level 25) from this list once per round.",
+   "description_fr": "Le lanceur puise directement dans le Plasma, gagnant plusieurs capacit\u00e9s pour la dur\u00e9e : une arme de souffle de Plasma utilisable 3 fois/sort comme un Grand Drake (soit un BO de 130 via la Table d'Attaque des \u00c9clairs de Plasma 13.1, soit un c\u00f4ne de 90 m de long et 30 m de base) ; il draine des points de CO comme un Mort-vivant dans un rayon allant jusqu'\u00e0 6 m de rayon (5 CO/rd, -20 au JR) du fait de la nature engourdissante du Plasma ; et il peut utiliser un sort de niveau inf\u00e9rieur (sous le niveau 25) de cette liste une fois par round.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
   }
  }
 }
