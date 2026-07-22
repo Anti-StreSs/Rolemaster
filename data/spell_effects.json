@@ -57816,6 +57816,564 @@
    "description_fr": "Le lanceur peut utiliser un sort/round de cette liste.",
    "source": "RMC3",
    "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10562": {
+   "description_en": "Target is totally protected from all natural heat (not fire), gains +10 to RRs vs heat and imposes -10 on elemental fire attacks.",
+   "description_fr": "La cible est totalement prot\u00e9g\u00e9e de toute chaleur naturelle (non du feu), gagne +10 aux JR contre la chaleur et impose -10 aux attaques \u00e9l\u00e9mentaires de feu.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10563": {
+   "description_en": "1 cu'/lvl of liquid can be heated to boiling, at a rate of 1 cu'/rd.",
+   "description_fr": "1 cu'/niv de liquide peut \u00eatre port\u00e9 \u00e0 \u00e9bullition, au rythme de 1 cu'/rd.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10564": {
+   "description_en": "Any solid inanimate non-metal material (1 cu'/lvl) can be warmed to 100\u00b0F, at a rate of 1 cu'/rd.",
+   "description_fr": "Tout mat\u00e9riau solide inanim\u00e9 non m\u00e9tallique (1 cu'/niv) peut \u00eatre r\u00e9chauff\u00e9 \u00e0 100 \u00b0F, au rythme de 1 cu'/rd.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10565": {
+   "description_en": "Causes any wood to ignite and burn. All wood ignited must be within 1' of the caster's palm.",
+   "description_fr": "Enflamme n'importe quel bois. Tout bois enflamm\u00e9 doit se trouver \u00e0 moins d'0,3 m de la paume du lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10566": {
+   "description_en": "As Resist Heat except all beings within 10' of the target are protected.",
+   "description_fr": "Comme Resist Heat, sauf que tous les \u00eatres situ\u00e9s \u00e0 moins de 3 m de la cible sont prot\u00e9g\u00e9s.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10567": {
+   "description_en": "Any solid inanimate non-metal material (1 cu'/lvl) can be warmed to 500\u00b0F, at a rate of 100 degrees/rd.",
+   "description_fr": "Tout mat\u00e9riau solide inanim\u00e9 non m\u00e9tallique (1 cu'/niv) peut \u00eatre r\u00e9chauff\u00e9 \u00e0 500 \u00b0F, au rythme de 100 degr\u00e9s/rd.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10568": {
+   "description_en": "A bolt of fire is shot from the palm of the caster; results are determined on the Fire Bolt Table.",
+   "description_fr": "Un trait de feu jaillit de la paume du lanceur ; les r\u00e9sultats sont d\u00e9termin\u00e9s sur la Table des Traits de Feu.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10569": {
+   "description_en": "As Resist Heat except it protects against all natural heat and modifies heat-related spells by 20.",
+   "description_fr": "Comme Resist Heat, sauf qu'il prot\u00e8ge de toute chaleur naturelle et modifie de 20 les sorts li\u00e9s \u00e0 la chaleur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10570": {
+   "description_en": "A 1' ball of fire is shot from the palm of the caster; it explodes to affect a 10'R area; results are determined on the Fire Ball Table.",
+   "description_fr": "Une boule de feu d'0,3 m jaillit de la paume du lanceur ; elle explose en affectant une zone de 3 m de rayon ; les r\u00e9sultats sont d\u00e9termin\u00e9s sur la Table des Boules de Feu.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10571": {
+   "description_en": "Caster can control the temperature range of a fire (extinguish it, flare it up, etc.).",
+   "description_fr": "Le lanceur peut contr\u00f4ler la temp\u00e9rature d'un feu (l'\u00e9teindre, l'attiser, etc.).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10572": {
+   "description_en": "As Fire Ball (10') except it affects a 20'R area.",
+   "description_fr": "Comme Fire Ball (3 m), sauf qu'il affecte une zone de 6 m de rayon.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10573": {
+   "description_en": "As Heat Armor except all beings within 10' of the target are protected.",
+   "description_fr": "Comme Heat Armor, sauf que tous les \u00eatres situ\u00e9s \u00e0 moins de 3 m de la cible sont prot\u00e9g\u00e9s.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10574": {
+   "description_en": "As Fire Bolt (100') except range is 300'.",
+   "description_fr": "Comme Fire Bolt (30 m), sauf que la port\u00e9e est de 90 m.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10575": {
+   "description_en": "Creates an opaque circular wall of fire (10'R x 10' x 6\"). Anyone passing through it takes an 'A' heat critical (no RR). The circle of flame is centered on the caster and is immobile.",
+   "description_fr": "Cr\u00e9e un mur de feu circulaire opaque (3 m de rayon x 3 m x 15 cm). Quiconque le traverse subit un critique de chaleur \u00ab A \u00bb (sans JR). Le cercle de flammes est centr\u00e9 sur le lanceur et immobile.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10576": {
+   "description_en": "Creates a cube of flame (10' x 10' x 10'); it takes 1 full round to form and become effective. An 'A' critical is dealt for each round spent passing through (or in) it. The cube burns for 1 rnd/lvl and its effect can be delayed up to 24 hrs, triggered by time, sound, violent action, etc.",
+   "description_fr": "Cr\u00e9e un cube de flammes (3 m x 3 m x 3 m) ; il faut 1 round complet pour qu'il se forme et devienne actif. Un critique \u00ab A \u00bb est inflig\u00e9 \u00e0 chaque round pass\u00e9 \u00e0 le traverser (ou \u00e0 s'y trouver). Le cube br\u00fble pendant 1 rd/niv et son effet peut \u00eatre diff\u00e9r\u00e9 jusqu'\u00e0 24 h, d\u00e9clench\u00e9 par le temps, un son, une action violente, etc.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10577": {
+   "description_en": "Causes a metal object to burst into flames; the object can be up to 1 lb/lvl in mass. If the object is on a being, it gets an RR; on a failure the being takes a heat critical whose severity depends on its location on the body.",
+   "description_fr": "Enflamme un objet m\u00e9tallique ; l'objet peut peser jusqu'\u00e0 0,5 kg/niv. Si l'objet est port\u00e9 par un \u00eatre, celui-ci a droit \u00e0 un JR ; en cas d'\u00e9chec, l'\u00eatre subit un critique de chaleur dont la gravit\u00e9 d\u00e9pend de son emplacement sur le corps.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10578": {
+   "description_en": "As Resist Heat except fire spells are also affected (fire bolt and fireball). Fire/heat criticals are reduced by one level (E\u2192D, D\u2192C, C\u2192B, B\u2192A, A ignored) and all fire/heat concussion hits are halved.",
+   "description_fr": "Comme Resist Heat, sauf que les sorts de feu sont aussi concern\u00e9s (traits et boules de feu). Les critiques de feu/chaleur sont r\u00e9duits d'un niveau (E\u2192D, D\u2192C, C\u2192B, B\u2192A, A ignor\u00e9) et tous les points d'impact de feu/chaleur sont r\u00e9duits de moiti\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10579": {
+   "description_en": "As Fire Bolt (100') except range is 500'.",
+   "description_fr": "Comme Fire Bolt (30 m), sauf que la port\u00e9e est de 150 m.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10580": {
+   "description_en": "Caster's body is covered with powerful flames. He is immune to all forms of fire. Anyone within 5' suffers an 'A' heat critical (no RR); anyone in physical contact suffers a 'C' heat critical. Physical attacks from the caster that deliver a critical also deliver an 'A' heat critical. All items on the caster's person are immune to fire for the duration, but any materials he touches (or walks on, etc.) after immolating must make an RR or ignite.",
+   "description_fr": "Le corps du lanceur se couvre de flammes puissantes. Il est immunis\u00e9 contre toutes les formes de feu. Quiconque se trouve \u00e0 moins de 1,5 m subit un critique de chaleur \u00ab A \u00bb (sans JR) ; quiconque est en contact physique subit un critique de chaleur \u00ab C \u00bb. Les attaques physiques du lanceur qui infligent un critique infligent aussi un critique de chaleur \u00ab A \u00bb. Tous les objets port\u00e9s par le lanceur sont immunis\u00e9s au feu pour la dur\u00e9e, mais tout mat\u00e9riau qu'il touche (ou foule, etc.) apr\u00e8s s'\u00eatre embras\u00e9 doit r\u00e9ussir un JR sous peine de s'enflammer.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10581": {
+   "description_en": "As Fire Armor except fire/heat criticals are reduced by two levels (E\u2192C, D\u2192B, C\u2192A, B and A ignored) and all fire/heat concussion hits are reduced by 3/4.",
+   "description_fr": "Comme Fire Armor, sauf que les critiques de feu/chaleur sont r\u00e9duits de deux niveaux (E\u2192C, D\u2192B, C\u2192A, B et A ignor\u00e9s) et tous les points d'impact de feu/chaleur sont r\u00e9duits de 3/4.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10582": {
+   "description_en": "As Fire Bolt (100') except five bolts of fire are shot from the caster's palm, at a rate of one per round.",
+   "description_fr": "Comme Fire Bolt (30 m), sauf que cinq traits de feu jaillissent de la paume du lanceur, au rythme d'un par round.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10583": {
+   "description_en": "As Metal Fires except a 300 sq' surface is affected and a 'C' critical is given each round spent passing through (or in) the 3' flames.",
+   "description_fr": "Comme Metal Fires, sauf qu'une surface de 300 pi\u00b2 est affect\u00e9e et qu'un critique \u00ab C \u00bb est inflig\u00e9 \u00e0 chaque round pass\u00e9 \u00e0 traverser (ou \u00e0 se trouver dans) les flammes de 0,9 m.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10584": {
+   "description_en": "As Fire Armor True except the target cannot be harmed by fire-based attacks.",
+   "description_fr": "Comme Fire Armor True, sauf que la cible ne peut \u00eatre bless\u00e9e par les attaques \u00e0 base de feu.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10585": {
+   "description_en": "Allows the caster to prepare his body for the use of crystal essence/magic (this spell must be cast every day). Without this protection, using the higher-level spells on this list can cause severe damage. The caster gets an RR vs twice the spell's level (a 3rd-level spell acts as 6th). On a failed RR: 01-75 Coma (1-6 months); 76-90 Mind Death (vegetable); 91-100 Death. The first time it is cast, the caster's crystal color is chosen (normally that of his teacher; the GM may choose randomly).",
+   "description_fr": "Permet au lanceur de pr\u00e9parer son corps \u00e0 l'usage de l'essence/magie des cristaux (ce sort doit \u00eatre lanc\u00e9 chaque jour). Sans cette protection, l'usage des sorts de niveau sup\u00e9rieur de cette liste peut causer de graves dommages. Le lanceur effectue un JR contre le double du niveau du sort (un sort de niveau 3 agit comme un niveau 6). En cas d'\u00e9chec : 01-75 Coma (1 \u00e0 6 mois) ; 76-90 Mort mentale (\u00e9tat v\u00e9g\u00e9tatif) ; 91-100 Mort. Au premier lancement, la couleur de cristal du lanceur est choisie (normalement celle de son ma\u00eetre ; le MJ peut la tirer au hasard).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10586": {
+   "description_en": "Detects any crystal within 5'R/rnd.",
+   "description_fr": "D\u00e9tecte tout cristal dans un rayon de 1,5 m de rayon/rd.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10587": {
+   "description_en": "Gives the nature and origin of a crystal, and when and how it was obtained and worked.",
+   "description_fr": "Donne la nature et l'origine d'un cristal, ainsi que quand et comment il a \u00e9t\u00e9 obtenu et travaill\u00e9.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10588": {
+   "description_en": "Opens a portal between two crystals, 3' x 6' x 1', through which anyone can pass. Both crystals blacken and crumble to dust on successful casting.",
+   "description_fr": "Ouvre un portail entre deux cristaux, 0,9 m x 1,8 m x 0,3 m, que quiconque peut franchir. Les deux cristaux noircissent et tombent en poussi\u00e8re lorsque le sort r\u00e9ussit.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10589": {
+   "description_en": "Gives direction and distance to a specific crystal within 100'/lvl that the caster is familiar with or has had described in detail.",
+   "description_fr": "Donne la direction et la distance d'un cristal pr\u00e9cis, dans un rayon de 30 m/niv, que le lanceur conna\u00eet ou qui lui a \u00e9t\u00e9 d\u00e9crit en d\u00e9tail.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10590": {
+   "description_en": "As Crystal Portal I except the portal is 3' x 6' x 10'.",
+   "description_fr": "Comme Crystal Portal I, sauf que le portail est de 0,9 m x 1,8 m x 3 m.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10591": {
+   "description_en": "Grants a vision of a quest the caster must perform to qualify for his place in the afterlife (usually for a particular crystal). Failure means temporary loss of afterlife status (retry next level) plus a GM-set penalty. The task must be within the caster's capabilities.",
+   "description_fr": "Accorde la vision d'une qu\u00eate que le lanceur doit accomplir pour m\u00e9riter sa place dans l'au-del\u00e0 (g\u00e9n\u00e9ralement pour un cristal pr\u00e9cis). L'\u00e9chec entra\u00eene la perte temporaire de ce statut (nouvel essai au niveau suivant) plus une p\u00e9nalit\u00e9 fix\u00e9e par le MJ. La t\u00e2che doit rester dans les capacit\u00e9s du lanceur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10592": {
+   "description_en": "As Crystal Portal I except the portal is 3' x 6' x 100'.",
+   "description_fr": "Comme Crystal Portal I, sauf que le portail est de 0,9 m x 1,8 m x 30 m.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10593": {
+   "description_en": "Gives direction and distance to any specific crystal the caster is familiar with or has had described in detail, within 1 mi/lvl.",
+   "description_fr": "Donne la direction et la distance de tout cristal pr\u00e9cis que le lanceur conna\u00eet ou qui lui a \u00e9t\u00e9 d\u00e9crit en d\u00e9tail, dans un rayon d'2 km/niv.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10594": {
+   "description_en": "As Crystal Portal I except the portal is 3' x 6' x 1 mile.",
+   "description_fr": "Comme Crystal Portal I, sauf que le portail est de 0,9 m x 1,8 m x 2 km.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10595": {
+   "description_en": "Lets the caster combine crystal fragments, crystal dust (of his crystal color) and 5 teardrops from himself to create a crystal seed.",
+   "description_fr": "Permet au lanceur de combiner des fragments de cristal, de la poussi\u00e8re de cristal (de sa couleur) et 5 larmes de lui-m\u00eame pour cr\u00e9er une graine de cristal.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10596": {
+   "description_en": "Creates a special familiar shaped as a multifaceted cut crystal of the caster's color, from 5 teardrops, crystal dust, and this spell cast 7 times a day at equal intervals for 7 weeks (any interruption destroys all the work). Usually set in jewelry and given to someone the caster wishes to spy upon or protect. The caster may have 1 spawn per level and is in constant contact (visual range 1 mi/lvl, audio 10 mi/lvl); beyond that only its direction is felt. If a spawn is destroyed, the caster loses 40% of current concussion hits and is at -50 to all actions for 1 week. The spawn moves 1'/rnd (visual 50', audio 100'; whispers cut it to 10', shouting extends it to 200-300') and only when directed.",
+   "description_fr": "Cr\u00e9e un familier sp\u00e9cial en forme de cristal taill\u00e9 multifacette de la couleur du lanceur, \u00e0 partir de 5 larmes, de poussi\u00e8re de cristal et de ce sort lanc\u00e9 7 fois par jour \u00e0 intervalles \u00e9gaux pendant 7 semaines (toute interruption d\u00e9truit le travail accompli). G\u00e9n\u00e9ralement serti dans un bijou et remis \u00e0 une personne que le lanceur veut espionner ou prot\u00e9ger. Le lanceur peut avoir 1 familier par niveau et reste en contact constant (port\u00e9e visuelle 2 km/niv, auditive 16 km/niv) ; au-del\u00e0, seule sa direction est per\u00e7ue. Si un familier est d\u00e9truit, le lanceur perd 40 % de ses points d'impact actuels et subit -50 \u00e0 toutes ses actions pendant 1 semaine. Le familier se d\u00e9place de 0,3 m/rd (vue 15 m, ou\u00efe 30 m ; les murmures r\u00e9duisent \u00e0 3 m, les cris \u00e9tendent \u00e0 200-90 m) et uniquement sur ordre.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10597": {
+   "description_en": "A crystal seed, 1 teardrop and this spell make the seed grow into a mystical crystal flower over one month, bearing 1 teardrop-shaped crystal fruit; once picked, the flower withers and dies. Grows to 8\" tall. (See note on crystal fruit.)",
+   "description_fr": "Une graine de cristal, 1 larme et ce sort font cro\u00eetre la graine en une fleur de cristal mystique en un mois, portant 1 fruit de cristal en forme de larme ; une fois cueilli, la fleur se fane et meurt. Atteint 20 cm de haut. (Voir la note sur le fruit de cristal.)",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10598": {
+   "description_en": "As Crystal Portal I except the portal is 3' x 6' x 10 miles.",
+   "description_fr": "Comme Crystal Portal I, sauf que le portail est de 0,9 m x 1,8 m x 16 km.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10599": {
+   "description_en": "As Crystal Flower except the seed grows into a crystal vine over two months, bearing teardrop fruit (1D3/vine/month during the growing season); the vine grows 4-8'/month with fruit in clusters, then crumbles and dies at season's end.",
+   "description_fr": "Comme Crystal Flower, sauf que la graine cro\u00eet en une vigne de cristal en deux mois, portant des fruits en larme (1D3/vigne/mois pendant la saison) ; la vigne pousse de 4-2,4 m/mois, les fruits en grappes, puis se d\u00e9sagr\u00e8ge et meurt en fin de saison.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10600": {
+   "description_en": "As Crystal Portal I except the portal is 3' x 6' x 50 miles.",
+   "description_fr": "Comme Crystal Portal I, sauf que le portail est de 0,9 m x 1,8 m x 80 km.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10601": {
+   "description_en": "As Crystal Flower except the seed grows into a crystal bush over six months, then six more to bear teardrop fruit (1D6/bush/month during the season). Grows 2-4' tall; if not cut down at season's end, 50% chance it sprouts a new bush from the roots. Fruit hang singly.",
+   "description_fr": "Comme Crystal Flower, sauf que la graine cro\u00eet en un buisson de cristal en six mois, puis six autres pour porter des fruits en larme (1D6/buisson/mois pendant la saison). Atteint 2-1,2 m de haut ; s'il n'est pas coup\u00e9 en fin de saison, 50 % de chances qu'un nouveau buisson pousse sur les racines. Les fruits pendent isol\u00e9ment.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10602": {
+   "description_en": "As Crystal Portal I except the portal is 3' x 6' x 100 miles.",
+   "description_fr": "Comme Crystal Portal I, sauf que le portail est de 0,9 m x 1,8 m x 160 km.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10603": {
+   "description_en": "As Crystal Bush except it bears no fruit but grows 1D6 crystal nodules on its roots (like potatoes); six months to grow and six to mature. Each nodule holds 1D6 crystals but is otherwise identical to crystal fruit. Digging up the nodules kills the bush.",
+   "description_fr": "Comme Crystal Bush, sauf qu'il ne porte pas de fruit mais fait cro\u00eetre 1D6 nodules de cristal sur ses racines (comme des pommes de terre) ; six mois pour pousser et six pour m\u00fbrir. Chaque nodule contient 1D6 cristaux mais est par ailleurs identique au fruit de cristal. D\u00e9terrer les nodules tue le buisson.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10604": {
+   "description_en": "As Crystal Portal I except the portal is 3' x 6' x 200 miles.",
+   "description_fr": "Comme Crystal Portal I, sauf que le portail est de 0,9 m x 1,8 m x 320 km.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10605": {
+   "description_en": "As Crystal Flower except the seed grows into a crystal tree over one year, then a second year to bear teardrop fruit (1D6 x the tree's age). Grows 1-3' in height and 1/4-1/2' in diameter each year; fruit hang singly.",
+   "description_fr": "Comme Crystal Flower, sauf que la graine cro\u00eet en un arbre de cristal en un an, puis une seconde ann\u00e9e pour porter des fruits en larme (1D6 x l'\u00e2ge de l'arbre). Grandit de 1-0,9 m en hauteur et de 1/4 \u00e0 1/0,6 m de diam\u00e8tre par an ; les fruits pendent isol\u00e9ment.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10606": {
+   "description_en": "As Crystal Portal I except the portal is 3' x 6' x 300 miles.",
+   "description_fr": "Comme Crystal Portal I, sauf que le portail est de 0,9 m x 1,8 m x 480 km.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10607": {
+   "description_en": "Causes the caster's next crystal portal spell (cast within 3 rnds) to open up to 1 yr/lvl into the past or future (roll D100: even = past, odd = future). The crystals used are burnt out and crumble to useless blackened dust.",
+   "description_fr": "Fait que le prochain sort de portail cristallin du lanceur (lanc\u00e9 dans les 3 rd) s'ouvre jusqu'\u00e0 1 an/niv dans le pass\u00e9 ou le futur (jet D100 : pair = pass\u00e9, impair = futur). Les cristaux employ\u00e9s sont consum\u00e9s et tombent en poussi\u00e8re noircie inutilisable.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10608": {
+   "description_en": "Lets the caster stop aging; he no longer ages. However, if he ever fails to cast Crystal Infusion even for a single day, he immediately begins aging and all the time cheated from nature is thrust upon his body at once (potentially fatal). GMs may require an RR vs heart failure against constitution, at -1 per month aged.",
+   "description_fr": "Permet au lanceur d'arr\u00eater le vieillissement ; il ne vieillit plus. Cependant, s'il manque ne serait-ce qu'un jour de Crystal Infusion, il se met aussit\u00f4t \u00e0 vieillir et tout le temps d\u00e9rob\u00e9 \u00e0 la nature s'abat d'un coup sur son corps (potentiellement fatal). Le MJ peut exiger un JR contre arr\u00eat cardiaque bas\u00e9 sur la constitution, \u00e0 -1 par mois vieilli.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10609": {
+   "description_en": "The caster is attuned to the vibrations of all crystals within 100', letting him listen in at a crystal's remote location as if he were there.",
+   "description_fr": "Le lanceur est accord\u00e9 aux vibrations de tous les cristaux dans un rayon de 30 m, ce qui lui permet d'\u00e9couter \u00e0 l'emplacement distant d'un cristal comme s'il y \u00e9tait.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10610": {
+   "description_en": "Gives the caster +5 strength and +5 constitution bonuses.",
+   "description_fr": "Donne au lanceur des bonus de +5 en force et +5 en constitution.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10611": {
+   "description_en": "As Crystal Ears except the caster gets a visual image.",
+   "description_fr": "Comme Crystal Ears, sauf que le lanceur obtient une image visuelle.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10612": {
+   "description_en": "Part of the caster's skin becomes as hard as crystal. Acts as AT 9, +5 heat resistance, -10 cold resistance.",
+   "description_fr": "Une partie de la peau du lanceur devient aussi dure que du cristal. Agit comme AT 9, +5 en r\u00e9sistance \u00e0 la chaleur, -10 en r\u00e9sistance au froid.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10613": {
+   "description_en": "Gives the caster +10 strength and +10 constitution bonuses.",
+   "description_fr": "Donne au lanceur des bonus de +10 en force et +10 en constitution.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10614": {
+   "description_en": "A small crystal (BB-sized) is shot from the caster's palm. Use the Shock Bolt table and Impact criticals, downgrading all criticals 1 level (A = no crit, B = A, C = B, etc.). The crystal shot is half the size of a crystal seed and worth half a gold piece.",
+   "description_fr": "Un petit cristal (de la taille d'un plomb) jaillit de la paume du lanceur. Utiliser la table des Traits de Choc et les critiques d'Impact, en abaissant tous les critiques d'un niveau (A = aucun critique, B = A, C = B, etc.). Le tir de cristal fait la moiti\u00e9 d'une graine de cristal et vaut une demi-pi\u00e8ce d'or.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10615": {
+   "description_en": "Part of the caster's skin becomes as hard as crystal. Acts as AT 13, +5 heat resistance, -10 cold resistance.",
+   "description_fr": "Une partie de la peau du lanceur devient aussi dure que du cristal. Agit comme AT 13, +5 en r\u00e9sistance \u00e0 la chaleur, -10 en r\u00e9sistance au froid.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10616": {
+   "description_en": "Gives the caster +15 strength and +15 constitution bonuses.",
+   "description_fr": "Donne au lanceur des bonus de +15 en force et +15 en constitution.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10617": {
+   "description_en": "As Crystal Shot except range is 100'.",
+   "description_fr": "Comme Crystal Shot, sauf que la port\u00e9e est de 30 m.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10618": {
+   "description_en": "Part of the caster's skin becomes as hard as crystal. Acts as AT 17, +5 heat resistance, -10 cold resistance.",
+   "description_fr": "Une partie de la peau du lanceur devient aussi dure que du cristal. Agit comme AT 17, +5 en r\u00e9sistance \u00e0 la chaleur, -10 en r\u00e9sistance au froid.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10619": {
+   "description_en": "The caster's eyes become faceted, viewing the world through many layers: invisible objects become visible, illusions appear as shapes of power, power levels oscillate, and he sees this energy by night as by day. He cannot see beyond 50' but has 270-degree vision.",
+   "description_fr": "Les yeux du lanceur deviennent facett\u00e9s et per\u00e7oivent le monde par de multiples couches : les objets invisibles deviennent visibles, les illusions apparaissent comme des formes de pouvoir, les niveaux de puissance oscillent, et il voit cette \u00e9nergie de nuit comme de jour. Il ne voit pas au-del\u00e0 de 15 m mais dispose d'une vision \u00e0 270 degr\u00e9s.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10620": {
+   "description_en": "A crystal fragment (pellet-sized) is shot from the caster's palm (use the Shock Bolt table); it gives Impact and Stun criticals of equal severity.",
+   "description_fr": "Un fragment de cristal (de la taille d'un plomb) jaillit de la paume du lanceur (utiliser la table des Traits de Choc) ; il inflige des critiques d'Impact et d'\u00c9tourdissement de gravit\u00e9 \u00e9gale.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10621": {
+   "description_en": "Gives the caster +20 strength and +20 constitution bonuses.",
+   "description_fr": "Donne au lanceur des bonus de +20 en force et +20 en constitution.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10622": {
+   "description_en": "When the caster snaps his fingers, his body vibrates with high-pitched sound energy, which he focuses into a beam aimed at a target. Any glass in the path shatters, dealing an 'A' Impact critical to anyone within ~5'R of the flying glass. The beam deals a 'C' Impact critical to the target, and everyone within 10'R must make a very hard orientation roll or be stunned for 1 rnd.",
+   "description_fr": "Lorsque le lanceur claque des doigts, son corps vibre d'une \u00e9nergie sonore aigu\u00eb qu'il concentre en un rayon dirig\u00e9 sur une cible. Tout verre sur la trajectoire vole en \u00e9clats, infligeant un critique d'Impact \u00ab A \u00bb \u00e0 quiconque se trouve \u00e0 ~1,5 m de rayon des \u00e9clats. Le rayon inflige un critique d'Impact \u00ab C \u00bb \u00e0 la cible, et tous ceux dans un rayon de 3 m de rayon doivent r\u00e9ussir un jet d'orientation tr\u00e8s difficile ou \u00eatre \u00e9tourdis 1 rd.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10623": {
+   "description_en": "Lets the caster enchant a metal blade: it gains crystal strength, becomes transparent and indestructible without magic, and has an OB of +35.",
+   "description_fr": "Permet au lanceur d'enchanter une lame m\u00e9tallique : elle acquiert la solidit\u00e9 du cristal, devient transparente et indestructible sans magie, et gagne un BO de +35.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10624": {
+   "description_en": "Gives the caster +25 strength and +25 constitution bonuses.",
+   "description_fr": "Donne au lanceur des bonus de +25 en force et +25 en constitution.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10625": {
+   "description_en": "As Crystal Bolt except range is 300'.",
+   "description_fr": "Comme Crystal Bolt, sauf que la port\u00e9e est de 90 m.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10626": {
+   "description_en": "As Crystal Blade I except the blade also cuts through anything lacking a magical aura; thus all non-magical armor types are treated as AT 4.",
+   "description_fr": "Comme Crystal Blade I, sauf que la lame tranche aussi tout ce qui est d\u00e9pourvu d'aura magique ; ainsi toutes les cat\u00e9gories d'armure non magiques sont trait\u00e9es comme AT 4.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10627": {
+   "description_en": "As Crystal Repercussion except the sound beam reaches 300' and anyone within 30' of the caster must make a sheer folly orientation roll or be stunned for 1 rnd.",
+   "description_fr": "Comme Crystal Repercussion, sauf que le rayon sonore porte \u00e0 90 m et que quiconque se trouve \u00e0 moins de 9 m du lanceur doit r\u00e9ussir un jet d'orientation \u00ab pure folie \u00bb ou \u00eatre \u00e9tourdi 1 rd.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10628": {
+   "description_en": "Gives the caster +30 strength and +30 constitution bonuses.",
+   "description_fr": "Donne au lanceur des bonus de +30 en force et +30 en constitution.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10629": {
+   "description_en": "As Crystal Bolt except it adds heat and electricity criticals one level lower than the Impact and Stun criticals (an 'A' impact/stun = no heat/electric crit, 'B' = 'A', etc.).",
+   "description_fr": "Comme Crystal Bolt, sauf qu'il ajoute des critiques de chaleur et d'\u00e9lectricit\u00e9 d'un niveau inf\u00e9rieur aux critiques d'Impact et d'\u00c9tourdissement (impact/\u00e9tourd. \u00ab A \u00bb = aucun critique chaleur/\u00e9lectricit\u00e9, \u00ab B \u00bb = \u00ab A \u00bb, etc.).",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10630": {
+   "description_en": "As Crystal Blade I except the blade cuts through anything; all non-magical armor, and magical armor that fails its RR vs this 30th-level spell, is treated as AT 4.",
+   "description_fr": "Comme Crystal Blade I, sauf que la lame tranche tout ; toute armure non magique, et toute armure magique qui \u00e9choue \u00e0 son JR contre ce sort de niveau 30, est trait\u00e9e comme AT 4.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10631": {
+   "description_en": "As Crystal Bolt except it adds heat and electricity criticals of equal severity to the Impact and Stun criticals.",
+   "description_fr": "Comme Crystal Bolt, sauf qu'il ajoute des critiques de chaleur et d'\u00e9lectricit\u00e9 de gravit\u00e9 \u00e9gale aux critiques d'Impact et d'\u00c9tourdissement.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10632": {
+   "description_en": "When faced with a choice about which he has little or no information (e.g., which corridor leads out quickest), the caster casts this spell and the GM decides which way he goes, biasing the choice by 25%.",
+   "description_fr": "Face \u00e0 un choix sur lequel il n'a que peu ou pas d'information (p. ex. quel couloir m\u00e8ne le plus vite dehors), le lanceur lance ce sort et le MJ d\u00e9cide de la direction, en biaisant le choix de 25 %.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10633": {
+   "description_en": "Gives a vision of what will probably happen if the caster takes a specified action, within the next minute.",
+   "description_fr": "Donne une vision de ce qui se produira probablement si le lanceur accomplit une action donn\u00e9e, dans la minute qui suit.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10634": {
+   "description_en": "The caster has a dream relating to a topic decided upon just before retiring.",
+   "description_fr": "Le lanceur fait un r\u00eave portant sur un sujet choisi juste avant de s'endormir.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10635": {
+   "description_en": "The caster may summon 1 Minor Deep Earth (MDE) spirit. As long as the caster concentrates, the spirit must remain within the spell's area of effect.",
+   "description_fr": "Le lanceur peut invoquer 1 esprit mineur de la Profonde Terre (MDE). Tant que le lanceur se concentre, l'esprit doit rester dans la zone d'effet du sort.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10636": {
+   "description_en": "As Intuitions I except it covers the next three minutes.",
+   "description_fr": "Comme Intuitions I, sauf que le sort couvre les trois minutes suivantes.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10637": {
+   "description_en": "The caster can communicate with a Minor Deep Earth spirit, which answers all questions during the spell but knows the correct answer only 10% of the time, and always answers in riddles.",
+   "description_fr": "Le lanceur peut communiquer avec un esprit mineur de la Profonde Terre, qui r\u00e9pond \u00e0 toutes les questions pendant le sort mais ne conna\u00eet la bonne r\u00e9ponse que 10 % du temps, et r\u00e9pond toujours par \u00e9nigmes.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10638": {
+   "description_en": "As Intuitions I except it covers the next five minutes.",
+   "description_fr": "Comme Intuitions I, sauf que le sort couvre les cinq minutes suivantes.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10639": {
+   "description_en": "As Dream I except the limit is 2 dreams/night on different topics.",
+   "description_fr": "Comme Dream I, sauf que la limite est de 2 r\u00eaves/nuit sur des sujets diff\u00e9rents.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10640": {
+   "description_en": "The caster may summon 1 Lesser Deep Earth (LDE) spirit. As long as the caster concentrates, the spirit must remain within the spell's area of effect.",
+   "description_fr": "Le lanceur peut invoquer 1 esprit moindre de la Profonde Terre (LDE). Tant que le lanceur se concentre, l'esprit doit rester dans la zone d'effet du sort.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10641": {
+   "description_en": "The caster can understand and/or visualize the thoughts and emotions of the deep earth.",
+   "description_fr": "Le lanceur peut comprendre et/ou visualiser les pens\u00e9es et \u00e9motions de la Profonde Terre.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10642": {
+   "description_en": "As Speak With MDE Spirit except the Lesser Deep Earth spirit knows the correct answer 25% of the time.",
+   "description_fr": "Comme Speak With MDE Spirit, sauf que l'esprit moindre conna\u00eet la bonne r\u00e9ponse 25 % du temps.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10643": {
+   "description_en": "As Intuitions I except it covers the next seven minutes.",
+   "description_fr": "Comme Intuitions I, sauf que le sort couvre les sept minutes suivantes.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10644": {
+   "description_en": "As Dream I except the limit is 3 dreams/night on different topics.",
+   "description_fr": "Comme Dream I, sauf que la limite est de 3 r\u00eaves/nuit sur des sujets diff\u00e9rents.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10645": {
+   "description_en": "The caster may summon 1 Deep Earth (DE) spirit. As long as the caster concentrates, the spirit must remain within the spell's area of effect.",
+   "description_fr": "Le lanceur peut invoquer 1 esprit de la Profonde Terre (DE). Tant que le lanceur se concentre, l'esprit doit rester dans la zone d'effet du sort.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10646": {
+   "description_en": "As Intuitions I except it covers the next ten minutes.",
+   "description_fr": "Comme Intuitions I, sauf que le sort couvre les dix minutes suivantes.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10647": {
+   "description_en": "As Speak With MDE Spirit except the Deep Earth spirit knows the correct answer 40% of the time.",
+   "description_fr": "Comme Speak With MDE Spirit, sauf que l'esprit de la Profonde Terre conna\u00eet la bonne r\u00e9ponse 40 % du temps.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10648": {
+   "description_en": "As Dream I except the limit is 4 dreams/night on different topics.",
+   "description_fr": "Comme Dream I, sauf que la limite est de 4 r\u00eaves/nuit sur des sujets diff\u00e9rents.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10649": {
+   "description_en": "The caster may summon 1 Greater Deep Earth (GDE) spirit. As long as the caster concentrates, the spirit must remain within the spell's area of effect.",
+   "description_fr": "Le lanceur peut invoquer 1 esprit sup\u00e9rieur de la Profonde Terre (GDE). Tant que le lanceur se concentre, l'esprit doit rester dans la zone d'effet du sort.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10650": {
+   "description_en": "As Intuitions I except the caster can predict what will happen up to one minute/lvl into the future.",
+   "description_fr": "Comme Intuitions I, sauf que le lanceur peut pr\u00e9dire ce qui arrivera jusqu'\u00e0 une minute/niv dans le futur.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10651": {
+   "description_en": "As Speak With MDE Spirit except the Greater Deep Earth spirit knows the correct answer 65% of the time.",
+   "description_fr": "Comme Speak With MDE Spirit, sauf que l'esprit sup\u00e9rieur conna\u00eet la bonne r\u00e9ponse 65 % du temps.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10652": {
+   "description_en": "As Dream I except the limit is 5 dreams/night on different topics.",
+   "description_fr": "Comme Dream I, sauf que la limite est de 5 r\u00eaves/nuit sur des sujets diff\u00e9rents.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10653": {
+   "description_en": "The caster may summon 1 Guardian Deep Earth (GRDE) spirit. As long as the caster concentrates, the spirit must remain within the spell's area of effect.",
+   "description_fr": "Le lanceur peut invoquer 1 esprit gardien de la Profonde Terre (GRDE). Tant que le lanceur se concentre, l'esprit doit rester dans la zone d'effet du sort.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
+  },
+  "sp-10654": {
+   "description_en": "As Speak With MDE Spirit except the Guardian Deep Earth spirit knows the correct answer 80% of the time.",
+   "description_fr": "Comme Speak With MDE Spirit, sauf que l'esprit gardien conna\u00eet la bonne r\u00e9ponse 80 % du temps.",
+   "source": "RMC3",
+   "extracted_by": "claude-opus-4.8"
   }
  }
 }
