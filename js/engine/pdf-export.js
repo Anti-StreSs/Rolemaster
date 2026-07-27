@@ -210,7 +210,19 @@ function renderSkillsSection(doc, skills, lang, startY, pageH, mT, mB, mL) {
 
 // --- Main export ---
 
-export function generateCharacterPDF(character, options = {}) {
+// Preload an image and resolve with the element once decoded (null on failure).
+// Image decoding is asynchronous even for base64 data URLs, so naturalWidth/
+// naturalHeight must be awaited before computing the aspect ratio (portrait fix).
+function loadPortraitImage(src) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => resolve(null);
+    img.src = src;
+  });
+}
+
+export async function generateCharacterPDF(character, options = {}) {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
   const lang = options.lang || character.language || 'fr';
@@ -225,7 +237,7 @@ export function generateCharacterPDF(character, options = {}) {
     if (y + needed > pageH - mB) { doc.addPage(); y = mT; }
   }
 
-  function sectionHeader(title) {
+  function sectionHeader(title, lineW = usableW) {
     checkPage(14);
     doc.setFontSize(10);
     doc.setFont('helvetica', 'bold');
@@ -235,7 +247,7 @@ export function generateCharacterPDF(character, options = {}) {
     y += 1.5;
     doc.setDrawColor(201, 154, 46);
     doc.setLineWidth(0.5);
-    doc.line(mL, y, mL + usableW, y);
+    doc.line(mL, y, mL + lineW, y);
     y += 4;
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(9);
@@ -276,7 +288,7 @@ export function generateCharacterPDF(character, options = {}) {
   // ==============================
   const identityStartY = y;
   sectionHeader(lang === 'en' ? 'Identity' : 'Identité');
-  const portraitW = character.portraitUrl ? 44 : 0;
+  const portraitW = character.portraitUrl ? 60 : 0;
   const idW = usableW - portraitW - (portraitW ? 3 : 0);
   const col1x = mL, col2x = mL + idW / 2;
   const idFields = [
@@ -303,31 +315,11 @@ export function generateCharacterPDF(character, options = {}) {
   }
   y += 2;
 
-  // Portrait image (right column, same row as identity)
-  if (character.portraitUrl) {
-    const pX = mL + usableW - portraitW;
-    const pH = y - identityStartY;
-    const fmt = character.portraitUrl.startsWith('data:image/png') ? 'PNG' : 'JPEG';
-    try {
-      if (options.portraitFit) {
-        doc.addImage(character.portraitUrl, fmt, pX, identityStartY, portraitW, pH, undefined, 'FAST');
-      } else {
-        const img = new Image();
-        img.src = character.portraitUrl;
-        const aspect = img.naturalWidth / img.naturalHeight;
-        let drawW = portraitW, drawH = portraitW / aspect;
-        if (drawH > pH) { drawH = pH; drawW = pH * aspect; }
-        const offsetX = pX + (portraitW - drawW) / 2;
-        const offsetY = identityStartY + (pH - drawH) / 2;
-        doc.addImage(character.portraitUrl, fmt, offsetX, offsetY, drawW, drawH, undefined, 'FAST');
-      }
-    } catch (_e) { /* skip if format unsupported */ }
-  }
-
   // ==============================
   // Stats table — uneven columns (name wider, numerics narrower)
   // ==============================
-  sectionHeader(lang === 'en' ? 'Statistics' : 'Caractéristiques');
+  // When a portrait is present, shorten the gold rule so it doesn't cross the image
+  sectionHeader(lang === 'en' ? 'Statistics' : 'Caractéristiques', portraitW ? idW : usableW);
   const bgBonuses = getBackgroundBonuses(character);
 
   // Column x positions: stat abbrev(16) | temp(11) | pot(11) | race(14) | bonus(14) | bg(14) | spec(14) | total(14)
@@ -374,6 +366,31 @@ export function generateCharacterPDF(character, options = {}) {
     y += 4;
   }
   y += 3;
+
+  // ==============================
+  // Portrait — fills the empty top-right zone (Identity top → stats table bottom)
+  // ==============================
+  if (character.portraitUrl) {
+    const pX = mL + usableW - portraitW;
+    const pTop = identityStartY + 2; // just below the Identity gold rule
+    const pBottom = Math.min(y - 2, pageH - mB); // guard against page overflow
+    const pH = pBottom - pTop;
+    const fmt = character.portraitUrl.startsWith('data:image/png') ? 'PNG' : 'JPEG';
+    const img = await loadPortraitImage(character.portraitUrl);
+    try {
+      if (options.portraitFit || !img || !img.naturalWidth || !img.naturalHeight) {
+        // Stretch-fill the reserved box (also fallback when dims unavailable)
+        doc.addImage(character.portraitUrl, fmt, pX, pTop, portraitW, pH, undefined, 'FAST');
+      } else {
+        // Contain-fit: preserve aspect ratio, top-aligned, flush right
+        const aspect = img.naturalWidth / img.naturalHeight;
+        let drawW = portraitW, drawH = portraitW / aspect;
+        if (drawH > pH) { drawH = pH; drawW = pH * aspect; }
+        const offsetX = pX + (portraitW - drawW); // flush with right margin
+        doc.addImage(character.portraitUrl, fmt, offsetX, pTop, drawW, drawH, undefined, 'FAST');
+      }
+    } catch (_e) { /* skip if format unsupported */ }
+  }
 
   // ==============================
   // Combat (two columns)

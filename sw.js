@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rolemaster-v120';
+const CACHE_NAME = 'rolemaster-v122';
 const ASSETS = [
   './',
   './index.html',
@@ -96,7 +96,8 @@ const ASSETS = [
 
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
+    // cache: 'reload' bypasses the browser HTTP cache so the SW never precaches stale files
+    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS.map(u => new Request(u, { cache: 'reload' }))))
   );
   self.skipWaiting();
 });

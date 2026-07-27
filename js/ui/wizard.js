@@ -2533,7 +2533,7 @@ function bindActionEvents(app) {
   });
 
   const btnExportPdf = document.getElementById('btn-export-pdf');
-  if (btnExportPdf) btnExportPdf.addEventListener('click', () => {
+  if (btnExportPdf) btnExportPdf.addEventListener('click', async () => {
     if (!window.jspdf) {
       showToast('jsPDF non disponible — vérifier la connexion internet', true);
       return;
@@ -2544,7 +2544,7 @@ function bindActionEvents(app) {
     try {
       const lang = character.language || 'fr';
       const pc = character.printConfig || {};
-      generateCharacterPDF(character, { lang, portraitFit: pc.portraitFit || false });
+      await generateCharacterPDF(character, { lang, portraitFit: pc.portraitFit || false });
       showToast(lang === 'en' ? 'PDF downloaded!' : 'PDF téléchargé !');
     } catch (e) {
       showToast('Erreur PDF: ' + e.message, true);
