@@ -1321,6 +1321,9 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
   height: 350px;
 }
 
+/* Larger medallion on tool pages (encounters/party) — hero keeps its own size */
+.rm-crystal-ball-container:not(.rm-crystal-ball-hero) { width: 400px; height: 467px; }
+
 /* Video layer — behind the overlay */
 .rm-crystal-ball-container video {
   position: absolute;
@@ -1551,9 +1554,10 @@ body[data-view]:not([data-view="home"]) .rm-hero-video {
 
 /* Per-button padding/size tweaks */
 .rm-btn-roll-dice    { padding-left: 10%; }
-.rm-btn-print        { padding-left: 12%; }
-.rm-btn-download     { padding-left: 10%; }
-.rm-btn-export-pdf   { padding-left: 11%; }
+.rm-btn-print        { padding-left: 9%; }
+.rm-btn-download     { padding-left: 6%; }
+.rm-btn-export-pdf   { padding-left: 8%; }
+.rm-btn-save-local   { padding-left: 6%; }
 .rm-btn-load-file    { font-size: 1.04rem; }
 
 /* Mobile: scale down slightly */

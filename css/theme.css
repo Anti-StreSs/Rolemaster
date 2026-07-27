@@ -21,6 +21,11 @@
 }
 
 /* === BODY & BACKDROP === */
+/* GLOBAL UI SCALE: bump base font for readability across tool pages.
+   Home is preserved (ball is vw/px; button labels pinned below). */
+html { font-size: 20px; }
+body.rm-theme[data-view="home"] .rm-btn-ornate-lg { font-size: 14px; }
+
 body.rm-theme {
   margin: 0;
   min-height: 100vh;
