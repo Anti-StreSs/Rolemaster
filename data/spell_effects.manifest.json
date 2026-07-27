@@ -1,1 +1,20 @@
-{"buckets":["essence","channeling","mentalism","arcane","alchemy","other"],"counts":{"essence":2718,"channeling":2601,"mentalism":1757,"arcane":1043,"alchemy":0,"other":412},"total":8531,"version":"20260722-212354"}
+{
+  "buckets": [
+    "essence",
+    "channeling",
+    "mentalism",
+    "arcane",
+    "alchemy",
+    "other"
+  ],
+  "counts": {
+    "essence": 2718,
+    "channeling": 2753,
+    "mentalism": 1757,
+    "arcane": 1043,
+    "alchemy": 0,
+    "other": 412
+  },
+  "total": 8683,
+  "version": "20260727-druid-rm2-rmc1-rmc4"
+}

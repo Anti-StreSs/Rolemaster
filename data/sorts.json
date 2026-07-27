@@ -1,6 +1,6 @@
 {
-  "total_spell_lists": 136,
-  "total_realms": 13,
+  "total_spell_lists": 143,
+  "total_realms": 14,
   "realms": [
     {
       "index": 0,
@@ -685,11 +685,79 @@
           }
         ]
       ]
+    },
+    {
+      "index": 13,
+      "name": "Channeling (Base — RM2 Companions I & IV)",
+      "groups": [
+        [
+          {
+            "id": "list-544",
+            "name_fr": "Maîtrise Animalière",
+            "name_en": "Animal Mastery",
+            "ruleset": "RM2",
+            "source": "Rolemaster Companion I §3.21",
+            "class_or_category": "Druid Base"
+          },
+          {
+            "id": "list-545",
+            "name_fr": "Paix Druidique",
+            "name_en": "Druid's Peace",
+            "ruleset": "RM2",
+            "source": "Rolemaster Companion I §3.22",
+            "class_or_category": "Druid Base"
+          },
+          {
+            "id": "list-546",
+            "name_fr": "Bâton Druidique",
+            "name_en": "Druidstaff",
+            "ruleset": "RM2",
+            "source": "Rolemaster Companion I §3.23",
+            "class_or_category": "Druid Base"
+          },
+          {
+            "id": "list-547",
+            "name_fr": "Formes Naturelles",
+            "name_en": "Nature's Forms",
+            "ruleset": "RM2",
+            "source": "Rolemaster Companion I §3.24",
+            "class_or_category": "Druid Base"
+          },
+          {
+            "id": "list-548",
+            "name_fr": "Maîtrise des Pierres",
+            "name_en": "Stone Mastery",
+            "ruleset": "RM2",
+            "source": "Rolemaster Companion I §3.25",
+            "class_or_category": "Druid Base"
+          },
+          {
+            "id": "list-549",
+            "name_fr": "Maîtrise des Arbres",
+            "name_en": "Tree Mastery",
+            "ruleset": "RM2",
+            "source": "Rolemaster Companion I §3.26",
+            "class_or_category": "Druid Base"
+          },
+          {
+            "id": "list-550",
+            "name_fr": "Enrichissements",
+            "name_en": "Enrichment",
+            "ruleset": "RM2",
+            "source": "Rolemaster Companion IV §8.4.4",
+            "class_or_category": "Animist and/or Druid Base"
+          }
+        ]
+      ]
     }
   ],
   "_metadata": {
     "structure": "Each realm has groups: [Base Lists, Open Lists, Closed Lists, Evil Lists]. * separates groups, & separates realms.",
     "pair_format": "Each spell list has FR name (odd line) and EN name (even line).",
-    "source": "SORTS.DAT"
+    "source": "SORTS.DAT + Rolemaster Companions I and IV base lists",
+    "last_patch": "2026-07-27",
+    "supplemental_realms": [
+      "Channeling (Base — RM2 Companions I & IV)"
+    ]
   }
 }

@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "checks": {
+    "json_files_load": true,
+    "list_id_unique": true,
+    "spell_id_unique": true,
+    "enrichment_list_present": true,
+    "enrichment_spell_count": true,
+    "enrichment_all_effects_present": true,
+    "enrichment_channeling_effects_present": true,
+    "sorts_entry_present": true,
+    "index_entry_present": true,
+    "metadata_list_count_matches": true,
+    "metadata_spell_count_matches": true,
+    "manifest_channeling_matches": true,
+    "manifest_total_matches": true,
+    "french_list_label": true,
+    "profession_assignment": true
+  },
+  "counts": {
+    "lists": 527,
+    "spells": 10936,
+    "described_spells": 8683,
+    "channeling_described_spells": 2753,
+    "new_list_spells": 19
+  },
+  "new_ids": {
+    "list": "list-550",
+    "spells": [
+      "sp-10918",
+      "sp-10919",
+      "sp-10920",
+      "sp-10921",
+      "sp-10922",
+      "sp-10923",
+      "sp-10924",
+      "sp-10925",
+      "sp-10926",
+      "sp-10927",
+      "sp-10928",
+      "sp-10929",
+      "sp-10930",
+      "sp-10931",
+      "sp-10932",
+      "sp-10933",
+      "sp-10934",
+      "sp-10935",
+      "sp-10936"
+    ]
+  },
+  "source": {
+    "file": "ICE 1800 - RM2 Companion IV [1990].pdf",
+    "section": "8.4.4",
+    "printed_page": 66,
+    "index_confirmation_page": 86
+  }
+}
